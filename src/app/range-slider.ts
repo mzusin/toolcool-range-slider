@@ -28,6 +28,8 @@ class RangeSlider extends HTMLElement {
     this.onMouseDown = this.onMouseDown.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
     this.onValueChange = this.onValueChange.bind(this);
+    this.pointerKeyDown = this.pointerKeyDown.bind(this);
+    this.getSafeValue = this.getSafeValue.bind(this);
   }
 
   // ----------- APIs ------------------------
@@ -36,7 +38,7 @@ class RangeSlider extends HTMLElement {
    * value in % [0, 100]
    */
   public set value(percent: number) {
-    this._value = Math.min(Math.max(0, percent), 100);
+    this._value = this.getSafeValue(percent);
     this.render();
   }
 
@@ -49,6 +51,10 @@ class RangeSlider extends HTMLElement {
 
   // ----------------------------------------------
 
+  getSafeValue(percent: number) {
+    return Math.min(Math.max(0, percent), 100);
+  }
+
   render() {
     if (!this._$pointer) return;
 
@@ -59,7 +65,21 @@ class RangeSlider extends HTMLElement {
     this._$pointer?.focus();
   }
 
-  pointerKeyDown() {}
+  pointerKeyDown(evt: KeyboardEvent) {
+    switch (evt.key) {
+      case 'ArrowLeft': {
+        this.value = this.getSafeValue(this.value - 1);
+        this.render();
+        break;
+      }
+
+      case 'ArrowRight': {
+        this.value = this.getSafeValue(this.value + 1);
+        this.render();
+        break;
+      }
+    }
+  }
 
   onMouseDown(evt: MouseEvent) {
     if (evt.preventDefault) {
@@ -115,8 +135,8 @@ class RangeSlider extends HTMLElement {
             <div class="panel"></div>
             
             <div class="container">
-              <div class="pointer" style="left: ${this.value}%;">
-                <div tabindex="0" class="pointer-shape"></div>
+              <div class="pointer" tabindex="0" style="left: ${this.value}%;">
+                <div class="pointer-shape"></div>
               </div>
             </div>
             
