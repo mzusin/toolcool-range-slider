@@ -1,0 +1,41 @@
+.range-slider{
+    position: relative;
+    width: 100%;
+    height: 0.25rem;
+    touch-action: none;
+}
+
+.range-slider * {
+    box-sizing: border-box;
+}
+
+.container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.panel{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #2D4373;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.pointer-box{
+    position: absolute;
+}
+
+.pointer{
+    background: #fff;
+    box-shadow: 0 0 2px rgb(0 0 0 / 60%);
+    cursor: pointer;
+    border: 1px solid hsla(0,0%,88%,.5);
+    border-radius: 100%;
+    height: 15px;
+    margin-top: -5px;
+    transform: translateX(-7px);
+    width: 15px;
+}
