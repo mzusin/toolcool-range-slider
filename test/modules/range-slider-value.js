@@ -121,4 +121,10 @@ QUnit.module('Range Slider Value', () => {
         const $slider = document.querySelector('#slider-12');
         assert.equal($slider.max, '100');
     });
+
+    QUnit.test('if min = -50, max = 50, and value = 0 ---> pointer position should be 50%', (assert) => {
+        const $slider = document.querySelector('#slider-15');
+        const $pointer = $slider.shadowRoot.querySelector('.pointer');
+        assert.equal($pointer.style.left, '50%');
+    });
 });

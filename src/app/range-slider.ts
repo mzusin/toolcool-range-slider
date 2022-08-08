@@ -1,6 +1,6 @@
 // @ts-ignore: esbuild custom loader
 import styles from './styles.pcss';
-import { convertRange } from '../domain/max-provider';
+import { convertRange, getNumber } from '../domain/max-provider';
 
 /*
  Usage:
@@ -173,9 +173,9 @@ class RangeSlider extends HTMLElement {
     if (!this.shadowRoot) return;
 
     // initial values of attributes
-    this.min = Number(this.getAttribute('min')) || 0;
-    this.max = Number(this.getAttribute('max')) || 100;
-    this.value = Number(this.getAttribute('value')) || this.min;
+    this.min = getNumber(this.getAttribute('min'), 0);
+    this.max = getNumber(this.getAttribute('max'), 100);
+    this.value = getNumber(this.getAttribute('value'), this.min);
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
 
     this.shadowRoot.innerHTML = `
@@ -231,17 +231,17 @@ class RangeSlider extends HTMLElement {
    */
   attributeChangedCallback(attrName: string) {
     if (attrName === 'min') {
-      this.min = Number(this.getAttribute('min')) || 0;
+      this.min = getNumber(this.getAttribute('min'), 0);
       this.render();
     }
 
     if (attrName === 'max') {
-      this.max = Number(this.getAttribute('max')) || 100;
+      this.max = getNumber(this.getAttribute('max'), 100);
       this.render();
     }
 
     if (attrName === 'value') {
-      this.value = Number(this.getAttribute('value')) || this.min;
+      this.value = getNumber(this.getAttribute('value'), this.min);
       this.render();
     }
   }
