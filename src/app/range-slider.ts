@@ -4,18 +4,21 @@ import styles from './styles.pcss';
 /*
  Usage:
  ------
- <toolcool-range-slider value="0"></toolcool-range-slider>
+ <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
  */
 class RangeSlider extends HTMLElement {
   // ------------------------- INIT ----------------
 
   static get observedAttributes() {
-    return ['value'];
+    return ['value', 'min', 'max'];
   }
 
   private _$slider: HTMLElement | null;
   private _$pointer: HTMLElement | null;
-  private _value: number = 0;
+
+  private _value: number = 0; // [min, max]
+  private _min: number = 0;
+  private _max: number = 100;
 
   constructor() {
     super();
@@ -29,30 +32,71 @@ class RangeSlider extends HTMLElement {
     this.onMouseUp = this.onMouseUp.bind(this);
     this.onValueChange = this.onValueChange.bind(this);
     this.pointerKeyDown = this.pointerKeyDown.bind(this);
-    this.getSafeValue = this.getSafeValue.bind(this);
+    this.getSafeValues = this.getSafeValues.bind(this);
   }
 
   // ----------- APIs ------------------------
 
   /**
-   * value in % [0, 100]
+   * value in [min, max] range
    */
-  public set value(percent: number) {
-    this._value = this.getSafeValue(percent);
+  public set value(num: number) {
+    const safe = this.getSafeValues(num, this.min, this.max);
+    this._value = safe.value;
     this.render();
   }
 
   /**
-   * returns % [0, 100]
+   * returns value from [min, max] range
    */
   public get value() {
     return this._value;
   }
 
+  public set min(num: number) {
+    const safe = this.getSafeValues(this.value, num, this.max);
+    this._min = safe.min;
+    this.render();
+  }
+
+  public get min() {
+    return this._min;
+  }
+
+  public set max(num: number) {
+    const safe = this.getSafeValues(this.value, this.min, num);
+    this._max = safe.max;
+    this.render();
+  }
+
+  public get max() {
+    return this._max;
+  }
+
   // ----------------------------------------------
 
-  getSafeValue(percent: number) {
-    return Math.min(Math.max(0, percent), 100);
+  getSafeValues(value: number, min: number, max: number) {
+    let _min = min;
+    let _max = max;
+    let _val = value;
+
+    if (_min > _max) {
+      _max = _min + 100;
+    }
+
+    if (_val < _min) {
+      _val = _min;
+    }
+
+    if (_val > _max) {
+      _val = _max;
+    }
+
+    return {
+      min: _min,
+      max: _max,
+      value: _val,
+    };
   }
 
   render() {
@@ -68,13 +112,15 @@ class RangeSlider extends HTMLElement {
   pointerKeyDown(evt: KeyboardEvent) {
     switch (evt.key) {
       case 'ArrowLeft': {
-        this.value = this.getSafeValue(this.value - 1);
+        const safe = this.getSafeValues(this.value - 1, this.min, this.max);
+        this.value = safe.value;
         this.render();
         break;
       }
 
       case 'ArrowRight': {
-        this.value = this.getSafeValue(this.value + 1);
+        const safe = this.getSafeValues(this.value + 1, this.min, this.max);
+        this.value = safe.value;
         this.render();
         break;
       }
@@ -123,7 +169,9 @@ class RangeSlider extends HTMLElement {
     if (!this.shadowRoot) return;
 
     // initial values of attributes
-    this.value = Number(this.getAttribute('value')) || 0;
+    this.min = Number(this.getAttribute('min')) || 0;
+    this.max = Number(this.getAttribute('max')) || 100;
+    this.value = Number(this.getAttribute('value')) || this.min;
 
     this.shadowRoot.innerHTML = `
         <style>
@@ -174,8 +222,18 @@ class RangeSlider extends HTMLElement {
    * when attributes change
    */
   attributeChangedCallback(attrName: string) {
+    if (attrName === 'min') {
+      this.min = Number(this.getAttribute('min')) || 0;
+      this.render();
+    }
+
+    if (attrName === 'max') {
+      this.max = Number(this.getAttribute('max')) || 100;
+      this.render();
+    }
+
     if (attrName === 'value') {
-      this.value = Number(this.getAttribute('value')) || 0;
+      this.value = Number(this.getAttribute('value')) || this.min;
       this.render();
     }
   }

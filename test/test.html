@@ -10,17 +10,23 @@
 
         <div id="qunit-fixture">
             <toolcool-range-slider id="slider-1"></toolcool-range-slider>
-            <toolcool-range-slider id="slider-2" value="50"></toolcool-range-slider>
+            <toolcool-range-slider id="slider-2" value="50" min="1" max="99"></toolcool-range-slider>
             <toolcool-range-slider id="slider-3" value="string"></toolcool-range-slider>
             <toolcool-range-slider id="slider-4" value="-10"></toolcool-range-slider>
             <toolcool-range-slider id="slider-5" value="110"></toolcool-range-slider>
             <toolcool-range-slider id="slider-6" value="100"></toolcool-range-slider>
+            <toolcool-range-slider id="slider-7" min="50"></toolcool-range-slider>
+            <toolcool-range-slider id="slider-8" min="-50"></toolcool-range-slider>
+            <toolcool-range-slider id="slider-9" min="150"></toolcool-range-slider>
+            <toolcool-range-slider id="slider-10" min="10" max="20" value="30"></toolcool-range-slider>
+            <toolcool-range-slider id="slider-11" min="10" max="20" value="5"></toolcool-range-slider>
 
             <script src="toolcool-range-slider.min.js"></script>
         </div>
 
         <script src="qunit/qunit-2.19.1.js"></script>
         <script src="modules/range-slider-value.js"></script>
-        <script src="modules/range-slider-events.js"></script>
+        <script src="modules/range-slider-max-min.js"></script>
+        <script src="modules/range-slider-arrows.js"></script>
     </body>
 </html>

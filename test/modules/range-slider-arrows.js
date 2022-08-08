@@ -1,5 +1,5 @@
 
-QUnit.module('Range Slider Events: Keyboard Arrows', () => {
+QUnit.module('Range Slider Keyboard Arrows', () => {
 
   QUnit.test('provided value 50 ---> pointer left should be 50%', (assert) => {
     const $slider = document.querySelector('#slider-2');
