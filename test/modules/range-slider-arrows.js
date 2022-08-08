@@ -146,4 +146,57 @@ QUnit.module('Range Slider Keyboard Arrows', () => {
     assert.equal(left, '50%');
   });
 
+  QUnit.test('if step = 10 and pointer arrow right ---> left pointer position should be 10%', (assert) => {
+    const $slider = document.querySelector('#slider-1');
+    $slider.step = 10;
+    const $pointer = $slider.shadowRoot.querySelector('.pointer');
+
+    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      key: 'ArrowRight',
+    }));
+
+    const left = $pointer.style.left;
+    assert.equal(left, '10%');
+  });
+
+  QUnit.test('if step = 10 and pointer arrow right 3 times, then arrow left ---> left pointer position should be 20%', (assert) => {
+    const $slider = document.querySelector('#slider-1');
+    $slider.step = 10;
+    const $pointer = $slider.shadowRoot.querySelector('.pointer');
+
+    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      key: 'ArrowRight',
+    }));
+
+    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      key: 'ArrowRight',
+    }));
+
+    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      key: 'ArrowRight',
+    }));
+
+    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      key: 'ArrowLeft',
+    }));
+
+    const left = $pointer.style.left;
+    assert.equal(left, '20%');
+  });
+
 });
