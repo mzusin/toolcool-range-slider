@@ -128,4 +128,21 @@ QUnit.module('Range Slider Keyboard Arrows', () => {
     const left = $pointer.style.left;
     assert.equal(left, '100%');
   });
+
+  // <toolcool-range-slider min="50" max="100" id="slider-12"></toolcool-range-slider>
+  QUnit.test('min="50" max="100" and arrow right ---> left position should be 2%', (assert) => {
+    const $slider = document.querySelector('#slider-12');
+    const $pointer = $slider.shadowRoot.querySelector('.pointer');
+
+    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      key: 'ArrowRight',
+    }));
+
+    const left = $pointer.style.left;
+    assert.equal(left, '2%');
+  });
+
 });
