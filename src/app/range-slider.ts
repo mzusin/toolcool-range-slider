@@ -6,12 +6,13 @@ import { convertRange, getNumber } from '../domain/max-provider';
  Usage:
  ------
  <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
+ <toolcool-range-slider value="0" min="-100" max="100" step="1"></toolcool-range-slider>
  */
 class RangeSlider extends HTMLElement {
   // ------------------------- INIT ----------------
 
   static get observedAttributes() {
-    return ['value', 'min', 'max'];
+    return ['value', 'min', 'max', 'step'];
   }
 
   private _$slider: HTMLElement | null;
@@ -20,6 +21,7 @@ class RangeSlider extends HTMLElement {
   private _value: number = 0; // [min, max]
   private _min: number = 0;
   private _max: number = 100;
+  private _step: number | undefined = undefined;
 
   constructor() {
     super();
@@ -75,6 +77,18 @@ class RangeSlider extends HTMLElement {
     return this._max;
   }
 
+  public set step(num: number | undefined) {
+    const range = Math.abs(this.max - this.min);
+    if (num !== undefined && num > range) {
+      num = undefined;
+    }
+    this._step = num;
+  }
+
+  public get step() {
+    return this._step;
+  }
+
   // ----------------------------------------------
 
   getSafeValues(value: number, min: number, max: number) {
@@ -116,14 +130,16 @@ class RangeSlider extends HTMLElement {
   pointerKeyDown(evt: KeyboardEvent) {
     switch (evt.key) {
       case 'ArrowLeft': {
-        const safe = this.getSafeValues(this.value - 1, this.min, this.max);
+        const step = getNumber(this.step, 1);
+        const safe = this.getSafeValues(this.value - step, this.min, this.max);
         this.value = safe.value;
         this.render();
         break;
       }
 
       case 'ArrowRight': {
-        const safe = this.getSafeValues(this.value + 1, this.min, this.max);
+        const step = getNumber(this.step, 1);
+        const safe = this.getSafeValues(this.value + step, this.min, this.max);
         this.value = safe.value;
         this.render();
         break;
@@ -176,6 +192,7 @@ class RangeSlider extends HTMLElement {
     this.min = getNumber(this.getAttribute('min'), 0);
     this.max = getNumber(this.getAttribute('max'), 100);
     this.value = getNumber(this.getAttribute('value'), this.min);
+
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
 
     this.shadowRoot.innerHTML = `
@@ -243,6 +260,10 @@ class RangeSlider extends HTMLElement {
     if (attrName === 'value') {
       this.value = getNumber(this.getAttribute('value'), this.min);
       this.render();
+    }
+
+    if (attrName === 'step') {
+      this.step = getNumber(this.getAttribute('step'), undefined);
     }
   }
 }

@@ -113,10 +113,12 @@ QUnit.module('Range Slider Value', () => {
         const $slider = document.querySelector('#slider-12');
         assert.equal($slider.value, '50');
     });
+    
     QUnit.test('min should be 50', (assert) => {
         const $slider = document.querySelector('#slider-12');
         assert.equal($slider.min, '50');
     });
+
     QUnit.test('max should be 100', (assert) => {
         const $slider = document.querySelector('#slider-12');
         assert.equal($slider.max, '100');
