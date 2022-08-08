@@ -36,7 +36,8 @@ class RangeSlider extends HTMLElement {
    * value in % [0, 100]
    */
   public set value(percent: number) {
-    this._value = percent;
+    this._value = Math.min(Math.max(0, percent), 100);
+    this.render();
   }
 
   /**
