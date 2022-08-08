@@ -18,9 +18,9 @@ class RangeSlider extends HTMLElement {
   private _$slider: HTMLElement | null;
   private _$pointer: HTMLElement | null;
 
-  private _value: number = 0; // [min, max]
-  private _min: number = 0;
-  private _max: number = 100;
+  private _value = 0; // [min, max]
+  private _min = 0;
+  private _max = 100;
   private _step: number | undefined = undefined;
 
   constructor() {
@@ -92,7 +92,7 @@ class RangeSlider extends HTMLElement {
   // ----------------------------------------------
 
   getSafeValues(value: number, min: number, max: number) {
-    let _min = min;
+    const _min = min;
     let _max = max;
     let _val = value;
 
