@@ -10,3 +10,11 @@ export const getNumber = (input: any, defaultValue: any) => {
   const isNumber = !isNaN(parseFloat(input)) && isFinite(input);
   return isNumber ? Number(input) : defaultValue;
 };
+
+/**
+ * Round up to the next multiple of X,
+ * where X is the step provided by the user.
+ */
+export const roundToStep = (num: number, step: number) => {
+  return Math.round(num / step) * step;
+};

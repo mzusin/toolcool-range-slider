@@ -1,6 +1,6 @@
 // @ts-ignore: esbuild custom loader
 import styles from './styles.pcss';
-import { convertRange, getNumber } from '../domain/max-provider';
+import { convertRange, getNumber, roundToStep } from '../domain/math-provider';
 
 /*
  Usage:
@@ -166,8 +166,8 @@ class RangeSlider extends HTMLElement {
     if (!this._$slider) return;
 
     const { width: boxWidth, left: boxLeft } = this._$slider.getBoundingClientRect();
-    let mouseX;
 
+    let mouseX;
     if (evt.type.indexOf('mouse') !== -1) {
       mouseX = (evt as MouseEvent).clientX;
     } else {
@@ -176,7 +176,14 @@ class RangeSlider extends HTMLElement {
 
     const left = Math.min(Math.max(0, mouseX - boxLeft), boxWidth);
     const percent = (left * 100) / boxWidth;
-    this.value = Math.round(convertRange(0, 100, this.min, this.max, percent));
+
+    let value = convertRange(0, 100, this.min, this.max, percent);
+
+    if (this.step !== undefined) {
+      value = roundToStep(value, this.step);
+    }
+
+    this.value = value;
     this.render();
   }
 
