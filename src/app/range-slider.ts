@@ -1,5 +1,6 @@
 // @ts-ignore: esbuild custom loader
 import styles from './styles.pcss';
+import { convertRange } from '../domain/max-provider';
 
 /*
  Usage:
@@ -33,6 +34,7 @@ class RangeSlider extends HTMLElement {
     this.onValueChange = this.onValueChange.bind(this);
     this.pointerKeyDown = this.pointerKeyDown.bind(this);
     this.getSafeValues = this.getSafeValues.bind(this);
+    this.render = this.render.bind(this);
   }
 
   // ----------- APIs ------------------------
@@ -102,7 +104,9 @@ class RangeSlider extends HTMLElement {
   render() {
     if (!this._$pointer) return;
 
-    this._$pointer.style.left = `${this.value}%`;
+    const percent = convertRange(this.min, this.max, 0, 100, this.value);
+
+    this._$pointer.style.left = `${percent}%`;
   }
 
   pointerClicked() {
@@ -155,8 +159,8 @@ class RangeSlider extends HTMLElement {
     }
 
     const left = Math.min(Math.max(0, mouseX - boxLeft), boxWidth);
-
-    this.value = Math.round((left * 100) / boxWidth);
+    const percent = (left * 100) / boxWidth;
+    this.value = Math.round(convertRange(0, 100, this.min, this.max, percent));
     this.render();
   }
 
@@ -172,6 +176,7 @@ class RangeSlider extends HTMLElement {
     this.min = Number(this.getAttribute('min')) || 0;
     this.max = Number(this.getAttribute('max')) || 100;
     this.value = Number(this.getAttribute('value')) || this.min;
+    const percent = convertRange(this.min, this.max, 0, 100, this.value);
 
     this.shadowRoot.innerHTML = `
         <style>
@@ -183,7 +188,7 @@ class RangeSlider extends HTMLElement {
             <div class="panel"></div>
             
             <div class="container">
-              <div class="pointer" tabindex="0" style="left: ${this.value}%;">
+              <div class="pointer" tabindex="0" style="left: ${percent}%;">
                 <div class="pointer-shape"></div>
               </div>
             </div>
@@ -191,6 +196,9 @@ class RangeSlider extends HTMLElement {
           </div>
         </div>
     `;
+
+    // update the initial position of the pointer
+    this.render();
 
     // init slider element and its events
     this._$slider = this.shadowRoot.querySelector('.range-slider');
