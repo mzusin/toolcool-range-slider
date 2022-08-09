@@ -35,22 +35,22 @@ QUnit.module('Range Slider Width & Height', () => {
 
     QUnit.test('by default width style is empty', (assert) => {
         const $slider = document.querySelector('#slider-1').shadowRoot.querySelector('.range-slider');
-        assert.equal($slider.style.width, '');
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-width'), '');
     });
 
     QUnit.test('by default height style is empty', (assert) => {
         const $slider = document.querySelector('#slider-1').shadowRoot.querySelector('.range-slider');
-        assert.equal($slider.style.height, '');
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-height'), '');
     });
 
     QUnit.test('provided slider width style should be 200px', (assert) => {
         const $slider = document.querySelector('#slider-20').shadowRoot.querySelector('.range-slider');
-        assert.equal($slider.style.width, '200px');
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-width'), '200px');
     });
 
     QUnit.test('provided slider height style should be 20px', (assert) => {
         const $slider = document.querySelector('#slider-20').shadowRoot.querySelector('.range-slider');
-        assert.equal($slider.style.height, '20px');
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-height'), '20px');
     });
 
     QUnit.test('slider width changed to 30rem ---> style should change', (assert) => {
@@ -58,14 +58,14 @@ QUnit.module('Range Slider Width & Height', () => {
         $slider.sliderWidth = '30rem';
 
         const $inner = $slider.shadowRoot.querySelector('.range-slider')
-        assert.equal($inner.style.width, '30rem');
+        assert.equal($inner.style.getPropertyValue('--toolcool-range-slider-width'), '30rem');
     });
 
     QUnit.test('slider height changed to 2rem ---> style should change', (assert) => {
         const $slider = document.querySelector('#slider-20');
         $slider.sliderHeight = '2rem';
         const $inner = $slider.shadowRoot.querySelector('.range-slider')
-        assert.equal($inner.style.height, '2rem');
+        assert.equal($inner.style.getPropertyValue('--toolcool-range-slider-height'), '2rem');
     });
 });
 
@@ -106,25 +106,25 @@ QUnit.module('Pointer Width & Height', () => {
     QUnit.test('by default pointer width style is empty', (assert) => {
         const $slider = document.querySelector('#slider-1');
         const $pointer = $slider.shadowRoot.querySelector('.pointer-shape');
-        assert.equal($pointer.style.width, '');
+        assert.equal($pointer.style.getPropertyValue('--toolcool-range-slider-pointer-width'), '');
     });
 
     QUnit.test('by default pointer height style is empty', (assert) => {
         const $slider = document.querySelector('#slider-1');
         const $pointer = $slider.shadowRoot.querySelector('.pointer-shape');
-        assert.equal($pointer.style.height, '');
+        assert.equal($pointer.style.getPropertyValue('--toolcool-range-slider-pointer-height'), '');
     });
 
     QUnit.test('provided pointer width style should be 50px', (assert) => {
         const $slider = document.querySelector('#slider-21');
         const $pointer = $slider.shadowRoot.querySelector('.pointer-shape');
-        assert.equal($pointer.style.width, '50px');
+        assert.equal($pointer.style.getPropertyValue('--toolcool-range-slider-pointer-width'), '50px');
     });
 
     QUnit.test('provided pointer height style should be 50px', (assert) => {
         const $slider = document.querySelector('#slider-21');
         const $pointer = $slider.shadowRoot.querySelector('.pointer-shape');
-        assert.equal($pointer.style.height, '50px');
+        assert.equal($pointer.style.getPropertyValue('--toolcool-range-slider-pointer-height'), '50px');
     });
 
     QUnit.test('pointer width changed to 30rem ---> style should change', (assert) => {
@@ -132,7 +132,7 @@ QUnit.module('Pointer Width & Height', () => {
         $slider.pointerWidth = '30rem';
 
         const $pointer = $slider.shadowRoot.querySelector('.pointer-shape');
-        assert.equal($pointer.style.width, '30rem');
+        assert.equal($pointer.style.getPropertyValue('--toolcool-range-slider-pointer-width'), '30rem');
     });
 
     QUnit.test('pointer height changed to 2rem ---> style should change', (assert) => {
@@ -140,6 +140,6 @@ QUnit.module('Pointer Width & Height', () => {
         $slider.pointerHeight = '2rem';
 
         const $pointer = $slider.shadowRoot.querySelector('.pointer-shape');
-        assert.equal($pointer.style.height, '2rem');
+        assert.equal($pointer.style.getPropertyValue('--toolcool-range-slider-pointer-height'), '2rem');
     });
 });

@@ -200,27 +200,27 @@ class RangeSlider extends HTMLElement {
     this._$pointer.style.left = `${percent}%`;
 
     if (this.sliderWidth) {
-      this._$slider.style.width = this.sliderWidth;
+      this._$slider.style.setProperty('--toolcool-range-slider-width', this.sliderWidth);
     }
 
     if (this.sliderHeight) {
-      this._$slider.style.height = this.sliderHeight;
+      this._$slider.style.setProperty('--toolcool-range-slider-height', this.sliderHeight);
     }
 
     if (this.sliderRadius) {
-      this._$panel.style.borderRadius = this.sliderRadius;
+      this._$panel.style.setProperty('--toolcool-range-slider-panel-bg-border-radius', this.sliderRadius);
     }
 
     if (this.pointerWidth) {
-      this._$pointerShape.style.width = this.pointerWidth;
+      this._$pointerShape.style.setProperty('--toolcool-range-slider-pointer-width', this.pointerWidth);
     }
 
     if (this.pointerHeight) {
-      this._$pointerShape.style.height = this.pointerHeight;
+      this._$pointerShape.style.setProperty('--toolcool-range-slider-pointer-height', this.pointerHeight);
     }
 
     if (this.pointerRadius) {
-      this._$pointerShape.style.borderRadius = this.pointerRadius;
+      this._$pointerShape.style.setProperty('--toolcool-range-slider-pointer-border-radius', this.pointerRadius);
     }
   }
 

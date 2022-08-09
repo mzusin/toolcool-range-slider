@@ -13,6 +13,7 @@
     --toolcool-range-slider-pointer-shadow-hover: 0 0 2px rgb(0, 0, 0);
     --toolcool-range-slider-pointer-border: 1px solid hsla(0, 0%, 88%, 0.5);
     --toolcool-range-slider-pointer-border-focus: 1px solid hsl(201, 72%, 59%);
+    --toolcool-range-slider-pointer-border-radius: 100%;
 }
 
 .range-slider{
@@ -60,7 +61,7 @@
     box-shadow: var(--toolcool-range-slider-pointer-shadow);
     cursor: pointer;
     border: var(--toolcool-range-slider-pointer-border);
-    border-radius: 100%;
+    border-radius: var(--toolcool-range-slider-pointer-border-radius, 100%);
     transform: translateX(-50%);
     width: var(--toolcool-range-slider-pointer-width, 15px);
     height: var(--toolcool-range-slider-pointer-height, 15px);
