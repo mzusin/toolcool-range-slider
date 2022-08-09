@@ -36,3 +36,41 @@ QUnit.module('Range Slider Pointer Radius', () => {
         assert.equal($pointerShape.style.borderRadius, '3rem');
     });
 });
+
+QUnit.module('Range Slider Panel Radius', () => {
+
+    QUnit.test('panel radius by default should be undefined', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        assert.equal($slider.sliderRadius, undefined);
+    });
+
+    QUnit.test('provided panel radius should be 5px', (assert) => {
+        const $slider = document.querySelector('#slider-23');
+        assert.equal($slider.sliderRadius, '5px');
+    });
+
+    QUnit.test('panel radius changed to 3rem', (assert) => {
+        const $slider = document.querySelector('#slider-23');
+        $slider.sliderRadius = '3rem';
+        assert.equal($slider.sliderRadius, '3rem');
+    });
+
+    QUnit.test('by default panel radius style is empty', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        const $panel = $slider.shadowRoot.querySelector('.panel');
+        assert.equal($panel.style.borderRadius, '');
+    });
+
+    QUnit.test('provided panel radius style should be 5px', (assert) => {
+        const $slider = document.querySelector('#slider-23');
+        const $panel = $slider.shadowRoot.querySelector('.panel');
+        assert.equal($panel.style.borderRadius, '5px');
+    });
+
+    QUnit.test('panel radius changed to 30rem ---> style should change', (assert) => {
+        const $slider = document.querySelector('#slider-23');
+        $slider.sliderRadius = '3rem';
+        const $panel = $slider.shadowRoot.querySelector('.panel');
+        assert.equal($panel.style.borderRadius, '3rem');
+    });
+});

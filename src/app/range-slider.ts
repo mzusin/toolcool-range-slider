@@ -7,17 +7,18 @@ import { convertRange, getNumber, roundToStep } from '../domain/math-provider';
  ------
  <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
  <toolcool-range-slider value="0" min="-100" max="100" step="1"></toolcool-range-slider>
- <toolcool-range-slider slider-width="250px" slider-height="10px"></toolcool-range-slider>
+ <toolcool-range-slider slider-width="250px" slider-height="10px" slider-radius="5px"></toolcool-range-slider>
  <toolcool-range-slider pointer-width="20px" pointer-height="20px" pointer-radius="5px"></toolcool-range-slider>
  */
 class RangeSlider extends HTMLElement {
   // ------------------------- INIT ----------------
 
   static get observedAttributes() {
-    return ['value', 'min', 'max', 'step', 'slider-width', 'slider-height', 'pointer-width', 'pointer-height'];
+    return ['value', 'min', 'max', 'step', 'slider-width', 'slider-height', 'slider-radius', 'pointer-width', 'pointer-height', 'pointer-radius'];
   }
 
   private _$slider: HTMLElement | null;
+  private _$panel: HTMLElement | null;
   private _$pointer: HTMLElement | null;
   private _$pointerShape: HTMLElement | null;
 
@@ -28,6 +29,7 @@ class RangeSlider extends HTMLElement {
 
   private _sliderWidth: string | undefined = undefined;
   private _sliderHeight: string | undefined = undefined;
+  private _sliderRadius: string | undefined = undefined;
 
   private _pointerWidth: string | undefined = undefined;
   private _pointerHeight: string | undefined = undefined;
@@ -118,6 +120,15 @@ class RangeSlider extends HTMLElement {
     return this._sliderHeight;
   }
 
+  public set sliderRadius(val: string | undefined) {
+    this._sliderRadius = val;
+    this.render();
+  }
+
+  public get sliderRadius() {
+    return this._sliderRadius;
+  }
+
   public set pointerWidth(val: string | undefined) {
     this._pointerWidth = val;
     this.render();
@@ -182,7 +193,7 @@ class RangeSlider extends HTMLElement {
   }
 
   render() {
-    if (!this._$slider || !this._$pointer || !this._$pointerShape) return;
+    if (!this._$slider || !this._$panel || !this._$pointer || !this._$pointerShape) return;
 
     // update the pointer position
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
@@ -194,6 +205,10 @@ class RangeSlider extends HTMLElement {
 
     if (this.sliderHeight) {
       this._$slider.style.height = this.sliderHeight;
+    }
+
+    if (this.sliderRadius) {
+      this._$panel.style.borderRadius = this.sliderRadius;
     }
 
     if (this.pointerWidth) {
@@ -289,6 +304,7 @@ class RangeSlider extends HTMLElement {
 
     this.sliderWidth = this.getAttribute('slider-width') || undefined;
     this.sliderHeight = this.getAttribute('slider-height') || undefined;
+    this.sliderRadius = this.getAttribute('slider-radius') || undefined;
 
     this.pointerWidth = this.getAttribute('pointer-width') || undefined;
     this.pointerHeight = this.getAttribute('pointer-height') || undefined;
@@ -315,16 +331,19 @@ class RangeSlider extends HTMLElement {
         </div>
     `;
 
-    // init slider element and its events
+    // init slider elements
     this._$slider = this.shadowRoot.querySelector('.range-slider');
+    this._$panel = this.shadowRoot.querySelector('.panel');
+    this._$pointer = this.shadowRoot.querySelector('.pointer');
+    this._$pointerShape = this.shadowRoot.querySelector('.pointer-shape');
+
+    // init slider events
     this._$slider?.addEventListener('mousedown', this.onMouseDown);
     this._$slider?.addEventListener('mouseup', this.onMouseUp);
     this._$slider?.addEventListener('touchmove', this.onValueChange);
     this._$slider?.addEventListener('touchstart', this.onValueChange);
 
-    // init pointer and its events
-    this._$pointer = this.shadowRoot.querySelector('.pointer');
-    this._$pointerShape = this.shadowRoot.querySelector('.pointer-shape');
+    // init pointer events
     this._$pointer?.addEventListener('click', this.pointerClicked);
     this._$pointer?.addEventListener('keydown', this.pointerKeyDown);
 
@@ -349,48 +368,65 @@ class RangeSlider extends HTMLElement {
    * when attributes change
    */
   attributeChangedCallback(attrName: string) {
-    if (attrName === 'min') {
-      this.min = getNumber(this.getAttribute('min'), 0);
-      this.render();
-    }
+    switch (attrName) {
+      case 'min': {
+        this.min = getNumber(this.getAttribute('min'), 0);
+        this.render();
+        break;
+      }
 
-    if (attrName === 'max') {
-      this.max = getNumber(this.getAttribute('max'), 100);
-      this.render();
-    }
+      case 'max': {
+        this.max = getNumber(this.getAttribute('max'), 100);
+        this.render();
+        break;
+      }
 
-    if (attrName === 'value') {
-      this.value = getNumber(this.getAttribute('value'), this.min);
-      this.render();
-    }
+      case 'value': {
+        this.value = getNumber(this.getAttribute('value'), this.min);
+        this.render();
+        break;
+      }
 
-    if (attrName === 'step') {
-      this.step = getNumber(this.getAttribute('step'), undefined);
-    }
+      case 'step': {
+        this.step = getNumber(this.getAttribute('step'), undefined);
+        break;
+      }
 
-    if (attrName === 'slider-width') {
-      this.sliderWidth = this.getAttribute('slider-width') || undefined;
-      this.render();
-    }
+      case 'slider-width': {
+        this.sliderWidth = this.getAttribute('slider-width') || undefined;
+        this.render();
+        break;
+      }
 
-    if (attrName === 'slider-height') {
-      this.sliderHeight = this.getAttribute('slider-height') || undefined;
-      this.render();
-    }
+      case 'slider-height': {
+        this.sliderHeight = this.getAttribute('slider-height') || undefined;
+        this.render();
+        break;
+      }
 
-    if (attrName === 'pointer-width') {
-      this.pointerWidth = this.getAttribute('pointer-width') || undefined;
-      this.render();
-    }
+      case 'slider-radius': {
+        this.sliderRadius = this.getAttribute('slider-radius') || undefined;
+        this.render();
+        break;
+      }
 
-    if (attrName === 'pointer-height') {
-      this.pointerHeight = this.getAttribute('pointer-height') || undefined;
-      this.render();
-    }
+      case 'pointer-width': {
+        this.pointerWidth = this.getAttribute('pointer-width') || undefined;
+        this.render();
+        break;
+      }
 
-    if (attrName === 'pointer-height') {
-      this.pointerRadius = this.getAttribute('pointer-radius') || undefined;
-      this.render();
+      case 'pointer-height': {
+        this.pointerHeight = this.getAttribute('pointer-height') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'pointer-radius': {
+        this.pointerRadius = this.getAttribute('pointer-radius') || undefined;
+        this.render();
+        break;
+      }
     }
   }
 }
