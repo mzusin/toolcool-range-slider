@@ -1,3 +1,12 @@
+:host{
+    --toolcool-range-slider-panel-bg-color: #2D4373;
+    --toolcool-range-slider-panel-bg-color-hover: #5f79b7;
+    --toolcool-range-slider-pointer-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+    --toolcool-range-slider-pointer-shadow-hover: 0 0 2px rgb(0, 0, 0);
+    --toolcool-range-slider-pointer-border: 1px solid hsla(0, 0%, 88%, 0.5);
+    --toolcool-range-slider-pointer-border-focus: 1px solid hsl(201, 72%, 59%);
+}
+
 .range-slider{
     position: relative;
     width: 100%;
@@ -20,14 +29,14 @@
     z-index: 10;
     width: 100%;
     height: 100%;
-    background: #2D4373; /* todo */
-    border-radius: 1rem; /* todo */
+    background: var(--toolcool-range-slider-panel-bg-color, #2D4373);
+    border-radius: 1rem;
     overflow: hidden;
     transition: 0.3s background-color ease;
 }
 
 .panel:hover{
-    background: #5f79b7; /* todo */
+    background: var(--toolcool-range-slider-panel-bg-color-hover, #5f79b7);
 }
 
 .pointer{
@@ -40,9 +49,9 @@
 
 .pointer-shape{
     background: #fff;
-    box-shadow: 0 0 2px rgb(0 0 0 / 60%); /* todo */
+    box-shadow: var(--toolcool-range-slider-pointer-shadow);
     cursor: pointer;
-    border: 1px solid hsla(0, 0%, 88%, 0.5); /* todo */
+    border: var(--toolcool-range-slider-pointer-border);
     border-radius: 100%;
     transform: translateX(-50%);
     width: 15px;
@@ -51,9 +60,9 @@
 }
 
 .pointer-shape:hover{
-    box-shadow: 0 0 2px rgb(0 0 0 / 100%); /* todo */
+    box-shadow: var(--toolcool-range-slider-pointer-shadow-hover);
 }
 
 .pointer:focus .pointer-shape{
-    border: 1px solid hsl(201, 72%, 59%); /* todo */
+    border: var(--toolcool-range-slider-pointer-border-focus);
 }
