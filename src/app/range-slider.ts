@@ -9,13 +9,28 @@ import { convertRange, getNumber, roundToStep } from '../domain/math-provider';
  <toolcool-range-slider value="0" min="-100" max="100" step="1"></toolcool-range-slider>
  <toolcool-range-slider slider-width="250px" slider-height="10px" slider-radius="5px"></toolcool-range-slider>
  <toolcool-range-slider pointer-width="20px" pointer-height="20px" pointer-radius="5px"></toolcool-range-slider>
- <toolcool-range-slider slider-bg-color="red" pointer-bg-color="blue"></toolcool-range-slider>
+ <toolcool-range-slider slider-bg="red" pointer-bg="blue"></toolcool-range-slider>
  */
 class RangeSlider extends HTMLElement {
   // ------------------------- INIT ----------------
 
   static get observedAttributes() {
-    return ['value', 'min', 'max', 'step', 'slider-width', 'slider-height', 'slider-radius', 'slider-bg-color', 'pointer-width', 'pointer-height', 'pointer-radius', 'pointer-bg-color'];
+    return [
+      'value',
+      'min',
+      'max',
+      'step',
+      'slider-width',
+      'slider-height',
+      'slider-radius',
+      'slider-bg',
+      'slider-bg-hover',
+      'pointer-width',
+      'pointer-height',
+      'pointer-radius',
+      'pointer-bg',
+      'pointer-bg-hover',
+    ];
   }
 
   private _$slider: HTMLElement | null;
@@ -29,12 +44,14 @@ class RangeSlider extends HTMLElement {
   private _sliderWidth: string | undefined = undefined;
   private _sliderHeight: string | undefined = undefined;
   private _sliderRadius: string | undefined = undefined;
-  private _sliderBgColor: string | undefined = undefined;
+  private _sliderBg: string | undefined = undefined;
+  private _sliderBgHover: string | undefined = undefined;
 
   private _pointerWidth: string | undefined = undefined;
   private _pointerHeight: string | undefined = undefined;
   private _pointerRadius: string | undefined = undefined;
-  private _pointerBgColor: string | undefined = undefined;
+  private _pointerBg: string | undefined = undefined;
+  private _pointerBgHover: string | undefined = undefined;
 
   constructor() {
     super();
@@ -130,13 +147,22 @@ class RangeSlider extends HTMLElement {
     return this._sliderRadius;
   }
 
-  public set sliderBgColor(val: string | undefined) {
-    this._sliderBgColor = val;
+  public set sliderBg(val: string | undefined) {
+    this._sliderBg = val;
     this.render();
   }
 
-  public get sliderBgColor() {
-    return this._sliderBgColor;
+  public get sliderBg() {
+    return this._sliderBg;
+  }
+
+  public set sliderBgHover(val: string | undefined) {
+    this._sliderBgHover = val;
+    this.render();
+  }
+
+  public get sliderBgHover() {
+    return this._sliderBgHover;
   }
 
   public set pointerWidth(val: string | undefined) {
@@ -166,13 +192,22 @@ class RangeSlider extends HTMLElement {
     return this._pointerRadius;
   }
 
-  public set pointerBgColor(val: string | undefined) {
-    this._pointerBgColor = val;
+  public set pointerBg(val: string | undefined) {
+    this._pointerBg = val;
     this.render();
   }
 
-  public get pointerBgColor() {
-    return this._pointerBgColor;
+  public get pointerBg() {
+    return this._pointerBg;
+  }
+
+  public set pointerBgHover(val: string | undefined) {
+    this._pointerBgHover = val;
+    this.render();
+  }
+
+  public get pointerBgHover() {
+    return this._pointerBgHover;
   }
 
   // ----------------------------------------------
@@ -230,8 +265,12 @@ class RangeSlider extends HTMLElement {
       this.style.setProperty('--toolcool-range-slider-panel-bg-border-radius', this.sliderRadius);
     }
 
-    if (this.sliderBgColor) {
-      this.style.setProperty('--toolcool-range-slider-panel-bg-color', this.sliderBgColor);
+    if (this.sliderBg) {
+      this.style.setProperty('--toolcool-range-slider-panel-bg', this.sliderBg);
+    }
+
+    if (this.sliderBgHover) {
+      this.style.setProperty('--toolcool-range-slider-panel-bg-hover', this.sliderBgHover);
     }
 
     if (this.pointerWidth) {
@@ -246,8 +285,12 @@ class RangeSlider extends HTMLElement {
       this.style.setProperty('--toolcool-range-slider-pointer-border-radius', this.pointerRadius);
     }
 
-    if (this.pointerBgColor) {
-      this.style.setProperty('--toolcool-range-slider-pointer-bg-color', this.pointerBgColor);
+    if (this.pointerBg) {
+      this.style.setProperty('--toolcool-range-slider-pointer-bg', this.pointerBg);
+    }
+
+    if (this.pointerBgHover) {
+      this.style.setProperty('--toolcool-range-slider-pointer-bg-hover', this.pointerBgHover);
     }
   }
 
@@ -332,12 +375,14 @@ class RangeSlider extends HTMLElement {
     this.sliderWidth = this.getAttribute('slider-width') || undefined;
     this.sliderHeight = this.getAttribute('slider-height') || undefined;
     this.sliderRadius = this.getAttribute('slider-radius') || undefined;
-    this.sliderBgColor = this.getAttribute('slider-bg-color') || undefined;
+    this.sliderBg = this.getAttribute('slider-bg') || undefined;
+    this.sliderBgHover = this.getAttribute('slider-bg-hover') || undefined;
 
     this.pointerWidth = this.getAttribute('pointer-width') || undefined;
     this.pointerHeight = this.getAttribute('pointer-height') || undefined;
     this.pointerRadius = this.getAttribute('pointer-radius') || undefined;
-    this.pointerBgColor = this.getAttribute('pointer-bg-color') || undefined;
+    this.pointerBg = this.getAttribute('pointer-bg') || undefined;
+    this.pointerBgHover = this.getAttribute('pointer-bg-hover') || undefined;
 
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
 
@@ -437,8 +482,14 @@ class RangeSlider extends HTMLElement {
         break;
       }
 
-      case 'slider-bg-color': {
-        this.sliderBgColor = this.getAttribute('slider-bg-color') || undefined;
+      case 'slider-bg': {
+        this.sliderBg = this.getAttribute('slider-bg') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'slider-bg-hover': {
+        this.sliderBgHover = this.getAttribute('slider-bg-hover') || undefined;
         this.render();
         break;
       }
@@ -461,8 +512,14 @@ class RangeSlider extends HTMLElement {
         break;
       }
 
-      case 'pointer-bg-color': {
-        this.pointerBgColor = this.getAttribute('pointer-bg-color') || undefined;
+      case 'pointer-bg': {
+        this.pointerBg = this.getAttribute('pointer-bg') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'pointer-bg-hover': {
+        this.pointerBgHover = this.getAttribute('pointer-bg-hover') || undefined;
         this.render();
         break;
       }

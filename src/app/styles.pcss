@@ -2,13 +2,14 @@
     --toolcool-range-slider-width: 100%;
     --toolcool-range-slider-height: 0.25rem;
 
-    --toolcool-range-slider-panel-bg-color: #2D4373;
-    --toolcool-range-slider-panel-bg-color-hover: #5f79b7;
+    --toolcool-range-slider-panel-bg: #2D4373;
+    --toolcool-range-slider-panel-bg-hover: #5f79b7;
     --toolcool-range-slider-panel-bg-border-radius: 1rem;
 
     --toolcool-range-slider-pointer-width: 15px;
     --toolcool-range-slider-pointer-height: 15px;
-    --toolcool-range-slider-pointer-bg-color: #fff;
+    --toolcool-range-slider-pointer-bg: #fff;
+    --toolcool-range-slider-pointer-bg-hover: #dcdcdc;
     --toolcool-range-slider-pointer-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
     --toolcool-range-slider-pointer-shadow-hover: 0 0 2px rgb(0, 0, 0);
     --toolcool-range-slider-pointer-border: 1px solid hsla(0, 0%, 88%, 0.5);
@@ -38,14 +39,14 @@
     z-index: 10;
     width: 100%;
     height: 100%;
-    background: var(--toolcool-range-slider-panel-bg-color, #2D4373);
+    background: var(--toolcool-range-slider-panel-bg, #2D4373);
     border-radius: var(--toolcool-range-slider-panel-bg-border-radius, 1rem);
     overflow: hidden;
     transition: 0.3s background-color ease;
 }
 
 .panel:hover{
-    background: var(--toolcool-range-slider-panel-bg-color-hover, #5f79b7);
+    background: var(--toolcool-range-slider-panel-bg-hover, #5f79b7);
 }
 
 .pointer{
@@ -57,7 +58,7 @@
 }
 
 .pointer-shape{
-    background: var(--toolcool-range-slider-pointer-bg-color, #fff);
+    background: var(--toolcool-range-slider-pointer-bg, #fff);
     box-shadow: var(--toolcool-range-slider-pointer-shadow);
     cursor: pointer;
     border: var(--toolcool-range-slider-pointer-border);
@@ -66,6 +67,10 @@
     width: var(--toolcool-range-slider-pointer-width, 15px);
     height: var(--toolcool-range-slider-pointer-height, 15px);
     transition: 0.3s all ease;
+}
+
+.pointer-shape:hover{
+    background: var(--toolcool-range-slider-pointer-bg-hover, #fff);
 }
 
 .pointer-shape:hover{

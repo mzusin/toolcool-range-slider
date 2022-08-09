@@ -69,72 +69,142 @@ QUnit.module('Range Slider Panel Radius', () => {
     });
 });
 
-QUnit.module('Range Slider Panel Background Color', () => {
+QUnit.module('Panel Background', () => {
 
     QUnit.test('slider bg color by default should be undefined', (assert) => {
         const $slider = document.querySelector('#slider-1');
-        assert.equal($slider.sliderBgColor, undefined);
+        assert.equal($slider.sliderBg, undefined);
     });
 
     QUnit.test('provided slider bg color should be red', (assert) => {
         const $slider = document.querySelector('#slider-24');
-        assert.equal($slider.sliderBgColor, 'red');
+        assert.equal($slider.sliderBg, 'red');
     });
 
     QUnit.test('slider bg color changed to blue', (assert) => {
         const $slider = document.querySelector('#slider-24');
-        $slider.sliderBgColor = 'blue';
-        assert.equal($slider.sliderBgColor, 'blue');
+        $slider.sliderBg = 'blue';
+        assert.equal($slider.sliderBg, 'blue');
     });
 
     QUnit.test('by default slider bg color style is empty', (assert) => {
         const $slider = document.querySelector('#slider-1');
-        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-panel-bg-color'), '');
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-panel-bg'), '');
     });
 
     QUnit.test('provided slider bg color style should be red', (assert) => {
         const $slider = document.querySelector('#slider-24');
-        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-panel-bg-color'), 'red');
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-panel-bg'), 'red');
     });
 
     QUnit.test('slider bg color changed to green ---> style should change', (assert) => {
         const $slider = document.querySelector('#slider-24');
-        $slider.sliderBgColor = 'green';
-        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-panel-bg-color'), 'green');
+        $slider.sliderBg = 'green';
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-panel-bg'), 'green');
     });
 });
 
-QUnit.module('Pointer Background Color', () => {
+QUnit.module('Panel Background Hover', () => {
+
+    QUnit.test('slider bg hover color by default should be undefined', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        assert.equal($slider.sliderBgHover, undefined);
+    });
+
+    QUnit.test('provided slider bg hover color should be red', (assert) => {
+        const $slider = document.querySelector('#slider-24');
+        assert.equal($slider.sliderBgHover, 'red');
+    });
+
+    QUnit.test('slider bg hover color changed to blue', (assert) => {
+        const $slider = document.querySelector('#slider-24');
+        $slider.sliderBgHover = 'blue';
+        assert.equal($slider.sliderBgHover, 'blue');
+    });
+
+    QUnit.test('by default slider bg hover color style is empty', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-panel-bg-hover'), '');
+    });
+
+    QUnit.test('provided slider bg hover color style should be red', (assert) => {
+        const $slider = document.querySelector('#slider-24');
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-panel-bg-hover'), 'red');
+    });
+
+    QUnit.test('slider bg hover color changed to green ---> style should change', (assert) => {
+        const $slider = document.querySelector('#slider-24');
+        $slider.sliderBgHover = 'green';
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-panel-bg-hover'), 'green');
+    });
+});
+
+QUnit.module('Pointer Background', () => {
 
     QUnit.test('pointer bg color by default should be undefined', (assert) => {
         const $slider = document.querySelector('#slider-1');
-        assert.equal($slider.pointerBgColor, undefined);
+        assert.equal($slider.pointerBg, undefined);
     });
 
     QUnit.test('provided pointer bg color should be red', (assert) => {
         const $slider = document.querySelector('#slider-25');
-        assert.equal($slider.pointerBgColor, 'red');
+        assert.equal($slider.pointerBg, 'red');
     });
 
     QUnit.test('pointer bg color changed to blue', (assert) => {
         const $slider = document.querySelector('#slider-25');
-        $slider.pointerBgColor = 'blue';
-        assert.equal($slider.pointerBgColor, 'blue');
+        $slider.pointerBg = 'blue';
+        assert.equal($slider.pointerBg, 'blue');
     });
 
     QUnit.test('by default pointer bg color style is empty', (assert) => {
         const $slider = document.querySelector('#slider-1');
-        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-bg-color'), '');
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-bg'), '');
     });
 
     QUnit.test('provided pointer bg color style should be red', (assert) => {
         const $slider = document.querySelector('#slider-25');
-        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-bg-color'), 'red');
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-bg'), 'red');
     });
 
     QUnit.test('pointer bg color changed to green ---> style should change', (assert) => {
         const $slider = document.querySelector('#slider-25');
-        $slider.pointerBgColor = 'green';
-        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-bg-color'), 'green');
+        $slider.pointerBg = 'green';
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-bg'), 'green');
+    });
+});
+
+QUnit.module('Pointer Background Hover', () => {
+
+    QUnit.test('pointer bg hover color by default should be undefined', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        assert.equal($slider.pointerBgHover, undefined);
+    });
+
+    QUnit.test('provided pointer bg hover color should be red', (assert) => {
+        const $slider = document.querySelector('#slider-25');
+        assert.equal($slider.pointerBgHover, 'red');
+    });
+
+    QUnit.test('pointer bg hover color changed to blue', (assert) => {
+        const $slider = document.querySelector('#slider-25');
+        $slider.pointerBgHover = 'blue';
+        assert.equal($slider.pointerBgHover, 'blue');
+    });
+
+    QUnit.test('by default pointer bg hover color style is empty', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-bg-hover'), '');
+    });
+
+    QUnit.test('provided pointer bg hover color style should be red', (assert) => {
+        const $slider = document.querySelector('#slider-25');
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-bg-hover'), 'red');
+    });
+
+    QUnit.test('pointer bg hover color changed to green ---> style should change', (assert) => {
+        const $slider = document.querySelector('#slider-25');
+        $slider.pointerBgHover = 'green';
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-bg-hover'), 'green');
     });
 });
