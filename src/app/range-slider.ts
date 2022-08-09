@@ -7,12 +7,13 @@ import { convertRange, getNumber, roundToStep } from '../domain/math-provider';
  ------
  <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
  <toolcool-range-slider value="0" min="-100" max="100" step="1"></toolcool-range-slider>
+ <toolcool-range-slider slider-width="250px" slider-height="10px"></toolcool-range-slider>
  */
 class RangeSlider extends HTMLElement {
   // ------------------------- INIT ----------------
 
   static get observedAttributes() {
-    return ['value', 'min', 'max', 'step', 'width', 'height'];
+    return ['value', 'min', 'max', 'step', 'slider-width', 'slider-height'];
   }
 
   private _$slider: HTMLElement | null;
@@ -23,8 +24,8 @@ class RangeSlider extends HTMLElement {
   private _max = 100;
   private _step: number | undefined = undefined;
 
-  private _width: string | undefined = undefined;
-  private _height: string | undefined = undefined;
+  private _sliderWidth: string | undefined = undefined;
+  private _sliderHeight: string | undefined = undefined;
 
   constructor() {
     super();
@@ -93,20 +94,22 @@ class RangeSlider extends HTMLElement {
     return this._step;
   }
 
-  public set width(val: string | undefined) {
-    this._width = val;
+  public set sliderWidth(val: string | undefined) {
+    this._sliderWidth = val;
+    this.render();
   }
 
-  public get width() {
-    return this._width;
+  public get sliderWidth() {
+    return this._sliderWidth;
   }
 
-  public set height(val: string | undefined) {
-    this._height = val;
+  public set sliderHeight(val: string | undefined) {
+    this._sliderHeight = val;
+    this.render();
   }
 
-  public get height() {
-    return this._height;
+  public get sliderHeight() {
+    return this._sliderHeight;
   }
 
   // ----------------------------------------------
@@ -152,12 +155,12 @@ class RangeSlider extends HTMLElement {
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
     this._$pointer.style.left = `${percent}%`;
 
-    if (this.width) {
-      this._$slider.style.width = this.width;
+    if (this.sliderWidth) {
+      this._$slider.style.width = this.sliderWidth;
     }
 
-    if (this.height) {
-      this._$slider.style.height = this.height;
+    if (this.sliderHeight) {
+      this._$slider.style.height = this.sliderHeight;
     }
   }
 
@@ -238,8 +241,8 @@ class RangeSlider extends HTMLElement {
     this.max = getNumber(this.getAttribute('max'), 100);
     this.value = getNumber(this.getAttribute('value'), this.min);
     this.step = getNumber(this.getAttribute('step'), undefined);
-    this.width = this.getAttribute('width') || undefined;
-    this.height = this.getAttribute('height') || undefined;
+    this.sliderWidth = this.getAttribute('slider-width') || undefined;
+    this.sliderHeight = this.getAttribute('slider-height') || undefined;
 
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
 
@@ -314,12 +317,14 @@ class RangeSlider extends HTMLElement {
       this.step = getNumber(this.getAttribute('step'), undefined);
     }
 
-    if (attrName === 'width') {
-      this.width = this.getAttribute('width') || undefined;
+    if (attrName === 'slider-width') {
+      this.sliderWidth = this.getAttribute('slider-width') || undefined;
+      this.render();
     }
 
-    if (attrName === 'height') {
-      this.height = this.getAttribute('height') || undefined;
+    if (attrName === 'slider-height') {
+      this.sliderHeight = this.getAttribute('slider-height') || undefined;
+      this.render();
     }
   }
 }
