@@ -8,7 +8,7 @@ export const convertRange = (min: number, max: number, a: number, b: number, x: 
 
 // the below function should receive any
 // eslint-disable-next-line
-export const getNumber = (input: any, defaultValue: number | undefined) => {
+export const getNumber = (input: any, defaultValue: any) => {
   const isNumber = !isNaN(parseFloat(input)) && isFinite(input);
   return isNumber ? Number(input) : defaultValue;
 };

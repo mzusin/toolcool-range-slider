@@ -48,6 +48,7 @@ class RangeSlider extends HTMLElement {
     const safe = this.getSafeValues(num, this.min, this.max);
     this._value = safe.value;
     this.render();
+    this.sendChangeEvent();
   }
 
   /**
@@ -90,6 +91,16 @@ class RangeSlider extends HTMLElement {
   }
 
   // ----------------------------------------------
+
+  sendChangeEvent() {
+    this.dispatchEvent(
+      new CustomEvent('change', {
+        detail: {
+          value: this.value,
+        },
+      })
+    );
+  }
 
   getSafeValues(value: number, min: number, max: number) {
     const _min = min;

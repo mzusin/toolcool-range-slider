@@ -12,21 +12,144 @@
     <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png">
 
     <style>
+        .row{
+            margin-bottom: 3rem;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            position: relative;
+        }
+
         toolcool-range-slider{
-            margin: 3rem;
+            flex: 1;
+        }
+
+        label{
+            margin: 0 1rem;
+        }
+
+        .value{
+            position: absolute;
+            left: 50%;
+            top: -1rem;
         }
     </style>
 </head>
 <body>
     <div style="width: 500px; margin:3rem auto;">
-        <toolcool-range-slider></toolcool-range-slider>
-        <toolcool-range-slider min="50" max="100" value="75"></toolcool-range-slider>
-        <toolcool-range-slider min="-100" max="-50" value="-75"></toolcool-range-slider>
-        <toolcool-range-slider min="-50" max="50" value="0"></toolcool-range-slider>
-        <toolcool-range-slider step="10"></toolcool-range-slider>
-        <input type="range" step="10" min="0" max="100" style="width: 100%; margin: 3rem 0; display: block">
+
+        <!-- slider #1 -->
+        <!-- default min: 0
+             default max: 100
+             default value: 0
+             default step: undefined -->
+        <div class="row">
+            <label>0</label>
+            <toolcool-range-slider id="slider-1"></toolcool-range-slider>
+            <label>100</label>
+            <div id="value-1" class="value"></div>
+        </div>
+
+        <!-- slider #2 -->
+        <!-- min, max, and value can be provided via attributes of <toolcool-range-slider> html tag -->
+        <div class="row">
+            <label>50</label>
+            <toolcool-range-slider
+              min="50"
+              max="100"
+              value="75"
+              id="slider-2"></toolcool-range-slider>
+            <label>100</label>
+            <div id="value-2" class="value"></div>
+        </div>
+
+        <!-- slider #3 -->
+        <!-- min, max, and value can also be negative numbers -->
+        <div class="row">
+            <label>-100</label>
+            <toolcool-range-slider
+              min="-100"
+              max="-50"
+              value="-75"
+              id="slider-3"></toolcool-range-slider>
+            <label>-50</label>
+            <div id="value-3" class="value"></div>
+        </div>
+
+        <!-- slider #4 -->
+        <div class="row">
+            <label>-50</label>
+            <toolcool-range-slider
+              min="-50"
+              max="50"
+              value="0"
+              id="slider-4"></toolcool-range-slider>
+            <label>50</label>
+            <div id="value-4" class="value"></div>
+        </div>
+
+        <!-- slider #5
+        step also can be defined
+        -->
+        <div class="row">
+            <label>0</label>
+            <toolcool-range-slider step="10" id="slider-5"></toolcool-range-slider>
+            <label>100</label>
+            <div id="value-5" class="value"></div>
+        </div>
+
+
     </div>
 
     <script src="js/toolcool-range-slider.min.js"></script>
+    <script>
+        // slider #1 ------------------
+        const $slider1 = document.getElementById('slider-1');
+        const $value1 = document.getElementById('value-1');
+        $slider1.addEventListener('change', (evt) => {
+            const value = Math.round(evt.detail.value);
+            $value1.textContent = value.toString();
+        });
+        $value1.textContent = $slider1.value;
+
+
+        // slider #2 ------------------
+        const $slider2 = document.getElementById('slider-2');
+        const $value2 = document.getElementById('value-2');
+        $slider2.addEventListener('change', (evt) => {
+            const value = Math.round(evt.detail.value);
+            $value2.textContent = value.toString();
+        });
+        $value2.textContent = $slider2.value;
+
+
+        // slider #3 ------------------
+        const $slider3 = document.getElementById('slider-3');
+        const $value3 = document.getElementById('value-3');
+        $slider3.addEventListener('change', (evt) => {
+            const value = Math.round(evt.detail.value);
+            $value3.textContent = value.toString();
+        });
+        $value3.textContent = $slider3.value;
+
+        // slider #4 ------------------
+        const $slider4 = document.getElementById('slider-4');
+        const $value4 = document.getElementById('value-4');
+        $slider4.addEventListener('change', (evt) => {
+            const value = Math.round(evt.detail.value);
+            $value4.textContent = value.toString();
+        });
+        $value4.textContent = $slider4.value;
+
+
+        // slider #5 ------------------
+        const $slider5 = document.getElementById('slider-5');
+        const $value5 = document.getElementById('value-5');
+        $slider5.addEventListener('change', (evt) => {
+            const value = Math.round(evt.detail.value);
+            $value5.textContent = value.toString();
+        });
+        $value5.textContent = $slider5.value;
+    </script>
 </body>
 </html>
