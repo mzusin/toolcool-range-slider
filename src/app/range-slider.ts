@@ -13,11 +13,12 @@ class RangeSlider extends HTMLElement {
   // ------------------------- INIT ----------------
 
   static get observedAttributes() {
-    return ['value', 'min', 'max', 'step', 'slider-width', 'slider-height'];
+    return ['value', 'min', 'max', 'step', 'slider-width', 'slider-height', 'pointer-width', 'pointer-height'];
   }
 
   private _$slider: HTMLElement | null;
   private _$pointer: HTMLElement | null;
+  private _$pointerShape: HTMLElement | null;
 
   private _value = 0; // [min, max]
   private _min = 0;
@@ -26,6 +27,9 @@ class RangeSlider extends HTMLElement {
 
   private _sliderWidth: string | undefined = undefined;
   private _sliderHeight: string | undefined = undefined;
+
+  private _pointerWidth: string | undefined = undefined;
+  private _pointerHeight: string | undefined = undefined;
 
   constructor() {
     super();
@@ -112,6 +116,24 @@ class RangeSlider extends HTMLElement {
     return this._sliderHeight;
   }
 
+  public set pointerWidth(val: string | undefined) {
+    this._pointerWidth = val;
+    this.render();
+  }
+
+  public get pointerWidth() {
+    return this._pointerWidth;
+  }
+
+  public set pointerHeight(val: string | undefined) {
+    this._pointerHeight = val;
+    this.render();
+  }
+
+  public get pointerHeight() {
+    return this._pointerHeight;
+  }
+
   // ----------------------------------------------
 
   sendChangeEvent() {
@@ -149,7 +171,7 @@ class RangeSlider extends HTMLElement {
   }
 
   render() {
-    if (!this._$slider || !this._$pointer) return;
+    if (!this._$slider || !this._$pointer || !this._$pointerShape) return;
 
     // update the pointer position
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
@@ -161,6 +183,14 @@ class RangeSlider extends HTMLElement {
 
     if (this.sliderHeight) {
       this._$slider.style.height = this.sliderHeight;
+    }
+
+    if (this.pointerWidth) {
+      this._$pointerShape.style.width = this.pointerWidth;
+    }
+
+    if (this.pointerHeight) {
+      this._$pointerShape.style.height = this.pointerHeight;
     }
   }
 
@@ -241,8 +271,11 @@ class RangeSlider extends HTMLElement {
     this.max = getNumber(this.getAttribute('max'), 100);
     this.value = getNumber(this.getAttribute('value'), this.min);
     this.step = getNumber(this.getAttribute('step'), undefined);
+
     this.sliderWidth = this.getAttribute('slider-width') || undefined;
     this.sliderHeight = this.getAttribute('slider-height') || undefined;
+    this.pointerWidth = this.getAttribute('pointer-width') || undefined;
+    this.pointerHeight = this.getAttribute('pointer-height') || undefined;
 
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
 
@@ -274,6 +307,7 @@ class RangeSlider extends HTMLElement {
 
     // init pointer and its events
     this._$pointer = this.shadowRoot.querySelector('.pointer');
+    this._$pointerShape = this.shadowRoot.querySelector('.pointer-shape');
     this._$pointer?.addEventListener('click', this.pointerClicked);
     this._$pointer?.addEventListener('keydown', this.pointerKeyDown);
 
@@ -324,6 +358,16 @@ class RangeSlider extends HTMLElement {
 
     if (attrName === 'slider-height') {
       this.sliderHeight = this.getAttribute('slider-height') || undefined;
+      this.render();
+    }
+
+    if (attrName === 'pointer-width') {
+      this.pointerWidth = this.getAttribute('pointer-width') || undefined;
+      this.render();
+    }
+
+    if (attrName === 'pointer-height') {
+      this.pointerHeight = this.getAttribute('pointer-height') || undefined;
       this.render();
     }
   }
