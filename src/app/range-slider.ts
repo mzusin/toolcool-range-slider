@@ -8,6 +8,7 @@ import { convertRange, getNumber, roundToStep } from '../domain/math-provider';
  <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
  <toolcool-range-slider value="0" min="-100" max="100" step="1"></toolcool-range-slider>
  <toolcool-range-slider slider-width="250px" slider-height="10px"></toolcool-range-slider>
+ <toolcool-range-slider pointer-width="20px" pointer-height="20px" pointer-radius="5px"></toolcool-range-slider>
  */
 class RangeSlider extends HTMLElement {
   // ------------------------- INIT ----------------
@@ -30,6 +31,7 @@ class RangeSlider extends HTMLElement {
 
   private _pointerWidth: string | undefined = undefined;
   private _pointerHeight: string | undefined = undefined;
+  private _pointerRadius: string | undefined = undefined;
 
   constructor() {
     super();
@@ -134,6 +136,15 @@ class RangeSlider extends HTMLElement {
     return this._pointerHeight;
   }
 
+  public set pointerRadius(val: string | undefined) {
+    this._pointerRadius = val;
+    this.render();
+  }
+
+  public get pointerRadius() {
+    return this._pointerRadius;
+  }
+
   // ----------------------------------------------
 
   sendChangeEvent() {
@@ -191,6 +202,10 @@ class RangeSlider extends HTMLElement {
 
     if (this.pointerHeight) {
       this._$pointerShape.style.height = this.pointerHeight;
+    }
+
+    if (this.pointerRadius) {
+      this._$pointerShape.style.borderRadius = this.pointerRadius;
     }
   }
 
@@ -274,8 +289,10 @@ class RangeSlider extends HTMLElement {
 
     this.sliderWidth = this.getAttribute('slider-width') || undefined;
     this.sliderHeight = this.getAttribute('slider-height') || undefined;
+
     this.pointerWidth = this.getAttribute('pointer-width') || undefined;
     this.pointerHeight = this.getAttribute('pointer-height') || undefined;
+    this.pointerRadius = this.getAttribute('pointer-radius') || undefined;
 
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
 
@@ -368,6 +385,11 @@ class RangeSlider extends HTMLElement {
 
     if (attrName === 'pointer-height') {
       this.pointerHeight = this.getAttribute('pointer-height') || undefined;
+      this.render();
+    }
+
+    if (attrName === 'pointer-height') {
+      this.pointerRadius = this.getAttribute('pointer-radius') || undefined;
       this.render();
     }
   }
