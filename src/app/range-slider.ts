@@ -20,16 +20,24 @@ class RangeSlider extends HTMLElement {
       'min',
       'max',
       'step',
+
       'slider-width',
       'slider-height',
       'slider-radius',
       'slider-bg',
       'slider-bg-hover',
+
       'pointer-width',
       'pointer-height',
       'pointer-radius',
       'pointer-bg',
       'pointer-bg-hover',
+
+      'pointer-shadow',
+      'pointer-shadow-hover',
+      'pointer-border',
+      'pointer-border-hover',
+      'pointer-border-focus',
     ];
   }
 
@@ -52,6 +60,12 @@ class RangeSlider extends HTMLElement {
   private _pointerRadius: string | undefined = undefined;
   private _pointerBg: string | undefined = undefined;
   private _pointerBgHover: string | undefined = undefined;
+
+  private _pointerShadow: string | undefined = undefined;
+  private _pointerShadowHover: string | undefined = undefined;
+  private _pointerBorder: string | undefined = undefined;
+  private _pointerBorderHover: string | undefined = undefined;
+  private _pointerBorderFocus: string | undefined = undefined;
 
   constructor() {
     super();
@@ -210,6 +224,51 @@ class RangeSlider extends HTMLElement {
     return this._pointerBgHover;
   }
 
+  public set pointerShadow(val: string | undefined) {
+    this._pointerShadow = val;
+    this.render();
+  }
+
+  public get pointerShadow() {
+    return this._pointerShadow;
+  }
+
+  public set pointerShadowHover(val: string | undefined) {
+    this._pointerShadowHover = val;
+    this.render();
+  }
+
+  public get pointerShadowHover() {
+    return this._pointerShadowHover;
+  }
+
+  public set pointerBorder(val: string | undefined) {
+    this._pointerBorder = val;
+    this.render();
+  }
+
+  public get pointerBorder() {
+    return this._pointerBorder;
+  }
+
+  public set pointerBorderHover(val: string | undefined) {
+    this._pointerBorderHover = val;
+    this.render();
+  }
+
+  public get pointerBorderHover() {
+    return this._pointerBorderHover;
+  }
+
+  public set pointerBorderFocus(val: string | undefined) {
+    this._pointerBorderFocus = val;
+    this.render();
+  }
+
+  public get pointerBorderFocus() {
+    return this._pointerBorderFocus;
+  }
+
   // ----------------------------------------------
 
   sendChangeEvent() {
@@ -292,6 +351,26 @@ class RangeSlider extends HTMLElement {
     if (this.pointerBgHover) {
       this.style.setProperty('--toolcool-range-slider-pointer-bg-hover', this.pointerBgHover);
     }
+
+    if (this.pointerShadow) {
+      this.style.setProperty('--toolcool-range-slider-pointer-shadow', this.pointerShadow);
+    }
+
+    if (this.pointerShadowHover) {
+      this.style.setProperty('--toolcool-range-slider-pointer-shadow-hover', this.pointerShadowHover);
+    }
+
+    if (this.pointerBorder) {
+      this.style.setProperty('--toolcool-range-slider-pointer-border', this.pointerBorder);
+    }
+
+    if (this.pointerBorderHover) {
+      this.style.setProperty('--toolcool-range-slider-pointer-border-hover', this.pointerBorderHover);
+    }
+
+    if (this.pointerBorderFocus) {
+      this.style.setProperty('--toolcool-range-slider-pointer-border-focus', this.pointerBorderFocus);
+    }
   }
 
   pointerClicked() {
@@ -322,6 +401,8 @@ class RangeSlider extends HTMLElement {
     if (evt.preventDefault) {
       evt.preventDefault();
     }
+
+    this._$pointer?.focus();
 
     this.onValueChange(evt);
     window.addEventListener('mousemove', this.onValueChange);
@@ -383,6 +464,11 @@ class RangeSlider extends HTMLElement {
     this.pointerRadius = this.getAttribute('pointer-radius') || undefined;
     this.pointerBg = this.getAttribute('pointer-bg') || undefined;
     this.pointerBgHover = this.getAttribute('pointer-bg-hover') || undefined;
+    this.pointerShadow = this.getAttribute('pointer-shadow') || undefined;
+    this.pointerShadowHover = this.getAttribute('pointer-shadow-hover') || undefined;
+    this.pointerBorder = this.getAttribute('pointer-border') || undefined;
+    this.pointerBorderHover = this.getAttribute('pointer-border-hover') || undefined;
+    this.pointerBorderFocus = this.getAttribute('pointer-border-focus') || undefined;
 
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
 
@@ -520,6 +606,36 @@ class RangeSlider extends HTMLElement {
 
       case 'pointer-bg-hover': {
         this.pointerBgHover = this.getAttribute('pointer-bg-hover') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'pointer-shadow': {
+        this.pointerShadow = this.getAttribute('pointer-shadow') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'pointer-shadow-hover': {
+        this.pointerShadowHover = this.getAttribute('pointer-shadow-hover') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'pointer-border': {
+        this.pointerBorder = this.getAttribute('pointer-border') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'pointer-border-hover': {
+        this.pointerBorderHover = this.getAttribute('pointer-border-hover') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'pointer-border-focus': {
+        this.pointerBorderFocus = this.getAttribute('pointer-border-focus') || undefined;
         this.render();
         break;
       }

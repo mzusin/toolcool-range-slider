@@ -13,6 +13,7 @@
     --toolcool-range-slider-pointer-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
     --toolcool-range-slider-pointer-shadow-hover: 0 0 2px rgb(0, 0, 0);
     --toolcool-range-slider-pointer-border: 1px solid hsla(0, 0%, 88%, 0.5);
+    --toolcool-range-slider-pointer-border-hover: 1px solid hsla(0, 0%, 88%, 0.5);
     --toolcool-range-slider-pointer-border-focus: 1px solid hsl(201, 72%, 59%);
     --toolcool-range-slider-pointer-border-radius: 100%;
 }
@@ -42,7 +43,7 @@
     background: var(--toolcool-range-slider-panel-bg, #2D4373);
     border-radius: var(--toolcool-range-slider-panel-bg-border-radius, 1rem);
     overflow: hidden;
-    transition: 0.3s background-color ease;
+    transition: 0.3s all ease;
 }
 
 .panel:hover{
@@ -71,9 +72,7 @@
 
 .pointer-shape:hover{
     background: var(--toolcool-range-slider-pointer-bg-hover, #fff);
-}
-
-.pointer-shape:hover{
+    border: var(--toolcool-range-slider-pointer-border-hover);
     box-shadow: var(--toolcool-range-slider-pointer-shadow-hover);
 }
 
