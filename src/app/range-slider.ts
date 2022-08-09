@@ -9,18 +9,17 @@ import { convertRange, getNumber, roundToStep } from '../domain/math-provider';
  <toolcool-range-slider value="0" min="-100" max="100" step="1"></toolcool-range-slider>
  <toolcool-range-slider slider-width="250px" slider-height="10px" slider-radius="5px"></toolcool-range-slider>
  <toolcool-range-slider pointer-width="20px" pointer-height="20px" pointer-radius="5px"></toolcool-range-slider>
+  <toolcool-range-slider slider-bg-color="red" pointer-bg-color="blue"></toolcool-range-slider>
  */
 class RangeSlider extends HTMLElement {
   // ------------------------- INIT ----------------
 
   static get observedAttributes() {
-    return ['value', 'min', 'max', 'step', 'slider-width', 'slider-height', 'slider-radius', 'pointer-width', 'pointer-height', 'pointer-radius'];
+    return ['value', 'min', 'max', 'step', 'slider-width', 'slider-height', 'slider-radius', 'slider-bg-color', 'pointer-width', 'pointer-height', 'pointer-radius', 'pointer-bg-color'];
   }
 
   private _$slider: HTMLElement | null;
-  private _$panel: HTMLElement | null;
   private _$pointer: HTMLElement | null;
-  private _$pointerShape: HTMLElement | null;
 
   private _value = 0; // [min, max]
   private _min = 0;
@@ -30,10 +29,12 @@ class RangeSlider extends HTMLElement {
   private _sliderWidth: string | undefined = undefined;
   private _sliderHeight: string | undefined = undefined;
   private _sliderRadius: string | undefined = undefined;
+  private _sliderBgColor: string | undefined = undefined;
 
   private _pointerWidth: string | undefined = undefined;
   private _pointerHeight: string | undefined = undefined;
   private _pointerRadius: string | undefined = undefined;
+  private _pointerBgColor: string | undefined = undefined;
 
   constructor() {
     super();
@@ -129,6 +130,15 @@ class RangeSlider extends HTMLElement {
     return this._sliderRadius;
   }
 
+  public set sliderBgColors(val: string | undefined) {
+    this._sliderBgColor = val;
+    this.render();
+  }
+
+  public get sliderBgColor() {
+    return this._sliderBgColor;
+  }
+
   public set pointerWidth(val: string | undefined) {
     this._pointerWidth = val;
     this.render();
@@ -154,6 +164,15 @@ class RangeSlider extends HTMLElement {
 
   public get pointerRadius() {
     return this._pointerRadius;
+  }
+
+  public set pointerBgColors(val: string | undefined) {
+    this._pointerBgColor = val;
+    this.render();
+  }
+
+  public get pointerBgColor() {
+    return this._pointerBgColor;
   }
 
   // ----------------------------------------------
@@ -193,34 +212,42 @@ class RangeSlider extends HTMLElement {
   }
 
   render() {
-    if (!this._$slider || !this._$panel || !this._$pointer || !this._$pointerShape) return;
+    if (!this._$slider || !this._$pointer) return;
 
     // update the pointer position
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
     this._$pointer.style.left = `${percent}%`;
 
     if (this.sliderWidth) {
-      this._$slider.style.setProperty('--toolcool-range-slider-width', this.sliderWidth);
+      this.style.setProperty('--toolcool-range-slider-width', this.sliderWidth);
     }
 
     if (this.sliderHeight) {
-      this._$slider.style.setProperty('--toolcool-range-slider-height', this.sliderHeight);
+      this.style.setProperty('--toolcool-range-slider-height', this.sliderHeight);
     }
 
     if (this.sliderRadius) {
-      this._$panel.style.setProperty('--toolcool-range-slider-panel-bg-border-radius', this.sliderRadius);
+      this.style.setProperty('--toolcool-range-slider-panel-bg-border-radius', this.sliderRadius);
+    }
+
+    if (this.sliderBgColor) {
+      this.style.setProperty('--toolcool-range-slider-panel-bg-color', this.sliderBgColor);
     }
 
     if (this.pointerWidth) {
-      this._$pointerShape.style.setProperty('--toolcool-range-slider-pointer-width', this.pointerWidth);
+      this.style.setProperty('--toolcool-range-slider-pointer-width', this.pointerWidth);
     }
 
     if (this.pointerHeight) {
-      this._$pointerShape.style.setProperty('--toolcool-range-slider-pointer-height', this.pointerHeight);
+      this.style.setProperty('--toolcool-range-slider-pointer-height', this.pointerHeight);
     }
 
     if (this.pointerRadius) {
-      this._$pointerShape.style.setProperty('--toolcool-range-slider-pointer-border-radius', this.pointerRadius);
+      this.style.setProperty('--toolcool-range-slider-pointer-border-radius', this.pointerRadius);
+    }
+
+    if (this.pointerBgColor) {
+      this.style.setProperty('--toolcool-range-slider-pointer-bg-color', this.pointerBgColor);
     }
   }
 
@@ -333,9 +360,7 @@ class RangeSlider extends HTMLElement {
 
     // init slider elements
     this._$slider = this.shadowRoot.querySelector('.range-slider');
-    this._$panel = this.shadowRoot.querySelector('.panel');
     this._$pointer = this.shadowRoot.querySelector('.pointer');
-    this._$pointerShape = this.shadowRoot.querySelector('.pointer-shape');
 
     // init slider events
     this._$slider?.addEventListener('mousedown', this.onMouseDown);
