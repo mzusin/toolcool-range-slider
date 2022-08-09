@@ -9,7 +9,7 @@ import { convertRange, getNumber, roundToStep } from '../domain/math-provider';
  <toolcool-range-slider value="0" min="-100" max="100" step="1"></toolcool-range-slider>
  <toolcool-range-slider slider-width="250px" slider-height="10px" slider-radius="5px"></toolcool-range-slider>
  <toolcool-range-slider pointer-width="20px" pointer-height="20px" pointer-radius="5px"></toolcool-range-slider>
-  <toolcool-range-slider slider-bg-color="red" pointer-bg-color="blue"></toolcool-range-slider>
+ <toolcool-range-slider slider-bg-color="red" pointer-bg-color="blue"></toolcool-range-slider>
  */
 class RangeSlider extends HTMLElement {
   // ------------------------- INIT ----------------
@@ -130,7 +130,7 @@ class RangeSlider extends HTMLElement {
     return this._sliderRadius;
   }
 
-  public set sliderBgColors(val: string | undefined) {
+  public set sliderBgColor(val: string | undefined) {
     this._sliderBgColor = val;
     this.render();
   }
@@ -166,7 +166,7 @@ class RangeSlider extends HTMLElement {
     return this._pointerRadius;
   }
 
-  public set pointerBgColors(val: string | undefined) {
+  public set pointerBgColor(val: string | undefined) {
     this._pointerBgColor = val;
     this.render();
   }
@@ -332,10 +332,12 @@ class RangeSlider extends HTMLElement {
     this.sliderWidth = this.getAttribute('slider-width') || undefined;
     this.sliderHeight = this.getAttribute('slider-height') || undefined;
     this.sliderRadius = this.getAttribute('slider-radius') || undefined;
+    this.sliderBgColor = this.getAttribute('slider-bg-color') || undefined;
 
     this.pointerWidth = this.getAttribute('pointer-width') || undefined;
     this.pointerHeight = this.getAttribute('pointer-height') || undefined;
     this.pointerRadius = this.getAttribute('pointer-radius') || undefined;
+    this.pointerBgColor = this.getAttribute('pointer-bg-color') || undefined;
 
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
 
@@ -435,6 +437,12 @@ class RangeSlider extends HTMLElement {
         break;
       }
 
+      case 'slider-bg-color': {
+        this.sliderBgColor = this.getAttribute('slider-bg-color') || undefined;
+        this.render();
+        break;
+      }
+
       case 'pointer-width': {
         this.pointerWidth = this.getAttribute('pointer-width') || undefined;
         this.render();
@@ -449,6 +457,12 @@ class RangeSlider extends HTMLElement {
 
       case 'pointer-radius': {
         this.pointerRadius = this.getAttribute('pointer-radius') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'pointer-bg-color': {
+        this.pointerBgColor = this.getAttribute('pointer-bg-color') || undefined;
         this.render();
         break;
       }
