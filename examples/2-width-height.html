@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Range Slider | Tool Cool</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link id="favicon-48" rel="icon" type="image/png" sizes="48x48" href="img/favicon/favicon-48.png">
+    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32.png">
+    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png">
+
+    <style>
+        .wrapper{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 3rem 0;
+        }
+
+        .row{
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        toolcool-range-slider{
+            flex: 1;
+        }
+
+        label{
+            margin: 0 1rem;
+        }
+
+        .value{
+            position: absolute;
+            left: 50%;
+            top: -1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+
+        <!-- slider #1 -->
+        <div class="row">
+            <toolcool-range-slider id="slider-1" width="200px"></toolcool-range-slider>
+        </div>
+
+        <!-- slider #2 -->
+        <div class="row">
+            <toolcool-range-slider id="slider-2" width="250px" height="10px"></toolcool-range-slider>
+        </div>
+
+        <!-- slider #3 -->
+        <div class="row">
+            <toolcool-range-slider id="slider-2" width="300px" height="20px"></toolcool-range-slider>
+        </div>
+
+        <!-- slider #4 -->
+        <div class="row">
+            <toolcool-range-slider id="slider-2" width="350px" height="30px"></toolcool-range-slider>
+        </div>
+
+    </div>
+
+    <script src="js/toolcool-range-slider.min.js"></script>
+</body>
+</html>

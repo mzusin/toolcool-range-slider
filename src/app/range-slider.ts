@@ -12,7 +12,7 @@ class RangeSlider extends HTMLElement {
   // ------------------------- INIT ----------------
 
   static get observedAttributes() {
-    return ['value', 'min', 'max', 'step'];
+    return ['value', 'min', 'max', 'step', 'width', 'height'];
   }
 
   private _$slider: HTMLElement | null;
@@ -22,6 +22,9 @@ class RangeSlider extends HTMLElement {
   private _min = 0;
   private _max = 100;
   private _step: number | undefined = undefined;
+
+  private _width: string | undefined = undefined;
+  private _height: string | undefined = undefined;
 
   constructor() {
     super();
@@ -90,6 +93,22 @@ class RangeSlider extends HTMLElement {
     return this._step;
   }
 
+  public set width(val: string | undefined) {
+    this._width = val;
+  }
+
+  public get width() {
+    return this._width;
+  }
+
+  public set height(val: string | undefined) {
+    this._height = val;
+  }
+
+  public get height() {
+    return this._height;
+  }
+
   // ----------------------------------------------
 
   sendChangeEvent() {
@@ -127,11 +146,19 @@ class RangeSlider extends HTMLElement {
   }
 
   render() {
-    if (!this._$pointer) return;
+    if (!this._$slider || !this._$pointer) return;
 
+    // update the pointer position
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
-
     this._$pointer.style.left = `${percent}%`;
+
+    if (this.width) {
+      this._$slider.style.width = this.width;
+    }
+
+    if (this.height) {
+      this._$slider.style.height = this.height;
+    }
   }
 
   pointerClicked() {
@@ -210,6 +237,9 @@ class RangeSlider extends HTMLElement {
     this.min = getNumber(this.getAttribute('min'), 0);
     this.max = getNumber(this.getAttribute('max'), 100);
     this.value = getNumber(this.getAttribute('value'), this.min);
+    this.step = getNumber(this.getAttribute('step'), undefined);
+    this.width = this.getAttribute('width') || undefined;
+    this.height = this.getAttribute('height') || undefined;
 
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
 
@@ -232,9 +262,6 @@ class RangeSlider extends HTMLElement {
         </div>
     `;
 
-    // update the initial position of the pointer
-    this.render();
-
     // init slider element and its events
     this._$slider = this.shadowRoot.querySelector('.range-slider');
     this._$slider?.addEventListener('mousedown', this.onMouseDown);
@@ -246,6 +273,9 @@ class RangeSlider extends HTMLElement {
     this._$pointer = this.shadowRoot.querySelector('.pointer');
     this._$pointer?.addEventListener('click', this.pointerClicked);
     this._$pointer?.addEventListener('keydown', this.pointerKeyDown);
+
+    // update the initial position of the pointer
+    this.render();
   }
 
   /**
@@ -282,6 +312,14 @@ class RangeSlider extends HTMLElement {
 
     if (attrName === 'step') {
       this.step = getNumber(this.getAttribute('step'), undefined);
+    }
+
+    if (attrName === 'width') {
+      this.width = this.getAttribute('width') || undefined;
+    }
+
+    if (attrName === 'height') {
+      this.height = this.getAttribute('height') || undefined;
     }
   }
 }
