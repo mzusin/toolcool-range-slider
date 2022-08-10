@@ -44,25 +44,25 @@ QUnit.module('Range Slider Width & Height', () => {
     });
 
     QUnit.test('provided slider width style should be 200px', (assert) => {
-        const $slider = document.querySelector('#slider-20');
+        const $slider = document.querySelector('#slider-20').shadowRoot.querySelector('.range-slider');
         assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-width'), '200px');
     });
 
     QUnit.test('provided slider height style should be 20px', (assert) => {
-        const $slider = document.querySelector('#slider-20');
+        const $slider = document.querySelector('#slider-20').shadowRoot.querySelector('.range-slider');
         assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-height'), '20px');
     });
 
     QUnit.test('slider width changed to 30rem ---> style should change', (assert) => {
         const $slider = document.querySelector('#slider-20');
         $slider.sliderWidth = '30rem';
-        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-width'), '30rem');
+        assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--toolcool-range-slider-width'), '30rem');
     });
 
     QUnit.test('slider height changed to 2rem ---> style should change', (assert) => {
         const $slider = document.querySelector('#slider-20');
         $slider.sliderHeight = '2rem';
-        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-height'), '2rem');
+        assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--toolcool-range-slider-height'), '2rem');
     });
 });
 
@@ -111,24 +111,24 @@ QUnit.module('Pointer Width & Height', () => {
     });
 
     QUnit.test('provided pointer width style should be 50px', (assert) => {
-        const $slider = document.querySelector('#slider-21');
+        const $slider = document.querySelector('#slider-21').shadowRoot.querySelector('.range-slider');
         assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-width'), '50px');
     });
 
     QUnit.test('provided pointer height style should be 50px', (assert) => {
-        const $slider = document.querySelector('#slider-21');
+        const $slider = document.querySelector('#slider-21').shadowRoot.querySelector('.range-slider');
         assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-height'), '50px');
     });
 
     QUnit.test('pointer width changed to 30rem ---> style should change', (assert) => {
         const $slider = document.querySelector('#slider-21');
         $slider.pointerWidth = '30rem';
-        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-width'), '30rem');
+        assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--toolcool-range-slider-pointer-width'), '30rem');
     });
 
     QUnit.test('pointer height changed to 2rem ---> style should change', (assert) => {
         const $slider = document.querySelector('#slider-21');
         $slider.pointerHeight = '2rem';
-        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-height'), '2rem');
+        assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--toolcool-range-slider-pointer-height'), '2rem');
     });
 });
