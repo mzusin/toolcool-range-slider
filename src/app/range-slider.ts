@@ -334,63 +334,63 @@ class RangeSlider extends HTMLElement {
     }
 
     if (this.sliderWidth) {
-      this.style.setProperty('--toolcool-range-slider-width', this.sliderWidth);
+      this._$slider.style.setProperty('--toolcool-range-slider-width', this.sliderWidth);
     }
 
     if (this.sliderHeight) {
-      this.style.setProperty('--toolcool-range-slider-height', this.sliderHeight);
+      this._$slider.style.setProperty('--toolcool-range-slider-height', this.sliderHeight);
     }
 
     if (this.sliderRadius) {
-      this.style.setProperty('--toolcool-range-slider-panel-bg-border-radius', this.sliderRadius);
+      this._$slider.style.setProperty('--toolcool-range-slider-panel-bg-border-radius', this.sliderRadius);
     }
 
     if (this.sliderBg) {
-      this.style.setProperty('--toolcool-range-slider-panel-bg', this.sliderBg);
+      this._$slider.style.setProperty('--toolcool-range-slider-panel-bg', this.sliderBg);
     }
 
     if (this.sliderBgHover) {
-      this.style.setProperty('--toolcool-range-slider-panel-bg-hover', this.sliderBgHover);
+      this._$slider.style.setProperty('--toolcool-range-slider-panel-bg-hover', this.sliderBgHover);
     }
 
     if (this.pointerWidth) {
-      this.style.setProperty('--toolcool-range-slider-pointer-width', this.pointerWidth);
+      this._$slider.style.setProperty('--toolcool-range-slider-pointer-width', this.pointerWidth);
     }
 
     if (this.pointerHeight) {
-      this.style.setProperty('--toolcool-range-slider-pointer-height', this.pointerHeight);
+      this._$slider.style.setProperty('--toolcool-range-slider-pointer-height', this.pointerHeight);
     }
 
     if (this.pointerRadius) {
-      this.style.setProperty('--toolcool-range-slider-pointer-border-radius', this.pointerRadius);
+      this._$slider.style.setProperty('--toolcool-range-slider-pointer-border-radius', this.pointerRadius);
     }
 
     if (this.pointerBg) {
-      this.style.setProperty('--toolcool-range-slider-pointer-bg', this.pointerBg);
+      this._$slider.style.setProperty('--toolcool-range-slider-pointer-bg', this.pointerBg);
     }
 
     if (this.pointerBgHover) {
-      this.style.setProperty('--toolcool-range-slider-pointer-bg-hover', this.pointerBgHover);
+      this._$slider.style.setProperty('--toolcool-range-slider-pointer-bg-hover', this.pointerBgHover);
     }
 
     if (this.pointerShadow) {
-      this.style.setProperty('--toolcool-range-slider-pointer-shadow', this.pointerShadow);
+      this._$slider.style.setProperty('--toolcool-range-slider-pointer-shadow', this.pointerShadow);
     }
 
     if (this.pointerShadowHover) {
-      this.style.setProperty('--toolcool-range-slider-pointer-shadow-hover', this.pointerShadowHover);
+      this._$slider.style.setProperty('--toolcool-range-slider-pointer-shadow-hover', this.pointerShadowHover);
     }
 
     if (this.pointerBorder) {
-      this.style.setProperty('--toolcool-range-slider-pointer-border', this.pointerBorder);
+      this._$slider.style.setProperty('--toolcool-range-slider-pointer-border', this.pointerBorder);
     }
 
     if (this.pointerBorderHover) {
-      this.style.setProperty('--toolcool-range-slider-pointer-border-hover', this.pointerBorderHover);
+      this._$slider.style.setProperty('--toolcool-range-slider-pointer-border-hover', this.pointerBorderHover);
     }
 
     if (this.pointerBorderFocus) {
-      this.style.setProperty('--toolcool-range-slider-pointer-border-focus', this.pointerBorderFocus);
+      this._$slider.style.setProperty('--toolcool-range-slider-pointer-border-focus', this.pointerBorderFocus);
     }
   }
 
