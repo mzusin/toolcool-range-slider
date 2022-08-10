@@ -1,5 +1,7 @@
 # Tool Cool Range Slider
 
+Tool Cool Range Slider is a library written in typescript and using web component technologies.
+
 ## Basic Usage
 
 Download the latest [toolcool-range-slider.min.js](https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/toolcool-range-slider.min.js) script:

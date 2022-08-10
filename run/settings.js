@@ -25,6 +25,6 @@ export default {
   },
   plugins: [pcssPlugin, esbuildCopyPlugin],
   banner: {
-    js: `// Tool Cool Range Slider v${version}, MIT License - https://github.com/toolcool-org/toolcool-color-picker`,
+    js: `// Tool Cool Range Slider v${version}, MIT License - https://github.com/toolcool-org/toolcool-range-slider`,
   },
 };
