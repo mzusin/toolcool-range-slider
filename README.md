@@ -1,6 +1,6 @@
 # Tool Cool Range Slider
 
-Tool Cool Range Slider is a library written in typescript and using web component technologies.
+Range slider library written in typescript and using web component technologies.
 
 ## Basic Usage
 
