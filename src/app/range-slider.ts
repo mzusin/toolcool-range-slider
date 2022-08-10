@@ -10,6 +10,7 @@ import { convertRange, getNumber, roundToStep } from '../domain/math-provider';
  <toolcool-range-slider slider-width="250px" slider-height="10px" slider-radius="5px"></toolcool-range-slider>
  <toolcool-range-slider pointer-width="20px" pointer-height="20px" pointer-radius="5px"></toolcool-range-slider>
  <toolcool-range-slider slider-bg="red" pointer-bg="blue"></toolcool-range-slider>
+ <toolcool-range-slider type="vertical"></toolcool-range-slider>
  */
 class RangeSlider extends HTMLElement {
   // ------------------------- INIT ----------------
@@ -20,6 +21,7 @@ class RangeSlider extends HTMLElement {
       'min',
       'max',
       'step',
+      'type',
 
       'slider-width',
       'slider-height',
@@ -48,6 +50,7 @@ class RangeSlider extends HTMLElement {
   private _min = 0;
   private _max = 100;
   private _step: number | undefined = undefined;
+  private _type: string | undefined = undefined;
 
   private _sliderWidth: string | undefined = undefined;
   private _sliderHeight: string | undefined = undefined;
@@ -132,6 +135,15 @@ class RangeSlider extends HTMLElement {
 
   public get step() {
     return this._step;
+  }
+
+  public set type(val: string | undefined) {
+    this._type = val;
+    this.render();
+  }
+
+  public get type() {
+    return this._type;
   }
 
   public set sliderWidth(val: string | undefined) {
@@ -310,7 +322,16 @@ class RangeSlider extends HTMLElement {
 
     // update the pointer position
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
-    this._$pointer.style.left = `${percent}%`;
+
+    if (this.type === 'vertical') {
+      this._$pointer.style.top = `${percent}%`;
+    } else {
+      this._$pointer.style.left = `${percent}%`;
+    }
+
+    if (this.type) {
+      this._$slider.classList.add(`type-${this.type}`);
+    }
 
     if (this.sliderWidth) {
       this.style.setProperty('--toolcool-range-slider-width', this.sliderWidth);
@@ -417,17 +438,37 @@ class RangeSlider extends HTMLElement {
   onValueChange(evt: MouseEvent | TouchEvent) {
     if (!this._$slider) return;
 
-    const { width: boxWidth, left: boxLeft } = this._$slider.getBoundingClientRect();
+    let percent;
 
-    let mouseX;
-    if (evt.type.indexOf('mouse') !== -1) {
-      mouseX = (evt as MouseEvent).clientX;
+    if (this.type === 'vertical') {
+      // -------------- vertical -----------------
+
+      const { height: boxHeight, top: boxTop } = this._$slider.getBoundingClientRect();
+
+      let mouseY;
+      if (evt.type.indexOf('mouse') !== -1) {
+        mouseY = (evt as MouseEvent).clientY;
+      } else {
+        mouseY = (evt as TouchEvent).touches[0].clientY;
+      }
+
+      const top = Math.min(Math.max(0, mouseY - boxTop), boxHeight);
+      percent = (top * 100) / boxHeight;
     } else {
-      mouseX = (evt as TouchEvent).touches[0].clientX;
-    }
+      // -------------- horizontal -----------------
 
-    const left = Math.min(Math.max(0, mouseX - boxLeft), boxWidth);
-    const percent = (left * 100) / boxWidth;
+      const { width: boxWidth, left: boxLeft } = this._$slider.getBoundingClientRect();
+
+      let mouseX;
+      if (evt.type.indexOf('mouse') !== -1) {
+        mouseX = (evt as MouseEvent).clientX;
+      } else {
+        mouseX = (evt as TouchEvent).touches[0].clientX;
+      }
+
+      const left = Math.min(Math.max(0, mouseX - boxLeft), boxWidth);
+      percent = (left * 100) / boxWidth;
+    }
 
     let value = convertRange(0, 100, this.min, this.max, percent);
 
@@ -452,6 +493,7 @@ class RangeSlider extends HTMLElement {
     this.max = getNumber(this.getAttribute('max'), 100);
     this.value = getNumber(this.getAttribute('value'), this.min);
     this.step = getNumber(this.getAttribute('step'), undefined);
+    this.type = this.getAttribute('type') || undefined;
 
     this.sliderWidth = this.getAttribute('slider-width') || undefined;
     this.sliderHeight = this.getAttribute('slider-height') || undefined;
@@ -470,8 +512,6 @@ class RangeSlider extends HTMLElement {
     this.pointerBorderHover = this.getAttribute('pointer-border-hover') || undefined;
     this.pointerBorderFocus = this.getAttribute('pointer-border-focus') || undefined;
 
-    const percent = convertRange(this.min, this.max, 0, 100, this.value);
-
     this.shadowRoot.innerHTML = `
         <style>
             ${styles} 
@@ -482,7 +522,7 @@ class RangeSlider extends HTMLElement {
             <div class="panel"></div>
             
             <div class="container">
-              <div class="pointer" tabindex="0" style="left: ${percent}%;">
+              <div class="pointer" tabindex="0">
                 <div class="pointer-shape"></div>
               </div>
             </div>
@@ -547,6 +587,11 @@ class RangeSlider extends HTMLElement {
 
       case 'step': {
         this.step = getNumber(this.getAttribute('step'), undefined);
+        break;
+      }
+
+      case 'type': {
+        this.type = this.getAttribute('type') || undefined;
         break;
       }
 

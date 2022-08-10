@@ -23,6 +23,7 @@
     width: var(--toolcool-range-slider-width, 100%);
     height: var(--toolcool-range-slider-height, 0.25rem);
     touch-action: none;
+    max-width: 100%;
 }
 
 .range-slider * {
@@ -78,4 +79,17 @@
 
 .pointer:focus .pointer-shape{
     border: var(--toolcool-range-slider-pointer-border-focus);
+}
+
+/**
+ ----------------- Vertical --------------------
+ */
+.range-slider.type-vertical{
+    width: var(--toolcool-range-slider-height, 0.25rem);
+    height: 200px;
+    max-height: 100%;
+}
+
+.range-slider.type-vertical .pointer{
+    left: 50%;
 }

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vertical Range Slider | Tool Cool</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link id="favicon-48" rel="icon" type="image/png" sizes="48x48" href="img/favicon/favicon-48.png">
+    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32.png">
+    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png">
+
+    <style>
+        .wrapper{
+            margin: 3rem auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .row{
+            margin: 3rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+        }
+
+        label{
+            margin: 1rem 0;
+            width: 2rem;
+            text-align: center;
+        }
+
+        .value{
+            position: absolute;
+            transform: translateX(-50%);
+            top: 50%;
+            left: -1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+
+        <!-- slider #1 -->
+        <!-- default min: 0
+             default max: 100
+             default value: 0
+             default step: undefined -->
+        <div class="row">
+            <label>0</label>
+            <toolcool-range-slider id="slider-1" type="vertical"></toolcool-range-slider>
+            <label>100</label>
+            <div id="value-1" class="value"></div>
+        </div>
+
+        <!-- slider #2 -->
+        <!-- min, max, and value can be provided via attributes of <toolcool-range-slider> html tag -->
+        <div class="row">
+            <label>50</label>
+            <toolcool-range-slider
+              min="50"
+              max="100"
+              value="75"
+              type="vertical"
+              id="slider-2"></toolcool-range-slider>
+            <label>100</label>
+            <div id="value-2" class="value"></div>
+        </div>
+
+        <!-- slider #3 -->
+        <!-- min, max, and value can also be negative numbers -->
+        <div class="row">
+            <label>-100</label>
+            <toolcool-range-slider
+              min="-100"
+              max="-50"
+              value="-75"
+              type="vertical"
+              id="slider-3"></toolcool-range-slider>
+            <label>-50</label>
+            <div id="value-3" class="value"></div>
+        </div>
+
+        <!-- slider #4 -->
+        <div class="row">
+            <label>-50</label>
+            <toolcool-range-slider
+              min="-50"
+              max="50"
+              value="0"
+              type="vertical"
+              id="slider-4"></toolcool-range-slider>
+            <label>50</label>
+            <div id="value-4" class="value"></div>
+        </div>
+
+        <!-- slider #5
+        step also can be defined
+        -->
+        <div class="row">
+            <label>0</label>
+            <toolcool-range-slider
+              step="10"
+              type="vertical"
+              id="slider-5"></toolcool-range-slider>
+            <label>100</label>
+            <div id="value-5" class="value"></div>
+        </div>
+
+        <div class="row">
+            <toolcool-range-slider slider-width="200px" type="vertical"></toolcool-range-slider>
+        </div>
+
+        <div class="row">
+            <toolcool-range-slider
+              slider-width="250px"
+              slider-height="10px"
+              pointer-width="20px"
+              pointer-height="20px"
+              type="vertical"></toolcool-range-slider>
+        </div>
+
+        <div class="row">
+            <toolcool-range-slider
+              slider-width="300px"
+              slider-height="15px"
+              pointer-width="25px"
+              pointer-height="25px"
+              pointer-radius="3px"
+              type="vertical"></toolcool-range-slider>
+        </div>
+
+        <div class="row">
+            <toolcool-range-slider
+              slider-width="350px"
+              slider-height="20px"
+              pointer-width="35px"
+              pointer-height="35px"
+              type="vertical"></toolcool-range-slider>
+        </div>
+
+        <div class="row">
+            <toolcool-range-slider
+              slider-width="400px"
+              slider-height="20px"
+              pointer-width="50px"
+              pointer-height="35px"
+              pointer-radius="5px"
+              type="vertical"></toolcool-range-slider>
+        </div>
+
+        <div class="row">
+            <toolcool-range-slider
+              slider-width="450px"
+              slider-height="10px"
+              slider-radius="0"
+              pointer-width="20px"
+              pointer-height="25px"
+              pointer-radius="0"
+              type="vertical"></toolcool-range-slider>
+        </div>
+
+        <div class="row">
+            <toolcool-range-slider
+              slider-width="400px"
+              slider-height="0.5rem"
+              pointer-width="1.5rem"
+              pointer-height="1.5rem"
+              slider-bg="#6AD3BA"
+              slider-bg-hover="#3F8A8A"
+              pointer-border-hover="1px solid #79D6C0"
+              pointer-border-focus="1px solid #79D6C0"
+              type="vertical"></toolcool-range-slider>
+        </div>
+
+        <div class="row">
+            <toolcool-range-slider
+              slider-width="400px"
+              slider-height="0.5rem"
+              pointer-width="1.5rem"
+              pointer-height="1.5rem"
+              pointer-bg="#6AD3BA"
+              pointer-bg-hover="#50BDA3"
+              pointer-shadow="none"
+              pointer-shadow-hover="none"
+              pointer-border="0"
+              pointer-border-hover="1px solid #3F8A8A"
+              pointer-border-focus="1px solid #3F8A8A"
+              type="vertical"></toolcool-range-slider>
+        </div>
+    </div>
+
+    <script src="js/toolcool-range-slider.min.js"></script>
+    <script>
+        // slider #1 ------------------
+        const $slider1 = document.getElementById('slider-1');
+        const $value1 = document.getElementById('value-1');
+        $slider1.addEventListener('change', (evt) => {
+            const value = Math.round(evt.detail.value);
+            $value1.textContent = value.toString();
+        });
+        $value1.textContent = $slider1.value;
+
+
+        // slider #2 ------------------
+        const $slider2 = document.getElementById('slider-2');
+        const $value2 = document.getElementById('value-2');
+        $slider2.addEventListener('change', (evt) => {
+            const value = Math.round(evt.detail.value);
+            $value2.textContent = value.toString();
+        });
+        $value2.textContent = $slider2.value;
+
+
+        // slider #3 ------------------
+        const $slider3 = document.getElementById('slider-3');
+        const $value3 = document.getElementById('value-3');
+        $slider3.addEventListener('change', (evt) => {
+            const value = Math.round(evt.detail.value);
+            $value3.textContent = value.toString();
+        });
+        $value3.textContent = $slider3.value;
+
+        // slider #4 ------------------
+        const $slider4 = document.getElementById('slider-4');
+        const $value4 = document.getElementById('value-4');
+        $slider4.addEventListener('change', (evt) => {
+            const value = Math.round(evt.detail.value);
+            $value4.textContent = value.toString();
+        });
+        $value4.textContent = $slider4.value;
+
+
+        // slider #5 ------------------
+        const $slider5 = document.getElementById('slider-5');
+        const $value5 = document.getElementById('value-5');
+        $slider5.addEventListener('change', (evt) => {
+            const value = Math.round(evt.detail.value);
+            $value5.textContent = value.toString();
+        });
+        $value5.textContent = $slider5.value;
+    </script>
+</body>
+</html>
