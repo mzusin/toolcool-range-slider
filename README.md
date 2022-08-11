@@ -63,6 +63,23 @@ The properties have the following default values:
 | value | 0             |
 | step | undefined     |
 
+## Predefined Styles (Themes)
+
+The slider has several optional predefined themes. Each theme defines a unique look-and-feel and can be used "as is" without defining each style parameter separately. The slider has the following themes:
+
+| Theme Code Name | 
+|-----------------|
+| style-1         |
+
+Usage examples:
+
+```html
+<toolcool-range-slider
+  slider-width="400px"
+  slider-height="0.5rem"
+  theme="style-1"></toolcool-range-slider>
+```
+
 ## Width, Height, and Border Radius
 
 By default, the slider width is **100%** and the height is **0.25 rem**. These values can be changed using the **slider-width** and **slider-height** properties:
