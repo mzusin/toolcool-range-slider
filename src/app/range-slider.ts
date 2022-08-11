@@ -22,6 +22,7 @@ class RangeSlider extends HTMLElement {
       'max',
       'step',
       'type',
+      'theme',
 
       'slider-width',
       'slider-height',
@@ -51,6 +52,7 @@ class RangeSlider extends HTMLElement {
   private _max = 100;
   private _step: number | undefined = undefined;
   private _type: string | undefined = undefined;
+  private _theme: string | undefined = undefined;
 
   private _sliderWidth: string | undefined = undefined;
   private _sliderHeight: string | undefined = undefined;
@@ -144,6 +146,15 @@ class RangeSlider extends HTMLElement {
 
   public get type() {
     return this._type;
+  }
+
+  public set theme(val: string | undefined) {
+    this._theme = val;
+    this.render();
+  }
+
+  public get theme() {
+    return this._theme;
   }
 
   public set sliderWidth(val: string | undefined) {
@@ -333,6 +344,10 @@ class RangeSlider extends HTMLElement {
       this._$slider.classList.add(`type-${this.type}`);
     }
 
+    if (this.theme) {
+      this._$slider.classList.add(this.theme);
+    }
+
     if (this.sliderWidth) {
       this._$slider.style.setProperty('--toolcool-range-slider-width', this.sliderWidth);
     }
@@ -494,6 +509,7 @@ class RangeSlider extends HTMLElement {
     this.value = getNumber(this.getAttribute('value'), this.min);
     this.step = getNumber(this.getAttribute('step'), undefined);
     this.type = this.getAttribute('type') || undefined;
+    this.theme = this.getAttribute('theme') || undefined;
 
     this.sliderWidth = this.getAttribute('slider-width') || undefined;
     this.sliderHeight = this.getAttribute('slider-height') || undefined;
@@ -592,6 +608,13 @@ class RangeSlider extends HTMLElement {
 
       case 'type': {
         this.type = this.getAttribute('type') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'theme': {
+        this.theme = this.getAttribute('theme') || undefined;
+        this.render();
         break;
       }
 
