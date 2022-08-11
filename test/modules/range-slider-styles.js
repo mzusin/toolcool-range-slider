@@ -209,73 +209,108 @@ QUnit.module('Pointer Background Hover', () => {
     });
 });
 
-QUnit.module('pointer border', () => {
+QUnit.module('Pointer Shadow', () => {
 
-    QUnit.test('pointer border by default should be undefined', (assert) => {
+    QUnit.test('pointer shadow by default should be undefined', (assert) => {
         const $slider = document.querySelector('#slider-1');
         assert.equal($slider.pointerShadow, undefined);
     });
 
-    QUnit.test('provided pointer border should be none', (assert) => {
+    QUnit.test('provided pointer shadow should be none', (assert) => {
         const $slider = document.querySelector('#slider-26');
         assert.equal($slider.pointerShadow, 'none');
     });
 
-    QUnit.test('pointer border changed to none', (assert) => {
+    QUnit.test('pointer shadow changed to none', (assert) => {
         const $slider = document.querySelector('#slider-26');
         $slider.pointerShadow = 'none';
         assert.equal($slider.pointerShadow, 'none');
     });
 
-    QUnit.test('by default pointer border style is empty', (assert) => {
+    QUnit.test('by default pointer shadow style is empty', (assert) => {
         const $slider = document.querySelector('#slider-1');
         assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-shadow'), '');
     });
 
-    QUnit.test('provided pointer border style should be none', (assert) => {
+    QUnit.test('provided pointer shadow style should be none', (assert) => {
         const $slider = document.querySelector('#slider-26').shadowRoot.querySelector('.range-slider')
         assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-shadow'), 'none');
     });
 
-    QUnit.test('pointer border changed to "0 0 2px red" ---> style should change', (assert) => {
+    QUnit.test('pointer shadow changed to "0 0 2px red" ---> style should change', (assert) => {
         const $slider = document.querySelector('#slider-26');
         $slider.pointerShadow = '0 0 2px red';
         assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--toolcool-range-slider-pointer-shadow'), '0 0 2px red');
     });
 });
 
-QUnit.module('pointer border Hover', () => {
+QUnit.module('Pointer Shadow Hover', () => {
 
-    QUnit.test('pointer border hover by default should be undefined', (assert) => {
+    QUnit.test('pointer shadow hover by default should be undefined', (assert) => {
         const $slider = document.querySelector('#slider-1');
         assert.equal($slider.pointerShadowHover, undefined);
     });
 
-    QUnit.test('provided pointer border hover should be none', (assert) => {
+    QUnit.test('provided pointer shadow hover should be none', (assert) => {
         const $slider = document.querySelector('#slider-26');
         assert.equal($slider.pointerShadowHover, 'none');
     });
 
-    QUnit.test('pointer border hover changed to none', (assert) => {
+    QUnit.test('pointer shadow hover changed to none', (assert) => {
         const $slider = document.querySelector('#slider-26');
         $slider.pointerShadowHover = 'none';
         assert.equal($slider.pointerShadowHover, 'none');
     });
 
-    QUnit.test('by default pointer border hover style is empty', (assert) => {
+    QUnit.test('by default pointer shadow hover style is empty', (assert) => {
         const $slider = document.querySelector('#slider-1');
         assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-shadow-hover'), '');
     });
 
-    QUnit.test('provided pointer border hover style should be none', (assert) => {
+    QUnit.test('provided pointer shadow hover style should be none', (assert) => {
         const $slider = document.querySelector('#slider-26').shadowRoot.querySelector('.range-slider')
         assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-shadow-hover'), 'none');
     });
 
-    QUnit.test('pointer border hover changed to "0 0 2px red" ---> style should change', (assert) => {
+    QUnit.test('pointer shadow hover changed to "0 0 2px red" ---> style should change', (assert) => {
         const $slider = document.querySelector('#slider-26');
         $slider.pointerShadowHover = '0 0 2px red';
         assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--toolcool-range-slider-pointer-shadow-hover'), '0 0 2px red');
+    });
+});
+
+QUnit.module('Pointer Shadow Focus', () => {
+
+    QUnit.test('pointer shadow focus by default should be undefined', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        assert.equal($slider.pointerShadowFocus, undefined);
+    });
+
+    QUnit.test('provided pointer shadow focus should be none', (assert) => {
+        const $slider = document.querySelector('#slider-30');
+        assert.equal($slider.pointerShadowFocus, 'none');
+    });
+
+    QUnit.test('pointer shadow focus changed to none', (assert) => {
+        const $slider = document.querySelector('#slider-30');
+        $slider.pointerShadowFocus = 'none';
+        assert.equal($slider.pointerShadowFocus, 'none');
+    });
+
+    QUnit.test('by default pointer shadow focus style is empty', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-shadow-focus'), '');
+    });
+
+    QUnit.test('provided pointer shadow focus style should be none', (assert) => {
+        const $slider = document.querySelector('#slider-30').shadowRoot.querySelector('.range-slider')
+        assert.equal($slider.style.getPropertyValue('--toolcool-range-slider-pointer-shadow-focus'), 'none');
+    });
+
+    QUnit.test('pointer shadow focus changed to "0 0 2px red" ---> style should change', (assert) => {
+        const $slider = document.querySelector('#slider-30');
+        $slider.pointerShadowFocus = '0 0 2px red';
+        assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--toolcool-range-slider-pointer-shadow-focus'), '0 0 2px red');
     });
 });
 
@@ -291,7 +326,7 @@ QUnit.module('Pointer Border', () => {
         assert.equal($slider.pointerBorder, '0');
     });
 
-    QUnit.test('pointer border changed to 0', (assert) => {
+    QUnit.test('Pointer border changed to 0', (assert) => {
         const $slider = document.querySelector('#slider-27');
         $slider.pointerBorder = '0';
         assert.equal($slider.pointerBorder, '0');

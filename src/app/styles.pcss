@@ -12,6 +12,7 @@
     --toolcool-range-slider-pointer-bg-hover: #dcdcdc;
     --toolcool-range-slider-pointer-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
     --toolcool-range-slider-pointer-shadow-hover: 0 0 2px rgb(0, 0, 0);
+    --toolcool-range-slider-pointer-shadow-focus: 0 0 2px rgb(0, 0, 0);
     --toolcool-range-slider-pointer-border: 1px solid hsla(0, 0%, 88%, 0.5);
     --toolcool-range-slider-pointer-border-hover: 1px solid hsla(0, 0%, 88%, 0.5);
     --toolcool-range-slider-pointer-border-focus: 1px solid hsl(201, 72%, 59%);
@@ -84,6 +85,7 @@
 
 .pointer:focus .pointer-shape{
     border: var(--toolcool-range-slider-pointer-border-focus);
+    box-shadow: var(--toolcool-range-slider-pointer-shadow-focus);
 }
 
 /**
@@ -103,5 +105,12 @@
  ---------------- Themes -------------------
  */
 .style-1 .pointer-shape{
-    box-shadow: 0 0 0 3px #fff, 0 0 0 6px #1abc9c;
+    --toolcool-range-slider-pointer-shadow: 0 0 0 3px #fff, 0 0 0 6px #1abc9c;
+    --toolcool-range-slider-pointer-shadow-hover: 0 0 0 3px #fff, 0 0 0 6px #1abc9c;
+    --toolcool-range-slider-pointer-shadow-focus: 0 0 0 3px #fff, 0 0 0 6px #1abc9c;
+    --toolcool-range-slider-pointer-bg: #1abc9c;
+    --toolcool-range-slider-pointer-bg-hover: #1abc9c;
+    --toolcool-range-slider-pointer-border: 0;
+    --toolcool-range-slider-pointer-border-hover: 0;
+    --toolcool-range-slider-pointer-border-focus: 0;
 }

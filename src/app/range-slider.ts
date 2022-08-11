@@ -38,6 +38,7 @@ class RangeSlider extends HTMLElement {
 
       'pointer-shadow',
       'pointer-shadow-hover',
+      'pointer-shadow-focus',
       'pointer-border',
       'pointer-border-hover',
       'pointer-border-focus',
@@ -68,6 +69,7 @@ class RangeSlider extends HTMLElement {
 
   private _pointerShadow: string | undefined = undefined;
   private _pointerShadowHover: string | undefined = undefined;
+  private _pointerShadowFocus: string | undefined = undefined;
   private _pointerBorder: string | undefined = undefined;
   private _pointerBorderHover: string | undefined = undefined;
   private _pointerBorderFocus: string | undefined = undefined;
@@ -265,6 +267,15 @@ class RangeSlider extends HTMLElement {
     return this._pointerShadowHover;
   }
 
+  public set pointerShadowFocus(val: string | undefined) {
+    this._pointerShadowFocus = val;
+    this.render();
+  }
+
+  public get pointerShadowFocus() {
+    return this._pointerShadowFocus;
+  }
+
   public set pointerBorder(val: string | undefined) {
     this._pointerBorder = val;
     this.render();
@@ -396,6 +407,10 @@ class RangeSlider extends HTMLElement {
       this._$slider.style.setProperty('--toolcool-range-slider-pointer-shadow-hover', this.pointerShadowHover);
     }
 
+    if (this.pointerShadowFocus) {
+      this._$slider.style.setProperty('--toolcool-range-slider-pointer-shadow-focus', this.pointerShadowFocus);
+    }
+
     if (this.pointerBorder) {
       this._$slider.style.setProperty('--toolcool-range-slider-pointer-border', this.pointerBorder);
     }
@@ -524,6 +539,7 @@ class RangeSlider extends HTMLElement {
     this.pointerBgHover = this.getAttribute('pointer-bg-hover') || undefined;
     this.pointerShadow = this.getAttribute('pointer-shadow') || undefined;
     this.pointerShadowHover = this.getAttribute('pointer-shadow-hover') || undefined;
+    this.pointerShadowFocus = this.getAttribute('pointer-shadow-focus') || undefined;
     this.pointerBorder = this.getAttribute('pointer-border') || undefined;
     this.pointerBorderHover = this.getAttribute('pointer-border-hover') || undefined;
     this.pointerBorderFocus = this.getAttribute('pointer-border-focus') || undefined;
@@ -686,6 +702,12 @@ class RangeSlider extends HTMLElement {
 
       case 'pointer-shadow-hover': {
         this.pointerShadowHover = this.getAttribute('pointer-shadow-hover') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'pointer-shadow-focus': {
+        this.pointerShadowFocus = this.getAttribute('pointer-shadow-focus') || undefined;
         this.render();
         break;
       }
