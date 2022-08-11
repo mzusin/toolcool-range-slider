@@ -18,12 +18,17 @@
     --toolcool-range-slider-pointer-border-radius: 100%;
 }
 
+:host{
+    max-width: 100%;
+}
+
 .range-slider{
     position: relative;
     width: var(--toolcool-range-slider-width, 100%);
     height: var(--toolcool-range-slider-height, 0.25rem);
     touch-action: none;
     max-width: 100%;
+    box-sizing: border-box;
 }
 
 .range-slider * {

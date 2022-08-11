@@ -13,39 +13,32 @@
 
     <style>
         .wrapper{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 3rem 0;
+            width: 500px;
+            max-width: 100%;
+            margin:3rem auto;
+        }
+
+        h1{
+            text-align: center;
+            font-weight: normal;
+            margin: 3rem 1rem;
         }
 
         .row{
             margin-bottom: 3rem;
             display: flex;
+            justify-content: center;
             align-items: center;
             position: relative;
-        }
-
-        toolcool-range-slider{
-            flex: 1;
-        }
-
-        label{
-            margin: 0 1rem;
-        }
-
-        .value{
-            position: absolute;
-            left: 50%;
-            top: -1rem;
+            padding: 0 1rem;
         }
     </style>
 </head>
 <body>
+    <h1>Styling</h1>
+
     <div class="wrapper">
 
-        <!-- slider #1 -->
         <div class="row">
             <toolcool-range-slider
               slider-width="400px"
@@ -58,7 +51,6 @@
               pointer-border-focus="1px solid #79D6C0"></toolcool-range-slider>
         </div>
 
-        <!-- slider #2 -->
         <div class="row">
             <toolcool-range-slider
               slider-width="400px"

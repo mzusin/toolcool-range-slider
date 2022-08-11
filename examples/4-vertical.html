@@ -20,6 +20,12 @@
             justify-content: center;
         }
 
+        h1{
+            text-align: center;
+            font-weight: normal;
+            margin: 3rem 1rem;
+        }
+
         .row{
             margin: 3rem;
             display: flex;
@@ -44,13 +50,10 @@
     </style>
 </head>
 <body>
+    <h1>Vertical Sliders</h1>
+
     <div class="wrapper">
 
-        <!-- slider #1 -->
-        <!-- default min: 0
-             default max: 100
-             default value: 0
-             default step: undefined -->
         <div class="row">
             <label>0</label>
             <toolcool-range-slider id="slider-1" type="vertical"></toolcool-range-slider>
@@ -58,8 +61,6 @@
             <div id="value-1" class="value"></div>
         </div>
 
-        <!-- slider #2 -->
-        <!-- min, max, and value can be provided via attributes of <toolcool-range-slider> html tag -->
         <div class="row">
             <label>50</label>
             <toolcool-range-slider
@@ -72,8 +73,6 @@
             <div id="value-2" class="value"></div>
         </div>
 
-        <!-- slider #3 -->
-        <!-- min, max, and value can also be negative numbers -->
         <div class="row">
             <label>-100</label>
             <toolcool-range-slider
@@ -86,7 +85,6 @@
             <div id="value-3" class="value"></div>
         </div>
 
-        <!-- slider #4 -->
         <div class="row">
             <label>-50</label>
             <toolcool-range-slider
@@ -99,9 +97,6 @@
             <div id="value-4" class="value"></div>
         </div>
 
-        <!-- slider #5
-        step also can be defined
-        -->
         <div class="row">
             <label>0</label>
             <toolcool-range-slider
