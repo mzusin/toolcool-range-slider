@@ -136,6 +136,7 @@ The list of attributes and default values:
 | slider-bg-hover      | #5f79b7           |
 | pointer-bg           | #fff           |
 | pointer-bg-hover     | #dcdcdc           |
+| pointer-bg-focus     | #dcdcdc           |
 | pointer-shadow       | 0 0 2px rgba(0, 0, 0, 0.6)           |
 | pointer-shadow-hover | 0 0 2px rgb(0, 0, 0)           |
 | pointer-shadow-focus | 0 0 2px rgb(0, 0, 0)           |
