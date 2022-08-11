@@ -1,6 +1,6 @@
 # Tool Cool Range Slider
 
-Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including a vertical slider.
+Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including a vertical slider, touch and keyboard support.
 
 ## Basic Usage
 
