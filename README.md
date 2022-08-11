@@ -16,7 +16,7 @@ Responsive range slider library written in typescript and using web component te
 - [Predefined Styles (Themes)](#predefined-styles-themes)
 - [Colors](#colors)
 - [Vertical Slider](#vertical-slider)
-- [Touch & Keyboard Support](#touch-keyboard-support)
+- [Touch & Keyboard Support](#touch--keyboard-support)
 - [TypeScript Usage](#typescript-usage)
 - [Usage with React and TypeScript](#usage-with-react-and-typescript)
 - [License](#license)
