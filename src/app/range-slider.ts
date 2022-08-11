@@ -27,8 +27,10 @@ class RangeSlider extends HTMLElement {
       'slider-width',
       'slider-height',
       'slider-radius',
+
       'slider-bg',
       'slider-bg-hover',
+      'slider-bg-fill',
 
       'pointer-width',
       'pointer-height',
@@ -50,6 +52,7 @@ class RangeSlider extends HTMLElement {
 
   private _$slider: HTMLElement | null;
   private _$pointer: HTMLElement | null;
+  private _$panelFill: HTMLElement | null;
 
   private _value = 0; // [min, max]
   private _min = 0;
@@ -61,8 +64,10 @@ class RangeSlider extends HTMLElement {
   private _sliderWidth: string | undefined = undefined;
   private _sliderHeight: string | undefined = undefined;
   private _sliderRadius: string | undefined = undefined;
+
   private _sliderBg: string | undefined = undefined;
   private _sliderBgHover: string | undefined = undefined;
+  private _sliderBgFill: string | undefined = undefined;
 
   private _pointerWidth: string | undefined = undefined;
   private _pointerHeight: string | undefined = undefined;
@@ -210,6 +215,15 @@ class RangeSlider extends HTMLElement {
     return this._sliderBgHover;
   }
 
+  public set sliderBgFill(val: string | undefined) {
+    this._sliderBgFill = val;
+    this.render();
+  }
+
+  public get sliderBgFill() {
+    return this._sliderBgFill;
+  }
+
   public set pointerWidth(val: string | undefined) {
     this._pointerWidth = val;
     this.render();
@@ -355,15 +369,17 @@ class RangeSlider extends HTMLElement {
   }
 
   render() {
-    if (!this._$slider || !this._$pointer) return;
+    if (!this._$slider || !this._$pointer || !this._$panelFill) return;
 
     // update the pointer position
     const percent = convertRange(this.min, this.max, 0, 100, this.value);
 
     if (this.type === 'vertical') {
       this._$pointer.style.top = `${percent}%`;
+      this._$panelFill.style.height = `${percent}%`;
     } else {
       this._$pointer.style.left = `${percent}%`;
+      this._$panelFill.style.width = `${percent}%`;
     }
 
     if (this.type) {
@@ -392,6 +408,10 @@ class RangeSlider extends HTMLElement {
 
     if (this.sliderBgHover) {
       this._$slider.style.setProperty('--toolcool-range-slider-panel-bg-hover', this.sliderBgHover);
+    }
+
+    if (this.sliderBgFill) {
+      this._$slider.style.setProperty('--toolcool-range-slider-panel-bg-fill', this.sliderBgFill);
     }
 
     if (this.pointerWidth) {
@@ -550,6 +570,7 @@ class RangeSlider extends HTMLElement {
     this.sliderRadius = this.getAttribute('slider-radius') || undefined;
     this.sliderBg = this.getAttribute('slider-bg') || undefined;
     this.sliderBgHover = this.getAttribute('slider-bg-hover') || undefined;
+    this.sliderBgFill = this.getAttribute('slider-bg-fill') || undefined;
 
     this.pointerWidth = this.getAttribute('pointer-width') || undefined;
     this.pointerHeight = this.getAttribute('pointer-height') || undefined;
@@ -575,6 +596,7 @@ class RangeSlider extends HTMLElement {
         <div class="range-slider">
           <div class="container">
             <div class="panel"></div>
+            <div class="panel-fill"></div>
             
             <div class="container">
               <div class="pointer" tabindex="0">
@@ -589,6 +611,7 @@ class RangeSlider extends HTMLElement {
     // init slider elements
     this._$slider = this.shadowRoot.querySelector('.range-slider');
     this._$pointer = this.shadowRoot.querySelector('.pointer');
+    this._$panelFill = this.shadowRoot.querySelector('.panel-fill');
 
     // init slider events
     this._$slider?.addEventListener('mousedown', this.onMouseDown);
@@ -683,6 +706,12 @@ class RangeSlider extends HTMLElement {
 
       case 'slider-bg-hover': {
         this.sliderBgHover = this.getAttribute('slider-bg-hover') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'slider-bg-fill': {
+        this.sliderBgFill = this.getAttribute('slider-bg-fill') || undefined;
         this.render();
         break;
       }

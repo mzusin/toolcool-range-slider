@@ -130,19 +130,20 @@ Color and other styles can be customized with the following attributes:
 
 The list of attributes and default values:
 
-| Property             | Default Value |
-|----------------------|---------------|
-| slider-bg            | #2D4373           |
-| slider-bg-hover      | #5f79b7           |
-| pointer-bg           | #fff           |
-| pointer-bg-hover     | #dcdcdc           |
-| pointer-bg-focus     | #dcdcdc           |
-| pointer-shadow       | 0 0 2px rgba(0, 0, 0, 0.6)           |
-| pointer-shadow-hover | 0 0 2px rgb(0, 0, 0)           |
-| pointer-shadow-focus | 0 0 2px rgb(0, 0, 0)           |
-| pointer-border       | 1px solid hsla(0, 0%, 88%, 0.5)           |
-| pointer-border-hover | 1px solid hsla(0, 0%, 88%, 0.5)           |
-| pointer-border-focus | 1px solid hsl(201, 72%, 59%)           |
+| Property             | Default Value                   |
+|----------------------|---------------------------------|
+| slider-bg            | #2D4373                         |
+| slider-bg-hover      | #5f79b7                         |
+| slider-bg-fill       | #000                            |
+| pointer-bg           | #fff                            |
+| pointer-bg-hover     | #dcdcdc                         |
+| pointer-bg-focus     | #dcdcdc                         |
+| pointer-shadow       | 0 0 2px rgba(0, 0, 0, 0.6)      |
+| pointer-shadow-hover | 0 0 2px rgb(0, 0, 0)            |
+| pointer-shadow-focus | 0 0 2px rgb(0, 0, 0)            |
+| pointer-border       | 1px solid hsla(0, 0%, 88%, 0.5) |
+| pointer-border-hover | 1px solid hsla(0, 0%, 88%, 0.5) |
+| pointer-border-focus | 1px solid hsl(201, 72%, 59%)    |
 
 ## Vertical Slider
 

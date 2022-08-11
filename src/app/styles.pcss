@@ -4,16 +4,20 @@
 
     --toolcool-range-slider-panel-bg: #2D4373;
     --toolcool-range-slider-panel-bg-hover: #5f79b7;
+    --toolcool-range-slider-panel-bg-fill: #000000;
     --toolcool-range-slider-panel-bg-border-radius: 1rem;
 
     --toolcool-range-slider-pointer-width: 1rem;
     --toolcool-range-slider-pointer-height: 1rem;
+
     --toolcool-range-slider-pointer-bg: #fff;
     --toolcool-range-slider-pointer-bg-hover: #dcdcdc;
     --toolcool-range-slider-pointer-bg-focus: #dcdcdc;
+
     --toolcool-range-slider-pointer-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
     --toolcool-range-slider-pointer-shadow-hover: 0 0 2px rgb(0, 0, 0);
     --toolcool-range-slider-pointer-shadow-focus: 0 0 2px rgb(0, 0, 0);
+
     --toolcool-range-slider-pointer-border: 1px solid hsla(0, 0%, 88%, 0.5);
     --toolcool-range-slider-pointer-border-hover: 1px solid hsla(0, 0%, 88%, 0.5);
     --toolcool-range-slider-pointer-border-focus: 1px solid hsl(201, 72%, 59%);
@@ -52,6 +56,15 @@
     border-radius: var(--toolcool-range-slider-panel-bg-border-radius, 1rem);
     overflow: hidden;
     transition: 0.3s all ease;
+}
+
+.panel-fill{
+    background: var(--toolcool-range-slider-panel-bg-fill, #000);
+    border-radius: var(--toolcool-range-slider-panel-bg-border-radius, 1rem);
+    overflow: hidden;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
 }
 
 .panel:hover{
@@ -101,6 +114,10 @@
 
 .range-slider.type-vertical .pointer{
     left: 50%;
+}
+
+.range-slider.type-vertical .panel-fill{
+    width: 100%;
 }
 
 /**
