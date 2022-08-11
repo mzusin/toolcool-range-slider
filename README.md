@@ -1,5 +1,9 @@
 # Tool Cool Range Slider
 
+[![GitHub license](https://img.shields.io/github/license/toolcool-org/toolcool-range-slider)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/LICENSE)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/toolcool-org/toolcool-range-slider)
+[![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)
+
 Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including a vertical slider, touch and keyboard support.
 
 ![Tool Cool Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/toolcool-range-slider-preview-1.png?raw=true)
@@ -65,35 +69,6 @@ The properties have the following default values:
 | value | 0             |
 | step | undefined     |
 
-## Predefined Styles (Themes)
-
-The slider has several optional predefined themes. Each theme defines a unique look-and-feel and can be used "as is" without defining each style parameter separately. The slider has the following themes:
-
-| Theme Code Name | 
-|-----------------|
-| target          |
-| glass           |
-| rect            |
-
-Usage examples:
-
-```html
-<toolcool-range-slider
-  slider-width="400px"
-  slider-height="0.5rem"
-  theme="style-1"></toolcool-range-slider>
-```
-
-It's possible to combine themes together with custom properties like this:
-
-```html
- <toolcool-range-slider
-  slider-width="400px"
-  slider-height="0.5rem"
-  theme="style-1"
-  slider-bg="red"></toolcool-range-slider>
-```
-
 ## Width, Height, and Border Radius
 
 By default, the slider width is **100%** and the height is **0.25 rem**. These values can be changed using the **slider-width** and **slider-height** properties:
@@ -128,6 +103,41 @@ Default values table:
 | pointer-width | 1rem          |
 | pointer-height | 1rem          |
 | pointer-radius | 100%          |
+
+
+## Predefined Styles (Themes)
+
+The slider has several optional predefined themes. Each theme defines a unique look-and-feel and can be used "as is" without defining each style parameter separately. 
+
+**All themes are fully optional and can be partially or completely replaced by custom styles, as described later in this documentation.**
+
+
+The slider has the following themes:
+
+| Theme Code Name | 
+|-----------------|
+| target          |
+| glass           |
+| rect            |
+
+Usage examples:
+
+```html
+<toolcool-range-slider
+  slider-width="400px"
+  slider-height="0.5rem"
+  theme="rect"></toolcool-range-slider>
+```
+
+It's possible to combine themes together with custom properties like this:
+
+```html
+ <toolcool-range-slider
+  slider-width="400px"
+  slider-height="0.5rem"
+  theme="rect"
+  slider-bg="red"></toolcool-range-slider>
+```
 
 ## Colors
 
@@ -209,7 +219,7 @@ $slider.value = 10;
 ## Usage with React and TypeScript
 
 ```typescript
-import 'toolcool-color-picker';
+import 'toolcool-range-slider';
 
 declare global {
     namespace JSX {
@@ -250,5 +260,5 @@ export default RangeSliderExample;
 
 ## License
 
-[MIT license](https://github.com/toolcool-org/toolcool-color-picker/blob/main/LICENSE)
+[MIT license](https://github.com/toolcool-org/toolcool-range-slider/blob/main/LICENSE)
 
