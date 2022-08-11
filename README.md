@@ -16,6 +16,7 @@ Responsive range slider library written in typescript and using web component te
 - [Predefined Styles (Themes)](#predefined-styles-themes)
 - [Colors](#colors)
 - [Vertical Slider](#vertical-slider)
+- [Touch & Keyboard Support](#touch-keyboard-support)
 - [TypeScript Usage](#typescript-usage)
 - [Usage with React and TypeScript](#usage-with-react-and-typescript)
 - [License](#license)
@@ -206,6 +207,18 @@ Vertical slider can be achieved using the **type** attribute as following:
 <toolcool-range-slider type="vertical"></toolcool-range-slider>
 ```
 It accepts all the same attributes as the horizontal slider.  The default height of a vertical slider is **300px** unless the height attribute is provided.
+
+## Touch & Keyboard Support
+
+The library supports touch screens and also handles the following keys:
+
+
+| Key         | Function                                                                       |
+|-------------|--------------------------------------------------------------------------------|
+| left arrow  | goes one step to the left in a horizontal slider or up in a vertical slider    |
+| right arrow | goes one step to the right in a horizontal slider or down in a vertical slider |
+| left up     | jumps to the min value                                                         |
+| right down  | jumps to the max value                                                         |
 
 ## TypeScript Usage
 

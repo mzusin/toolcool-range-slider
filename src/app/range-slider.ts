@@ -484,6 +484,18 @@ class RangeSlider extends HTMLElement {
         this.render();
         break;
       }
+
+      case 'ArrowUp': {
+        this.value = this.min;
+        this.render();
+        break;
+      }
+
+      case 'ArrowDown': {
+        this.value = this.max;
+        this.render();
+        break;
+      }
     }
   }
 
