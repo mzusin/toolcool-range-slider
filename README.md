@@ -8,6 +8,18 @@ Responsive range slider library written in typescript and using web component te
 
 ![Tool Cool Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/toolcool-range-slider-preview-1.png?raw=true)
 
+
+## Table of contents
+- [Basic usage](#basic-usage)
+- [Main Properties](#main-properties)
+- [Width, Height, and Border Radius](#width-height-and-border-radius)
+- [Predefined Styles (Themes)](#predefined-styles-themes)
+- [Colors](#colors)
+- [Vertical Slider](#vertical-slider)
+- [TypeScript Usage](#typescript-usage)
+- [Usage with React and TypeScript](#usage-with-react-and-typescript)
+- [License](#license)
+
 ## Basic Usage
 
 Download the latest [toolcool-range-slider.min.js](https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/toolcool-range-slider.min.js) script:
