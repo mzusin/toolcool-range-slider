@@ -1,6 +1,6 @@
 # Tool Cool Range Slider
 
-Range slider library written in typescript and using web component technologies.
+Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including a vertical slider.
 
 ## Basic Usage
 
@@ -72,6 +72,10 @@ By default, the slider width is **100%** and the height is **0.25 rem**. These v
         slider-width="300px"
         slider-height="15px"
         slider-radius="0.5rem"></toolcool-range-slider>
+
+<toolcool-range-slider
+       slider-width="100%"
+       slider-height="1rem"></toolcool-range-slider>
 ```
 
 Pointer width, height, and border-radius can be change using **pointer-width**, **pointer-height**, and **pointer-radius** properties:
@@ -87,7 +91,7 @@ Default values table:
 
 | Property     | Default Value |
 |--------------|---------------|
-| slider-width | 100%          |
+| slider-width | 300px         |
 | slider-height | 0.25rem       |
 | slider-radius | 1rem          |
 | pointer-width | 1rem          |
@@ -145,7 +149,7 @@ Vertical slider can be achieved using the **type** attribute as following:
 ```html
 <toolcool-range-slider type="vertical"></toolcool-range-slider>
 ```
-It accepts all the same attributes as the horizontal slider.  The default height of a vertical slider is **200px** unless the height attribute is provided.
+It accepts all the same attributes as the horizontal slider.  The default height of a vertical slider is **300px** unless the height attribute is provided.
 
 ## TypeScript Usage
 
