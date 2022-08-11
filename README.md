@@ -69,7 +69,9 @@ The slider has several optional predefined themes. Each theme defines a unique l
 
 | Theme Code Name | 
 |-----------------|
-| style-1         |
+| target          |
+| glass           |
+| rect            |
 
 Usage examples:
 
@@ -78,6 +80,16 @@ Usage examples:
   slider-width="400px"
   slider-height="0.5rem"
   theme="style-1"></toolcool-range-slider>
+```
+
+It's possible to combine themes together with custom properties like this:
+
+```html
+ <toolcool-range-slider
+  slider-width="400px"
+  slider-height="0.5rem"
+  theme="style-1"
+  slider-bg="red"></toolcool-range-slider>
 ```
 
 ## Width, Height, and Border Radius
