@@ -1,7 +1,7 @@
 {
   "name": "toolcool-range-slider",
   "version": "1.0.1",
-  "description": "",
+  "description": "Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including a vertical slider, touch and keyboard support.",
   "main": "./dist/toolcool-range-slider.min.js",
   "types": "./types/app/range-slider.d.ts",
   "scripts": {
@@ -13,7 +13,7 @@
     "prettier": "prettier --write src/**/*.ts"
   },
   "type": "module",
-  "keywords": [],
+  "keywords": ["input", "slider", "range", "range-slider", "slider-range", "range-picker", "rangeslider"],
   "author": "Tool Cool <toolcool.org@gmail.com>",
   "license": "MIT",
   "browserslist": [
