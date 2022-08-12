@@ -132,6 +132,7 @@ The slider has the following themes:
 | target          |
 | glass           |
 | rect            |
+| circle          |
 
 Usage examples:
 
