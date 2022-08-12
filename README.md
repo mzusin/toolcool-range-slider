@@ -8,6 +8,14 @@ Responsive range slider library written in typescript and using web component te
 
 ![Tool Cool Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/toolcool-range-slider-preview-1.png?raw=true)
 
+- Responsive, touch and keyboard support.
+- Accessible via ARIA-attributes.
+- ES6 JavaScript + TypeScript.
+- No dependencies.
+- Predefined themes (optional).
+- Customizable with a large set of style attributes.
+- Horizontal and vertical sliders.
+- Based on web component technologies.
 
 ## Table of contents
 - [Basic usage](#basic-usage)
