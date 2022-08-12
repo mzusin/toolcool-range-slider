@@ -377,10 +377,18 @@ class RangeSlider extends HTMLElement {
     if (this.type === 'vertical') {
       this._$pointer.style.top = `${percent}%`;
       this._$panelFill.style.height = `${percent}%`;
+      this._$slider.setAttribute('aria-orientation', 'vertical');
     } else {
       this._$pointer.style.left = `${percent}%`;
       this._$panelFill.style.width = `${percent}%`;
+      this._$slider.setAttribute('aria-orientation', 'horizontal');
     }
+
+    // set additional area attributes
+    this._$slider.setAttribute('aria-valuemin', this.min.toString());
+    this._$slider.setAttribute('aria-valuemax', this.max.toString());
+    this._$slider.setAttribute('aria-valuenow', this.value.toString());
+    this._$slider.setAttribute('aria-valuetext', this.value.toString());
 
     if (this.type) {
       this._$slider.classList.add(`type-${this.type}`);
@@ -605,7 +613,7 @@ class RangeSlider extends HTMLElement {
             ${styles} 
         </style>
 
-        <div class="range-slider">
+        <div class="range-slider" role="slider">
           <div class="container">
             <div class="panel"></div>
             <div class="panel-fill"></div>
