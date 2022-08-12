@@ -2,6 +2,7 @@
 
 [![GitHub license](https://img.shields.io/github/license/toolcool-org/toolcool-range-slider)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/LICENSE)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/toolcool-org/toolcool-range-slider)
+[![NPM](https://img.shields.io/badge/npm-range_slider-brightgreen)](https://www.npmjs.com/package/toolcool-range-slider)
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)
 
 Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including a vertical slider, touch and keyboard support.
@@ -19,6 +20,8 @@ Responsive range slider library written in typescript and using web component te
 
 ## Table of contents
 - [Basic usage](#basic-usage)
+- [CDN](#cdn)
+- [Node.js usage](#nodejs-usage)
 - [Main Properties](#main-properties)
 - [Width, Height, and Border Radius](#width-height-and-border-radius)
 - [Predefined Styles (Themes)](#predefined-styles-themes)
@@ -45,7 +48,7 @@ You can control the range slider by referencing the `toolcool-range-slider` HTML
 ```html
 <toolcool-range-slider id="slider-1"></toolcool-range-slider>
 
-<script type='text/javascript' src='toolcool-range-slider.min.js'></script>
+<script type="text/javascript" src="toolcool-range-slider.min.js"></script>
 
 <script>
     // get the reference
@@ -64,6 +67,37 @@ You can control the range slider by referencing the `toolcool-range-slider` HTML
     });
 </script>
 ```
+
+## CDN
+
+The ToolCool Range Slider is also available in the [jsDelivr CND](https://www.jsdelivr.com/package/npm/toolcool-range-slider):
+
+```html
+<toolcool-range-slider></toolcool-range-slider>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/toolcool-range-slider.min.js"></script>
+```
+
+
+## Node.js usage
+
+[![Tool Cool Range Slider](https://nodei.co/npm/toolcool-range-slider.png)](https://npmjs.org/package/toolcool-range-slider)
+
+Range slider may also be included as a [node module](https://www.npmjs.com/package/toolcool-range-slider) using npm:
+
+`npm i toolcool-range-slider`
+
+or with Yarn:
+
+`yarn add toolcool-range-slider`
+
+And then you can include it in your application like this:
+
+```js
+import 'toolcool-range-slider';
+```
+
+NPM package can fe found [here](https://www.npmjs.com/package/toolcool-range-slider).
 
 ## Main Properties
 
