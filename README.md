@@ -244,6 +244,8 @@ The list of attributes and default values:
 
 ## Vertical Slider
 
+![Tool Cool Vertical Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/vertical-slider-preview.png?raw=true)
+
 Vertical slider can be achieved using the **type** attribute as following:
 
 ```html
