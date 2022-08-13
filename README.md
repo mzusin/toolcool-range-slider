@@ -242,6 +242,10 @@ The list of attributes and default values:
 | pointer-border-hover | 1px solid hsla(0, 0%, 88%, 0.5) |
 | pointer-border-focus | 1px solid hsl(201, 72%, 59%)    |
 
+An example of a customized slider on a dark background:
+
+![Dark Mode - Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/dark-mode-preview.png?raw=true)
+
 ## Vertical Slider
 
 ![Tool Cool Vertical Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/vertical-slider-preview.png?raw=true)
