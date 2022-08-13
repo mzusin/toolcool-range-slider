@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gradient | Tool Cool Range Slider</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link id="favicon-48" rel="icon" type="image/png" sizes="48x48" href="img/favicon/favicon-48.png">
+    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32.png">
+    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png">
+
+    <style>
+        html, body{
+            background: #181818;
+            color: #efefef;
+        }
+
+        .wrapper{
+            width: 500px;
+            max-width: 100%;
+            margin:3rem auto;
+        }
+
+        h1{
+            text-align: center;
+            font-weight: normal;
+            margin: 3rem 1rem;
+        }
+
+        .row{
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 0 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gradient</h1>
+
+    <div class="wrapper">
+        <div class="row">
+            <toolcool-range-slider
+              slider-width="400px"
+              slider-height="0.7rem"
+              min="0"
+              max="100"
+              value="10"
+              theme="rainbow"></toolcool-range-slider>
+        </div>
+
+        <div class="row">
+            <toolcool-range-slider
+              slider-width="400px"
+              slider-height="0.7rem"
+              min="0"
+              max="100"
+              value="30"
+              theme="target"
+              slider-bg="linear-gradient(45deg, red, yellow, blue, red)"
+              slider-bg-hover="linear-gradient(45deg, red, yellow, blue, red)"
+              slider-bg-fill="#fff"
+              pointer-width="18px"
+              pointer-height="18px"
+              pointer-bg="#333"
+              pointer-bg-hover="#4103bf"
+              pointer-bg-focus="#4103bf"
+              pointer-shadow="0 0 0 3px #fff, 0 0 0 6px #333, 0 0 1rem #fff"
+              pointer-shadow-hover="0 0 0 3px #fff, 0 0 0 6px #4103bf, 0 0 1rem #fff"
+              pointer-shadow-focus="0 0 0 3px #fff, 0 0 0 6px #4103bf, 0 0 1rem #fff"></toolcool-range-slider>
+        </div>
+
+        <div class="row">
+            <toolcool-range-slider
+              slider-width="400px"
+              slider-height="0.7rem"
+              min="0"
+              max="100"
+              value="50"
+              theme="glass"
+              pointer-width="1.5rem"
+              pointer-height="1.5rem"
+              slider-bg="linear-gradient(45deg, red, yellow, blue, red)"
+              slider-bg-hover="linear-gradient(45deg, red, yellow, blue, red)"
+              slider-bg-fill="rgba(255, 255, 255, 0.5)"
+             ></toolcool-range-slider>
+        </div>
+
+        <div class="row">
+            <toolcool-range-slider
+              slider-width="400px"
+              slider-height="0.7rem"
+              min="0"
+              max="100"
+              value="80"
+              theme="rect"
+              slider-bg="linear-gradient(45deg, red, yellow, blue, red)"
+              slider-bg-hover="linear-gradient(45deg, red, yellow, blue, red)"
+              slider-bg-fill="rgba(255, 255, 255, 0.5)"
+              pointer-bg="#fff"
+              pointer-bg-hover="#fff"
+              pointer-bg-focus="#fff"></toolcool-range-slider>
+        </div>
+
+        <div class="row">
+            <toolcool-range-slider
+              slider-width="400px"
+              min="0"
+              max="100"
+              value="40"
+              theme="circle"
+              slider-bg="linear-gradient(45deg, red, yellow, blue, red)"
+              slider-bg-hover="linear-gradient(45deg, red, yellow, blue, red)"
+              slider-bg-fill="#fff"></toolcool-range-slider>
+        </div>
+
+
+    </div>
+
+    <script src="js/toolcool-range-slider.min.js"></script>
+</body>
+</html>
