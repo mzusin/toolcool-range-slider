@@ -102,8 +102,6 @@ NPM package can fe found [here](https://www.npmjs.com/package/toolcool-range-sli
 
 ## Main Properties
 
-[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/gradient-preview.png?raw=true)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/6-gradient.html)
-
 Range slider has the following main properties: **min**, **max**, **value**, and **step**. All properties are optional, including **step**. Usage examples:
 
 ```html
@@ -164,6 +162,8 @@ Default values table:
 
 
 ## Predefined Styles (Themes)
+
+[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/gradient-preview.png?raw=true)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/6-gradient.html)
 
 The slider has several optional predefined themes. Each theme defines a unique look-and-feel and can be used "as is" without defining each style parameter separately. 
 
