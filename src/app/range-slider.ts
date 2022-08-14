@@ -35,6 +35,7 @@ class RangeSlider extends HTMLElement {
       'pointer-width',
       'pointer-height',
       'pointer-radius',
+      'pointer-shape',
 
       'pointer-bg',
       'pointer-bg-hover',
@@ -72,6 +73,7 @@ class RangeSlider extends HTMLElement {
   private _pointerWidth: string | undefined = undefined;
   private _pointerHeight: string | undefined = undefined;
   private _pointerRadius: string | undefined = undefined;
+  private _pointerShape: string | undefined = undefined;
 
   private _pointerBg: string | undefined = undefined;
   private _pointerBgHover: string | undefined = undefined;
@@ -251,6 +253,15 @@ class RangeSlider extends HTMLElement {
     return this._pointerRadius;
   }
 
+  public set pointerShape(val: string | undefined) {
+    this._pointerShape = val;
+    this.render();
+  }
+
+  public get pointerShape() {
+    return this._pointerShape;
+  }
+
   public set pointerBg(val: string | undefined) {
     this._pointerBg = val;
     this.render();
@@ -396,6 +407,10 @@ class RangeSlider extends HTMLElement {
 
     if (this.theme) {
       this._$slider.classList.add(this.theme);
+    }
+
+    if (this.pointerShape) {
+      this._$slider.classList.add('shape', `shape-${this.pointerShape}`);
     }
 
     if (this.sliderWidth) {
@@ -595,6 +610,7 @@ class RangeSlider extends HTMLElement {
     this.pointerWidth = this.getAttribute('pointer-width') || undefined;
     this.pointerHeight = this.getAttribute('pointer-height') || undefined;
     this.pointerRadius = this.getAttribute('pointer-radius') || undefined;
+    this.pointerShape = this.getAttribute('pointer-shape') || undefined;
 
     this.pointerBg = this.getAttribute('pointer-bg') || undefined;
     this.pointerBgHover = this.getAttribute('pointer-bg-hover') || undefined;
@@ -750,6 +766,12 @@ class RangeSlider extends HTMLElement {
 
       case 'pointer-radius': {
         this.pointerRadius = this.getAttribute('pointer-radius') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'pointer-shape': {
+        this.pointerShape = this.getAttribute('pointer-shape') || undefined;
         this.render();
         break;
       }

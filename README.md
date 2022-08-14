@@ -261,6 +261,39 @@ Vertical slider can be achieved using the **type** attribute as following:
 ```
 It accepts all the same attributes as the horizontal slider.  The default height of a vertical slider is **300px** unless the height attribute is provided.
 
+## Pointer Shapes
+
+There are also several predefined pointer shapes that can be defined using the **pointer-shape** attribute. For example, **triangle** pointer shape:
+
+![Tool Cool Pointer Shapes](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/pointer-shapes.png?raw=true)
+
+
+```html
+<toolcool-range-slider
+  min="0"
+  max="100"
+  value="10"
+  pointer-shape="triangle"
+  pointer-width="2rem"
+  pointer-height="2rem"
+  pointer-bg="#d7067d"
+  pointer-bg-hover="#0b94c7"
+  pointer-bg-focus="#0b94c7"
+  slider-width="400px"
+  slider-bg="#6787cd"></toolcool-range-slider>
+```
+
+There are the following pointer shapes:
+
+| Property             | 
+|----------------------|
+| triangle            |
+| star      |
+| rhombus       |
+| trapezoid          |
+| parallelogram     |
+| right-arrow     |
+
 ## Touch & Keyboard Support
 
 The library supports touch screens and also handles the following keys:

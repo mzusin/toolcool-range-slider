@@ -222,3 +222,43 @@
     --toolcool-range-slider-pointer-border-hover: 0;
     --toolcool-range-slider-pointer-border-focus: 0;
 }
+
+/**
+ * pointer shapes
+ */
+.shape{
+    --toolcool-range-slider-pointer-border: 0;
+    --toolcool-range-slider-pointer-border-hover: 0;
+    --toolcool-range-slider-pointer-border-focus: 0;
+    --toolcool-range-slider-pointer-border-radius: 0;
+}
+
+.shape-triangle .pointer-shape{
+    -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.shape-rhombus .pointer-shape{
+    -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.shape-trapezoid .pointer-shape{
+    -webkit-clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+}
+
+.shape-parallelogram .pointer-shape{
+    -webkit-clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+}
+
+.shape-right-arrow .pointer-shape{
+    -webkit-clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+}
+
+.shape-star .pointer-shape{
+    -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
