@@ -18,6 +18,7 @@ declare class RangeSlider extends HTMLElement {
     private _pointerWidth;
     private _pointerHeight;
     private _pointerRadius;
+    private _pointerShape;
     private _pointerBg;
     private _pointerBgHover;
     private _pointerBgFocus;
@@ -64,6 +65,8 @@ declare class RangeSlider extends HTMLElement {
     get pointerHeight(): string | undefined;
     set pointerRadius(val: string | undefined);
     get pointerRadius(): string | undefined;
+    set pointerShape(val: string | undefined);
+    get pointerShape(): string | undefined;
     set pointerBg(val: string | undefined);
     get pointerBg(): string | undefined;
     set pointerBgHover(val: string | undefined);
