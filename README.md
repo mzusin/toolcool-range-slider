@@ -329,7 +329,7 @@ import RangeSlider from 'toolcool-range-slider';
 
 // ...
 
-const $slider = document.getElementById('slider-1') as ColorPicker;
+const $slider = document.getElementById('slider-1') as RangeSlider;
 
 $slider.addEventListener('change', (evt: Event) => {
     const customEvent = evt as CustomEvent;
