@@ -70,10 +70,11 @@ You can control the range slider by referencing the `toolcool-range-slider` HTML
 </script>
 ```
 
-The value label can also be automatically bound using the value label attribute:
+The value label can also be automatically bound using the **value-label** attribute:
 
 ```html
 <toolcool-range-slider value-label=".value-1"></toolcool-range-slider>
+
 <div class="value-1"></div>
 
 <script type="text/javascript" src="toolcool-range-slider.min.js"></script>
