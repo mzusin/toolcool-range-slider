@@ -48,12 +48,15 @@ class RangeSlider extends HTMLElement {
       'pointer-border',
       'pointer-border-hover',
       'pointer-border-focus',
+
+      'value-label',
     ];
   }
 
   private _$slider: HTMLElement | null;
   private _$pointer: HTMLElement | null;
   private _$panelFill: HTMLElement | null;
+  private _$valueLabel: HTMLElement | null;
 
   private _value = 0; // [min, max]
   private _min = 0;
@@ -61,6 +64,8 @@ class RangeSlider extends HTMLElement {
   private _step: number | undefined = undefined;
   private _type: string | undefined = undefined;
   private _theme: string | undefined = undefined;
+
+  private _valueLabel: string | undefined = undefined;
 
   private _sliderWidth: string | undefined = undefined;
   private _sliderHeight: string | undefined = undefined;
@@ -170,6 +175,15 @@ class RangeSlider extends HTMLElement {
 
   public get theme() {
     return this._theme;
+  }
+
+  public set valueLabel(val: string | undefined) {
+    this._valueLabel = val;
+    this.render();
+  }
+
+  public get valueLabel() {
+    return this._valueLabel;
   }
 
   public set sliderWidth(val: string | undefined) {
@@ -395,6 +409,10 @@ class RangeSlider extends HTMLElement {
       this._$slider.setAttribute('aria-orientation', 'horizontal');
     }
 
+    if (this._$valueLabel) {
+      this._$valueLabel.textContent = Math.round(this.value).toString();
+    }
+
     // set additional area attributes
     this._$slider.setAttribute('aria-valuemin', this.min.toString());
     this._$slider.setAttribute('aria-valuemax', this.max.toString());
@@ -600,6 +618,8 @@ class RangeSlider extends HTMLElement {
     this.type = this.getAttribute('type') || undefined;
     this.theme = this.getAttribute('theme') || undefined;
 
+    this.valueLabel = this.getAttribute('value-label') || undefined;
+
     this.sliderWidth = this.getAttribute('slider-width') || undefined;
     this.sliderHeight = this.getAttribute('slider-height') || undefined;
     this.sliderRadius = this.getAttribute('slider-radius') || undefined;
@@ -648,6 +668,10 @@ class RangeSlider extends HTMLElement {
     this._$slider = this.shadowRoot.querySelector('.range-slider');
     this._$pointer = this.shadowRoot.querySelector('.pointer');
     this._$panelFill = this.shadowRoot.querySelector('.panel-fill');
+
+    if (this.valueLabel) {
+      this._$valueLabel = document.querySelector(this.valueLabel);
+    }
 
     // init slider events
     this._$slider?.addEventListener('mousedown', this.onMouseDown);
@@ -712,6 +736,12 @@ class RangeSlider extends HTMLElement {
 
       case 'theme': {
         this.theme = this.getAttribute('theme') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'value-label': {
+        this.valueLabel = this.getAttribute('value-label') || undefined;
         this.render();
         break;
       }
