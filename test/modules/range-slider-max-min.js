@@ -72,4 +72,9 @@ QUnit.module('Range Slider Max & Min', () => {
         assert.equal($slider.value, 10);
     });
 
+    QUnit.test('min = -1000000, max = 1000000  ---> value should be 0', (assert) => {
+        const $slider = document.querySelector('#slider-35');
+        assert.equal($slider.value, -1000000);
+    });
+
 });

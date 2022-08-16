@@ -3,12 +3,14 @@ declare class RangeSlider extends HTMLElement {
     private _$slider;
     private _$pointer;
     private _$panelFill;
+    private _$valueLabel;
     private _value;
     private _min;
     private _max;
     private _step;
     private _type;
     private _theme;
+    private _valueLabel;
     private _sliderWidth;
     private _sliderHeight;
     private _sliderRadius;
@@ -47,6 +49,8 @@ declare class RangeSlider extends HTMLElement {
     get type(): string | undefined;
     set theme(val: string | undefined);
     get theme(): string | undefined;
+    set valueLabel(val: string | undefined);
+    get valueLabel(): string | undefined;
     set sliderWidth(val: string | undefined);
     get sliderWidth(): string | undefined;
     set sliderHeight(val: string | undefined);

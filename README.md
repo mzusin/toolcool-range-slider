@@ -19,7 +19,7 @@ Responsive range slider library written in typescript and using web component te
 - Horizontal and vertical sliders.
 - Based on web component technologies.
 - Allows programmatic attribute changes.
-- Simple dynamic rendering after ajax requests.
+- Simple dynamic rendering after ajax requests or delays.
 
 ## Table of contents
 - [Basic usage](#basic-usage)
@@ -141,6 +141,8 @@ The properties have the following default values:
 | max | 100           |
 | value | 0             |
 | step | undefined     |
+
+If no value is specified, it will be equal to the minimum value.
 
 ## Width, Height, and Border Radius
 

@@ -130,6 +130,7 @@ class RangeSlider extends HTMLElement {
   public set min(num: number) {
     const safe = this.getSafeValues(this.value, num, this.max);
     this._min = safe.min;
+    this.value = safe.value;
     this.render();
   }
 
@@ -140,6 +141,7 @@ class RangeSlider extends HTMLElement {
   public set max(num: number) {
     const safe = this.getSafeValues(this.value, this.min, num);
     this._max = safe.max;
+    this.value = safe.value;
     this.render();
   }
 
