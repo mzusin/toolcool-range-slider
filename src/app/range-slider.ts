@@ -151,10 +151,17 @@ class RangeSlider extends HTMLElement {
 
   public set step(num: number | undefined) {
     const range = Math.abs(this.max - this.min);
-    if (num !== undefined && num > range) {
-      num = undefined;
+    if (num === undefined) {
+      this._step = undefined;
+      return;
     }
-    this._step = num;
+
+    if (num > range) {
+      this._step = undefined;
+      return;
+    }
+
+    this._step = Math.abs(num);
   }
 
   public get step() {
