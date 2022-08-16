@@ -18,6 +18,8 @@ Responsive range slider library written in typescript and using web component te
 - Customizable with a large set of style attributes.
 - Horizontal and vertical sliders.
 - Based on web component technologies.
+- Allows programmatic attribute changes.
+- Simple dynamic rendering after ajax requests.
 
 ## Table of contents
 - [Basic usage](#basic-usage)
