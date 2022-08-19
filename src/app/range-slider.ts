@@ -2,6 +2,8 @@ import styles from './styles.pcss';
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
 import { convertRange, getNumber, roundToStep } from '../domain/math-provider';
 
+const DISABLED_OPACITY = 0.4;
+
 /*
  Usage:
  ------
@@ -23,6 +25,7 @@ class RangeSlider extends HTMLElement {
       'step',
       'type',
       'theme',
+      'disabled',
 
       'slider-width',
       'slider-height',
@@ -64,6 +67,7 @@ class RangeSlider extends HTMLElement {
   private _step: number | undefined = undefined;
   private _type: string | undefined = undefined;
   private _theme: string | undefined = undefined;
+  private _disabled: boolean | undefined = undefined;
 
   private _valueLabel: string | undefined = undefined;
 
@@ -184,6 +188,15 @@ class RangeSlider extends HTMLElement {
 
   public get theme() {
     return this._theme;
+  }
+
+  public set disabled(val: boolean | undefined) {
+    this._disabled = val;
+    this.render();
+  }
+
+  public get disabled() {
+    return this._disabled;
   }
 
   public set valueLabel(val: string | undefined) {
@@ -478,6 +491,8 @@ class RangeSlider extends HTMLElement {
       this._$slider.classList.add(this.theme);
     }
 
+    this._$slider.style.setProperty('--tc-range-slider-opacity', (this.disabled ? DISABLED_OPACITY : 1).toString());
+
     if (this.pointerShape) {
       this._$slider.classList.add('shape', `shape-${this.pointerShape}`);
     }
@@ -556,11 +571,14 @@ class RangeSlider extends HTMLElement {
   }
 
   pointerClicked() {
+    if (this.disabled) return;
     this._$pointer?.focus();
     this.sendPointerClickedEvent();
   }
 
   pointerKeyDown(evt: KeyboardEvent) {
+    if (this.disabled) return;
+
     switch (evt.key) {
       case 'ArrowLeft': {
         const step = getNumber(this.step, 1);
@@ -595,6 +613,8 @@ class RangeSlider extends HTMLElement {
   }
 
   onMouseDown(evt: MouseEvent) {
+    if (this.disabled) return;
+
     if (evt.preventDefault) {
       evt.preventDefault();
     }
@@ -609,13 +629,15 @@ class RangeSlider extends HTMLElement {
   }
 
   onMouseUp(evt: MouseEvent) {
+    if (this.disabled) return;
+
     window.removeEventListener('mousemove', this.onValueChange);
     window.removeEventListener('mouseup', this.onValueChange);
     this.sendMouseUpEvent(evt);
   }
 
   onValueChange(evt: MouseEvent | TouchEvent) {
-    if (!this._$slider) return;
+    if (this.disabled || !this._$slider) return;
 
     let percent;
 
@@ -674,6 +696,7 @@ class RangeSlider extends HTMLElement {
     this.step = getNumber(this.getAttribute('step'), undefined);
     this.type = this.getAttribute('type') || undefined;
     this.theme = this.getAttribute('theme') || undefined;
+    this.disabled = this.getAttribute('disabled') === 'true';
 
     this.valueLabel = this.getAttribute('value-label') || undefined;
 
@@ -775,6 +798,12 @@ class RangeSlider extends HTMLElement {
 
       case 'theme': {
         this.theme = this.getAttribute('theme') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'disabled': {
+        this.disabled = this.getAttribute('disabled') === 'true';
         this.render();
         break;
       }
