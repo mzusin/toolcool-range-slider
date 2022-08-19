@@ -67,7 +67,7 @@ class RangeSlider extends HTMLElement {
   private _step: number | undefined = undefined;
   private _type: string | undefined = undefined;
   private _theme: string | undefined = undefined;
-  private _disabled: boolean | undefined = undefined;
+  private _disabled = false;
 
   private _valueLabel: string | undefined = undefined;
 
@@ -190,7 +190,7 @@ class RangeSlider extends HTMLElement {
     return this._theme;
   }
 
-  public set disabled(val: boolean | undefined) {
+  public set disabled(val: boolean) {
     this._disabled = val;
     this.render();
   }
