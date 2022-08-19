@@ -89,7 +89,11 @@ declare class RangeSlider extends HTMLElement {
     get pointerBorderHover(): string | undefined;
     set pointerBorderFocus(val: string | undefined);
     get pointerBorderFocus(): string | undefined;
+    sendPointerClickedEvent(): void;
+    sendMouseDownEvent(evt: MouseEvent): void;
+    sendMouseUpEvent(evt: MouseEvent): void;
     sendChangeEvent(): void;
+    sendOnKeyDownEvent(evt: KeyboardEvent): void;
     getSafeValues(value: number, min: number, max: number): {
         min: number;
         max: number;
@@ -99,7 +103,7 @@ declare class RangeSlider extends HTMLElement {
     pointerClicked(): void;
     pointerKeyDown(evt: KeyboardEvent): void;
     onMouseDown(evt: MouseEvent): void;
-    onMouseUp(): void;
+    onMouseUp(evt: MouseEvent): void;
     onValueChange(evt: MouseEvent | TouchEvent): void;
     /**
      * when the custom element connected to DOM

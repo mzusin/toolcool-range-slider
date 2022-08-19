@@ -366,7 +366,37 @@ class RangeSlider extends HTMLElement {
     return this._pointerBorderFocus;
   }
 
-  // ----------------------------------------------
+  // ---------------------- EVENTS ------------------------
+
+  sendPointerClickedEvent() {
+    this.dispatchEvent(
+      new CustomEvent('onPointerClicked', {
+        detail: {
+          $pointer: this._$pointer,
+        },
+      })
+    );
+  }
+
+  sendMouseDownEvent(evt: MouseEvent) {
+    this.dispatchEvent(
+      new CustomEvent('onMouseDown', {
+        detail: {
+          nativeEvent: evt,
+        },
+      })
+    );
+  }
+
+  sendMouseUpEvent(evt: MouseEvent) {
+    this.dispatchEvent(
+      new CustomEvent('onMouseUp', {
+        detail: {
+          nativeEvent: evt,
+        },
+      })
+    );
+  }
 
   sendChangeEvent() {
     this.dispatchEvent(
@@ -377,6 +407,18 @@ class RangeSlider extends HTMLElement {
       })
     );
   }
+
+  sendOnKeyDownEvent(evt: KeyboardEvent) {
+    this.dispatchEvent(
+      new CustomEvent('onKeyDown', {
+        detail: {
+          nativeEvent: evt,
+        },
+      })
+    );
+  }
+
+  // ----------------------------------------------
 
   getSafeValues(value: number, min: number, max: number) {
     const _min = min;
@@ -515,6 +557,7 @@ class RangeSlider extends HTMLElement {
 
   pointerClicked() {
     this._$pointer?.focus();
+    this.sendPointerClickedEvent();
   }
 
   pointerKeyDown(evt: KeyboardEvent) {
@@ -547,6 +590,8 @@ class RangeSlider extends HTMLElement {
         break;
       }
     }
+
+    this.sendOnKeyDownEvent(evt);
   }
 
   onMouseDown(evt: MouseEvent) {
@@ -557,13 +602,16 @@ class RangeSlider extends HTMLElement {
     this._$pointer?.focus();
 
     this.onValueChange(evt);
+    this.sendMouseDownEvent(evt);
+
     window.addEventListener('mousemove', this.onValueChange);
     window.addEventListener('mouseup', this.onMouseUp);
   }
 
-  onMouseUp() {
+  onMouseUp(evt: MouseEvent) {
     window.removeEventListener('mousemove', this.onValueChange);
     window.removeEventListener('mouseup', this.onValueChange);
+    this.sendMouseUpEvent(evt);
   }
 
   onValueChange(evt: MouseEvent | TouchEvent) {

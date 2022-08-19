@@ -32,6 +32,7 @@ Responsive range slider library written in typescript and using web component te
 - [Vertical Slider](#vertical-slider)
 - [Pointer Shapes](#pointer-shapes)
 - [Touch & Keyboard Support](#touch--keyboard-support)
+- [Events](#events)
 - [TypeScript Usage](#typescript-usage)
 - [Usage with React and TypeScript](#usage-with-react-and-typescript)
 - [License](#license)
@@ -317,12 +318,64 @@ There are the following pointer shapes:
 The library supports touch screens and also handles the following keys:
 
 
-| Key         | Function                                                                       |
-|-------------|--------------------------------------------------------------------------------|
+| Key         | Function  |
+|-------------|-------------------|
 | left arrow  | goes one step to the left in a horizontal slider or up in a vertical slider    |
 | right arrow | goes one step to the right in a horizontal slider or down in a vertical slider |
-| left up     | jumps to the min value                                                         |
-| right down  | jumps to the max value                                                         |
+| left up     | jumps to the min value  |
+| right down  | jumps to the max value |
+
+## Events
+
+The range slider has the following events:
+
+
+| Event         | Description                                                                       |
+|---------------|-----------------------------------------------------------------------------------|
+| change      | it is sent every time the value of the range slider changes                       |
+| onMouseDown          | the native browser mousedown event                                                |
+| onMouseUp       | the native browser mouseup event                                                  |
+| onPointerClicked     | it is dispatched when the user clicks the range slide pointer (handler)           |
+| onKeyDown | the native browser keydown event  **(arrow left, arrow right, arrow up, arrow down)** |
+
+Usage examples:
+
+```html
+const $slider1 = document.getElementById('slider-1');
+
+// change event ------------
+$slider1.addEventListener('change', (evt) => {
+    const value = Math.round(evt.detail.value);
+    $value1.textContent = value.toString();
+    console.log(`Change event: ${ value }`)
+});
+
+// onMouseDown event ------------
+$slider1.addEventListener('onMouseDown', (evt) => {
+    const nativeEvent = evt.detail.nativeEvent;
+    console.log('Native mousedown event:', nativeEvent)
+});
+
+// onMouseUp event ------------
+$slider1.addEventListener('onMouseUp', (evt) => {
+    const nativeEvent = evt.detail.nativeEvent;
+    console.log('Native mouseup event:', nativeEvent);
+});
+
+// onPointerClicked event ------------
+$slider1.addEventListener('onPointerClicked', (evt) => {
+    const $pointer = evt.detail.$pointer;
+    console.log('Pointer clicked event:', $pointer);
+});
+
+// onKeyDownEvent event ------------
+$slider1.addEventListener('onKeyDown', (evt) => {
+    const nativeEvent = evt.detail.nativeEvent;
+    console.log('Native onKeyDown event:', nativeEvent);
+});
+```
+
+The page with these examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/11-events.html).
 
 ## TypeScript Usage
 
