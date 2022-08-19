@@ -20,6 +20,7 @@ Responsive range slider library written in typescript and using web component te
 - Based on web component technologies.
 - Allows programmatic attribute changes.
 - Simple dynamic rendering after ajax requests or delays.
+- Disabled / enabled range slider (including API)
 
 ## Table of contents
 - [Basic usage](#basic-usage)
@@ -33,6 +34,7 @@ Responsive range slider library written in typescript and using web component te
 - [Pointer Shapes](#pointer-shapes)
 - [Touch & Keyboard Support](#touch--keyboard-support)
 - [Events](#events)
+- [Disabled](#disabled)
 - [TypeScript Usage](#typescript-usage)
 - [Usage with React and TypeScript](#usage-with-react-and-typescript)
 - [License](#license)
@@ -376,6 +378,27 @@ $slider1.addEventListener('onKeyDown', (evt) => {
 ```
 
 The page with these examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/11-events.html).
+
+## Disabled
+
+It's possible to disable the range slider using **disabled** attribute:
+
+```html
+<toolcool-range-slider disabled="true"></toolcool-range-slider>
+```
+
+This property can be easily toggled via APIs as follows:
+
+```js
+const $slider1 = document.getElementById('slider-1');
+const $toggleButton = document.getElementById('toggle-btn');
+
+$toggleButton.addEventListener('click', () => {
+  $slider1.disabled = !$slider1.disabled;
+});
+```
+
+The page with this example can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/12-disabled-enabled.html).
 
 ## TypeScript Usage
 
