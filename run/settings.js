@@ -1,4 +1,5 @@
 import pcssPlugin from './esbuild-plugins/esbuild-pcss-plugin.js';
+import esbuildTemplateLiteralsPlugin from './esbuild-plugins/esbuild-template-literals-plugin.js';
 import esbuildCopyPlugin from './esbuild-plugins/esbuild-copy-plugin.js';
 import fs from 'fs';
 import path from 'path';
@@ -23,7 +24,7 @@ export default {
     '.svg': 'dataurl',
     '.pcss': 'text',
   },
-  plugins: [pcssPlugin, esbuildCopyPlugin],
+  plugins: [pcssPlugin, esbuildTemplateLiteralsPlugin, esbuildCopyPlugin],
   banner: {
     js: `/* 
 Tool Cool Range Slider 

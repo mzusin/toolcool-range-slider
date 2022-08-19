@@ -1,5 +1,5 @@
-// @ts-ignore: esbuild custom loader
 import styles from './styles.pcss';
+import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
 import { convertRange, getNumber, roundToStep } from '../domain/math-provider';
 
 /*
@@ -653,25 +653,7 @@ class RangeSlider extends HTMLElement {
     this.pointerBorderHover = this.getAttribute('pointer-border-hover') || undefined;
     this.pointerBorderFocus = this.getAttribute('pointer-border-focus') || undefined;
 
-    this.shadowRoot.innerHTML = `
-        <style>
-            ${styles} 
-        </style>
-
-        <div class="range-slider" role="slider">
-          <div class="container">
-            <div class="panel"></div>
-            <div class="panel-fill"></div>
-            
-            <div class="container">
-              <div class="pointer" tabindex="0">
-                <div class="pointer-shape"></div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-    `;
+    this.shadowRoot.innerHTML = mainTemplate(styles);
 
     // init slider elements
     this._$slider = this.shadowRoot.querySelector('.range-slider');

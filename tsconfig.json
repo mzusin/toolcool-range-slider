@@ -24,9 +24,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,
-    "strictBindCallApply": true
+    "strictBindCallApply": true,
   },
   "include": [
-    "src"
+    "src",
   ]
 }
