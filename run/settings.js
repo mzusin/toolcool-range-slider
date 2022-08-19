@@ -25,6 +25,11 @@ export default {
   },
   plugins: [pcssPlugin, esbuildCopyPlugin],
   banner: {
-    js: `// Tool Cool Range Slider v${version}, MIT License - https://github.com/toolcool-org/toolcool-range-slider`,
+    js: `/* 
+Tool Cool Range Slider 
+Version: ${version}
+Documentation: https://github.com/toolcool-org/toolcool-range-slider 
+License: MIT License                                   
+*/`,
   },
 };

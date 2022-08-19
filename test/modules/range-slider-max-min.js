@@ -78,3 +78,4 @@ QUnit.module('Range Slider Max & Min', () => {
     });
 
 });
+
