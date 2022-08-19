@@ -22,7 +22,6 @@ export default {
   loader: {
     '.png': 'text',
     '.svg': 'dataurl',
-    '.pcss': 'text',
   },
   plugins: [pcssPlugin, esbuildTemplateLiteralsPlugin, esbuildCopyPlugin],
   banner: {
@@ -30,7 +29,8 @@ export default {
 Tool Cool Range Slider 
 Version: ${version}
 Documentation: https://github.com/toolcool-org/toolcool-range-slider 
-License: MIT License                                   
+License: MIT License        
+Author: Tool Cool, toolcool.org@gmail.com>                          
 */`,
   },
 };
