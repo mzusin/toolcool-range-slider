@@ -1,27 +1,27 @@
 .range-slider{
-    --toolcool-range-slider-width: 300px;
-    --toolcool-range-slider-height: 0.25rem;
+    --tc-range-slider-width: 300px;
+    --tc-range-slider-height: 0.25rem;
 
-    --toolcool-range-slider-panel-bg: #2D4373;
-    --toolcool-range-slider-panel-bg-hover: #5f79b7;
-    --toolcool-range-slider-panel-bg-fill: #000000;
-    --toolcool-range-slider-panel-bg-border-radius: 1rem;
+    --tc-range-slider-panel-bg: #2D4373;
+    --tc-range-slider-panel-bg-hover: #5f79b7;
+    --tc-range-slider-panel-bg-fill: #000000;
+    --tc-range-slider-panel-bg-border-radius: 1rem;
 
-    --toolcool-range-slider-pointer-width: 1rem;
-    --toolcool-range-slider-pointer-height: 1rem;
+    --tc-range-slider-pointer-width: 1rem;
+    --tc-range-slider-pointer-height: 1rem;
 
-    --toolcool-range-slider-pointer-bg: #fff;
-    --toolcool-range-slider-pointer-bg-hover: #dcdcdc;
-    --toolcool-range-slider-pointer-bg-focus: #dcdcdc;
+    --tc-range-slider-pointer-bg: #fff;
+    --tc-range-slider-pointer-bg-hover: #dcdcdc;
+    --tc-range-slider-pointer-bg-focus: #dcdcdc;
 
-    --toolcool-range-slider-pointer-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-    --toolcool-range-slider-pointer-shadow-hover: 0 0 2px rgb(0, 0, 0);
-    --toolcool-range-slider-pointer-shadow-focus: 0 0 2px rgb(0, 0, 0);
+    --tc-range-slider-pointer-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+    --tc-range-slider-pointer-shadow-hover: 0 0 2px rgb(0, 0, 0);
+    --tc-range-slider-pointer-shadow-focus: 0 0 2px rgb(0, 0, 0);
 
-    --toolcool-range-slider-pointer-border: 1px solid hsla(0, 0%, 88%, 0.5);
-    --toolcool-range-slider-pointer-border-hover: 1px solid hsla(0, 0%, 88%, 0.5);
-    --toolcool-range-slider-pointer-border-focus: 1px solid hsl(201, 72%, 59%);
-    --toolcool-range-slider-pointer-border-radius: 100%;
+    --tc-range-slider-pointer-border: 1px solid hsla(0, 0%, 88%, 0.5);
+    --tc-range-slider-pointer-border-hover: 1px solid hsla(0, 0%, 88%, 0.5);
+    --tc-range-slider-pointer-border-focus: 1px solid hsl(201, 72%, 59%);
+    --tc-range-slider-pointer-border-radius: 100%;
 }
 
 :host{
@@ -30,8 +30,8 @@
 
 .range-slider{
     position: relative;
-    width: var(--toolcool-range-slider-width, 100%);
-    height: var(--toolcool-range-slider-height, 0.25rem);
+    width: var(--tc-range-slider-width, 100%);
+    height: var(--tc-range-slider-height, 0.25rem);
     touch-action: none;
     max-width: 100%;
     box-sizing: border-box;
@@ -52,15 +52,15 @@
     z-index: 10;
     width: 100%;
     height: 100%;
-    background: var(--toolcool-range-slider-panel-bg, #2D4373);
-    border-radius: var(--toolcool-range-slider-panel-bg-border-radius, 1rem);
+    background: var(--tc-range-slider-panel-bg, #2D4373);
+    border-radius: var(--tc-range-slider-panel-bg-border-radius, 1rem);
     overflow: hidden;
     transition: 0.3s all ease;
 }
 
 .panel-fill{
-    background: var(--toolcool-range-slider-panel-bg-fill, #000);
-    border-radius: var(--toolcool-range-slider-panel-bg-border-radius, 1rem);
+    background: var(--tc-range-slider-panel-bg-fill, #000);
+    border-radius: var(--tc-range-slider-panel-bg-border-radius, 1rem);
     overflow: hidden;
     height: 100%;
     position: absolute;
@@ -68,7 +68,7 @@
 }
 
 .panel:hover{
-    background: var(--toolcool-range-slider-panel-bg-hover, #5f79b7);
+    background: var(--tc-range-slider-panel-bg-hover, #5f79b7);
 }
 
 .pointer{
@@ -80,35 +80,35 @@
 }
 
 .pointer-shape{
-    background: var(--toolcool-range-slider-pointer-bg, #fff);
-    box-shadow: var(--toolcool-range-slider-pointer-shadow);
+    background: var(--tc-range-slider-pointer-bg, #fff);
+    box-shadow: var(--tc-range-slider-pointer-shadow);
     cursor: pointer;
-    border: var(--toolcool-range-slider-pointer-border);
-    border-radius: var(--toolcool-range-slider-pointer-border-radius, 100%);
+    border: var(--tc-range-slider-pointer-border);
+    border-radius: var(--tc-range-slider-pointer-border-radius, 100%);
     transform: translateX(-50%);
-    width: var(--toolcool-range-slider-pointer-width, 15px);
-    height: var(--toolcool-range-slider-pointer-height, 15px);
+    width: var(--tc-range-slider-pointer-width, 15px);
+    height: var(--tc-range-slider-pointer-height, 15px);
     transition: 0.3s all ease;
 }
 
 .pointer-shape:hover{
-    background: var(--toolcool-range-slider-pointer-bg-hover, #fff);
-    border: var(--toolcool-range-slider-pointer-border-hover);
-    box-shadow: var(--toolcool-range-slider-pointer-shadow-hover);
+    background: var(--tc-range-slider-pointer-bg-hover, #fff);
+    border: var(--tc-range-slider-pointer-border-hover);
+    box-shadow: var(--tc-range-slider-pointer-shadow-hover);
 }
 
 .pointer:focus .pointer-shape{
-    background: var(--toolcool-range-slider-pointer-bg-focus, #fff);
-    border: var(--toolcool-range-slider-pointer-border-focus);
-    box-shadow: var(--toolcool-range-slider-pointer-shadow-focus);
+    background: var(--tc-range-slider-pointer-bg-focus, #fff);
+    border: var(--tc-range-slider-pointer-border-focus);
+    box-shadow: var(--tc-range-slider-pointer-shadow-focus);
 }
 
 /**
  ----------------- Vertical --------------------
  */
 .range-slider.type-vertical{
-    --toolcool-range-slider-width: 0.25rem;
-    --toolcool-range-slider-height: 300px;
+    --tc-range-slider-width: 0.25rem;
+    --tc-range-slider-height: 300px;
     max-height: 100%;
 }
 
@@ -124,77 +124,77 @@
  ---------------- Themes -------------------
  */
 .target{
-    --toolcool-range-slider-panel-bg: #D7DCDF;
-    --toolcool-range-slider-panel-bg-hover: #ccd1d3;
-    --toolcool-range-slider-panel-bg-fill: #47a4bc;
+    --tc-range-slider-panel-bg: #D7DCDF;
+    --tc-range-slider-panel-bg-hover: #ccd1d3;
+    --tc-range-slider-panel-bg-fill: #47a4bc;
 
-    --toolcool-range-slider-pointer-bg: #1aa4bc;
-    --toolcool-range-slider-pointer-bg-hover: #0f7b8c;
-    --toolcool-range-slider-pointer-bg-focus: #0f7b8c;
+    --tc-range-slider-pointer-bg: #1aa4bc;
+    --tc-range-slider-pointer-bg-hover: #0f7b8c;
+    --tc-range-slider-pointer-bg-focus: #0f7b8c;
 
-    --toolcool-range-slider-pointer-shadow: 0 0 0 3px #fff, 0 0 0 6px #1aa4bc;
-    --toolcool-range-slider-pointer-shadow-hover: 0 0 0 3px #fff, 0 0 0 6px #0f7b8c;
-    --toolcool-range-slider-pointer-shadow-focus: 0 0 0 3px #fff, 0 0 0 6px #0f7b8c;
+    --tc-range-slider-pointer-shadow: 0 0 0 3px #fff, 0 0 0 6px #1aa4bc;
+    --tc-range-slider-pointer-shadow-hover: 0 0 0 3px #fff, 0 0 0 6px #0f7b8c;
+    --tc-range-slider-pointer-shadow-focus: 0 0 0 3px #fff, 0 0 0 6px #0f7b8c;
 
-    --toolcool-range-slider-pointer-border: 0;
-    --toolcool-range-slider-pointer-border-hover: 0;
-    --toolcool-range-slider-pointer-border-focus: 0;
+    --tc-range-slider-pointer-border: 0;
+    --tc-range-slider-pointer-border-hover: 0;
+    --tc-range-slider-pointer-border-focus: 0;
 }
 
 .glass{
-    --toolcool-range-slider-pointer-bg: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(206, 206, 206, 1) 48%, rgba(255, 255, 255, 0) 100%);
-    --toolcool-range-slider-pointer-bg-hover: linear-gradient(to bottom, rgba(206, 206, 206, 1) 0%, rgba(255, 255, 255, 0) 48%, rgba(206, 206, 206, 1) 100%);
-    --toolcool-range-slider-pointer-bg-focus: linear-gradient(to bottom, rgba(206, 206, 206, 1) 0%, rgba(255, 255, 255, 0) 48%, rgba(206, 206, 206, 1) 100%);
-    --toolcool-range-slider-pointer-border-radius: 3px;
+    --tc-range-slider-pointer-bg: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(206, 206, 206, 1) 48%, rgba(255, 255, 255, 0) 100%);
+    --tc-range-slider-pointer-bg-hover: linear-gradient(to bottom, rgba(206, 206, 206, 1) 0%, rgba(255, 255, 255, 0) 48%, rgba(206, 206, 206, 1) 100%);
+    --tc-range-slider-pointer-bg-focus: linear-gradient(to bottom, rgba(206, 206, 206, 1) 0%, rgba(255, 255, 255, 0) 48%, rgba(206, 206, 206, 1) 100%);
+    --tc-range-slider-pointer-border-radius: 3px;
 }
 
 .rect{
-    --toolcool-range-slider-panel-bg: #9FD2FA;
-    --toolcool-range-slider-panel-bg-hover: #4075E2;
-    --toolcool-range-slider-panel-bg-fill: #4075E2;
+    --tc-range-slider-panel-bg: #9FD2FA;
+    --tc-range-slider-panel-bg-hover: #4075E2;
+    --tc-range-slider-panel-bg-fill: #4075E2;
 
-    --toolcool-range-slider-pointer-width: 10px;
-    --toolcool-range-slider-pointer-height: 20px;
+    --tc-range-slider-pointer-width: 10px;
+    --tc-range-slider-pointer-height: 20px;
 
-    --toolcool-range-slider-pointer-bg: #4075E2;
-    --toolcool-range-slider-pointer-bg-hover: #4075E2;
-    --toolcool-range-slider-pointer-bg-focus: #4075E2;
+    --tc-range-slider-pointer-bg: #4075E2;
+    --tc-range-slider-pointer-bg-hover: #4075E2;
+    --tc-range-slider-pointer-bg-focus: #4075E2;
 
-    --toolcool-range-slider-pointer-border: 0;
-    --toolcool-range-slider-pointer-border-hover: 0;
-    --toolcool-range-slider-pointer-border-focus: 0;
+    --tc-range-slider-pointer-border: 0;
+    --tc-range-slider-pointer-border-hover: 0;
+    --tc-range-slider-pointer-border-focus: 0;
 
-    --toolcool-range-slider-pointer-shadow: none;
-    --toolcool-range-slider-pointer-shadow-hover: none;
-    --toolcool-range-slider-pointer-shadow-focus: none;
-    --toolcool-range-slider-pointer-border-radius: 0;
+    --tc-range-slider-pointer-shadow: none;
+    --tc-range-slider-pointer-shadow-hover: none;
+    --tc-range-slider-pointer-shadow-focus: none;
+    --tc-range-slider-pointer-border-radius: 0;
 }
 
 .circle{
-    --toolcool-range-slider-height: 0.3rem;
+    --tc-range-slider-height: 0.3rem;
 
-    --toolcool-range-slider-panel-bg: #E6E6E6;
-    --toolcool-range-slider-panel-bg-hover: #E6E6E6;
-    --toolcool-range-slider-panel-bg-fill: #60CD17;
+    --tc-range-slider-panel-bg: #E6E6E6;
+    --tc-range-slider-panel-bg-hover: #E6E6E6;
+    --tc-range-slider-panel-bg-fill: #60CD17;
 
-    --toolcool-range-slider-pointer-width: 1.5rem;
-    --toolcool-range-slider-pointer-height: 1.5rem;
+    --tc-range-slider-pointer-width: 1.5rem;
+    --tc-range-slider-pointer-height: 1.5rem;
 
-    --toolcool-range-slider-pointer-bg: #333940;
-    --toolcool-range-slider-pointer-bg-hover: #333940;
-    --toolcool-range-slider-pointer-bg-focus: #333940;
+    --tc-range-slider-pointer-bg: #333940;
+    --tc-range-slider-pointer-bg-hover: #333940;
+    --tc-range-slider-pointer-bg-focus: #333940;
 
-    --toolcool-range-slider-pointer-shadow: 0px 4px 25px rgb(0, 0, 0, 0.5);
-    --toolcool-range-slider-pointer-shadow-hover: 0px 4px 25px rgb(0, 0, 0, 0.5);
-    --toolcool-range-slider-pointer-shadow-focus: 0px 4px 25px rgb(0, 0, 0, 0.5);
+    --tc-range-slider-pointer-shadow: 0px 4px 25px rgb(0, 0, 0, 0.5);
+    --tc-range-slider-pointer-shadow-hover: 0px 4px 25px rgb(0, 0, 0, 0.5);
+    --tc-range-slider-pointer-shadow-focus: 0px 4px 25px rgb(0, 0, 0, 0.5);
 
-    --toolcool-range-slider-pointer-border: 6px solid #fff;
-    --toolcool-range-slider-pointer-border-hover: 6px solid #fff;
-    --toolcool-range-slider-pointer-border-focus: 6px solid #fff;
+    --tc-range-slider-pointer-border: 6px solid #fff;
+    --tc-range-slider-pointer-border-hover: 6px solid #fff;
+    --tc-range-slider-pointer-border-focus: 6px solid #fff;
 }
 
 .rainbow{
-    --toolcool-range-slider-panel-bg: linear-gradient(
+    --tc-range-slider-panel-bg: linear-gradient(
             90deg,
             rgba(255, 0, 0, 1) 0%,
             rgba(255, 154, 0, 1) 10%,
@@ -208,29 +208,29 @@
             rgba(251, 7, 217, 1) 90%,
             rgba(255, 0, 0, 1) 100%
     );
-    --toolcool-range-slider-panel-bg-hover: var(--toolcool-range-slider-panel-bg);
-    --toolcool-range-slider-panel-bg-fill: rgba(0, 0, 0, 0.6);
+    --tc-range-slider-panel-bg-hover: var(--tc-range-slider-panel-bg);
+    --tc-range-slider-panel-bg-fill: rgba(0, 0, 0, 0.6);
 
-    --toolcool-range-slider-pointer-width: 1.7rem;
-    --toolcool-range-slider-pointer-height: 1.7rem;
+    --tc-range-slider-pointer-width: 1.7rem;
+    --tc-range-slider-pointer-height: 1.7rem;
 
-    --toolcool-range-slider-pointer-bg: #fff;
-    --toolcool-range-slider-pointer-bg-hover: #dcdcdc;
-    --toolcool-range-slider-pointer-bg-focus: #dcdcdc;
+    --tc-range-slider-pointer-bg: #fff;
+    --tc-range-slider-pointer-bg-hover: #dcdcdc;
+    --tc-range-slider-pointer-bg-focus: #dcdcdc;
 
-    --toolcool-range-slider-pointer-border: 0;
-    --toolcool-range-slider-pointer-border-hover: 0;
-    --toolcool-range-slider-pointer-border-focus: 0;
+    --tc-range-slider-pointer-border: 0;
+    --tc-range-slider-pointer-border-hover: 0;
+    --tc-range-slider-pointer-border-focus: 0;
 }
 
 /**
  * pointer shapes
  */
 .shape{
-    --toolcool-range-slider-pointer-border: 0;
-    --toolcool-range-slider-pointer-border-hover: 0;
-    --toolcool-range-slider-pointer-border-focus: 0;
-    --toolcool-range-slider-pointer-border-radius: 0;
+    --tc-range-slider-pointer-border: 0;
+    --tc-range-slider-pointer-border-hover: 0;
+    --tc-range-slider-pointer-border-focus: 0;
+    --tc-range-slider-pointer-border-radius: 0;
 }
 
 .shape-triangle .pointer-shape{
