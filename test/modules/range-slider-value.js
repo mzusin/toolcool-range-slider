@@ -129,4 +129,31 @@ QUnit.module('Range Slider Value', () => {
         const $pointer = $slider.shadowRoot.querySelector('.pointer');
         assert.equal($pointer.style.left, '50%');
     });
+
+    QUnit.test('range slider value should be no more that 5 decimal places after the dot', (assert) => {
+        // used to fix values like '50.300000000000004' ---> 50.3
+        const $slider = document.querySelector('#slider-42');
+        const $pointer = $slider.shadowRoot.querySelector('.pointer');
+
+        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+            key: 'ArrowRight',
+        }));
+        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+            key: 'ArrowRight',
+        }));
+        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+            key: 'ArrowRight',
+        }));
+
+        assert.equal($slider.value, 50.3);
+    });
 });

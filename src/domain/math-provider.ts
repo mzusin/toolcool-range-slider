@@ -20,3 +20,14 @@ export const getNumber = (input: any, defaultValue: any) => {
 export const roundToStep = (num: number, step: number) => {
   return Math.round(num / step) * step;
 };
+
+/**
+ * round to decimal places
+ * https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
+ */
+export const setDecimalPlaces = (num: number, decimalPlaces = Infinity) => {
+  if (decimalPlaces === Infinity) return num;
+
+  const coeff = 10 ** decimalPlaces;
+  return Math.round(num * coeff) / coeff;
+};

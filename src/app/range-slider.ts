@@ -1,6 +1,6 @@
 import styles from './styles.pcss';
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
-import { convertRange, getNumber, roundToStep } from '../domain/math-provider';
+import { convertRange, getNumber, roundToStep, setDecimalPlaces } from '../domain/math-provider';
 import { getFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../domain/storage-provider';
 
 /*
@@ -480,7 +480,7 @@ class RangeSlider extends HTMLElement {
     return {
       min: _min,
       max: _max,
-      value: _val,
+      value: setDecimalPlaces(_val, 5),
     };
   }
 

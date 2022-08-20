@@ -120,6 +120,20 @@
             <div id="value-5" class="value"></div>
         </div>
 
+        <!-- slider #6 step = 0.1 -->
+        <div class="row">
+            <label>0</label>
+            <toolcool-range-slider
+              min="0"
+              max="100"
+              step="0.1"
+              value="50"
+              slider-width="100%"
+              id="slider-6"></toolcool-range-slider>
+            <label>100</label>
+            <div id="value-6" class="value"></div>
+        </div>
+
 
     </div>
 
@@ -172,6 +186,15 @@
             $value5.textContent = value.toString();
         });
         $value5.textContent = $slider5.value;
+
+        // slider #6 ------------------
+        const $slider6 = document.getElementById('slider-6');
+        const $value6 = document.getElementById('value-6');
+        $slider6.addEventListener('change', (evt) => {
+            const value = evt.detail.value;
+            $value6.textContent = value.toString();
+        });
+        $value6.textContent = $slider6.value;
     </script>
 </body>
 </html>
