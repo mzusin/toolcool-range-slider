@@ -6,7 +6,7 @@
 [![NPM](https://img.shields.io/badge/npm-range_slider-brightgreen)](https://www.npmjs.com/package/toolcool-range-slider)
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)
 
-Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including a vertical slider, touch and keyboard support.
+Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including a vertical slider, touch and keyboard support, local and session storage support.
 
 [![Tool Cool Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/toolcool-range-slider-preview-1.png?raw=true)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html)
 
@@ -21,6 +21,7 @@ Responsive range slider library written in typescript and using web component te
 - Allows programmatic attribute changes.
 - Simple dynamic rendering after ajax requests or delays.
 - Disabled / enabled range slider (including API)
+- Local storage and session storage support
 
 ## Table of contents
 - [Basic usage](#basic-usage)
@@ -35,6 +36,7 @@ Responsive range slider library written in typescript and using web component te
 - [Touch & Keyboard Support](#touch--keyboard-support)
 - [Events](#events)
 - [Disabled](#disabled)
+- [Storage](#storage)
 - [TypeScript Usage](#typescript-usage)
 - [Usage with React and TypeScript](#usage-with-react-and-typescript)
 - [License](#license)
@@ -407,6 +409,20 @@ The default opacity of the range slider when disabled is **0.4**. This value can
 ```
 
 The page with this example can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/12-disabled-enabled.html).
+
+
+## Storage
+
+The range slider library also supports local and session storage. It's used to save the selected slider value between different pages and page reloads.
+
+```html
+<toolcool-range-slider storage="session-storage" storage-key="tc-range-slider-1"></toolcool-range-slider>
+<toolcool-range-slider storage="local-storage" storage-key="tc-range-slider-2"></toolcool-range-slider>
+```
+
+The difference between **local** and **session storage** is that session storage keeps the value only during the current session, while the local storage keeps it until the user clears the browser cache.
+
+The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/13-storage.html).
 
 ## TypeScript Usage
 
