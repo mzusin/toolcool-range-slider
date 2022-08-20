@@ -33,6 +33,7 @@ export const isStorageEnabled = (storageType: StorageTypeEnum) => {
   return false;
 };
 
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 export const setLocalStorageItem = (storageName: string, value: any) => {
   const escapedValue = encodeURIComponent(typeof value === 'object' ? JSON.stringify(value) : value);
   window.localStorage.setItem(storageName, escapedValue);
@@ -43,6 +44,7 @@ export const getLocalStorageItem = (storageName: string) => {
   return value === null ? null : decodeURIComponent(value);
 };
 
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 export const setSessionStorageItem = (storageName: string, value: any) => {
   const escapedValue = encodeURIComponent(typeof value === 'object' ? JSON.stringify(value) : value);
   window.sessionStorage.setItem(storageName, escapedValue);
@@ -53,6 +55,7 @@ export const getSessionStorageItem = (storageName: string) => {
   return value === null ? null : decodeURIComponent(value);
 };
 
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 export const saveToStorage = (storageType: StorageTypeEnum, storageName: string, value: any) => {
   // if this storage type is not supported -> do nothing
   if (!isStorageEnabled(storageType)) return;

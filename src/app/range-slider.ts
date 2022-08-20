@@ -25,6 +25,8 @@ class RangeSlider extends HTMLElement {
       'type',
       'theme',
       'disabled',
+      'rtl',
+
       'storage',
       'storage-key',
 
@@ -69,6 +71,7 @@ class RangeSlider extends HTMLElement {
   private _type: string | undefined = undefined;
   private _theme: string | undefined = undefined;
   private _disabled = false;
+  private _rtl = false;
 
   private _storage: StorageTypeEnum | undefined = undefined;
   private _storageKey = STORAGE_KEY;
@@ -197,6 +200,15 @@ class RangeSlider extends HTMLElement {
 
   public get theme() {
     return this._theme;
+  }
+
+  public set rtl(val: boolean) {
+    this._rtl = val;
+    this.render();
+  }
+
+  public get rtl() {
+    return this._rtl;
   }
 
   public set disabled(val: boolean) {
@@ -495,8 +507,14 @@ class RangeSlider extends HTMLElement {
       this._$panelFill.style.height = `${percent}%`;
       this._$slider.setAttribute('aria-orientation', 'vertical');
     } else {
-      this._$pointer.style.left = `${percent}%`;
+      if (this.rtl) {
+        this._$pointer.style.left = `${100 - percent}%`;
+      } else {
+        this._$pointer.style.left = `${percent}%`;
+      }
+
       this._$panelFill.style.width = `${percent}%`;
+
       this._$slider.setAttribute('aria-orientation', 'horizontal');
     }
 
@@ -606,6 +624,8 @@ class RangeSlider extends HTMLElement {
     }
   }
 
+  // -------------------- EVENTS HANDLERS --------------------------
+
   pointerClicked() {
     if (this.disabled) return;
     this._$pointer?.focus();
@@ -705,6 +725,10 @@ class RangeSlider extends HTMLElement {
 
       const left = Math.min(Math.max(0, mouseX - boxLeft), boxWidth);
       percent = (left * 100) / boxWidth;
+
+      if (this.rtl) {
+        percent = 100 - percent;
+      }
     }
 
     let value = convertRange(0, 100, this.min, this.max, percent);
@@ -733,6 +757,7 @@ class RangeSlider extends HTMLElement {
     this.type = this.getAttribute('type') || undefined;
     this.theme = this.getAttribute('theme') || undefined;
     this.disabled = this.getAttribute('disabled') === 'true';
+    this.rtl = this.getAttribute('rtl') === 'true';
 
     this.valueLabel = this.getAttribute('value-label') || undefined;
     this.storage = (this.getAttribute('storage') as StorageTypeEnum) || undefined;
@@ -845,6 +870,12 @@ class RangeSlider extends HTMLElement {
 
       case 'theme': {
         this.theme = this.getAttribute('theme') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'rtl': {
+        this.rtl = this.getAttribute('rtl') === 'true';
         this.render();
         break;
       }

@@ -1,101 +1,90 @@
 
-QUnit.module('Disabled / Enabled', () => {
+QUnit.module('RTL', () => {
 
-    QUnit.test('if not provided ---> disabled value should be false', (assert) => {
+    QUnit.test('if not provided ---> rtl value should be false', (assert) => {
         const $slider = document.querySelector('#slider-1');
-        assert.equal($slider.disabled, false);
-    });
-
-    QUnit.test('if not provided ---> aria-disabled attribute should not present', (assert) => {
-        const $slider = document.querySelector('#slider-1');
-        const $inner = $slider.shadowRoot.querySelector('.range-slider');
-        assert.equal($inner.getAttribute('aria-disabled'), undefined);
+        assert.equal($slider.rtl, false);
     });
 
     QUnit.test('disabled = true', (assert) => {
-        const $slider = document.querySelector('#slider-36');
-        assert.equal($slider.disabled, true);
+        const $slider = document.querySelector('#slider-43');
+        assert.equal($slider.rtl, true);
     });
 
-    QUnit.test('if provided ---> aria-disabled attribute should be true', (assert) => {
-        const $slider = document.querySelector('#slider-36');
-        const $inner = $slider.shadowRoot.querySelector('.range-slider');
-        assert.equal($inner.getAttribute('aria-disabled'), 'true');
+    QUnit.test('rtl = false', (assert) => {
+        const $slider = document.querySelector('#slider-45');
+        assert.equal($slider.rtl, false);
     });
 
-    QUnit.test('disabled = false', (assert) => {
-        const $slider = document.querySelector('#slider-37');
-        assert.equal($slider.disabled, false);
+    QUnit.test('rtl = aaa ---> rtl should be false', (assert) => {
+        const $slider = document.querySelector('#slider-44');
+        assert.equal($slider.rtl, false);
     });
 
-    QUnit.test('disabled = aaa ---> disabled should be false', (assert) => {
-        const $slider = document.querySelector('#slider-38');
-        assert.equal($slider.disabled, false);
-    });
-
-    QUnit.test('change min via API to true', (assert) => {
+    QUnit.test('change rtl via API to true', (assert) => {
         const $slider = document.querySelector('#slider-1');
-        $slider.disabled = true;
-        assert.equal($slider.disabled, true);
+        $slider.rtl = true;
+        assert.equal($slider.rtl, true);
     });
 
-    QUnit.test('change min via API to false', (assert) => {
-        const $slider = document.querySelector('#slider-36');
-        $slider.disabled = false;
-        assert.equal($slider.disabled, false);
+    QUnit.test('change rtl via API to false', (assert) => {
+        const $slider = document.querySelector('#slider-43');
+        $slider.rtl = false;
+        assert.equal($slider.rtl, false);
     });
 
-    QUnit.test('change value via attribute to true', (assert) => {
-        const $slider = document.querySelector('#slider-1');
-        $slider.setAttribute('disabled', 'true');
-        assert.equal($slider.disabled, true);
+    QUnit.test('change rtl via attribute to true', (assert) => {
+        const $slider = document.querySelector('#slider-45');
+        $slider.setAttribute('rtl', 'true');
+        assert.equal($slider.rtl, true);
     });
 
-    QUnit.test('change value via attribute to false', (assert) => {
-        const $slider = document.querySelector('#slider-36');
-        $slider.setAttribute('disabled', 'false');
-        assert.equal($slider.disabled, false);
+    QUnit.test('change rtl via attribute to false', (assert) => {
+        const $slider = document.querySelector('#slider-43');
+        $slider.setAttribute('rtl', 'false');
+        assert.equal($slider.rtl, false);
     });
 
-    QUnit.test('if disabled === false ---> should not have class "disabled"', (assert) => {
-        const $slider = document.querySelector('#slider-37');
-        const $inner = $slider.shadowRoot.querySelector('.range-slider');
-        assert.equal($inner.classList.contains('disabled'), false);
+    // ------
+
+    QUnit.test('rtl support - default value should be 0', (assert) => {
+        const $slider = document.querySelector('#slider-43');
+        assert.equal($slider.value, '0');
     });
 
-    QUnit.test('if disabled === true ---> should have class "disabled"', (assert) => {
-        const $slider = document.querySelector('#slider-36');
-        const $inner = $slider.shadowRoot.querySelector('.range-slider');
-        assert.equal($inner.classList.contains('disabled'), true);
+    QUnit.test('rtl support - if min = 50 ---> default value should be 50', (assert) => {
+        const $slider = document.querySelector('#slider-46');
+        assert.equal($slider.value, '50');
     });
 
-    QUnit.test('if disabled === true and send keyboard event ---> the value should not change', (assert) => {
-        const $slider = document.querySelector('#slider-36');
+    QUnit.test('rtl support - if min = -50 ---> default value should be -50', (assert) => {
+        const $slider = document.querySelector('#slider-47');
+        assert.equal($slider.value, '-50');
+    });
+
+    QUnit.test('rtl support - by default pointer left should be 100%', (assert) => {
+        const $slider = document.querySelector('#slider-43');
         const $pointer = $slider.shadowRoot.querySelector('.pointer');
-
-        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            key: 'ArrowRight',
-        }));
-        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            key: 'ArrowRight',
-        }));
-        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            key: 'ArrowRight',
-        }));
-
-        const left = $pointer.style.left;
-        assert.equal(left, '0%');
+        assert.equal($pointer.style.left, '100%');
     });
 
+    QUnit.test('rtl support provided value 50 ---> pointer left should be 50%', (assert) => {
+        const $slider = document.querySelector('#slider-48');
+        const $pointer = $slider.shadowRoot.querySelector('.pointer');
+        assert.equal($pointer.style.left, '50%');
+    });
+
+    QUnit.test('rtl support provided value 40 ---> pointer left should be 60%', (assert) => {
+        const $slider = document.querySelector('#slider-49');
+        const $pointer = $slider.shadowRoot.querySelector('.pointer');
+        assert.equal($pointer.style.left, '60%');
+    });
+
+    QUnit.test('provided value should be 100 ---> pointer left should be 0%', (assert) => {
+        const $slider = document.querySelector('#slider-50');
+        const $pointer = $slider.shadowRoot.querySelector('.pointer');
+        assert.equal($pointer.style.left, '0%');
+    });
 
 });
 

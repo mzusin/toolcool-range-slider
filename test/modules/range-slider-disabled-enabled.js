@@ -33,25 +33,25 @@ QUnit.module('Disabled / Enabled', () => {
         assert.equal($slider.disabled, false);
     });
 
-    QUnit.test('change min via API to true', (assert) => {
+    QUnit.test('change disabled via API to true', (assert) => {
         const $slider = document.querySelector('#slider-1');
         $slider.disabled = true;
         assert.equal($slider.disabled, true);
     });
 
-    QUnit.test('change min via API to false', (assert) => {
+    QUnit.test('change disabled via API to false', (assert) => {
         const $slider = document.querySelector('#slider-36');
         $slider.disabled = false;
         assert.equal($slider.disabled, false);
     });
 
-    QUnit.test('change value via attribute to true', (assert) => {
+    QUnit.test('change disabled via attribute to true', (assert) => {
         const $slider = document.querySelector('#slider-1');
         $slider.setAttribute('disabled', 'true');
         assert.equal($slider.disabled, true);
     });
 
-    QUnit.test('change value via attribute to false', (assert) => {
+    QUnit.test('change disabled via attribute to false', (assert) => {
         const $slider = document.querySelector('#slider-36');
         $slider.setAttribute('disabled', 'false');
         assert.equal($slider.disabled, false);

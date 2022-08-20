@@ -1,3 +1,4 @@
+import { StorageTypeEnum } from '../domain/storage-provider';
 declare class RangeSlider extends HTMLElement {
     static get observedAttributes(): string[];
     private _$slider;
@@ -10,6 +11,11 @@ declare class RangeSlider extends HTMLElement {
     private _step;
     private _type;
     private _theme;
+    private _disabled;
+    private _rtl;
+    private _storage;
+    private _storageKey;
+    private _storageInitialized;
     private _valueLabel;
     private _sliderWidth;
     private _sliderHeight;
@@ -49,6 +55,14 @@ declare class RangeSlider extends HTMLElement {
     get type(): string | undefined;
     set theme(val: string | undefined);
     get theme(): string | undefined;
+    set rtl(val: boolean);
+    get rtl(): boolean;
+    set disabled(val: boolean);
+    get disabled(): boolean;
+    set storage(val: StorageTypeEnum | undefined);
+    get storage(): StorageTypeEnum | undefined;
+    set storageKey(val: string);
+    get storageKey(): string;
     set valueLabel(val: string | undefined);
     get valueLabel(): string | undefined;
     set sliderWidth(val: string | undefined);

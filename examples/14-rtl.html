@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Local Storage and Session Storage | Tool Cool</title>
+    <title>Right to Left Example (RTL Support) | Tool Cool</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="keywords" content="range slider, web components, typescript, ES6"/>
@@ -53,73 +53,57 @@
 </head>
 <body>
 
-    <h1>Local Storage and Session Storage</h1>
+    <h1>Right to Left Example (RTL Support)</h1>
 
     <div class="wrapper">
 
-        <div class="row">
+        <div class="row" style="direction: rtl">
             <label>0</label>
             <toolcool-range-slider
               slider-width="100%"
               value-label=".value-1"
-              storage="session-storage"
-              storage-key="tc-range-slider-1"></toolcool-range-slider>
+              rtl="true"></toolcool-range-slider>
             <label>100</label>
             <div class="value value-1"></div>
         </div>
 
-        <div class="row">
-            <label>50</label>
+        <div class="row" style="direction: rtl">
+            <label>0</label>
             <toolcool-range-slider
-              min="50"
+              min="0"
               max="100"
-              value="75"
+              value="50"
               slider-width="100%"
               value-label=".value-2"
-              storage="session-storage"
-              storage-key="tc-range-slider-2"></toolcool-range-slider>
+              rtl="true"></toolcool-range-slider>
             <label>100</label>
             <div class="value value-2"></div>
         </div>
 
-        <div class="row">
-            <label>-100</label>
+        <div class="row" style="direction: rtl">
+            <label style="direction: ltr">-200</label>
             <toolcool-range-slider
-              min="-100"
-              max="-50"
-              value="-75"
-              slider-width="100%"
-              value-label=".value-3"
-              storage="session-storage"
-              storage-key="tc-range-slider-3"></toolcool-range-slider>
-            <label>-50</label>
-            <div class="value value-3"></div>
-        </div>
-
-        <div class="row">
-            <label>-50</label>
-            <toolcool-range-slider
-              min="-50"
-              max="50"
+              min="-200"
+              max="200"
               value="0"
               slider-width="100%"
-              value-label=".value-4"
-              storage="session-storage"
-              storage-key="tc-range-slider-4"></toolcool-range-slider>
-            <label>50</label>
-            <div class="value value-4"></div>
+              value-label=".value-3"
+              rtl="true"></toolcool-range-slider>
+            <label style="direction: ltr">200</label>
+            <div class="value value-3" style="direction: ltr"></div>
         </div>
 
-        <div class="row">
+        <div class="row" style="direction: rtl">
             <label>0</label>
             <toolcool-range-slider
-              step="10"
               slider-width="100%"
-              value-label=".value-5"
-              storage="session-storage"
-              storage-key="tc-range-slider-5"></toolcool-range-slider>
-            <label>100</label>
-            <div class="value value-5"></div>
+              min="0"
+              max="1000"
+              step="100"
+              value-label=".value-4"
+              rtl="true"></toolcool-range-slider>
+            <label>1000</label>
+            <div class="value value-4"></div>
         </div>
 
     </div>

@@ -9,4 +9,9 @@ export declare const getNumber: (input: any, defaultValue: any) => any;
  * where X is the step provided by the user.
  */
 export declare const roundToStep: (num: number, step: number) => number;
+/**
+ * round to decimal places
+ * https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
+ */
+export declare const setDecimalPlaces: (num: number, decimalPlaces?: number) => number;
 //# sourceMappingURL=math-provider.d.ts.map

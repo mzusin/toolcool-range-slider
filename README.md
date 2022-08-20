@@ -22,6 +22,7 @@ Responsive range slider library written in typescript and using web component te
 - Simple dynamic rendering after ajax requests or delays.
 - Disabled / enabled range slider (including API).
 - Local storage and session storage support.
+- Right to left (RTL) support.
 
 ## Table of contents
 - [Basic usage](#basic-usage)
@@ -37,6 +38,7 @@ Responsive range slider library written in typescript and using web component te
 - [Events](#events)
 - [Disabled](#disabled)
 - [Storage](#storage)
+- [RTL Support](#rtl-support)
 - [TypeScript Usage](#typescript-usage)
 - [Usage with React and TypeScript](#usage-with-react-and-typescript)
 - [License](#license)
@@ -423,6 +425,28 @@ The range slider library also supports local and session storage. It's used to s
 The difference between **local** and **session storage** is that session storage keeps the value only during the current session, while the local storage keeps it until the user clears the browser cache.
 
 The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/13-storage.html).
+
+## RTL support
+
+The range slider also supports right to left (RTL) using **rtl** attribute as follows:
+
+```html
+<toolcool-range-slider rtl="true"></toolcool-range-slider>
+```
+
+```html
+<div class="row" style="direction: rtl">
+  <label>0</label>
+  <toolcool-range-slider
+    slider-width="100%"
+    value-label=".value-1"
+    rtl="true"></toolcool-range-slider>
+  <label>100</label>
+  <div class="value value-1"></div>
+</div>
+```
+
+The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/14-rtl.html).
 
 ## TypeScript Usage
 
