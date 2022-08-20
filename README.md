@@ -344,7 +344,7 @@ The range slider has the following events:
 
 Usage examples:
 
-```html
+```js
 const $slider1 = document.getElementById('slider-1');
 
 // change event ------------
