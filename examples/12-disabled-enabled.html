@@ -50,7 +50,7 @@
             top: -1.2rem;
         }
 
-        #toggle-btn{
+        .toggle-btn{
             background: #2B81AF;
             border-radius: 1rem;
             padding: 1.2rem 2.5rem;
@@ -83,13 +83,31 @@
         </div>
 
         <div class="row toggle-btn-row">
-            <button id="toggle-btn">Disable</button>
+            <button id="toggle-btn" class="toggle-btn">Disable</button>
+        </div>
+
+
+        <div class="row">
+            <label>0</label>
+            <toolcool-range-slider
+              id="slider-2"
+              slider-width="100%"
+              value="50"
+              value-label=".value-2"
+              style="--tc-range-slider-opacity: 0.1"></toolcool-range-slider>
+            <label>100</label>
+            <div class="value value-2"></div>
+        </div>
+
+        <div class="row toggle-btn-row">
+            <button id="toggle-btn-2" class="toggle-btn">Disable</button>
         </div>
 
     </div>
 
     <script src="js/toolcool-range-slider.min.js"></script>
     <script>
+        // ---------- slider 1 -------------
         const $slider1 = document.getElementById('slider-1');
         const $toggleButton = document.getElementById('toggle-btn');
 
@@ -97,6 +115,16 @@
             $slider1.disabled = !$slider1.disabled;
 
             $toggleButton.textContent = $slider1.disabled ? 'Enable' : 'Disable';
+        });
+
+        // ---------- slider 2 -------------
+        const $slider2 = document.getElementById('slider-2');
+        const $toggleButton2 = document.getElementById('toggle-btn-2');
+
+        $toggleButton2.addEventListener('click', () => {
+            $slider2.disabled = !$slider2.disabled;
+
+            $toggleButton2.textContent = $slider2.disabled ? 'Enable' : 'Disable';
         });
     </script>
 </body>

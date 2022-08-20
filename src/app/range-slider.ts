@@ -2,8 +2,6 @@ import styles from './styles.pcss';
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
 import { convertRange, getNumber, roundToStep } from '../domain/math-provider';
 
-const DISABLED_OPACITY = 0.4;
-
 /*
  Usage:
  ------
@@ -491,7 +489,16 @@ class RangeSlider extends HTMLElement {
       this._$slider.classList.add(this.theme);
     }
 
-    this._$slider.style.setProperty('--tc-range-slider-opacity', (this.disabled ? DISABLED_OPACITY : 1).toString());
+    if (this.disabled) {
+      this._$slider.classList.add('disabled');
+      this._$slider.setAttribute('aria-disabled', 'true');
+    } else {
+      this._$slider.classList.remove('disabled');
+
+      if (this._$slider.hasAttribute('aria-disabled')) {
+        this._$slider.removeAttribute('aria-disabled');
+      }
+    }
 
     if (this.pointerShape) {
       this._$slider.classList.add('shape', `shape-${this.pointerShape}`);

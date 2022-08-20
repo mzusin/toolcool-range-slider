@@ -398,6 +398,14 @@ $toggleButton.addEventListener('click', () => {
 });
 ```
 
+The default opacity of the range slider when disabled is **0.4**. This value can be change using css variable **--tc-range-slider-opacity**:
+
+```html
+<toolcool-range-slider
+  disabled="true"
+  style="--tc-range-slider-opacity: 0.1"></toolcool-range-slider>
+```
+
 The page with this example can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/12-disabled-enabled.html).
 
 ## TypeScript Usage

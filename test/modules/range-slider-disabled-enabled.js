@@ -6,9 +6,21 @@ QUnit.module('Disabled / Enabled', () => {
         assert.equal($slider.disabled, false);
     });
 
+    QUnit.test('if not provided ---> aria-disabled attribute should not present', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        const $inner = $slider.shadowRoot.querySelector('.range-slider');
+        assert.equal($inner.getAttribute('aria-disabled'), undefined);
+    });
+
     QUnit.test('disabled = true', (assert) => {
         const $slider = document.querySelector('#slider-36');
         assert.equal($slider.disabled, true);
+    });
+
+    QUnit.test('if provided ---> aria-disabled attribute should be true', (assert) => {
+        const $slider = document.querySelector('#slider-36');
+        const $inner = $slider.shadowRoot.querySelector('.range-slider');
+        assert.equal($inner.getAttribute('aria-disabled'), 'true');
     });
 
     QUnit.test('disabled = false', (assert) => {
@@ -45,16 +57,16 @@ QUnit.module('Disabled / Enabled', () => {
         assert.equal($slider.disabled, false);
     });
 
-    QUnit.test('if disabled === false ---> opacity should be 1', (assert) => {
+    QUnit.test('if disabled === false ---> should not have class "disabled"', (assert) => {
         const $slider = document.querySelector('#slider-37');
         const $inner = $slider.shadowRoot.querySelector('.range-slider');
-        assert.equal($inner.style.getPropertyValue('--tc-range-slider-opacity'), '1');
+        assert.equal($inner.classList.contains('disabled'), false);
     });
 
-    QUnit.test('if disabled === true ---> opacity should be 1', (assert) => {
+    QUnit.test('if disabled === true ---> should have class "disabled"', (assert) => {
         const $slider = document.querySelector('#slider-36');
         const $inner = $slider.shadowRoot.querySelector('.range-slider');
-        assert.equal($inner.style.getPropertyValue('--tc-range-slider-opacity'), '0.4');
+        assert.equal($inner.classList.contains('disabled'), true);
     });
 
     QUnit.test('if disabled === true and send keyboard event ---> the value should not change', (assert) => {
@@ -84,105 +96,6 @@ QUnit.module('Disabled / Enabled', () => {
         assert.equal(left, '0%');
     });
 
-    QUnit.test('if disabled === true ---> slider should not send change event', (assert) => {
-
-        const done = assert.async();
-
-        const $slider = document.querySelector('#slider-36');
-        const $pointer = $slider.shadowRoot.querySelector('.pointer');
-
-        $slider.addEventListener('change', (evt) => {
-            const value = Math.round(evt.detail.value);
-            assert.equal(value, 1);
-            done();
-        });
-
-        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            key: 'ArrowRight',
-        }));
-    });
-
-    QUnit.test('if disabled === true ---> slider should not send onMouseDown event', (assert) => {
-
-        const done = assert.async();
-
-        const $slider = document.querySelector('#slider-36');
-        const $pointer = $slider.shadowRoot.querySelector('.pointer');
-
-        $slider.addEventListener('onMouseDown', (evt) => {
-            assert.equal(evt.detail.nativeEvent.clientX, 10);
-            done();
-        });
-
-        $pointer.dispatchEvent(new MouseEvent('mousedown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            clientX: 10,
-        }));
-    });
-
-    QUnit.test('if disabled === true ---> slider should not send onMouseUp event', (assert) => {
-
-        const done = assert.async();
-
-        const $slider = document.querySelector('#slider-36');
-        const $pointer = $slider.shadowRoot.querySelector('.pointer');
-
-        $slider.addEventListener('onMouseUp', (evt) => {
-            assert.equal(evt.detail.nativeEvent.clientX, 10);
-            done();
-        });
-
-        $pointer.dispatchEvent(new MouseEvent('mouseup', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            clientX: 10,
-        }));
-    });
-
-    QUnit.test('if disabled === true ---> slider should not send onPointerClicked event', (assert) => {
-
-        const done = assert.async();
-
-        const $slider = document.querySelector('#slider-36');
-        const $pointer = $slider.shadowRoot.querySelector('.pointer');
-
-        $slider.addEventListener('onPointerClicked', (evt) => {
-            assert.ok(evt.detail.$pointer);
-            done();
-        });
-
-        $pointer.dispatchEvent(new MouseEvent('click', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-        }));
-    });
-
-    QUnit.test('if disabled === true ---> slider should not send onKeyDownEvent event', (assert) => {
-
-        const done = assert.async();
-
-        const $slider = document.querySelector('#slider-36');
-        const $pointer = $slider.shadowRoot.querySelector('.pointer');
-
-        $slider.addEventListener('onKeyDown', (evt) => {
-            assert.equal(evt.detail.nativeEvent.key, 'ArrowLeft');
-            done();
-        });
-
-        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            key: 'ArrowLeft',
-        }));
-    });
 
 });
 
