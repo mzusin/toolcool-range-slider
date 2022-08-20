@@ -1,6 +1,7 @@
 import styles from './styles.pcss';
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
 import { convertRange, getNumber, roundToStep } from '../domain/math-provider';
+import { getFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../domain/storage-provider';
 
 /*
  Usage:
@@ -24,6 +25,8 @@ class RangeSlider extends HTMLElement {
       'type',
       'theme',
       'disabled',
+      'storage',
+      'storage-key',
 
       'slider-width',
       'slider-height',
@@ -66,6 +69,10 @@ class RangeSlider extends HTMLElement {
   private _type: string | undefined = undefined;
   private _theme: string | undefined = undefined;
   private _disabled = false;
+
+  private _storage: StorageTypeEnum | undefined = undefined;
+  private _storageKey = STORAGE_KEY;
+  private _storageInitialized = false;
 
   private _valueLabel: string | undefined = undefined;
 
@@ -120,6 +127,10 @@ class RangeSlider extends HTMLElement {
     this._value = safe.value;
     this.render();
     this.sendChangeEvent();
+
+    if (this.storage && this._storageInitialized) {
+      saveToStorage(this.storage, this.storageKey, safe.value);
+    }
   }
 
   /**
@@ -195,6 +206,24 @@ class RangeSlider extends HTMLElement {
 
   public get disabled() {
     return this._disabled;
+  }
+
+  public set storage(val: StorageTypeEnum | undefined) {
+    this._storage = val;
+    this.render();
+  }
+
+  public get storage() {
+    return this._storage;
+  }
+
+  public set storageKey(val: string) {
+    this._storageKey = val;
+    this.render();
+  }
+
+  public get storageKey() {
+    return this._storageKey;
   }
 
   public set valueLabel(val: string | undefined) {
@@ -706,6 +735,8 @@ class RangeSlider extends HTMLElement {
     this.disabled = this.getAttribute('disabled') === 'true';
 
     this.valueLabel = this.getAttribute('value-label') || undefined;
+    this.storage = (this.getAttribute('storage') as StorageTypeEnum) || undefined;
+    this.storageKey = this.getAttribute('storage-key') || STORAGE_KEY;
 
     this.sliderWidth = this.getAttribute('slider-width') || undefined;
     this.sliderHeight = this.getAttribute('slider-height') || undefined;
@@ -751,6 +782,15 @@ class RangeSlider extends HTMLElement {
     // init pointer events
     this._$pointer?.addEventListener('click', this.pointerClicked);
     this._$pointer?.addEventListener('keydown', this.pointerKeyDown);
+
+    // if the storage is enabled ---> try to restore the value
+    if (this.storage) {
+      const restoredValue = Number(getFromStorage(this.storage, this.storageKey));
+      this._storageInitialized = true;
+      if (!isNaN(restoredValue)) {
+        this.value = restoredValue;
+      }
+    }
 
     // update the initial position of the pointer
     this.render();
@@ -812,6 +852,16 @@ class RangeSlider extends HTMLElement {
       case 'disabled': {
         this.disabled = this.getAttribute('disabled') === 'true';
         this.render();
+        break;
+      }
+
+      case 'storage': {
+        this.storage = (this.getAttribute('storage') as StorageTypeEnum) || undefined;
+        break;
+      }
+
+      case 'storage-key': {
+        this.storageKey = this.getAttribute('storage-key') || STORAGE_KEY;
         break;
       }
 
