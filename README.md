@@ -20,8 +20,8 @@ Responsive range slider library written in typescript and using web component te
 - Based on web component technologies.
 - Allows programmatic attribute changes.
 - Simple dynamic rendering after ajax requests or delays.
-- Disabled / enabled range slider (including API)
-- Local storage and session storage support
+- Disabled / enabled range slider (including API).
+- Local storage and session storage support.
 
 ## Table of contents
 - [Basic usage](#basic-usage)
