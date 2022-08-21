@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bottom to Top in Vertical Slider | Tool Cool</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="keywords" content="range slider, web components, typescript, ES6"/>
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png" />
+    <link id="favicon-48" rel="icon" type="image/png" sizes="48x48" href="img/favicon/favicon-48.png" />
+    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32.png" />
+    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png" />
+
+    <style>
+        .wrapper{
+            margin: 3rem auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1{
+            text-align: center;
+            font-weight: normal;
+            margin: 3rem 1rem;
+        }
+
+        .row{
+            margin: 3rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+        }
+
+        label{
+            margin: 1rem 0;
+            width: 2rem;
+            text-align: center;
+        }
+
+        .value{
+            position: absolute;
+            transform: translateX(-50%);
+            top: 50%;
+            left: -1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bottom to Top in Vertical Slider</h1>
+
+    <div class="wrapper">
+
+        <div class="row">
+            <label>100</label>
+            <toolcool-range-slider id="slider-1" type="vertical" btt="true" value-label="#value-1"></toolcool-range-slider>
+            <label>0</label>
+            <div id="value-1" class="value"></div>
+        </div>
+
+        <div class="row">
+            <label>100</label>
+            <toolcool-range-slider
+              min="50"
+              max="100"
+              value="75"
+              type="vertical"
+              btt="true"
+              id="slider-2"
+              value-label="#value-2"></toolcool-range-slider>
+            <label>50</label>
+            <div id="value-2" class="value"></div>
+        </div>
+
+        <div class="row">
+            <label>-50</label>
+            <toolcool-range-slider
+              min="-100"
+              max="-50"
+              value="-75"
+              type="vertical"
+              btt="true"
+              id="slider-3"
+              value-label="#value-3"></toolcool-range-slider>
+            <label>-100</label>
+            <div id="value-3" class="value"></div>
+        </div>
+
+        <div class="row">
+            <label>50</label>
+            <toolcool-range-slider
+              min="-50"
+              max="50"
+              value="0"
+              type="vertical"
+              btt="true"
+              id="slider-4"
+              value-label="#value-4"></toolcool-range-slider>
+            <label>-50</label>
+            <div id="value-4" class="value"></div>
+        </div>
+
+        <div class="row">
+            <label>100</label>
+            <toolcool-range-slider
+              step="10"
+              type="vertical"
+              btt="true"
+              id="slider-5"
+              value-label="#value-5"></toolcool-range-slider>
+            <label>0</label>
+            <div id="value-5" class="value"></div>
+        </div>
+
+        <div class="row">
+            <label>100</label>
+            <toolcool-range-slider slider-height="200px" type="vertical" btt="true" value-label="#value-6"></toolcool-range-slider>
+            <label>0</label>
+            <div id="value-6" class="value"></div>
+        </div>
+
+        <div class="row">
+            <label>100</label>
+            <toolcool-range-slider
+              slider-width="10px"
+              slider-height="250px"
+              pointer-width="20px"
+              pointer-height="20px"
+              type="vertical"
+              btt="true"
+              value-label="#value-7"></toolcool-range-slider>
+            <label>0</label>
+            <div id="value-7" class="value"></div>
+        </div>
+
+        <div class="row">
+            <label>100</label>
+            <toolcool-range-slider
+              slider-width="15px"
+              slider-height="300px"
+              pointer-width="25px"
+              pointer-height="25px"
+              pointer-radius="3px"
+              type="vertical"
+              btt="true"
+              value-label="#value-8"></toolcool-range-slider>
+            <label>0</label>
+            <div id="value-8" class="value"></div>
+        </div>
+
+        <div class="row">
+            <label>100</label>
+            <toolcool-range-slider
+              slider-width="20px"
+              slider-height="350px"
+              pointer-width="35px"
+              pointer-height="35px"
+              type="vertical"
+              btt="true"
+              value-label="#value-9"></toolcool-range-slider>
+            <label>0</label>
+            <div id="value-9" class="value"></div>
+        </div>
+
+        <div class="row">
+            <label>100</label>
+            <toolcool-range-slider
+              slider-width="20px"
+              slider-height="400px"
+              pointer-width="50px"
+              pointer-height="35px"
+              pointer-radius="5px"
+              type="vertical"
+              btt="true"
+              value-label="#value-10"></toolcool-range-slider>
+            <label>0</label>
+            <div id="value-10" class="value"></div>
+        </div>
+
+        <div class="row">
+            <label>100</label>
+            <toolcool-range-slider
+              slider-width="10px"
+              slider-height="450px"
+              slider-radius="0"
+              pointer-width="20px"
+              pointer-height="25px"
+              pointer-radius="0"
+              type="vertical"
+              btt="true"
+              value-label="#value-11"></toolcool-range-slider>
+            <label>0</label>
+            <div id="value-11" class="value"></div>
+        </div>
+
+        <div class="row">
+            <label>100</label>
+            <toolcool-range-slider
+              slider-width="0.5rem"
+              slider-height="400px"
+              pointer-width="1.5rem"
+              pointer-height="1.5rem"
+              slider-bg="#6AD3BA"
+              slider-bg-hover="#3F8A8A"
+              pointer-border-hover="1px solid #79D6C0"
+              pointer-border-focus="1px solid #79D6C0"
+              type="vertical"
+              btt="true"
+              value-label="#value-12"></toolcool-range-slider>
+            <label>0</label>
+            <div id="value-12" class="value"></div>
+        </div>
+
+        <div class="row">
+            <label>100</label>
+            <toolcool-range-slider
+              slider-width="0.5rem"
+              slider-height="400px"
+              pointer-width="1.5rem"
+              pointer-height="1.5rem"
+              pointer-bg="#6AD3BA"
+              pointer-bg-hover="#50BDA3"
+              pointer-shadow="none"
+              pointer-shadow-hover="none"
+              pointer-border="0"
+              pointer-border-hover="1px solid #3F8A8A"
+              pointer-border-focus="1px solid #3F8A8A"
+              type="vertical"
+              btt="true"
+              value-label="#value-13"></toolcool-range-slider>
+            <label>0</label>
+            <div id="value-13" class="value"></div>
+        </div>
+    </div>
+
+    <script src="js/toolcool-range-slider.min.js"></script>
+</body>
+</html>

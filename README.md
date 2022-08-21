@@ -261,7 +261,7 @@ The list of attributes and default values:
 
 | Property             | Default Value                   |
 |----------------------|---------------------------------|
-| slider-bg            | #2D4373                         |
+| slider-bg            | #4d69ad                         |
 | slider-bg-hover      | #5f79b7                         |
 | slider-bg-fill       | #000                            |
 | pointer-bg           | #fff                            |
@@ -287,7 +287,13 @@ Vertical slider can be achieved using the **type** attribute as following:
 ```html
 <toolcool-range-slider type="vertical"></toolcool-range-slider>
 ```
-It accepts all the same attributes as the horizontal slider.  The default height of a vertical slider is **300px** unless the height attribute is provided.
+It accepts all the same attributes as the horizontal slider. The default height of a vertical slider is **300px** unless the height attribute is provided.
+
+It is also possible to reverse the direction and slide from bottom to top using the **btt** attribute:
+
+```html
+<toolcool-range-slider type="vertical" btt="true"></toolcool-range-slider>
+```
 
 ## Pointer Shapes
 

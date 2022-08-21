@@ -26,6 +26,7 @@ class RangeSlider extends HTMLElement {
       'theme',
       'disabled',
       'rtl',
+      'btt',
 
       'storage',
       'storage-key',
@@ -71,7 +72,8 @@ class RangeSlider extends HTMLElement {
   private _type: string | undefined = undefined;
   private _theme: string | undefined = undefined;
   private _disabled = false;
-  private _rtl = false;
+  private _rtl = false; // right to left
+  private _btt = false; // bottom to top
 
   private _storage: StorageTypeEnum | undefined = undefined;
   private _storageKey = STORAGE_KEY;
@@ -209,6 +211,15 @@ class RangeSlider extends HTMLElement {
 
   public get rtl() {
     return this._rtl;
+  }
+
+  public set btt(val: boolean) {
+    this._btt = val;
+    this.render();
+  }
+
+  public get btt() {
+    return this._btt;
   }
 
   public set disabled(val: boolean) {
@@ -500,20 +511,34 @@ class RangeSlider extends HTMLElement {
     if (!this._$slider || !this._$pointer || !this._$panelFill) return;
 
     // update the pointer position
-    const percent = convertRange(this.min, this.max, 0, 100, this.value);
+    let percent = convertRange(this.min, this.max, 0, 100, this.value);
 
     if (this.type === 'vertical') {
-      this._$pointer.style.top = `${percent}%`;
-      this._$panelFill.style.height = `${percent}%`;
+      if (this.btt) {
+        this._$pointer.style.top = `${100 - percent}%`;
+        this._$panelFill.style.height = `${percent}%`;
+        this._$panelFill.style.bottom = '0%';
+        this._$panelFill.style.top = 'auto';
+      } else {
+        this._$pointer.style.top = `${percent}%`;
+        this._$panelFill.style.height = `${percent}%`;
+        this._$panelFill.style.bottom = 'auto';
+        this._$panelFill.style.top = '0%';
+      }
+
       this._$slider.setAttribute('aria-orientation', 'vertical');
     } else {
       if (this.rtl) {
         this._$pointer.style.left = `${100 - percent}%`;
+        this._$panelFill.style.width = `${percent}%`;
+        this._$panelFill.style.right = '0%';
+        this._$panelFill.style.left = 'auto';
       } else {
         this._$pointer.style.left = `${percent}%`;
+        this._$panelFill.style.width = `${percent}%`;
+        this._$panelFill.style.right = 'auto';
+        this._$panelFill.style.left = '0%';
       }
-
-      this._$panelFill.style.width = `${percent}%`;
 
       this._$slider.setAttribute('aria-orientation', 'horizontal');
     }
@@ -711,6 +736,10 @@ class RangeSlider extends HTMLElement {
 
       const top = Math.min(Math.max(0, mouseY - boxTop), boxHeight);
       percent = (top * 100) / boxHeight;
+
+      if (this.btt) {
+        percent = 100 - percent;
+      }
     } else {
       // -------------- horizontal -----------------
 
@@ -758,6 +787,7 @@ class RangeSlider extends HTMLElement {
     this.theme = this.getAttribute('theme') || undefined;
     this.disabled = this.getAttribute('disabled') === 'true';
     this.rtl = this.getAttribute('rtl') === 'true';
+    this.btt = this.getAttribute('btt') === 'true';
 
     this.valueLabel = this.getAttribute('value-label') || undefined;
     this.storage = (this.getAttribute('storage') as StorageTypeEnum) || undefined;
@@ -876,6 +906,12 @@ class RangeSlider extends HTMLElement {
 
       case 'rtl': {
         this.rtl = this.getAttribute('rtl') === 'true';
+        this.render();
+        break;
+      }
+
+      case 'btt': {
+        this.btt = this.getAttribute('btt') === 'true';
         this.render();
         break;
       }
