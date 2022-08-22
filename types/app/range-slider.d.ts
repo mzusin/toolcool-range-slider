@@ -13,6 +13,7 @@ declare class RangeSlider extends HTMLElement {
     private _theme;
     private _disabled;
     private _rtl;
+    private _btt;
     private _storage;
     private _storageKey;
     private _storageInitialized;
@@ -57,6 +58,8 @@ declare class RangeSlider extends HTMLElement {
     get theme(): string | undefined;
     set rtl(val: boolean);
     get rtl(): boolean;
+    set btt(val: boolean);
+    get btt(): boolean;
     set disabled(val: boolean);
     get disabled(): boolean;
     set storage(val: StorageTypeEnum | undefined);
