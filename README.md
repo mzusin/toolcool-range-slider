@@ -28,6 +28,7 @@ Responsive range slider library written in typescript and using web component te
 - Right to left (RTL) support.
 - Supports a list of individual values (discrete values).
 - Text data support.
+- Non linear range slider.
 
 ## Table of contents
 - [Basic usage](#basic-usage)
@@ -45,6 +46,7 @@ Responsive range slider library written in typescript and using web component te
 - [Disabled](#disabled)
 - [Storage](#storage)
 - [RTL Support](#rtl-support)
+- [Non-linear step](#non-linear-step)
 - [TypeScript Usage](#typescript-usage)
 - [Usage with React and TypeScript](#usage-with-react-and-typescript)
 - [License](#license)
@@ -481,6 +483,32 @@ The range slider also supports right to left (RTL) using **rtl** attribute as fo
 ```
 
 The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/14-rtl.html).
+
+## Non-linear step
+
+The range slider supports the non-linear step function. For example, the slider below has a step of 5 if the value is less than 50, otherwise the step is 10:
+
+```html
+<toolcool-range-slider id="slider-1"></toolcool-range-slider>
+
+<script src="toolcool-range-slider.min.js"></script>
+<script>
+    const $slider = document.getElementById('slider-1');
+    $slider.step = (value) => {
+        return value < 50 ? 5 : 10;
+    };
+</script>
+```
+
+Step function has the following type:
+
+```js
+(value: number | string) => number
+```
+
+It gets the **value** of the slider and returns the corresponding **step** value.
+
+The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/17-non-linear.html).
 
 ## TypeScript Usage
 
