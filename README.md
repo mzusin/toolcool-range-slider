@@ -99,7 +99,7 @@ The value label can also be automatically bound using the **value-label** attrib
 
 More examples with automatic label binding can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/8-automatic-labels-binding.html). 
 
-:placard: Examples with js binding can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/1-basic.html).
+:pushpin: Examples with js binding can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/1-basic.html).
 
 ## CDN
 
@@ -179,7 +179,7 @@ data="2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192"></toolcool-ran
 
 In the case where numeric and textual data is mixed, we assume that all data is textual.
 
-:placard: Example page can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/16-data.html).
+:pushpin: Example page can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/16-data.html).
 
 ## Width, Height, and Border Radius
 
@@ -302,7 +302,7 @@ The list of attributes and default values:
 | pointer-border-hover | 1px solid hsla(0, 0%, 88%, 0.5) |
 | pointer-border-focus | 1px solid hsl(201, 72%, 59%)    |
 
-:placard: [An example](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html) of a customized slider on a dark background:
+:pushpin: [An example](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html) of a customized slider on a dark background:
 
 [![Dark Mode - Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/dark-mode-preview.png?raw=true)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html)
 
@@ -417,7 +417,7 @@ $slider1.addEventListener('onKeyDown', (evt) => {
 });
 ```
 
-:placard: The page with these examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/11-events.html).
+:pushpin: The page with these examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/11-events.html).
 
 ## Disabled
 
@@ -446,7 +446,7 @@ The default opacity of the range slider when disabled is **0.4**. This value can
   style="--tc-range-slider-opacity: 0.1"></toolcool-range-slider>
 ```
 
-:placard: The page with this example can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/12-disabled-enabled.html).
+:pushpin: The page with this example can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/12-disabled-enabled.html).
 
 
 ## Storage
@@ -460,7 +460,7 @@ The range slider library also supports local and session storage. It's used to s
 
 The difference between **local** and **session storage** is that session storage keeps the value only during the current session, while the local storage keeps it until the user clears the browser cache.
 
-:placard: The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/13-storage.html).
+:pushpin: The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/13-storage.html).
 
 ## RTL support
 
@@ -482,7 +482,7 @@ The range slider also supports right to left (RTL) using **rtl** attribute as fo
 </div>
 ```
 
-:placard: The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/14-rtl.html).
+:pushpin: The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/14-rtl.html).
 
 ## Non-linear step
 
@@ -508,7 +508,7 @@ Step function has the following type:
 
 It gets the **value** of the slider and returns the corresponding **step** value.
 
-:placard: The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/17-non-linear.html).
+:pushpin: The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/17-non-linear.html).
 
 ## TypeScript Usage
 
@@ -576,4 +576,6 @@ export default RangeSliderExample;
 ## License
 
 [MIT license](https://github.com/toolcool-org/toolcool-range-slider/blob/main/LICENSE)
+
+It can be used **for free** and **without attribution** in any personal or commercial project :gift: 
 
