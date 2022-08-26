@@ -1,6 +1,6 @@
 import styles from './styles.pcss';
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
-import { convertRange, getNumber, roundToStep, setDecimalPlaces } from '../domain/math-provider';
+import { convertRange, getNumber, isNumber, roundToStep, setDecimalPlaces } from '../domain/math-provider';
 import { getFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../domain/storage-provider';
 
 /*
@@ -19,6 +19,7 @@ class RangeSlider extends HTMLElement {
   static get observedAttributes() {
     return [
       'value',
+      'data',
       'min',
       'max',
       'step',
@@ -66,6 +67,7 @@ class RangeSlider extends HTMLElement {
   private _$valueLabel: HTMLElement | null;
 
   private _value = 0; // [min, max]
+  private _data: (string | number)[] | undefined = undefined;
   private _min = 0;
   private _max = 100;
   private _step: number | undefined = undefined;
@@ -143,6 +145,15 @@ class RangeSlider extends HTMLElement {
    */
   public get value() {
     return this._value;
+  }
+
+  public set data(val: (string | number)[] | undefined) {
+    this._data = val;
+    this.render();
+  }
+
+  public get data() {
+    return this._data;
   }
 
   public set min(num: number) {
@@ -507,6 +518,32 @@ class RangeSlider extends HTMLElement {
     };
   }
 
+  parseData(dataString: string | undefined | null): (string | number)[] | undefined {
+    if (dataString === undefined || dataString === null) return undefined;
+
+    let result = dataString.trim();
+    if (result === '') return undefined;
+
+    const parts = dataString.split(',');
+    const list: string[] = [];
+    let allValuesAreNumbers = true;
+
+    for (let i = 0; i < parts.length; i++) {
+      const part = parts[i].trim();
+      if (part === '') continue;
+
+      list.push(part);
+
+      if (!isNumber(part)) {
+        allValuesAreNumbers = false;
+      }
+    }
+
+    if (!allValuesAreNumbers) return list;
+
+    return list.map((item) => Number(item));
+  }
+
   render() {
     if (!this._$slider || !this._$pointer || !this._$panelFill) return;
 
@@ -782,6 +819,7 @@ class RangeSlider extends HTMLElement {
     this.min = getNumber(this.getAttribute('min'), 0);
     this.max = getNumber(this.getAttribute('max'), 100);
     this.value = getNumber(this.getAttribute('value'), this.min);
+    this.data = this.parseData(this.getAttribute('data'));
     this.step = getNumber(this.getAttribute('step'), undefined);
     this.type = this.getAttribute('type') || undefined;
     this.theme = this.getAttribute('theme') || undefined;
@@ -883,6 +921,12 @@ class RangeSlider extends HTMLElement {
 
       case 'value': {
         this.value = getNumber(this.getAttribute('value'), this.min);
+        this.render();
+        break;
+      }
+
+      case 'data': {
+        this.data = this.parseData(this.getAttribute('data'));
         this.render();
         break;
       }

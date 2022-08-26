@@ -6,11 +6,15 @@ export const convertRange = (min: number, max: number, a: number, b: number, x: 
   return ((b - a) * (x - min)) / (max - min) + a;
 };
 
+// eslint-disable-next-line
+export const isNumber = (input: any) => {
+  return !isNaN(parseFloat(input)) && isFinite(input);
+};
+
 // the below function should receive any
 // eslint-disable-next-line
 export const getNumber = (input: any, defaultValue: any) => {
-  const isNumber = !isNaN(parseFloat(input)) && isFinite(input);
-  return isNumber ? Number(input) : defaultValue;
+  return isNumber(input) ? Number(input) : defaultValue;
 };
 
 /**
