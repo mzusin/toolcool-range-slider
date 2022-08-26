@@ -204,4 +204,28 @@ QUnit.module('Range Slider Data', () => {
         assert.equal($slider.min, 2);
     });
 
+    QUnit.test('when data="0, 1, 2, 3, 4, 5" ---> change value to 3 via API', (assert) => {
+        const $slider = document.querySelector('#slider-69');
+        $slider.value = 3;
+        assert.equal($slider.value, 3);
+    });
+
+    QUnit.test('when data="0, 1, 2, 3, 4, 5" ---> change value to 3 via attributes', (assert) => {
+        const $slider = document.querySelector('#slider-69');
+        $slider.setAttribute('value', '3');
+        assert.equal($slider.value, 3);
+    });
+
+    QUnit.test('when data="sky, blue" ---> change value to "blue" via API.', (assert) => {
+        const $slider = document.querySelector('#slider-68');
+        $slider.value = 'blue';
+        assert.equal($slider.value, 'blue');
+    });
+
+    QUnit.test('when data="sky, blue" ---> change value to "blue" via attribute.', (assert) => {
+        const $slider = document.querySelector('#slider-68');
+        $slider.setAttribute('value', 'blue');
+        assert.equal($slider.value, 'blue');
+    });
+
 });
