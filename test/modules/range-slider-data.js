@@ -6,6 +6,16 @@ QUnit.module('Range Slider Data', () => {
         assert.equal($slider.data, undefined);
     });
 
+    QUnit.test('when data array is empty it should be undefined', (assert) => {
+        const $slider = document.querySelector('#slider-65');
+        assert.deepEqual($slider.data, undefined);
+    });
+
+    QUnit.test('when data array contains only spaces it should be undefined', (assert) => {
+        const $slider = document.querySelector('#slider-66');
+        assert.deepEqual($slider.data, undefined);
+    });
+
     QUnit.test('data = "1"', (assert) => {
         const $slider = document.querySelector('#slider-59');
         assert.deepEqual($slider.data, [1]);
@@ -63,6 +73,26 @@ QUnit.module('Range Slider Data', () => {
     QUnit.test('when data="1", the default value is 1', (assert) => {
         const $slider = document.querySelector('#slider-59');
         assert.deepEqual($slider.value, 1);
+    });
+
+    QUnit.test('when data="a, b", the default value is a', (assert) => {
+        const $slider = document.querySelector('#slider-67');
+        assert.deepEqual($slider.value, 'a');
+    });
+
+    QUnit.test('when data="sky, blue", the default value is sky', (assert) => {
+        const $slider = document.querySelector('#slider-68');
+        assert.deepEqual($slider.value, 'sky');
+    });
+
+    QUnit.test('when data="0, 1, 2, 3, 4, 5", the default value is 0', (assert) => {
+        const $slider = document.querySelector('#slider-69');
+        assert.deepEqual($slider.value, 0);
+    });
+
+    QUnit.test('when data="-1, -2", the default value is -1', (assert) => {
+        const $slider = document.querySelector('#slider-70');
+        assert.deepEqual($slider.value, -1);
     });
 
 });
