@@ -571,54 +571,73 @@ class RangeSlider extends HTMLElement {
     return list.map((item) => Number(item));
   }
 
+  findValueIndexInData(val: string | number) {
+    return this.data ? this.data.findIndex((item) => item === val || item.toString().trim() === val.toString().trim()) : -1;
+  }
+
   render() {
     if (!this._$slider || !this._$pointer || !this._$panelFill) return;
 
+    let _min;
+    let _max;
+    let _val;
+
     if (this.data) {
+      // when data is defined, we use data indexes instead of the actual values
+      _min = 0;
+      _max = this.data.length - 1;
+      _val = this.findValueIndexInData(this.value);
+      if (_val === -1) {
+        _val = _min;
+      }
     } else {
-      // update the pointer position
-      let percent = convertRange(this.min as number, this.max as number, 0, 100, this.value as number);
+      _min = this.min as number;
+      _max = this.max as number;
+      _val = this.value as number;
+    }
 
-      if (this.type === 'vertical') {
-        if (this.btt) {
-          this._$pointer.style.top = `${100 - percent}%`;
-          this._$panelFill.style.height = `${percent}%`;
-          this._$panelFill.style.bottom = '0%';
-          this._$panelFill.style.top = 'auto';
-        } else {
-          this._$pointer.style.top = `${percent}%`;
-          this._$panelFill.style.height = `${percent}%`;
-          this._$panelFill.style.bottom = 'auto';
-          this._$panelFill.style.top = '0%';
-        }
+    // update the pointer position
+    let percent = convertRange(_min, _max, 0, 100, _val);
 
-        this._$slider.setAttribute('aria-orientation', 'vertical');
+    if (this.type === 'vertical') {
+      if (this.btt) {
+        this._$pointer.style.top = `${100 - percent}%`;
+        this._$panelFill.style.height = `${percent}%`;
+        this._$panelFill.style.bottom = '0%';
+        this._$panelFill.style.top = 'auto';
       } else {
-        if (this.rtl) {
-          this._$pointer.style.left = `${100 - percent}%`;
-          this._$panelFill.style.width = `${percent}%`;
-          this._$panelFill.style.right = '0%';
-          this._$panelFill.style.left = 'auto';
-        } else {
-          this._$pointer.style.left = `${percent}%`;
-          this._$panelFill.style.width = `${percent}%`;
-          this._$panelFill.style.right = 'auto';
-          this._$panelFill.style.left = '0%';
-        }
-
-        this._$slider.setAttribute('aria-orientation', 'horizontal');
+        this._$pointer.style.top = `${percent}%`;
+        this._$panelFill.style.height = `${percent}%`;
+        this._$panelFill.style.bottom = 'auto';
+        this._$panelFill.style.top = '0%';
       }
 
-      if (this._$valueLabel) {
-        this._$valueLabel.textContent = Math.round(this.value as number).toString();
+      this._$slider.setAttribute('aria-orientation', 'vertical');
+    } else {
+      if (this.rtl) {
+        this._$pointer.style.left = `${100 - percent}%`;
+        this._$panelFill.style.width = `${percent}%`;
+        this._$panelFill.style.right = '0%';
+        this._$panelFill.style.left = 'auto';
+      } else {
+        this._$pointer.style.left = `${percent}%`;
+        this._$panelFill.style.width = `${percent}%`;
+        this._$panelFill.style.right = 'auto';
+        this._$panelFill.style.left = '0%';
       }
+
+      this._$slider.setAttribute('aria-orientation', 'horizontal');
+    }
+
+    if (this._$valueLabel) {
+      this._$valueLabel.textContent = Math.round(_val).toString();
     }
 
     // set additional area attributes
-    this._$slider.setAttribute('aria-valuemin', this.min.toString());
-    this._$slider.setAttribute('aria-valuemax', this.max.toString());
-    this._$slider.setAttribute('aria-valuenow', this.value.toString());
-    this._$slider.setAttribute('aria-valuetext', this.value.toString());
+    this._$slider.setAttribute('aria-valuemin', _min.toString());
+    this._$slider.setAttribute('aria-valuemax', _max.toString());
+    this._$slider.setAttribute('aria-valuenow', _val.toString());
+    this._$slider.setAttribute('aria-valuetext', _val.toString());
 
     if (this.type) {
       this._$slider.classList.add(`type-${this.type}`);
