@@ -19,15 +19,15 @@ Responsive range slider library written in typescript and using web component te
 - No dependencies :unlock:
 - Predefined themes (optional) :art:
 - Customizable with a large set of style attributes :wrench:
-- Horizontal :point_right: and vertical :point_down: sliders support.
+- Horizontal :arrow_right: and vertical :arrow_down: sliders support.
 - Based on web component technologies.
 - Allows programmatic attribute changes :computer:
-- Bottom to top support :point_up_2:
+- Bottom to top support :arrow_up:
 - Simple dynamic rendering after ajax requests or delays.
 - Disabled / enabled range slider (including API).
 - Local storage and session storage support :floppy_disk:
 - Supports a list of individual values (discrete values).
-- Right to left (RTL :point_left:) support.
+- Right to left (RTL) support :arrow_left:
 - Text data support :writing_hand:
 - Non-linear range slider :chart_with_downwards_trend:
 
