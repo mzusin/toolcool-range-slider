@@ -26,12 +26,15 @@ Responsive range slider library written in typescript and using web component te
 - Disabled / enabled range slider (including API).
 - Local storage and session storage support.
 - Right to left (RTL) support.
+- Supports a list of individual values.
+- String data support.
 
 ## Table of contents
 - [Basic usage](#basic-usage)
 - [CDN](#cdn)
 - [Node.js usage](#nodejs-usage)
 - [Main Properties](#main-properties)
+- [List of individual values](#list-of-individual-values)
 - [Width, Height, and Border Radius](#width-height-and-border-radius)
 - [Predefined Styles (Themes)](#predefined-styles-themes)
 - [Colors](#colors)
@@ -153,6 +156,28 @@ The properties have the following default values:
 | step | undefined     |
 
 If no value is specified, it will be equal to the minimum value.
+
+## List of individual values
+
+It is also possible (but not required) to provide a list of numeric or text data instead of **min** and **max** properties.
+
+ABC example:
+
+```html
+<toolcool-range-slider
+  data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"></toolcool-range-slider>
+```
+
+Geometric progression:
+
+```html
+<toolcool-range-slider
+data="2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192"></toolcool-range-slider>
+```
+
+In the case where numeric and textual data is mixed, we assume that all data is textual.
+
+Example page can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/16-data.html).
 
 ## Width, Height, and Border Radius
 
