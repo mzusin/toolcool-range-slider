@@ -228,4 +228,8 @@ QUnit.module('Range Slider Data', () => {
         assert.equal($slider.value, 'blue');
     });
 
+    QUnit.test('data="0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100", min should be 0', (assert) => {
+        const $slider = document.querySelector('#slider-74');
+        assert.equal($slider.min, 0);
+    });
 });

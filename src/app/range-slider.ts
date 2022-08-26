@@ -145,7 +145,7 @@ class RangeSlider extends HTMLElement {
       // the provided value should present in data array
       const _val = isNumber(val) ? Number(val) : val;
       const found = this.data.find((item) => item === _val);
-      if (found) {
+      if (found !== undefined) {
         this.setValueHelper(_val);
       }
     } else {
@@ -748,25 +748,43 @@ class RangeSlider extends HTMLElement {
 
     switch (evt.key) {
       case 'ArrowLeft': {
+        const step = getNumber(this.step, 1);
+
         if (this.data) {
+          const index = this.findValueIndexInData(this.value);
+          if (index !== -1) {
+            const updatedIndex = index - step;
+            if (this.data[updatedIndex] !== undefined) {
+              this.value = this.data[updatedIndex];
+            }
+          }
         } else {
-          const step = getNumber(this.step, 1);
           const safe = this.getSafeValues((this.value as number) - step, this.min as number, this.max as number);
           this.value = safe.value;
-          this.render();
         }
+
+        this.render();
 
         break;
       }
 
       case 'ArrowRight': {
+        const step = getNumber(this.step, 1);
+
         if (this.data) {
+          const index = this.findValueIndexInData(this.value);
+          if (index !== -1) {
+            const updatedIndex = index + step;
+            if (this.data[updatedIndex] !== undefined) {
+              this.value = this.data[updatedIndex];
+            }
+          }
         } else {
-          const step = getNumber(this.step, 1);
           const safe = this.getSafeValues((this.value as number) + step, this.min as number, this.max as number);
           this.value = safe.value;
-          this.render();
         }
+
+        this.render();
         break;
       }
 
@@ -813,48 +831,55 @@ class RangeSlider extends HTMLElement {
   onValueChange(evt: MouseEvent | TouchEvent) {
     if (this.disabled || !this._$slider) return;
 
-    if (this.data) {
-    } else {
-      let percent;
+    let percent;
 
-      if (this.type === 'vertical') {
-        // -------------- vertical -----------------
+    if (this.type === 'vertical') {
+      // -------------- vertical -----------------
 
-        const { height: boxHeight, top: boxTop } = this._$slider.getBoundingClientRect();
+      const { height: boxHeight, top: boxTop } = this._$slider.getBoundingClientRect();
 
-        let mouseY;
-        if (evt.type.indexOf('mouse') !== -1) {
-          mouseY = (evt as MouseEvent).clientY;
-        } else {
-          mouseY = (evt as TouchEvent).touches[0].clientY;
-        }
-
-        const top = Math.min(Math.max(0, mouseY - boxTop), boxHeight);
-        percent = (top * 100) / boxHeight;
-
-        if (this.btt) {
-          percent = 100 - percent;
-        }
+      let mouseY;
+      if (evt.type.indexOf('mouse') !== -1) {
+        mouseY = (evt as MouseEvent).clientY;
       } else {
-        // -------------- horizontal -----------------
-
-        const { width: boxWidth, left: boxLeft } = this._$slider.getBoundingClientRect();
-
-        let mouseX;
-        if (evt.type.indexOf('mouse') !== -1) {
-          mouseX = (evt as MouseEvent).clientX;
-        } else {
-          mouseX = (evt as TouchEvent).touches[0].clientX;
-        }
-
-        const left = Math.min(Math.max(0, mouseX - boxLeft), boxWidth);
-        percent = (left * 100) / boxWidth;
-
-        if (this.rtl) {
-          percent = 100 - percent;
-        }
+        mouseY = (evt as TouchEvent).touches[0].clientY;
       }
 
+      const top = Math.min(Math.max(0, mouseY - boxTop), boxHeight);
+      percent = (top * 100) / boxHeight;
+
+      if (this.btt) {
+        percent = 100 - percent;
+      }
+    } else {
+      // -------------- horizontal -----------------
+
+      const { width: boxWidth, left: boxLeft } = this._$slider.getBoundingClientRect();
+
+      let mouseX;
+      if (evt.type.indexOf('mouse') !== -1) {
+        mouseX = (evt as MouseEvent).clientX;
+      } else {
+        mouseX = (evt as TouchEvent).touches[0].clientX;
+      }
+
+      const left = Math.min(Math.max(0, mouseX - boxLeft), boxWidth);
+      percent = (left * 100) / boxWidth;
+
+      if (this.rtl) {
+        percent = 100 - percent;
+      }
+    }
+
+    if (this.data) {
+      let index = Math.round(convertRange(0, 100, 0, this.data.length - 1, percent));
+
+      if (this.step !== undefined) {
+        index = roundToStep(index, this.step);
+      }
+
+      this.value = this.data[index];
+    } else {
       let value = convertRange(0, 100, this.min as number, this.max as number, percent);
 
       if (this.step !== undefined) {
@@ -862,8 +887,9 @@ class RangeSlider extends HTMLElement {
       }
 
       this.value = value;
-      this.render();
     }
+
+    this.render();
   }
 
   getStringOrNumber(attrName: string, defaultValue: number, dataDefaultValue: string | number) {
