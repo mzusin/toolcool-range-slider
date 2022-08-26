@@ -171,12 +171,14 @@ class RangeSlider extends HTMLElement {
   }
 
   public set min(val: number | string) {
-    // if data is provided ---> min can't be change, because it always equals to the first data element
-    if (this.data) return;
+    if (this.data) {
+      this._min = isNumber(val) ? getNumber(val, this.data[0]) : this.data[0];
+    } else {
+      const safe = this.getSafeValues(this.value as number, val as number, this.max as number);
+      this._min = safe.min;
+      this.value = safe.value;
+    }
 
-    const safe = this.getSafeValues(this.value as number, val as number, this.max as number);
-    this._min = safe.min;
-    this.value = safe.value;
     this.render();
   }
 
@@ -186,6 +188,8 @@ class RangeSlider extends HTMLElement {
 
   public set max(val: number | string) {
     if (this.data) {
+      const defaultValue = this.data[this.data.length - 1];
+      this._max = isNumber(val) ? getNumber(val, defaultValue) : defaultValue;
     } else {
       const safe = this.getSafeValues(this.value as number, this.min as number, val as number);
       this._max = safe.max;

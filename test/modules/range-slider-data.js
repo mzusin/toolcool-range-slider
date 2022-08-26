@@ -160,4 +160,14 @@ QUnit.module('Range Slider Data', () => {
         assert.equal($slider.min, 1);
     });
 
+    QUnit.test('when data="0, 1, 2, 3, 4, 5" ---> min should be 0', (assert) => {
+        const $slider = document.querySelector('#slider-69');
+        assert.equal($slider.min, 0);
+    });
+
+    QUnit.test('when data="sky, blue" ---> min should be sky', (assert) => {
+        const $slider = document.querySelector('#slider-68');
+        assert.equal($slider.min, 'sky');
+    });
+
 });
