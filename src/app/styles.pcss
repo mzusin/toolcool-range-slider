@@ -228,6 +228,20 @@
     --tc-range-slider-pointer-border-focus: 0;
 }
 
+.ruler{
+    --tc-range-slider-height: 1rem;
+    --tc-range-slider-panel-bg-border-radius: 2px;
+    --tc-range-slider-panel-bg: #fff;
+    --tc-range-slider-panel-bg-hover: #fff;
+    --tc-range-slider-panel-bg-fill: #ccc;
+}
+
+.ruler .panel{
+    background-size: 0.4rem 100%;
+    background-repeat: repeat-x;
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 2px), var(--tc-range-slider-panel-bg-fill, #000) calc(50%), rgba(0, 0, 0, 0) calc(50% + 2px));
+}
+
 /**
  * pointer shapes
  */
@@ -267,3 +281,4 @@
     -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
+
