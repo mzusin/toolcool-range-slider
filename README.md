@@ -26,8 +26,8 @@ Responsive range slider library written in typescript and using web component te
 - Disabled / enabled range slider (including API).
 - Local storage and session storage support.
 - Right to left (RTL) support.
-- Supports a list of individual values.
-- String data support.
+- Supports a list of individual values (discrete values).
+- Text data support.
 
 ## Table of contents
 - [Basic usage](#basic-usage)
