@@ -30,7 +30,9 @@ Responsive range slider library written in typescript and using web component te
 - Right to left (RTL) support.
 - Text data support :writing_hand:
 - Non-linear range slider :chart_with_downwards_trend:
-- Optional animation on panel click
+- Optional animation on panel click.
+- Works well with Bootstrap and other CSS frameworks :+1:
+- No CSS conflicts due to web components.
 
 ## Table of contents
 - [Basic usage](#basic-usage)
@@ -100,7 +102,7 @@ The value label can also be automatically bound using the **value-label** attrib
 <script type="text/javascript" src="toolcool-range-slider.min.js"></script>
 ```
 
-More examples with automatic label binding can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/8-automatic-labels-binding.html). 
+:pushpin: More examples with automatic label binding can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/8-automatic-labels-binding.html). 
 
 :pushpin: Examples with js binding can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/1-basic.html).
 
