@@ -1,4 +1,4 @@
-# Tool Cool Range Slider
+# ![Tool Cool Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/favicon/favicon-32.png?raw=true) Tool Cool Range Slider
 
 [![GitHub license](https://img.shields.io/github/license/toolcool-org/toolcool-range-slider)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/LICENSE)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/toolcool-org/toolcool-range-slider)
