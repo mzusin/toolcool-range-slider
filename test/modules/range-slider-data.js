@@ -72,87 +72,92 @@ QUnit.module('Range Slider Data', () => {
 
     QUnit.test('when data="1", the default value is 1', (assert) => {
         const $slider = document.querySelector('#slider-59');
-        assert.deepEqual($slider.value, 1);
+        assert.equal($slider.value, 1);
     });
 
     QUnit.test('when data="a, b", the default value is a', (assert) => {
         const $slider = document.querySelector('#slider-67');
-        assert.deepEqual($slider.value, 'a');
+        assert.equal($slider.value, 'a');
     });
 
     QUnit.test('when data="sky, blue", the default value is sky', (assert) => {
         const $slider = document.querySelector('#slider-68');
-        assert.deepEqual($slider.value, 'sky');
+        assert.equal($slider.value, 'sky');
     });
 
     QUnit.test('when data="0, 1, 2, 3, 4, 5", the default value is 0', (assert) => {
         const $slider = document.querySelector('#slider-69');
-        assert.deepEqual($slider.value, 0);
+        assert.equal($slider.value, 0);
     });
 
     QUnit.test('when data="-1, -2", the default value is -1', (assert) => {
         const $slider = document.querySelector('#slider-70');
-        assert.deepEqual($slider.value, -1);
+        assert.equal($slider.value, -1);
     });
 
     QUnit.test('when data="1, 2, 3" ---> change value to 2 (number)', (assert) => {
         const $slider = document.querySelector('#slider-71');
         $slider.value = 2;
-        assert.deepEqual($slider.value, 2);
+        assert.equal($slider.value, 2);
     });
 
     QUnit.test('when data="1, 2, 3" ---> change value to 2 (string)', (assert) => {
         const $slider = document.querySelector('#slider-71');
         $slider.value = '2';
-        assert.deepEqual($slider.value, 2);
+        assert.equal($slider.value, 2);
     });
 
     QUnit.test('when data="a, b, c" ---> change value to c', (assert) => {
         const $slider = document.querySelector('#slider-67');
         $slider.value = 'c';
-        assert.deepEqual($slider.value, 'c');
+        assert.equal($slider.value, 'c');
     });
 
     QUnit.test('when data="a, b, c" ---> change value to non existing item', (assert) => {
         const $slider = document.querySelector('#slider-67');
         $slider.value = 'k';
-        assert.deepEqual($slider.value, 'a');
+        assert.equal($slider.value, 'a');
     });
 
     QUnit.test('when data="1, 2, 3" ---> change value to non existing item', (assert) => {
         const $slider = document.querySelector('#slider-71');
         $slider.value = 100;
-        assert.deepEqual($slider.value, 1);
+        assert.equal($slider.value, 1);
     });
 
     QUnit.test('when data="1, 2, 3" ---> change value via attribute to 2', (assert) => {
         const $slider = document.querySelector('#slider-71');
         $slider.setAttribute('value', '2');
-        assert.deepEqual($slider.value, 2);
+        assert.equal($slider.value, 2);
     });
 
     QUnit.test('when data="a, b, c" ---> change value via attribute to c', (assert) => {
         const $slider = document.querySelector('#slider-67');
         $slider.setAttribute('value', 'c');
-        assert.deepEqual($slider.value, 'c');
+        assert.equal($slider.value, 'c');
     });
 
     QUnit.test('when data="sky, blue" ---> change value via attribute to blue', (assert) => {
         const $slider = document.querySelector('#slider-68');
         $slider.setAttribute('value', 'blue');
-        assert.deepEqual($slider.value, 'blue');
+        assert.equal($slider.value, 'blue');
     });
 
     QUnit.test('when data="a, b, c" ---> change value via attribute to non existing item', (assert) => {
         const $slider = document.querySelector('#slider-67');
         $slider.setAttribute('value', 'k');
-        assert.deepEqual($slider.value, 'a');
+        assert.equal($slider.value, 'a');
     });
 
     QUnit.test('when data="1, 2, 3" ---> change value via attribute to non existing item', (assert) => {
         const $slider = document.querySelector('#slider-71');
         $slider.setAttribute('value', '100');
-        assert.deepEqual($slider.value, 1);
+        assert.equal($slider.value, 1);
+    });
+
+    QUnit.test('when data="1, 2, 3" ---> min should be 1', (assert) => {
+        const $slider = document.querySelector('#slider-71');
+        assert.equal($slider.min, 1);
     });
 
 });

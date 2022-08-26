@@ -68,8 +68,8 @@ class RangeSlider extends HTMLElement {
 
   private _value: string | number = 0; // [min, max]
   private _data: (string | number)[] | undefined = undefined;
-  private _min = 0;
-  private _max = 100;
+  private _min: string | number = 0;
+  private _max: string | number = 100;
   private _step: number | undefined = undefined;
   private _type: string | undefined = undefined;
   private _theme: string | undefined = undefined;
@@ -149,7 +149,7 @@ class RangeSlider extends HTMLElement {
         this.setValueHelper(_val);
       }
     } else {
-      const safe = this.getSafeValues(val as number, this.min, this.max);
+      const safe = this.getSafeValues(val as number, this.min as number, this.max as number);
       this.setValueHelper(safe.value);
     }
   }
@@ -170,24 +170,24 @@ class RangeSlider extends HTMLElement {
     return this._data;
   }
 
-  public set min(num: number) {
-    if (this.data) {
-    } else {
-      const safe = this.getSafeValues(this.value as number, num, this.max);
-      this._min = safe.min;
-      this.value = safe.value;
-      this.render();
-    }
+  public set min(val: number | string) {
+    // if data is provided ---> min can't be change, because it always equals to the first data element
+    if (this.data) return;
+
+    const safe = this.getSafeValues(this.value as number, val as number, this.max as number);
+    this._min = safe.min;
+    this.value = safe.value;
+    this.render();
   }
 
   public get min() {
     return this._min;
   }
 
-  public set max(num: number) {
+  public set max(val: number | string) {
     if (this.data) {
     } else {
-      const safe = this.getSafeValues(this.value as number, this.min, num);
+      const safe = this.getSafeValues(this.value as number, this.min as number, val as number);
       this._max = safe.max;
       this.value = safe.value;
       this.render();
@@ -199,18 +199,21 @@ class RangeSlider extends HTMLElement {
   }
 
   public set step(num: number | undefined) {
-    const range = Math.abs(this.max - this.min);
-    if (num === undefined) {
-      this._step = undefined;
-      return;
-    }
+    if (this.data) {
+    } else {
+      const range = Math.abs((this.max as number) - (this.min as number));
+      if (num === undefined) {
+        this._step = undefined;
+        return;
+      }
 
-    if (num > range) {
-      this._step = undefined;
-      return;
-    }
+      if (num > range) {
+        this._step = undefined;
+        return;
+      }
 
-    this._step = Math.abs(num);
+      this._step = Math.abs(num);
+    }
   }
 
   public get step() {
@@ -570,7 +573,7 @@ class RangeSlider extends HTMLElement {
     if (this.data) {
     } else {
       // update the pointer position
-      let percent = convertRange(this.min, this.max, 0, 100, this.value as number);
+      let percent = convertRange(this.min as number, this.max as number, 0, 100, this.value as number);
 
       if (this.type === 'vertical') {
         if (this.btt) {
@@ -725,7 +728,7 @@ class RangeSlider extends HTMLElement {
         if (this.data) {
         } else {
           const step = getNumber(this.step, 1);
-          const safe = this.getSafeValues((this.value as number) - step, this.min, this.max);
+          const safe = this.getSafeValues((this.value as number) - step, this.min as number, this.max as number);
           this.value = safe.value;
           this.render();
         }
@@ -737,7 +740,7 @@ class RangeSlider extends HTMLElement {
         if (this.data) {
         } else {
           const step = getNumber(this.step, 1);
-          const safe = this.getSafeValues((this.value as number) + step, this.min, this.max);
+          const safe = this.getSafeValues((this.value as number) + step, this.min as number, this.max as number);
           this.value = safe.value;
           this.render();
         }
@@ -787,54 +790,66 @@ class RangeSlider extends HTMLElement {
   onValueChange(evt: MouseEvent | TouchEvent) {
     if (this.disabled || !this._$slider) return;
 
-    let percent;
-
-    if (this.type === 'vertical') {
-      // -------------- vertical -----------------
-
-      const { height: boxHeight, top: boxTop } = this._$slider.getBoundingClientRect();
-
-      let mouseY;
-      if (evt.type.indexOf('mouse') !== -1) {
-        mouseY = (evt as MouseEvent).clientY;
-      } else {
-        mouseY = (evt as TouchEvent).touches[0].clientY;
-      }
-
-      const top = Math.min(Math.max(0, mouseY - boxTop), boxHeight);
-      percent = (top * 100) / boxHeight;
-
-      if (this.btt) {
-        percent = 100 - percent;
-      }
+    if (this.data) {
     } else {
-      // -------------- horizontal -----------------
+      let percent;
 
-      const { width: boxWidth, left: boxLeft } = this._$slider.getBoundingClientRect();
+      if (this.type === 'vertical') {
+        // -------------- vertical -----------------
 
-      let mouseX;
-      if (evt.type.indexOf('mouse') !== -1) {
-        mouseX = (evt as MouseEvent).clientX;
+        const { height: boxHeight, top: boxTop } = this._$slider.getBoundingClientRect();
+
+        let mouseY;
+        if (evt.type.indexOf('mouse') !== -1) {
+          mouseY = (evt as MouseEvent).clientY;
+        } else {
+          mouseY = (evt as TouchEvent).touches[0].clientY;
+        }
+
+        const top = Math.min(Math.max(0, mouseY - boxTop), boxHeight);
+        percent = (top * 100) / boxHeight;
+
+        if (this.btt) {
+          percent = 100 - percent;
+        }
       } else {
-        mouseX = (evt as TouchEvent).touches[0].clientX;
+        // -------------- horizontal -----------------
+
+        const { width: boxWidth, left: boxLeft } = this._$slider.getBoundingClientRect();
+
+        let mouseX;
+        if (evt.type.indexOf('mouse') !== -1) {
+          mouseX = (evt as MouseEvent).clientX;
+        } else {
+          mouseX = (evt as TouchEvent).touches[0].clientX;
+        }
+
+        const left = Math.min(Math.max(0, mouseX - boxLeft), boxWidth);
+        percent = (left * 100) / boxWidth;
+
+        if (this.rtl) {
+          percent = 100 - percent;
+        }
       }
 
-      const left = Math.min(Math.max(0, mouseX - boxLeft), boxWidth);
-      percent = (left * 100) / boxWidth;
+      let value = convertRange(0, 100, this.min as number, this.max as number, percent);
 
-      if (this.rtl) {
-        percent = 100 - percent;
+      if (this.step !== undefined) {
+        value = roundToStep(value, this.step);
       }
+
+      this.value = value;
+      this.render();
     }
+  }
 
-    let value = convertRange(0, 100, this.min, this.max, percent);
-
-    if (this.step !== undefined) {
-      value = roundToStep(value, this.step);
+  getStringOrNumber(attrName: string, defaultValue: number, dataDefaultValue: string | number) {
+    const _val = this.getAttribute(attrName);
+    if (this.data) {
+      return isNumber(_val) ? getNumber(_val, dataDefaultValue) : _val ?? dataDefaultValue;
+    } else {
+      return getNumber(_val, defaultValue);
     }
-
-    this.value = value;
-    this.render();
   }
 
   // ------------------------- WEB COMPONENT LIFECYCLE ----------------------------
@@ -846,10 +861,10 @@ class RangeSlider extends HTMLElement {
     if (!this.shadowRoot) return;
 
     // initial values of attributes
-    this.min = getNumber(this.getAttribute('min'), 0);
-    this.max = getNumber(this.getAttribute('max'), 100);
     this.data = this.parseData(this.getAttribute('data'));
-    this.value = getNumber(this.getAttribute('value'), this.data ? this.data[0] : this.min);
+    this.min = this.getStringOrNumber('min', 0, this.data ? this.data[0] : '');
+    this.max = this.getStringOrNumber('max', 100, this.data ? this.data[this.data.length - 1] : '');
+    this.value = this.getStringOrNumber('value', this.min as number, this.data ? this.data[0] : '');
 
     this.step = getNumber(this.getAttribute('step'), undefined);
     this.type = this.getAttribute('type') || undefined;
@@ -939,26 +954,19 @@ class RangeSlider extends HTMLElement {
   attributeChangedCallback(attrName: string) {
     switch (attrName) {
       case 'min': {
-        this.min = getNumber(this.getAttribute('min'), 0);
+        this.min = this.getStringOrNumber('min', 0, this.data ? this.data[0] : '');
         this.render();
         break;
       }
 
       case 'max': {
-        this.max = getNumber(this.getAttribute('max'), 100);
+        this.max = this.getStringOrNumber('max', 100, this.data ? this.data[this.data.length - 1] : '');
         this.render();
         break;
       }
 
       case 'value': {
-        if (this.data) {
-          const _val = this.getAttribute('value');
-          const _isNumeric = isNumber(_val);
-          this.value = _isNumeric ? getNumber(_val, this.data[0]) : _val;
-        } else {
-          this.value = getNumber(this.getAttribute('value'), this.min);
-        }
-
+        this.value = this.getStringOrNumber('value', this.min as number, this.data ? this.data[0] : '');
         this.render();
         break;
       }
