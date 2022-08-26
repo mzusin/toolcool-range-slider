@@ -4,6 +4,7 @@
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/toolcool-org/toolcool-range-slider)
 [![npm](https://img.shields.io/npm/dw/toolcool-range-slider)](https://www.npmjs.com/package/toolcool-range-slider)
 [![NPM](https://img.shields.io/badge/npm-range_slider-brightgreen)](https://www.npmjs.com/package/toolcool-range-slider)
+[![](https://data.jsdelivr.com/v1/package/npm/toolcool-range-slider/badge)](https://www.jsdelivr.com/package/npm/toolcool-range-slider)
 [![Featured on Openbase](https://badges.openbase.com/js/featured/toolcool-range-slider.svg?token=sUaswkA1YmMFk8F+JBWQZoWo4wGL7wZwyIaglD6kAlQ=)](https://openbase.com/js/toolcool-range-slider?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)
 
