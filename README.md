@@ -30,6 +30,7 @@ Responsive range slider library written in typescript and using web component te
 - Right to left (RTL) support.
 - Text data support :writing_hand:
 - Non-linear range slider :chart_with_downwards_trend:
+- Optional animation on panel click
 
 ## Table of contents
 - [Basic usage](#basic-usage)
@@ -48,6 +49,7 @@ Responsive range slider library written in typescript and using web component te
 - [Storage](#storage)
 - [RTL Support](#rtl-support)
 - [Non-linear step](#non-linear-step)
+- [Animation on panel click](#animation-on-panel-click)
 - [TypeScript Usage](#typescript-usage)
 - [Usage with React and TypeScript](#usage-with-react-and-typescript)
 - [License](#license)
@@ -229,13 +231,13 @@ The slider has several optional predefined themes. Each theme defines a unique l
 
 The slider has the following themes:
 
-| Theme Code Name | Example                                                                                                                                                                                                 |
-|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Theme Code Name | Example                                                                                                                                                                                               |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | target          | [Example 1](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html), [Example 2](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html) |
 | glass           | [Example 1](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html), [Example 2](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html) |
 | rect            | [Example 1](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html), [Example 2](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html) |
 | circle          | [Example 1](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html), [Example 2](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html) |
-| gradient        | [Example 1](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/6-gradient.html) |
+| gradient        | [Example](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/6-gradient.html) |
 | ruler           | [Example](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html)  |
 
 Usage examples:
@@ -511,6 +513,18 @@ Step function has the following type:
 It gets the **value** of the slider and returns the corresponding **step** value.
 
 :pushpin: The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/17-non-linear.html).
+
+## Animation on panel click
+
+It's possible to enable animation on panel click with the **animate-onclick** property:
+
+```html
+<toolcool-range-slider animate-onclick="0.3s"></toolcool-range-slider>
+```
+
+The value of the **animate-onclick** property is specified in seconds, ms, etc. and is the same as the css [transition-duration](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration) property.
+
+:pushpin: The page with example can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/18-animation-on-click.html).
 
 ## TypeScript Usage
 

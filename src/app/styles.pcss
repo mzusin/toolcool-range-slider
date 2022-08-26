@@ -23,6 +23,8 @@
     --tc-range-slider-pointer-border-hover: 1px solid hsla(0, 0%, 88%, 0.5);
     --tc-range-slider-pointer-border-focus: 1px solid hsl(201, 72%, 59%);
     --tc-range-slider-pointer-border-radius: 100%;
+
+    --tc-range-slider-animate-onclick: 0.3s;
 }
 
 :host{
@@ -280,5 +282,12 @@
 .shape-star .pointer-shape{
     -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/**
+ animations
+ */
+.animate-on-click .pointer{
+    transition: all var(--tc-range-slider-animate-onclick);
 }
 

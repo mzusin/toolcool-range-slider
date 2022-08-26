@@ -19,6 +19,8 @@ declare class RangeSlider extends HTMLElement {
     private _storageKey;
     private _storageInitialized;
     private _valueLabel;
+    private _animateOnClick;
+    private _animating;
     private _sliderWidth;
     private _sliderHeight;
     private _sliderRadius;
@@ -66,6 +68,8 @@ declare class RangeSlider extends HTMLElement {
     get btt(): boolean;
     set disabled(val: boolean);
     get disabled(): boolean;
+    set animateOnClick(val: string | undefined);
+    get animateOnClick(): string | undefined;
     set storage(val: StorageTypeEnum | undefined);
     get storage(): StorageTypeEnum | undefined;
     set storageKey(val: string);
@@ -127,6 +131,7 @@ declare class RangeSlider extends HTMLElement {
     pointerMouseWheel(evt: WheelEvent): void;
     stepBack(): void;
     stepForward(): void;
+    onTransitionEnd(): void;
     pointerKeyDown(evt: KeyboardEvent): void;
     onMouseDown(evt: MouseEvent): void;
     onMouseUp(evt: MouseEvent): void;

@@ -58,6 +58,7 @@ class RangeSlider extends HTMLElement {
       'pointer-border-focus',
 
       'value-label',
+      'animate-onclick',
     ];
   }
 
@@ -82,6 +83,8 @@ class RangeSlider extends HTMLElement {
   private _storageInitialized = false;
 
   private _valueLabel: string | undefined = undefined;
+  private _animateOnClick: string | undefined = undefined;
+  private _animating = false;
 
   private _sliderWidth: string | undefined = undefined;
   private _sliderHeight: string | undefined = undefined;
@@ -125,6 +128,7 @@ class RangeSlider extends HTMLElement {
     this.stepBack = this.stepBack.bind(this);
     this.stepForward = this.stepForward.bind(this);
     this.render = this.render.bind(this);
+    this.onTransitionEnd = this.onTransitionEnd.bind(this);
   }
 
   // ----------- APIs ------------------------
@@ -275,6 +279,15 @@ class RangeSlider extends HTMLElement {
 
   public get disabled() {
     return this._disabled;
+  }
+
+  public set animateOnClick(val: string | undefined) {
+    this._animateOnClick = val;
+    this.render();
+  }
+
+  public get animateOnClick() {
+    return this._animateOnClick;
   }
 
   public set storage(val: StorageTypeEnum | undefined) {
@@ -800,6 +813,11 @@ class RangeSlider extends HTMLElement {
     this.render();
   }
 
+  onTransitionEnd() {
+    this._animating = false;
+    this._$slider?.classList.remove('animate-on-click');
+  }
+
   pointerKeyDown(evt: KeyboardEvent) {
     if (this.disabled) return;
 
@@ -838,6 +856,14 @@ class RangeSlider extends HTMLElement {
     }
 
     this._$pointer?.focus();
+
+    if (this.animateOnClick && !this._animating) {
+      const $target = evt.target as HTMLElement;
+      if (!$target.classList.contains('pointer-shape') && !$target.classList.contains('pointer')) {
+        this._animating = true;
+        this._$slider?.classList.add('animate-on-click');
+      }
+    }
 
     this.onValueChange(evt);
     this.sendMouseDownEvent(evt);
@@ -951,6 +977,8 @@ class RangeSlider extends HTMLElement {
     this.btt = this.getAttribute('btt') === 'true';
 
     this.valueLabel = this.getAttribute('value-label') || undefined;
+    this.animateOnClick = this.getAttribute('animate-onclick') || undefined;
+
     this.storage = (this.getAttribute('storage') as StorageTypeEnum) || undefined;
     this.storageKey = this.getAttribute('storage-key') || STORAGE_KEY;
 
@@ -1000,6 +1028,11 @@ class RangeSlider extends HTMLElement {
     this._$pointer?.addEventListener('keydown', this.pointerKeyDown);
     document.addEventListener('wheel', this.pointerMouseWheel);
 
+    if (this.animateOnClick) {
+      this._$slider?.style.setProperty('--tc-range-slider-animate-onclick', this.animateOnClick);
+      this._$slider?.addEventListener('transitionend', this.onTransitionEnd);
+    }
+
     // if the storage is enabled ---> try to restore the value
     if (this.storage) {
       const restoredValue = Number(getFromStorage(this.storage, this.storageKey));
@@ -1025,6 +1058,10 @@ class RangeSlider extends HTMLElement {
     this._$slider?.removeEventListener('mouseup', this.onMouseUp);
     this._$slider?.removeEventListener('touchmove', this.onValueChange);
     this._$slider?.removeEventListener('touchstart', this.onValueChange);
+
+    if (this.animateOnClick) {
+      this._$slider?.removeEventListener('transitionend', this.onTransitionEnd);
+    }
   }
 
   /**
@@ -1087,6 +1124,15 @@ class RangeSlider extends HTMLElement {
 
       case 'disabled': {
         this.disabled = this.getAttribute('disabled') === 'true';
+        this.render();
+        break;
+      }
+
+      case 'animate-onclick': {
+        this.animateOnClick = this.getAttribute('animate-onclick') || undefined;
+        if (this.animateOnClick) {
+          this._$slider?.style.setProperty('--tc-range-slider-animate-onclick', this.animateOnClick);
+        }
         this.render();
         break;
       }
