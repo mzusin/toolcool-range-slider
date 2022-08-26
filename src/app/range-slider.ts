@@ -126,21 +126,30 @@ class RangeSlider extends HTMLElement {
 
   // ----------- APIs ------------------------
 
+  private setValueHelper(val: string | number) {
+    this._value = val;
+
+    this.render();
+    this.sendChangeEvent();
+
+    if (this.storage && this._storageInitialized) {
+      saveToStorage(this.storage, this.storageKey, val);
+    }
+  }
+
   /**
-   * value in [min, max] range
+   * value in [min, max] range, or in provided data array
    */
   public set value(val: string | number) {
     if (this.data) {
+      // the provided value should present in data array
+      const found = this.data.find((item) => item === val);
+      if (found) {
+        this.setValueHelper(val);
+      }
     } else {
       const safe = this.getSafeValues(val as number, this.min, this.max);
-      this._value = safe.value;
-
-      this.render();
-      this.sendChangeEvent();
-
-      if (this.storage && this._storageInitialized) {
-        saveToStorage(this.storage, this.storageKey, safe.value);
-      }
+      this.setValueHelper(safe.value);
     }
   }
 
@@ -838,8 +847,9 @@ class RangeSlider extends HTMLElement {
     // initial values of attributes
     this.min = getNumber(this.getAttribute('min'), 0);
     this.max = getNumber(this.getAttribute('max'), 100);
-    this.value = getNumber(this.getAttribute('value'), this.min);
     this.data = this.parseData(this.getAttribute('data'));
+    this.value = getNumber(this.getAttribute('value'), this.data ? this.data[0] : this.min);
+
     this.step = getNumber(this.getAttribute('step'), undefined);
     this.type = this.getAttribute('type') || undefined;
     this.theme = this.getAttribute('theme') || undefined;
@@ -940,7 +950,7 @@ class RangeSlider extends HTMLElement {
       }
 
       case 'value': {
-        this.value = getNumber(this.getAttribute('value'), this.min);
+        this.value = getNumber(this.getAttribute('value'), this.data ? this.data[0] : this.min);
         this.render();
         break;
       }

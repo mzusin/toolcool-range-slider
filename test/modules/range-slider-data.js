@@ -60,4 +60,9 @@ QUnit.module('Range Slider Data', () => {
         assert.deepEqual($slider.data, ['а', 'б', 'в']);
     });
 
+    QUnit.test('when data="1", the default value is 1', (assert) => {
+        const $slider = document.querySelector('#slider-59');
+        assert.deepEqual($slider.value, 1);
+    });
+
 });
