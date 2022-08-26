@@ -95,4 +95,22 @@ QUnit.module('Range Slider Data', () => {
         assert.deepEqual($slider.value, -1);
     });
 
+    QUnit.test('when data="1, 2, 3" ---> change value to 2 (number)', (assert) => {
+        const $slider = document.querySelector('#slider-71');
+        $slider.value = 2;
+        assert.deepEqual($slider.value, 2);
+    });
+
+    QUnit.test('when data="1, 2, 3" ---> change value to 2 (string)', (assert) => {
+        const $slider = document.querySelector('#slider-71');
+        $slider.value = '2';
+        assert.deepEqual($slider.value, 2);
+    });
+
+    QUnit.test('when data="a, b, c" ---> change value to c', (assert) => {
+        const $slider = document.querySelector('#slider-67');
+        $slider.value = 'c';
+        assert.deepEqual($slider.value, 'c');
+    });
+
 });

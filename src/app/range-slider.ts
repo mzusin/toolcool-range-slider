@@ -143,9 +143,10 @@ class RangeSlider extends HTMLElement {
   public set value(val: string | number) {
     if (this.data) {
       // the provided value should present in data array
-      const found = this.data.find((item) => item === val);
+      const _val = isNumber(val) ? Number(val) : val;
+      const found = this.data.find((item) => item === _val);
       if (found) {
-        this.setValueHelper(val);
+        this.setValueHelper(_val);
       }
     } else {
       const safe = this.getSafeValues(val as number, this.min, this.max);
