@@ -28,8 +28,8 @@ Responsive range slider library written in typescript and using web component te
 - Disabled / enabled range slider (including API).
 - Local storage and session storage support.
 - Supports a list of individual values (discrete values).
-- Text data support.
-- Non linear range slider.
+- Text data support :writing_hand:
+- Non linear range slider :chart_with_downwards_trend:
 
 ## Table of contents
 - [Basic usage](#basic-usage)
