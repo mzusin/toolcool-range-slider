@@ -203,21 +203,21 @@ class RangeSlider extends HTMLElement {
   }
 
   public set step(num: number | undefined) {
-    if (this.data) {
-    } else {
-      const range = Math.abs((this.max as number) - (this.min as number));
-      if (num === undefined) {
-        this._step = undefined;
-        return;
-      }
+    const _start = this.data ? 0 : (this.min as number);
+    const _end = this.data ? this.data.length - 1 : (this.max as number);
 
-      if (num > range) {
-        this._step = undefined;
-        return;
-      }
-
-      this._step = Math.abs(num);
+    const diff = Math.abs(_end - _start);
+    if (num === undefined) {
+      this._step = undefined;
+      return;
     }
+
+    if (num > diff) {
+      this._step = undefined;
+      return;
+    }
+
+    this._step = Math.abs(num);
   }
 
   public get step() {
