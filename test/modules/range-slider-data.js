@@ -170,4 +170,38 @@ QUnit.module('Range Slider Data', () => {
         assert.equal($slider.min, 'sky');
     });
 
+    QUnit.test('when data="0, 1, 2, 3, 4, 5" ---> max should be 5', (assert) => {
+        const $slider = document.querySelector('#slider-69');
+        assert.equal($slider.max, 5);
+    });
+
+    QUnit.test('when data="sky, blue" ---> max should be blue', (assert) => {
+        const $slider = document.querySelector('#slider-68');
+        assert.equal($slider.max, 'blue');
+    });
+
+    QUnit.test('when data="0, 1, 2, 3, 4, 5" ---> try to change max to 4 (via API)', (assert) => {
+        const $slider = document.querySelector('#slider-69');
+        $slider.max = 4;
+        assert.equal($slider.max, 4);
+    });
+
+    QUnit.test('when data="0, 1, 2, 3, 4, 5" ---> try to change min to 2 (via API)', (assert) => {
+        const $slider = document.querySelector('#slider-69');
+        $slider.min = 2;
+        assert.equal($slider.min, 2);
+    });
+
+    QUnit.test('when data="0, 1, 2, 3, 4, 5" ---> try to change max to 4 (via attribute)', (assert) => {
+        const $slider = document.querySelector('#slider-69');
+        $slider.setAttribute('max', '4');
+        assert.equal($slider.max, 4);
+    });
+
+    QUnit.test('when data="0, 1, 2, 3, 4, 5" ---> try to change min to 2 (via attribute)', (assert) => {
+        const $slider = document.querySelector('#slider-69');
+        $slider.setAttribute('min', '2');
+        assert.equal($slider.min, 2);
+    });
+
 });
