@@ -51,4 +51,18 @@ QUnit.module('Range Slider Value Label', () => {
         assert.equal($label.textContent, '0');
     });
 
+
+    QUnit.test('data="a, b", provided value label is .value-4 ---> the label should contain "a"', (assert) => {
+        const $slider = document.querySelector('#slider-72');
+        const $label = document.querySelector('.value-3');
+        assert.equal($label.textContent, 'a');
+    });
+
+    QUnit.test('data="100, 200, 300", provided value label is .value-4 ---> the label should contain "100"', (assert) => {
+        const $slider = document.querySelector('#slider-73');
+        const $label = document.querySelector('.value-4');
+        assert.equal($label.textContent, '100');
+    });
+
 });
+
