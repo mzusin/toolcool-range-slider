@@ -66,7 +66,7 @@ class RangeSlider extends HTMLElement {
   private _$panelFill: HTMLElement | null;
   private _$valueLabel: HTMLElement | null;
 
-  private _value = 0; // [min, max]
+  private _value: string | number = 0; // [min, max]
   private _data: (string | number)[] | undefined = undefined;
   private _min = 0;
   private _max = 100;
@@ -129,14 +129,18 @@ class RangeSlider extends HTMLElement {
   /**
    * value in [min, max] range
    */
-  public set value(num: number) {
-    const safe = this.getSafeValues(num, this.min, this.max);
-    this._value = safe.value;
-    this.render();
-    this.sendChangeEvent();
+  public set value(val: string | number) {
+    if (this.data) {
+    } else {
+      const safe = this.getSafeValues(val as number, this.min, this.max);
+      this._value = safe.value;
 
-    if (this.storage && this._storageInitialized) {
-      saveToStorage(this.storage, this.storageKey, safe.value);
+      this.render();
+      this.sendChangeEvent();
+
+      if (this.storage && this._storageInitialized) {
+        saveToStorage(this.storage, this.storageKey, safe.value);
+      }
     }
   }
 
@@ -157,10 +161,13 @@ class RangeSlider extends HTMLElement {
   }
 
   public set min(num: number) {
-    const safe = this.getSafeValues(this.value, num, this.max);
-    this._min = safe.min;
-    this.value = safe.value;
-    this.render();
+    if (this.data) {
+    } else {
+      const safe = this.getSafeValues(this.value as number, num, this.max);
+      this._min = safe.min;
+      this.value = safe.value;
+      this.render();
+    }
   }
 
   public get min() {
@@ -168,10 +175,13 @@ class RangeSlider extends HTMLElement {
   }
 
   public set max(num: number) {
-    const safe = this.getSafeValues(this.value, this.min, num);
-    this._max = safe.max;
-    this.value = safe.value;
-    this.render();
+    if (this.data) {
+    } else {
+      const safe = this.getSafeValues(this.value as number, this.min, num);
+      this._max = safe.max;
+      this.value = safe.value;
+      this.render();
+    }
   }
 
   public get max() {
@@ -547,41 +557,44 @@ class RangeSlider extends HTMLElement {
   render() {
     if (!this._$slider || !this._$pointer || !this._$panelFill) return;
 
-    // update the pointer position
-    let percent = convertRange(this.min, this.max, 0, 100, this.value);
-
-    if (this.type === 'vertical') {
-      if (this.btt) {
-        this._$pointer.style.top = `${100 - percent}%`;
-        this._$panelFill.style.height = `${percent}%`;
-        this._$panelFill.style.bottom = '0%';
-        this._$panelFill.style.top = 'auto';
-      } else {
-        this._$pointer.style.top = `${percent}%`;
-        this._$panelFill.style.height = `${percent}%`;
-        this._$panelFill.style.bottom = 'auto';
-        this._$panelFill.style.top = '0%';
-      }
-
-      this._$slider.setAttribute('aria-orientation', 'vertical');
+    if (this.data) {
     } else {
-      if (this.rtl) {
-        this._$pointer.style.left = `${100 - percent}%`;
-        this._$panelFill.style.width = `${percent}%`;
-        this._$panelFill.style.right = '0%';
-        this._$panelFill.style.left = 'auto';
+      // update the pointer position
+      let percent = convertRange(this.min, this.max, 0, 100, this.value as number);
+
+      if (this.type === 'vertical') {
+        if (this.btt) {
+          this._$pointer.style.top = `${100 - percent}%`;
+          this._$panelFill.style.height = `${percent}%`;
+          this._$panelFill.style.bottom = '0%';
+          this._$panelFill.style.top = 'auto';
+        } else {
+          this._$pointer.style.top = `${percent}%`;
+          this._$panelFill.style.height = `${percent}%`;
+          this._$panelFill.style.bottom = 'auto';
+          this._$panelFill.style.top = '0%';
+        }
+
+        this._$slider.setAttribute('aria-orientation', 'vertical');
       } else {
-        this._$pointer.style.left = `${percent}%`;
-        this._$panelFill.style.width = `${percent}%`;
-        this._$panelFill.style.right = 'auto';
-        this._$panelFill.style.left = '0%';
+        if (this.rtl) {
+          this._$pointer.style.left = `${100 - percent}%`;
+          this._$panelFill.style.width = `${percent}%`;
+          this._$panelFill.style.right = '0%';
+          this._$panelFill.style.left = 'auto';
+        } else {
+          this._$pointer.style.left = `${percent}%`;
+          this._$panelFill.style.width = `${percent}%`;
+          this._$panelFill.style.right = 'auto';
+          this._$panelFill.style.left = '0%';
+        }
+
+        this._$slider.setAttribute('aria-orientation', 'horizontal');
       }
 
-      this._$slider.setAttribute('aria-orientation', 'horizontal');
-    }
-
-    if (this._$valueLabel) {
-      this._$valueLabel.textContent = Math.round(this.value).toString();
+      if (this._$valueLabel) {
+        this._$valueLabel.textContent = Math.round(this.value as number).toString();
+      }
     }
 
     // set additional area attributes
@@ -699,18 +712,25 @@ class RangeSlider extends HTMLElement {
 
     switch (evt.key) {
       case 'ArrowLeft': {
-        const step = getNumber(this.step, 1);
-        const safe = this.getSafeValues(this.value - step, this.min, this.max);
-        this.value = safe.value;
-        this.render();
+        if (this.data) {
+        } else {
+          const step = getNumber(this.step, 1);
+          const safe = this.getSafeValues((this.value as number) - step, this.min, this.max);
+          this.value = safe.value;
+          this.render();
+        }
+
         break;
       }
 
       case 'ArrowRight': {
-        const step = getNumber(this.step, 1);
-        const safe = this.getSafeValues(this.value + step, this.min, this.max);
-        this.value = safe.value;
-        this.render();
+        if (this.data) {
+        } else {
+          const step = getNumber(this.step, 1);
+          const safe = this.getSafeValues((this.value as number) + step, this.min, this.max);
+          this.value = safe.value;
+          this.render();
+        }
         break;
       }
 
