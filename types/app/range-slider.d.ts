@@ -124,6 +124,9 @@ declare class RangeSlider extends HTMLElement {
     findValueIndexInData(val: string | number): number;
     render(): void;
     pointerClicked(): void;
+    pointerMouseWheel(evt: WheelEvent): void;
+    stepBack(): void;
+    stepForward(): void;
     pointerKeyDown(evt: KeyboardEvent): void;
     onMouseDown(evt: MouseEvent): void;
     onMouseUp(evt: MouseEvent): void;

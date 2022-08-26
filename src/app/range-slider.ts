@@ -116,11 +116,14 @@ class RangeSlider extends HTMLElement {
     });
 
     this.pointerClicked = this.pointerClicked.bind(this);
+    this.pointerMouseWheel = this.pointerMouseWheel.bind(this);
     this.onMouseDown = this.onMouseDown.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
     this.onValueChange = this.onValueChange.bind(this);
     this.pointerKeyDown = this.pointerKeyDown.bind(this);
     this.getSafeValues = this.getSafeValues.bind(this);
+    this.stepBack = this.stepBack.bind(this);
+    this.stepForward = this.stepForward.bind(this);
     this.render = this.render.bind(this);
   }
 
@@ -748,48 +751,66 @@ class RangeSlider extends HTMLElement {
     this.sendPointerClickedEvent();
   }
 
+  pointerMouseWheel(evt: WheelEvent) {
+    if (document.activeElement !== this) return;
+    const scrollTop = evt.deltaY < 0;
+
+    if (scrollTop) {
+      this.stepBack();
+    } else {
+      this.stepForward();
+    }
+  }
+
+  stepBack() {
+    if (this.data) {
+      const index = this.findValueIndexInData(this.value);
+      if (index !== -1) {
+        const step = typeof this.step === 'function' ? this.step(index) : getNumber(this.step, 1);
+        const updatedIndex = index - step;
+        if (this.data[updatedIndex] !== undefined) {
+          this.value = this.data[updatedIndex];
+        }
+      }
+    } else {
+      const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
+      const safe = this.getSafeValues((this.value as number) - step, this.min as number, this.max as number);
+      this.value = safe.value;
+    }
+
+    this.render();
+  }
+
+  stepForward() {
+    if (this.data) {
+      const index = this.findValueIndexInData(this.value);
+      if (index !== -1) {
+        const step = typeof this.step === 'function' ? this.step(index) : getNumber(this.step, 1);
+        const updatedIndex = index + step;
+        if (this.data[updatedIndex] !== undefined) {
+          this.value = this.data[updatedIndex];
+        }
+      }
+    } else {
+      const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
+      const safe = this.getSafeValues((this.value as number) + step, this.min as number, this.max as number);
+      this.value = safe.value;
+    }
+
+    this.render();
+  }
+
   pointerKeyDown(evt: KeyboardEvent) {
     if (this.disabled) return;
 
     switch (evt.key) {
       case 'ArrowLeft': {
-        if (this.data) {
-          const index = this.findValueIndexInData(this.value);
-          if (index !== -1) {
-            const step = typeof this.step === 'function' ? this.step(index) : getNumber(this.step, 1);
-            const updatedIndex = index - step;
-            if (this.data[updatedIndex] !== undefined) {
-              this.value = this.data[updatedIndex];
-            }
-          }
-        } else {
-          const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
-          const safe = this.getSafeValues((this.value as number) - step, this.min as number, this.max as number);
-          this.value = safe.value;
-        }
-
-        this.render();
-
+        this.stepBack();
         break;
       }
 
       case 'ArrowRight': {
-        if (this.data) {
-          const index = this.findValueIndexInData(this.value);
-          if (index !== -1) {
-            const step = typeof this.step === 'function' ? this.step(index) : getNumber(this.step, 1);
-            const updatedIndex = index + step;
-            if (this.data[updatedIndex] !== undefined) {
-              this.value = this.data[updatedIndex];
-            }
-          }
-        } else {
-          const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
-          const safe = this.getSafeValues((this.value as number) + step, this.min as number, this.max as number);
-          this.value = safe.value;
-        }
-
-        this.render();
+        this.stepForward();
         break;
       }
 
@@ -977,6 +998,7 @@ class RangeSlider extends HTMLElement {
     // init pointer events
     this._$pointer?.addEventListener('click', this.pointerClicked);
     this._$pointer?.addEventListener('keydown', this.pointerKeyDown);
+    document.addEventListener('wheel', this.pointerMouseWheel);
 
     // if the storage is enabled ---> try to restore the value
     if (this.storage) {
@@ -997,6 +1019,7 @@ class RangeSlider extends HTMLElement {
   disconnectedCallback() {
     this._$pointer?.removeEventListener('click', this.pointerClicked);
     this._$pointer?.removeEventListener('keydown', this.pointerClicked);
+    document.removeEventListener('wheel', this.pointerMouseWheel);
 
     this._$slider?.removeEventListener('mousedown', this.onMouseDown);
     this._$slider?.removeEventListener('mouseup', this.onMouseUp);
