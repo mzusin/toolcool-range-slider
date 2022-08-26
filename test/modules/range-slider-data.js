@@ -113,4 +113,46 @@ QUnit.module('Range Slider Data', () => {
         assert.deepEqual($slider.value, 'c');
     });
 
+    QUnit.test('when data="a, b, c" ---> change value to non existing item', (assert) => {
+        const $slider = document.querySelector('#slider-67');
+        $slider.value = 'k';
+        assert.deepEqual($slider.value, 'a');
+    });
+
+    QUnit.test('when data="1, 2, 3" ---> change value to non existing item', (assert) => {
+        const $slider = document.querySelector('#slider-71');
+        $slider.value = 100;
+        assert.deepEqual($slider.value, 1);
+    });
+
+    QUnit.test('when data="1, 2, 3" ---> change value via attribute to 2', (assert) => {
+        const $slider = document.querySelector('#slider-71');
+        $slider.setAttribute('value', '2');
+        assert.deepEqual($slider.value, 2);
+    });
+
+    QUnit.test('when data="a, b, c" ---> change value via attribute to c', (assert) => {
+        const $slider = document.querySelector('#slider-67');
+        $slider.setAttribute('value', 'c');
+        assert.deepEqual($slider.value, 'c');
+    });
+
+    QUnit.test('when data="sky, blue" ---> change value via attribute to blue', (assert) => {
+        const $slider = document.querySelector('#slider-68');
+        $slider.setAttribute('value', 'blue');
+        assert.deepEqual($slider.value, 'blue');
+    });
+
+    QUnit.test('when data="a, b, c" ---> change value via attribute to non existing item', (assert) => {
+        const $slider = document.querySelector('#slider-67');
+        $slider.setAttribute('value', 'k');
+        assert.deepEqual($slider.value, 'a');
+    });
+
+    QUnit.test('when data="1, 2, 3" ---> change value via attribute to non existing item', (assert) => {
+        const $slider = document.querySelector('#slider-71');
+        $slider.setAttribute('value', '100');
+        assert.deepEqual($slider.value, 1);
+    });
+
 });

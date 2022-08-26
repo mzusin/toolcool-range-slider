@@ -951,7 +951,14 @@ class RangeSlider extends HTMLElement {
       }
 
       case 'value': {
-        this.value = getNumber(this.getAttribute('value'), this.data ? this.data[0] : this.min);
+        if (this.data) {
+          const _val = this.getAttribute('value');
+          const _isNumeric = isNumber(_val);
+          this.value = _isNumeric ? getNumber(_val, this.data[0]) : _val;
+        } else {
+          this.value = getNumber(this.getAttribute('value'), this.min);
+        }
+
         this.render();
         break;
       }
