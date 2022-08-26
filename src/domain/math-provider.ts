@@ -22,7 +22,7 @@ export const getNumber = (input: any, defaultValue: any) => {
  * where X is the step provided by the user.
  */
 export const roundToStep = (num: number, step: number) => {
-  return Math.round(num / step) * step;
+  return step === 0 ? 0 : Math.round(num / step) * step;
 };
 
 /**

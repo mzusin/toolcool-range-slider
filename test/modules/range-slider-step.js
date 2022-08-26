@@ -43,4 +43,20 @@ QUnit.module('Range Slider Step', () => {
     assert.equal($slider.step, 4);
   });
 
+  QUnit.test('change step to 2 and then perform arrow right --> the value should jump 2 places', (assert) => {
+    const $slider = document.querySelector('#slider-1');
+    $slider.setAttribute('step', 2);
+
+    const $pointer = $slider.shadowRoot.querySelector('.pointer');
+
+    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      key: 'ArrowRight',
+    }));
+
+    assert.equal($slider.value, 2);
+  });
+
 });

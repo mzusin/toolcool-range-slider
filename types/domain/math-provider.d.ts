@@ -3,6 +3,7 @@
  * f(x) = (b - a) * (x - min) / (max - min) + a
  */
 export declare const convertRange: (min: number, max: number, a: number, b: number, x: number) => number;
+export declare const isNumber: (input: any) => boolean;
 export declare const getNumber: (input: any, defaultValue: any) => any;
 /**
  * Round up to the next multiple of X,

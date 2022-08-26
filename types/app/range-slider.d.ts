@@ -6,6 +6,7 @@ declare class RangeSlider extends HTMLElement {
     private _$panelFill;
     private _$valueLabel;
     private _value;
+    private _data;
     private _min;
     private _max;
     private _step;
@@ -38,20 +39,23 @@ declare class RangeSlider extends HTMLElement {
     private _pointerBorderHover;
     private _pointerBorderFocus;
     constructor();
+    private setValueHelper;
     /**
-     * value in [min, max] range
+     * value in [min, max] range, or in provided data array
      */
-    set value(num: number);
+    set value(val: string | number);
     /**
      * returns value from [min, max] range
      */
-    get value(): number;
-    set min(num: number);
-    get min(): number;
-    set max(num: number);
-    get max(): number;
-    set step(num: number | undefined);
-    get step(): number | undefined;
+    get value(): string | number;
+    set data(val: (string | number)[] | undefined);
+    get data(): (string | number)[] | undefined;
+    set min(val: number | string);
+    get min(): number | string;
+    set max(val: number | string);
+    get max(): number | string;
+    set step(numOrFunction: number | ((value: number | string) => number) | undefined);
+    get step(): number | ((value: number | string) => number) | undefined;
     set type(val: string | undefined);
     get type(): string | undefined;
     set theme(val: string | undefined);
@@ -116,12 +120,15 @@ declare class RangeSlider extends HTMLElement {
         max: number;
         value: number;
     };
+    parseData(dataString: string | undefined | null): (string | number)[] | undefined;
+    findValueIndexInData(val: string | number): number;
     render(): void;
     pointerClicked(): void;
     pointerKeyDown(evt: KeyboardEvent): void;
     onMouseDown(evt: MouseEvent): void;
     onMouseUp(evt: MouseEvent): void;
     onValueChange(evt: MouseEvent | TouchEvent): void;
+    getStringOrNumber(attrName: string, defaultValue: number, dataDefaultValue: string | number): any;
     /**
      * when the custom element connected to DOM
      */

@@ -70,7 +70,7 @@ class RangeSlider extends HTMLElement {
   private _data: (string | number)[] | undefined = undefined;
   private _min: string | number = 0;
   private _max: string | number = 100;
-  private _step: number | undefined = undefined;
+  private _step: number | ((value: number | string) => number) | undefined = undefined;
   private _type: string | undefined = undefined;
   private _theme: string | undefined = undefined;
   private _disabled = false;
@@ -202,22 +202,27 @@ class RangeSlider extends HTMLElement {
     return this._max;
   }
 
-  public set step(num: number | undefined) {
+  public set step(numOrFunction: number | ((value: number | string) => number) | undefined) {
+    if (typeof numOrFunction === 'function') {
+      this._step = numOrFunction;
+      return;
+    }
+
     const _start = this.data ? 0 : (this.min as number);
     const _end = this.data ? this.data.length - 1 : (this.max as number);
 
     const diff = Math.abs(_end - _start);
-    if (num === undefined) {
+    if (numOrFunction === undefined) {
       this._step = undefined;
       return;
     }
 
-    if (num > diff) {
+    if (numOrFunction > diff) {
       this._step = undefined;
       return;
     }
 
-    this._step = Math.abs(num);
+    this._step = Math.abs(numOrFunction);
   }
 
   public get step() {
@@ -548,7 +553,7 @@ class RangeSlider extends HTMLElement {
   parseData(dataString: string | undefined | null): (string | number)[] | undefined {
     if (dataString === undefined || dataString === null) return undefined;
 
-    let result = dataString.trim();
+    const result = dataString.trim();
     if (result === '') return undefined;
 
     const parts = dataString.split(',');
@@ -597,7 +602,7 @@ class RangeSlider extends HTMLElement {
     }
 
     // update the pointer position
-    let percent = convertRange(_min, _max, 0, 100, _val);
+    const percent = convertRange(_min, _max, 0, 100, _val);
 
     if (this.type === 'vertical') {
       if (this.btt) {
@@ -748,17 +753,17 @@ class RangeSlider extends HTMLElement {
 
     switch (evt.key) {
       case 'ArrowLeft': {
-        const step = getNumber(this.step, 1);
-
         if (this.data) {
           const index = this.findValueIndexInData(this.value);
           if (index !== -1) {
+            const step = typeof this.step === 'function' ? this.step(index) : getNumber(this.step, 1);
             const updatedIndex = index - step;
             if (this.data[updatedIndex] !== undefined) {
               this.value = this.data[updatedIndex];
             }
           }
         } else {
+          const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
           const safe = this.getSafeValues((this.value as number) - step, this.min as number, this.max as number);
           this.value = safe.value;
         }
@@ -769,17 +774,17 @@ class RangeSlider extends HTMLElement {
       }
 
       case 'ArrowRight': {
-        const step = getNumber(this.step, 1);
-
         if (this.data) {
           const index = this.findValueIndexInData(this.value);
           if (index !== -1) {
+            const step = typeof this.step === 'function' ? this.step(index) : getNumber(this.step, 1);
             const updatedIndex = index + step;
             if (this.data[updatedIndex] !== undefined) {
               this.value = this.data[updatedIndex];
             }
           }
         } else {
+          const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
           const safe = this.getSafeValues((this.value as number) + step, this.min as number, this.max as number);
           this.value = safe.value;
         }
@@ -873,17 +878,19 @@ class RangeSlider extends HTMLElement {
 
     if (this.data) {
       let index = Math.round(convertRange(0, 100, 0, this.data.length - 1, percent));
+      const stepVal = typeof this.step === 'function' ? this.step(index) : this.step;
 
-      if (this.step !== undefined) {
-        index = roundToStep(index, this.step);
+      if (stepVal !== undefined) {
+        index = roundToStep(index, stepVal);
       }
 
       this.value = this.data[index];
     } else {
       let value = convertRange(0, 100, this.min as number, this.max as number, percent);
+      const stepVal = typeof this.step === 'function' ? this.step(value) : this.step;
 
-      if (this.step !== undefined) {
-        value = roundToStep(value, this.step);
+      if (stepVal !== undefined) {
+        value = roundToStep(value, stepVal);
       }
 
       this.value = value;
