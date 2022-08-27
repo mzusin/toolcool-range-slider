@@ -999,14 +999,23 @@ class RangeSlider extends HTMLElement {
       $label.setAttribute('for', 'range-slider');
 
       const $row = this._$box?.querySelector('.row');
-
       switch (codeName) {
         case 'min-label': {
-          $row?.prepend($label);
+          if (this.rtl || this.btt) {
+            $row?.append($label);
+          } else {
+            $row?.prepend($label);
+          }
+
           break;
         }
         case 'max-label': {
-          $row?.append($label);
+          if (this.rtl || this.btt) {
+            $row?.prepend($label);
+          } else {
+            $row?.append($label);
+          }
+
           break;
         }
         case 'value-label': {
@@ -1086,6 +1095,13 @@ class RangeSlider extends HTMLElement {
       this.initLabel('_$minLabel', 'min-label');
       this.initLabel('_$maxLabel', 'max-label');
       this.initLabel('_$valueLabel', 'value-label');
+
+      if (this.rtl || this.btt) {
+        const $minSlot = this.shadowRoot.querySelector('slot[name="min-label"]');
+        const $maxSlot = this.shadowRoot.querySelector('slot[name="max-label"]');
+        if ($minSlot) this._$slider?.after($minSlot);
+        if ($maxSlot) this._$slider?.before($maxSlot);
+      }
     }
 
     // init slider events

@@ -48,13 +48,23 @@
 <body>
 
     <h1>Generate Labels</h1>
+
+    <!-- horizontal -->
     <div style="width: 500px; max-width: 100%; margin: auto auto 3rem auto">
         <toolcool-range-slider
           generate-labels="true"
           slider-width="100%"></toolcool-range-slider>
     </div>
 
+    <!-- horizontal and right to left -->
+    <div style="width: 500px; max-width: 100%; margin: auto auto 3rem auto">
+        <toolcool-range-slider
+          generate-labels="true"
+          rtl="true"
+          slider-width="100%"></toolcool-range-slider>
+    </div>
 
+    <!-- horizontal with custom html -->
     <div style="width: 500px; max-width: 100%; margin: auto auto 3rem auto">
         <toolcool-range-slider
           generate-labels="true"
@@ -65,6 +75,19 @@
         </toolcool-range-slider>
     </div>
 
+    <!-- horizontal with custom html and right to left -->
+    <div style="width: 500px; max-width: 100%; margin: auto auto 3rem auto">
+        <toolcool-range-slider
+          generate-labels="true"
+          rtl="true"
+          slider-width="100%">
+            <div slot="min-label" class="label-1"><label class="min-label"></label> px</div>
+            <div slot="max-label" class="label-1"><label class="max-label"></label> px</div>
+            <div slot="value-label" class="label-2"><label class="value-label"></label> px</div>
+        </toolcool-range-slider>
+    </div>
+
+    <!-- vertical -->
     <div style="width: 100px; max-width: 100%; margin: auto">
        <toolcool-range-slider
          type="vertical"
@@ -72,10 +95,33 @@
          slider-height="300px"></toolcool-range-slider>
     </div>
 
+    <!-- vertical with bottom to top direction -->
     <div style="width: 100px; max-width: 100%; margin: auto">
         <toolcool-range-slider
           type="vertical"
           generate-labels="true"
+          btt="true"
+          slider-height="300px"></toolcool-range-slider>
+    </div>
+
+    <!-- vertical with custom html -->
+    <div style="width: 100px; max-width: 100%; margin: auto">
+        <toolcool-range-slider
+          type="vertical"
+          generate-labels="true"
+          slider-height="300px">
+            <div slot="min-label" class="label-3"><label class="min-label"></label> px</div>
+            <div slot="max-label" class="label-3"><label class="max-label"></label> px</div>
+            <div slot="value-label" class="label-2"><label class="value-label"></label> px</div>
+        </toolcool-range-slider>
+    </div>
+
+    <!-- vertical with custom html and bottom to top direction -->
+    <div style="width: 100px; max-width: 100%; margin: auto">
+        <toolcool-range-slider
+          type="vertical"
+          generate-labels="true"
+          btt="true"
           slider-height="300px">
             <div slot="min-label" class="label-3"><label class="min-label"></label> px</div>
             <div slot="max-label" class="label-3"><label class="max-label"></label> px</div>

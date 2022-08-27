@@ -33,6 +33,7 @@ Responsive range slider library written in typescript and using web component te
 - Optional animation on panel click.
 - Works well with Bootstrap and other CSS frameworks :+1:
 - No CSS conflicts due to web components.
+- Automatically generated labels (optional).
 
 ## Table of contents
 - [Basic usage](#basic-usage)
@@ -41,6 +42,7 @@ Responsive range slider library written in typescript and using web component te
 - [Main Properties](#main-properties)
 - [List of individual values](#list-of-individual-values)
 - [Width, Height, and Border Radius](#width-height-and-border-radius)
+- [Automatically generated labels](#automatically-generated-labels)
 - [Predefined Styles (Themes)](#predefined-styles-themes)
 - [Colors](#colors)
 - [Vertical Slider](#vertical-slider)
@@ -92,7 +94,7 @@ You can control the range slider by referencing the `toolcool-range-slider` HTML
 </script>
 ```
 
-The value label can also be automatically bound using the **value-label** attribute:
+The value label can also be automatically bound using the **value-label** attribute: 
 
 ```html
 <toolcool-range-slider value-label=".value-1"></toolcool-range-slider>
@@ -101,6 +103,8 @@ The value label can also be automatically bound using the **value-label** attrib
 
 <script type="text/javascript" src="toolcool-range-slider.min.js"></script>
 ```
+
+:star: **It's also possible to generate min, max, and value labels automatically.**  [Click here for more details.](#automatically-generated-labels)
 
 :pushpin: More examples with automatic label binding can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/8-automatic-labels-binding.html). 
 
@@ -221,6 +225,33 @@ Default values table:
 | pointer-height | 1rem          |
 | pointer-radius | 100%          |
 
+## Automatically generated labels
+
+It's possible to generate min, max, and value labels automatically using **generate-labels="true"** attribute:
+
+```html
+<toolcool-range-slider generate-labels="true"></toolcool-range-slider>
+```
+
+If this attribute is specified, the **minimum**, **maximum**, and **value** label are automatically generated.
+
+You can provide custom html for all or part of the labels:
+
+```html
+<toolcool-range-slider generate-labels="true">
+  <div slot="min-label"><label class="min-label"></label> px</div>
+  <div slot="max-label"><label class="max-label"></label> px</div>
+  <div slot="value-label"><label class="value-label"></label> px</div>
+</toolcool-range-slider>
+```
+
+This way you can add CSS classes, inline styles, or any HTML structure instead of the standard range slider labels.
+
+:exclamation: Please make sure you keep slot names with one of the following values: **min-label**, **max-label**, **value-label**.
+
+:exclamation: It's also important, that the labels have one of the following classes: **min-label**, **max-label**, **value-label**. These classes are used as placeholders for min, max, and value.
+
+Other than that, the HTML structure can be changed in any way.
 
 ## Predefined Styles (Themes)
 
