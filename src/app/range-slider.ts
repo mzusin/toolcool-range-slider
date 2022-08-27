@@ -1056,6 +1056,10 @@ class RangeSlider extends HTMLElement {
       this._$maxLabel.classList.add('max-label');
       this._$valueLabel.classList.add('value-label');
 
+      this._$minLabel.setAttribute('for', 'range-slider');
+      this._$maxLabel.setAttribute('for', 'range-slider');
+      this._$valueLabel.setAttribute('for', 'range-slider');
+
       this._$box?.prepend(this._$minLabel);
       this._$box?.append(this._$maxLabel);
       this._$box?.append(this._$valueLabel);

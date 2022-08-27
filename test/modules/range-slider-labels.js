@@ -112,5 +112,41 @@ QUnit.module('Range Slider Generate Labels', () => {
         assert.equal($slider.generateLabels, false);
     });
 
+    QUnit.test('generate-labels="false" ----> min label should not exist', (assert) => {
+        const $slider = document.querySelector('#slider-71');
+        const $min = $slider.shadowRoot.querySelector('.min-label');
+        assert.deepEqual($min, null);
+    });
+
+    QUnit.test('generate-labels="true" ----> min label should exist', (assert) => {
+        const $slider = document.querySelector('#slider-77');
+        const $min = $slider.shadowRoot.querySelector('.min-label');
+        assert.ok($min);
+    });
+
+    QUnit.test('generate-labels="false" ----> max label should not exist', (assert) => {
+        const $slider = document.querySelector('#slider-71');
+        const $max = $slider.shadowRoot.querySelector('.max-label');
+        assert.deepEqual($max, null);
+    });
+
+    QUnit.test('generate-labels="true" ----> max label should exist', (assert) => {
+        const $slider = document.querySelector('#slider-77');
+        const $max = $slider.shadowRoot.querySelector('.max-label');
+        assert.ok($max);
+    });
+
+    QUnit.test('generate-labels="false" ----> value label should not exist', (assert) => {
+        const $slider = document.querySelector('#slider-71');
+        const $valueLabel = $slider.shadowRoot.querySelector('.value-label');
+        assert.deepEqual($valueLabel, null);
+    });
+
+    QUnit.test('generate-labels="true" ----> max label should exist', (assert) => {
+        const $slider = document.querySelector('#slider-77');
+        const $valueLabel = $slider.shadowRoot.querySelector('.value-label');
+        assert.ok($valueLabel);
+    });
+
 });
 

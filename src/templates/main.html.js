@@ -5,7 +5,7 @@ export default (styles) => {
     </style>
     
     <div class="range-slider-box">
-      <div class="range-slider" role="slider">
+      <div id="range-slider" class="range-slider" role="slider">
         <div class="container">
           <div class="panel"></div>
           <div class="panel-fill"></div>
