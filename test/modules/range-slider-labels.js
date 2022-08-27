@@ -148,5 +148,79 @@ QUnit.module('Range Slider Generate Labels', () => {
         assert.ok($valueLabel);
     });
 
+    QUnit.test('generate-labels="true" ----> min label should have 0', (assert) => {
+        const $slider = document.querySelector('#slider-77');
+        const $min = $slider.shadowRoot.querySelector('.min-label');
+        assert.deepEqual($min.textContent, '0');
+    });
+
+    QUnit.test('generate-labels="true" ----> max label should have 100', (assert) => {
+        const $slider = document.querySelector('#slider-77');
+        const $max = $slider.shadowRoot.querySelector('.max-label');
+        assert.deepEqual($max.textContent, '100');
+    });
+
+    QUnit.test('generate-labels="true" ----> value label should have 77', (assert) => {
+        const $slider = document.querySelector('#slider-80');
+        const $valueLabel = $slider.shadowRoot.querySelector('.value-label');
+        assert.deepEqual($valueLabel.textContent, '77');
+    });
+
+    QUnit.test('generate-labels="true", change min to 1 via API ----> min label should have 0', (assert) => {
+        const $slider = document.querySelector('#slider-77');
+        $slider.min = 1;
+        const $min = $slider.shadowRoot.querySelector('.min-label');
+        assert.deepEqual($min.textContent, '1');
+    });
+
+    QUnit.test('generate-labels="true", change min to 1 via attribute ----> min label should have 0', (assert) => {
+        const $slider = document.querySelector('#slider-77');
+        $slider.setAttribute('min', '1');
+        const $min = $slider.shadowRoot.querySelector('.min-label');
+        assert.deepEqual($min.textContent, '1');
+    });
+
+    QUnit.test('generate-labels="true", change max to 99 via API ----> max label should have 99', (assert) => {
+        const $slider = document.querySelector('#slider-77');
+        $slider.max = 99;
+        const $max = $slider.shadowRoot.querySelector('.max-label');
+        assert.deepEqual($max.textContent, '99');
+    });
+
+    QUnit.test('generate-labels="true", change max to 99 via attribute ----> max label should have 99', (assert) => {
+        const $slider = document.querySelector('#slider-77');
+        $slider.setAttribute('max', '99');
+        const $max = $slider.shadowRoot.querySelector('.max-label');
+        assert.deepEqual($max.textContent, '99');
+    });
+
+    QUnit.test('generate-labels="true", change value to 50 via API ----> value label should have 50', (assert) => {
+        const $slider = document.querySelector('#slider-80');
+        $slider.value = 50;
+        const $valueLabel = $slider.shadowRoot.querySelector('.value-label');
+        assert.deepEqual($valueLabel.textContent, '50');
+    });
+
+    QUnit.test('generate-labels="true", change value to 50 via attribute ----> value label should have 50', (assert) => {
+        const $slider = document.querySelector('#slider-80');
+        $slider.setAttribute('value', '50');
+        const $valueLabel = $slider.shadowRoot.querySelector('.value-label');
+        assert.deepEqual($valueLabel.textContent, '50');
+    });
+
+    QUnit.test('generate-labels="true", arrow right ----> value label should have 78', (assert) => {
+        const $slider = document.querySelector('#slider-80');
+
+        const $pointer = $slider.shadowRoot.querySelector('.pointer');
+        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+            key: 'ArrowRight',
+        }));
+
+        const $valueLabel = $slider.shadowRoot.querySelector('.value-label');
+        assert.deepEqual($valueLabel.textContent, '78');
+    });
 });
 
