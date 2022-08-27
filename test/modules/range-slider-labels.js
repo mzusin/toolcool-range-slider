@@ -66,3 +66,51 @@ QUnit.module('Range Slider Value Label', () => {
 
 });
 
+QUnit.module('Range Slider Generate Labels', () => {
+
+    QUnit.test('by default generateLabels should be false', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        assert.equal($slider.generateLabels, false);
+    });
+
+    QUnit.test('generate-labels="true"', (assert) => {
+        const $slider = document.querySelector('#slider-77');
+        assert.equal($slider.generateLabels, true);
+    });
+
+    QUnit.test('generate-labels="true"', (assert) => {
+        const $slider = document.querySelector('#slider-78');
+        assert.equal($slider.generateLabels, false);
+    });
+
+    QUnit.test('generate-labels="test" ---> generateLabels should be false', (assert) => {
+        const $slider = document.querySelector('#slider-79');
+        assert.equal($slider.generateLabels, false);
+    });
+
+    QUnit.test('change generateLabels via API to true', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        $slider.generateLabels = true;
+        assert.equal($slider.generateLabels, true);
+    });
+
+    QUnit.test('change generateLabels via API to false', (assert) => {
+        const $slider = document.querySelector('#slider-78');
+        $slider.generateLabels = false;
+        assert.equal($slider.generateLabels, false);
+    });
+
+    QUnit.test('change generateLabels via attribute to true', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        $slider.setAttribute('generate-labels', 'true');
+        assert.equal($slider.generateLabels, true);
+    });
+
+    QUnit.test('change generateLabels via attribute to false', (assert) => {
+        const $slider = document.querySelector('#slider-78');
+        $slider.setAttribute('generate-labels', 'false');
+        assert.equal($slider.generateLabels, false);
+    });
+
+});
+

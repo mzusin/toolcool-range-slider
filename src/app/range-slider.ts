@@ -58,14 +58,19 @@ class RangeSlider extends HTMLElement {
       'pointer-border-focus',
 
       'value-label',
+      'generate-labels',
       'animate-onclick',
     ];
   }
 
+  private _$box: HTMLElement | null;
   private _$slider: HTMLElement | null;
   private _$pointer: HTMLElement | null;
   private _$panelFill: HTMLElement | null;
+
   private _$valueLabel: HTMLElement | null;
+  private _$minLabel: HTMLElement | null;
+  private _$maxLabel: HTMLElement | null;
 
   private _value: string | number = 0; // [min, max]
   private _data: (string | number)[] | undefined = undefined;
@@ -83,6 +88,7 @@ class RangeSlider extends HTMLElement {
   private _storageInitialized = false;
 
   private _valueLabel: string | undefined = undefined;
+  private _generateLabels = false;
   private _animateOnClick: string | undefined = undefined;
   private _animating = false;
 
@@ -315,6 +321,15 @@ class RangeSlider extends HTMLElement {
 
   public get valueLabel() {
     return this._valueLabel;
+  }
+
+  public set generateLabels(val: boolean) {
+    this._generateLabels = val;
+    this.render();
+  }
+
+  public get generateLabels() {
+    return this._generateLabels;
   }
 
   public set sliderWidth(val: string | undefined) {
@@ -661,7 +676,7 @@ class RangeSlider extends HTMLElement {
     this._$slider.setAttribute('aria-valuetext', _val.toString());
 
     if (this.type) {
-      this._$slider.classList.add(`type-${this.type}`);
+      this._$box?.classList.add(`type-${this.type}`);
     }
 
     if (this.theme) {
@@ -676,6 +691,18 @@ class RangeSlider extends HTMLElement {
 
       if (this._$slider.hasAttribute('aria-disabled')) {
         this._$slider.removeAttribute('aria-disabled');
+      }
+    }
+
+    if (this.generateLabels) {
+      if (this._$minLabel) {
+        this._$minLabel.textContent = this.min.toString();
+      }
+      if (this._$maxLabel) {
+        this._$maxLabel.textContent = this.max.toString();
+      }
+      if (this._$valueLabel) {
+        this._$valueLabel.textContent = this.value.toString();
       }
     }
 
@@ -977,6 +1004,7 @@ class RangeSlider extends HTMLElement {
     this.btt = this.getAttribute('btt') === 'true';
 
     this.valueLabel = this.getAttribute('value-label') || undefined;
+    this.generateLabels = this.getAttribute('generate-labels') === 'true';
     this.animateOnClick = this.getAttribute('animate-onclick') || undefined;
 
     this.storage = (this.getAttribute('storage') as StorageTypeEnum) || undefined;
@@ -1009,12 +1037,28 @@ class RangeSlider extends HTMLElement {
     this.shadowRoot.innerHTML = mainTemplate(styles);
 
     // init slider elements
+    this._$box = this.shadowRoot.querySelector('.range-slider-box');
     this._$slider = this.shadowRoot.querySelector('.range-slider');
     this._$pointer = this.shadowRoot.querySelector('.pointer');
     this._$panelFill = this.shadowRoot.querySelector('.panel-fill');
 
     if (this.valueLabel) {
       this._$valueLabel = document.querySelector(this.valueLabel);
+    }
+
+    // generate labels
+    if (this.generateLabels) {
+      this._$minLabel = document.createElement('label');
+      this._$maxLabel = document.createElement('label');
+      this._$valueLabel = document.createElement('label');
+
+      this._$minLabel.classList.add('min-label');
+      this._$maxLabel.classList.add('max-label');
+      this._$valueLabel.classList.add('value-label');
+
+      this._$box?.prepend(this._$minLabel);
+      this._$box?.append(this._$maxLabel);
+      this._$box?.append(this._$valueLabel);
     }
 
     // init slider events
@@ -1149,6 +1193,12 @@ class RangeSlider extends HTMLElement {
 
       case 'value-label': {
         this.valueLabel = this.getAttribute('value-label') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'generate-labels': {
+        this.generateLabels = this.getAttribute('generate-labels') === 'true';
         this.render();
         break;
       }
