@@ -167,7 +167,7 @@ The properties have the following default values:
 | step     | undefined     | Slide step.                             |
 | round    | 5             | The maximum number of decimal places.   |
 
-If no value is specified, it will be equal to the minimum value.
+:pushpin: If no value is specified, it will be equal to the minimum value.
 
 ## List of individual values
 
