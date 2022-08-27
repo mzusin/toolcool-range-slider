@@ -253,6 +253,8 @@ This way you can add CSS classes, inline styles, or any HTML structure instead o
 
 Other than that, the HTML structure can be changed in any way.
 
+:pushpin: Example page can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/19-generate-labels.html).
+
 ## Predefined Styles (Themes)
 
 [![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/gradient-preview.png?raw=true)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/6-gradient.html)
