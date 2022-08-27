@@ -159,13 +159,13 @@ Range slider has the following main properties: **min**, **max**, **value**, and
 
 The properties have the following default values:
 
-| Property | Default Value |
-|----------|---------------|
-| min      | 0             |
-| max      | 100           |
-| value    | 0             |
-| step     | undefined     |
-| round    | 5             |
+| Property | Default Value | Description                             |
+|----------|---------------|-----------------------------------------|
+| min      | 0             | The minimum value.                      |
+| max      | 100           | The maximum value.                      |
+| value    | 0             | Current slider value.                   |
+| step     | undefined     | Slide step.                             |
+| round    | 5             | The maximum number of decimal places.   |
 
 If no value is specified, it will be equal to the minimum value.
 
