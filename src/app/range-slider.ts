@@ -1,6 +1,6 @@
 import styles from './styles.pcss';
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
-import { convertRange, getNumber, isNumber, roundToStep, setDecimalPlaces } from '../domain/math-provider';
+import { convertRange, DEFAULT_ROUND_PLACES, getNumber, isNumber, roundToStep, setDecimalPlaces } from '../domain/math-provider';
 import { getFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../domain/storage-provider';
 
 /*
@@ -23,6 +23,7 @@ class RangeSlider extends HTMLElement {
       'min',
       'max',
       'step',
+      'round',
       'type',
       'theme',
       'disabled',
@@ -77,6 +78,7 @@ class RangeSlider extends HTMLElement {
   private _min: string | number = 0;
   private _max: string | number = 100;
   private _step: number | ((value: number | string) => number) | undefined = undefined;
+  private _round = DEFAULT_ROUND_PLACES;
   private _type: string | undefined = undefined;
   private _theme: string | undefined = undefined;
   private _disabled = false;
@@ -240,6 +242,15 @@ class RangeSlider extends HTMLElement {
 
   public get step() {
     return this._step;
+  }
+
+  public set round(val: number) {
+    this._round = val;
+    this.render();
+  }
+
+  public get round() {
+    return this._round;
   }
 
   public set type(val: string | undefined) {
@@ -577,7 +588,7 @@ class RangeSlider extends HTMLElement {
     return {
       min: _min,
       max: _max,
-      value: setDecimalPlaces(_val, 5),
+      value: setDecimalPlaces(_val, this.round),
     };
   }
 
@@ -1041,6 +1052,11 @@ class RangeSlider extends HTMLElement {
     this.value = this.getStringOrNumber('value', this.min as number, this.data ? this.data[0] : '');
 
     this.step = getNumber(this.getAttribute('step'), undefined);
+    this.round = getNumber(this.getAttribute('round'), DEFAULT_ROUND_PLACES);
+    if (this.round < 0) {
+      this.round = DEFAULT_ROUND_PLACES;
+    }
+
     this.type = this.getAttribute('type') || undefined;
     this.theme = this.getAttribute('theme') || undefined;
     this.disabled = this.getAttribute('disabled') === 'true';
@@ -1182,6 +1198,14 @@ class RangeSlider extends HTMLElement {
 
       case 'step': {
         this.step = getNumber(this.getAttribute('step'), undefined);
+        break;
+      }
+
+      case 'round': {
+        this.round = getNumber(this.getAttribute('round'), DEFAULT_ROUND_PLACES);
+        if (this.round < 0) {
+          this.round = DEFAULT_ROUND_PLACES;
+        }
         break;
       }
 

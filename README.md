@@ -154,17 +154,18 @@ Range slider has the following main properties: **min**, **max**, **value**, and
 
 <toolcool-range-slider min="0" max="100" value="50"></toolcool-range-slider>
 
-<toolcool-range-slider min="100" max="200" value="150" step="10"></toolcool-range-slider>
+<toolcool-range-slider min="100" max="200" value="150" step="10" round="0"></toolcool-range-slider>
 ```
 
 The properties have the following default values:
 
-| Property     | Default Value |
-|--------------|---------------|
-| min | 0             |
-| max | 100           |
-| value | 0             |
-| step | undefined     |
+| Property | Default Value |
+|----------|---------------|
+| min      | 0             |
+| max      | 100           |
+| value    | 0             |
+| step     | undefined     |
+| round    | 5             |
 
 If no value is specified, it will be equal to the minimum value.
 
