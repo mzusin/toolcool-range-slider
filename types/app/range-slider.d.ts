@@ -1,15 +1,19 @@
 import { StorageTypeEnum } from '../domain/storage-provider';
 declare class RangeSlider extends HTMLElement {
     static get observedAttributes(): string[];
+    private _$box;
     private _$slider;
     private _$pointer;
     private _$panelFill;
     private _$valueLabel;
+    private _$minLabel;
+    private _$maxLabel;
     private _value;
     private _data;
     private _min;
     private _max;
     private _step;
+    private _round;
     private _type;
     private _theme;
     private _disabled;
@@ -19,6 +23,7 @@ declare class RangeSlider extends HTMLElement {
     private _storageKey;
     private _storageInitialized;
     private _valueLabel;
+    private _generateLabels;
     private _animateOnClick;
     private _animating;
     private _sliderWidth;
@@ -58,6 +63,8 @@ declare class RangeSlider extends HTMLElement {
     get max(): number | string;
     set step(numOrFunction: number | ((value: number | string) => number) | undefined);
     get step(): number | ((value: number | string) => number) | undefined;
+    set round(val: number);
+    get round(): number;
     set type(val: string | undefined);
     get type(): string | undefined;
     set theme(val: string | undefined);
@@ -76,6 +83,8 @@ declare class RangeSlider extends HTMLElement {
     get storageKey(): string;
     set valueLabel(val: string | undefined);
     get valueLabel(): string | undefined;
+    set generateLabels(val: boolean);
+    get generateLabels(): boolean;
     set sliderWidth(val: string | undefined);
     get sliderWidth(): string | undefined;
     set sliderHeight(val: string | undefined);
@@ -137,6 +146,7 @@ declare class RangeSlider extends HTMLElement {
     onMouseUp(evt: MouseEvent): void;
     onValueChange(evt: MouseEvent | TouchEvent): void;
     getStringOrNumber(attrName: string, defaultValue: number, dataDefaultValue: string | number): any;
+    initLabel(property: string, codeName: string): void;
     /**
      * when the custom element connected to DOM
      */

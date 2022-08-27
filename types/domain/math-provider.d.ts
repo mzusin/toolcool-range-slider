@@ -1,3 +1,4 @@
+export declare const DEFAULT_ROUND_PLACES = 5;
 /**
  * scale a range [min,max] to [a,b]
  * f(x) = (b - a) * (x - min) / (max - min) + a
