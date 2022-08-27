@@ -629,5 +629,5 @@ export default RangeSliderExample;
 
 [MIT license](https://github.com/toolcool-org/toolcool-range-slider/blob/main/LICENSE)
 
-It can be used **for free** and **without attribution** in any personal or commercial project :gift: 
+It can be used **for free** in any personal or commercial project :gift: 
 
