@@ -677,7 +677,7 @@ class RangeSlider extends HTMLElement {
     }
 
     if (this._$valueLabel) {
-      this._$valueLabel.textContent = this.data ? this.value.toString() : Math.round(_val).toString();
+      this._$valueLabel.textContent = this.data ? this.value.toString() : setDecimalPlaces(_val, this.round).toString();
     }
 
     // set additional area attributes
