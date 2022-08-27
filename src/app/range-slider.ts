@@ -804,6 +804,10 @@ class RangeSlider extends HTMLElement {
 
   pointerMouseWheel(evt: WheelEvent) {
     if (document.activeElement !== this) return;
+
+    evt.stopPropagation();
+    evt.preventDefault();
+
     const scrollTop = evt.deltaY < 0;
 
     if (scrollTop) {
@@ -1129,7 +1133,7 @@ class RangeSlider extends HTMLElement {
     // init pointer events
     this._$pointer?.addEventListener('click', this.pointerClicked);
     this._$pointer?.addEventListener('keydown', this.pointerKeyDown);
-    document.addEventListener('wheel', this.pointerMouseWheel);
+    document.addEventListener('wheel', this.pointerMouseWheel, { passive: false });
 
     if (this.animateOnClick) {
       this._$slider?.style.setProperty('--tc-range-slider-animate-onclick', this.animateOnClick);
