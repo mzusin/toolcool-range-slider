@@ -222,5 +222,23 @@ QUnit.module('Range Slider Generate Labels', () => {
         const $valueLabel = $slider.shadowRoot.querySelector('.value-label');
         assert.deepEqual($valueLabel.textContent, '78');
     });
+
+    QUnit.test('when min slot is provided, the slot label should have text 0 px', (assert) => {
+        const $slider = document.querySelector('#slider-81');
+        const $slot = $slider.querySelector('[slot="min-label"]');
+        assert.deepEqual($slot.textContent, '0 px');
+    });
+
+    QUnit.test('when max slot is provided, the slot label should have text 100 px', (assert) => {
+        const $slider = document.querySelector('#slider-81');
+        const $slot = $slider.querySelector('[slot="max-label"]');
+        assert.deepEqual($slot.textContent, '100 px');
+    });
+
+    QUnit.test('when value slot is provided, the slot label should have text 50 px', (assert) => {
+        const $slider = document.querySelector('#slider-81');
+        const $slot = $slider.querySelector('[slot="value-label"]');
+        assert.deepEqual($slot.textContent, '50 px');
+    });
 });
 
