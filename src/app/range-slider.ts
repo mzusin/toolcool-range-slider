@@ -984,6 +984,41 @@ class RangeSlider extends HTMLElement {
 
   // ------------------------- WEB COMPONENT LIFECYCLE ----------------------------
 
+  initLabel(property: string, codeName: string) {
+    const $slot = this.querySelector(`[slot="${codeName}"]`);
+
+    if ($slot) {
+      this[property] = $slot.querySelector(`.${codeName}`);
+    }
+
+    // when slot exists ---> take its content as a template
+    else {
+      // slot is not provided ---> generate the label
+      const $label = document.createElement('label');
+      $label.classList.add(codeName);
+      $label.setAttribute('for', 'range-slider');
+
+      const $row = this._$box?.querySelector('.row');
+
+      switch (codeName) {
+        case 'min-label': {
+          $row?.prepend($label);
+          break;
+        }
+        case 'max-label': {
+          $row?.append($label);
+          break;
+        }
+        case 'value-label': {
+          this._$box?.prepend($label);
+          break;
+        }
+      }
+
+      this[property] = $label;
+    }
+  }
+
   /**
    * when the custom element connected to DOM
    */
@@ -1046,23 +1081,11 @@ class RangeSlider extends HTMLElement {
       this._$valueLabel = document.querySelector(this.valueLabel);
     }
 
-    // generate labels
+    // initialize labels
     if (this.generateLabels) {
-      this._$minLabel = document.createElement('label');
-      this._$maxLabel = document.createElement('label');
-      this._$valueLabel = document.createElement('label');
-
-      this._$minLabel.classList.add('min-label');
-      this._$maxLabel.classList.add('max-label');
-      this._$valueLabel.classList.add('value-label');
-
-      this._$minLabel.setAttribute('for', 'range-slider');
-      this._$maxLabel.setAttribute('for', 'range-slider');
-      this._$valueLabel.setAttribute('for', 'range-slider');
-
-      this._$box?.prepend(this._$minLabel);
-      this._$box?.append(this._$maxLabel);
-      this._$box?.append(this._$valueLabel);
+      this.initLabel('_$minLabel', 'min-label');
+      this.initLabel('_$maxLabel', 'max-label');
+      this.initLabel('_$valueLabel', 'value-label');
     }
 
     // init slider events

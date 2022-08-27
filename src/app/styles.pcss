@@ -34,7 +34,7 @@
 .range-slider-box{
     display: flex;
     position: relative;
-    align-items: center;
+    flex-direction: column;
 }
 
 .range-slider{
@@ -44,6 +44,12 @@
     touch-action: none;
     max-width: 100%;
     box-sizing: border-box;
+}
+
+.row{
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .disabled{
@@ -117,17 +123,17 @@
 }
 
 .max-label,
-.min-label{
+.min-label,
+::slotted([slot="max-label"]),
+::slotted([slot="min-label"]){
     margin: 0 1rem;
     width: 2rem;
     text-align: center;
 }
 
-.value-label{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: -1.5rem;
+.value-label,
+::slotted([slot="value-label"]){
+    text-align: center;
 }
 
 /**
@@ -148,19 +154,27 @@
 }
 
 .type-vertical.range-slider-box{
+    flex-direction: row;
+}
+
+.type-vertical .row{
     flex-direction: column;
 }
 
 .type-vertical .max-label,
-.type-vertical .min-label{
+.type-vertical .min-label,
+.type-vertical ::slotted([slot="max-label"]),
+.type-vertical ::slotted([slot="min-label"]){
     margin: 1rem 0;
+    width: auto;
 }
 
-.type-vertical .value-label {
-    left: auto;
+.type-vertical .value-label,
+.type-vertical ::slotted([slot="value-label"]){
+    position: absolute;
     right: 0;
     top: 50%;
-    transform: none;
+    order: 1;
 }
 
 /**
