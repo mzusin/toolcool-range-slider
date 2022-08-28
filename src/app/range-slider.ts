@@ -1142,10 +1142,14 @@ class RangeSlider extends HTMLElement {
 
     // if the storage is enabled ---> try to restore the value
     if (this.storage) {
-      const restoredValue = Number(getFromStorage(this.storage, this.storageKey));
       this._storageInitialized = true;
-      if (!isNaN(restoredValue)) {
-        this.value = restoredValue;
+      const restoredValue = getFromStorage(this.storage, this.storageKey);
+      if (isNumber(restoredValue)) {
+        this.value = getNumber(restoredValue, this.min);
+      } else {
+        if (restoredValue) {
+          this.value = restoredValue;
+        }
       }
     }
 
