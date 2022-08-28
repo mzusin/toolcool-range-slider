@@ -19,6 +19,7 @@ class RangeSlider extends HTMLElement {
   static get observedAttributes() {
     return [
       'value',
+      'value2',
       'data',
       'min',
       'max',
@@ -74,6 +75,8 @@ class RangeSlider extends HTMLElement {
   private _$maxLabel: HTMLElement | null;
 
   private _value: string | number = 0; // [min, max]
+  private _value2: string | number | undefined = undefined; // [min, max]
+
   private _data: (string | number)[] | undefined = undefined;
   private _min: string | number = 0;
   private _max: string | number = 100;
@@ -141,39 +144,75 @@ class RangeSlider extends HTMLElement {
 
   // ----------- APIs ------------------------
 
-  private setValueHelper(val: string | number) {
-    this._value = val;
-
-    this.render();
-    this.sendChangeEvent();
-
-    if (this.storage && this._storageInitialized) {
-      saveToStorage(this.storage, this.storageKey, val);
-    }
-  }
-
-  /**
-   * value in [min, max] range, or in provided data array
-   */
   public set value(val: string | number) {
     if (this.data) {
       // the provided value should present in data array
       const _val = isNumber(val) ? Number(val) : val;
       const found = this.data.find((item) => item === _val);
       if (found !== undefined) {
-        this.setValueHelper(_val);
+        this._value = _val;
+        this.render();
+        this.sendChangeEvent();
+
+        if (this.storage && this._storageInitialized) {
+          saveToStorage(this.storage, this.storageKey, _val);
+        }
       }
     } else {
       const safe = this.getSafeValues(val as number, this.min as number, this.max as number);
-      this.setValueHelper(safe.value);
+      this._value = safe.value;
+      this.render();
+      this.sendChangeEvent();
+
+      if (this.storage && this._storageInitialized) {
+        saveToStorage(this.storage, this.storageKey, safe.value);
+      }
     }
   }
 
-  /**
-   * returns value from [min, max] range
-   */
+  public set value2(val: string | number | undefined) {
+    if (val === undefined) {
+      this._value2 = val;
+      this.render();
+      this.sendChangeEvent();
+
+      if (this.storage && this._storageInitialized) {
+        saveToStorage(this.storage, this.storageKey2, val);
+      }
+      return;
+    }
+
+    if (this.data) {
+      // the provided value should present in data array
+      const _val = isNumber(val) ? Number(val) : val;
+      const found = this.data.find((item) => item === _val);
+      if (found !== undefined) {
+        this._value2 = _val;
+        this.render();
+        this.sendChangeEvent();
+
+        if (this.storage && this._storageInitialized) {
+          saveToStorage(this.storage, this.storageKey2, _val);
+        }
+      }
+    } else {
+      const safe = this.getSafeValues(val as number, this.min as number, this.max as number);
+      this._value2 = safe.value;
+      this.render();
+      this.sendChangeEvent();
+
+      if (this.storage && this._storageInitialized) {
+        saveToStorage(this.storage, this.storageKey2, safe.value);
+      }
+    }
+  }
+
   public get value() {
     return this._value;
+  }
+
+  public get value2() {
+    return this._value2;
   }
 
   public set data(val: (string | number)[] | undefined) {
@@ -209,8 +248,9 @@ class RangeSlider extends HTMLElement {
       const safe = this.getSafeValues(this.value as number, this.min as number, val as number);
       this._max = safe.max;
       this.value = safe.value;
-      this.render();
     }
+
+    this.render();
   }
 
   public get max() {
@@ -323,6 +363,10 @@ class RangeSlider extends HTMLElement {
 
   public get storageKey() {
     return this._storageKey;
+  }
+
+  public get storageKey2() {
+    return `${this._storageKey}-2`;
   }
 
   public set valueLabel(val: string | undefined) {
@@ -1075,7 +1119,11 @@ class RangeSlider extends HTMLElement {
     this.data = this.parseData(this.getAttribute('data'));
     this.min = this.getStringOrNumber('min', 0, this.data ? this.data[0] : '');
     this.max = this.getStringOrNumber('max', 100, this.data ? this.data[this.data.length - 1] : '');
+
     this.value = this.getStringOrNumber('value', this.min as number, this.data ? this.data[0] : '');
+    if (this.getAttribute('value2') !== null) {
+      this.value2 = this.getStringOrNumber('value2', this.min as number, this.data ? this.data[0] : '');
+    }
 
     this.step = getNumber(this.getAttribute('step'), undefined);
     this.round = getNumber(this.getAttribute('round'), DEFAULT_ROUND_PLACES);
@@ -1216,6 +1264,12 @@ class RangeSlider extends HTMLElement {
 
       case 'value': {
         this.value = this.getStringOrNumber('value', this.min as number, this.data ? this.data[0] : '');
+        this.render();
+        break;
+      }
+
+      case 'value2': {
+        this.value2 = this.getStringOrNumber('value2', this.min as number, this.data ? this.data[0] : '');
         this.render();
         break;
       }
