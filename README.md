@@ -165,7 +165,7 @@ The properties have the following default values:
 | max      | 100           | The maximum value.                      |
 | value    | 0             | Current slider value.                   |
 | step     | undefined     | Slide step.                             |
-| round    | 5             | The maximum number of decimal places.   |
+| round    | 2             | The maximum number of decimal places.   |
 
 :pushpin: If no value is specified, it will be equal to the minimum value.
 

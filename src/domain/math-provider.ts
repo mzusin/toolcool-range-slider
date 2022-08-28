@@ -1,4 +1,4 @@
-export const DEFAULT_ROUND_PLACES = 5;
+export const DEFAULT_ROUND_PLACES = 2;
 
 /**
  * scale a range [min,max] to [a,b]
