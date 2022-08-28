@@ -917,18 +917,30 @@ class RangeSlider extends HTMLElement {
 
   stepBack() {
     if (this.data) {
-      const index = this.findValueIndexInData(this.value);
+      const isPointer2 = this._$pointer2!! && this._$pointer2?.matches(':focus-within') && this.value2 !== undefined;
+
+      const index = this.findValueIndexInData(isPointer2 && this.value2 !== undefined ? this.value2 : this.value);
       if (index !== -1) {
         const step = typeof this.step === 'function' ? this.step(index) : getNumber(this.step, 1);
         const updatedIndex = index - step;
         if (this.data[updatedIndex] !== undefined) {
-          this.value = this.data[updatedIndex];
+          if (isPointer2) {
+            this.value2 = this.data[updatedIndex];
+          } else {
+            this.value = this.data[updatedIndex];
+          }
         }
       }
     } else {
-      const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
-      const safe = this.getSafeValues((this.value as number) - step, this.min as number, this.max as number);
-      this.value = safe.value;
+      if (this._$pointer2 && this._$pointer2?.matches(':focus-within')) {
+        const step = typeof this.step === 'function' ? this.step(this.value2 as number) : getNumber(this.step, 1);
+        const safe = this.getSafeValues((this.value2 as number) - step, this.min as number, this.max as number);
+        this.value2 = safe.value;
+      } else {
+        const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
+        const safe = this.getSafeValues((this.value as number) - step, this.min as number, this.max as number);
+        this.value = safe.value;
+      }
     }
 
     this.render();
@@ -936,18 +948,30 @@ class RangeSlider extends HTMLElement {
 
   stepForward() {
     if (this.data) {
-      const index = this.findValueIndexInData(this.value);
+      const isPointer2 = this._$pointer2!! && this._$pointer2?.matches(':focus-within') && this.value2 !== undefined;
+
+      const index = this.findValueIndexInData(isPointer2 && this.value2 !== undefined ? this.value2 : this.value);
       if (index !== -1) {
         const step = typeof this.step === 'function' ? this.step(index) : getNumber(this.step, 1);
         const updatedIndex = index + step;
         if (this.data[updatedIndex] !== undefined) {
-          this.value = this.data[updatedIndex];
+          if (isPointer2) {
+            this.value2 = this.data[updatedIndex];
+          } else {
+            this.value = this.data[updatedIndex];
+          }
         }
       }
     } else {
-      const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
-      const safe = this.getSafeValues((this.value as number) + step, this.min as number, this.max as number);
-      this.value = safe.value;
+      if (this._$pointer2 && this._$pointer2?.matches(':focus-within')) {
+        const step = typeof this.step === 'function' ? this.step(this.value2 as number) : getNumber(this.step, 1);
+        const safe = this.getSafeValues((this.value2 as number) + step, this.min as number, this.max as number);
+        this.value2 = safe.value;
+      } else {
+        const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
+        const safe = this.getSafeValues((this.value as number) + step, this.min as number, this.max as number);
+        this.value = safe.value;
+      }
     }
 
     this.render();
@@ -964,7 +988,12 @@ class RangeSlider extends HTMLElement {
     switch (evt.key) {
       case 'ArrowLeft': {
         if (this.type === 'vertical') {
-          this.value = this.min;
+          if (this._$pointer2 && this._$pointer2?.matches(':focus-within')) {
+            this.value2 = this.min;
+          } else {
+            this.value = this.min;
+          }
+
           this.render();
         } else {
           this.stepBack();
@@ -975,7 +1004,12 @@ class RangeSlider extends HTMLElement {
 
       case 'ArrowRight': {
         if (this.type === 'vertical') {
-          this.value = this.max;
+          if (this._$pointer2 && this._$pointer2?.matches(':focus-within')) {
+            this.value2 = this.max;
+          } else {
+            this.value = this.max;
+          }
+
           this.render();
         } else {
           this.stepForward();
@@ -988,7 +1022,12 @@ class RangeSlider extends HTMLElement {
         if (this.type === 'vertical') {
           this.stepBack();
         } else {
-          this.value = this.min;
+          if (this._$pointer2 && this._$pointer2?.matches(':focus-within')) {
+            this.value2 = this.min;
+          } else {
+            this.value = this.min;
+          }
+
           this.render();
         }
 
@@ -999,7 +1038,12 @@ class RangeSlider extends HTMLElement {
         if (this.type === 'vertical') {
           this.stepForward();
         } else {
-          this.value = this.max;
+          if (this._$pointer2 && this._$pointer2?.matches(':focus-within')) {
+            this.value2 = this.max;
+          } else {
+            this.value = this.max;
+          }
+
           this.render();
         }
 
@@ -1253,6 +1297,7 @@ class RangeSlider extends HTMLElement {
 
     if (this.value2 !== undefined) {
       this._$pointer2 = this._$pointer?.cloneNode(true) as HTMLElement;
+      this._$pointer2.classList.add('pointer-2');
       this._$pointer?.after(this._$pointer2);
     }
 

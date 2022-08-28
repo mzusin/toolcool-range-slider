@@ -17,7 +17,7 @@ export default (styles) => {
             <div class="panel-fill"></div>
         
             <div class="container">
-              <div class="pointer" tabindex="0">
+              <div class="pointer pointer-1" tabindex="0">
                 <div class="pointer-shape"></div>
               </div>
             </div>
