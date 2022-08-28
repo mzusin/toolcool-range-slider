@@ -60,6 +60,7 @@ class RangeSlider extends HTMLElement {
       'pointer-border-focus',
 
       'value-label',
+      'value-label2',
       'generate-labels',
       'animate-onclick',
     ];
@@ -67,11 +68,14 @@ class RangeSlider extends HTMLElement {
 
   private _$box: HTMLElement | null;
   private _$slider: HTMLElement | null;
-  private _$pointer: HTMLElement | null;
-  private _$pointer2: HTMLElement | null;
   private _$panelFill: HTMLElement | null;
 
+  private _$pointer: HTMLElement | null;
+  private _$pointer2: HTMLElement | null;
+
   private _$valueLabel: HTMLElement | null;
+  private _$valueLabel2: HTMLElement | null;
+
   private _$minLabel: HTMLElement | null;
   private _$maxLabel: HTMLElement | null;
 
@@ -94,6 +98,8 @@ class RangeSlider extends HTMLElement {
   private _storageInitialized = false;
 
   private _valueLabel: string | undefined = undefined;
+  private _valueLabel2: string | undefined = undefined;
+
   private _generateLabels = false;
   private _animateOnClick: string | undefined = undefined;
   private _animating = false;
@@ -377,6 +383,15 @@ class RangeSlider extends HTMLElement {
 
   public get valueLabel() {
     return this._valueLabel;
+  }
+
+  public set valueLabel2(val: string | undefined) {
+    this._valueLabel2 = val;
+    this.render();
+  }
+
+  public get valueLabel2() {
+    return this._valueLabel2;
   }
 
   public set generateLabels(val: boolean) {
@@ -754,6 +769,10 @@ class RangeSlider extends HTMLElement {
       this._$valueLabel.textContent = this.data ? this.value.toString() : setDecimalPlaces(_val, this.round).toString();
     }
 
+    if (this._$valueLabel2 && this.value2 !== undefined && _val2 !== undefined) {
+      this._$valueLabel2.textContent = this.data ? this.value2.toString() : setDecimalPlaces(_val2, this.round).toString();
+    }
+
     // set additional area attributes
     this._$slider.setAttribute('aria-valuemin', _min.toString());
     this._$slider.setAttribute('aria-valuemax', _max.toString());
@@ -788,6 +807,9 @@ class RangeSlider extends HTMLElement {
       }
       if (this._$valueLabel) {
         this._$valueLabel.textContent = this.value.toString();
+      }
+      if (this._$valueLabel2 && this.value2 !== undefined) {
+        this._$valueLabel2.textContent = this.value2.toString();
       }
     }
 
@@ -1240,11 +1262,16 @@ class RangeSlider extends HTMLElement {
       this._$valueLabel = document.querySelector(this.valueLabel);
     }
 
+    if (this.valueLabel2) {
+      this._$valueLabel2 = document.querySelector(this.valueLabel2);
+    }
+
     // initialize labels
     if (this.generateLabels) {
       this.initLabel('_$minLabel', 'min-label');
       this.initLabel('_$maxLabel', 'max-label');
       this.initLabel('_$valueLabel', 'value-label');
+      this.initLabel('_$valueLabel2', 'value-label2');
 
       if (this.rtl || this.btt) {
         const $minSlot = this.shadowRoot.querySelector('slot[name="min-label"]');
@@ -1416,6 +1443,12 @@ class RangeSlider extends HTMLElement {
 
       case 'value-label': {
         this.valueLabel = this.getAttribute('value-label') || undefined;
+        this.render();
+        break;
+      }
+
+      case 'value-label2': {
+        this.valueLabel2 = this.getAttribute('value-label2') || undefined;
         this.render();
         break;
       }
