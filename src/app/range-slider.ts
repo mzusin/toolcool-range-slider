@@ -865,24 +865,46 @@ class RangeSlider extends HTMLElement {
 
     switch (evt.key) {
       case 'ArrowLeft': {
-        this.stepBack();
+        if (this.type === 'vertical') {
+          this.value = this.min;
+          this.render();
+        } else {
+          this.stepBack();
+        }
+
         break;
       }
 
       case 'ArrowRight': {
-        this.stepForward();
+        if (this.type === 'vertical') {
+          this.value = this.max;
+          this.render();
+        } else {
+          this.stepForward();
+        }
+
         break;
       }
 
       case 'ArrowUp': {
-        this.value = this.min;
-        this.render();
+        if (this.type === 'vertical') {
+          this.stepBack();
+        } else {
+          this.value = this.min;
+          this.render();
+        }
+
         break;
       }
 
       case 'ArrowDown': {
-        this.value = this.max;
-        this.render();
+        if (this.type === 'vertical') {
+          this.stepForward();
+        } else {
+          this.value = this.max;
+          this.render();
+        }
+
         break;
       }
     }
