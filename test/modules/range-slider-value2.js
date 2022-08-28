@@ -114,30 +114,4 @@ QUnit.module('Range Slider Value2', () => {
         assert.equal($pointer.style.left, '41.5%');
     });
 
-    QUnit.test('range slider value2 should be no more that 5 decimal places after the dot', (assert) => {
-        // used to fix value2 like '50.300000000000004' ---> 50.3
-        const $slider = document.querySelector('#slider-93');
-        const $pointer = $slider.shadowRoot.querySelector('.pointer');
-
-        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            key: 'ArrowRight',
-        }));
-        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            key: 'ArrowRight',
-        }));
-        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            key: 'ArrowRight',
-        }));
-
-        assert.equal($slider.value2, 50.3);
-    });
 });

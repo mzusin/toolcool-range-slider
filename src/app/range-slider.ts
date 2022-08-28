@@ -60,7 +60,7 @@ class RangeSlider extends HTMLElement {
       'pointer-border-focus',
 
       'value-label',
-      'value-label2',
+      'value2-label',
       'generate-labels',
       'animate-onclick',
     ];
@@ -74,7 +74,7 @@ class RangeSlider extends HTMLElement {
   private _$pointer2: HTMLElement | null;
 
   private _$valueLabel: HTMLElement | null;
-  private _$valueLabel2: HTMLElement | null;
+  private _$value2Label: HTMLElement | null;
 
   private _$minLabel: HTMLElement | null;
   private _$maxLabel: HTMLElement | null;
@@ -98,7 +98,7 @@ class RangeSlider extends HTMLElement {
   private _storageInitialized = false;
 
   private _valueLabel: string | undefined = undefined;
-  private _valueLabel2: string | undefined = undefined;
+  private _value2Label: string | undefined = undefined;
 
   private _generateLabels = false;
   private _animateOnClick: string | undefined = undefined;
@@ -378,6 +378,11 @@ class RangeSlider extends HTMLElement {
 
   public set valueLabel(val: string | undefined) {
     this._valueLabel = val;
+
+    if (this._valueLabel) {
+      this._$valueLabel = document.querySelector(this._valueLabel);
+    }
+
     this.render();
   }
 
@@ -385,13 +390,17 @@ class RangeSlider extends HTMLElement {
     return this._valueLabel;
   }
 
-  public set valueLabel2(val: string | undefined) {
-    this._valueLabel2 = val;
+  public set value2Label(val: string | undefined) {
+    this._value2Label = val;
+    if (this._value2Label) {
+      this._$value2Label = document.querySelector(this._value2Label);
+    }
+
     this.render();
   }
 
-  public get valueLabel2() {
-    return this._valueLabel2;
+  public get value2Label() {
+    return this._value2Label;
   }
 
   public set generateLabels(val: boolean) {
@@ -769,8 +778,8 @@ class RangeSlider extends HTMLElement {
       this._$valueLabel.textContent = this.data ? this.value.toString() : setDecimalPlaces(_val, this.round).toString();
     }
 
-    if (this._$valueLabel2 && this.value2 !== undefined && _val2 !== undefined) {
-      this._$valueLabel2.textContent = this.data ? this.value2.toString() : setDecimalPlaces(_val2, this.round).toString();
+    if (this._$value2Label && this.value2 !== undefined && _val2 !== undefined) {
+      this._$value2Label.textContent = this.data ? this.value2.toString() : setDecimalPlaces(_val2, this.round).toString();
     }
 
     // set additional area attributes
@@ -808,8 +817,8 @@ class RangeSlider extends HTMLElement {
       if (this._$valueLabel) {
         this._$valueLabel.textContent = this.value.toString();
       }
-      if (this._$valueLabel2 && this.value2 !== undefined) {
-        this._$valueLabel2.textContent = this.value2.toString();
+      if (this._$value2Label && this.value2 !== undefined) {
+        this._$value2Label.textContent = this.value2.toString();
       }
     }
 
@@ -1307,8 +1316,8 @@ class RangeSlider extends HTMLElement {
       this._$valueLabel = document.querySelector(this.valueLabel);
     }
 
-    if (this.valueLabel2) {
-      this._$valueLabel2 = document.querySelector(this.valueLabel2);
+    if (this.value2Label) {
+      this._$value2Label = document.querySelector(this.value2Label);
     }
 
     // initialize labels
@@ -1316,7 +1325,7 @@ class RangeSlider extends HTMLElement {
       this.initLabel('_$minLabel', 'min-label');
       this.initLabel('_$maxLabel', 'max-label');
       this.initLabel('_$valueLabel', 'value-label');
-      this.initLabel('_$valueLabel2', 'value-label2');
+      this.initLabel('_$value2Label', 'value2-label');
 
       if (this.rtl || this.btt) {
         const $minSlot = this.shadowRoot.querySelector('slot[name="min-label"]');
@@ -1492,8 +1501,8 @@ class RangeSlider extends HTMLElement {
         break;
       }
 
-      case 'value-label2': {
-        this.valueLabel2 = this.getAttribute('value-label2') || undefined;
+      case 'value2-label': {
+        this.value2Label = this.getAttribute('value2-label') || undefined;
         this.render();
         break;
       }

@@ -66,6 +66,73 @@ QUnit.module('Range Slider Value Label', () => {
 
 });
 
+QUnit.module('Range Slider Value Label 2', () => {
+
+    QUnit.test('default value label 2 should be undefined', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        assert.equal($slider.value2Label, undefined);
+    });
+
+    QUnit.test('provided value label should be .value-2', (assert) => {
+        const $slider = document.querySelector('#slider-94');
+        assert.equal($slider.value2Label, '.value-2');
+    });
+
+    QUnit.test('change value label via API to .value-1', (assert) => {
+        const $slider = document.querySelector('#slider-94');
+        $slider.value2Label = '.value-1';
+        assert.equal($slider.value2Label, '.value-1');
+    });
+
+    QUnit.test('provided value label is .value-6 ---> the label should contain zero', (assert) => {
+        const $slider = document.querySelector('#slider-96');
+        const $label = document.querySelector('.value-5');
+        assert.equal($label.textContent, '0');
+    });
+
+    QUnit.test('change value via attribute to .value-3', (assert) => {
+        const $slider = document.querySelector('#slider-94');
+        $slider.setAttribute('value2-label', '.value-3');
+        assert.equal($slider.value2Label, '.value-3');
+    });
+
+    QUnit.test('provided value label is .value-2 and value2 = 50 ---> the label should contain 50', (assert) => {
+        const $slider = document.querySelector('#slider-95');
+        $slider.value2 = 50;
+        const $label = document.querySelector('.value-2');
+        assert.equal($label.textContent, '50');
+    });
+
+    QUnit.test('change value label via API to .value-6 ---> the label should contain 0', (assert) => {
+        const $slider = document.querySelector('#slider-94');
+        $slider.value2Label = '.value-6';
+        const $label = document.querySelector('.value-6');
+        assert.equal($label.textContent, '0');
+    });
+
+    QUnit.test('change value via attribute to .value-6 ---> the label should contain 0', (assert) => {
+        const $slider = document.querySelector('#slider-94');
+        $slider.setAttribute('value-label', '.value-2');
+        $slider.value2Label = '.value-6';
+        const $label = document.querySelector('.value-6');
+        assert.equal($label.textContent, '0');
+    });
+
+
+    QUnit.test('data="a, b, c, d", provided value label is .value-6 ---> the label should contain "c"', (assert) => {
+        const $slider = document.querySelector('#slider-97');
+        const $label = document.querySelector('.value-6');
+        assert.deepEqual($label.textContent, 'c');
+    });
+
+    QUnit.test('data="100, 200, 300", provided value label is .value-7 ---> the label should contain "300"', (assert) => {
+        const $slider = document.querySelector('#slider-98');
+        const $label = document.querySelector('.value-7');
+        assert.deepEqual($label.textContent, '300');
+    });
+
+});
+
 QUnit.module('Range Slider Generate Labels', () => {
 
     QUnit.test('by default generateLabels should be false', (assert) => {
