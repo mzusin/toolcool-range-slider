@@ -68,6 +68,7 @@ class RangeSlider extends HTMLElement {
   private _$box: HTMLElement | null;
   private _$slider: HTMLElement | null;
   private _$pointer: HTMLElement | null;
+  private _$pointer2: HTMLElement | null;
   private _$panelFill: HTMLElement | null;
 
   private _$valueLabel: HTMLElement | null;
@@ -560,11 +561,11 @@ class RangeSlider extends HTMLElement {
 
   // ---------------------- EVENTS ------------------------
 
-  sendPointerClickedEvent() {
+  sendPointerClickedEvent($pointer: HTMLElement) {
     this.dispatchEvent(
       new CustomEvent('onPointerClicked', {
         detail: {
-          $pointer: this._$pointer,
+          $pointer: $pointer,
         },
       })
     );
@@ -840,10 +841,12 @@ class RangeSlider extends HTMLElement {
 
   // -------------------- EVENTS HANDLERS --------------------------
 
-  pointerClicked() {
+  pointerClicked(evt: MouseEvent) {
     if (this.disabled) return;
-    this._$pointer?.focus();
-    this.sendPointerClickedEvent();
+
+    const $pointer = evt.currentTarget as HTMLElement;
+    $pointer.focus();
+    this.sendPointerClickedEvent($pointer);
   }
 
   pointerMouseWheel(evt: WheelEvent) {
@@ -1174,6 +1177,12 @@ class RangeSlider extends HTMLElement {
     this._$box = this.shadowRoot.querySelector('.range-slider-box');
     this._$slider = this.shadowRoot.querySelector('.range-slider');
     this._$pointer = this.shadowRoot.querySelector('.pointer');
+
+    if (this.value2 !== undefined) {
+      this._$pointer2 = this._$pointer?.cloneNode(true) as HTMLElement;
+      this._$pointer?.after(this._$pointer2);
+    }
+
     this._$panelFill = this.shadowRoot.querySelector('.panel-fill');
 
     if (this.valueLabel) {
@@ -1203,6 +1212,12 @@ class RangeSlider extends HTMLElement {
     // init pointer events
     this._$pointer?.addEventListener('click', this.pointerClicked);
     this._$pointer?.addEventListener('keydown', this.pointerKeyDown);
+
+    if (this._$pointer2) {
+      this._$pointer2.addEventListener('click', this.pointerClicked);
+      this._$pointer2.addEventListener('keydown', this.pointerKeyDown);
+    }
+
     document.addEventListener('wheel', this.pointerMouseWheel, { passive: false });
 
     if (this.animateOnClick) {
@@ -1233,6 +1248,12 @@ class RangeSlider extends HTMLElement {
   disconnectedCallback() {
     this._$pointer?.removeEventListener('click', this.pointerClicked);
     this._$pointer?.removeEventListener('keydown', this.pointerClicked);
+
+    if (this._$pointer2) {
+      this._$pointer2.removeEventListener('click', this.pointerClicked);
+      this._$pointer2.removeEventListener('keydown', this.pointerKeyDown);
+    }
+
     document.removeEventListener('wheel', this.pointerMouseWheel);
 
     this._$slider?.removeEventListener('mousedown', this.onMouseDown);
