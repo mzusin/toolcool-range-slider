@@ -673,6 +673,7 @@ class RangeSlider extends HTMLElement {
     let _min;
     let _max;
     let _val;
+    let _val2;
 
     if (this.data) {
       // when data is defined, we use data indexes instead of the actual values
@@ -682,14 +683,26 @@ class RangeSlider extends HTMLElement {
       if (_val === -1) {
         _val = _min;
       }
+
+      if (this.value2 !== undefined) {
+        _val2 = this.findValueIndexInData(this.value2);
+        if (_val2 === -1) {
+          _val2 = _min;
+        }
+      }
     } else {
       _min = this.min as number;
       _max = this.max as number;
       _val = this.value as number;
+
+      if (this.value2 !== undefined) {
+        _val2 = this.value2 as number;
+      }
     }
 
     // update the pointer position
     const percent = convertRange(_min, _max, 0, 100, _val);
+    const percent2 = this.value2 === undefined || _val2 === undefined ? 0 : convertRange(_min, _max, 0, 100, _val2);
 
     if (this.type === 'vertical') {
       if (this.btt) {
@@ -697,11 +710,19 @@ class RangeSlider extends HTMLElement {
         this._$panelFill.style.height = `${percent}%`;
         this._$panelFill.style.bottom = '0%';
         this._$panelFill.style.top = 'auto';
+
+        if (this.value2 !== undefined && this._$pointer2) {
+          this._$pointer2.style.top = `${100 - percent2}%`;
+        }
       } else {
         this._$pointer.style.top = `${percent}%`;
         this._$panelFill.style.height = `${percent}%`;
         this._$panelFill.style.bottom = 'auto';
         this._$panelFill.style.top = '0%';
+
+        if (this.value2 !== undefined && this._$pointer2) {
+          this._$pointer2.style.top = `${percent}%`;
+        }
       }
 
       this._$slider.setAttribute('aria-orientation', 'vertical');
@@ -711,11 +732,19 @@ class RangeSlider extends HTMLElement {
         this._$panelFill.style.width = `${percent}%`;
         this._$panelFill.style.right = '0%';
         this._$panelFill.style.left = 'auto';
+
+        if (this.value2 !== undefined && this._$pointer2) {
+          this._$pointer2.style.left = `${100 - percent2}%`;
+        }
       } else {
         this._$pointer.style.left = `${percent}%`;
         this._$panelFill.style.width = `${percent}%`;
         this._$panelFill.style.right = 'auto';
         this._$panelFill.style.left = '0%';
+
+        if (this.value2 !== undefined && this._$pointer2) {
+          this._$pointer2.style.left = `${percent2}%`;
+        }
       }
 
       this._$slider.setAttribute('aria-orientation', 'horizontal');
@@ -1042,7 +1071,7 @@ class RangeSlider extends HTMLElement {
         index = roundToStep(index, stepVal);
       }
 
-      this.value = this.data[index];
+      this.onValueChangeHelper(true, this.data[index]);
     } else {
       let value = convertRange(0, 100, this.min as number, this.max as number, percent);
       const stepVal = typeof this.step === 'function' ? this.step(value) : this.step;
@@ -1051,10 +1080,32 @@ class RangeSlider extends HTMLElement {
         value = roundToStep(value, stepVal);
       }
 
-      this.value = value;
+      this.onValueChangeHelper(false, value);
     }
 
     this.render();
+  }
+
+  onValueChangeHelper(hasData: boolean, updatedValue: string | number) {
+    if (this.value2 !== undefined) {
+      // TODO
+      if (hasData) {
+      } else {
+        const distance1 = Math.abs((updatedValue as number) - (this.value as number));
+        const distance2 = Math.abs((updatedValue as number) - (this.value2 as number));
+
+        if (distance1 <= distance2) {
+          this.value = updatedValue;
+          this._$pointer?.focus();
+        } else {
+          this.value2 = updatedValue;
+          this._$pointer2?.focus();
+        }
+      }
+    } else {
+      this.value = updatedValue;
+      this._$pointer?.focus();
+    }
   }
 
   getStringOrNumber(attrName: string, defaultValue: number, dataDefaultValue: string | number) {
