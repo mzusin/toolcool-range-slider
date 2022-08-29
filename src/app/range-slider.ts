@@ -16,7 +16,7 @@ import {
   sendPointerClickedEvent
 } from '../domain/events-provider';
 import { initLabels, renderLabels } from '../domain/labels-provider';
-import { getSafeValues, isFocused } from '../domain/core-provider';
+import { getSafeValues, isFocused, updateValueAndFocusPointer } from '../domain/core-provider';
 import { findValueIndexInData, parseData } from '../dal/data-provider';
 import { stepBack, stepForward } from '../domain/accessibility-provider';
 import { renderStyles } from '../domain/style-provider';
@@ -121,7 +121,6 @@ class RangeSlider extends HTMLElement {
     this.onMouseDown = this.onMouseDown.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
     this.onValueChange = this.onValueChange.bind(this);
-    this.updateValueAndFocusPointer = this.updateValueAndFocusPointer.bind(this);
     this.pointerKeyDown = this.pointerKeyDown.bind(this);
     this.render = this.render.bind(this);
     this.onTransitionEnd = this.onTransitionEnd.bind(this);
@@ -877,7 +876,12 @@ class RangeSlider extends HTMLElement {
         index = roundToStep(index, stepVal);
       }
 
-      this.updateValueAndFocusPointer(true, this.data[index]);
+      updateValueAndFocusPointer(
+        this,
+        true,
+        this.data[index],
+        this._$pointer,
+        this._$pointer2);
     }
     else {
       let value = convertRange(0, 100, this.min as number, this.max as number, percent);
@@ -887,51 +891,17 @@ class RangeSlider extends HTMLElement {
         value = roundToStep(value, stepVal);
       }
 
-      this.updateValueAndFocusPointer(false, value);
+      updateValueAndFocusPointer(
+        this,
+        false,
+        value,
+        this._$pointer,
+        this._$pointer2);
     }
 
     this.render();
   }
 
-  updateValueAndFocusPointer(hasData: boolean, updatedValue: string | number) {
-    if (this.value2 !== undefined) {
-      let distance1: number | undefined = undefined;
-      let distance2: number | undefined = undefined;
-
-      if (hasData) {
-        if (!this.data) return;
-
-        const index1 = this.data.findIndex((item) => item === this.value);
-        const index2 = this.data.findIndex((item) => item === this.value2);
-        const index3 = this.data.findIndex((item) => item === updatedValue);
-
-        if (index1 === -1 && index2 === -1 && index3 === -1) return;
-
-        distance1 = Math.abs(index1 - index3);
-        distance2 = Math.abs(index2 - index3);
-      }
-      else {
-        distance1 = Math.abs((updatedValue as number) - (this.value as number));
-        distance2 = Math.abs((updatedValue as number) - (this.value2 as number));
-      }
-
-      if (distance1 !== undefined && distance2 !== undefined) {
-        if (distance1 <= distance2) {
-          this.value = updatedValue;
-          this._$pointer?.focus();
-        }
-        else {
-          this.value2 = updatedValue;
-          this._$pointer2?.focus();
-        }
-      }
-
-      return;
-    }
-
-    this.value = updatedValue;
-    this._$pointer?.focus();
-  }
 
   // ------------------------- WEB COMPONENT LIFECYCLE ----------------------------
 
