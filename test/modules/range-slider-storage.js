@@ -65,4 +65,9 @@ QUnit.module('Range Slider Storage Key', () => {
         $slider.setAttribute('storage-key', 'test-2');
         assert.equal($slider.storageKey, 'test-2');
     });
+
+    QUnit.test('in case of 2 pointers and storage enabled, storageKey2 should be "test-2"', (assert) => {
+        const $slider = document.querySelector('#slider-99');
+        assert.equal($slider.storageKey2, 'test-2');
+    });
 });
