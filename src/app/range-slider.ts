@@ -1028,6 +1028,7 @@ class RangeSlider extends HTMLElement {
       }
 
       case 'ArrowUp': {
+        evt.preventDefault();
         if (this.type === 'vertical') {
           this.stepBack();
         } else {
@@ -1044,6 +1045,7 @@ class RangeSlider extends HTMLElement {
       }
 
       case 'ArrowDown': {
+        evt.preventDefault();
         if (this.type === 'vertical') {
           this.stepForward();
         } else {
