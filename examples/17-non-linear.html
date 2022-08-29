@@ -67,12 +67,26 @@
             <div class="value value-1"></div>
         </div>
 
+        <div class="row">
+            <toolcool-range-slider
+              id="slider-2"
+              slider-width="100%"
+              value="10"
+              value2="50"
+              generate-labels="true"></toolcool-range-slider>
+        </div>
+
     </div>
 
     <script src="js/toolcool-range-slider.min.js"></script>
     <script>
         const $slider = document.getElementById('slider-1');
         $slider.step = (value) => {
+            return value < 50 ? 5 : 10;
+        };
+
+        const $slider2 = document.getElementById('slider-2');
+        $slider2.step = (value) => {
             return value < 50 ? 5 : 10;
         };
     </script>

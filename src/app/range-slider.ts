@@ -2,6 +2,8 @@ import styles from './styles.pcss';
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
 import { convertRange, DEFAULT_ROUND_PLACES, getNumber, isNumber, roundToStep, setDecimalPlaces } from '../domain/math-provider';
 import { getFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../domain/storage-provider';
+import { observedAttributes } from '../domain/attributes-provider';
+import { sendPointerClickedEvent } from '../domain/events-provider';
 
 /*
  Usage:
@@ -16,54 +18,12 @@ import { getFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../
 class RangeSlider extends HTMLElement {
   // ------------------------- INIT ----------------
 
+  /**
+   * the attributes list that are observed by web component;
+   * if attribute changes ---> the web component will update accordingly
+   */
   static get observedAttributes() {
-    return [
-      'value',
-      'value2',
-      'data',
-      'min',
-      'max',
-      'step',
-      'round',
-      'type',
-      'theme',
-      'disabled',
-      'rtl',
-      'btt',
-
-      'storage',
-      'storage-key',
-
-      'slider-width',
-      'slider-height',
-      'slider-radius',
-
-      'slider-bg',
-      'slider-bg-hover',
-      'slider-bg-fill',
-
-      'pointer-width',
-      'pointer-height',
-      'pointer-radius',
-      'pointer-shape',
-
-      'pointer-bg',
-      'pointer-bg-hover',
-      'pointer-bg-focus',
-
-      'pointer-shadow',
-      'pointer-shadow-hover',
-      'pointer-shadow-focus',
-
-      'pointer-border',
-      'pointer-border-hover',
-      'pointer-border-focus',
-
-      'value-label',
-      'value2-label',
-      'generate-labels',
-      'animate-onclick',
-    ];
+    return observedAttributes;
   }
 
   private _$box: HTMLElement | null;
@@ -225,7 +185,8 @@ class RangeSlider extends HTMLElement {
   public set min(val: number | string) {
     if (this.data) {
       this._min = isNumber(val) ? getNumber(val, this.data[0]) : this.data[0];
-    } else {
+    }
+    else {
       const safe = this.getSafeValues(this.value as number, val as number, this.max as number);
       this._min = safe.min;
       this.value = safe.value;
@@ -247,7 +208,8 @@ class RangeSlider extends HTMLElement {
     if (this.data) {
       const defaultValue = this.data[this.data.length - 1];
       this._max = isNumber(val) ? getNumber(val, defaultValue) : defaultValue;
-    } else {
+    }
+    else {
       const safe = this.getSafeValues(this.value as number, this.min as number, val as number);
       this._max = safe.max;
       this.value = safe.value;
@@ -586,16 +548,6 @@ class RangeSlider extends HTMLElement {
 
   // ---------------------- EVENTS ------------------------
 
-  sendPointerClickedEvent($pointer: HTMLElement) {
-    this.dispatchEvent(
-      new CustomEvent('onPointerClicked', {
-        detail: {
-          $pointer: $pointer,
-        },
-      })
-    );
-  }
-
   sendMouseDownEvent(evt: MouseEvent) {
     this.dispatchEvent(
       new CustomEvent('onMouseDown', {
@@ -926,7 +878,7 @@ class RangeSlider extends HTMLElement {
 
     const $pointer = evt.currentTarget as HTMLElement;
     $pointer.focus();
-    this.sendPointerClickedEvent($pointer);
+    sendPointerClickedEvent(this, $pointer);
   }
 
   pointerMouseWheel(evt: WheelEvent) {
@@ -939,14 +891,15 @@ class RangeSlider extends HTMLElement {
 
     if (scrollTop) {
       this.stepBack();
-    } else {
+    }
+    else {
       this.stepForward();
     }
   }
 
   stepBack() {
     if (this.data) {
-      const isPointer2 = this._$pointer2!! && this._$pointer2?.matches(':focus-within') && this.value2 !== undefined;
+      const isPointer2 = this.isFocused(this._$pointer2) && this.value2 !== undefined;
 
       const index = this.findValueIndexInData(isPointer2 && this.value2 !== undefined ? this.value2 : this.value);
       if (index !== -1) {
@@ -955,17 +908,20 @@ class RangeSlider extends HTMLElement {
         if (this.data[updatedIndex] !== undefined) {
           if (isPointer2) {
             this.value2 = this.data[updatedIndex];
-          } else {
+          }
+          else {
             this.value = this.data[updatedIndex];
           }
         }
       }
-    } else {
-      if (this._$pointer2 && this._$pointer2?.matches(':focus-within')) {
+    }
+    else {
+      if (this.isFocused(this._$pointer2)) {
         const step = typeof this.step === 'function' ? this.step(this.value2 as number) : getNumber(this.step, 1);
         const safe = this.getSafeValues((this.value2 as number) - step, this.min as number, this.max as number);
         this.value2 = safe.value;
-      } else {
+      }
+      else {
         const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
         const safe = this.getSafeValues((this.value as number) - step, this.min as number, this.max as number);
         this.value = safe.value;
@@ -977,7 +933,7 @@ class RangeSlider extends HTMLElement {
 
   stepForward() {
     if (this.data) {
-      const isPointer2 = this._$pointer2!! && this._$pointer2?.matches(':focus-within') && this.value2 !== undefined;
+      const isPointer2 = this.isFocused(this._$pointer2) && this.value2 !== undefined;
 
       const index = this.findValueIndexInData(isPointer2 && this.value2 !== undefined ? this.value2 : this.value);
       if (index !== -1) {
@@ -986,17 +942,20 @@ class RangeSlider extends HTMLElement {
         if (this.data[updatedIndex] !== undefined) {
           if (isPointer2) {
             this.value2 = this.data[updatedIndex];
-          } else {
+          }
+          else {
             this.value = this.data[updatedIndex];
           }
         }
       }
-    } else {
-      if (this._$pointer2 && this._$pointer2?.matches(':focus-within')) {
+    }
+    else {
+      if (this.isFocused(this._$pointer2)) {
         const step = typeof this.step === 'function' ? this.step(this.value2 as number) : getNumber(this.step, 1);
         const safe = this.getSafeValues((this.value2 as number) + step, this.min as number, this.max as number);
         this.value2 = safe.value;
-      } else {
+      }
+      else {
         const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
         const safe = this.getSafeValues((this.value as number) + step, this.min as number, this.max as number);
         this.value = safe.value;
@@ -1024,12 +983,14 @@ class RangeSlider extends HTMLElement {
         if (this.type === 'vertical') {
           if (this.isFocused(this._$pointer2)) {
             this.value2 = this.min;
-          } else {
+          }
+          else {
             this.value = this.min;
           }
 
           this.render();
-        } else {
+        }
+        else {
           this.stepBack();
         }
 
@@ -1040,12 +1001,14 @@ class RangeSlider extends HTMLElement {
         if (this.type === 'vertical') {
           if (this.isFocused(this._$pointer2)) {
             this.value2 = this.max;
-          } else {
+          }
+          else {
             this.value = this.max;
           }
 
           this.render();
-        } else {
+        }
+        else {
           this.stepForward();
         }
 
@@ -1056,10 +1019,12 @@ class RangeSlider extends HTMLElement {
         evt.preventDefault();
         if (this.type === 'vertical') {
           this.stepBack();
-        } else {
+        }
+        else {
           if (this.isFocused(this._$pointer2)) {
             this.value2 = this.min;
-          } else {
+          }
+          else {
             this.value = this.min;
           }
 
@@ -1073,10 +1038,12 @@ class RangeSlider extends HTMLElement {
         evt.preventDefault();
         if (this.type === 'vertical') {
           this.stepForward();
-        } else {
+        }
+        else {
           if (this.isFocused(this._$pointer2)) {
             this.value2 = this.max;
-          } else {
+          }
+          else {
             this.value = this.max;
           }
 
@@ -1137,7 +1104,8 @@ class RangeSlider extends HTMLElement {
       if (this.btt) {
         percent = 100 - percent;
       }
-    } else {
+    }
+    else {
       // -------------- horizontal -----------------
 
       const { width: boxWidth, left: boxLeft } = this._$slider.getBoundingClientRect();
@@ -1162,7 +1130,8 @@ class RangeSlider extends HTMLElement {
       }
 
       this.updateValueAndFocusPointer(true, this.data[index]);
-    } else {
+    }
+    else {
       let value = convertRange(0, 100, this.min as number, this.max as number, percent);
       const stepVal = typeof this.step === 'function' ? this.step(value) : this.step;
 
@@ -1192,7 +1161,8 @@ class RangeSlider extends HTMLElement {
 
         distance1 = Math.abs(index1 - index3);
         distance2 = Math.abs(index2 - index3);
-      } else {
+      }
+      else {
         distance1 = Math.abs((updatedValue as number) - (this.value as number));
         distance2 = Math.abs((updatedValue as number) - (this.value2 as number));
       }
@@ -1201,7 +1171,8 @@ class RangeSlider extends HTMLElement {
         if (distance1 <= distance2) {
           this.value = updatedValue;
           this._$pointer?.focus();
-        } else {
+        }
+        else {
           this.value2 = updatedValue;
           this._$pointer2?.focus();
         }
@@ -1218,7 +1189,8 @@ class RangeSlider extends HTMLElement {
     const _val = this.getAttribute(attrName);
     if (this.data) {
       return isNumber(_val) ? getNumber(_val, dataDefaultValue) : _val ?? dataDefaultValue;
-    } else {
+    }
+    else {
       return getNumber(_val, defaultValue);
     }
   }
@@ -1231,7 +1203,8 @@ class RangeSlider extends HTMLElement {
     // when slot exists ---> take its content as a template
     if ($slot) {
       this[property] = $slot.querySelector(`.${codeName}`);
-    } else {
+    }
+    else {
       // slot is not provided ---> generate the label
       const $label = document.createElement('label');
       $label.classList.add(codeName);
@@ -1242,7 +1215,8 @@ class RangeSlider extends HTMLElement {
         case 'min-label': {
           if (this.rtl || this.btt) {
             $row?.append($label);
-          } else {
+          }
+          else {
             $row?.prepend($label);
           }
 
@@ -1251,7 +1225,8 @@ class RangeSlider extends HTMLElement {
         case 'max-label': {
           if (this.rtl || this.btt) {
             $row?.prepend($label);
-          } else {
+          }
+          else {
             $row?.append($label);
           }
 
@@ -1261,7 +1236,8 @@ class RangeSlider extends HTMLElement {
           const $labelRow = this._$box?.querySelector('.labels-row');
           if (this.rtl || this.btt) {
             $labelRow?.prepend($label);
-          } else {
+          }
+          else {
             $labelRow?.append($label);
           }
 
@@ -1272,7 +1248,8 @@ class RangeSlider extends HTMLElement {
           const $labelRow = this._$box?.querySelector('.labels-row');
           if (this.rtl || this.btt) {
             $labelRow?.prepend($label);
-          } else {
+          }
+          else {
             $labelRow?.append($label);
           }
 
@@ -1295,7 +1272,8 @@ class RangeSlider extends HTMLElement {
     let restoredValue = getFromStorage(this.storage, this.storageKey);
     if (isNumber(restoredValue)) {
       this.value = getNumber(restoredValue, this.min);
-    } else {
+    }
+    else {
       if (restoredValue) {
         this.value = restoredValue;
       }
@@ -1305,7 +1283,8 @@ class RangeSlider extends HTMLElement {
       restoredValue = getFromStorage(this.storage, this.storageKey2);
       if (isNumber(restoredValue)) {
         this.value2 = getNumber(restoredValue, this.min);
-      } else {
+      }
+      else {
         if (restoredValue) {
           this.value2 = restoredValue;
         }
