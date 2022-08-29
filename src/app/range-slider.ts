@@ -3,7 +3,13 @@ import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
 import { convertRange, DEFAULT_ROUND_PLACES, getNumber, isNumber, roundToStep } from '../domain/math-provider';
 import { getFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../domain/storage-provider';
 import { observedAttributes } from '../domain/attributes-provider';
-import { sendPointerClickedEvent } from '../domain/events-provider';
+import {
+  sendChangeEvent,
+  sendMouseDownEvent,
+  sendMouseUpEvent,
+  sendOnKeyDownEvent,
+  sendPointerClickedEvent
+} from '../domain/events-provider';
 import { initLabels, renderLabels } from "../domain/labels-provider";
 import { getSafeValues } from '../domain/core-provider';
 
@@ -120,7 +126,7 @@ class RangeSlider extends HTMLElement {
 
   private valueUpdateDone(val: number | string | undefined, storageKey: string) {
     this.render();
-    this.sendChangeEvent();
+    sendChangeEvent(this);
 
     if (this.storage && this._storageInitialized) {
       saveToStorage(this.storage, storageKey, val);
@@ -551,54 +557,6 @@ class RangeSlider extends HTMLElement {
     return this._pointerBorderFocus;
   }
 
-  // ---------------------- EVENTS ------------------------
-
-  sendMouseDownEvent(evt: MouseEvent) {
-    this.dispatchEvent(
-      new CustomEvent('onMouseDown', {
-        detail: {
-          nativeEvent: evt,
-        },
-      })
-    );
-  }
-
-  sendMouseUpEvent(evt: MouseEvent) {
-    this.dispatchEvent(
-      new CustomEvent('onMouseUp', {
-        detail: {
-          nativeEvent: evt,
-        },
-      })
-    );
-  }
-
-  sendChangeEvent() {
-    const detail : { value: number | string, value2? : number | string } = {
-      value: this.value,
-    };
-
-    if(this.value2 !== undefined){
-      detail.value2 = this.value2;
-    }
-
-    this.dispatchEvent(
-      new CustomEvent('change', {
-        detail,
-      })
-    );
-  }
-
-  sendOnKeyDownEvent(evt: KeyboardEvent) {
-    this.dispatchEvent(
-      new CustomEvent('onKeyDown', {
-        detail: {
-          nativeEvent: evt,
-        },
-      })
-    );
-  }
-
   // ----------------------------------------------
 
   parseData(dataString: string | undefined | null): (string | number)[] | undefined {
@@ -1023,7 +981,7 @@ class RangeSlider extends HTMLElement {
       }
     }
 
-    this.sendOnKeyDownEvent(evt);
+    sendOnKeyDownEvent(this, evt);
   }
 
   onMouseDown(evt: MouseEvent) {
@@ -1042,7 +1000,7 @@ class RangeSlider extends HTMLElement {
     }
 
     this.onValueChange(evt);
-    this.sendMouseDownEvent(evt);
+    sendMouseDownEvent(this, evt);
 
     window.addEventListener('mousemove', this.onValueChange);
     window.addEventListener('mouseup', this.onMouseUp);
@@ -1053,7 +1011,7 @@ class RangeSlider extends HTMLElement {
 
     window.removeEventListener('mousemove', this.onValueChange);
     window.removeEventListener('mouseup', this.onValueChange);
-    this.sendMouseUpEvent(evt);
+    sendMouseUpEvent(this, evt);
   }
 
   onValueChange(evt: MouseEvent | TouchEvent) {
