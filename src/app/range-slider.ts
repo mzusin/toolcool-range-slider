@@ -19,6 +19,7 @@ import { initLabels, renderLabels } from '../domain/labels-provider';
 import { getSafeValues, isFocused } from '../domain/core-provider';
 import { findValueIndexInData, parseData } from '../dal/data-provider';
 import { stepBack, stepForward } from '../domain/accessibility-provider';
+import { renderStyles } from '../domain/style-provider';
 
 /*
  Usage:
@@ -679,10 +680,6 @@ class RangeSlider extends HTMLElement {
       this._$box?.classList.add(`type-${this.type}`);
     }
 
-    if (this.theme) {
-      this._$slider.classList.add(this.theme);
-    }
-
     if (this.disabled) {
       this._$slider.classList.add('disabled');
       this._$slider.setAttribute('aria-disabled', 'true');
@@ -695,81 +692,7 @@ class RangeSlider extends HTMLElement {
       }
     }
 
-    if (this.pointerShape) {
-      this._$slider.classList.add('shape', `shape-${this.pointerShape}`);
-    }
-
-    if (this.sliderWidth) {
-      this._$slider.style.setProperty('--tc-range-slider-width', this.sliderWidth);
-    }
-
-    if (this.sliderHeight) {
-      this._$slider.style.setProperty('--tc-range-slider-height', this.sliderHeight);
-    }
-
-    if (this.sliderRadius) {
-      this._$slider.style.setProperty('--tc-range-slider-panel-bg-border-radius', this.sliderRadius);
-    }
-
-    if (this.sliderBg) {
-      this._$slider.style.setProperty('--tc-range-slider-panel-bg', this.sliderBg);
-    }
-
-    if (this.sliderBgHover) {
-      this._$slider.style.setProperty('--tc-range-slider-panel-bg-hover', this.sliderBgHover);
-    }
-
-    if (this.sliderBgFill) {
-      this._$slider.style.setProperty('--tc-range-slider-panel-bg-fill', this.sliderBgFill);
-    }
-
-    if (this.pointerWidth) {
-      this._$slider.style.setProperty('--tc-range-slider-pointer-width', this.pointerWidth);
-    }
-
-    if (this.pointerHeight) {
-      this._$slider.style.setProperty('--tc-range-slider-pointer-height', this.pointerHeight);
-    }
-
-    if (this.pointerRadius) {
-      this._$slider.style.setProperty('--tc-range-slider-pointer-border-radius', this.pointerRadius);
-    }
-
-    if (this.pointerBg) {
-      this._$slider.style.setProperty('--tc-range-slider-pointer-bg', this.pointerBg);
-    }
-
-    if (this.pointerBgHover) {
-      this._$slider.style.setProperty('--tc-range-slider-pointer-bg-hover', this.pointerBgHover);
-    }
-
-    if (this.pointerBgFocus) {
-      this._$slider.style.setProperty('--tc-range-slider-pointer-bg-focus', this.pointerBgFocus);
-    }
-
-    if (this.pointerShadow) {
-      this._$slider.style.setProperty('--tc-range-slider-pointer-shadow', this.pointerShadow);
-    }
-
-    if (this.pointerShadowHover) {
-      this._$slider.style.setProperty('--tc-range-slider-pointer-shadow-hover', this.pointerShadowHover);
-    }
-
-    if (this.pointerShadowFocus) {
-      this._$slider.style.setProperty('--tc-range-slider-pointer-shadow-focus', this.pointerShadowFocus);
-    }
-
-    if (this.pointerBorder) {
-      this._$slider.style.setProperty('--tc-range-slider-pointer-border', this.pointerBorder);
-    }
-
-    if (this.pointerBorderHover) {
-      this._$slider.style.setProperty('--tc-range-slider-pointer-border-hover', this.pointerBorderHover);
-    }
-
-    if (this.pointerBorderFocus) {
-      this._$slider.style.setProperty('--tc-range-slider-pointer-border-focus', this.pointerBorderFocus);
-    }
+    renderStyles(this, this._$slider);
   }
 
   // -------------------- EVENTS HANDLERS --------------------------
