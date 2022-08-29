@@ -4,6 +4,7 @@ import { convertRange, DEFAULT_ROUND_PLACES, getNumber, isNumber, roundToStep, s
 import { getFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../domain/storage-provider';
 import { observedAttributes } from '../domain/attributes-provider';
 import { sendPointerClickedEvent } from '../domain/events-provider';
+import { initLabels, renderLabels } from "../domain/labels-provider";
 
 /*
  Usage:
@@ -140,6 +141,10 @@ class RangeSlider extends HTMLElement {
     this.valueUpdateDone(this._value, this.storageKey);
   }
 
+  public get value() {
+    return this._value;
+  }
+
   public set value2(val: string | number | undefined) {
     if (val === undefined) {
       // value2 can be unset
@@ -163,10 +168,6 @@ class RangeSlider extends HTMLElement {
     const safe = this.getSafeValues(val as number, this.min as number, this.max as number);
     this._value2 = safe.value;
     this.valueUpdateDone(this._value2, this.storageKey2);
-  }
-
-  public get value() {
-    return this._value;
   }
 
   public get value2() {
@@ -745,13 +746,16 @@ class RangeSlider extends HTMLElement {
       this._$slider.setAttribute('aria-orientation', 'horizontal');
     }
 
-    if (this._$valueLabel) {
-      this._$valueLabel.textContent = this.data ? this.value.toString() : setDecimalPlaces(_val, this.round).toString();
-    }
-
-    if (this._$value2Label && this.value2 !== undefined && _val2 !== undefined) {
-      this._$value2Label.textContent = this.data ? this.value2.toString() : setDecimalPlaces(_val2, this.round).toString();
-    }
+    renderLabels(
+      this,
+      this.generateLabels,
+      this._$minLabel,
+      this._$maxLabel,
+      this._$valueLabel,
+      this._$value2Label,
+      _val,
+      _val2
+    );
 
     // set additional area attributes
     this._$slider.setAttribute('aria-valuemin', _min.toString());
@@ -776,21 +780,6 @@ class RangeSlider extends HTMLElement {
 
       if (this._$slider.hasAttribute('aria-disabled')) {
         this._$slider.removeAttribute('aria-disabled');
-      }
-    }
-
-    if (this.generateLabels) {
-      if (this._$minLabel) {
-        this._$minLabel.textContent = this.min.toString();
-      }
-      if (this._$maxLabel) {
-        this._$maxLabel.textContent = this.max.toString();
-      }
-      if (this._$valueLabel) {
-        this._$valueLabel.textContent = this.value.toString();
-      }
-      if (this._$value2Label && this.value2 !== undefined) {
-        this._$value2Label.textContent = this.value2.toString();
       }
     }
 
@@ -1197,69 +1186,7 @@ class RangeSlider extends HTMLElement {
 
   // ------------------------- WEB COMPONENT LIFECYCLE ----------------------------
 
-  initLabel(property: string, codeName: string) {
-    const $slot = this.querySelector(`[slot="${codeName}"]`);
 
-    // when slot exists ---> take its content as a template
-    if ($slot) {
-      this[property] = $slot.querySelector(`.${codeName}`);
-    }
-    else {
-      // slot is not provided ---> generate the label
-      const $label = document.createElement('label');
-      $label.classList.add(codeName);
-      $label.setAttribute('for', 'range-slider');
-
-      const $row = this._$box?.querySelector('.row');
-      switch (codeName) {
-        case 'min-label': {
-          if (this.rtl || this.btt) {
-            $row?.append($label);
-          }
-          else {
-            $row?.prepend($label);
-          }
-
-          break;
-        }
-        case 'max-label': {
-          if (this.rtl || this.btt) {
-            $row?.prepend($label);
-          }
-          else {
-            $row?.append($label);
-          }
-
-          break;
-        }
-        case 'value-label': {
-          const $labelRow = this._$box?.querySelector('.labels-row');
-          if (this.rtl || this.btt) {
-            $labelRow?.prepend($label);
-          }
-          else {
-            $labelRow?.append($label);
-          }
-
-          break;
-        }
-
-        case 'value2-label': {
-          const $labelRow = this._$box?.querySelector('.labels-row');
-          if (this.rtl || this.btt) {
-            $labelRow?.prepend($label);
-          }
-          else {
-            $labelRow?.append($label);
-          }
-
-          break;
-        }
-      }
-
-      this[property] = $label;
-    }
-  }
 
   /**
    * try to restore values from session or local storage
@@ -1378,26 +1305,7 @@ class RangeSlider extends HTMLElement {
 
     // initialize labels
     if (this.generateLabels) {
-      this.initLabel('_$minLabel', 'min-label');
-      this.initLabel('_$maxLabel', 'max-label');
-      this.initLabel('_$valueLabel', 'value-label');
-
-      if (this.value2 !== undefined) {
-        this.initLabel('_$value2Label', 'value2-label');
-      }
-
-      if (this.rtl || this.btt) {
-        const $minSlot = this.shadowRoot.querySelector('slot[name="min-label"]');
-        const $maxSlot = this.shadowRoot.querySelector('slot[name="max-label"]');
-        if ($minSlot) this._$slider?.after($minSlot);
-        if ($maxSlot) this._$slider?.before($maxSlot);
-
-        if (this.value2 !== undefined) {
-          const $value1Slot = this.shadowRoot.querySelector('slot[name="value-label"]');
-          const $value2Slot = this.shadowRoot.querySelector('slot[name="value2-label"]');
-          if ($value1Slot && $value2Slot) $value2Slot.after($value1Slot);
-        }
-      }
+      initLabels(this, this._$slider, this._$box);
     }
 
     // init slider events
