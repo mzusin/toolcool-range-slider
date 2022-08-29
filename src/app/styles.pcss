@@ -135,6 +135,7 @@
     margin: 0 1rem;
     width: 2rem;
     text-align: center;
+    white-space: nowrap;
 }
 
 .value-label,
@@ -143,6 +144,7 @@
 ::slotted([slot="value2-label"]){
     text-align: center;
     margin: 0 0.5rem;
+    white-space: nowrap;
 }
 
 /**
@@ -180,11 +182,6 @@
 
 .type-vertical .labels-row{
     flex-direction: column;
-    order: 1;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .type-vertical .value-label,
