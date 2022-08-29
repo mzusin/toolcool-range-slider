@@ -1,7 +1,7 @@
 import styles from './styles.pcss';
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
 import { convertRange, DEFAULT_ROUND_PLACES, getNumber, isNumber, roundToStep } from '../domain/math-provider';
-import { getFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../domain/storage-provider';
+import { getFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../dal/storage-provider';
 import { observedAttributes } from '../domain/attributes-provider';
 import {
   sendChangeEvent,
@@ -12,6 +12,7 @@ import {
 } from '../domain/events-provider';
 import { initLabels, renderLabels } from "../domain/labels-provider";
 import { getSafeValues } from '../domain/core-provider';
+import { findValueIndexInData, parseData } from '../dal/data-provider';
 
 /*
  Usage:
@@ -559,36 +560,6 @@ class RangeSlider extends HTMLElement {
 
   // ----------------------------------------------
 
-  parseData(dataString: string | undefined | null): (string | number)[] | undefined {
-    if (dataString === undefined || dataString === null) return undefined;
-
-    const result = dataString.trim();
-    if (result === '') return undefined;
-
-    const parts = dataString.split(',');
-    const list: string[] = [];
-    let allValuesAreNumbers = true;
-
-    for (let i = 0; i < parts.length; i++) {
-      const part = parts[i].trim();
-      if (part === '') continue;
-
-      list.push(part);
-
-      if (!isNumber(part)) {
-        allValuesAreNumbers = false;
-      }
-    }
-
-    if (!allValuesAreNumbers) return list;
-
-    return list.map((item) => Number(item));
-  }
-
-  findValueIndexInData(val: string | number) {
-    return this.data ? this.data.findIndex((item) => item === val || item.toString().trim() === val.toString().trim()) : -1;
-  }
-
   render() {
     if (!this._$slider || !this._$pointer || !this._$panelFill) return;
 
@@ -601,13 +572,13 @@ class RangeSlider extends HTMLElement {
       // when data is defined, we use data indexes instead of the actual values
       _min = 0;
       _max = this.data.length - 1;
-      _val = this.findValueIndexInData(this.value);
+      _val = findValueIndexInData(this.value, this.data);
       if (_val === -1) {
         _val = _min;
       }
 
       if (this.value2 !== undefined) {
-        _val2 = this.findValueIndexInData(this.value2);
+        _val2 = findValueIndexInData(this.value2, this.data);
         if (_val2 === -1) {
           _val2 = _min;
         }
@@ -828,7 +799,7 @@ class RangeSlider extends HTMLElement {
     if (this.data) {
       const isPointer2 = this.isFocused(this._$pointer2) && this.value2 !== undefined;
 
-      const index = this.findValueIndexInData(isPointer2 && this.value2 !== undefined ? this.value2 : this.value);
+      const index = findValueIndexInData(isPointer2 && this.value2 !== undefined ? this.value2 : this.value, this.data);
       if (index !== -1) {
         const step = typeof this.step === 'function' ? this.step(index) : getNumber(this.step, 1);
         const updatedIndex = index - step;
@@ -862,7 +833,7 @@ class RangeSlider extends HTMLElement {
     if (this.data) {
       const isPointer2 = this.isFocused(this._$pointer2) && this.value2 !== undefined;
 
-      const index = this.findValueIndexInData(isPointer2 && this.value2 !== undefined ? this.value2 : this.value);
+      const index = findValueIndexInData(isPointer2 && this.value2 !== undefined ? this.value2 : this.value, this.data);
       if (index !== -1) {
         const step = typeof this.step === 'function' ? this.step(index) : getNumber(this.step, 1);
         const updatedIndex = index + step;
@@ -1164,7 +1135,7 @@ class RangeSlider extends HTMLElement {
     if (!this.shadowRoot) return;
 
     // initial values of attributes
-    this.data = this.parseData(this.getAttribute('data'));
+    this.data = parseData(this.getAttribute('data'));
     this.min = this.getStringOrNumber('min', 0, this.data ? this.data[0] : '');
     this.max = this.getStringOrNumber('max', 100, this.data ? this.data[this.data.length - 1] : '');
 
@@ -1329,7 +1300,7 @@ class RangeSlider extends HTMLElement {
       }
 
       case 'data': {
-        this.data = this.parseData(this.getAttribute('data'));
+        this.data = parseData(this.getAttribute('data'));
         this.render();
         break;
       }
