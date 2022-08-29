@@ -1,11 +1,11 @@
 import { findValueIndexInData } from '../dal/data-provider';
 import { getNumber } from './math-provider';
-import { getSafeValues } from './core-provider';
+import { getSafeValues, isFocused } from './core-provider';
 import RangeSlider from '../app/range-slider';
 
 export const stepBack = (slider: RangeSlider, $pointer2: HTMLElement | null) => {
   if (slider.data) {
-    const isPointer2 = slider.isFocused($pointer2) && slider.value2 !== undefined;
+    const isPointer2 = isFocused($pointer2) && slider.value2 !== undefined;
 
     const index = findValueIndexInData(isPointer2 && slider.value2 !== undefined ? slider.value2 : slider.value, slider.data);
     if (index !== -1) {
@@ -22,7 +22,7 @@ export const stepBack = (slider: RangeSlider, $pointer2: HTMLElement | null) => 
     }
   }
   else {
-    if (slider.isFocused($pointer2)) {
+    if (isFocused($pointer2)) {
       const step = typeof slider.step === 'function' ? slider.step(slider.value2 as number) : getNumber(slider.step, 1);
       const safe = getSafeValues((slider.value2 as number) - step, slider.min as number, slider.max as number, slider.round);
       slider.value2 = safe.value;
@@ -39,7 +39,7 @@ export const stepBack = (slider: RangeSlider, $pointer2: HTMLElement | null) => 
 
 export const stepForward = (slider: RangeSlider, $pointer2: HTMLElement | null) => {
   if (slider.data) {
-    const isPointer2 = slider.isFocused($pointer2) && slider.value2 !== undefined;
+    const isPointer2 = isFocused($pointer2) && slider.value2 !== undefined;
 
     const index = findValueIndexInData(isPointer2 && slider.value2 !== undefined ? slider.value2 : slider.value, slider.data);
     if (index !== -1) {
@@ -56,7 +56,7 @@ export const stepForward = (slider: RangeSlider, $pointer2: HTMLElement | null) 
     }
   }
   else {
-    if (slider.isFocused($pointer2)) {
+    if (isFocused($pointer2)) {
       const step = typeof slider.step === 'function' ? slider.step(slider.value2 as number) : getNumber(slider.step, 1);
       const safe = getSafeValues((slider.value2 as number) + step, slider.min as number, slider.max as number, slider.round);
       slider.value2 = safe.value;
