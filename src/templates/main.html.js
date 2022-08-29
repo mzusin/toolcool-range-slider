@@ -6,7 +6,10 @@ export default (styles) => {
     
     <div class="range-slider-box">
     
-      <slot name="value-label"></slot>
+      <div class="labels-row">
+        <slot name="value-label"></slot>
+        <slot name="value2-label"></slot>
+      </div>
       
       <div class="row">
         <slot name="min-label"></slot>
@@ -17,7 +20,7 @@ export default (styles) => {
             <div class="panel-fill"></div>
         
             <div class="container">
-              <div class="pointer pointer-1" tabindex="0">
+              <div class="pointer" tabindex="0">
                 <div class="pointer-shape"></div>
               </div>
             </div>

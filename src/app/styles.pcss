@@ -122,6 +122,10 @@
     box-shadow: var(--tc-range-slider-pointer-shadow-focus);
 }
 
+.labels-row{
+    text-align: center;
+}
+
 .max-label,
 .min-label,
 ::slotted([slot="max-label"]),
@@ -132,8 +136,10 @@
 }
 
 .value-label,
-::slotted([slot="value-label"]){
-    text-align: center;
+.value2-label,
+::slotted([slot="value-label"]),
+::slotted([slot="value2-label"]){
+    margin: 0 0.5rem;
 }
 
 /**

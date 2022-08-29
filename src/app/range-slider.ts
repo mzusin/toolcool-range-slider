@@ -141,6 +141,7 @@ class RangeSlider extends HTMLElement {
     this.onMouseDown = this.onMouseDown.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
     this.onValueChange = this.onValueChange.bind(this);
+    this.updateValueAndFocusPointer = this.updateValueAndFocusPointer.bind(this);
     this.pointerKeyDown = this.pointerKeyDown.bind(this);
     this.getSafeValues = this.getSafeValues.bind(this);
     this.stepBack = this.stepBack.bind(this);
@@ -1085,20 +1086,14 @@ class RangeSlider extends HTMLElement {
   onValueChange(evt: MouseEvent | TouchEvent) {
     if (this.disabled || !this._$slider) return;
 
+    // find the percent [0, 100] of the current mouse position in vertical or horizontal slider
     let percent;
 
     if (this.type === 'vertical') {
       // -------------- vertical -----------------
 
       const { height: boxHeight, top: boxTop } = this._$slider.getBoundingClientRect();
-
-      let mouseY;
-      if (evt.type.indexOf('mouse') !== -1) {
-        mouseY = (evt as MouseEvent).clientY;
-      } else {
-        mouseY = (evt as TouchEvent).touches[0].clientY;
-      }
-
+      const mouseY = evt.type.indexOf('mouse') !== -1 ? (evt as MouseEvent).clientY : (evt as TouchEvent).touches[0].clientY;
       const top = Math.min(Math.max(0, mouseY - boxTop), boxHeight);
       percent = (top * 100) / boxHeight;
 
@@ -1109,14 +1104,7 @@ class RangeSlider extends HTMLElement {
       // -------------- horizontal -----------------
 
       const { width: boxWidth, left: boxLeft } = this._$slider.getBoundingClientRect();
-
-      let mouseX;
-      if (evt.type.indexOf('mouse') !== -1) {
-        mouseX = (evt as MouseEvent).clientX;
-      } else {
-        mouseX = (evt as TouchEvent).touches[0].clientX;
-      }
-
+      const mouseX = evt.type.indexOf('mouse') !== -1 ? (evt as MouseEvent).clientX : (evt as TouchEvent).touches[0].clientX;
       const left = Math.min(Math.max(0, mouseX - boxLeft), boxWidth);
       percent = (left * 100) / boxWidth;
 
@@ -1125,7 +1113,10 @@ class RangeSlider extends HTMLElement {
       }
     }
 
+    // transform the percent [0, 100] to the actual slider range [min, max],
+    // and also round to the provided step (if needed)
     if (this.data) {
+      // when textual data or separate values data is provided ---> use index instead of the actual values
       let index = Math.round(convertRange(0, 100, 0, this.data.length - 1, percent));
       const stepVal = typeof this.step === 'function' ? this.step(index) : this.step;
 
@@ -1133,7 +1124,7 @@ class RangeSlider extends HTMLElement {
         index = roundToStep(index, stepVal);
       }
 
-      this.onValueChangeHelper(true, this.data[index]);
+      this.updateValueAndFocusPointer(true, this.data[index]);
     } else {
       let value = convertRange(0, 100, this.min as number, this.max as number, percent);
       const stepVal = typeof this.step === 'function' ? this.step(value) : this.step;
@@ -1142,35 +1133,34 @@ class RangeSlider extends HTMLElement {
         value = roundToStep(value, stepVal);
       }
 
-      this.onValueChangeHelper(false, value);
+      this.updateValueAndFocusPointer(false, value);
     }
 
     this.render();
   }
 
-  onValueChangeHelper(hasData: boolean, updatedValue: string | number) {
+  updateValueAndFocusPointer(hasData: boolean, updatedValue: string | number) {
     if (this.value2 !== undefined) {
-      if (hasData && this.data) {
+      let distance1: number | undefined = undefined;
+      let distance2: number | undefined = undefined;
+
+      if (hasData) {
+        if (!this.data) return;
+
         const index1 = this.data.findIndex((item) => item === this.value);
         const index2 = this.data.findIndex((item) => item === this.value2);
         const index3 = this.data.findIndex((item) => item === updatedValue);
 
-        if (index1 !== -1 && index2 !== -1 && index3 !== -1) {
-          const distance1 = Math.abs(index1 - index3);
-          const distance2 = Math.abs(index2 - index3);
+        if (index1 === -1 && index2 === -1 && index3 === -1) return;
 
-          if (distance1 <= distance2) {
-            this.value = updatedValue;
-            this._$pointer?.focus();
-          } else {
-            this.value2 = updatedValue;
-            this._$pointer2?.focus();
-          }
-        }
+        distance1 = Math.abs(index1 - index3);
+        distance2 = Math.abs(index2 - index3);
       } else {
-        const distance1 = Math.abs((updatedValue as number) - (this.value as number));
-        const distance2 = Math.abs((updatedValue as number) - (this.value2 as number));
+        distance1 = Math.abs((updatedValue as number) - (this.value as number));
+        distance2 = Math.abs((updatedValue as number) - (this.value2 as number));
+      }
 
+      if (distance1 !== undefined && distance2 !== undefined) {
         if (distance1 <= distance2) {
           this.value = updatedValue;
           this._$pointer?.focus();
@@ -1179,10 +1169,12 @@ class RangeSlider extends HTMLElement {
           this._$pointer2?.focus();
         }
       }
-    } else {
-      this.value = updatedValue;
-      this._$pointer?.focus();
+
+      return;
     }
+
+    this.value = updatedValue;
+    this._$pointer?.focus();
   }
 
   getStringOrNumber(attrName: string, defaultValue: number, dataDefaultValue: string | number) {
@@ -1231,7 +1223,24 @@ class RangeSlider extends HTMLElement {
           break;
         }
         case 'value-label': {
-          this._$box?.prepend($label);
+          const $row = this._$box?.querySelector('.labels-row');
+          if (this.rtl) {
+            $row?.prepend($label);
+          } else {
+            $row?.append($label);
+          }
+
+          break;
+        }
+
+        case 'value2-label': {
+          const $row = this._$box?.querySelector('.labels-row');
+          if (this.rtl) {
+            $row?.prepend($label);
+          } else {
+            $row?.append($label);
+          }
+
           break;
         }
       }
@@ -1341,6 +1350,8 @@ class RangeSlider extends HTMLElement {
       this._$pointer?.after(this._$pointer2);
     }
 
+    this._$pointer?.classList.add('pointer-1');
+
     this._$panelFill = this.shadowRoot.querySelector('.panel-fill');
 
     if (this.valueLabel) {
@@ -1356,7 +1367,10 @@ class RangeSlider extends HTMLElement {
       this.initLabel('_$minLabel', 'min-label');
       this.initLabel('_$maxLabel', 'max-label');
       this.initLabel('_$valueLabel', 'value-label');
-      this.initLabel('_$value2Label', 'value2-label');
+
+      if (this.value2 !== undefined) {
+        this.initLabel('_$value2Label', 'value2-label');
+      }
 
       if (this.rtl || this.btt) {
         const $minSlot = this.shadowRoot.querySelector('slot[name="min-label"]');
