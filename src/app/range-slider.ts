@@ -1070,8 +1070,6 @@ class RangeSlider extends HTMLElement {
       evt.preventDefault();
     }
 
-    this._$pointer?.focus();
-
     if (this.animateOnClick && !this._animating) {
       const $target = evt.target as HTMLElement;
       if (!$target.classList.contains('pointer-shape') && !$target.classList.contains('pointer')) {
