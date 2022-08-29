@@ -2,7 +2,7 @@ import styles from './styles.pcss';
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
 import { convertRange, DEFAULT_ROUND_PLACES, getNumber, isNumber, roundToStep } from '../domain/math-provider';
 import { getFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../dal/storage-provider';
-import { observedAttributes } from '../domain/attributes-provider';
+import { getStringOrNumber, observedAttributes } from '../domain/attributes-provider';
 import {
   sendChangeEvent,
   sendMouseDownEvent,
@@ -1005,16 +1005,6 @@ class RangeSlider extends HTMLElement {
     this._$pointer?.focus();
   }
 
-  getStringOrNumber(attrName: string, defaultValue: number, dataDefaultValue: string | number) {
-    const _val = this.getAttribute(attrName);
-    if (this.data) {
-      return isNumber(_val) ? getNumber(_val, dataDefaultValue) : _val ?? dataDefaultValue;
-    }
-    else {
-      return getNumber(_val, defaultValue);
-    }
-  }
-
   // ------------------------- WEB COMPONENT LIFECYCLE ----------------------------
 
 
@@ -1058,12 +1048,12 @@ class RangeSlider extends HTMLElement {
 
     // initial values of attributes
     this.data = parseData(this.getAttribute('data'));
-    this.min = this.getStringOrNumber('min', 0, this.data ? this.data[0] : '');
-    this.max = this.getStringOrNumber('max', 100, this.data ? this.data[this.data.length - 1] : '');
+    this.min = getStringOrNumber(this, 'min', 0, this.data ? this.data[0] : '');
+    this.max = getStringOrNumber(this, 'max', 100, this.data ? this.data[this.data.length - 1] : '');
 
-    this.value = this.getStringOrNumber('value', this.min as number, this.data ? this.data[0] : '');
+    this.value = getStringOrNumber(this, 'value', this.min as number, this.data ? this.data[0] : '');
     if (this.getAttribute('value2') !== null) {
-      this.value2 = this.getStringOrNumber('value2', this.min as number, this.data ? this.data[0] : '');
+      this.value2 = getStringOrNumber(this, 'value2', this.min as number, this.data ? this.data[0] : '');
     }
 
     this.step = getNumber(this.getAttribute('step'), undefined);
@@ -1198,25 +1188,25 @@ class RangeSlider extends HTMLElement {
   attributeChangedCallback(attrName: string) {
     switch (attrName) {
       case 'min': {
-        this.min = this.getStringOrNumber('min', 0, this.data ? this.data[0] : '');
+        this.min = getStringOrNumber(this, 'min', 0, this.data ? this.data[0] : '');
         this.render();
         break;
       }
 
       case 'max': {
-        this.max = this.getStringOrNumber('max', 100, this.data ? this.data[this.data.length - 1] : '');
+        this.max = getStringOrNumber(this, 'max', 100, this.data ? this.data[this.data.length - 1] : '');
         this.render();
         break;
       }
 
       case 'value': {
-        this.value = this.getStringOrNumber('value', this.min as number, this.data ? this.data[0] : '');
+        this.value = getStringOrNumber(this, 'value', this.min as number, this.data ? this.data[0] : '');
         this.render();
         break;
       }
 
       case 'value2': {
-        this.value2 = this.getStringOrNumber('value2', this.min as number, this.data ? this.data[0] : '');
+        this.value2 = getStringOrNumber(this, 'value2', this.min as number, this.data ? this.data[0] : '');
         this.render();
         break;
       }

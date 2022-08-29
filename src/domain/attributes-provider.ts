@@ -1,3 +1,6 @@
+import { getNumber, isNumber } from './math-provider';
+import RangeSlider from '../app/range-slider';
+
 export const observedAttributes = [
   'value',
   'value2',
@@ -45,3 +48,14 @@ export const observedAttributes = [
   'generate-labels',
   'animate-onclick',
 ];
+
+
+export const getStringOrNumber = (slider: RangeSlider, attrName: string, defaultValue: number, dataDefaultValue: string | number) => {
+  const _val = slider.getAttribute(attrName);
+  if (slider.data) {
+    return isNumber(_val) ? getNumber(_val, dataDefaultValue) : _val ?? dataDefaultValue;
+  }
+  else {
+    return getNumber(_val, defaultValue);
+  }
+};
