@@ -1,5 +1,6 @@
-import { setDecimalPlaces } from './math-provider';
+import { convertRange, setDecimalPlaces } from './math-provider';
 import RangeSlider from '../app/range-slider';
+import { findValueIndexInData } from '../dal/data-provider';
 
 export const getSafeValues = (value: number, min: number, max: number, decimalPlaces: number) => {
   const _min = min;
@@ -22,6 +23,53 @@ export const getSafeValues = (value: number, min: number, max: number, decimalPl
     min: _min,
     max: _max,
     value: setDecimalPlaces(_val, decimalPlaces),
+  };
+};
+
+export const prepareDataForRender = (slider: RangeSlider) => {
+
+  let _min;
+  let _max;
+  let _val;
+  let _val2;
+
+  if (slider.data) {
+    // when data is defined, we use data indexes instead of the actual values
+    _min = 0;
+    _max = slider.data.length - 1;
+    _val = findValueIndexInData(slider.value, slider.data);
+    if (_val === -1) {
+      _val = _min;
+    }
+
+    if (slider.value2 !== undefined) {
+      _val2 = findValueIndexInData(slider.value2, slider.data);
+      if (_val2 === -1) {
+        _val2 = _min;
+      }
+    }
+  }
+  else {
+    _min = slider.min as number;
+    _max = slider.max as number;
+    _val = slider.value as number;
+
+    if (slider.value2 !== undefined) {
+      _val2 = slider.value2 as number;
+    }
+  }
+
+  // update the pointer position
+  const percent = convertRange(_min, _max, 0, 100, _val);
+  const percent2 = slider.value2 === undefined || _val2 === undefined ? 0 : convertRange(_min, _max, 0, 100, _val2);
+
+  return {
+    _min,
+    _max,
+    _val,
+    _val2,
+    percent,
+    percent2
   };
 };
 

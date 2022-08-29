@@ -16,8 +16,8 @@ import {
   sendPointerClickedEvent
 } from '../domain/events-provider';
 import { initLabels, renderLabels } from '../domain/labels-provider';
-import { getSafeValues, isFocused, updateValueAndFocusPointer } from '../domain/core-provider';
-import { findValueIndexInData, parseData } from '../dal/data-provider';
+import { getSafeValues, isFocused, prepareDataForRender, updateValueAndFocusPointer } from '../domain/core-provider';
+import { parseData } from '../dal/data-provider';
 import { stepBack, stepForward } from '../domain/accessibility-provider';
 import { renderStyles } from '../domain/style-provider';
 
@@ -566,40 +566,7 @@ class RangeSlider extends HTMLElement {
   render() {
     if (!this._$slider || !this._$pointer || !this._$panelFill) return;
 
-    let _min;
-    let _max;
-    let _val;
-    let _val2;
-
-    if (this.data) {
-      // when data is defined, we use data indexes instead of the actual values
-      _min = 0;
-      _max = this.data.length - 1;
-      _val = findValueIndexInData(this.value, this.data);
-      if (_val === -1) {
-        _val = _min;
-      }
-
-      if (this.value2 !== undefined) {
-        _val2 = findValueIndexInData(this.value2, this.data);
-        if (_val2 === -1) {
-          _val2 = _min;
-        }
-      }
-    }
-    else {
-      _min = this.min as number;
-      _max = this.max as number;
-      _val = this.value as number;
-
-      if (this.value2 !== undefined) {
-        _val2 = this.value2 as number;
-      }
-    }
-
-    // update the pointer position
-    const percent = convertRange(_min, _max, 0, 100, _val);
-    const percent2 = this.value2 === undefined || _val2 === undefined ? 0 : convertRange(_min, _max, 0, 100, _val2);
+    const { percent, percent2, _val, _val2, _min, _max } = prepareDataForRender(this);
 
     if (this.type === 'vertical') {
       if (this.btt) {
