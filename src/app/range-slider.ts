@@ -143,6 +143,7 @@ class RangeSlider extends HTMLElement {
     this.onValueChange = this.onValueChange.bind(this);
     this.updateValueAndFocusPointer = this.updateValueAndFocusPointer.bind(this);
     this.pointerKeyDown = this.pointerKeyDown.bind(this);
+    this.isFocused = this.isFocused.bind(this);
     this.getSafeValues = this.getSafeValues.bind(this);
     this.stepBack = this.stepBack.bind(this);
     this.stepForward = this.stepForward.bind(this);
@@ -991,13 +992,18 @@ class RangeSlider extends HTMLElement {
     this._$slider?.classList.remove('animate-on-click');
   }
 
+  isFocused($el: HTMLElement | null) {
+    if (!$el) return false;
+    return $el.matches(':focus-within');
+  }
+
   pointerKeyDown(evt: KeyboardEvent) {
     if (this.disabled) return;
 
     switch (evt.key) {
       case 'ArrowLeft': {
         if (this.type === 'vertical') {
-          if (this._$pointer2 && this._$pointer2?.matches(':focus-within')) {
+          if (this.isFocused(this._$pointer2)) {
             this.value2 = this.min;
           } else {
             this.value = this.min;
@@ -1013,7 +1019,7 @@ class RangeSlider extends HTMLElement {
 
       case 'ArrowRight': {
         if (this.type === 'vertical') {
-          if (this._$pointer2 && this._$pointer2?.matches(':focus-within')) {
+          if (this.isFocused(this._$pointer2)) {
             this.value2 = this.max;
           } else {
             this.value = this.max;
@@ -1032,7 +1038,7 @@ class RangeSlider extends HTMLElement {
         if (this.type === 'vertical') {
           this.stepBack();
         } else {
-          if (this._$pointer2 && this._$pointer2?.matches(':focus-within')) {
+          if (this.isFocused(this._$pointer2)) {
             this.value2 = this.min;
           } else {
             this.value = this.min;
@@ -1049,7 +1055,7 @@ class RangeSlider extends HTMLElement {
         if (this.type === 'vertical') {
           this.stepForward();
         } else {
-          if (this._$pointer2 && this._$pointer2?.matches(':focus-within')) {
+          if (this.isFocused(this._$pointer2)) {
             this.value2 = this.max;
           } else {
             this.value = this.max;
