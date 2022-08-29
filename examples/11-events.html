@@ -71,6 +71,17 @@
             <div id="value-1" class="value"></div>
         </div>
 
+        <div class="row">
+            <toolcool-range-slider
+              id="slider-2"
+              slider-width="100%"
+              generate-labels="true"
+              min="0"
+              max="100"
+              value="50"
+              value2="70"></toolcool-range-slider>
+        </div>
+
 
     </div>
 
@@ -113,6 +124,44 @@
 
         $value1.textContent = $slider1.value;
 
+
+    </script>
+
+    <!-- 2 pointers -->
+    <script>
+
+        const $slider2 = document.getElementById('slider-2');
+
+        // change event ------------
+        $slider2.addEventListener('change', (evt) => {
+            const value = evt.detail.value;
+            const value2 = evt.detail.value2;
+            console.log(`Change event: ${ value }, ${ value2 }`)
+        });
+
+        // onMouseDown event ------------
+        $slider2.addEventListener('onMouseDown', (evt) => {
+            const nativeEvent = evt.detail.nativeEvent;
+            console.log('Native mousedown event:', nativeEvent)
+        });
+
+        // onMouseUp event ------------
+        $slider2.addEventListener('onMouseUp', (evt) => {
+            const nativeEvent = evt.detail.nativeEvent;
+            console.log('Native mouseup event:', nativeEvent);
+        });
+
+        // onPointerClicked event ------------
+        $slider2.addEventListener('onPointerClicked', (evt) => {
+            const $pointer = evt.detail.$pointer;
+            console.log('Pointer clicked event:', $pointer);
+        });
+
+        // onKeyDownEvent event ------------
+        $slider2.addEventListener('onKeyDown', (evt) => {
+            const nativeEvent = evt.detail.nativeEvent;
+            console.log('Native onKeyDown event:', nativeEvent);
+        });
 
     </script>
 </body>

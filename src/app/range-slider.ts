@@ -617,11 +617,17 @@ class RangeSlider extends HTMLElement {
   }
 
   sendChangeEvent() {
+    const detail : { value: number | string, value2? : number | string } = {
+      value: this.value,
+    };
+
+    if(this.value2 !== undefined){
+      detail.value2 = this.value2;
+    }
+
     this.dispatchEvent(
       new CustomEvent('change', {
-        detail: {
-          value: this.value,
-        },
+        detail,
       })
     );
   }
