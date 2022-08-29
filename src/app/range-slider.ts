@@ -16,7 +16,13 @@ import {
   sendPointerClickedEvent
 } from '../domain/events-provider';
 import { initLabels, renderLabels } from '../domain/labels-provider';
-import { getSafeValues, isFocused, prepareDataForRender, updateValueAndFocusPointer } from '../domain/core-provider';
+import {
+  getSafeValues,
+  handleDisableEnable,
+  isFocused,
+  prepareDataForRender,
+  updateValueAndFocusPointer
+} from '../domain/core-provider';
 import { parseData } from '../dal/data-provider';
 import { stepBack, stepForward } from '../domain/accessibility-provider';
 import { renderStyles } from '../domain/style-provider';
@@ -646,18 +652,7 @@ class RangeSlider extends HTMLElement {
       this._$box?.classList.add(`type-${this.type}`);
     }
 
-    if (this.disabled) {
-      this._$slider.classList.add('disabled');
-      this._$slider.setAttribute('aria-disabled', 'true');
-    }
-    else {
-      this._$slider.classList.remove('disabled');
-
-      if (this._$slider.hasAttribute('aria-disabled')) {
-        this._$slider.removeAttribute('aria-disabled');
-      }
-    }
-
+    handleDisableEnable(this.disabled, this._$slider);
     renderStyles(this, this._$slider);
   }
 

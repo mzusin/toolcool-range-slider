@@ -123,3 +123,17 @@ export const isFocused = ($el: HTMLElement | null) => {
   if (!$el) return false;
   return $el.matches(':focus-within');
 };
+
+export const handleDisableEnable = (disabled: boolean, $slider: HTMLElement | null) => {
+  if (disabled) {
+    $slider?.classList.add('disabled');
+    $slider?.setAttribute('aria-disabled', 'true');
+  }
+  else {
+    $slider?.classList.remove('disabled');
+
+    if ($slider?.hasAttribute('aria-disabled')) {
+      $slider?.removeAttribute('aria-disabled');
+    }
+  }
+};
