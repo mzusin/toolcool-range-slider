@@ -103,6 +103,19 @@
             <button id="toggle-btn-2" class="toggle-btn">Disable</button>
         </div>
 
+        <div class="row">
+            <toolcool-range-slider
+              id="slider-3"
+              generate-labels="true"
+              round="0"
+              value="30"
+              value2="60"
+              slider-width="100%"></toolcool-range-slider>
+        </div>
+
+        <div class="row toggle-btn-row">
+            <button id="toggle-btn-3" class="toggle-btn">Disable</button>
+        </div>
     </div>
 
     <script src="js/toolcool-range-slider.min.js"></script>
@@ -125,6 +138,16 @@
             $slider2.disabled = !$slider2.disabled;
 
             $toggleButton2.textContent = $slider2.disabled ? 'Enable' : 'Disable';
+        });
+
+        // ---------- slider 3 -------------
+        const $slider3 = document.getElementById('slider-3');
+        const $toggleButton3 = document.getElementById('toggle-btn-3');
+
+        $toggleButton3.addEventListener('click', () => {
+            $slider3.disabled = !$slider3.disabled;
+
+            $toggleButton3.textContent = $slider3.disabled ? 'Enable' : 'Disable';
         });
     </script>
 </body>
