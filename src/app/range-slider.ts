@@ -10,9 +10,10 @@ import {
   sendOnKeyDownEvent,
   sendPointerClickedEvent
 } from '../domain/events-provider';
-import { initLabels, renderLabels } from "../domain/labels-provider";
+import { initLabels, renderLabels } from '../domain/labels-provider';
 import { getSafeValues } from '../domain/core-provider';
 import { findValueIndexInData, parseData } from '../dal/data-provider';
+import { stepBack, stepForward } from '../domain/accessibility-provider';
 
 /*
  Usage:
@@ -117,8 +118,6 @@ class RangeSlider extends HTMLElement {
     this.updateValueAndFocusPointer = this.updateValueAndFocusPointer.bind(this);
     this.pointerKeyDown = this.pointerKeyDown.bind(this);
     this.isFocused = this.isFocused.bind(this);
-    this.stepBack = this.stepBack.bind(this);
-    this.stepForward = this.stepForward.bind(this);
     this.render = this.render.bind(this);
     this.onTransitionEnd = this.onTransitionEnd.bind(this);
   }
@@ -788,79 +787,11 @@ class RangeSlider extends HTMLElement {
     const scrollTop = evt.deltaY < 0;
 
     if (scrollTop) {
-      this.stepBack();
+      stepBack(this, this._$pointer2);
     }
     else {
-      this.stepForward();
+      stepForward(this, this._$pointer2);
     }
-  }
-
-  stepBack() {
-    if (this.data) {
-      const isPointer2 = this.isFocused(this._$pointer2) && this.value2 !== undefined;
-
-      const index = findValueIndexInData(isPointer2 && this.value2 !== undefined ? this.value2 : this.value, this.data);
-      if (index !== -1) {
-        const step = typeof this.step === 'function' ? this.step(index) : getNumber(this.step, 1);
-        const updatedIndex = index - step;
-        if (this.data[updatedIndex] !== undefined) {
-          if (isPointer2) {
-            this.value2 = this.data[updatedIndex];
-          }
-          else {
-            this.value = this.data[updatedIndex];
-          }
-        }
-      }
-    }
-    else {
-      if (this.isFocused(this._$pointer2)) {
-        const step = typeof this.step === 'function' ? this.step(this.value2 as number) : getNumber(this.step, 1);
-        const safe = getSafeValues((this.value2 as number) - step, this.min as number, this.max as number, this.round);
-        this.value2 = safe.value;
-      }
-      else {
-        const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
-        const safe = getSafeValues((this.value as number) - step, this.min as number, this.max as number, this.round);
-        this.value = safe.value;
-      }
-    }
-
-    this.render();
-  }
-
-  stepForward() {
-    if (this.data) {
-      const isPointer2 = this.isFocused(this._$pointer2) && this.value2 !== undefined;
-
-      const index = findValueIndexInData(isPointer2 && this.value2 !== undefined ? this.value2 : this.value, this.data);
-      if (index !== -1) {
-        const step = typeof this.step === 'function' ? this.step(index) : getNumber(this.step, 1);
-        const updatedIndex = index + step;
-        if (this.data[updatedIndex] !== undefined) {
-          if (isPointer2) {
-            this.value2 = this.data[updatedIndex];
-          }
-          else {
-            this.value = this.data[updatedIndex];
-          }
-        }
-      }
-    }
-    else {
-      if (this.isFocused(this._$pointer2)) {
-        const step = typeof this.step === 'function' ? this.step(this.value2 as number) : getNumber(this.step, 1);
-        const safe = getSafeValues((this.value2 as number) + step, this.min as number, this.max as number, this.round);
-        this.value2 = safe.value;
-      }
-      else {
-        const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
-        const safe = getSafeValues((this.value as number) + step, this.min as number, this.max as number, this.round);
-        this.value = safe.value;
-      }
-    }
-
-    this.render();
   }
 
   onTransitionEnd() {
@@ -889,7 +820,7 @@ class RangeSlider extends HTMLElement {
           this.render();
         }
         else {
-          this.stepBack();
+          stepBack(this, this._$pointer2);
         }
 
         break;
@@ -907,7 +838,7 @@ class RangeSlider extends HTMLElement {
           this.render();
         }
         else {
-          this.stepForward();
+          stepForward(this, this._$pointer2);
         }
 
         break;
@@ -916,7 +847,7 @@ class RangeSlider extends HTMLElement {
       case 'ArrowUp': {
         evt.preventDefault();
         if (this.type === 'vertical') {
-          this.stepBack();
+          stepBack(this, this._$pointer2);
         }
         else {
           if (this.isFocused(this._$pointer2)) {
@@ -935,7 +866,7 @@ class RangeSlider extends HTMLElement {
       case 'ArrowDown': {
         evt.preventDefault();
         if (this.type === 'vertical') {
-          this.stepForward();
+          stepForward(this, this._$pointer2);
         }
         else {
           if (this.isFocused(this._$pointer2)) {
