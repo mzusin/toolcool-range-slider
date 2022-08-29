@@ -228,6 +228,11 @@ class RangeSlider extends HTMLElement {
       const safe = this.getSafeValues(this.value as number, val as number, this.max as number);
       this._min = safe.min;
       this.value = safe.value;
+
+      if (this.value2 !== undefined) {
+        const safe2 = this.getSafeValues(this.value2 as number, val as number, this.max as number);
+        this.value2 = safe2.value;
+      }
     }
 
     this.render();
@@ -245,6 +250,11 @@ class RangeSlider extends HTMLElement {
       const safe = this.getSafeValues(this.value as number, this.min as number, val as number);
       this._max = safe.max;
       this.value = safe.value;
+
+      if (this.value2 !== undefined) {
+        const safe2 = this.getSafeValues(this.value2 as number, this.min as number, val as number);
+        this.value2 = safe2.value;
+      }
     }
 
     this.render();
