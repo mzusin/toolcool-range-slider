@@ -124,6 +124,8 @@
 
 .labels-row{
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .max-label,
@@ -139,6 +141,7 @@
 .value2-label,
 ::slotted([slot="value-label"]),
 ::slotted([slot="value2-label"]){
+    text-align: center;
     margin: 0 0.5rem;
 }
 
@@ -175,8 +178,14 @@
     width: auto;
 }
 
+.type-vertical .labels-row{
+
+}
+
 .type-vertical .value-label,
-.type-vertical ::slotted([slot="value-label"]){
+.type-vertical .value2-label
+.type-vertical ::slotted([slot="value-label"]),
+.type-vertical ::slotted([slot="value2-label"]){
     position: absolute;
     right: 0;
     top: 50%;

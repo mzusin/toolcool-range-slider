@@ -127,6 +127,22 @@
         </toolcool-range-slider>
     </div>
 
+    <!-- horizontal with custom html and right to left + 2 pointers -->
+    <div style="width: 500px; max-width: 100%; margin: auto auto 3rem auto">
+        <toolcool-range-slider
+          generate-labels="true"
+          round="0"
+          rtl="true"
+          value="20"
+          value2="70"
+          slider-width="100%">
+            <div slot="min-label" class="label-1"><label class="min-label"></label> px</div>
+            <div slot="max-label" class="label-1"><label class="max-label"></label> px</div>
+            <div slot="value-label" class="label-2"><label class="value-label"></label> px</div>
+            <div slot="value2-label" class="label-2"><label class="value2-label"></label> px</div>
+        </toolcool-range-slider>
+    </div>
+
     <!-- vertical -->
     <div style="width: 100px; max-width: 100%; margin: auto">
        <toolcool-range-slider
@@ -134,6 +150,17 @@
          generate-labels="true"
          round="0"
          slider-height="300px"></toolcool-range-slider>
+    </div>
+
+    <!-- vertical + 2 pointers -->
+    <div style="width: 100px; max-width: 100%; margin: auto">
+        <toolcool-range-slider
+          type="vertical"
+          generate-labels="true"
+          value="20"
+          value2="70"
+          round="0"
+          slider-height="300px"></toolcool-range-slider>
     </div>
 
     <!-- vertical with bottom to top direction -->

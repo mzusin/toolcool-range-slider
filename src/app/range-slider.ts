@@ -1191,12 +1191,10 @@ class RangeSlider extends HTMLElement {
   initLabel(property: string, codeName: string) {
     const $slot = this.querySelector(`[slot="${codeName}"]`);
 
+    // when slot exists ---> take its content as a template
     if ($slot) {
       this[property] = $slot.querySelector(`.${codeName}`);
-    }
-
-    // when slot exists ---> take its content as a template
-    else {
+    } else {
       // slot is not provided ---> generate the label
       const $label = document.createElement('label');
       $label.classList.add(codeName);
@@ -1223,22 +1221,22 @@ class RangeSlider extends HTMLElement {
           break;
         }
         case 'value-label': {
-          const $row = this._$box?.querySelector('.labels-row');
+          const $labelRow = this._$box?.querySelector('.labels-row');
           if (this.rtl) {
-            $row?.prepend($label);
+            $labelRow?.prepend($label);
           } else {
-            $row?.append($label);
+            $labelRow?.append($label);
           }
 
           break;
         }
 
         case 'value2-label': {
-          const $row = this._$box?.querySelector('.labels-row');
+          const $labelRow = this._$box?.querySelector('.labels-row');
           if (this.rtl) {
-            $row?.prepend($label);
+            $labelRow?.prepend($label);
           } else {
-            $row?.append($label);
+            $labelRow?.append($label);
           }
 
           break;
