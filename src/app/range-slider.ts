@@ -151,67 +151,56 @@ class RangeSlider extends HTMLElement {
 
   // ----------- APIs ------------------------
 
+  private valueUpdateDone(val: number | string | undefined, storageKey: string) {
+    this.render();
+    this.sendChangeEvent();
+
+    if (this.storage && this._storageInitialized) {
+      saveToStorage(this.storage, storageKey, val);
+    }
+  }
+
   public set value(val: string | number) {
     if (this.data) {
-      // the provided value should present in data array
       const _val = isNumber(val) ? Number(val) : val;
+
+      // the provided value should present in data array
       const found = this.data.find((item) => item === _val);
-      if (found !== undefined) {
-        this._value = _val;
-        this.render();
-        this.sendChangeEvent();
+      if (found === undefined) return;
 
-        if (this.storage && this._storageInitialized) {
-          saveToStorage(this.storage, this.storageKey, _val);
-        }
-      }
-    } else {
-      const safe = this.getSafeValues(val as number, this.min as number, this.max as number);
-      this._value = safe.value;
-      this.render();
-      this.sendChangeEvent();
-
-      if (this.storage && this._storageInitialized) {
-        saveToStorage(this.storage, this.storageKey, safe.value);
-      }
+      this._value = _val;
+      this.valueUpdateDone(this._value, this.storageKey);
+      return;
     }
+
+    const safe = this.getSafeValues(val as number, this.min as number, this.max as number);
+    this._value = safe.value;
+    this.valueUpdateDone(this._value, this.storageKey);
   }
 
   public set value2(val: string | number | undefined) {
     if (val === undefined) {
+      // value2 can be unset
       this._value2 = val;
-      this.render();
-      this.sendChangeEvent();
-
-      if (this.storage && this._storageInitialized) {
-        saveToStorage(this.storage, this.storageKey2, val);
-      }
+      this.valueUpdateDone(this._value2, this.storageKey2);
       return;
     }
 
     if (this.data) {
-      // the provided value should present in data array
       const _val = isNumber(val) ? Number(val) : val;
+
+      // the provided value should present in data array
       const found = this.data.find((item) => item === _val);
-      if (found !== undefined) {
-        this._value2 = _val;
-        this.render();
-        this.sendChangeEvent();
+      if (found === undefined) return;
 
-        if (this.storage && this._storageInitialized) {
-          saveToStorage(this.storage, this.storageKey2, _val);
-        }
-      }
-    } else {
-      const safe = this.getSafeValues(val as number, this.min as number, this.max as number);
-      this._value2 = safe.value;
-      this.render();
-      this.sendChangeEvent();
-
-      if (this.storage && this._storageInitialized) {
-        saveToStorage(this.storage, this.storageKey2, safe.value);
-      }
+      this._value2 = _val;
+      this.valueUpdateDone(this._value2, this.storageKey2);
+      return;
     }
+
+    const safe = this.getSafeValues(val as number, this.min as number, this.max as number);
+    this._value2 = safe.value;
+    this.valueUpdateDone(this._value2, this.storageKey2);
   }
 
   public get value() {
@@ -1236,6 +1225,31 @@ class RangeSlider extends HTMLElement {
     }
   }
 
+  restoreFromStorage() {
+    if (!this.storage) return;
+    this._storageInitialized = true;
+
+    let restoredValue = getFromStorage(this.storage, this.storageKey);
+    if (isNumber(restoredValue)) {
+      this.value = getNumber(restoredValue, this.min);
+    } else {
+      if (restoredValue) {
+        this.value = restoredValue;
+      }
+    }
+
+    if (this.value2 !== undefined) {
+      restoredValue = getFromStorage(this.storage, this.storageKey2);
+      if (isNumber(restoredValue)) {
+        this.value2 = getNumber(restoredValue, this.min);
+      } else {
+        if (restoredValue) {
+          this.value2 = restoredValue;
+        }
+      }
+    }
+  }
+
   /**
    * when the custom element connected to DOM
    */
@@ -1356,17 +1370,7 @@ class RangeSlider extends HTMLElement {
     }
 
     // if the storage is enabled ---> try to restore the value
-    if (this.storage) {
-      this._storageInitialized = true;
-      const restoredValue = getFromStorage(this.storage, this.storageKey);
-      if (isNumber(restoredValue)) {
-        this.value = getNumber(restoredValue, this.min);
-      } else {
-        if (restoredValue) {
-          this.value = restoredValue;
-        }
-      }
-    }
+    this.restoreFromStorage();
 
     // update the initial position of the pointer
     this.render();
