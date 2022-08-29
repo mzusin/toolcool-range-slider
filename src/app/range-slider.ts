@@ -715,7 +715,8 @@ class RangeSlider extends HTMLElement {
           _val2 = _min;
         }
       }
-    } else {
+    }
+    else {
       _min = this.min as number;
       _max = this.max as number;
       _val = this.value as number;
@@ -738,8 +739,11 @@ class RangeSlider extends HTMLElement {
 
         if (this.value2 !== undefined && this._$pointer2) {
           this._$pointer2.style.top = `${100 - percent2}%`;
+          this._$panelFill.style.top = `${100 - percent2}%`;
+          this._$panelFill.style.height = `${Math.abs(percent - percent2)}%`;
         }
-      } else {
+      }
+      else {
         this._$pointer.style.top = `${percent}%`;
         this._$panelFill.style.height = `${percent}%`;
         this._$panelFill.style.bottom = 'auto';
@@ -747,11 +751,14 @@ class RangeSlider extends HTMLElement {
 
         if (this.value2 !== undefined && this._$pointer2) {
           this._$pointer2.style.top = `${percent2}%`;
+          this._$panelFill.style.top = `${percent}%`;
+          this._$panelFill.style.height = `${Math.abs(percent - percent2)}%`;
         }
       }
 
       this._$slider.setAttribute('aria-orientation', 'vertical');
-    } else {
+    }
+    else {
       if (this.rtl) {
         this._$pointer.style.left = `${100 - percent}%`;
         this._$panelFill.style.width = `${percent}%`;
@@ -760,8 +767,11 @@ class RangeSlider extends HTMLElement {
 
         if (this.value2 !== undefined && this._$pointer2) {
           this._$pointer2.style.left = `${100 - percent2}%`;
+          this._$panelFill.style.left = `${100 - percent2}%`;
+          this._$panelFill.style.width = `${Math.abs(percent - percent2)}%`;
         }
-      } else {
+      }
+      else {
         this._$pointer.style.left = `${percent}%`;
         this._$panelFill.style.width = `${percent}%`;
         this._$panelFill.style.right = 'auto';
@@ -769,6 +779,8 @@ class RangeSlider extends HTMLElement {
 
         if (this.value2 !== undefined && this._$pointer2) {
           this._$pointer2.style.left = `${percent2}%`;
+          this._$panelFill.style.left = `${percent}%`;
+          this._$panelFill.style.width = `${Math.abs(percent - percent2)}%`;
         }
       }
 
@@ -800,7 +812,8 @@ class RangeSlider extends HTMLElement {
     if (this.disabled) {
       this._$slider.classList.add('disabled');
       this._$slider.setAttribute('aria-disabled', 'true');
-    } else {
+    }
+    else {
       this._$slider.classList.remove('disabled');
 
       if (this._$slider.hasAttribute('aria-disabled')) {
