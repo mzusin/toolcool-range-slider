@@ -1150,8 +1150,23 @@ class RangeSlider extends HTMLElement {
 
   onValueChangeHelper(hasData: boolean, updatedValue: string | number) {
     if (this.value2 !== undefined) {
-      // TODO
-      if (hasData) {
+      if (hasData && this.data) {
+        const index1 = this.data.findIndex((item) => item === this.value);
+        const index2 = this.data.findIndex((item) => item === this.value2);
+        const index3 = this.data.findIndex((item) => item === updatedValue);
+
+        if (index1 !== -1 && index2 !== -1 && index3 !== -1) {
+          const distance1 = Math.abs(index1 - index3);
+          const distance2 = Math.abs(index2 - index3);
+
+          if (distance1 <= distance2) {
+            this.value = updatedValue;
+            this._$pointer?.focus();
+          } else {
+            this.value2 = updatedValue;
+            this._$pointer2?.focus();
+          }
+        }
       } else {
         const distance1 = Math.abs((updatedValue as number) - (this.value as number));
         const distance2 = Math.abs((updatedValue as number) - (this.value2 as number));
@@ -1225,6 +1240,10 @@ class RangeSlider extends HTMLElement {
     }
   }
 
+  /**
+   * try to restore values from session or local storage
+   * when component is initialized
+   */
   restoreFromStorage() {
     if (!this.storage) return;
     this._storageInitialized = true;
