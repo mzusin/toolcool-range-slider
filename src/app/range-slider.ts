@@ -1,10 +1,11 @@
 import styles from './styles.pcss';
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
-import { convertRange, DEFAULT_ROUND_PLACES, getNumber, isNumber, roundToStep, setDecimalPlaces } from '../domain/math-provider';
+import { convertRange, DEFAULT_ROUND_PLACES, getNumber, isNumber, roundToStep } from '../domain/math-provider';
 import { getFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../domain/storage-provider';
 import { observedAttributes } from '../domain/attributes-provider';
 import { sendPointerClickedEvent } from '../domain/events-provider';
 import { initLabels, renderLabels } from "../domain/labels-provider";
+import { getSafeValues } from '../domain/core-provider';
 
 /*
  Usage:
@@ -15,6 +16,10 @@ import { initLabels, renderLabels } from "../domain/labels-provider";
  <toolcool-range-slider pointer-width="20px" pointer-height="20px" pointer-radius="5px"></toolcool-range-slider>
  <toolcool-range-slider slider-bg="red" pointer-bg="blue"></toolcool-range-slider>
  <toolcool-range-slider type="vertical"></toolcool-range-slider>
+
+ Documentation:
+ -------------
+ https://github.com/toolcool-org/toolcool-range-slider
  */
 class RangeSlider extends HTMLElement {
   // ------------------------- INIT ----------------
@@ -105,7 +110,6 @@ class RangeSlider extends HTMLElement {
     this.updateValueAndFocusPointer = this.updateValueAndFocusPointer.bind(this);
     this.pointerKeyDown = this.pointerKeyDown.bind(this);
     this.isFocused = this.isFocused.bind(this);
-    this.getSafeValues = this.getSafeValues.bind(this);
     this.stepBack = this.stepBack.bind(this);
     this.stepForward = this.stepForward.bind(this);
     this.render = this.render.bind(this);
@@ -136,7 +140,7 @@ class RangeSlider extends HTMLElement {
       return;
     }
 
-    const safe = this.getSafeValues(val as number, this.min as number, this.max as number);
+    const safe = getSafeValues(val as number, this.min as number, this.max as number, this.round);
     this._value = safe.value;
     this.valueUpdateDone(this._value, this.storageKey);
   }
@@ -165,7 +169,7 @@ class RangeSlider extends HTMLElement {
       return;
     }
 
-    const safe = this.getSafeValues(val as number, this.min as number, this.max as number);
+    const safe = getSafeValues(val as number, this.min as number, this.max as number, this.round);
     this._value2 = safe.value;
     this.valueUpdateDone(this._value2, this.storageKey2);
   }
@@ -188,12 +192,12 @@ class RangeSlider extends HTMLElement {
       this._min = isNumber(val) ? getNumber(val, this.data[0]) : this.data[0];
     }
     else {
-      const safe = this.getSafeValues(this.value as number, val as number, this.max as number);
+      const safe = getSafeValues(this.value as number, val as number, this.max as number, this.round);
       this._min = safe.min;
       this.value = safe.value;
 
       if (this.value2 !== undefined) {
-        const safe2 = this.getSafeValues(this.value2 as number, val as number, this.max as number);
+        const safe2 = getSafeValues(this.value2 as number, val as number, this.max as number, this.round);
         this.value2 = safe2.value;
       }
     }
@@ -211,12 +215,12 @@ class RangeSlider extends HTMLElement {
       this._max = isNumber(val) ? getNumber(val, defaultValue) : defaultValue;
     }
     else {
-      const safe = this.getSafeValues(this.value as number, this.min as number, val as number);
+      const safe = getSafeValues(this.value as number, this.min as number, val as number, this.round);
       this._max = safe.max;
       this.value = safe.value;
 
       if (this.value2 !== undefined) {
-        const safe2 = this.getSafeValues(this.value2 as number, this.min as number, val as number);
+        const safe2 = getSafeValues(this.value2 as number, this.min as number, val as number, this.round);
         this.value2 = safe2.value;
       }
     }
@@ -597,30 +601,6 @@ class RangeSlider extends HTMLElement {
 
   // ----------------------------------------------
 
-  getSafeValues(value: number, min: number, max: number) {
-    const _min = min;
-    let _max = max;
-    let _val = value;
-
-    if (_min > _max) {
-      _max = _min + 100;
-    }
-
-    if (_val < _min) {
-      _val = _min;
-    }
-
-    if (_val > _max) {
-      _val = _max;
-    }
-
-    return {
-      min: _min,
-      max: _max,
-      value: setDecimalPlaces(_val, this.round),
-    };
-  }
-
   parseData(dataString: string | undefined | null): (string | number)[] | undefined {
     if (dataString === undefined || dataString === null) return undefined;
 
@@ -907,12 +887,12 @@ class RangeSlider extends HTMLElement {
     else {
       if (this.isFocused(this._$pointer2)) {
         const step = typeof this.step === 'function' ? this.step(this.value2 as number) : getNumber(this.step, 1);
-        const safe = this.getSafeValues((this.value2 as number) - step, this.min as number, this.max as number);
+        const safe = getSafeValues((this.value2 as number) - step, this.min as number, this.max as number, this.round);
         this.value2 = safe.value;
       }
       else {
         const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
-        const safe = this.getSafeValues((this.value as number) - step, this.min as number, this.max as number);
+        const safe = getSafeValues((this.value as number) - step, this.min as number, this.max as number, this.round);
         this.value = safe.value;
       }
     }
@@ -941,12 +921,12 @@ class RangeSlider extends HTMLElement {
     else {
       if (this.isFocused(this._$pointer2)) {
         const step = typeof this.step === 'function' ? this.step(this.value2 as number) : getNumber(this.step, 1);
-        const safe = this.getSafeValues((this.value2 as number) + step, this.min as number, this.max as number);
+        const safe = getSafeValues((this.value2 as number) + step, this.min as number, this.max as number, this.round);
         this.value2 = safe.value;
       }
       else {
         const step = typeof this.step === 'function' ? this.step(this.value as number) : getNumber(this.step, 1);
-        const safe = this.getSafeValues((this.value as number) + step, this.min as number, this.max as number);
+        const safe = getSafeValues((this.value as number) + step, this.min as number, this.max as number, this.round);
         this.value = safe.value;
       }
     }
