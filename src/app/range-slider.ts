@@ -1,7 +1,12 @@
 import styles from './styles.pcss';
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
 import { convertRange, DEFAULT_ROUND_PLACES, getNumber, isNumber, roundToStep } from '../domain/math-provider';
-import { getFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../dal/storage-provider';
+import {
+  restoreFromStorage,
+  saveToStorage,
+  STORAGE_KEY,
+  StorageTypeEnum
+} from '../dal/storage-provider';
 import { getStringOrNumber, observedAttributes } from '../domain/attributes-provider';
 import {
   sendChangeEvent,
@@ -1007,39 +1012,6 @@ class RangeSlider extends HTMLElement {
 
   // ------------------------- WEB COMPONENT LIFECYCLE ----------------------------
 
-
-
-  /**
-   * try to restore values from session or local storage
-   * when component is initialized
-   */
-  restoreFromStorage() {
-    if (!this.storage) return;
-    this._storageInitialized = true;
-
-    let restoredValue = getFromStorage(this.storage, this.storageKey);
-    if (isNumber(restoredValue)) {
-      this.value = getNumber(restoredValue, this.min);
-    }
-    else {
-      if (restoredValue) {
-        this.value = restoredValue;
-      }
-    }
-
-    if (this.value2 !== undefined) {
-      restoredValue = getFromStorage(this.storage, this.storageKey2);
-      if (isNumber(restoredValue)) {
-        this.value2 = getNumber(restoredValue, this.min);
-      }
-      else {
-        if (restoredValue) {
-          this.value2 = restoredValue;
-        }
-      }
-    }
-  }
-
   /**
    * when the custom element connected to DOM
    */
@@ -1151,8 +1123,11 @@ class RangeSlider extends HTMLElement {
       this._$slider?.addEventListener('transitionend', this.onTransitionEnd);
     }
 
-    // if the storage is enabled ---> try to restore the value
-    this.restoreFromStorage();
+    // if the storage is enabled ---> try to restore the values
+    if (this.storage){
+      restoreFromStorage(this);
+      this._storageInitialized = true;
+    }
 
     // update the initial position of the pointer
     this.render();

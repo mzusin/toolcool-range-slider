@@ -1,3 +1,6 @@
+import { getNumber, isNumber } from '../domain/math-provider';
+import RangeSlider from '../app/range-slider';
+
 export const STORAGE_KEY = 'tc-range-slider';
 
 export enum StorageTypeEnum {
@@ -86,4 +89,34 @@ export const getFromStorage = (storageType: StorageTypeEnum, storageName: string
   }
 
   return null;
+};
+
+/**
+ * try to restore values from session or local storage
+ * when component is initialized
+ */
+export const restoreFromStorage = (slider: RangeSlider) => {
+  if (!slider.storage) return;
+
+  let restoredValue = getFromStorage(slider.storage, slider.storageKey);
+  if (isNumber(restoredValue)) {
+    slider.value = getNumber(restoredValue, slider.min);
+  }
+  else {
+    if (restoredValue) {
+      slider.value = restoredValue;
+    }
+  }
+
+  if (slider.value2 !== undefined) {
+    restoredValue = getFromStorage(slider.storage, slider.storageKey2);
+    if (isNumber(restoredValue)) {
+      slider.value2 = getNumber(restoredValue, slider.min);
+    }
+    else {
+      if (restoredValue) {
+        slider.value2 = restoredValue;
+      }
+    }
+  }
 };
