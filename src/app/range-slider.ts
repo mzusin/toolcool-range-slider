@@ -735,7 +735,7 @@ class RangeSlider extends HTMLElement {
         this._$panelFill.style.top = '0%';
 
         if (this.value2 !== undefined && this._$pointer2) {
-          this._$pointer2.style.top = `${percent}%`;
+          this._$pointer2.style.top = `${percent2}%`;
         }
       }
 
@@ -1222,7 +1222,7 @@ class RangeSlider extends HTMLElement {
         }
         case 'value-label': {
           const $labelRow = this._$box?.querySelector('.labels-row');
-          if (this.rtl) {
+          if (this.rtl || this.btt) {
             $labelRow?.prepend($label);
           } else {
             $labelRow?.append($label);
@@ -1233,7 +1233,7 @@ class RangeSlider extends HTMLElement {
 
         case 'value2-label': {
           const $labelRow = this._$box?.querySelector('.labels-row');
-          if (this.rtl) {
+          if (this.rtl || this.btt) {
             $labelRow?.prepend($label);
           } else {
             $labelRow?.append($label);
@@ -1375,6 +1375,12 @@ class RangeSlider extends HTMLElement {
         const $maxSlot = this.shadowRoot.querySelector('slot[name="max-label"]');
         if ($minSlot) this._$slider?.after($minSlot);
         if ($maxSlot) this._$slider?.before($maxSlot);
+
+        if (this.value2 !== undefined) {
+          const $value1Slot = this.shadowRoot.querySelector('slot[name="value-label"]');
+          const $value2Slot = this.shadowRoot.querySelector('slot[name="value2-label"]');
+          if ($value1Slot && $value2Slot) $value2Slot.after($value1Slot);
+        }
       }
     }
 

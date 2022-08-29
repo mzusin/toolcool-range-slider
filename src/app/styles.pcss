@@ -179,17 +179,19 @@
 }
 
 .type-vertical .labels-row{
-
-}
-
-.type-vertical .value-label,
-.type-vertical .value2-label
-.type-vertical ::slotted([slot="value-label"]),
-.type-vertical ::slotted([slot="value2-label"]){
+    flex-direction: column;
+    order: 1;
     position: absolute;
     right: 0;
     top: 50%;
-    order: 1;
+    transform: translateY(-50%);
+}
+
+.type-vertical .value-label,
+.type-vertical .value2-label,
+.type-vertical ::slotted([slot="value-label"]),
+.type-vertical ::slotted([slot="value2-label"]){
+
 }
 
 /**

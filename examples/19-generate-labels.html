@@ -173,6 +173,18 @@
           slider-height="300px"></toolcool-range-slider>
     </div>
 
+    <!-- vertical with bottom to top direction + 2 pointers -->
+    <div style="width: 100px; max-width: 100%; margin: auto">
+        <toolcool-range-slider
+          type="vertical"
+          generate-labels="true"
+          value="20"
+          value2="70"
+          round="0"
+          btt="true"
+          slider-height="300px"></toolcool-range-slider>
+    </div>
+
     <!-- vertical with custom html -->
     <div style="width: 100px; max-width: 100%; margin: auto">
         <toolcool-range-slider
@@ -183,6 +195,22 @@
             <div slot="min-label" class="label-3"><label class="min-label"></label> px</div>
             <div slot="max-label" class="label-3"><label class="max-label"></label> px</div>
             <div slot="value-label" class="label-2"><label class="value-label"></label> px</div>
+        </toolcool-range-slider>
+    </div>
+
+    <!-- vertical with custom html + 2 pointers -->
+    <div style="width: 100px; max-width: 100%; margin: auto">
+        <toolcool-range-slider
+          type="vertical"
+          generate-labels="true"
+          round="0"
+          value="20"
+          value2="70"
+          slider-height="300px">
+            <div slot="min-label" class="label-3"><label class="min-label"></label> px</div>
+            <div slot="max-label" class="label-3"><label class="max-label"></label> px</div>
+            <div slot="value-label" class="label-2"><label class="value-label"></label> px</div>
+            <div slot="value2-label" class="label-2"><label class="value2-label"></label> px</div>
         </toolcool-range-slider>
     </div>
 
@@ -200,6 +228,22 @@
         </toolcool-range-slider>
     </div>
 
+    <!-- vertical with custom html and bottom to top direction + 2 pointers -->
+    <div style="width: 100px; max-width: 100%; margin: auto">
+        <toolcool-range-slider
+          type="vertical"
+          generate-labels="true"
+          round="0"
+          btt="true"
+          value="20"
+          value2="70"
+          slider-height="300px">
+            <div slot="min-label" class="label-3"><label class="min-label"></label> px</div>
+            <div slot="max-label" class="label-3"><label class="max-label"></label> px</div>
+            <div slot="value-label" class="label-2"><label class="value-label"></label> px</div>
+            <div slot="value2-label" class="label-2"><label class="value2-label"></label> px</div>
+        </toolcool-range-slider>
+    </div>
 
     <script src="js/toolcool-range-slider.min.js"></script>
 </body>
