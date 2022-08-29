@@ -23,3 +23,8 @@ export const getSafeValues = (value: number, min: number, max: number, decimalPl
     value: setDecimalPlaces(_val, decimalPlaces),
   };
 };
+
+export const isFocused = ($el: HTMLElement | null) => {
+  if (!$el) return false;
+  return $el.matches(':focus-within');
+};

@@ -11,7 +11,7 @@ import {
   sendPointerClickedEvent
 } from '../domain/events-provider';
 import { initLabels, renderLabels } from '../domain/labels-provider';
-import { getSafeValues } from '../domain/core-provider';
+import { getSafeValues, isFocused } from '../domain/core-provider';
 import { findValueIndexInData, parseData } from '../dal/data-provider';
 import { stepBack, stepForward } from '../domain/accessibility-provider';
 
@@ -117,7 +117,6 @@ class RangeSlider extends HTMLElement {
     this.onValueChange = this.onValueChange.bind(this);
     this.updateValueAndFocusPointer = this.updateValueAndFocusPointer.bind(this);
     this.pointerKeyDown = this.pointerKeyDown.bind(this);
-    this.isFocused = this.isFocused.bind(this);
     this.render = this.render.bind(this);
     this.onTransitionEnd = this.onTransitionEnd.bind(this);
   }
@@ -799,18 +798,13 @@ class RangeSlider extends HTMLElement {
     this._$slider?.classList.remove('animate-on-click');
   }
 
-  isFocused($el: HTMLElement | null) {
-    if (!$el) return false;
-    return $el.matches(':focus-within');
-  }
-
   pointerKeyDown(evt: KeyboardEvent) {
     if (this.disabled) return;
 
     switch (evt.key) {
       case 'ArrowLeft': {
         if (this.type === 'vertical') {
-          if (this.isFocused(this._$pointer2)) {
+          if (isFocused(this._$pointer2)) {
             this.value2 = this.min;
           }
           else {
@@ -828,7 +822,7 @@ class RangeSlider extends HTMLElement {
 
       case 'ArrowRight': {
         if (this.type === 'vertical') {
-          if (this.isFocused(this._$pointer2)) {
+          if (isFocused(this._$pointer2)) {
             this.value2 = this.max;
           }
           else {
@@ -840,7 +834,6 @@ class RangeSlider extends HTMLElement {
         else {
           stepForward(this, this._$pointer2);
         }
-
         break;
       }
 
@@ -850,7 +843,7 @@ class RangeSlider extends HTMLElement {
           stepBack(this, this._$pointer2);
         }
         else {
-          if (this.isFocused(this._$pointer2)) {
+          if (isFocused(this._$pointer2)) {
             this.value2 = this.min;
           }
           else {
@@ -859,7 +852,6 @@ class RangeSlider extends HTMLElement {
 
           this.render();
         }
-
         break;
       }
 
@@ -869,7 +861,7 @@ class RangeSlider extends HTMLElement {
           stepForward(this, this._$pointer2);
         }
         else {
-          if (this.isFocused(this._$pointer2)) {
+          if (isFocused(this._$pointer2)) {
             this.value2 = this.max;
           }
           else {
@@ -878,7 +870,6 @@ class RangeSlider extends HTMLElement {
 
           this.render();
         }
-
         break;
       }
     }
