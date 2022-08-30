@@ -52,7 +52,6 @@ export const observedAttributes = [
   'value2-label',
   'generate-labels',
   'animate-onclick',
-  'pointers-overlap',
 ];
 
 export const getStringOrNumber = (slider: RangeSlider, attrName: string, defaultValue: number, dataDefaultValue: string | number) => {
@@ -142,12 +141,6 @@ export const onAttributesChange = (slider: RangeSlider, attrName: string, $slide
 
     case 'disabled': {
       slider.disabled = slider.getAttribute('disabled') === 'true';
-      slider.render();
-      break;
-    }
-
-    case 'pointers-overlap': {
-      slider.pointersOverlap = slider.getAttribute('pointers-overlap') === 'true';
       slider.render();
       break;
     }

@@ -12,10 +12,8 @@ import {
 } from '../domain/events-provider';
 import { initLabels, renderLabels } from '../domain/labels-provider';
 import {
-  focusPointer,
   getSafeValues,
-  handleDisableEnable,
-  isFocused,
+  handleDisableEnable, isFocused,
   prepareDataForRender,
   updateValueAndFocusPointer
 } from '../domain/core-provider';
@@ -55,7 +53,6 @@ class RangeSlider extends HTMLElement {
 
   private _$pointer: HTMLElement | null;
   private _$pointer2: HTMLElement | null;
-  private _pointersOverlap = false;
 
   private _$valueLabel: HTMLElement | null;
   private _$value2Label: HTMLElement | null;
@@ -154,7 +151,7 @@ class RangeSlider extends HTMLElement {
       return;
     }
 
-    const safe = getSafeValues(val as number, this.min as number, Math.min(this.max as number, this.value2 as number), this.round);
+    const safe = getSafeValues(val as number, this.min as number, this.max as number, this.round);
     this._value = safe.value;
     this.valueUpdateDone(this._value, this.storageKey);
   }
@@ -339,15 +336,6 @@ class RangeSlider extends HTMLElement {
 
   public get disabled() {
     return this._disabled;
-  }
-
-  public set pointersOverlap(val: boolean) {
-    this._pointersOverlap = val;
-    this.render();
-  }
-
-  public get pointersOverlap() {
-    return this._pointersOverlap;
   }
 
   public set animateOnClick(val: string | undefined) {
@@ -682,10 +670,7 @@ class RangeSlider extends HTMLElement {
 
   pointerClicked(evt: MouseEvent) {
     if (this.disabled) return;
-
-    const $pointer = evt.currentTarget as HTMLElement;
-    focusPointer($pointer, this._$pointer2);
-    sendPointerClickedEvent(this, $pointer);
+    sendPointerClickedEvent(this, evt.currentTarget as HTMLElement);
   }
 
   pointerMouseWheel(evt: WheelEvent) {
@@ -861,6 +846,7 @@ class RangeSlider extends HTMLElement {
       }
 
       updateValueAndFocusPointer(
+        evt,
         this,
         true,
         this.data[index],
@@ -876,6 +862,7 @@ class RangeSlider extends HTMLElement {
       }
 
       updateValueAndFocusPointer(
+        evt,
         this,
         false,
         value,
@@ -920,7 +907,6 @@ class RangeSlider extends HTMLElement {
     this.disabled = this.getAttribute('disabled') === 'true';
     this.rtl = this.getAttribute('rtl') === 'true';
     this.btt = this.getAttribute('btt') === 'true';
-    this.pointersOverlap = this.getAttribute('pointers-overlap') === 'true';
 
     this.valueLabel = this.getAttribute('value-label') || undefined;
     this.generateLabels = this.getAttribute('generate-labels') === 'true';
@@ -983,11 +969,6 @@ class RangeSlider extends HTMLElement {
       initLabels(this, this._$slider, this._$box);
     }
 
-    // init slider events
-    this._$slider?.addEventListener('mousedown', this.onMouseDown);
-    this._$slider?.addEventListener('mouseup', this.onMouseUp);
-    this._$slider?.addEventListener('touchmove', this.onValueChange);
-    this._$slider?.addEventListener('touchstart', this.onValueChange);
 
     // init pointer events
     this._$pointer?.addEventListener('click', this.pointerClicked);
@@ -997,6 +978,12 @@ class RangeSlider extends HTMLElement {
       this._$pointer2.addEventListener('click', this.pointerClicked);
       this._$pointer2.addEventListener('keydown', this.pointerKeyDown);
     }
+
+    // init slider events
+    this._$slider?.addEventListener('mousedown', this.onMouseDown);
+    this._$slider?.addEventListener('mouseup', this.onMouseUp);
+    this._$slider?.addEventListener('touchmove', this.onValueChange);
+    this._$slider?.addEventListener('touchstart', this.onValueChange);
 
     document.addEventListener('wheel', this.pointerMouseWheel, { passive: false });
 

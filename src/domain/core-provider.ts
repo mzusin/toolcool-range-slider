@@ -74,11 +74,28 @@ export const prepareDataForRender = (slider: RangeSlider) => {
 };
 
 export const updateValueAndFocusPointer = (
+  evt: MouseEvent | TouchEvent,
   slider: RangeSlider,
   hasData: boolean,
   updatedValue: string | number,
   $pointer: HTMLElement | null,
   $pointer2: HTMLElement | null) => {
+
+  const $target = evt.target as HTMLElement;
+  const isPointer1Clicked = $target === $pointer || $pointer?.contains($target);
+  const isPointer2Clicked = $target === $pointer2 || $pointer2?.contains($target);
+
+  if(isPointer1Clicked){
+    slider.value = updatedValue;
+    $pointer?.focus();
+    return;
+  }
+
+  if(isPointer2Clicked){
+    slider.value2 = updatedValue;
+    $pointer2?.focus();
+    return;
+  }
 
   if (slider.value2 !== undefined) {
     let distance1: number | undefined = undefined;
@@ -104,11 +121,11 @@ export const updateValueAndFocusPointer = (
     if (distance1 !== undefined && distance2 !== undefined) {
       if (distance1 <= distance2) {
         slider.value = updatedValue;
-        focusPointer($pointer, $pointer2);
+        $pointer?.focus();
       }
       else {
         slider.value2 = updatedValue;
-        focusPointer($pointer2, $pointer);
+        $pointer2?.focus();
       }
     }
 
@@ -116,22 +133,12 @@ export const updateValueAndFocusPointer = (
   }
 
   slider.value = updatedValue;
-  focusPointer($pointer, $pointer2);
+  $pointer?.focus();
 };
 
 export const isFocused = ($el: HTMLElement | null) => {
   if (!$el) return false;
   return $el.matches(':focus-within');
-};
-
-export const focusPointer = ($pointerToFocus: HTMLElement | null, $otherPointer: HTMLElement | null) => {
-  if(!$pointerToFocus) return;
-  $pointerToFocus.focus();
-  $pointerToFocus.style.zIndex = '100';
-
-  if($otherPointer){
-    $otherPointer.style.zIndex = '50';
-  }
 };
 
 export const handleDisableEnable = (disabled: boolean, $slider: HTMLElement | null) => {
