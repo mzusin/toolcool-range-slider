@@ -233,6 +233,13 @@ QUnit.module('Range Slider Generate Labels', () => {
         assert.deepEqual($valueLabel.textContent, '77');
     });
 
+    //  <toolcool-range-slider id="slider-107" generate-labels="true" value1="50" value2="60"></toolcool-range-slider>
+    QUnit.test('generate-labels="true" ----> value 2 label should have 60', (assert) => {
+        const $slider = document.querySelector('#slider-107');
+        const $valueLabel = $slider.shadowRoot.querySelector('.value2-label');
+        assert.deepEqual($valueLabel.textContent, '60');
+    });
+
     QUnit.test('generate-labels="true", change min to 1 via API ----> min label should have 0', (assert) => {
         const $slider = document.querySelector('#slider-77');
         $slider.min = 1;
@@ -306,6 +313,12 @@ QUnit.module('Range Slider Generate Labels', () => {
         const $slider = document.querySelector('#slider-81');
         const $slot = $slider.querySelector('[slot="value-label"]');
         assert.deepEqual($slot.textContent, '50 px');
+    });
+
+    QUnit.test('2 pointers, when value slot is provided, the slot 2 label should have text 60 px', (assert) => {
+        const $slider = document.querySelector('#slider-106');
+        const $slot = $slider.querySelector('[slot="value2-label"]');
+        assert.deepEqual($slot.textContent, '60 px');
     });
 });
 
