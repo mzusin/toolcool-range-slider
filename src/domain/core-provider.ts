@@ -104,11 +104,11 @@ export const updateValueAndFocusPointer = (
     if (distance1 !== undefined && distance2 !== undefined) {
       if (distance1 <= distance2) {
         slider.value = updatedValue;
-        $pointer?.focus();
+        focusPointer($pointer, $pointer2);
       }
       else {
         slider.value2 = updatedValue;
-        $pointer2?.focus();
+        focusPointer($pointer2, $pointer);
       }
     }
 
@@ -116,12 +116,22 @@ export const updateValueAndFocusPointer = (
   }
 
   slider.value = updatedValue;
-  $pointer2?.focus();
+  focusPointer($pointer, $pointer2);
 };
 
 export const isFocused = ($el: HTMLElement | null) => {
   if (!$el) return false;
   return $el.matches(':focus-within');
+};
+
+export const focusPointer = ($pointerToFocus: HTMLElement | null, $otherPointer: HTMLElement | null) => {
+  if(!$pointerToFocus) return;
+  $pointerToFocus.focus();
+  $pointerToFocus.style.zIndex = '100';
+
+  if($otherPointer){
+    $otherPointer.style.zIndex = '50';
+  }
 };
 
 export const handleDisableEnable = (disabled: boolean, $slider: HTMLElement | null) => {

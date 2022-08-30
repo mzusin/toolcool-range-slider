@@ -12,6 +12,7 @@ import {
 } from '../domain/events-provider';
 import { initLabels, renderLabels } from '../domain/labels-provider';
 import {
+  focusPointer,
   getSafeValues,
   handleDisableEnable,
   isFocused,
@@ -153,7 +154,7 @@ class RangeSlider extends HTMLElement {
       return;
     }
 
-    const safe = getSafeValues(val as number, this.min as number, this.max as number, this.round);
+    const safe = getSafeValues(val as number, this.min as number, Math.min(this.max as number, this.value2 as number), this.round);
     this._value = safe.value;
     this.valueUpdateDone(this._value, this.storageKey);
   }
@@ -683,7 +684,7 @@ class RangeSlider extends HTMLElement {
     if (this.disabled) return;
 
     const $pointer = evt.currentTarget as HTMLElement;
-    $pointer.focus();
+    focusPointer($pointer, this._$pointer2);
     sendPointerClickedEvent(this, $pointer);
   }
 
