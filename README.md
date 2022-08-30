@@ -9,7 +9,7 @@
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)
 
 
-Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including a vertical slider, touch, mousewheel and keyboard support, local and session storage, and RTL support.
+Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including one and two pointers, a vertical slider, touch, mousewheel and keyboard support, local and session storage, and RTL support.
 
 [![Tool Cool Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/toolcool-range-slider-preview-1.png?raw=true)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html)
 
