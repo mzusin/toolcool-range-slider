@@ -36,6 +36,7 @@ Responsive range slider library written in typescript and using web component te
 - No CSS conflicts due to web components.
 - Automatically generated labels (optional).
 - Supports multiple sliders on one page.
+- Supports two pointers overlap.
 
 ## Table of contents
 - [Basic usage](#basic-usage)
@@ -55,6 +56,7 @@ Responsive range slider library written in typescript and using web component te
 - [Storage](#storage)
 - [RTL Support](#rtl-support)
 - [Non-linear step](#non-linear-step)
+- [Pointers overlap](#pointers-overlap)
 - [Animation on panel click](#animation-on-panel-click)
 - [TypeScript Usage](#typescript-usage)
 - [Usage with React and TypeScript](#usage-with-react-and-typescript)
@@ -571,6 +573,21 @@ Step function has the following type:
 It gets the **value** of the slider and returns the corresponding **step** value.
 
 :pushpin: The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/17-non-linear.html).
+
+## Pointers overlap
+
+In the two pointer range slider, pointer overlap can be enabled using **pointers-overlap** attribute:
+
+```html
+<toolcool-range-slider pointers-overlap="true" value1="10" value2="40" min="0" max="100"></toolcool-range-slider>
+```
+
+There is also a corresponding API property:
+
+```js
+const $slider = document.querySelector('#slider');
+$slider.pointersOverlap = true;
+```
 
 ## Animation on panel click
 
