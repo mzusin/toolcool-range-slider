@@ -28,7 +28,7 @@ Responsive range slider library written in typescript and using web component te
 - Disabled / enabled range slider (including API).
 - Local storage and session storage support :floppy_disk:
 - Supports a list of individual values (discrete values).
-- Right to left (RTL) support :earth_asia:
+- Right to left (RTL) support :globe_with_meridians:
 - Text data support :writing_hand:
 - Non-linear range slider :chart_with_downwards_trend:
 - Optional animation on panel click.
