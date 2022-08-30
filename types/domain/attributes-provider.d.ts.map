@@ -1,0 +1,1 @@
+{"version":3,"file":"attributes-provider.d.ts","sourceRoot":"","sources":["../../src/domain/attributes-provider.ts"],"names":[],"mappings":"AACA,OAAO,WAAW,MAAM,qBAAqB,CAAC;AAK9C,eAAO,MAAM,kBAAkB,UAiD9B,CAAC;AAEF,eAAO,MAAM,iBAAiB,WAAY,WAAW,YAAY,MAAM,gBAAgB,MAAM,oBAAoB,MAAM,GAAG,MAAM,QAQ/H,CAAC;AAEF,eAAO,MAAM,kBAAkB,WAAY,WAAW,YAAY,MAAM,WAAW,WAAW,GAAG,IAAI,SA8OpG,CAAC"}

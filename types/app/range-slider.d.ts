@@ -1,14 +1,23 @@
-import { StorageTypeEnum } from '../domain/storage-provider';
+import { StorageTypeEnum } from '../dal/storage-provider';
+import { TypeEnum } from '../enums/type-enum';
 declare class RangeSlider extends HTMLElement {
+    /**
+     * the attributes list that are observed by web component;
+     * if attribute changes ---> the web component will update accordingly
+     */
     static get observedAttributes(): string[];
     private _$box;
     private _$slider;
-    private _$pointer;
     private _$panelFill;
+    private _$pointer;
+    private _$pointer2;
+    private _$selectedPointer;
     private _$valueLabel;
+    private _$value2Label;
     private _$minLabel;
     private _$maxLabel;
     private _value;
+    private _value2;
     private _data;
     private _min;
     private _max;
@@ -23,6 +32,8 @@ declare class RangeSlider extends HTMLElement {
     private _storageKey;
     private _storageInitialized;
     private _valueLabel;
+    private _value2Label;
+    private _pointersOverlap;
     private _generateLabels;
     private _animateOnClick;
     private _animating;
@@ -46,15 +57,19 @@ declare class RangeSlider extends HTMLElement {
     private _pointerBorderHover;
     private _pointerBorderFocus;
     constructor();
-    private setValueHelper;
-    /**
-     * value in [min, max] range, or in provided data array
-     */
+    private valueUpdateDone;
     set value(val: string | number);
-    /**
-     * returns value from [min, max] range
-     */
     get value(): string | number;
+    /**
+     * value1 is alias for value
+     */
+    set value1(val: string | number);
+    /**
+     * value1 is alias for value
+     */
+    get value1(): string | number;
+    set value2(val: string | number | undefined);
+    get value2(): string | number | undefined;
     set data(val: (string | number)[] | undefined);
     get data(): (string | number)[] | undefined;
     set min(val: number | string);
@@ -65,8 +80,10 @@ declare class RangeSlider extends HTMLElement {
     get step(): number | ((value: number | string) => number) | undefined;
     set round(val: number);
     get round(): number;
-    set type(val: string | undefined);
-    get type(): string | undefined;
+    set type(val: TypeEnum | undefined);
+    get type(): TypeEnum | undefined;
+    set pointersOverlap(val: boolean);
+    get pointersOverlap(): boolean;
     set theme(val: string | undefined);
     get theme(): string | undefined;
     set rtl(val: boolean);
@@ -81,8 +98,11 @@ declare class RangeSlider extends HTMLElement {
     get storage(): StorageTypeEnum | undefined;
     set storageKey(val: string);
     get storageKey(): string;
+    get storageKey2(): string;
     set valueLabel(val: string | undefined);
     get valueLabel(): string | undefined;
+    set value2Label(val: string | undefined);
+    get value2Label(): string | undefined;
     set generateLabels(val: boolean);
     get generateLabels(): boolean;
     set sliderWidth(val: string | undefined);
@@ -123,30 +143,14 @@ declare class RangeSlider extends HTMLElement {
     get pointerBorderHover(): string | undefined;
     set pointerBorderFocus(val: string | undefined);
     get pointerBorderFocus(): string | undefined;
-    sendPointerClickedEvent(): void;
-    sendMouseDownEvent(evt: MouseEvent): void;
-    sendMouseUpEvent(evt: MouseEvent): void;
-    sendChangeEvent(): void;
-    sendOnKeyDownEvent(evt: KeyboardEvent): void;
-    getSafeValues(value: number, min: number, max: number): {
-        min: number;
-        max: number;
-        value: number;
-    };
-    parseData(dataString: string | undefined | null): (string | number)[] | undefined;
-    findValueIndexInData(val: string | number): number;
     render(): void;
-    pointerClicked(): void;
+    pointerClicked(evt: MouseEvent): void;
     pointerMouseWheel(evt: WheelEvent): void;
-    stepBack(): void;
-    stepForward(): void;
     onTransitionEnd(): void;
     pointerKeyDown(evt: KeyboardEvent): void;
     onMouseDown(evt: MouseEvent): void;
     onMouseUp(evt: MouseEvent): void;
     onValueChange(evt: MouseEvent | TouchEvent): void;
-    getStringOrNumber(attrName: string, defaultValue: number, dataDefaultValue: string | number): any;
-    initLabel(property: string, codeName: string): void;
     /**
      * when the custom element connected to DOM
      */
