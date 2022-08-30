@@ -106,6 +106,20 @@ The value label can also be automatically bound using the **value-label** attrib
 <script type="text/javascript" src="toolcool-range-slider.min.js"></script>
 ```
 
+Range slider with two pointers can be created by adding the **value2** parameter:
+
+```html
+<toolcool-range-slider min="0" max="100" value="30" value2="60"></toolcool-range-slider>
+```
+
+It's also possible to use value1 instead of value:
+
+```html
+<toolcool-range-slider min="0" max="100" value1="30" value2="60"></toolcool-range-slider>
+```
+
+**value1** is just an alias of the **value** property.
+
 :star: **It's also possible to generate min, max, and value labels automatically.**  [Click here for more details.](#automatically-generated-labels)
 
 :pushpin: More examples with automatic label binding can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/8-automatic-labels-binding.html). 
