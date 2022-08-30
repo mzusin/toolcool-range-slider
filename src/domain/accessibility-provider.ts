@@ -79,25 +79,38 @@ export const renderAriaAttributes = (
   min: string| number,
   max: string| number,
   val: string| number,
-  val2: string| number | undefined
+  val2: string| number | undefined,
+  pointersOverlap: boolean
 ) => {
 
   if($pointer1){
     $pointer1?.setAttribute('aria-orientation', type === TypeEnum.Vertical ?  'vertical' : 'horizontal');
     $pointer1?.setAttribute('aria-valuemin', min.toString());
-    $pointer1?.setAttribute('aria-valuemax', max.toString());
     $pointer1?.setAttribute('aria-valuenow', val.toString());
     $pointer1?.setAttribute('aria-valuetext', val.toString());
+
+    if(val2 !== undefined && !pointersOverlap){
+      $pointer1?.setAttribute('aria-valuemax', val2.toString());
+    }
+    else{
+      $pointer1?.setAttribute('aria-valuemax', max.toString());
+    }
   }
 
   if($pointer2){
     $pointer2?.setAttribute('aria-orientation', type === TypeEnum.Vertical ?  'vertical' : 'horizontal');
-    $pointer2?.setAttribute('aria-valuemin', min.toString());
-    $pointer2?.setAttribute('aria-valuemax', max.toString());
 
+    $pointer2?.setAttribute('aria-valuemax', max.toString());
     if(val2 !== undefined){
       $pointer2?.setAttribute('aria-valuenow', val2.toString());
       $pointer2?.setAttribute('aria-valuetext', val2.toString());
+    }
+
+    if(!pointersOverlap){
+      $pointer2?.setAttribute('aria-valuemin', val.toString());
+    }
+    else{
+      $pointer2?.setAttribute('aria-valuemin', min.toString());
     }
   }
 };

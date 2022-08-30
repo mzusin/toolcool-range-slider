@@ -694,7 +694,8 @@ class RangeSlider extends HTMLElement {
       _min,
       _max,
       _val,
-      _val2
+      _val2,
+      this.pointersOverlap
     );
 
     if (this.type) {
