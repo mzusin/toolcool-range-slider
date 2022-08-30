@@ -35,6 +35,7 @@ Responsive range slider library written in typescript and using web component te
 - Works well with Bootstrap and other CSS frameworks :+1:
 - No CSS conflicts due to web components.
 - Automatically generated labels (optional).
+- Supports multiple sliders on one page.
 
 ## Table of contents
 - [Basic usage](#basic-usage)
