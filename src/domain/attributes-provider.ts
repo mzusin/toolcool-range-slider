@@ -8,6 +8,7 @@ export const observedAttributes = [
   'value',
   'value1',
   'value2',
+  'pointers-overlap',
 
   'data',
   'min',
@@ -117,6 +118,12 @@ export const onAttributesChange = (slider: RangeSlider, attrName: string, $slide
 
     case 'type': {
       slider.type = slider.getAttribute('type') as TypeEnum || undefined;
+      slider.render();
+      break;
+    }
+
+    case 'pointers-overlap': {
+      slider.pointersOverlap = slider.getAttribute('pointers-overlap') === 'true';
       slider.render();
       break;
     }

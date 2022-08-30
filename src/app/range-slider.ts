@@ -81,6 +81,7 @@ class RangeSlider extends HTMLElement {
 
   private _valueLabel: string | undefined = undefined;
   private _value2Label: string | undefined = undefined;
+  private _pointersOverlap = false;
 
   private _generateLabels = false;
   private _animateOnClick: string | undefined = undefined;
@@ -301,6 +302,15 @@ class RangeSlider extends HTMLElement {
 
   public get type() {
     return this._type;
+  }
+
+  public set pointersOverlap(val: boolean) {
+    this._pointersOverlap = val;
+    this.render();
+  }
+
+  public get pointersOverlap() {
+    return this._pointersOverlap;
   }
 
   public set theme(val: string | undefined) {
@@ -593,7 +603,7 @@ class RangeSlider extends HTMLElement {
 
         if (this.value2 !== undefined && this._$pointer2) {
           this._$pointer2.style.top = `${100 - percent2}%`;
-          this._$panelFill.style.top = `${100 - percent2}%`;
+          this._$panelFill.style.top = `${Math.min(100 - percent2, 100 - percent)}%`;
           this._$panelFill.style.height = `${Math.abs(percent - percent2)}%`;
         }
       }
@@ -605,7 +615,7 @@ class RangeSlider extends HTMLElement {
 
         if (this.value2 !== undefined && this._$pointer2) {
           this._$pointer2.style.top = `${percent2}%`;
-          this._$panelFill.style.top = `${percent}%`;
+          this._$panelFill.style.top = `${Math.min(percent, percent2)}%`;
           this._$panelFill.style.height = `${Math.abs(percent - percent2)}%`;
         }
       }
@@ -619,7 +629,7 @@ class RangeSlider extends HTMLElement {
 
         if (this.value2 !== undefined && this._$pointer2) {
           this._$pointer2.style.left = `${100 - percent2}%`;
-          this._$panelFill.style.left = `${100 - percent2}%`;
+          this._$panelFill.style.left = `${Math.min(100 - percent2, 100 - percent)}%`;
           this._$panelFill.style.width = `${Math.abs(percent - percent2)}%`;
         }
       }
@@ -631,7 +641,7 @@ class RangeSlider extends HTMLElement {
 
         if (this.value2 !== undefined && this._$pointer2) {
           this._$pointer2.style.left = `${percent2}%`;
-          this._$panelFill.style.left = `${percent}%`;
+          this._$panelFill.style.left = `${Math.min(percent, percent2)}%`;
           this._$panelFill.style.width = `${Math.abs(percent - percent2)}%`;
         }
       }
@@ -889,6 +899,7 @@ class RangeSlider extends HTMLElement {
     this.data = parseData(this.getAttribute('data'));
     this.min = getStringOrNumber(this, 'min', 0, this.data ? this.data[0] : '');
     this.max = getStringOrNumber(this, 'max', 100, this.data ? this.data[this.data.length - 1] : '');
+    this.pointersOverlap = this.getAttribute('pointers-overlap') === 'true';
 
     this.value = getStringOrNumber(this, 'value', this.min as number, this.data ? this.data[0] : '');
 
