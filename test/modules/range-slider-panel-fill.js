@@ -157,5 +157,65 @@ QUnit.module('Range Slider Panel Fill', () => {
         assert.strictEqual($fill.style.left, 'auto');
     });
 
+    // <toolcool-range-slider rtl="true" id="slider-104" value1="50" value2="70"></toolcool-range-slider>
+
+    QUnit.test('when rtl="true" and 2 pointers ---> panel fill width = 20%', (assert) => {
+        const $slider = document.querySelector('#slider-104');
+        const $fill = $slider.shadowRoot.querySelector('.panel-fill');
+        assert.strictEqual($fill.style.width, '20%');
+    });
+
+    QUnit.test('when rtl="true" and 2 pointers ---> panel fill right = 0%', (assert) => {
+        const $slider = document.querySelector('#slider-104');
+        const $fill = $slider.shadowRoot.querySelector('.panel-fill');
+        assert.strictEqual($fill.style.right, '0%');
+    });
+
+    QUnit.test('when rtl="true" and 2 pointers ---> panel fill left = 30%', (assert) => {
+        const $slider = document.querySelector('#slider-104');
+        const $fill = $slider.shadowRoot.querySelector('.panel-fill');
+        assert.strictEqual($fill.style.left, '30%');
+    });
+
+    // ----
+
+    // <<toolcool-range-slider btt="true" type="vertical" id="slider-51"></toolcool-range-slider>
+    QUnit.test('when type = vertical and btt="true", height = 0%', (assert) => {
+        const $slider = document.querySelector('#slider-51');
+        const $fill = $slider.shadowRoot.querySelector('.panel-fill');
+        assert.strictEqual($fill.style.height, '0%');
+    });
+
+    QUnit.test('when type = vertical and btt="true", bottom = 0%', (assert) => {
+        const $slider = document.querySelector('#slider-51');
+        const $fill = $slider.shadowRoot.querySelector('.panel-fill');
+        assert.strictEqual($fill.style.bottom, '0%');
+    });
+
+    QUnit.test('when type = vertical and btt="true", top = auto%', (assert) => {
+        const $slider = document.querySelector('#slider-51');
+        const $fill = $slider.shadowRoot.querySelector('.panel-fill');
+        assert.strictEqual($fill.style.top, 'auto');
+    });
+
+    //   <toolcool-range-slider btt="true" type="vertical" id="slider-105" value1="50" value2="70"></toolcool-range-slider>
+    QUnit.test('when type = vertical, 2 pointers, and btt="true", height = 20%', (assert) => {
+        const $slider = document.querySelector('#slider-105');
+        const $fill = $slider.shadowRoot.querySelector('.panel-fill');
+        assert.strictEqual($fill.style.height, '20%');
+    });
+
+    QUnit.test('when type = vertical, 2 pointers, and btt="true", bottom = 0%', (assert) => {
+        const $slider = document.querySelector('#slider-105');
+        const $fill = $slider.shadowRoot.querySelector('.panel-fill');
+        assert.strictEqual($fill.style.bottom, '0%');
+    });
+
+    QUnit.test('when type = vertical, 2 pointers, and btt="true", top = 30%', (assert) => {
+        const $slider = document.querySelector('#slider-105');
+        const $fill = $slider.shadowRoot.querySelector('.panel-fill');
+        assert.strictEqual($fill.style.top, '30%');
+    });
+
 });
 
