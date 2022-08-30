@@ -106,7 +106,7 @@ The value label can also be automatically bound using the **value-label** attrib
 <script type="text/javascript" src="toolcool-range-slider.min.js"></script>
 ```
 
-Range slider with two pointers can be created by adding the **value2** parameter:
+Range slider **with two pointers** can be created by adding the **value2** parameter:
 
 ```html
 <toolcool-range-slider min="0" max="100" value="30" value2="60"></toolcool-range-slider>
@@ -171,17 +171,23 @@ Range slider has the following main properties: **min**, **max**, **value**, and
 <toolcool-range-slider min="0" max="100" value="50"></toolcool-range-slider>
 
 <toolcool-range-slider min="100" max="200" value="150" step="10" round="0"></toolcool-range-slider>
+
+<toolcool-range-slider value1="10" value2="20"></toolcool-range-slider>
+
+<toolcool-range-slider min="-200" max="200" value1="-50" value2="100"></toolcool-range-slider>
 ```
 
 The properties have the following default values:
 
-| Property | Default Value | Description                             |
-|----------|---------------|-----------------------------------------|
-| min      | 0             | The minimum value.                      |
-| max      | 100           | The maximum value.                      |
-| value    | 0             | Current slider value.                   |
-| step     | undefined     | Slide step.                             |
-| round    | 2             | The maximum number of decimal places.   |
+| Property | Default Value | Description                                                           |
+|----------|---------------|-----------------------------------------------------------------------|
+| min      | 0             | The minimum value.                                                    |
+| max      | 100           | The maximum value.                                                    |
+| value    | 0             | Current slider value.                                                 |
+| value1   | 0             | Alias for the value property (for use in a slider with two pointers). |
+| value2   | undefined     | Second pointer value.                                                 |
+| step     | undefined     | Slide step.                                                           |
+| round    | 2             | The maximum number of decimal places.                                 |
 
 :pushpin: If no value is specified, it will be equal to the minimum value.
 
