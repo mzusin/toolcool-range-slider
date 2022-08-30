@@ -14,7 +14,7 @@ Responsive range slider library written in typescript and using web component te
 [![Tool Cool Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/toolcool-range-slider-preview-1.png?raw=true)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html)
 
 - Responsive, touch, mousewheel, and keyboard support :iphone:
-- Range slider with one or two pointers :feet:
+- Range slider with one or two pointers.
 - Accessible via ARIA-attributes :shield:
 - ES6 JavaScript + TypeScript.
 - No dependencies :unlock:
@@ -28,7 +28,7 @@ Responsive range slider library written in typescript and using web component te
 - Disabled / enabled range slider (including API).
 - Local storage and session storage support :floppy_disk:
 - Supports a list of individual values (discrete values).
-- Right to left (RTL) support.
+- Right to left (RTL) support :earth_asia:
 - Text data support :writing_hand:
 - Non-linear range slider :chart_with_downwards_trend:
 - Optional animation on panel click.
