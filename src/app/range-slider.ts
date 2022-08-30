@@ -26,6 +26,7 @@ import {
 import { parseData } from '../dal/data-provider';
 import { stepBack, stepForward } from '../domain/accessibility-provider';
 import { renderStyles } from '../domain/style-provider';
+import { TypeEnum } from '../enums/type-enum';
 
 /*
  Usage:
@@ -73,7 +74,7 @@ class RangeSlider extends HTMLElement {
   private _max: string | number = 100;
   private _step: number | ((value: number | string) => number) | undefined = undefined;
   private _round = DEFAULT_ROUND_PLACES;
-  private _type: string | undefined = undefined;
+  private _type: TypeEnum | undefined = undefined;
   private _theme: string | undefined = undefined;
   private _disabled = false;
   private _rtl = false; // right to left
@@ -298,7 +299,7 @@ class RangeSlider extends HTMLElement {
     return this._round;
   }
 
-  public set type(val: string | undefined) {
+  public set type(val: TypeEnum | undefined) {
     this._type = val;
     this.render();
   }
@@ -588,7 +589,7 @@ class RangeSlider extends HTMLElement {
 
     const { percent, percent2, _val, _val2, _min, _max } = prepareDataForRender(this);
 
-    if (this.type === 'vertical') {
+    if (this.type === TypeEnum.Vertical) {
       if (this.btt) {
         this._$pointer.style.top = `${100 - percent}%`;
         this._$panelFill.style.height = `${percent}%`;
@@ -706,7 +707,7 @@ class RangeSlider extends HTMLElement {
 
     switch (evt.key) {
       case 'ArrowLeft': {
-        if (this.type === 'vertical') {
+        if (this.type === TypeEnum.Vertical) {
           if (isFocused(this._$pointer2)) {
             this.value2 = this.min;
           }
@@ -724,7 +725,7 @@ class RangeSlider extends HTMLElement {
       }
 
       case 'ArrowRight': {
-        if (this.type === 'vertical') {
+        if (this.type === TypeEnum.Vertical) {
           if (isFocused(this._$pointer2)) {
             this.value2 = this.max;
           }
@@ -742,7 +743,7 @@ class RangeSlider extends HTMLElement {
 
       case 'ArrowUp': {
         evt.preventDefault();
-        if (this.type === 'vertical') {
+        if (this.type === TypeEnum.Vertical) {
           stepBack(this, this._$pointer2);
         }
         else {
@@ -760,7 +761,7 @@ class RangeSlider extends HTMLElement {
 
       case 'ArrowDown': {
         evt.preventDefault();
-        if (this.type === 'vertical') {
+        if (this.type === TypeEnum.Vertical) {
           stepForward(this, this._$pointer2);
         }
         else {
@@ -816,7 +817,7 @@ class RangeSlider extends HTMLElement {
     // find the percent [0, 100] of the current mouse position in vertical or horizontal slider
     let percent;
 
-    if (this.type === 'vertical') {
+    if (this.type === TypeEnum.Vertical) {
       // -------------- vertical -----------------
 
       const { height: boxHeight, top: boxTop } = this._$slider.getBoundingClientRect();
@@ -907,7 +908,7 @@ class RangeSlider extends HTMLElement {
       this.round = DEFAULT_ROUND_PLACES;
     }
 
-    this.type = this.getAttribute('type') || undefined;
+    this.type = this.getAttribute('type') as TypeEnum || undefined;
     this.theme = this.getAttribute('theme') || undefined;
     this.disabled = this.getAttribute('disabled') === 'true';
     this.rtl = this.getAttribute('rtl') === 'true';
