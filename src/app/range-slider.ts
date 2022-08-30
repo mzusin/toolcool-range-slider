@@ -140,13 +140,21 @@ class RangeSlider extends HTMLElement {
     }
   }
 
+
   public set value(val: string | number) {
     if (this.data) {
-      const _val = isNumber(val) ? Number(val) : val;
+      let _val = isNumber(val) ? Number(val) : val;
 
       // the provided value should present in data array
-      const found = this.data.find((item) => item === _val);
-      if (found === undefined) return;
+      const foundIndex1 = this.data.findIndex((item) => item === _val);
+      if (foundIndex1 === -1) return;
+
+      if(this.value2 !== undefined && !this.pointersOverlap){
+        const foundIndex2 = this.data.findIndex((item) => item === this.value2);
+        if(foundIndex2 !== -1 && foundIndex1 > foundIndex2){
+          _val = this.value2;
+        }
+      }
 
       this._value = _val;
       this.valueUpdateDone(this._value, this.storageKey);
@@ -154,6 +162,13 @@ class RangeSlider extends HTMLElement {
     }
 
     const safe = getSafeValues(val as number, this.min as number, this.max as number, this.round);
+
+    if(this.value2 !== undefined && !this.pointersOverlap){
+      if(safe.value > this.value2){
+        safe.value = this.value2 as number;
+      }
+    }
+
     this._value = safe.value;
     this.valueUpdateDone(this._value, this.storageKey);
   }
@@ -185,11 +200,17 @@ class RangeSlider extends HTMLElement {
     }
 
     if (this.data) {
-      const _val = isNumber(val) ? Number(val) : val;
+      let _val = isNumber(val) ? Number(val) : val;
 
-      // the provided value should present in data array
-      const found = this.data.find((item) => item === _val);
-      if (found === undefined) return;
+      const foundIndex1 = this.data.findIndex((item) => item === _val);
+      if (foundIndex1 === -1) return;
+
+      if(this.value2 !== undefined && !this.pointersOverlap){
+        const foundIndex2 = this.data.findIndex((item) => item === this.value);
+        if(foundIndex2 !== -1 && foundIndex1 < foundIndex2){
+          _val = this.value;
+        }
+      }
 
       this._value2 = _val;
       this.valueUpdateDone(this._value2, this.storageKey2);
@@ -197,6 +218,13 @@ class RangeSlider extends HTMLElement {
     }
 
     const safe = getSafeValues(val as number, this.min as number, this.max as number, this.round);
+
+    if(this.value2 !== undefined && !this.pointersOverlap){
+      if(safe.value < this.value){
+        safe.value = this.value as number;
+      }
+    }
+
     this._value2 = safe.value;
     this.valueUpdateDone(this._value2, this.storageKey2);
   }
