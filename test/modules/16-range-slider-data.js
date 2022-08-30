@@ -216,6 +216,8 @@ QUnit.module('Range Slider Data', () => {
         assert.equal($slider.value, 3);
     });
 
+    // ------
+
     QUnit.test('when data="sky, blue" ---> change value to "blue" via API.', (assert) => {
         const $slider = document.querySelector('#slider-68');
         $slider.value = 'blue';
@@ -231,5 +233,47 @@ QUnit.module('Range Slider Data', () => {
     QUnit.test('data="0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100", min should be 0', (assert) => {
         const $slider = document.querySelector('#slider-74');
         assert.equal($slider.min, 0);
+    });
+
+    // ---
+
+    // <toolcool-range-slider data="red, green, blue, yellow, silver, gold" id="slider-108" value1="green" value2="gold"></toolcool-range-slider>
+    QUnit.test('2 pointers, when data="red, green, blue, yellow, silver, gold" ---> value = green', (assert) => {
+        const $slider = document.querySelector('#slider-108');
+        assert.equal($slider.value, 'green');
+    });
+
+    QUnit.test('2 pointers, when data="red, green, blue, yellow, silver, gold" ---> value1 = green', (assert) => {
+        const $slider = document.querySelector('#slider-108');
+        assert.equal($slider.value1, 'green');
+    });
+
+    QUnit.test('2 pointers, when data="red, green, blue, yellow, silver, gold" ---> value2 = gold', (assert) => {
+        const $slider = document.querySelector('#slider-108');
+        assert.equal($slider.value2, 'gold');
+    });
+
+    QUnit.test('2 pointers, when data="red, green, blue, yellow, silver, gold" ---> change value1 to "red" via API.', (assert) => {
+        const $slider = document.querySelector('#slider-108');
+        $slider.value = 'red';
+        assert.equal($slider.value, 'red');
+    });
+
+    QUnit.test('2 pointers, when data="red, green, blue, yellow, silver, gold" ---> change value2 to "blue" via API.', (assert) => {
+        const $slider = document.querySelector('#slider-108');
+        $slider.value2 = 'blue';
+        assert.equal($slider.value2, 'blue');
+    });
+
+    QUnit.test('2 pointers, when data="red, green, blue, yellow, silver, gold" ---> change value1 to "red" via attribute.', (assert) => {
+        const $slider = document.querySelector('#slider-108');
+        $slider.setAttribute('value', 'red');
+        assert.equal($slider.value, 'red');
+    });
+
+    QUnit.test('2 pointers, when data="red, green, blue, yellow, silver, gold" ---> change value2 to "blue" via attribute.', (assert) => {
+        const $slider = document.querySelector('#slider-108');
+        $slider.setAttribute('value2', 'blue');
+        assert.equal($slider.value2, 'blue');
     });
 });

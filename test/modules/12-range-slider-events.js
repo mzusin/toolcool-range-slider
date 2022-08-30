@@ -22,6 +22,48 @@ QUnit.module('Range Slider Events', () => {
     }));
   });
 
+  QUnit.test('slider with 2 pointers should send change event with value = 51', (assert) => {
+
+    const done = assert.async();
+
+    const $slider = document.querySelector('#slider-107');
+    const $pointer = $slider.shadowRoot.querySelector('.pointer');
+
+    $slider.addEventListener('change', (evt) => {
+      const value = Math.round(evt.detail.value);
+      assert.equal(value, 51);
+      done();
+    });
+
+    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      key: 'ArrowRight',
+    }));
+  });
+
+  QUnit.test('slider with 2 pointers should send change event with value2 = 60', (assert) => {
+
+    const done = assert.async();
+
+    const $slider = document.querySelector('#slider-107');
+    const $pointer = $slider.shadowRoot.querySelector('.pointer');
+
+    $slider.addEventListener('change', (evt) => {
+      const value2 = Math.round(evt.detail.value2);
+      assert.equal(value2, 60);
+      done();
+    });
+
+    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      key: 'ArrowRight',
+    }));
+  });
+
   QUnit.test('slider should send onMouseDown event', (assert) => {
 
     const done = assert.async();
