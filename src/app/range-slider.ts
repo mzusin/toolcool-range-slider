@@ -54,6 +54,7 @@ class RangeSlider extends HTMLElement {
 
   private _$pointer: HTMLElement | null;
   private _$pointer2: HTMLElement | null;
+  private _pointersOverlap = false;
 
   private _$valueLabel: HTMLElement | null;
   private _$value2Label: HTMLElement | null;
@@ -337,6 +338,15 @@ class RangeSlider extends HTMLElement {
 
   public get disabled() {
     return this._disabled;
+  }
+
+  public set pointersOverlap(val: boolean) {
+    this._pointersOverlap = val;
+    this.render();
+  }
+
+  public get pointersOverlap() {
+    return this._pointersOverlap;
   }
 
   public set animateOnClick(val: string | undefined) {
@@ -909,6 +919,7 @@ class RangeSlider extends HTMLElement {
     this.disabled = this.getAttribute('disabled') === 'true';
     this.rtl = this.getAttribute('rtl') === 'true';
     this.btt = this.getAttribute('btt') === 'true';
+    this.pointersOverlap = this.getAttribute('pointers-overlap') === 'true';
 
     this.valueLabel = this.getAttribute('value-label') || undefined;
     this.generateLabels = this.getAttribute('generate-labels') === 'true';

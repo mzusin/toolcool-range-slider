@@ -2,6 +2,7 @@ import { DEFAULT_ROUND_PLACES, getNumber, isNumber } from './math-provider';
 import RangeSlider from '../app/range-slider';
 import { parseData } from '../dal/data-provider';
 import { STORAGE_KEY, StorageTypeEnum } from '../dal/storage-provider';
+import { TypeEnum } from '../enums/type-enum';
 
 export const observedAttributes = [
   'value',
@@ -51,6 +52,7 @@ export const observedAttributes = [
   'value2-label',
   'generate-labels',
   'animate-onclick',
+  'pointers-overlap',
 ];
 
 export const getStringOrNumber = (slider: RangeSlider, attrName: string, defaultValue: number, dataDefaultValue: string | number) => {
@@ -115,7 +117,7 @@ export const onAttributesChange = (slider: RangeSlider, attrName: string, $slide
     }
 
     case 'type': {
-      slider.type = slider.getAttribute('type') || undefined;
+      slider.type = slider.getAttribute('type') as TypeEnum || undefined;
       slider.render();
       break;
     }
@@ -140,6 +142,12 @@ export const onAttributesChange = (slider: RangeSlider, attrName: string, $slide
 
     case 'disabled': {
       slider.disabled = slider.getAttribute('disabled') === 'true';
+      slider.render();
+      break;
+    }
+
+    case 'pointers-overlap': {
+      slider.pointersOverlap = slider.getAttribute('pointers-overlap') === 'true';
       slider.render();
       break;
     }
