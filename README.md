@@ -114,7 +114,7 @@ Range slider **with two pointers** can be created by adding the **value2** param
 <toolcool-range-slider min="0" max="100" value="30" value2="60"></toolcool-range-slider>
 ```
 
-It's also possible to use value1 instead of value:
+It's also possible to use **value1** instead of value:
 
 ```html
 <toolcool-range-slider min="0" max="100" value1="30" value2="60"></toolcool-range-slider>
