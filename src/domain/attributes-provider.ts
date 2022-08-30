@@ -5,7 +5,9 @@ import { STORAGE_KEY, StorageTypeEnum } from '../dal/storage-provider';
 
 export const observedAttributes = [
   'value',
+  'value1',
   'value2',
+
   'data',
   'min',
   'max',
@@ -77,6 +79,12 @@ export const onAttributesChange = (slider: RangeSlider, attrName: string, $slide
 
     case 'value': {
       slider.value = getStringOrNumber(slider, 'value', slider.min as number, slider.data ? slider.data[0] : '');
+      slider.render();
+      break;
+    }
+
+    case 'value1': {
+      slider.value1 = getStringOrNumber(slider, 'value1', slider.min as number, slider.data ? slider.data[0] : '');
       slider.render();
       break;
     }

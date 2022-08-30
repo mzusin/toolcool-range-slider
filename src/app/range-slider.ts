@@ -165,6 +165,20 @@ class RangeSlider extends HTMLElement {
     return this._value;
   }
 
+  /**
+   * value1 is alias for value
+   */
+  public set value1(val: string | number) {
+    this.value = val;
+  }
+
+  /**
+   * value1 is alias for value
+   */
+  public get value1() {
+    return this.value;
+  }
+
   public set value2(val: string | number | undefined) {
     if (val === undefined) {
       // value2 can be unset
@@ -878,6 +892,11 @@ class RangeSlider extends HTMLElement {
     this.max = getStringOrNumber(this, 'max', 100, this.data ? this.data[this.data.length - 1] : '');
 
     this.value = getStringOrNumber(this, 'value', this.min as number, this.data ? this.data[0] : '');
+
+    if (this.getAttribute('value1') !== null) {
+      this.value = getStringOrNumber(this, 'value1', this.min as number, this.data ? this.data[0] : '');
+    }
+
     if (this.getAttribute('value2') !== null) {
       this.value2 = getStringOrNumber(this, 'value2', this.min as number, this.data ? this.data[0] : '');
     }
