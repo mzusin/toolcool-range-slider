@@ -53,6 +53,7 @@ class RangeSlider extends HTMLElement {
 
   private _$pointer: HTMLElement | null;
   private _$pointer2: HTMLElement | null;
+  private _$selectedPointer: HTMLElement | null;
 
   private _$valueLabel: HTMLElement | null;
   private _$value2Label: HTMLElement | null;
@@ -774,6 +775,7 @@ class RangeSlider extends HTMLElement {
   }
 
   onMouseDown(evt: MouseEvent) {
+
     if (this.disabled) return;
 
     if (evt.preventDefault) {
@@ -845,9 +847,10 @@ class RangeSlider extends HTMLElement {
         index = roundToStep(index, stepVal);
       }
 
-      updateValueAndFocusPointer(
+      this._$selectedPointer = updateValueAndFocusPointer(
         evt,
         this,
+        this._$selectedPointer,
         true,
         this.data[index],
         this._$pointer,
@@ -861,9 +864,10 @@ class RangeSlider extends HTMLElement {
         value = roundToStep(value, stepVal);
       }
 
-      updateValueAndFocusPointer(
+      this._$selectedPointer = updateValueAndFocusPointer(
         evt,
         this,
+        this._$selectedPointer,
         false,
         value,
         this._$pointer,

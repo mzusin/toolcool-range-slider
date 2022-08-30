@@ -73,9 +73,13 @@ export const prepareDataForRender = (slider: RangeSlider) => {
   };
 };
 
+/**
+ * in returns selected pointer or null
+ */
 export const updateValueAndFocusPointer = (
   evt: MouseEvent | TouchEvent,
   slider: RangeSlider,
+  $selectedPointer: HTMLElement | null,
   hasData: boolean,
   updatedValue: string | number,
   $pointer: HTMLElement | null,
@@ -84,17 +88,32 @@ export const updateValueAndFocusPointer = (
   const $target = evt.target as HTMLElement;
   const isPointer1Clicked = $target === $pointer || $pointer?.contains($target);
   const isPointer2Clicked = $target === $pointer2 || $pointer2?.contains($target);
+  const isPanelClicked = $target.classList.contains('panel') || $target.classList.contains('panel-fill');
 
-  if(isPointer1Clicked){
-    slider.value = updatedValue;
-    $pointer?.focus();
-    return;
-  }
+  if(!isPanelClicked){
+    if(isPointer1Clicked){
+      slider.value = updatedValue;
+      $pointer?.focus();
+      return $pointer;
+    }
 
-  if(isPointer2Clicked){
-    slider.value2 = updatedValue;
-    $pointer2?.focus();
-    return;
+    if(isPointer2Clicked){
+      slider.value2 = updatedValue;
+      $pointer2?.focus();
+      return $pointer2;
+    }
+
+    if($selectedPointer === $pointer){
+      slider.value = updatedValue;
+      $pointer?.focus();
+      return $pointer;
+    }
+
+    if($selectedPointer === $pointer2){
+      slider.value2 = updatedValue;
+      $pointer2?.focus();
+      return $pointer2;
+    }
   }
 
   if (slider.value2 !== undefined) {
@@ -102,13 +121,13 @@ export const updateValueAndFocusPointer = (
     let distance2: number | undefined = undefined;
 
     if (hasData) {
-      if (!slider.data) return;
+      if (!slider.data) return null;
 
       const index1 = slider.data.findIndex((item) => item === slider.value);
       const index2 = slider.data.findIndex((item) => item === slider.value2);
       const index3 = slider.data.findIndex((item) => item === updatedValue);
 
-      if (index1 === -1 && index2 === -1 && index3 === -1) return;
+      if (index1 === -1 && index2 === -1 && index3 === -1) return null;
 
       distance1 = Math.abs(index1 - index3);
       distance2 = Math.abs(index2 - index3);
@@ -122,18 +141,21 @@ export const updateValueAndFocusPointer = (
       if (distance1 <= distance2) {
         slider.value = updatedValue;
         $pointer?.focus();
+        return $pointer;
       }
       else {
         slider.value2 = updatedValue;
         $pointer2?.focus();
+        return $pointer2;
       }
     }
 
-    return;
+    return null;
   }
 
   slider.value = updatedValue;
   $pointer?.focus();
+  return $pointer;
 };
 
 export const isFocused = ($el: HTMLElement | null) => {
