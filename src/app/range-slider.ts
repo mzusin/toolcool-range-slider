@@ -1,12 +1,7 @@
 import styles from './styles.pcss';
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
 import { convertRange, DEFAULT_ROUND_PLACES, getNumber, isNumber, roundToStep } from '../domain/math-provider';
-import {
-  restoreFromStorage,
-  saveToStorage,
-  STORAGE_KEY,
-  StorageTypeEnum
-} from '../dal/storage-provider';
+import { restoreFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../dal/storage-provider';
 import { getStringOrNumber, observedAttributes, onAttributesChange } from '../domain/attributes-provider';
 import {
   sendChangeEvent,
@@ -24,7 +19,7 @@ import {
   updateValueAndFocusPointer
 } from '../domain/core-provider';
 import { parseData } from '../dal/data-provider';
-import { stepBack, stepForward } from '../domain/accessibility-provider';
+import { renderAriaAttributes, stepBack, stepForward } from '../domain/accessibility-provider';
 import { renderStyles } from '../domain/style-provider';
 import { TypeEnum } from '../enums/type-enum';
 
@@ -614,8 +609,6 @@ class RangeSlider extends HTMLElement {
           this._$panelFill.style.height = `${Math.abs(percent - percent2)}%`;
         }
       }
-
-      this._$slider.setAttribute('aria-orientation', 'vertical');
     }
     else {
       if (this.rtl) {
@@ -642,8 +635,6 @@ class RangeSlider extends HTMLElement {
           this._$panelFill.style.width = `${Math.abs(percent - percent2)}%`;
         }
       }
-
-      this._$slider.setAttribute('aria-orientation', 'horizontal');
     }
 
     renderLabels(
@@ -657,11 +648,16 @@ class RangeSlider extends HTMLElement {
       _val2
     );
 
-    // set additional area attributes
-    this._$slider.setAttribute('aria-valuemin', _min.toString());
-    this._$slider.setAttribute('aria-valuemax', _max.toString());
-    this._$slider.setAttribute('aria-valuenow', _val.toString());
-    this._$slider.setAttribute('aria-valuetext', _val.toString());
+    // set additional aria attributes
+    renderAriaAttributes(
+      this._$pointer,
+      this._$pointer2,
+      this.type || TypeEnum.Horizontal,
+      _min,
+      _max,
+      _val,
+      _val2
+    );
 
     if (this.type) {
       this._$box?.classList.add(`type-${this.type}`);

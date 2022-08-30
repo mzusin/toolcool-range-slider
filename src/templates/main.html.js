@@ -14,13 +14,13 @@ export default (styles) => {
       <div class="row">
         <slot name="min-label"></slot>
         
-        <div id="range-slider" class="range-slider" role="slider">
+        <div id="range-slider" class="range-slider">
           <div class="container">
             <div class="panel"></div>
             <div class="panel-fill"></div>
         
             <div class="container">
-              <div class="pointer" tabindex="0">
+              <div class="pointer" tabindex="0" role="slider">
                 <div class="pointer-shape"></div>
               </div>
             </div>

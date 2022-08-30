@@ -2,6 +2,7 @@ import { findValueIndexInData } from '../dal/data-provider';
 import { getNumber } from './math-provider';
 import { getSafeValues, isFocused } from './core-provider';
 import RangeSlider from '../app/range-slider';
+import { TypeEnum } from '../enums/type-enum';
 
 export const stepBack = (slider: RangeSlider, $pointer2: HTMLElement | null) => {
   if (slider.data) {
@@ -69,4 +70,34 @@ export const stepForward = (slider: RangeSlider, $pointer2: HTMLElement | null) 
   }
 
   slider.render();
+};
+
+export const renderAriaAttributes = (
+  $pointer1: HTMLElement | null,
+  $pointer2: HTMLElement | null,
+  type: TypeEnum,
+  min: string| number,
+  max: string| number,
+  val: string| number,
+  val2: string| number | undefined
+) => {
+
+  if($pointer1){
+    $pointer1?.setAttribute('aria-orientation', type === TypeEnum.Vertical ?  'vertical' : 'horizontal');
+    $pointer1?.setAttribute('aria-valuemin', min.toString());
+    $pointer1?.setAttribute('aria-valuemax', max.toString());
+    $pointer1?.setAttribute('aria-valuenow', val.toString());
+    $pointer1?.setAttribute('aria-valuetext', val.toString());
+  }
+
+  if($pointer2){
+    $pointer2?.setAttribute('aria-orientation', type === TypeEnum.Vertical ?  'vertical' : 'horizontal');
+    $pointer2?.setAttribute('aria-valuemin', min.toString());
+    $pointer2?.setAttribute('aria-valuemax', max.toString());
+
+    if(val2 !== undefined){
+      $pointer2?.setAttribute('aria-valuenow', val2.toString());
+      $pointer2?.setAttribute('aria-valuetext', val2.toString());
+    }
+  }
 };
