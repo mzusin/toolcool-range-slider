@@ -561,15 +561,10 @@ The range slider also supports right to left (RTL) using **rtl** attribute as fo
 ```
 
 ```html
-<div class="row" style="direction: rtl">
-  <label>0</label>
-  <toolcool-range-slider
-    slider-width="100%"
-    value-label=".value-1"
-    rtl="true"></toolcool-range-slider>
-  <label>100</label>
-  <div class="value value-1"></div>
-</div>
+<toolcool-range-slider
+  slider-width="100%"
+  generate-labels="true"
+  rtl="true"></toolcool-range-slider>
 ```
 
 :pushpin: The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/14-rtl.html).
