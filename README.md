@@ -221,6 +221,27 @@ The properties have the following default values:
 
 :pushpin: To create a 2 pointer range slider, specify value1 and value2.
 
+Each property can also be changed programmatically:
+
+```html
+<toolcool-range-slider id="slider-1"></toolcool-range-slider>
+
+<script type="text/javascript" src="toolcool-range-slider.min.js"></script>
+
+<script>
+    // get the reference
+    const $slider = document.getElementById('slider-1');
+    
+    // set properties
+    $slider.min = -200;
+    $slider.max = 200;
+    $slider.value = 50; // or $slider.value1 = 50;
+    $slider.value2 = 150;
+    $slider.step = 10;
+    $slider.round = 0;
+</script>
+```
+
 ## List of individual values and text data
 
 It is also possible (but not required) to provide a list of numeric or text data instead of **min** and **max** properties.
