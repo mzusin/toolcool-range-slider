@@ -483,6 +483,14 @@ It is also possible to reverse the direction and slide from bottom to top using 
 <toolcool-range-slider type="vertical" btt="true"></toolcool-range-slider>
 ```
 
+Enable or disable via API:
+
+```js
+const $slider = document.querySelector('#slider');
+$slider.btt = true; // or false
+```
+
+
 ## Pointer Shapes
 
 [![Tool Cool Pointer Shapes](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/pointer-shapes.png?raw=true)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/7-pointer-shapes.html)
@@ -649,6 +657,13 @@ The range slider also supports right to left (RTL) using **rtl** attribute as fo
   slider-width="100%"
   generate-labels="true"
   rtl="true"></toolcool-range-slider>
+```
+
+Enable or disable via API:
+
+```js
+const $slider = document.querySelector('#slider');
+$slider.rtl = true; // or false
 ```
 
 :pushpin: The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/14-rtl.html).
