@@ -436,17 +436,17 @@ There are the following pointer shapes:
 The library supports touch screens and also handles the following keys:
 
 
-| Key         | Function  |
-|-------------|-------------------|
+| Key         | Function                                                                       |
+|-------------|--------------------------------------------------------------------------------|
 | left arrow  | goes one step to the left in a horizontal slider or up in a vertical slider    |
 | right arrow | goes one step to the right in a horizontal slider or down in a vertical slider |
-| left up     | jumps to the min value  |
-| right down  | jumps to the max value |
+| left up     | jumps to the min value                                                         |
+| right down  | jumps to the max value                                                         |
+| mousewheel  | the same as arrows                                                             |
 
 ## Events
 
 The range slider has the following events:
-
 
 | Event         | Description                                                                       |
 |---------------|-----------------------------------------------------------------------------------|
@@ -490,6 +490,18 @@ $slider1.addEventListener('onPointerClicked', (evt) => {
 $slider1.addEventListener('onKeyDown', (evt) => {
     const nativeEvent = evt.detail.nativeEvent;
     console.log('Native onKeyDown event:', nativeEvent);
+});
+```
+
+In the case of **2 pointers range slider**, change event has value and value2 properties:
+
+```js
+const $slider1 = document.getElementById('slider-1');
+
+// change event ------------
+$slider1.addEventListener('change', (evt) => {
+    console.log(evt.detail.value);
+    onsole.log(evt.detail.value2);
 });
 ```
 
