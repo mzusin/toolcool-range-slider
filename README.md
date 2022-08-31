@@ -501,7 +501,7 @@ const $slider1 = document.getElementById('slider-1');
 // change event ------------
 $slider1.addEventListener('change', (evt) => {
     console.log(evt.detail.value);
-    onsole.log(evt.detail.value2);
+    console.log(evt.detail.value2);
 });
 ```
 
@@ -547,6 +547,8 @@ The range slider library also supports local and session storage. It's used to s
 ```
 
 The difference between **local** and **session storage** is that session storage keeps the value only during the current session, while the local storage keeps it until the user clears the browser cache.
+
+> In case of **2 pointers range slider**, the second key will have **-2** suffix. For example, if storage-key="test", then the **value2** key will be **"test-2"**.
 
 :pushpin: The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/13-storage.html).
 
