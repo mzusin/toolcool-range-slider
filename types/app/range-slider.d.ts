@@ -158,6 +158,10 @@ declare class RangeSlider extends HTMLElement {
     onMouseUp(evt: MouseEvent): void;
     onValueChange(evt: MouseEvent | TouchEvent): void;
     /**
+     * this should be called if the second pointer was added dynamically via API
+     */
+    initSecondPointer(): void;
+    /**
      * when the custom element connected to DOM
      */
     connectedCallback(): void;

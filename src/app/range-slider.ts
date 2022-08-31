@@ -766,10 +766,20 @@ class RangeSlider extends HTMLElement {
     const scrollTop = evt.deltaY < 0;
 
     if (scrollTop) {
-      stepBack(this, this._$pointer2);
+      if(this.btt){
+        stepForward(this, this._$pointer2);
+      }
+      else{
+        stepBack(this, this._$pointer2);
+      }
     }
     else {
-      stepForward(this, this._$pointer2);
+      if(this.btt){
+        stepBack(this, this._$pointer2);
+      }
+      else{
+        stepForward(this, this._$pointer2);
+      }
     }
   }
 
@@ -785,10 +795,20 @@ class RangeSlider extends HTMLElement {
       case 'ArrowLeft': {
         if (this.type === TypeEnum.Vertical) {
           if (isFocused(this._$pointer2)) {
-            this.value2 = this.min;
+            if(this.btt){
+              this.value2 = this.max;
+            }
+            else{
+              this.value2 = this.min;
+            }
           }
           else {
-            this.value = this.min;
+            if(this.btt){
+              this.value = this.max;
+            }
+            else{
+              this.value = this.min;
+            }
           }
 
           this.render();
@@ -803,10 +823,20 @@ class RangeSlider extends HTMLElement {
       case 'ArrowRight': {
         if (this.type === TypeEnum.Vertical) {
           if (isFocused(this._$pointer2)) {
-            this.value2 = this.max;
+            if(this.btt){
+              this.value2 = this.min;
+            }
+            else{
+              this.value2 = this.max;
+            }
           }
           else {
-            this.value = this.max;
+            if(this.btt){
+              this.value = this.min;
+            }
+            else{
+              this.value = this.max;
+            }
           }
 
           this.render();
@@ -820,7 +850,12 @@ class RangeSlider extends HTMLElement {
       case 'ArrowUp': {
         evt.preventDefault();
         if (this.type === TypeEnum.Vertical) {
-          stepBack(this, this._$pointer2);
+          if(this.btt){
+            stepForward(this, this._$pointer2);
+          }
+          else{
+            stepBack(this, this._$pointer2);
+          }
         }
         else {
           if (isFocused(this._$pointer2)) {
@@ -838,7 +873,12 @@ class RangeSlider extends HTMLElement {
       case 'ArrowDown': {
         evt.preventDefault();
         if (this.type === TypeEnum.Vertical) {
-          stepForward(this, this._$pointer2);
+          if(this.btt){
+            stepBack(this, this._$pointer2);
+          }
+          else{
+            stepForward(this, this._$pointer2);
+          }
         }
         else {
           if (isFocused(this._$pointer2)) {
