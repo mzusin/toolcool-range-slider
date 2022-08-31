@@ -123,6 +123,33 @@ It's also possible to use **value1** instead of value:
 
 **value1** is just an alias of the **value** property.
 
+Two pointers range slider API example:
+
+```html
+<toolcool-range-slider id="slider-1" value1="10" value2="50"></toolcool-range-slider>
+
+<script type="text/javascript" src="toolcool-range-slider.min.js"></script>
+
+<script>
+    // get the reference
+    const $slider = document.getElementById('slider-1');
+    
+    // change values
+    $slider.value = 60;
+    $slider.value2 = 70;
+    
+    // get values
+    console.log($slider.value);
+    console.log($slider.value2);
+
+    // listen to the change event
+    $slider.addEventListener('change', (evt) => {
+      console.log(evt.detail.value);
+      console.log(evt.detail.value2);
+    });
+</script>
+```
+
 :star: **It's also possible to generate min, max, and value labels automatically.**  [Click here for more details.](#automatically-generated-labels)
 
 :pushpin: More examples with automatic label binding can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/8-automatic-labels-binding.html). 
