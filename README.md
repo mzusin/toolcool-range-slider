@@ -487,6 +487,7 @@ Enable or disable via API:
 
 ```js
 const $slider = document.querySelector('#slider');
+$slider.type = 'vertical'; // or horizontal
 $slider.btt = true; // or false
 ```
 
