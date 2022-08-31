@@ -121,7 +121,7 @@ It's also possible to use **value1** instead of value:
 <toolcool-range-slider min="0" max="100" value1="30" value2="60"></toolcool-range-slider>
 ```
 
-**value1** is just an alias of the **value** property.
+> **value1** is just an alias of the **value** property.
 
 Two pointers range slider API example:
 
