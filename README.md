@@ -337,6 +337,22 @@ This way you can add CSS classes, inline styles, or any HTML structure instead o
 
 Other than that, the HTML structure can be changed in any way.
 
+It is also possible to enable or disable generated labels programmatically:
+
+```html
+<toolcool-range-slider id="slider-1"></toolcool-range-slider>
+
+<script type="text/javascript" src="toolcool-range-slider.min.js"></script>
+
+<script>
+    // get the reference
+    const $slider = document.getElementById('slider-1');
+    
+    // change the setting
+    $slider.generateLabels = true; // or false
+</script>
+```
+
 :pushpin: Example page can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/19-generate-labels.html).
 
 ## Predefined Styles (Themes)
