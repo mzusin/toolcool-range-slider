@@ -454,6 +454,20 @@ QUnit.module('Range Slider Value2 & Pointer', () => {
         assert.equal($pointer.style.left, '41.5%');
     });
 
+    QUnit.test('given 1 pointers slider ---> add second pointer via API', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        $slider.value2 = 50;
+        const $pointer = $slider.shadowRoot.querySelector('.pointer-2');
+        assert.ok($pointer);
+    });
+
+    QUnit.test('given 1 pointers slider ---> add second pointer via attribute', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        $slider.setAttribute('value2', '50');
+        const $pointer = $slider.shadowRoot.querySelector('.pointer-2');
+        assert.ok($pointer);
+    });
+
 });
 
 

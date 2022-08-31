@@ -65,26 +65,30 @@ const initLabel = (slider: RangeSlider, $box: HTMLElement | null, property: stri
   slider[property] = $label;
 };
 
+export const initSecondLabel = (slider: RangeSlider, $box: HTMLElement | null) => {
+  initLabel(slider, $box,'_$value2Label', 'value2-label');
+
+  if (slider.rtl || slider.btt) {
+    const $value1Slot = slider.shadowRoot?.querySelector('slot[name="value-label"]');
+    const $value2Slot = slider.shadowRoot?.querySelector('slot[name="value2-label"]');
+    if ($value1Slot && $value2Slot) $value2Slot.after($value1Slot);
+  }
+}
+
 export const initLabels = (slider: RangeSlider, $slider: HTMLElement | null, $box: HTMLElement | null) => {
   initLabel(slider, $box, '_$minLabel', 'min-label');
   initLabel(slider, $box,'_$maxLabel', 'max-label');
   initLabel(slider, $box,'_$valueLabel', 'value-label');
-
-  if (slider.value2 !== undefined) {
-    initLabel(slider, $box,'_$value2Label', 'value2-label');
-  }
 
   if (slider.rtl || slider.btt) {
     const $minSlot = slider.shadowRoot?.querySelector('slot[name="min-label"]');
     const $maxSlot = slider.shadowRoot?.querySelector('slot[name="max-label"]');
     if ($minSlot) $slider?.after($minSlot);
     if ($maxSlot) $slider?.before($maxSlot);
+  }
 
-    if (slider.value2 !== undefined) {
-      const $value1Slot = slider.shadowRoot?.querySelector('slot[name="value-label"]');
-      const $value2Slot = slider.shadowRoot?.querySelector('slot[name="value2-label"]');
-      if ($value1Slot && $value2Slot) $value2Slot.after($value1Slot);
-    }
+  if (slider.value2 !== undefined) {
+    initSecondLabel(slider, $box);
   }
 };
 

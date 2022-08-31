@@ -10,7 +10,7 @@ import {
   sendOnKeyDownEvent,
   sendPointerClickedEvent
 } from '../domain/events-provider';
-import { initLabels, renderLabels } from '../domain/labels-provider';
+import { initLabels, renderLabels, initSecondLabel } from '../domain/labels-provider';
 import {
   getSafeValues,
   handleDisableEnable, isFocused,
@@ -209,6 +209,10 @@ class RangeSlider extends HTMLElement {
       this._value2 = val;
       this.valueUpdateDone(this._value2, this.storageKey2);
       return;
+    }
+
+    if(!this._$pointer2){
+      this.initSecondPointer();
     }
 
     if (this.data) {
@@ -956,6 +960,22 @@ class RangeSlider extends HTMLElement {
     this.render();
   }
 
+  /**
+   * this should be called if the second pointer was added dynamically via API
+   */
+  initSecondPointer(){
+    if(!this._$pointer) return;
+
+    this._$pointer2 = this._$pointer?.cloneNode(true) as HTMLElement;
+    this._$pointer2.classList.add('pointer-2');
+    this._$pointer?.after(this._$pointer2);
+
+    this._$pointer2.addEventListener('click', this.pointerClicked);
+    this._$pointer2.addEventListener('keydown', this.pointerKeyDown);
+
+    initSecondLabel(this, this._$box);
+  }
+
   // ------------------------- WEB COMPONENT LIFECYCLE ----------------------------
 
   /**
@@ -1055,7 +1075,6 @@ class RangeSlider extends HTMLElement {
     if (this.generateLabels) {
       initLabels(this, this._$slider, this._$box);
     }
-
 
     // init pointer events
     this._$pointer?.addEventListener('click', this.pointerClicked);
