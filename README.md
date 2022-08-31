@@ -142,8 +142,6 @@ The ToolCool Range Slider is also available in the [jsDelivr CND](https://www.js
 
 ## Node.js usage
 
-[![Tool Cool Range Slider](https://nodei.co/npm/toolcool-range-slider.png)](https://npmjs.org/package/toolcool-range-slider)
-
 Range slider may also be included as a [node module](https://www.npmjs.com/package/toolcool-range-slider) using npm:
 
 `npm i toolcool-range-slider`
