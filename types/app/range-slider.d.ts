@@ -34,6 +34,8 @@ declare class RangeSlider extends HTMLElement {
     private _valueLabel;
     private _value2Label;
     private _pointersOverlap;
+    private _pointersMinDistance;
+    private _pointersMaxDistance;
     private _generateLabels;
     private _animateOnClick;
     private _animating;
@@ -84,6 +86,10 @@ declare class RangeSlider extends HTMLElement {
     get type(): TypeEnum | undefined;
     set pointersOverlap(val: boolean);
     get pointersOverlap(): boolean;
+    set pointersMinDistance(val: number);
+    get pointersMinDistance(): number;
+    set pointersMaxDistance(val: number);
+    get pointersMaxDistance(): number;
     set theme(val: string | undefined);
     get theme(): string | undefined;
     set rtl(val: boolean);

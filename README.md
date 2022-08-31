@@ -36,7 +36,7 @@ Responsive range slider library written in typescript and using web component te
 - No CSS conflicts due to web components.
 - Automatically generated labels (optional).
 - Supports multiple sliders on one page.
-- Supports two pointers overlap.
+- Supports two pointers **overlap**, pointers **max** and **min** distance.
 
 ## Table of contents
 - [Basic usage](#basic-usage)
@@ -57,6 +57,7 @@ Responsive range slider library written in typescript and using web component te
 - [RTL Support](#rtl-support)
 - [Non-linear step](#non-linear-step)
 - [Pointers overlap](#pointers-overlap)
+- [Pointers max and min distance](#pointers-max-and-min-distance)
 - [Animation on panel click](#animation-on-panel-click)
 - [TypeScript Usage](#typescript-usage)
 - [Usage with React and TypeScript](#usage-with-react-and-typescript)
@@ -588,6 +589,52 @@ There is also a corresponding API property:
 const $slider = document.querySelector('#slider');
 $slider.pointersOverlap = true;
 ```
+
+## Pointers max and min distance
+
+In the two pointer range slider, it's possible to define the minimum required distance between the pointers using **pointers-min-distance** attribute:
+
+```html
+<toolcool-range-slider
+  generate-labels="true"
+  round="0"
+  value1="30"
+  value2="60"
+  pointers-min-distance="4"
+  slider-width="100%"></toolcool-range-slider>
+```
+
+It is also possible to define the maximum distance between two pointers using the **pointers-max-distance** attribute:
+
+```html
+<toolcool-range-slider
+  generate-labels="true"
+  round="0"
+  value1="30"
+  value2="60"
+  pointers-max-distance="50"
+  slider-width="100%"></toolcool-range-slider>
+```
+
+There is also a corresponding API properties:
+
+```js
+const $slider = document.querySelector('#slider');
+$slider.pointersMinDistance = 5;
+$slider.pointersMaxDistance = 50;
+```
+
+> Please note that the provided distances should be >= 0;
+
+The properties have the following default values:
+
+| Property | Default Value | API Property |
+|----------|---------------|---------------|
+| pointers-max-distance      | 0  |  pointersMinDistance |
+| pointers-max-distance      | Infinity  | pointersMaxDistance | 
+
+
+:pushpin: The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/21-two-pointers-min-max-distance.html).
 
 ## Animation on panel click
 

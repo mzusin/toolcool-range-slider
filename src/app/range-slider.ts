@@ -81,7 +81,10 @@ class RangeSlider extends HTMLElement {
 
   private _valueLabel: string | undefined = undefined;
   private _value2Label: string | undefined = undefined;
+
   private _pointersOverlap = false;
+  private _pointersMinDistance = 0;
+  private _pointersMaxDistance = Infinity;
 
   private _generateLabels = false;
   private _animateOnClick: string | undefined = undefined;
@@ -140,7 +143,6 @@ class RangeSlider extends HTMLElement {
     }
   }
 
-
   public set value(val: string | number) {
     if (this.data) {
       let _val = isNumber(val) ? Number(val) : val;
@@ -151,8 +153,14 @@ class RangeSlider extends HTMLElement {
 
       if(this.value2 !== undefined && !this.pointersOverlap){
         const foundIndex2 = this.data.findIndex((item) => item === this.value2);
-        if(foundIndex2 !== -1 && foundIndex1 > foundIndex2){
-          _val = this.value2;
+        if(foundIndex2 !== -1){
+          if(foundIndex1 > foundIndex2 - this.pointersMinDistance){
+            _val = this.data[foundIndex2 - this.pointersMinDistance];
+          }
+
+          if(isFinite(this.pointersMaxDistance) && foundIndex1 < foundIndex2 - this.pointersMaxDistance){
+            _val = this.data[foundIndex2 - this.pointersMaxDistance];
+          }
         }
       }
 
@@ -164,8 +172,12 @@ class RangeSlider extends HTMLElement {
     const safe = getSafeValues(val as number, this.min as number, this.max as number, this.round);
 
     if(this.value2 !== undefined && !this.pointersOverlap){
-      if(safe.value > this.value2){
-        safe.value = this.value2 as number;
+      if(safe.value > (this.value2 as number) - this.pointersMinDistance){
+        safe.value = (this.value2 as number) - this.pointersMinDistance;
+      }
+
+      if(isFinite(this.pointersMaxDistance) && safe.value < (this.value2 as number) - this.pointersMaxDistance){
+        safe.value = (this.value2 as number) - this.pointersMaxDistance;
       }
     }
 
@@ -207,8 +219,14 @@ class RangeSlider extends HTMLElement {
 
       if(this.value2 !== undefined && !this.pointersOverlap){
         const foundIndex2 = this.data.findIndex((item) => item === this.value);
-        if(foundIndex2 !== -1 && foundIndex1 < foundIndex2){
-          _val = this.value;
+        if(foundIndex2 !== -1){
+          if(foundIndex1 < foundIndex2 + this.pointersMinDistance){
+            _val = this.data[foundIndex2 + this.pointersMinDistance];
+          }
+
+          if(isFinite(this.pointersMaxDistance) && foundIndex1 > foundIndex2 + this.pointersMaxDistance){
+            _val = this.data[foundIndex2 + this.pointersMaxDistance];
+          }
         }
       }
 
@@ -220,8 +238,12 @@ class RangeSlider extends HTMLElement {
     const safe = getSafeValues(val as number, this.min as number, this.max as number, this.round);
 
     if(this.value2 !== undefined && !this.pointersOverlap){
-      if(safe.value < this.value){
-        safe.value = this.value as number;
+      if(safe.value < (this.value as number) + this.pointersMinDistance){
+        safe.value = (this.value as number) + this.pointersMinDistance;
+      }
+
+      if(isFinite(this.pointersMaxDistance) && safe.value > (this.value as number) + this.pointersMaxDistance){
+        safe.value = (this.value as number) + this.pointersMaxDistance;
       }
     }
 
@@ -339,6 +361,24 @@ class RangeSlider extends HTMLElement {
 
   public get pointersOverlap() {
     return this._pointersOverlap;
+  }
+
+  public set pointersMinDistance(val: number) {
+    this._pointersMinDistance = Math.max(0, val);
+    this.render();
+  }
+
+  public get pointersMinDistance() {
+    return this._pointersMinDistance;
+  }
+
+  public set pointersMaxDistance(val: number) {
+    this._pointersMaxDistance = val < 0 ? Infinity : val;
+    this.render();
+  }
+
+  public get pointersMaxDistance() {
+    return this._pointersMaxDistance;
   }
 
   public set theme(val: string | undefined) {
@@ -928,7 +968,10 @@ class RangeSlider extends HTMLElement {
     this.data = parseData(this.getAttribute('data'));
     this.min = getStringOrNumber(this, 'min', 0, this.data ? this.data[0] : '');
     this.max = getStringOrNumber(this, 'max', 100, this.data ? this.data[this.data.length - 1] : '');
+
     this.pointersOverlap = this.getAttribute('pointers-overlap') === 'true';
+    this.pointersMinDistance = getNumber(this.getAttribute('pointers-min-distance'), 0);
+    this.pointersMaxDistance = getNumber(this.getAttribute('pointers-max-distance'), Infinity);
 
     this.value = getStringOrNumber(this, 'value', this.min as number, this.data ? this.data[0] : '');
 

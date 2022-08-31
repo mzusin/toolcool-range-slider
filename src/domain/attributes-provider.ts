@@ -8,7 +8,10 @@ export const observedAttributes = [
   'value',
   'value1',
   'value2',
+
   'pointers-overlap',
+  'pointers-min-distance',
+  'pointers-max-distance',
 
   'data',
   'min',
@@ -124,6 +127,18 @@ export const onAttributesChange = (slider: RangeSlider, attrName: string, $slide
 
     case 'pointers-overlap': {
       slider.pointersOverlap = slider.getAttribute('pointers-overlap') === 'true';
+      slider.render();
+      break;
+    }
+
+    case 'pointers-min-distance': {
+      slider.pointersMinDistance = getNumber(slider.getAttribute('pointers-min-distance'), 0);
+      slider.render();
+      break;
+    }
+
+    case 'pointers-max-distance': {
+      slider.pointersMaxDistance = getNumber(slider.getAttribute('pointers-max-distance'), Infinity);
       slider.render();
       break;
     }
