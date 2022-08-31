@@ -192,6 +192,8 @@ The properties have the following default values:
 
 :pushpin: If no value is specified, it will be equal to the minimum value.
 
+:pushpin: To create a 2 pointer range slider, specify value1 and value2.
+
 ## List of individual values
 
 It is also possible (but not required) to provide a list of numeric or text data instead of **min** and **max** properties.
@@ -266,6 +268,17 @@ You can provide custom html for all or part of the labels:
   <div slot="min-label"><label class="min-label"></label> px</div>
   <div slot="max-label"><label class="max-label"></label> px</div>
   <div slot="value-label"><label class="value-label"></label> px</div>
+</toolcool-range-slider>
+```
+
+In case of 2 pointers range slider **value2-label** slot and label should be added:
+
+```html
+<toolcool-range-slider generate-labels="true">
+  <div slot="min-label"><label class="min-label"></label> px</div>
+  <div slot="max-label"><label class="max-label"></label> px</div>
+  <div slot="value-label"><label class="value-label"></label> px</div>
+  <div slot="value2-label"><label class="value2-label"></label> px</div>
 </toolcool-range-slider>
 ```
 
