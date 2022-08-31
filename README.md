@@ -160,7 +160,7 @@ NPM package can fe found [here](https://www.npmjs.com/package/toolcool-range-sli
 
 ## Main Properties
 
-Range slider has the following main properties: **min**, **max**, **value**, and **step**. All properties are optional, including **step**. Usage examples:
+Range slider has the following main properties: **min**, **max**, **value**, **value1**, **value2**, and **step**. All properties are optional, including **step**. Usage examples:
 
 ```html
 <toolcool-range-slider></toolcool-range-slider>
