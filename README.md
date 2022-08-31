@@ -207,15 +207,15 @@ Range slider has the following main properties: **min**, **max**, **value**, **v
 
 The properties have the following default values:
 
-| Property | Default Value | Description                                                           |
-|----------|---------------|-----------------------------------------------------------------------|
-| min      | 0             | The minimum value.                                                    |
-| max      | 100           | The maximum value.                                                    |
-| value    | 0             | Current slider value.                                                 |
-| value1   | 0             | Alias for the value property (for use in a slider with two pointers). |
-| value2   | undefined     | Second pointer value.                                                 |
-| step     | undefined     | Slide step.                                                           |
-| round    | 2             | The maximum number of decimal places.                                 |
+| Property | Default Value | Description                                                        |
+|----------|---------------|--------------------------------------------------------------------|
+| min      | 0             | The minimum value.                                                 |
+| max      | 100           | The maximum value.                                                 |
+| value    | 0             | Current slider value.                                              |
+| value1   | 0             | Alias for the value property (used in a slider with two pointers). |
+| value2   | undefined     | Second pointer value.                                              |
+| step     | undefined     | Slide step.                                                        |
+| round    | 2             | The maximum number of decimal places.                              |
 
 :pushpin: If no value is specified, it will be equal to the minimum value.
 
@@ -737,6 +737,16 @@ The properties have the following default values:
 | pointers-max-distance      | 0  |  pointersMinDistance |
 | pointers-max-distance      | Infinity  | pointersMaxDistance | 
 
+There is also a corresponding API properties:
+
+```js
+const $slider = document.querySelector('#slider');
+$slider.animateOnClick = '0.3s'; 
+
+// or
+
+$slider.animateOnClick = undefined; // disable
+```
 
 :pushpin: The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/21-two-pointers-min-max-distance.html).
 
