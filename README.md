@@ -43,7 +43,7 @@ Responsive range slider library written in typescript and using web component te
 - [CDN](#cdn)
 - [Node.js usage](#nodejs-usage)
 - [Main Properties](#main-properties)
-- [List of individual values](#list-of-individual-values)
+- [List of individual values and text data](#list-of-individual-values-and-text-data)
 - [Width, Height, and Border Radius](#width-height-and-border-radius)
 - [Automatically generated labels](#automatically-generated-labels)
 - [Predefined Styles (Themes)](#predefined-styles-themes)
@@ -221,7 +221,7 @@ The properties have the following default values:
 
 :pushpin: To create a 2 pointer range slider, specify value1 and value2.
 
-## List of individual values
+## List of individual values and text data
 
 It is also possible (but not required) to provide a list of numeric or text data instead of **min** and **max** properties.
 
