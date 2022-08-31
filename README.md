@@ -284,9 +284,9 @@ In case of 2 pointers range slider **value2-label** slot and label should be add
 
 This way you can add CSS classes, inline styles, or any HTML structure instead of the standard range slider labels.
 
-:exclamation: Please make sure you keep slot names with one of the following values: **min-label**, **max-label**, **value-label**.
+:exclamation: Please make sure you keep slot names with one of the following values: **min-label**, **max-label**, **value-label**, **value2-label**.
 
-:exclamation: It's also important, that the labels have one of the following classes: **min-label**, **max-label**, **value-label**. These classes are used as placeholders for min, max, and value.
+:exclamation: It's also important, that the labels have one of the following classes: **min-label**, **max-label**, **value-label**, **value2-label**. These classes are used as placeholders for min, max, and value (value1), value2.
 
 Other than that, the HTML structure can be changed in any way.
 
