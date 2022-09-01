@@ -483,20 +483,49 @@ Color and other styles can be customized with the following attributes:
 
 The list of attributes and default values:
 
-| Property             | Default Value                   |
-|----------------------|---------------------------------|
-| slider-bg            | #4d69ad                         |
-| slider-bg-hover      | #5f79b7                         |
-| slider-bg-fill       | #000                            |
-| pointer-bg           | #fff                            |
-| pointer-bg-hover     | #dcdcdc                         |
-| pointer-bg-focus     | #dcdcdc                         |
-| pointer-shadow       | 0 0 2px rgba(0, 0, 0, 0.6)      |
-| pointer-shadow-hover | 0 0 2px rgb(0, 0, 0)            |
-| pointer-shadow-focus | 0 0 2px rgb(0, 0, 0)            |
-| pointer-border       | 1px solid hsla(0, 0%, 88%, 0.5) |
-| pointer-border-hover | 1px solid hsla(0, 0%, 88%, 0.5) |
-| pointer-border-focus | 1px solid hsl(201, 72%, 59%)    |
+| HTML Attribute       | Default Value                   | API Property     |
+|----------------------|---------------------------------|------------------|
+| slider-bg            | #4d69ad                         |  sliderBg |
+| slider-bg-hover      | #5f79b7                         |  sliderBgHover |
+| slider-bg-fill       | #000                            |  sliderBgFill |
+| pointer-bg           | #fff                            |  pointerBg |
+| pointer-bg-hover     | #dcdcdc                         |  pointerBgHover |
+| pointer-bg-focus     | #dcdcdc                         |  pointerBgFocus |
+| pointer-shadow       | 0 0 2px rgba(0, 0, 0, 0.6)      |  pointerShadow |
+| pointer-shadow-hover | 0 0 2px rgb(0, 0, 0)            |  pointerShadowHover |
+| pointer-shadow-focus | 0 0 2px rgb(0, 0, 0)            |  pointerShadowFocus |
+| pointer-border       | 1px solid hsla(0, 0%, 88%, 0.5) |  pointerBorder |
+| pointer-border-hover | 1px solid hsla(0, 0%, 88%, 0.5) |  pointerBorderHover |
+| pointer-border-focus | 1px solid hsl(201, 72%, 59%)    |  pointerBorderFocus |
+
+API:
+
+```html
+<toolcool-range-slider id="slider-1"></toolcool-range-slider>
+<script type="text/javascript" src="toolcool-range-slider.min.js"></script>
+
+<script>
+    // get the reference
+    const $slider = document.getElementById('slider-1');
+    
+    // change properties
+    $slider.sliderBg = '#efefef';
+    $slider.sliderBgHover = '#ddd';
+    $slider.sliderBgFill = '#ccc';
+    
+    $slider.pointerBg = '#6AD3BA';
+    $slider.pointerBgHover = '#6AD3BA';
+    $slider.pointerBgFocus = '#6AD3BA';
+
+    $slider.pointerShadow = 'none';
+    $slider.pointerShadowHover = 'none';
+    $slider.pointerShadowFocus = 'none';
+
+    $slider.pointerBorder = '1px solid #3F8A8A';
+    $slider.pointerBorderHover = '1px solid #3F8A8A';
+    $slider.pointerBorderFocus = '1px solid #3F8A8A';
+</script>
+```
 
 :pushpin: [An example](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html) of a customized slider on a dark background:
 
