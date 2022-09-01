@@ -600,14 +600,52 @@ $slider.pointerShape = 'rhombus';
 
 The library supports touch screens and also handles the following keys:
 
+**Horizontal slider:**
 
-| Key         | Function                                                                       |
-|-------------|--------------------------------------------------------------------------------|
-| left arrow  | goes one step to the left in a horizontal slider or up in a vertical slider    |
-| right arrow | goes one step to the right in a horizontal slider or down in a vertical slider |
-| left up     | jumps to the min value                                                         |
-| right down  | jumps to the max value                                                         |
-| mousewheel  | the same as arrows                                                             |
+| Key             | Function                     |
+|-----------------|------------------------------|
+| left arrow      | goes one step to the left    |
+| right arrow     | goes one step to the right   |
+| up arrow        | jumps to the min value       |
+| down arrow      | jumps to the max value       |
+| mousewheel up   | goes one step to the left    |
+| mousewheel down | goes one step to the right   |
+
+**Horizontal slider in right-to-left mode:**
+
+| Key             | Function                   |
+|-----------------|----------------------------|
+| left arrow      | goes one step to the left  |
+| right arrow     | goes one step to the right |
+| up arrow        | jumps to the max value     |
+| down arrow      | jumps to the min value     |
+| mousewheel up   | goes one step to the left  |
+| mousewheel down | goes one step to the right |
+
+**Vertical slider:**
+
+| Key             | Function                 |
+|-----------------|--------------------------|
+| left arrow      | jumps to the min value   |
+| right arrow     | jumps to the max value   |
+| up arrow        | goes one step up         |
+| down arrow      | goes one step down       |
+| mousewheel up   | goes one step up         |
+| mousewheel down | goes one step down       |
+
+
+**Vertical slider in bottom-to-top mode:**
+
+| Key             | Function               |
+|-----------------|------------------------|
+| left arrow      | jumps to the max value |
+| right arrow     | jumps to the min value |
+| up arrow        | goes one step up       |
+| down arrow      | goes one step down     |
+| mousewheel up   | goes one step up       |
+| mousewheel down | goes one step down     |
+
+
 
 ## Events
 

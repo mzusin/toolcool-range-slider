@@ -814,7 +814,12 @@ class RangeSlider extends HTMLElement {
           this.render();
         }
         else {
-          stepBack(this, this._$pointer2);
+          if(this.rtl){
+            stepForward(this, this._$pointer2);
+          }
+          else{
+            stepBack(this, this._$pointer2);
+          }
         }
 
         break;
@@ -842,7 +847,12 @@ class RangeSlider extends HTMLElement {
           this.render();
         }
         else {
-          stepForward(this, this._$pointer2);
+          if(this.rtl){
+            stepBack(this, this._$pointer2);
+          }
+          else{
+            stepForward(this, this._$pointer2);
+          }
         }
         break;
       }
@@ -859,10 +869,20 @@ class RangeSlider extends HTMLElement {
         }
         else {
           if (isFocused(this._$pointer2)) {
-            this.value2 = this.min;
+            if(this.rtl){
+              this.value2 = this.max;
+            }
+            else{
+              this.value2 = this.min;
+            }
           }
           else {
-            this.value = this.min;
+            if(this.rtl){
+              this.value = this.max;
+            }
+            else{
+              this.value = this.min;
+            }
           }
 
           this.render();
@@ -882,10 +902,20 @@ class RangeSlider extends HTMLElement {
         }
         else {
           if (isFocused(this._$pointer2)) {
-            this.value2 = this.max;
+            if(this.rtl){
+              this.value2 = this.min;
+            }
+            else{
+              this.value2 = this.max;
+            }
           }
           else {
-            this.value = this.max;
+            if(this.rtl){
+              this.value = this.min;
+            }
+            else{
+              this.value = this.max;
+            }
           }
 
           this.render();
