@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Slider in the Hidden Div | Tool Cool</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link id="favicon-48" rel="icon" type="image/png" sizes="48x48" href="img/favicon/favicon-48.png">
+    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32.png">
+    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png">
+
+    <style>
+        .wrapper{
+            width: 500px;
+            max-width: 100%;
+            margin:3rem auto;
+        }
+
+        h1{
+            text-align: center;
+            font-weight: normal;
+            margin: 3rem 1rem;
+        }
+
+        .row{
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 0 1rem;
+        }
+
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Slider in the Hidden Div</h1>
+
+    <div class="wrapper">
+
+        <div class="row hidden" id="box">
+            <toolcool-range-slider
+              min="0"
+              max="100"
+              value="50"
+              generate-labels="true"></toolcool-range-slider>
+        </div>
+
+        <div class="row">
+            <button type="button" id="toggle-btn">Show / Hide</button>
+        </div>
+
+    </div>
+
+    <script src="js/toolcool-range-slider.min.js"></script>
+    <script>
+        const $box = document.getElementById('box');
+        const $toggleBtn = document.getElementById('toggle-btn');
+        let isHidden = true;
+
+        $toggleBtn.addEventListener('click', () => {
+            isHidden = !isHidden;
+            $box.classList.toggle('hidden', isHidden);
+        });
+    </script>
+</body>
+</html>
