@@ -56,6 +56,7 @@ Responsive range slider library written in typescript and using web component te
 - [Disabled](#disabled)
 - [Storage](#storage)
 - [RTL Support](#rtl-support)
+- [Accessibility via ARIA-attributes](#accessibility-via-aria-attributes)
 - [Non-linear step](#non-linear-step)
 - [Pointers overlap](#pointers-overlap)
 - [Pointers max and min distance](#pointers-max-and-min-distance)
@@ -721,13 +722,13 @@ $slider1.keyboardDisabled = true;
 
 The range slider has the following events:
 
-| Event         | Description                                                                       |
-|---------------|-----------------------------------------------------------------------------------|
-| change      | it is sent every time the value of the range slider changes                       |
-| onMouseDown          | the native browser mousedown event                                                |
-| onMouseUp       | the native browser mouseup event                                                  |
-| onPointerClicked     | it is dispatched when the user clicks the range slide pointer (handler)           |
-| onKeyDown | the native browser keydown event  **(arrow left, arrow right, arrow up, arrow down)** |
+| Event            | Description                                                                           |
+|------------------|---------------------------------------------------------------------------------------|
+| change           | it is sent every time the value of the range slider changes                           |
+| onMouseDown      | the native browser mousedown event                                                    |
+| onMouseUp        | the native browser mouseup event                                                      |
+| onPointerClicked | it is dispatched when the user clicks the range slide pointer (handler)               |
+| onKeyDown        | the native browser keydown event  **(arrow left, arrow right, arrow up, arrow down)** |
 
 Usage examples:
 
@@ -860,6 +861,35 @@ $slider.rtl = true; // or false
 ```
 
 :pushpin: The page with examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/14-rtl.html).
+
+## Accessibility via ARIA-attributes
+
+The Range slider adds the following accessibility attributes to each pointer:
+
+| Attribute        | Value                          |
+|------------------|--------------------------------|
+| role             | slider                         |
+| aria-orientation | **vertical** or **horizontal** |
+| aria-valuemin    | minimum value for this pointer |
+| aria-valuemax    | maximum value for this pointer |
+| aria-valuenow    | the current pointer value      |
+| aria-valuetext   | the current pointer value      |
+
+
+It's also possible to provide **aria-label** properties using **aria-label1** and **aria-label2** attributes:
+
+```html
+<toolcool-range-slider value1="10" value2="30" aria-label1="lower" aria-label2="upper"></toolcool-range-slider>
+```
+
+Or using API:
+
+
+```js
+const $slider = document.querySelector('#slider');
+$slider.ariaLabel1 = 'lower';
+$slider.ariaLabel2 = 'upper';
+```
 
 ## Non-linear step
 

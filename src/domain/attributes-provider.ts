@@ -57,6 +57,9 @@ export const observedAttributes = [
   'value-label',
   'value2-label',
   'generate-labels',
+  'aria-label1',
+  'aria-label2',
+
   'animate-onclick',
 ];
 
@@ -202,6 +205,18 @@ export const onAttributesChange = (slider: RangeSlider, attrName: string, $slide
 
     case 'value2-label': {
       slider.value2Label = slider.getAttribute('value2-label') || undefined;
+      slider.render();
+      break;
+    }
+
+    case 'aria-label1': {
+      slider.ariaLabel1 = slider.getAttribute('aria-label1') || undefined;
+      slider.render();
+      break;
+    }
+
+    case 'aria-label2': {
+      slider.ariaLabel2 = slider.getAttribute('aria-label2') || undefined;
       slider.render();
       break;
     }

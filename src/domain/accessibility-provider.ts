@@ -80,7 +80,9 @@ export const renderAriaAttributes = (
   max: string| number,
   val: string| number,
   val2: string| number | undefined,
-  pointersOverlap: boolean
+  pointersOverlap: boolean,
+  ariaLabel1: string | undefined,
+  ariaLabel2: string | undefined
 ) => {
 
   if($pointer1){
@@ -88,6 +90,10 @@ export const renderAriaAttributes = (
     $pointer1?.setAttribute('aria-valuemin', min.toString());
     $pointer1?.setAttribute('aria-valuenow', val.toString());
     $pointer1?.setAttribute('aria-valuetext', val.toString());
+
+    if(ariaLabel1){
+      $pointer1?.setAttribute('aria-label', ariaLabel1);
+    }
 
     if(val2 !== undefined && !pointersOverlap){
       $pointer1?.setAttribute('aria-valuemax', val2.toString());
@@ -104,6 +110,10 @@ export const renderAriaAttributes = (
     if(val2 !== undefined){
       $pointer2?.setAttribute('aria-valuenow', val2.toString());
       $pointer2?.setAttribute('aria-valuetext', val2.toString());
+    }
+
+    if(ariaLabel2){
+      $pointer2?.setAttribute('aria-label', ariaLabel2);
     }
 
     if(!pointersOverlap){

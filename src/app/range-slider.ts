@@ -83,6 +83,8 @@ class RangeSlider extends HTMLElement {
 
   private _valueLabel: string | undefined = undefined;
   private _value2Label: string | undefined = undefined;
+  private _ariaLabel1: string | undefined = undefined;
+  private _ariaLabel2: string | undefined = undefined;
 
   private _pointersOverlap = false;
   private _pointersMinDistance = 0;
@@ -496,6 +498,24 @@ class RangeSlider extends HTMLElement {
     return this._value2Label;
   }
 
+  public set ariaLabel1(val: string | undefined) {
+    this._ariaLabel1 = val;
+    this.render();
+  }
+
+  public get ariaLabel1() {
+    return this._ariaLabel1;
+  }
+
+  public set ariaLabel2(val: string | undefined) {
+    this._ariaLabel2 = val;
+    this.render();
+  }
+
+  public get ariaLabel2() {
+    return this._ariaLabel2;
+  }
+
   public set generateLabels(val: boolean) {
     this._generateLabels = val;
     this.render();
@@ -756,7 +776,9 @@ class RangeSlider extends HTMLElement {
       _max,
       _val,
       _val2,
-      this.pointersOverlap
+      this.pointersOverlap,
+      this.ariaLabel1,
+      this.ariaLabel2
     );
 
     if (this.type) {
@@ -1105,7 +1127,10 @@ class RangeSlider extends HTMLElement {
     this.keyboardDisabled = this.getAttribute('keyboard-disabled') === 'true';
 
     this.valueLabel = this.getAttribute('value-label') || undefined;
+    this.ariaLabel1 = this.getAttribute('aria-label1') || undefined;
+    this.ariaLabel2 = this.getAttribute('aria-label2') || undefined;
     this.generateLabels = this.getAttribute('generate-labels') === 'true';
+
     this.animateOnClick = this.getAttribute('animate-onclick') || undefined;
 
     this.storage = (this.getAttribute('storage') as StorageTypeEnum) || undefined;
