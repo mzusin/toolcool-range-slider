@@ -26,6 +26,7 @@ Responsive range slider library written in typescript and using web component te
 - Bottom to top support.
 - Simple dynamic rendering after ajax requests or delays.
 - Disabled / enabled range slider (including API).
+- Possibility to disable only one pointer.
 - Local storage and session storage support :floppy_disk:
 - Supports a list of individual values (discrete values).
 - Right to left (RTL) support :globe_with_meridians:
@@ -53,7 +54,7 @@ Responsive range slider library written in typescript and using web component te
 - [Pointer Shapes](#pointer-shapes)
 - [Touch & Keyboard Support](#touch--keyboard-support)
 - [Events](#events)
-- [Disabled](#disabled)
+- [Disabled range slider or one pointer](#disabled-range-slider-or-one-pointer)
 - [Storage](#storage)
 - [RTL Support](#rtl-support)
 - [Accessibility via ARIA-attributes](#accessibility-via-aria-attributes)
@@ -781,7 +782,7 @@ $slider1.addEventListener('change', (evt) => {
 
 :pushpin: The page with these examples can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/11-events.html).
 
-## Disabled
+## Disabled range slider or one pointer
 
 It's possible to disable the range slider using **disabled** attribute:
 
@@ -810,6 +811,20 @@ The default opacity of the range slider when disabled is **0.4**. This value can
 
 :pushpin: The page with this example can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/12-disabled-enabled.html).
 
+It's also possible to disable only one pointer:
+
+```html
+<toolcool-range-slider pointer1-disabled="test" value1="10" value2="20"></toolcool-range-slider>
+<toolcool-range-slider pointer2-disabled="test" value1="10" value2="20"></toolcool-range-slider>
+```
+
+Or using API:
+
+```js
+const $slider1 = document.getElementById('slider-1');
+$slider1.pointer1Disabled = true;
+$slider1.pointer2Disabled = true;
+```
 
 ## Storage
 

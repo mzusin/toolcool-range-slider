@@ -29,11 +29,15 @@ declare class RangeSlider extends HTMLElement {
     private _btt;
     private _disabled;
     private _keyboardDisabled;
+    private _pointer1Disabled;
+    private _pointer2Disabled;
     private _storage;
     private _storageKey;
     private _storageInitialized;
     private _valueLabel;
     private _value2Label;
+    private _ariaLabel1;
+    private _ariaLabel2;
     private _pointersOverlap;
     private _pointersMinDistance;
     private _pointersMaxDistance;
@@ -101,6 +105,10 @@ declare class RangeSlider extends HTMLElement {
     get disabled(): boolean;
     set keyboardDisabled(val: boolean);
     get keyboardDisabled(): boolean;
+    set pointer1Disabled(val: boolean);
+    get pointer1Disabled(): boolean;
+    set pointer2Disabled(val: boolean);
+    get pointer2Disabled(): boolean;
     set animateOnClick(val: string | undefined);
     get animateOnClick(): string | undefined;
     set storage(val: StorageTypeEnum | undefined);
@@ -112,6 +120,10 @@ declare class RangeSlider extends HTMLElement {
     get valueLabel(): string | undefined;
     set value2Label(val: string | undefined);
     get value2Label(): string | undefined;
+    set ariaLabel1(val: string | undefined);
+    get ariaLabel1(): string | undefined;
+    set ariaLabel2(val: string | undefined);
+    get ariaLabel2(): string | undefined;
     set generateLabels(val: boolean);
     get generateLabels(): boolean;
     set sliderWidth(val: string | undefined);

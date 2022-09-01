@@ -17,5 +17,5 @@ export declare const prepareDataForRender: (slider: RangeSlider) => {
  */
 export declare const updateValueAndFocusPointer: (evt: MouseEvent | TouchEvent, slider: RangeSlider, $selectedPointer: HTMLElement | null, hasData: boolean, updatedValue: string | number, $pointer: HTMLElement | null, $pointer2: HTMLElement | null) => HTMLElement | null;
 export declare const isFocused: ($el: HTMLElement | null) => boolean;
-export declare const handleDisableEnable: (disabled: boolean, $slider: HTMLElement | null) => void;
+export declare const handleDisableEnable: (disabled: boolean, pointer1Disabled: boolean, pointer2Disabled: boolean, $slider: HTMLElement | null, $pointer: HTMLElement | null, $pointer2: HTMLElement | null) => void;
 //# sourceMappingURL=core-provider.d.ts.map

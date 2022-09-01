@@ -90,26 +90,36 @@ export const updateValueAndFocusPointer = (
   const isPointer2Clicked = $target === $pointer2 || $pointer2?.contains($target);
   const isPanelClicked = $target.classList.contains('panel') || $target.classList.contains('panel-fill');
 
+  if(slider.pointer1Disabled && slider.pointer2Disabled) return null;
+
   if(!isPanelClicked){
     if(isPointer1Clicked){
+      if(slider.pointer1Disabled) return null;
+
       slider.value = updatedValue;
       $pointer?.focus();
       return $pointer;
     }
 
     if(isPointer2Clicked){
+      if(slider.pointer2Disabled) return null;
+
       slider.value2 = updatedValue;
       $pointer2?.focus();
       return $pointer2;
     }
 
     if($selectedPointer === $pointer){
+      if(slider.pointer1Disabled) return null;
+
       slider.value = updatedValue;
       $pointer?.focus();
       return $pointer;
     }
 
     if($selectedPointer === $pointer2){
+      if(slider.pointer2Disabled) return null;
+
       slider.value2 = updatedValue;
       $pointer2?.focus();
       return $pointer2;
@@ -139,11 +149,16 @@ export const updateValueAndFocusPointer = (
 
     if (distance1 !== undefined && distance2 !== undefined) {
       if (distance1 <= distance2) {
+
+        if(slider.pointer1Disabled) return null;
+
         slider.value = updatedValue;
         $pointer?.focus();
         return $pointer;
       }
       else {
+        if(slider.pointer2Disabled) return null;
+
         slider.value2 = updatedValue;
         $pointer2?.focus();
         return $pointer2;
@@ -152,6 +167,8 @@ export const updateValueAndFocusPointer = (
 
     return null;
   }
+
+  if(slider.pointer1Disabled) return null;
 
   slider.value = updatedValue;
   $pointer?.focus();
@@ -163,7 +180,13 @@ export const isFocused = ($el: HTMLElement | null) => {
   return $el.matches(':focus-within');
 };
 
-export const handleDisableEnable = (disabled: boolean, $slider: HTMLElement | null) => {
+export const handleDisableEnable = (
+  disabled: boolean,
+  pointer1Disabled: boolean,
+  pointer2Disabled: boolean,
+  $slider: HTMLElement | null,
+  $pointer: HTMLElement | null,
+  $pointer2: HTMLElement | null) => {
   if (disabled) {
     $slider?.classList.add('disabled');
     $slider?.setAttribute('aria-disabled', 'true');
@@ -173,6 +196,30 @@ export const handleDisableEnable = (disabled: boolean, $slider: HTMLElement | nu
 
     if ($slider?.hasAttribute('aria-disabled')) {
       $slider?.removeAttribute('aria-disabled');
+    }
+  }
+
+  if(pointer1Disabled){
+    $pointer?.classList.add('disabled');
+    $pointer?.setAttribute('aria-disabled', 'true');
+  }
+  else{
+    $pointer?.classList.remove('disabled');
+
+    if ($pointer?.hasAttribute('aria-disabled')) {
+      $pointer?.removeAttribute('aria-disabled');
+    }
+  }
+
+  if(pointer2Disabled){
+    $pointer2?.classList.add('disabled');
+    $pointer2?.setAttribute('aria-disabled', 'true');
+  }
+  else{
+    $pointer2?.classList.remove('disabled');
+
+    if ($pointer2?.hasAttribute('aria-disabled')) {
+      $pointer2?.removeAttribute('aria-disabled');
     }
   }
 };

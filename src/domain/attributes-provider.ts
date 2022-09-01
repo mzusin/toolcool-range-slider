@@ -25,6 +25,8 @@ export const observedAttributes = [
 
   'disabled',
   'keyboard-disabled',
+  'pointer1-disabled',
+  'pointer2-disabled',
 
   'storage',
   'storage-key',
@@ -174,6 +176,18 @@ export const onAttributesChange = (slider: RangeSlider, attrName: string, $slide
 
     case 'keyboard-disabled': {
       slider.keyboardDisabled = slider.getAttribute('keyboard-disabled') === 'true';
+      slider.render();
+      break;
+    }
+
+    case 'pointer1-disabled': {
+      slider.pointer1Disabled = slider.getAttribute('pointer1-disabled') === 'true';
+      slider.render();
+      break;
+    }
+
+    case 'pointer2-disabled': {
+      slider.pointer2Disabled = slider.getAttribute('pointer2-disabled') === 'true';
       slider.render();
       break;
     }

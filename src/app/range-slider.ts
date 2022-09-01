@@ -76,6 +76,8 @@ class RangeSlider extends HTMLElement {
 
   private _disabled = false;
   private _keyboardDisabled = false;
+  private _pointer1Disabled = false;
+  private _pointer2Disabled = false;
 
   private _storage: StorageTypeEnum | undefined = undefined;
   private _storageKey = STORAGE_KEY;
@@ -440,6 +442,24 @@ class RangeSlider extends HTMLElement {
     return this._keyboardDisabled;
   }
 
+  public set pointer1Disabled(val: boolean) {
+    this._pointer1Disabled = val;
+    this.render();
+  }
+
+  public get pointer1Disabled() {
+    return this._pointer1Disabled;
+  }
+
+  public set pointer2Disabled(val: boolean) {
+    this._pointer2Disabled = val;
+    this.render();
+  }
+
+  public get pointer2Disabled() {
+    return this._pointer2Disabled;
+  }
+
   public set animateOnClick(val: string | undefined) {
     this._animateOnClick = val;
     this.render();
@@ -785,7 +805,15 @@ class RangeSlider extends HTMLElement {
       this._$box?.classList.add(`type-${this.type}`);
     }
 
-    handleDisableEnable(this.disabled, this._$slider);
+    handleDisableEnable(
+      this.disabled,
+      this.pointer1Disabled,
+      this.pointer2Disabled,
+      this._$slider,
+      this._$pointer,
+      this._$pointer2
+    );
+
     renderStyles(this, this._$slider);
   }
 
@@ -793,11 +821,20 @@ class RangeSlider extends HTMLElement {
 
   pointerClicked(evt: MouseEvent) {
     if (this.disabled) return;
-    sendPointerClickedEvent(this, evt.currentTarget as HTMLElement);
+
+    const $pointer = evt.currentTarget as HTMLElement;
+
+    if($pointer.classList.contains('.pointer-1') && this.pointer1Disabled ||
+      $pointer.classList.contains('.pointer-2') && this.pointer2Disabled) return;
+
+    sendPointerClickedEvent(this, $pointer);
   }
 
   pointerMouseWheel(evt: WheelEvent) {
     if (document.activeElement !== this || this.disabled) return;
+
+    if((this._$selectedPointer === this._$pointer && this.pointer1Disabled) ||
+      (this._$selectedPointer === this._$pointer2 && this.pointer2Disabled)) return;
 
     evt.stopPropagation();
     evt.preventDefault();
@@ -829,6 +866,9 @@ class RangeSlider extends HTMLElement {
 
   pointerKeyDown(evt: KeyboardEvent) {
     if (this.disabled || this.keyboardDisabled) return;
+
+    if((this._$selectedPointer === this._$pointer && this.pointer1Disabled) ||
+      (this._$selectedPointer === this._$pointer2 && this.pointer2Disabled)) return;
 
     switch (evt.key) {
       case 'ArrowLeft': {
@@ -1125,6 +1165,8 @@ class RangeSlider extends HTMLElement {
 
     this.disabled = this.getAttribute('disabled') === 'true';
     this.keyboardDisabled = this.getAttribute('keyboard-disabled') === 'true';
+    this.pointer1Disabled = this.getAttribute('pointer1-disabled') === 'true';
+    this.pointer2Disabled = this.getAttribute('pointer2-disabled') === 'true';
 
     this.valueLabel = this.getAttribute('value-label') || undefined;
     this.ariaLabel1 = this.getAttribute('aria-label1') || undefined;
