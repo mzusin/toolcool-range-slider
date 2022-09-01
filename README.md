@@ -589,6 +589,13 @@ There are the following pointer shapes:
 | parallelogram     |
 | right-arrow     |
 
+Change via API:
+
+```js
+const $slider = document.querySelector('#slider');
+$slider.pointerShape = 'rhombus';
+```
+
 ## Touch & Keyboard Support
 
 The library supports touch screens and also handles the following keys:
