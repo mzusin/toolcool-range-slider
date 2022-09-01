@@ -310,14 +310,35 @@ Pointer width, height, and border-radius can be change using **pointer-width**, 
 
 Default values table:
 
-| Property     | Default Value |
-|--------------|---------------|
-| slider-width | 300px         |
-| slider-height | 0.25rem       |
-| slider-radius | 1rem          |
-| pointer-width | 1rem          |
-| pointer-height | 1rem          |
-| pointer-radius | 100%          |
+| HTML Property  | Default Value | API Property  |
+|----------------|---------------|---------------|
+| slider-width   | 300px         | sliderWidth   |
+| slider-height  | 0.25rem       | sliderHeight  | 
+| slider-radius  | 1rem          | sliderRadius  |
+| pointer-width  | 1rem          | pointerWidth  |
+| pointer-height | 1rem          | pointerHeight |
+| pointer-radius | 100%          | pointerRadius | 
+
+Each property can also be changed via the API:
+
+```html
+<toolcool-range-slider id="slider-1"></toolcool-range-slider>
+
+<script type="text/javascript" src="toolcool-range-slider.min.js"></script>
+
+<script>
+    // get the reference
+    const $slider = document.getElementById('slider-1');
+    
+    // change properties
+    $slider.sliderWidth = '300px';
+    $slider.sliderHeight = '1rem';
+    $slider.sliderRadius = 0;
+    $slider.pointerWidth = '1rem';
+    $slider.pointerHeight = '1rem';
+    $slider.pointerRadius = '100%';
+</script>
+```
 
 ## Automatically generated labels
 
