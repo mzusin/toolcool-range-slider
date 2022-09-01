@@ -1,11 +1,12 @@
 import { StorageTypeEnum } from '../dal/storage-provider';
 import { TypeEnum } from '../enums/type-enum';
+import { AttributesEnum } from '../enums/attributes-enum';
 declare class RangeSlider extends HTMLElement {
     /**
      * the attributes list that are observed by web component;
      * if attribute changes ---> the web component will update accordingly
      */
-    static get observedAttributes(): string[];
+    static get observedAttributes(): AttributesEnum[];
     private _$box;
     private _$slider;
     private _$panelFill;

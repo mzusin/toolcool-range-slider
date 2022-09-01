@@ -1,4 +1,4 @@
-export declare enum TypeEnum {
+export declare const enum TypeEnum {
     Vertical = "vertical",
     Horizontal = "horizontal"
 }

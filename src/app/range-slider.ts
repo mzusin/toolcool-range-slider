@@ -21,6 +21,7 @@ import { parseData } from '../dal/data-provider';
 import { renderAriaAttributes, stepBack, stepForward } from '../domain/accessibility-provider';
 import { renderStyles } from '../domain/style-provider';
 import { TypeEnum } from '../enums/type-enum';
+import { AttributesEnum } from '../enums/attributes-enum';
 
 /*
  Usage:
@@ -1134,73 +1135,73 @@ class RangeSlider extends HTMLElement {
     if (!this.shadowRoot) return;
 
     // initial values of attributes
-    this.data = parseData(this.getAttribute('data'));
-    this.min = getStringOrNumber(this, 'min', 0, this.data ? this.data[0] : '');
-    this.max = getStringOrNumber(this, 'max', 100, this.data ? this.data[this.data.length - 1] : '');
+    this.data = parseData(this.getAttribute(AttributesEnum.Data));
+    this.min = getStringOrNumber(this, AttributesEnum.Min, 0, this.data ? this.data[0] : '');
+    this.max = getStringOrNumber(this, AttributesEnum.Max, 100, this.data ? this.data[this.data.length - 1] : '');
 
-    this.pointersOverlap = this.getAttribute('pointers-overlap') === 'true';
-    this.pointersMinDistance = getNumber(this.getAttribute('pointers-min-distance'), 0);
-    this.pointersMaxDistance = getNumber(this.getAttribute('pointers-max-distance'), Infinity);
+    this.pointersOverlap = this.getAttribute(AttributesEnum.PointersOverlap) === 'true';
+    this.pointersMinDistance = getNumber(this.getAttribute(AttributesEnum.PointersMinDistance), 0);
+    this.pointersMaxDistance = getNumber(this.getAttribute(AttributesEnum.PointersMaxDistance), Infinity);
 
-    this.value = getStringOrNumber(this, 'value', this.min as number, this.data ? this.data[0] : '');
+    this.value = getStringOrNumber(this, AttributesEnum.Value, this.min as number, this.data ? this.data[0] : '');
 
-    if (this.getAttribute('value1') !== null) {
-      this.value = getStringOrNumber(this, 'value1', this.min as number, this.data ? this.data[0] : '');
+    if (this.getAttribute(AttributesEnum.Value1) !== null) {
+      this.value = getStringOrNumber(this, AttributesEnum.Value1, this.min as number, this.data ? this.data[0] : '');
     }
 
-    if (this.getAttribute('value2') !== null) {
-      this.value2 = getStringOrNumber(this, 'value2', this.min as number, this.data ? this.data[0] : '');
+    if (this.getAttribute(AttributesEnum.Value2) !== null) {
+      this.value2 = getStringOrNumber(this, AttributesEnum.Value2, this.min as number, this.data ? this.data[0] : '');
     }
 
-    this.step = getNumber(this.getAttribute('step'), undefined);
-    this.round = getNumber(this.getAttribute('round'), DEFAULT_ROUND_PLACES);
+    this.step = getNumber(this.getAttribute(AttributesEnum.Step), undefined);
+    this.round = getNumber(this.getAttribute(AttributesEnum.Round), DEFAULT_ROUND_PLACES);
     if (this.round < 0) {
       this.round = DEFAULT_ROUND_PLACES;
     }
 
-    this.type = this.getAttribute('type') as TypeEnum || undefined;
-    this.theme = this.getAttribute('theme') || undefined;
-    this.rtl = this.getAttribute('rtl') === 'true';
-    this.btt = this.getAttribute('btt') === 'true';
+    this.type = this.getAttribute(AttributesEnum.Type) as TypeEnum || undefined;
+    this.theme = this.getAttribute(AttributesEnum.Theme) || undefined;
+    this.rtl = this.getAttribute(AttributesEnum.RightToLeft) === 'true';
+    this.btt = this.getAttribute(AttributesEnum.BottomToTop) === 'true';
 
-    this.disabled = this.getAttribute('disabled') === 'true';
-    this.keyboardDisabled = this.getAttribute('keyboard-disabled') === 'true';
-    this.pointer1Disabled = this.getAttribute('pointer1-disabled') === 'true';
-    this.pointer2Disabled = this.getAttribute('pointer2-disabled') === 'true';
+    this.disabled = this.getAttribute(AttributesEnum.Disabled) === 'true';
+    this.keyboardDisabled = this.getAttribute(AttributesEnum.KeyboardDisabled) === 'true';
+    this.pointer1Disabled = this.getAttribute(AttributesEnum.Pointer1Disabled) === 'true';
+    this.pointer2Disabled = this.getAttribute(AttributesEnum.Pointer2Disabled) === 'true';
 
-    this.valueLabel = this.getAttribute('value-label') || undefined;
-    this.ariaLabel1 = this.getAttribute('aria-label1') || undefined;
-    this.ariaLabel2 = this.getAttribute('aria-label2') || undefined;
-    this.generateLabels = this.getAttribute('generate-labels') === 'true';
+    this.valueLabel = this.getAttribute(AttributesEnum.ValueLabel) || undefined;
+    this.ariaLabel1 = this.getAttribute(AttributesEnum.AriaLabel1) || undefined;
+    this.ariaLabel2 = this.getAttribute(AttributesEnum.AriaLabel2) || undefined;
+    this.generateLabels = this.getAttribute(AttributesEnum.GenerateLabels) === 'true';
 
-    this.animateOnClick = this.getAttribute('animate-onclick') || undefined;
+    this.animateOnClick = this.getAttribute(AttributesEnum.AnimateOnClick) || undefined;
 
-    this.storage = (this.getAttribute('storage') as StorageTypeEnum) || undefined;
-    this.storageKey = this.getAttribute('storage-key') || STORAGE_KEY;
+    this.storage = (this.getAttribute(AttributesEnum.Storage) as StorageTypeEnum) || undefined;
+    this.storageKey = this.getAttribute(AttributesEnum.StorageKey) || STORAGE_KEY;
 
-    this.sliderWidth = this.getAttribute('slider-width') || undefined;
-    this.sliderHeight = this.getAttribute('slider-height') || undefined;
-    this.sliderRadius = this.getAttribute('slider-radius') || undefined;
-    this.sliderBg = this.getAttribute('slider-bg') || undefined;
-    this.sliderBgHover = this.getAttribute('slider-bg-hover') || undefined;
-    this.sliderBgFill = this.getAttribute('slider-bg-fill') || undefined;
+    this.sliderWidth = this.getAttribute(AttributesEnum.SliderWidth) || undefined;
+    this.sliderHeight = this.getAttribute(AttributesEnum.SliderHeight) || undefined;
+    this.sliderRadius = this.getAttribute(AttributesEnum.SliderRadius) || undefined;
+    this.sliderBg = this.getAttribute(AttributesEnum.SliderBg) || undefined;
+    this.sliderBgHover = this.getAttribute(AttributesEnum.SliderBgHover) || undefined;
+    this.sliderBgFill = this.getAttribute(AttributesEnum.SliderBgFill) || undefined;
 
-    this.pointerWidth = this.getAttribute('pointer-width') || undefined;
-    this.pointerHeight = this.getAttribute('pointer-height') || undefined;
-    this.pointerRadius = this.getAttribute('pointer-radius') || undefined;
-    this.pointerShape = this.getAttribute('pointer-shape') || undefined;
+    this.pointerWidth = this.getAttribute(AttributesEnum.PointerWidth) || undefined;
+    this.pointerHeight = this.getAttribute(AttributesEnum.PointerHeight) || undefined;
+    this.pointerRadius = this.getAttribute(AttributesEnum.PointerRadius) || undefined;
+    this.pointerShape = this.getAttribute(AttributesEnum.PointerShape) || undefined;
 
-    this.pointerBg = this.getAttribute('pointer-bg') || undefined;
-    this.pointerBgHover = this.getAttribute('pointer-bg-hover') || undefined;
-    this.pointerBgFocus = this.getAttribute('pointer-bg-focus') || undefined;
+    this.pointerBg = this.getAttribute(AttributesEnum.PointerBg) || undefined;
+    this.pointerBgHover = this.getAttribute(AttributesEnum.PointerBgHover) || undefined;
+    this.pointerBgFocus = this.getAttribute(AttributesEnum.PointerBgFocus) || undefined;
 
-    this.pointerShadow = this.getAttribute('pointer-shadow') || undefined;
-    this.pointerShadowHover = this.getAttribute('pointer-shadow-hover') || undefined;
-    this.pointerShadowFocus = this.getAttribute('pointer-shadow-focus') || undefined;
+    this.pointerShadow = this.getAttribute(AttributesEnum.PointerShadow) || undefined;
+    this.pointerShadowHover = this.getAttribute(AttributesEnum.PointerShadowHover) || undefined;
+    this.pointerShadowFocus = this.getAttribute(AttributesEnum.PointerShadowFocus) || undefined;
 
-    this.pointerBorder = this.getAttribute('pointer-border') || undefined;
-    this.pointerBorderHover = this.getAttribute('pointer-border-hover') || undefined;
-    this.pointerBorderFocus = this.getAttribute('pointer-border-focus') || undefined;
+    this.pointerBorder = this.getAttribute(AttributesEnum.PointerBorder) || undefined;
+    this.pointerBorderHover = this.getAttribute(AttributesEnum.PointerBorderHover) || undefined;
+    this.pointerBorderFocus = this.getAttribute(AttributesEnum.PointerBorderFocus) || undefined;
 
     this.shadowRoot.innerHTML = mainTemplate(styles);
 

@@ -3,197 +3,198 @@ import RangeSlider from '../app/range-slider';
 import { parseData } from '../dal/data-provider';
 import { STORAGE_KEY, StorageTypeEnum } from '../dal/storage-provider';
 import { TypeEnum } from '../enums/type-enum';
+import { AttributesEnum } from '../enums/attributes-enum';
 
 export const observedAttributes = [
-  'value',
-  'value1',
-  'value2',
+  AttributesEnum.Value,
+  AttributesEnum.Value1,
+  AttributesEnum.Value2,
 
-  'pointers-overlap',
-  'pointers-min-distance',
-  'pointers-max-distance',
+  AttributesEnum.PointersOverlap,
+  AttributesEnum.PointersMinDistance,
+  AttributesEnum.PointersMaxDistance,
 
-  'data',
-  'min',
-  'max',
-  'step',
-  'round',
-  'type',
-  'theme',
-  'rtl',
-  'btt',
+  AttributesEnum.Data,
+  AttributesEnum.Min,
+  AttributesEnum.Max,
+  AttributesEnum.Step,
+  AttributesEnum.Round,
+  AttributesEnum.Type,
+  AttributesEnum.Theme,
+  AttributesEnum.RightToLeft,
+  AttributesEnum.BottomToTop,
 
-  'disabled',
-  'keyboard-disabled',
-  'pointer1-disabled',
-  'pointer2-disabled',
+  AttributesEnum.Disabled,
+  AttributesEnum.KeyboardDisabled,
+  AttributesEnum.Pointer1Disabled,
+  AttributesEnum.Pointer2Disabled,
 
-  'storage',
-  'storage-key',
+  AttributesEnum.Storage,
+  AttributesEnum.StorageKey,
 
-  'slider-width',
-  'slider-height',
-  'slider-radius',
+  AttributesEnum.SliderWidth,
+  AttributesEnum.SliderHeight,
+  AttributesEnum.SliderRadius,
 
-  'slider-bg',
-  'slider-bg-hover',
-  'slider-bg-fill',
+  AttributesEnum.SliderBg,
+  AttributesEnum.SliderBgHover,
+  AttributesEnum.SliderBgFill,
 
-  'pointer-width',
-  'pointer-height',
-  'pointer-radius',
-  'pointer-shape',
+  AttributesEnum.PointerWidth,
+  AttributesEnum.PointerHeight,
+  AttributesEnum.PointerRadius,
+  AttributesEnum.PointerShape,
 
-  'pointer-bg',
-  'pointer-bg-hover',
-  'pointer-bg-focus',
+  AttributesEnum.PointerBg,
+  AttributesEnum.PointerBgHover,
+  AttributesEnum.PointerBgFocus,
 
-  'pointer-shadow',
-  'pointer-shadow-hover',
-  'pointer-shadow-focus',
+  AttributesEnum.PointerShadow,
+  AttributesEnum.PointerShadowHover,
+  AttributesEnum.PointerShadowFocus,
 
-  'pointer-border',
-  'pointer-border-hover',
-  'pointer-border-focus',
+  AttributesEnum.PointerBorder,
+  AttributesEnum.PointerBorderHover,
+  AttributesEnum.PointerBorderFocus,
 
-  'value-label',
-  'value2-label',
-  'generate-labels',
-  'aria-label1',
-  'aria-label2',
+  AttributesEnum.ValueLabel,
+  AttributesEnum.Value2Label,
+  AttributesEnum.GenerateLabels,
+  AttributesEnum.AriaLabel1,
+  AttributesEnum.AriaLabel2,
 
-  'animate-onclick',
+  AttributesEnum.AnimateOnClick,
 ];
 
 export const getStringOrNumber = (slider: RangeSlider, attrName: string, defaultValue: number, dataDefaultValue: string | number) => {
-  const _val = slider.getAttribute(attrName);
+  const val = slider.getAttribute(attrName);
   if (slider.data) {
-    return isNumber(_val) ? getNumber(_val, dataDefaultValue) : _val ?? dataDefaultValue;
+    return isNumber(val) ? getNumber(val, dataDefaultValue) : (val ?? dataDefaultValue);
   }
   else {
-    return getNumber(_val, defaultValue);
+    return getNumber(val, defaultValue);
   }
 };
 
 export const onAttributesChange = (slider: RangeSlider, attrName: string, $slider: HTMLElement | null) => {
   switch (attrName) {
-    case 'min': {
-      slider.min = getStringOrNumber(slider, 'min', 0, slider.data ? slider.data[0] : '');
+    case AttributesEnum.Min: {
+      slider.min = getStringOrNumber(slider, AttributesEnum.Min, 0, slider.data ? slider.data[0] : '');
       slider.render();
       break;
     }
 
-    case 'max': {
-      slider.max = getStringOrNumber(slider, 'max', 100, slider.data ? slider.data[slider.data.length - 1] : '');
+    case AttributesEnum.Max: {
+      slider.max = getStringOrNumber(slider, AttributesEnum.Max, 100, slider.data ? slider.data[slider.data.length - 1] : '');
       slider.render();
       break;
     }
 
-    case 'value': {
-      slider.value = getStringOrNumber(slider, 'value', slider.min as number, slider.data ? slider.data[0] : '');
+    case AttributesEnum.Value: {
+      slider.value = getStringOrNumber(slider, AttributesEnum.Value, slider.min as number, slider.data ? slider.data[0] : '');
       slider.render();
       break;
     }
 
-    case 'value1': {
-      slider.value1 = getStringOrNumber(slider, 'value1', slider.min as number, slider.data ? slider.data[0] : '');
+    case AttributesEnum.Value1: {
+      slider.value1 = getStringOrNumber(slider, AttributesEnum.Value1, slider.min as number, slider.data ? slider.data[0] : '');
       slider.render();
       break;
     }
 
-    case 'value2': {
-      slider.value2 = getStringOrNumber(slider, 'value2', slider.min as number, slider.data ? slider.data[0] : '');
+    case AttributesEnum.Value2: {
+      slider.value2 = getStringOrNumber(slider, AttributesEnum.Value2, slider.min as number, slider.data ? slider.data[0] : '');
       slider.render();
       break;
     }
 
-    case 'data': {
-      slider.data = parseData(slider.getAttribute('data'));
+    case AttributesEnum.Data: {
+      slider.data = parseData(slider.getAttribute(AttributesEnum.Data));
       slider.render();
       break;
     }
 
-    case 'step': {
-      slider.step = getNumber(slider.getAttribute('step'), undefined);
+    case AttributesEnum.Step: {
+      slider.step = getNumber(slider.getAttribute(AttributesEnum.Step), undefined);
       break;
     }
 
-    case 'round': {
-      slider.round = getNumber(slider.getAttribute('round'), DEFAULT_ROUND_PLACES);
+    case AttributesEnum.Round: {
+      slider.round = getNumber(slider.getAttribute(AttributesEnum.Round), DEFAULT_ROUND_PLACES);
       if (slider.round < 0) {
         slider.round = DEFAULT_ROUND_PLACES;
       }
       break;
     }
 
-    case 'type': {
-      slider.type = slider.getAttribute('type') as TypeEnum || undefined;
+    case AttributesEnum.Type: {
+      slider.type = slider.getAttribute(AttributesEnum.Type) as TypeEnum || undefined;
       slider.render();
       break;
     }
 
-    case 'pointers-overlap': {
-      slider.pointersOverlap = slider.getAttribute('pointers-overlap') === 'true';
+    case AttributesEnum.PointersOverlap: {
+      slider.pointersOverlap = slider.getAttribute(AttributesEnum.PointersOverlap) === 'true';
       slider.render();
       break;
     }
 
-    case 'pointers-min-distance': {
-      slider.pointersMinDistance = getNumber(slider.getAttribute('pointers-min-distance'), 0);
+    case AttributesEnum.PointersMinDistance: {
+      slider.pointersMinDistance = getNumber(slider.getAttribute(AttributesEnum.PointersMinDistance), 0);
       slider.render();
       break;
     }
 
-    case 'pointers-max-distance': {
-      slider.pointersMaxDistance = getNumber(slider.getAttribute('pointers-max-distance'), Infinity);
+    case AttributesEnum.PointersMaxDistance: {
+      slider.pointersMaxDistance = getNumber(slider.getAttribute(AttributesEnum.PointersMaxDistance), Infinity);
       slider.render();
       break;
     }
 
-    case 'theme': {
-      slider.theme = slider.getAttribute('theme') || undefined;
+    case AttributesEnum.Theme: {
+      slider.theme = slider.getAttribute(AttributesEnum.Theme) || undefined;
       slider.render();
       break;
     }
 
-    case 'rtl': {
-      slider.rtl = slider.getAttribute('rtl') === 'true';
+    case AttributesEnum.RightToLeft: {
+      slider.rtl = slider.getAttribute(AttributesEnum.RightToLeft) === 'true';
       slider.render();
       break;
     }
 
-    case 'btt': {
-      slider.btt = slider.getAttribute('btt') === 'true';
+    case AttributesEnum.BottomToTop: {
+      slider.btt = slider.getAttribute(AttributesEnum.BottomToTop) === 'true';
       slider.render();
       break;
     }
 
-    case 'disabled': {
-      slider.disabled = slider.getAttribute('disabled') === 'true';
+    case AttributesEnum.Disabled: {
+      slider.disabled = slider.getAttribute(AttributesEnum.Disabled) === 'true';
       slider.render();
       break;
     }
 
-    case 'keyboard-disabled': {
-      slider.keyboardDisabled = slider.getAttribute('keyboard-disabled') === 'true';
+    case AttributesEnum.KeyboardDisabled: {
+      slider.keyboardDisabled = slider.getAttribute(AttributesEnum.KeyboardDisabled) === 'true';
       slider.render();
       break;
     }
 
-    case 'pointer1-disabled': {
-      slider.pointer1Disabled = slider.getAttribute('pointer1-disabled') === 'true';
+    case AttributesEnum.Pointer1Disabled: {
+      slider.pointer1Disabled = slider.getAttribute(AttributesEnum.Pointer1Disabled) === 'true';
       slider.render();
       break;
     }
 
-    case 'pointer2-disabled': {
-      slider.pointer2Disabled = slider.getAttribute('pointer2-disabled') === 'true';
+    case AttributesEnum.Pointer2Disabled: {
+      slider.pointer2Disabled = slider.getAttribute(AttributesEnum.Pointer2Disabled) === 'true';
       slider.render();
       break;
     }
 
-    case 'animate-onclick': {
-      slider.animateOnClick = slider.getAttribute('animate-onclick') || undefined;
+    case AttributesEnum.AnimateOnClick: {
+      slider.animateOnClick = slider.getAttribute(AttributesEnum.AnimateOnClick) || undefined;
       if (slider.animateOnClick) {
         $slider?.style.setProperty('--tc-range-slider-animate-onclick', slider.animateOnClick);
       }
@@ -201,156 +202,156 @@ export const onAttributesChange = (slider: RangeSlider, attrName: string, $slide
       break;
     }
 
-    case 'storage': {
-      slider.storage = (slider.getAttribute('storage') as StorageTypeEnum) || undefined;
+    case AttributesEnum.Storage: {
+      slider.storage = (slider.getAttribute(AttributesEnum.Storage) as StorageTypeEnum) || undefined;
       break;
     }
 
-    case 'storage-key': {
-      slider.storageKey = slider.getAttribute('storage-key') || STORAGE_KEY;
+    case AttributesEnum.StorageKey: {
+      slider.storageKey = slider.getAttribute(AttributesEnum.StorageKey) || STORAGE_KEY;
       break;
     }
 
-    case 'value-label': {
-      slider.valueLabel = slider.getAttribute('value-label') || undefined;
+    case AttributesEnum.ValueLabel: {
+      slider.valueLabel = slider.getAttribute(AttributesEnum.ValueLabel) || undefined;
       slider.render();
       break;
     }
 
-    case 'value2-label': {
-      slider.value2Label = slider.getAttribute('value2-label') || undefined;
+    case AttributesEnum.Value2Label: {
+      slider.value2Label = slider.getAttribute(AttributesEnum.Value2Label) || undefined;
       slider.render();
       break;
     }
 
-    case 'aria-label1': {
-      slider.ariaLabel1 = slider.getAttribute('aria-label1') || undefined;
+    case AttributesEnum.AriaLabel1: {
+      slider.ariaLabel1 = slider.getAttribute(AttributesEnum.AriaLabel1) || undefined;
       slider.render();
       break;
     }
 
-    case 'aria-label2': {
-      slider.ariaLabel2 = slider.getAttribute('aria-label2') || undefined;
+    case AttributesEnum.AriaLabel2: {
+      slider.ariaLabel2 = slider.getAttribute(AttributesEnum.AriaLabel2) || undefined;
       slider.render();
       break;
     }
 
-    case 'generate-labels': {
-      slider.generateLabels = slider.getAttribute('generate-labels') === 'true';
+    case AttributesEnum.GenerateLabels: {
+      slider.generateLabels = slider.getAttribute(AttributesEnum.GenerateLabels) === 'true';
       slider.render();
       break;
     }
 
-    case 'slider-width': {
-      slider.sliderWidth = slider.getAttribute('slider-width') || undefined;
+    case AttributesEnum.SliderWidth: {
+      slider.sliderWidth = slider.getAttribute(AttributesEnum.SliderWidth) || undefined;
       slider.render();
       break;
     }
 
-    case 'slider-height': {
-      slider.sliderHeight = slider.getAttribute('slider-height') || undefined;
+    case AttributesEnum.SliderHeight: {
+      slider.sliderHeight = slider.getAttribute(AttributesEnum.SliderHeight) || undefined;
       slider.render();
       break;
     }
 
-    case 'slider-radius': {
-      slider.sliderRadius = slider.getAttribute('slider-radius') || undefined;
+    case AttributesEnum.SliderRadius: {
+      slider.sliderRadius = slider.getAttribute(AttributesEnum.SliderRadius) || undefined;
       slider.render();
       break;
     }
 
-    case 'slider-bg': {
-      slider.sliderBg = slider.getAttribute('slider-bg') || undefined;
+    case AttributesEnum.SliderBg: {
+      slider.sliderBg = slider.getAttribute(AttributesEnum.SliderBg) || undefined;
       slider.render();
       break;
     }
 
-    case 'slider-bg-hover': {
-      slider.sliderBgHover = slider.getAttribute('slider-bg-hover') || undefined;
+    case AttributesEnum.SliderBgHover: {
+      slider.sliderBgHover = slider.getAttribute(AttributesEnum.SliderBgHover) || undefined;
       slider.render();
       break;
     }
 
-    case 'slider-bg-fill': {
-      slider.sliderBgFill = slider.getAttribute('slider-bg-fill') || undefined;
+    case AttributesEnum.SliderBgFill: {
+      slider.sliderBgFill = slider.getAttribute(AttributesEnum.SliderBgFill) || undefined;
       slider.render();
       break;
     }
 
-    case 'pointer-width': {
-      slider.pointerWidth = slider.getAttribute('pointer-width') || undefined;
+    case AttributesEnum.PointerWidth: {
+      slider.pointerWidth = slider.getAttribute(AttributesEnum.PointerWidth) || undefined;
       slider.render();
       break;
     }
 
-    case 'pointer-height': {
-      slider.pointerHeight = slider.getAttribute('pointer-height') || undefined;
+    case AttributesEnum.PointerHeight: {
+      slider.pointerHeight = slider.getAttribute(AttributesEnum.PointerHeight) || undefined;
       slider.render();
       break;
     }
 
-    case 'pointer-radius': {
-      slider.pointerRadius = slider.getAttribute('pointer-radius') || undefined;
+    case AttributesEnum.PointerRadius: {
+      slider.pointerRadius = slider.getAttribute(AttributesEnum.PointerRadius) || undefined;
       slider.render();
       break;
     }
 
-    case 'pointer-shape': {
-      slider.pointerShape = slider.getAttribute('pointer-shape') || undefined;
+    case AttributesEnum.PointerShape: {
+      slider.pointerShape = slider.getAttribute(AttributesEnum.PointerShape) || undefined;
       slider.render();
       break;
     }
 
-    case 'pointer-bg': {
-      slider.pointerBg = slider.getAttribute('pointer-bg') || undefined;
+    case AttributesEnum.PointerBg: {
+      slider.pointerBg = slider.getAttribute(AttributesEnum.PointerBg) || undefined;
       slider.render();
       break;
     }
 
-    case 'pointer-bg-hover': {
-      slider.pointerBgHover = slider.getAttribute('pointer-bg-hover') || undefined;
+    case AttributesEnum.PointerBgHover: {
+      slider.pointerBgHover = slider.getAttribute(AttributesEnum.PointerBgHover) || undefined;
       slider.render();
       break;
     }
 
-    case 'pointer-bg-focus': {
-      slider.pointerBgFocus = slider.getAttribute('pointer-bg-focus') || undefined;
+    case AttributesEnum.PointerBgFocus: {
+      slider.pointerBgFocus = slider.getAttribute(AttributesEnum.PointerBgFocus) || undefined;
       slider.render();
       break;
     }
 
-    case 'pointer-shadow': {
-      slider.pointerShadow = slider.getAttribute('pointer-shadow') || undefined;
+    case AttributesEnum.PointerShadow: {
+      slider.pointerShadow = slider.getAttribute(AttributesEnum.PointerShadow) || undefined;
       slider.render();
       break;
     }
 
-    case 'pointer-shadow-hover': {
-      slider.pointerShadowHover = slider.getAttribute('pointer-shadow-hover') || undefined;
+    case AttributesEnum.PointerShadowHover: {
+      slider.pointerShadowHover = slider.getAttribute(AttributesEnum.PointerShadowHover) || undefined;
       slider.render();
       break;
     }
 
-    case 'pointer-shadow-focus': {
-      slider.pointerShadowFocus = slider.getAttribute('pointer-shadow-focus') || undefined;
+    case AttributesEnum.PointerShadowFocus: {
+      slider.pointerShadowFocus = slider.getAttribute(AttributesEnum.PointerShadowFocus) || undefined;
       slider.render();
       break;
     }
 
-    case 'pointer-border': {
-      slider.pointerBorder = slider.getAttribute('pointer-border') || undefined;
+    case AttributesEnum.PointerBorder: {
+      slider.pointerBorder = slider.getAttribute(AttributesEnum.PointerBorder) || undefined;
       slider.render();
       break;
     }
 
-    case 'pointer-border-hover': {
-      slider.pointerBorderHover = slider.getAttribute('pointer-border-hover') || undefined;
+    case AttributesEnum.PointerBorderHover: {
+      slider.pointerBorderHover = slider.getAttribute(AttributesEnum.PointerBorderHover) || undefined;
       slider.render();
       break;
     }
 
-    case 'pointer-border-focus': {
-      slider.pointerBorderFocus = slider.getAttribute('pointer-border-focus') || undefined;
+    case AttributesEnum.PointerBorderFocus: {
+      slider.pointerBorderFocus = slider.getAttribute(AttributesEnum.PointerBorderFocus) || undefined;
       slider.render();
       break;
     }
