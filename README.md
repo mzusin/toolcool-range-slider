@@ -814,8 +814,8 @@ The default opacity of the range slider when disabled is **0.4**. This value can
 It's also possible to disable only one pointer:
 
 ```html
-<toolcool-range-slider pointer1-disabled="test" value1="10" value2="20"></toolcool-range-slider>
-<toolcool-range-slider pointer2-disabled="test" value1="10" value2="20"></toolcool-range-slider>
+<toolcool-range-slider pointer1-disabled="true" value1="10" value2="20"></toolcool-range-slider>
+<toolcool-range-slider pointer2-disabled="true" value1="10" value2="20"></toolcool-range-slider>
 ```
 
 Or using API:
