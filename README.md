@@ -88,6 +88,9 @@ You can control the range slider by referencing the `toolcool-range-slider` HTML
     // change value
     $slider.value = 50;
     
+    // or 
+    // $slider.setAttribute('value', '50');
+    
     // get value
     console.log($slider.value);
 
@@ -137,6 +140,10 @@ Two pointers range slider API example:
     // change values
     $slider.value = 60;
     $slider.value2 = 70;
+
+    // or 
+    // $slider.setAttribute('value', '60');
+    // $slider.setAttribute('value2', '70');
     
     // get values
     console.log($slider.value);
@@ -239,6 +246,10 @@ Each property can also be changed programmatically:
     $slider.value2 = 150;
     $slider.step = 10;
     $slider.round = 0;
+
+    // or 
+    // $slider.setAttribute('min', '-200');
+    // ...
 </script>
 ```
 
@@ -278,7 +289,10 @@ It's also possible to define / change data via API:
     
     // or
 
-    $slider.data = ['red', 'green', 'blue'];   
+    $slider.data = ['red', 'green', 'blue'];
+
+    // or 
+    // $slider.setAttribute('data', '10, 20, 30');
 </script>
 ```
 
@@ -337,6 +351,10 @@ Each property can also be changed via the API:
     $slider.pointerWidth = '1rem';
     $slider.pointerHeight = '1rem';
     $slider.pointerRadius = '100%';
+
+    // or 
+    // $slider.setAttribute('sliderWidth', '300px');
+    // ...
 </script>
 ```
 
@@ -392,6 +410,9 @@ It is also possible to enable or disable generated labels programmatically:
     
     // change the setting
     $slider.generateLabels = true; // or false
+
+    // or 
+    // $slider.setAttribute('generateLabels', 'true');
 </script>
 ```
 
@@ -448,6 +469,9 @@ API:
     
     // change theme
     $slider.theme = 'rect';
+
+    // or 
+    // $slider.setAttribute('theme', 'rect');
 </script>
 ```
 
@@ -524,6 +548,10 @@ API:
     $slider.pointerBorder = '1px solid #3F8A8A';
     $slider.pointerBorderHover = '1px solid #3F8A8A';
     $slider.pointerBorderFocus = '1px solid #3F8A8A';
+
+    // or 
+    // $slider.setAttribute('sliderBg', '#efefef');
+    // ...
 </script>
 ```
 
