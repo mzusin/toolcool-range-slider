@@ -924,7 +924,9 @@ $slider.pointersMinDistance = 5;
 $slider.pointersMaxDistance = 50;
 ```
 
-> Please note that the provided distances should be >= 0;
+> Please note that the provided distances should **be >= 0**;
+
+> These properties have no effect is [pointers overlap](#pointers-overlap) is enabled.
 
 The properties have the following default values:
 
