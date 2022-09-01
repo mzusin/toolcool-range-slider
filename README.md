@@ -436,6 +436,21 @@ It's possible to combine themes together with custom properties like this:
   slider-bg="red"></toolcool-range-slider>
 ```
 
+API:
+
+```html
+<toolcool-range-slider id="slider-1"></toolcool-range-slider>
+<script type="text/javascript" src="toolcool-range-slider.min.js"></script>
+
+<script>
+    // get the reference
+    const $slider = document.getElementById('slider-1');
+    
+    // change theme
+    $slider.theme = 'rect';
+</script>
+```
+
 ## Colors
 
 Color and other styles can be customized with the following attributes:
