@@ -8,7 +8,6 @@
 [![Featured on Openbase](https://badges.openbase.com/js/featured/toolcool-range-slider.svg?token=sUaswkA1YmMFk8F+JBWQZoWo4wGL7wZwyIaglD6kAlQ=)](https://openbase.com/js/toolcool-range-slider?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)
 
-
 Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including one and two pointers, a vertical slider, touch, mousewheel and keyboard support, local and session storage, and RTL support.
 
 [![Tool Cool Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/toolcool-range-slider-preview-2.png?raw=true)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html)
@@ -19,6 +18,7 @@ Responsive range slider library written in typescript and using web component te
 - ES6 JavaScript + TypeScript.
 - No dependencies :unlock:
 - Predefined themes (optional) :art:
+- Images and SVG can be used as pointers.
 - Customizable with a large set of style attributes :wrench:
 - Horizontal and vertical sliders support.
 - Based on web component technologies.
@@ -47,6 +47,7 @@ Responsive range slider library written in typescript and using web component te
 - [Width, Height, and Border Radius](#width-height-and-border-radius)
 - [Automatically generated labels](#automatically-generated-labels)
 - [Predefined Styles (Themes)](#predefined-styles-themes)
+- [Images and SVGs as pointers](#images-and-svgs-as-pointers)
 - [Colors](#colors)
 - [Vertical Slider](#vertical-slider)
 - [Pointer Shapes](#pointer-shapes)
@@ -474,6 +475,35 @@ API:
     // $slider.setAttribute('theme', 'rect');
 </script>
 ```
+
+## Images and SVGs as pointers
+
+Images and SVG can be used as pointers using **pointer-bg**, **pointer-bg-hover**, and **pointer-bg-focus** attributes, like this:
+
+```html
+<toolcool-range-slider
+  min="0"
+  max="100"
+  value1="50"
+  value2="60"
+  
+  slider-width="400px"
+  slider-height="0.5rem"
+  
+  pointer-width="1.5rem"
+  pointer-height="1.5rem"
+  
+  slider-bg="#6AD3BA"
+  slider-bg-hover="#3F8A8A"
+  slider-bg-fill="#378c8a"
+  
+  pointer-bg="#fff url(image.png) no-repeat 50% 50%"
+  pointer-bg-hover="#c6f7eb url(image.png) no-repeat 50% 50%"
+  pointer-bg-focus="#c6f7eb url(image.png) no-repeat 50% 50%">
+</toolcool-range-slider>
+```
+
+:pushpin: Example page can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/23-pointers-images-and-svg.html).
 
 ## Colors
 
