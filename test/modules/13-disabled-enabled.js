@@ -172,6 +172,5 @@ QUnit.module('Keyboard Disabled / Enabled', () => {
         assert.equal(left, '0%');
     });
 
-
 });
 

@@ -171,7 +171,7 @@ class RangeSlider extends HTMLElement {
       return;
     }
 
-    const safe = getSafeValues(val as number, this.min as number, this.max as number, this.round);
+    const safe = getSafeValues(getNumber(val, this.min), this.min as number, this.max as number, this.round);
 
     if(this.value2 !== undefined && !this.pointersOverlap){
       if(safe.value > (this.value2 as number) - this.pointersMinDistance){
@@ -241,7 +241,7 @@ class RangeSlider extends HTMLElement {
       return;
     }
 
-    const safe = getSafeValues(val as number, this.min as number, this.max as number, this.round);
+    const safe = getSafeValues(getNumber(val, this.min), this.min as number, this.max as number, this.round);
 
     if(this.value2 !== undefined && !this.pointersOverlap){
       if(safe.value < (this.value as number) + this.pointersMinDistance){
@@ -275,7 +275,7 @@ class RangeSlider extends HTMLElement {
       this._min = isNumber(val) ? getNumber(val, this.data[0]) : this.data[0];
     }
     else {
-      const safe = getSafeValues(this.value as number, val as number, this.max as number, this.round);
+      const safe = getSafeValues(this.value as number, getNumber(val, 0), this.max as number, this.round);
       this._min = safe.min;
       this.value = safe.value;
 
@@ -298,7 +298,7 @@ class RangeSlider extends HTMLElement {
       this._max = isNumber(val) ? getNumber(val, defaultValue) : defaultValue;
     }
     else {
-      const safe = getSafeValues(this.value as number, this.min as number, val as number, this.round);
+      const safe = getSafeValues(this.value as number, this.min as number, getNumber(val, 100), this.round);
       this._max = safe.max;
       this.value = safe.value;
 
@@ -318,6 +318,11 @@ class RangeSlider extends HTMLElement {
   public set step(numOrFunction: number | ((value: number | string) => number) | undefined) {
     if (typeof numOrFunction === 'function') {
       this._step = numOrFunction;
+      return;
+    }
+
+    if(!isNumber(numOrFunction)){
+      this._step = undefined;
       return;
     }
 
@@ -343,7 +348,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public set round(val: number) {
-    this._round = val;
+    this._round = getNumber(val, DEFAULT_ROUND_PLACES);
     this.render();
   }
 
@@ -370,7 +375,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public set pointersMinDistance(val: number) {
-    this._pointersMinDistance = Math.max(0, val);
+    this._pointersMinDistance = Math.max(0, getNumber(val, 0));
     this.render();
   }
 
@@ -379,6 +384,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public set pointersMaxDistance(val: number) {
+    val = getNumber(val, Infinity);
     this._pointersMaxDistance = val < 0 ? Infinity : val;
     this.render();
   }

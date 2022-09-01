@@ -468,6 +468,17 @@ QUnit.module('Range Slider Value2 & Pointer', () => {
         assert.ok($pointer);
     });
 
+    QUnit.test('change to the text value via api', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        $slider.value1 = 's';
+        assert.strictEqual($slider.value1, 0);
+    });
+
+    QUnit.test('change to the text value via api', (assert) => {
+        const $slider = document.querySelector('#slider-1');
+        $slider.value2 = 's';
+        assert.strictEqual($slider.value2, 0);
+    });
 });
 
 

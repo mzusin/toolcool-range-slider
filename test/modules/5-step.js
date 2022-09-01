@@ -59,4 +59,10 @@ QUnit.module('Range Slider Step', () => {
     assert.equal($slider.value, 2);
   });
 
+  QUnit.test('set step to a string value ---> it should be undefined', (assert) => {
+    const $slider = document.querySelector('#slider-2');
+    $slider.step = 'test';
+    assert.strictEqual($slider.step, undefined);
+  });
+
 });

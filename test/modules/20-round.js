@@ -50,4 +50,10 @@ QUnit.module('Range Slider Round', () => {
     assert.equal($slider.value, 2);
   });
 
+  QUnit.test('set round to a string value ---> it should be 2', (assert) => {
+    const $slider = document.querySelector('#slider-2');
+    $slider.round = 'test';
+    assert.strictEqual($slider.round, 2);
+  });
+
 });

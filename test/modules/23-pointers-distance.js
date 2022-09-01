@@ -137,4 +137,16 @@ QUnit.module('Range Slider Pointers Max Distance', () => {
     assert.equal($slider.value2, 'k');
   });
 
+  QUnit.test('set pointersMinDistance to a string value ---> it should be 0', (assert) => {
+    const $slider = document.querySelector('#slider-2');
+    $slider.pointersMinDistance = 'test';
+    assert.strictEqual($slider.pointersMinDistance, 0);
+  });
+
+  QUnit.test('set pointersMaxDistance to a string value ---> it should be Infinity', (assert) => {
+    const $slider = document.querySelector('#slider-2');
+    $slider.pointersMaxDistance = 'test';
+    assert.strictEqual($slider.pointersMaxDistance, Infinity);
+  });
+
 });
