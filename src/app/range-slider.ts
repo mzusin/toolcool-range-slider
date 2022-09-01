@@ -71,9 +71,11 @@ class RangeSlider extends HTMLElement {
   private _round = DEFAULT_ROUND_PLACES;
   private _type: TypeEnum | undefined = undefined;
   private _theme: string | undefined = undefined;
-  private _disabled = false;
   private _rtl = false; // right to left
   private _btt = false; // bottom to top
+
+  private _disabled = false;
+  private _keyboardDisabled = false;
 
   private _storage: StorageTypeEnum | undefined = undefined;
   private _storageKey = STORAGE_KEY;
@@ -419,6 +421,15 @@ class RangeSlider extends HTMLElement {
 
   public get disabled() {
     return this._disabled;
+  }
+
+  public set keyboardDisabled(val: boolean) {
+    this._keyboardDisabled = val;
+    this.render();
+  }
+
+  public get keyboardDisabled() {
+    return this._keyboardDisabled;
   }
 
   public set animateOnClick(val: string | undefined) {
@@ -789,7 +800,7 @@ class RangeSlider extends HTMLElement {
   }
 
   pointerKeyDown(evt: KeyboardEvent) {
-    if (this.disabled) return;
+    if (this.disabled || this.keyboardDisabled) return;
 
     switch (evt.key) {
       case 'ArrowLeft': {
@@ -1081,9 +1092,11 @@ class RangeSlider extends HTMLElement {
 
     this.type = this.getAttribute('type') as TypeEnum || undefined;
     this.theme = this.getAttribute('theme') || undefined;
-    this.disabled = this.getAttribute('disabled') === 'true';
     this.rtl = this.getAttribute('rtl') === 'true';
     this.btt = this.getAttribute('btt') === 'true';
+
+    this.disabled = this.getAttribute('disabled') === 'true';
+    this.keyboardDisabled = this.getAttribute('keyboard-disabled') === 'true';
 
     this.valueLabel = this.getAttribute('value-label') || undefined;
     this.generateLabels = this.getAttribute('generate-labels') === 'true';

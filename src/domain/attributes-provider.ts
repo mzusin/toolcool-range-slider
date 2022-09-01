@@ -20,9 +20,11 @@ export const observedAttributes = [
   'round',
   'type',
   'theme',
-  'disabled',
   'rtl',
   'btt',
+
+  'disabled',
+  'keyboard-disabled',
 
   'storage',
   'storage-key',
@@ -163,6 +165,12 @@ export const onAttributesChange = (slider: RangeSlider, attrName: string, $slide
 
     case 'disabled': {
       slider.disabled = slider.getAttribute('disabled') === 'true';
+      slider.render();
+      break;
+    }
+
+    case 'keyboard-disabled': {
+      slider.keyboardDisabled = slider.getAttribute('keyboard-disabled') === 'true';
       slider.render();
       break;
     }

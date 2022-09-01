@@ -703,7 +703,18 @@ The library supports touch screens and also handles the following keys:
 | mousewheel up   | goes one step up       |
 | mousewheel down | goes one step down     |
 
+It's possible to disable keyboard support with **keyboard-disabled** attribute:
 
+```html
+<toolcool-range-slider keyboard-disabled="true"></toolcool-range-slider>
+```
+
+Or via API:
+
+```js
+const $slider1 = document.getElementById('slider-1');
+$slider1.keyboardDisabled = true;
+```
 
 ## Events
 
