@@ -864,7 +864,7 @@ $slider.rtl = true; // or false
 
 ## Accessibility via ARIA-attributes
 
-The Range slider adds the following accessibility attributes to each pointer:
+The range slider has the following accessibility attributes for each pointer:
 
 | Attribute        | Value                          |
 |------------------|--------------------------------|
