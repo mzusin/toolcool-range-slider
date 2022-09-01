@@ -758,7 +758,7 @@ class RangeSlider extends HTMLElement {
   }
 
   pointerMouseWheel(evt: WheelEvent) {
-    if (document.activeElement !== this) return;
+    if (document.activeElement !== this || this.disabled) return;
 
     evt.stopPropagation();
     evt.preventDefault();

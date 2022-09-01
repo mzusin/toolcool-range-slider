@@ -90,6 +90,10 @@
     background: var(--tc-range-slider-panel-bg-hover, #5f79b7);
 }
 
+.disabled .panel:hover{
+    background: var(--tc-range-slider-panel-bg, #5f79b7);
+}
+
 .pointer{
     position: absolute;
     z-index: 20;
@@ -118,11 +122,25 @@
     box-shadow: var(--tc-range-slider-pointer-shadow-hover);
 }
 
+.disabled .pointer-shape:hover{
+    background: var(--tc-range-slider-pointer-bg, #fff);
+    background-size: contain;
+    border: var(--tc-range-slider-pointer-border);
+    box-shadow: var(--tc-range-slider-pointer-shadow);
+}
+
 .pointer:focus .pointer-shape{
     background: var(--tc-range-slider-pointer-bg-focus, #fff);
     background-size: contain;
     border: var(--tc-range-slider-pointer-border-focus);
     box-shadow: var(--tc-range-slider-pointer-shadow-focus);
+}
+
+.disabled .pointer:focus .pointer-shape{
+    background: var(--tc-range-slider-pointer-bg, #fff);
+    background-size: contain;
+    border: var(--tc-range-slider-pointer-border);
+    box-shadow: var(--tc-range-slider-pointer-shadow);
 }
 
 .labels-row{
