@@ -60,6 +60,7 @@ Responsive range slider library written in typescript and using web component te
 - [Pointers overlap](#pointers-overlap)
 - [Pointers max and min distance](#pointers-max-and-min-distance)
 - [Animation on panel click](#animation-on-panel-click)
+- [Generating slider dynamically](#Generating-slider-dynamically)
 - [TypeScript Usage](#typescript-usage)
 - [Usage with React and TypeScript](#usage-with-react-and-typescript)
 - [License](#license)
@@ -971,6 +972,29 @@ $slider.animateOnClick = undefined; // disable
 ```
 
 :pushpin: The page with example can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/18-animation-on-click.html).
+
+## Generating slider dynamically
+
+The slider can be created dynamically as follows:
+
+```html
+<div class="wrapper" id="wrapper"></div>
+
+<script src="js/toolcool-range-slider.min.js"></script>
+
+<script>
+  const $wrapper = document.getElementById('wrapper');
+
+  const $slider = document.createElement('toolcool-range-slider');
+  $slider.setAttribute('min', '-100');
+  $slider.setAttribute('max', '100');
+  $slider.setAttribute('value1', '10');
+  $slider.setAttribute('value2', '50');
+  $slider.setAttribute('slider-width', '100%');
+  $slider.setAttribute('generate-labels', 'true');
+  $wrapper.append($slider);
+</script>
+```
 
 ## TypeScript Usage
 

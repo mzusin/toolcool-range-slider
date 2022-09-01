@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Generating slider dynamically | Tool Cool</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link id="favicon-48" rel="icon" type="image/png" sizes="48x48" href="img/favicon/favicon-48.png">
+    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32.png">
+    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png">
+
+    <style>
+        .wrapper{
+            width: 500px;
+            max-width: 100%;
+            margin:3rem auto;
+        }
+
+        h1{
+            text-align: center;
+            font-weight: normal;
+            margin: 3rem 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generating slider dynamically</h1>
+
+    <div class="wrapper" id="wrapper"></div>
+
+    <script src="js/toolcool-range-slider.min.js"></script>
+    <script>
+        const $wrapper = document.getElementById('wrapper');
+
+        const $slider = document.createElement('toolcool-range-slider');
+        $slider.setAttribute('min', '-100');
+        $slider.setAttribute('max', '100');
+        $slider.setAttribute('value1', '10');
+        $slider.setAttribute('value2', '50');
+        $slider.setAttribute('slider-width', '100%');
+        $slider.setAttribute('generate-labels', 'true');
+        $wrapper.append($slider);
+    </script>
+</body>
+</html>
