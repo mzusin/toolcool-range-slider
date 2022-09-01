@@ -220,33 +220,6 @@ QUnit.module('Pointer 1 Disabled / Enabled', () => {
         assert.equal($slider.pointer1Disabled, false);
     });
 
-    QUnit.test('if pointer1Disabled === true and send keyboard event ---> the value should not change', (assert) => {
-        const $slider = document.querySelector('#slider-131');
-        const $pointer = $slider.shadowRoot.querySelector('.pointer-1');
-
-        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            key: 'ArrowRight',
-        }));
-        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            key: 'ArrowRight',
-        }));
-        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            key: 'ArrowRight',
-        }));
-
-        const left = $pointer.style.left;
-        assert.equal(left, '0%');
-    });
-
 });
 
 QUnit.module('Pointer 2 Disabled / Enabled', () => {
@@ -293,33 +266,6 @@ QUnit.module('Pointer 2 Disabled / Enabled', () => {
         const $slider = document.querySelector('#slider-134');
         $slider.setAttribute('pointer2-disabled', 'false');
         assert.equal($slider.pointer2Disabled, false);
-    });
-
-    QUnit.test('if pointer2Disabled === true and send keyboard event ---> the value should not change', (assert) => {
-        const $slider = document.querySelector('#slider-134');
-        const $pointer = $slider.shadowRoot.querySelector('.pointer-2');
-
-        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            key: 'ArrowRight',
-        }));
-        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            key: 'ArrowRight',
-        }));
-        $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            key: 'ArrowRight',
-        }));
-
-        const left = $pointer.style.left;
-        assert.equal(left, '0%');
     });
 
 });
