@@ -1,44 +1,21 @@
-import styles from './styles.pcss';
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
-import { convertRange, DEFAULT_ROUND_PLACES, getNumber, isNumber, roundToStep } from '../domain/math-provider';
-import { restoreFromStorage, saveToStorage, STORAGE_KEY, StorageTypeEnum } from '../dal/storage-provider';
-import { getStringOrNumber, observedAttributes, onAttributesChange } from '../domain/attributes-provider';
-import {
-  sendChangeEvent,
-  sendMouseDownEvent,
-  sendMouseUpEvent,
-  sendOnKeyDownEvent,
-  sendPointerClickedEvent
-} from '../domain/events-provider';
-import { initLabels, renderLabels, initSecondLabel } from '../domain/labels-provider';
-import {
-  getSafeValues,
-  handleDisableEnable, isFocused,
-  prepareDataForRender,
-  updateValueAndFocusPointer
-} from '../domain/core-provider';
-import { parseData } from '../dal/data-provider';
-import { renderAriaAttributes, stepBack, stepForward } from '../domain/accessibility-provider';
-import { renderStyles } from '../domain/style-provider';
+import styles from './styles.pcss';
+import { observedAttributes, onAttributesChange } from '../domain/attributes-provider';
+import { ISlider, ROUND_DEFAULT, Slider } from '../ui/slider';
+import { IPointer, Pointer } from '../ui/pointer';
+import { TData, TStep } from '../types';
+import { getNumber, isNumber } from '../domain/math-provider';
 import { TypeEnum } from '../enums/type-enum';
+import { StorageTypeEnum } from '../enums/storage-type-enum';
+import { STORAGE_KEY } from '../dal/storage-provider';
+import { CSSVariables } from '../enums/css-vars-enum';
 import { AttributesEnum } from '../enums/attributes-enum';
 
-/*
- Usage:
- ------
- <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
- <toolcool-range-slider value="0" min="-100" max="100" step="1"></toolcool-range-slider>
- <toolcool-range-slider slider-width="250px" slider-height="10px" slider-radius="5px"></toolcool-range-slider>
- <toolcool-range-slider pointer-width="20px" pointer-height="20px" pointer-radius="5px"></toolcool-range-slider>
- <toolcool-range-slider slider-bg="red" pointer-bg="blue"></toolcool-range-slider>
- <toolcool-range-slider type="vertical"></toolcool-range-slider>
-
- Documentation:
- -------------
- https://github.com/toolcool-org/toolcool-range-slider
+/**
+ * Usage: <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
+ * Documentation: https://github.com/toolcool-org/toolcool-range-slider
  */
 class RangeSlider extends HTMLElement {
-  // ------------------------- INIT ----------------
 
   /**
    * the attributes list that are observed by web component;
@@ -48,158 +25,44 @@ class RangeSlider extends HTMLElement {
     return observedAttributes;
   }
 
-  private _$box: HTMLElement | null;
-  private _$slider: HTMLElement | null;
-  private _$panelFill: HTMLElement | null;
+  public slider: ISlider | undefined;
 
-  private _$pointer: HTMLElement | null;
-  private _$pointer2: HTMLElement | null;
-  private _$selectedPointer: HTMLElement | null;
+  // -------------- APIs --------------------
 
-  private _$valueLabel: HTMLElement | null;
-  private _$value2Label: HTMLElement | null;
-
-  private _$minLabel: HTMLElement | null;
-  private _$maxLabel: HTMLElement | null;
-
-  private _value: string | number = 0; // [min, max]
-  private _value2: string | number | undefined = undefined; // [min, max]
-
-  private _data: (string | number)[] | undefined = undefined;
-  private _min: string | number = 0;
-  private _max: string | number = 100;
-  private _step: number | ((value: number | string) => number) | undefined = undefined;
-  private _round = DEFAULT_ROUND_PLACES;
-  private _type: TypeEnum | undefined = undefined;
-  private _theme: string | undefined = undefined;
-  private _rtl = false; // right to left
-  private _btt = false; // bottom to top
-
-  private _disabled = false;
-  private _keyboardDisabled = false;
-  private _pointer1Disabled = false;
-  private _pointer2Disabled = false;
-
-  private _storage: StorageTypeEnum | undefined = undefined;
-  private _storageKey = STORAGE_KEY;
-  private _storageInitialized = false;
-
-  private _valueLabel: string | undefined = undefined;
-  private _value2Label: string | undefined = undefined;
-  private _ariaLabel1: string | undefined = undefined;
-  private _ariaLabel2: string | undefined = undefined;
-
-  private _pointersOverlap = false;
-  private _pointersMinDistance = 0;
-  private _pointersMaxDistance = Infinity;
-
-  private _generateLabels = false;
-  private _animateOnClick: string | undefined = undefined;
-  private _animating = false;
-
-  private _sliderWidth: string | undefined = undefined;
-  private _sliderHeight: string | undefined = undefined;
-  private _sliderRadius: string | undefined = undefined;
-
-  private _sliderBg: string | undefined = undefined;
-  private _sliderBgHover: string | undefined = undefined;
-  private _sliderBgFill: string | undefined = undefined;
-
-  private _pointerWidth: string | undefined = undefined;
-  private _pointerHeight: string | undefined = undefined;
-  private _pointerRadius: string | undefined = undefined;
-  private _pointerShape: string | undefined = undefined;
-
-  private _pointerBg: string | undefined = undefined;
-  private _pointerBgHover: string | undefined = undefined;
-  private _pointerBgFocus: string | undefined = undefined;
-
-  private _pointerShadow: string | undefined = undefined;
-  private _pointerShadowHover: string | undefined = undefined;
-  private _pointerShadowFocus: string | undefined = undefined;
-
-  private _pointerBorder: string | undefined = undefined;
-  private _pointerBorderHover: string | undefined = undefined;
-  private _pointerBorderFocus: string | undefined = undefined;
-
-  constructor() {
-    super();
-
-    this.attachShadow({
-      mode: 'open', // 'closed', 'open',
-    });
-
-    this.pointerClicked = this.pointerClicked.bind(this);
-    this.pointerMouseWheel = this.pointerMouseWheel.bind(this);
-    this.onMouseDown = this.onMouseDown.bind(this);
-    this.onMouseUp = this.onMouseUp.bind(this);
-    this.onValueChange = this.onValueChange.bind(this);
-    this.pointerKeyDown = this.pointerKeyDown.bind(this);
-    this.render = this.render.bind(this);
-    this.onTransitionEnd = this.onTransitionEnd.bind(this);
-  }
-
-  // ----------- APIs ------------------------
-
-  private valueUpdateDone(val: number | string | undefined, storageKey: string) {
-    this.render();
-    sendChangeEvent(this);
-
-    if (this.storage && this._storageInitialized) {
-      saveToStorage(this.storage, storageKey, val);
+  public set step(_step: TStep) {
+    if(this.slider){
+      this.slider.setStep(_step);
     }
   }
 
-  public set value(val: string | number) {
-    if (this.data) {
-      let _val = isNumber(val) ? Number(val) : val;
+  public get step() {
+    return this.slider?.step;
+  }
 
-      // the provided value should present in data array
-      const foundIndex1 = this.data.findIndex((item) => item === _val);
-      if (foundIndex1 === -1) return;
-
-      if(this.value2 !== undefined && !this.pointersOverlap){
-        const foundIndex2 = this.data.findIndex((item) => item === this.value2);
-        if(foundIndex2 !== -1){
-          if(foundIndex1 > foundIndex2 - this.pointersMinDistance){
-            _val = this.data[foundIndex2 - this.pointersMinDistance];
-          }
-
-          if(isFinite(this.pointersMaxDistance) && foundIndex1 < foundIndex2 - this.pointersMaxDistance){
-            _val = this.data[foundIndex2 - this.pointersMaxDistance];
-          }
-        }
-      }
-
-      this._value = _val;
-      this.valueUpdateDone(this._value, this.storageKey);
-      return;
+  public set disabled(_disabled: boolean) {
+    if(this.slider){
+      this.slider.disabled = _disabled;
     }
+  }
 
-    const safe = getSafeValues(getNumber(val, this.min), this.min as number, this.max as number, this.round);
+  public get disabled() {
+    return this.slider?.disabled ?? false;
+  }
 
-    if(this.value2 !== undefined && !this.pointersOverlap){
-      if(safe.value > (this.value2 as number) - this.pointersMinDistance){
-        safe.value = (this.value2 as number) - this.pointersMinDistance;
-      }
-
-      if(isFinite(this.pointersMaxDistance) && safe.value < (this.value2 as number) - this.pointersMaxDistance){
-        safe.value = (this.value2 as number) - this.pointersMaxDistance;
-      }
-    }
-
-    this._value = safe.value;
-    this.valueUpdateDone(this._value, this.storageKey);
+  public set value(_value: string | number | undefined) {
+    this.slider?.setValue(_value, 1);
   }
 
   public get value() {
-    return this._value;
+    if(!this.slider) return undefined;
+    const val = this.slider.getTextValue(this.slider.pointer1.percent);
+    return isNumber(val) ? getNumber(val, val) : val;
   }
 
   /**
    * value1 is alias for value
    */
-  public set value1(val: string | number) {
+  public set value1(val: string | number | undefined) {
     this.value = val;
   }
 
@@ -210,1090 +73,435 @@ class RangeSlider extends HTMLElement {
     return this.value;
   }
 
-  public set value2(val: string | number | undefined) {
-    if (val === undefined) {
-      // value2 can be unset
-      this._value2 = val;
-      this.valueUpdateDone(this._value2, this.storageKey2);
-      return;
-    }
-
-    if(!this._$pointer2){
-      this.initSecondPointer();
-    }
-
-    if (this.data) {
-      let _val = isNumber(val) ? Number(val) : val;
-
-      const foundIndex1 = this.data.findIndex((item) => item === _val);
-      if (foundIndex1 === -1) return;
-
-      if(this.value2 !== undefined && !this.pointersOverlap){
-        const foundIndex2 = this.data.findIndex((item) => item === this.value);
-        if(foundIndex2 !== -1){
-          if(foundIndex1 < foundIndex2 + this.pointersMinDistance){
-            _val = this.data[foundIndex2 + this.pointersMinDistance];
-          }
-
-          if(isFinite(this.pointersMaxDistance) && foundIndex1 > foundIndex2 + this.pointersMaxDistance){
-            _val = this.data[foundIndex2 + this.pointersMaxDistance];
-          }
-        }
-      }
-
-      this._value2 = _val;
-      this.valueUpdateDone(this._value2, this.storageKey2);
-      return;
-    }
-
-    const safe = getSafeValues(getNumber(val, this.min), this.min as number, this.max as number, this.round);
-
-    if(this.value2 !== undefined && !this.pointersOverlap){
-      if(safe.value < (this.value as number) + this.pointersMinDistance){
-        safe.value = (this.value as number) + this.pointersMinDistance;
-      }
-
-      if(isFinite(this.pointersMaxDistance) && safe.value > (this.value as number) + this.pointersMaxDistance){
-        safe.value = (this.value as number) + this.pointersMaxDistance;
-      }
-    }
-
-    this._value2 = safe.value;
-    this.valueUpdateDone(this._value2, this.storageKey2);
+  public set value2(_value2: string | number | undefined) {
+    this.slider?.setValue(_value2, 2);
   }
 
   public get value2() {
-    return this._value2;
+    if(!this.slider || !this.slider.pointer2) return undefined;
+    const val = this.slider.getTextValue(this.slider.pointer2.percent);
+    return isNumber(val) ? getNumber(val, val) : val;
   }
 
-  public set data(val: (string | number)[] | undefined) {
-    this._data = val;
-    this.render();
+  public set data(_data: TData) {
+    this.slider?.setData(_data);
   }
 
   public get data() {
-    return this._data;
+    return this.slider?.data;
   }
 
-  public set min(val: number | string) {
-    if (this.data) {
-      this._min = isNumber(val) ? getNumber(val, this.data[0]) : this.data[0];
-    }
-    else {
-      const safe = getSafeValues(this.value as number, getNumber(val, 0), this.max as number, this.round);
-      this._min = safe.min;
-      this.value = safe.value;
-
-      if (this.value2 !== undefined) {
-        const safe2 = getSafeValues(this.value2 as number, val as number, this.max as number, this.round);
-        this.value2 = safe2.value;
-      }
-    }
-
-    this.render();
+  public set min(_min: number | string | undefined | null) {
+    this.slider?.setMin(_min);
   }
 
   public get min() {
-    return this._min;
+    return this.slider?.min;
   }
 
-  public set max(val: number | string) {
-    if (this.data) {
-      const defaultValue = this.data[this.data.length - 1];
-      this._max = isNumber(val) ? getNumber(val, defaultValue) : defaultValue;
-    }
-    else {
-      const safe = getSafeValues(this.value as number, this.min as number, getNumber(val, 100), this.round);
-      this._max = safe.max;
-      this.value = safe.value;
-
-      if (this.value2 !== undefined) {
-        const safe2 = getSafeValues(this.value2 as number, this.min as number, val as number, this.round);
-        this.value2 = safe2.value;
-      }
-    }
-
-    this.render();
+  public set max(_max: number | string | undefined | null) {
+    this.slider?.setMax(_max);
   }
 
   public get max() {
-    return this._max;
+    return this.slider?.max;
   }
 
-  public set step(numOrFunction: number | ((value: number | string) => number) | undefined) {
-    if (typeof numOrFunction === 'function') {
-      this._step = numOrFunction;
-      return;
-    }
-
-    if(!isNumber(numOrFunction)){
-      this._step = undefined;
-      return;
-    }
-
-    const _start = this.data ? 0 : (this.min as number);
-    const _end = this.data ? this.data.length - 1 : (this.max as number);
-
-    const diff = Math.abs(_end - _start);
-    if (numOrFunction === undefined) {
-      this._step = undefined;
-      return;
-    }
-
-    if (numOrFunction > diff) {
-      this._step = undefined;
-      return;
-    }
-
-    this._step = Math.abs(numOrFunction);
-  }
-
-  public get step() {
-    return this._step;
-  }
-
-  public set round(val: number) {
-    this._round = getNumber(val, DEFAULT_ROUND_PLACES);
-    this.render();
+  public set round(_round: number) {
+    if(!this.slider) return;
+    this.slider.round = _round;
   }
 
   public get round() {
-    return this._round;
+    return this.slider?.round ?? ROUND_DEFAULT;
   }
 
-  public set type(val: TypeEnum | undefined) {
-    this._type = val;
-    this.render();
+  public set type(_type: TypeEnum | undefined) {
+    if(!this.slider) return;
+    this.slider.type = _type ?? TypeEnum.Horizontal;
   }
 
   public get type() {
-    return this._type;
+    return this.slider?.type || TypeEnum.Horizontal;
   }
 
-  public set pointersOverlap(val: boolean) {
-    this._pointersOverlap = val;
-    this.render();
+  public set pointersOverlap(_pointersOverlap: boolean) {
+    if(!this.slider) return;
+    this.slider.pointersOverlap = _pointersOverlap;
   }
 
   public get pointersOverlap() {
-    return this._pointersOverlap;
+    return this.slider?.pointersOverlap ?? false;
   }
 
-  public set pointersMinDistance(val: number) {
-    this._pointersMinDistance = Math.max(0, getNumber(val, 0));
-    this.render();
+  public set pointersMinDistance(_pointersMinDistance: number) {
+    if(!this.slider) return;
+    this.slider.pointersMinDistance = _pointersMinDistance;
   }
 
   public get pointersMinDistance() {
-    return this._pointersMinDistance;
+    return this.slider?.pointersMinDistance ?? 0;
   }
 
-  public set pointersMaxDistance(val: number) {
-    val = getNumber(val, Infinity);
-    this._pointersMaxDistance = val < 0 ? Infinity : val;
-    this.render();
+  public set pointersMaxDistance(_pointersMaxDistance: number) {
+    if(!this.slider) return;
+    this.slider.pointersMaxDistance = _pointersMaxDistance;
   }
 
   public get pointersMaxDistance() {
-    return this._pointersMaxDistance;
+    return this.slider?.pointersMaxDistance ?? Infinity;
   }
 
-  public set theme(val: string | undefined) {
-    this._theme = val;
-    this.render();
+  public set theme(_theme: string | null) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.theme = _theme;
   }
 
   public get theme() {
-    return this._theme;
+    return this.slider?.styles?.theme ?? null;
   }
 
-  public set rtl(val: boolean) {
-    this._rtl = val;
-    this.render();
+  public set rtl(_rtl: boolean) {
+    if(!this.slider) return;
+    this.slider.rightToLeft = _rtl;
   }
 
   public get rtl() {
-    return this._rtl;
+    return this.slider?.rightToLeft ?? false;
   }
 
-  public set btt(val: boolean) {
-    this._btt = val;
-    this.render();
+  public set btt(_btt: boolean) {
+    if(!this.slider) return;
+    this.slider.bottomToTop = _btt;
   }
 
   public get btt() {
-    return this._btt;
+    return this.slider?.bottomToTop ?? false;
   }
 
-  public set disabled(val: boolean) {
-    this._disabled = val;
-    this.render();
-  }
-
-  public get disabled() {
-    return this._disabled;
-  }
-
-  public set keyboardDisabled(val: boolean) {
-    this._keyboardDisabled = val;
-    this.render();
+  public set keyboardDisabled(_keyboardDisabled: boolean) {
+    if(!this.slider) return;
+    this.slider.keyboardDisabled = _keyboardDisabled;
   }
 
   public get keyboardDisabled() {
-    return this._keyboardDisabled;
+    return this.slider?.keyboardDisabled ?? false;
   }
 
-  public set pointer1Disabled(val: boolean) {
-    this._pointer1Disabled = val;
-    this.render();
-  }
-
-  public get pointer1Disabled() {
-    return this._pointer1Disabled;
-  }
-
-  public set pointer2Disabled(val: boolean) {
-    this._pointer2Disabled = val;
-    this.render();
-  }
-
-  public get pointer2Disabled() {
-    return this._pointer2Disabled;
-  }
-
-  public set animateOnClick(val: string | undefined) {
-    this._animateOnClick = val;
-    this.render();
+  public set animateOnClick(_animateOnClick: string | undefined) {
+    if(!this.slider) return;
+    this.slider.animateOnClick = _animateOnClick;
   }
 
   public get animateOnClick() {
-    return this._animateOnClick;
+    return this.slider?.animateOnClick;
   }
 
-  public set storage(val: StorageTypeEnum | undefined) {
-    this._storage = val;
-    this.render();
+  public set storage(_storage: StorageTypeEnum | undefined) {
+    if(!this.slider) return;
+    this.slider.storage = _storage;
   }
 
   public get storage() {
-    return this._storage;
+    return this.slider?.storage;
   }
 
-  public set storageKey(val: string) {
-    this._storageKey = val;
-    this.render();
+  public set storageKey(_storageKey: string) {
+    if(!this.slider) return;
+    this.slider.storageKey = _storageKey;
   }
 
   public get storageKey() {
-    return this._storageKey;
+    return this.slider?.storage ?? STORAGE_KEY;
   }
 
   public get storageKey2() {
-    return `${this._storageKey}-2`;
+    return this.slider?.storageKey2;
   }
 
-  public set valueLabel(val: string | undefined) {
-    this._valueLabel = val;
-
-    if (this._valueLabel) {
-      this._$valueLabel = document.querySelector(this._valueLabel);
-    }
-
-    this.render();
-  }
-
-  public get valueLabel() {
-    return this._valueLabel;
-  }
-
-  public set value2Label(val: string | undefined) {
-    this._value2Label = val;
-    if (this._value2Label) {
-      this._$value2Label = document.querySelector(this._value2Label);
-    }
-
-    this.render();
-  }
-
-  public get value2Label() {
-    return this._value2Label;
-  }
-
-  public set ariaLabel1(val: string | undefined) {
-    this._ariaLabel1 = val;
-    this.render();
-  }
-
-  public get ariaLabel1() {
-    return this._ariaLabel1;
-  }
-
-  public set ariaLabel2(val: string | undefined) {
-    this._ariaLabel2 = val;
-    this.render();
-  }
-
-  public get ariaLabel2() {
-    return this._ariaLabel2;
-  }
-
-  public set generateLabels(val: boolean) {
-    this._generateLabels = val;
-    this.render();
+  public set generateLabels(_generateLabels: boolean) {
+    if(!this.slider) return;
+    this.slider.generateLabels = _generateLabels;
   }
 
   public get generateLabels() {
-    return this._generateLabels;
+    return this.slider?.generateLabels ?? false;
   }
 
-  public set sliderWidth(val: string | undefined) {
-    this._sliderWidth = val;
-    this.render();
+  public set sliderWidth(_sliderWidth: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.SliderWidth, _sliderWidth);
   }
 
   public get sliderWidth() {
-    return this._sliderWidth;
+    return this.slider?.styles?.getStyle(AttributesEnum.SliderWidth);
   }
 
-  public set sliderHeight(val: string | undefined) {
-    this._sliderHeight = val;
-    this.render();
+  public set sliderHeight(_sliderHeight: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.SliderHeight, _sliderHeight);
   }
 
   public get sliderHeight() {
-    return this._sliderHeight;
+    return this.slider?.styles?.getStyle(AttributesEnum.SliderHeight);
   }
 
-  public set sliderRadius(val: string | undefined) {
-    this._sliderRadius = val;
-    this.render();
+  public set sliderRadius(_sliderRadius: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.SliderRadius, _sliderRadius);
   }
 
   public get sliderRadius() {
-    return this._sliderRadius;
+    return this.slider?.styles?.getStyle(AttributesEnum.SliderRadius);
   }
 
-  public set sliderBg(val: string | undefined) {
-    this._sliderBg = val;
-    this.render();
+  public set sliderBg(_sliderBg: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.SliderBg, _sliderBg);
   }
 
   public get sliderBg() {
-    return this._sliderBg;
+    return this.slider?.styles?.getStyle(AttributesEnum.SliderBg);
   }
 
-  public set sliderBgHover(val: string | undefined) {
-    this._sliderBgHover = val;
-    this.render();
+  public set sliderBgHover(_sliderBgHover: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.SliderBgHover, _sliderBgHover);
   }
 
   public get sliderBgHover() {
-    return this._sliderBgHover;
+    return this.slider?.styles?.getStyle(AttributesEnum.SliderBgHover);
   }
 
-  public set sliderBgFill(val: string | undefined) {
-    this._sliderBgFill = val;
-    this.render();
+  public set sliderBgFill(_sliderBgFill: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.SliderBgFill, _sliderBgFill);
   }
 
   public get sliderBgFill() {
-    return this._sliderBgFill;
+    return this.slider?.styles?.getStyle(AttributesEnum.SliderBgFill);
   }
 
-  public set pointerWidth(val: string | undefined) {
-    this._pointerWidth = val;
-    this.render();
+  public set pointerWidth(_pointerWidth: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.PointerWidth, _pointerWidth);
   }
 
   public get pointerWidth() {
-    return this._pointerWidth;
+    return this.slider?.styles?.getStyle(AttributesEnum.PointerWidth);
   }
 
-  public set pointerHeight(val: string | undefined) {
-    this._pointerHeight = val;
-    this.render();
+  public set pointerHeight(_pointerHeight: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.PointerHeight, _pointerHeight);
   }
 
   public get pointerHeight() {
-    return this._pointerHeight;
+    return this.slider?.styles?.getStyle(AttributesEnum.PointerHeight);
   }
 
-  public set pointerRadius(val: string | undefined) {
-    this._pointerRadius = val;
-    this.render();
+  public set pointerRadius(_pointerRadius: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.PointerRadius, _pointerRadius);
   }
 
   public get pointerRadius() {
-    return this._pointerRadius;
+    return this.slider?.styles?.getStyle(AttributesEnum.PointerRadius);
   }
 
-  public set pointerShape(val: string | undefined) {
-    this._pointerShape = val;
-    this.render();
+  public set pointerShape(_pointerShape: string | null) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.pointerShape = _pointerShape;
   }
 
   public get pointerShape() {
-    return this._pointerShape;
+    return this.slider?.styles?.pointerShape ?? null;
   }
 
-  public set pointerBg(val: string | undefined) {
-    this._pointerBg = val;
-    this.render();
+  public set pointerBg(_pointerBg: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.PointerBg, _pointerBg);
   }
 
   public get pointerBg() {
-    return this._pointerBg;
+    return this.slider?.styles?.getStyle(AttributesEnum.PointerBg);
   }
 
-  public set pointerBgHover(val: string | undefined) {
-    this._pointerBgHover = val;
-    this.render();
+  public set pointerBgHover(_pointerBgHover: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.PointerBgHover, _pointerBgHover);
   }
 
   public get pointerBgHover() {
-    return this._pointerBgHover;
+    return this.slider?.styles?.getStyle(AttributesEnum.PointerBgHover);
   }
 
-  public set pointerBgFocus(val: string | undefined) {
-    this._pointerBgFocus = val;
-    this.render();
+  public set pointerBgFocus(_pointerBgFocus: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.PointerBgFocus, _pointerBgFocus);
   }
 
   public get pointerBgFocus() {
-    return this._pointerBgFocus;
+    return this.slider?.styles?.getStyle(AttributesEnum.PointerBgFocus);
   }
 
-  public set pointerShadow(val: string | undefined) {
-    this._pointerShadow = val;
-    this.render();
+  public set pointerShadow(_pointerShadow: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.PointerShadow, _pointerShadow);
   }
 
   public get pointerShadow() {
-    return this._pointerShadow;
+    return this.slider?.styles?.getStyle(AttributesEnum.PointerShadow);
   }
 
-  public set pointerShadowHover(val: string | undefined) {
-    this._pointerShadowHover = val;
-    this.render();
+  public set pointerShadowHover(_pointerShadowHover: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.PointerShadowHover, _pointerShadowHover);
   }
 
   public get pointerShadowHover() {
-    return this._pointerShadowHover;
+    return this.slider?.styles?.getStyle(AttributesEnum.PointerShadowHover);
   }
 
-  public set pointerShadowFocus(val: string | undefined) {
-    this._pointerShadowFocus = val;
-    this.render();
+  public set pointerShadowFocus(_pointerShadowFocus: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.PointerShadowFocus, _pointerShadowFocus);
   }
 
   public get pointerShadowFocus() {
-    return this._pointerShadowFocus;
+    return this.slider?.styles?.getStyle(AttributesEnum.PointerShadowFocus);
   }
 
-  public set pointerBorder(val: string | undefined) {
-    this._pointerBorder = val;
-    this.render();
+  public set pointerBorder(_pointerBorder: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.PointerBorder, _pointerBorder);
   }
 
   public get pointerBorder() {
-    return this._pointerBorder;
+    return this.slider?.styles?.getStyle(AttributesEnum.PointerBorder);
   }
 
-  public set pointerBorderHover(val: string | undefined) {
-    this._pointerBorderHover = val;
-    this.render();
+  public set pointerBorderHover(_pointerBorderHover: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.PointerBorderHover, _pointerBorderHover);
   }
 
   public get pointerBorderHover() {
-    return this._pointerBorderHover;
+    return this.slider?.styles?.getStyle(AttributesEnum.PointerBorderHover);
   }
 
-  public set pointerBorderFocus(val: string | undefined) {
-    this._pointerBorderFocus = val;
-    this.render();
+  public set pointerBorderFocus(_pointerBorderFocus: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.PointerBorderFocus, _pointerBorderFocus);
   }
 
   public get pointerBorderFocus() {
-    return this._pointerBorderFocus;
+    return this.slider?.styles?.getStyle(AttributesEnum.PointerBorderFocus);
+  }
+
+  public set pointer1Disabled(_pointer1Disabled: boolean) {
+    if(!this.slider) return;
+    this.slider.pointer1.disabled = _pointer1Disabled;
+  }
+
+  public get pointer1Disabled() {
+    return this.slider?.pointer1.disabled ?? false;
+  }
+
+  public set pointer2Disabled(_pointer2Disabled: boolean) {
+    if(!this.slider || !this.slider.pointer2) return;
+    this.slider.pointer2.disabled = _pointer2Disabled;
+  }
+
+  public get pointer2Disabled() {
+    return this.slider?.pointer2?.disabled ?? false;
+  }
+
+  public set valueLabel(_valueLabel: string | undefined) {
+    if(!this.slider || !this.slider.labels) return;
+    this.slider.labels.referenceLabel1 = _valueLabel ?? null;
+  }
+
+  public get valueLabel() {
+    return this.slider?.labels?.referenceLabel1 ?? '';
+  }
+
+  public set value2Label(_value2Label: string | undefined) {
+    if(!this.slider || !this.slider.labels) return;
+    this.slider.labels.referenceLabel2 = _value2Label ?? null;
+  }
+
+  public get value2Label() {
+    return this.slider?.labels?.referenceLabel2 ?? '';
+  }
+
+  public set ariaLabel1(_ariaLabel1: string | undefined) {
+    if(!this.slider) return;
+    this.slider.pointer1.setAttr('aria-label', _ariaLabel1 ?? '');
+  }
+
+  public get ariaLabel1() {
+    return this.slider?.pointer1.getAttr('aria-label') ?? undefined;
+  }
+
+  public set ariaLabel2(_ariaLabel2: string | undefined) {
+    if(!this.slider) return;
+    this.slider.pointer2?.setAttr('aria-label', _ariaLabel2 ?? '');
+  }
+
+  public get ariaLabel2() {
+    return this.slider?.pointer2?.getAttr('aria-label') ?? undefined;
   }
 
   // ----------------------------------------------
 
-  render() {
-    if (!this._$slider || !this._$pointer || !this._$panelFill) return;
+  constructor() {
+    super();
 
-    const { percent, percent2, _val, _val2, _min, _max } = prepareDataForRender(this);
-
-    if (this.type === TypeEnum.Vertical) {
-      if (this.btt) {
-        this._$pointer.style.top = `${100 - percent}%`;
-        this._$panelFill.style.height = `${percent}%`;
-        this._$panelFill.style.bottom = '0%';
-        this._$panelFill.style.top = 'auto';
-
-        if (this.value2 !== undefined && this._$pointer2) {
-          this._$pointer2.style.top = `${100 - percent2}%`;
-          this._$panelFill.style.top = `${Math.min(100 - percent2, 100 - percent)}%`;
-          this._$panelFill.style.height = `${Math.abs(percent - percent2)}%`;
-        }
-      }
-      else {
-        this._$pointer.style.top = `${percent}%`;
-        this._$panelFill.style.height = `${percent}%`;
-        this._$panelFill.style.bottom = 'auto';
-        this._$panelFill.style.top = '0%';
-
-        if (this.value2 !== undefined && this._$pointer2) {
-          this._$pointer2.style.top = `${percent2}%`;
-          this._$panelFill.style.top = `${Math.min(percent, percent2)}%`;
-          this._$panelFill.style.height = `${Math.abs(percent - percent2)}%`;
-        }
-      }
-    }
-    else {
-      if (this.rtl) {
-        this._$pointer.style.left = `${100 - percent}%`;
-        this._$panelFill.style.width = `${percent}%`;
-        this._$panelFill.style.right = '0%';
-        this._$panelFill.style.left = 'auto';
-
-        if (this.value2 !== undefined && this._$pointer2) {
-          this._$pointer2.style.left = `${100 - percent2}%`;
-          this._$panelFill.style.left = `${Math.min(100 - percent2, 100 - percent)}%`;
-          this._$panelFill.style.width = `${Math.abs(percent - percent2)}%`;
-        }
-      }
-      else {
-        this._$pointer.style.left = `${percent}%`;
-        this._$panelFill.style.width = `${percent}%`;
-        this._$panelFill.style.right = 'auto';
-        this._$panelFill.style.left = '0%';
-
-        if (this.value2 !== undefined && this._$pointer2) {
-          this._$pointer2.style.left = `${percent2}%`;
-          this._$panelFill.style.left = `${Math.min(percent, percent2)}%`;
-          this._$panelFill.style.width = `${Math.abs(percent - percent2)}%`;
-        }
-      }
-    }
-
-    renderLabels(
-      this,
-      this.generateLabels,
-      this._$minLabel,
-      this._$maxLabel,
-      this._$valueLabel,
-      this._$value2Label,
-      _val,
-      _val2
-    );
-
-    // set additional aria attributes
-    renderAriaAttributes(
-      this._$pointer,
-      this._$pointer2,
-      this.type || TypeEnum.Horizontal,
-      _min,
-      _max,
-      _val,
-      _val2,
-      this.pointersOverlap,
-      this.ariaLabel1,
-      this.ariaLabel2
-    );
-
-    if (this.type) {
-      this._$box?.classList.add(`type-${this.type}`);
-    }
-
-    handleDisableEnable(
-      this.disabled,
-      this.pointer1Disabled,
-      this.pointer2Disabled,
-      this._$slider,
-      this._$pointer,
-      this._$pointer2
-    );
-
-    renderStyles(this, this._$slider);
+    this.attachShadow({
+      mode: 'open', // 'closed', 'open',
+    });
   }
-
-  // -------------------- EVENTS HANDLERS --------------------------
-
-  pointerClicked(evt: MouseEvent) {
-    if (this.disabled) return;
-
-    const $pointer = evt.currentTarget as HTMLElement;
-
-    if($pointer.classList.contains('.pointer-1') && this.pointer1Disabled ||
-      $pointer.classList.contains('.pointer-2') && this.pointer2Disabled) return;
-
-    sendPointerClickedEvent(this, $pointer);
-  }
-
-  pointerMouseWheel(evt: WheelEvent) {
-    if (document.activeElement !== this || this.disabled) return;
-
-    if((this._$selectedPointer === this._$pointer && this.pointer1Disabled) ||
-      (this._$selectedPointer === this._$pointer2 && this.pointer2Disabled)) return;
-
-    evt.stopPropagation();
-    evt.preventDefault();
-
-    const scrollTop = evt.deltaY < 0;
-
-    if (scrollTop) {
-      if(this.btt){
-        stepForward(this, this._$pointer2);
-      }
-      else{
-        stepBack(this, this._$pointer2);
-      }
-    }
-    else {
-      if(this.btt){
-        stepBack(this, this._$pointer2);
-      }
-      else{
-        stepForward(this, this._$pointer2);
-      }
-    }
-  }
-
-  onTransitionEnd() {
-    this._animating = false;
-    this._$slider?.classList.remove('animate-on-click');
-  }
-
-  pointerKeyDown(evt: KeyboardEvent) {
-    if (this.disabled || this.keyboardDisabled) return;
-
-    if((this._$selectedPointer === this._$pointer && this.pointer1Disabled) ||
-      (this._$selectedPointer === this._$pointer2 && this.pointer2Disabled)) return;
-
-    switch (evt.key) {
-      case 'ArrowLeft': {
-        if (this.type === TypeEnum.Vertical) {
-          if (isFocused(this._$pointer2)) {
-            if(this.btt){
-              this.value2 = this.max;
-            }
-            else{
-              this.value2 = this.min;
-            }
-          }
-          else {
-            if(this.btt){
-              this.value = this.max;
-            }
-            else{
-              this.value = this.min;
-            }
-          }
-
-          this.render();
-        }
-        else {
-          if(this.rtl){
-            stepForward(this, this._$pointer2);
-          }
-          else{
-            stepBack(this, this._$pointer2);
-          }
-        }
-
-        break;
-      }
-
-      case 'ArrowRight': {
-        if (this.type === TypeEnum.Vertical) {
-          if (isFocused(this._$pointer2)) {
-            if(this.btt){
-              this.value2 = this.min;
-            }
-            else{
-              this.value2 = this.max;
-            }
-          }
-          else {
-            if(this.btt){
-              this.value = this.min;
-            }
-            else{
-              this.value = this.max;
-            }
-          }
-
-          this.render();
-        }
-        else {
-          if(this.rtl){
-            stepBack(this, this._$pointer2);
-          }
-          else{
-            stepForward(this, this._$pointer2);
-          }
-        }
-        break;
-      }
-
-      case 'ArrowUp': {
-        evt.preventDefault();
-        if (this.type === TypeEnum.Vertical) {
-          if(this.btt){
-            stepForward(this, this._$pointer2);
-          }
-          else{
-            stepBack(this, this._$pointer2);
-          }
-        }
-        else {
-          if (isFocused(this._$pointer2)) {
-            if(this.rtl){
-              this.value2 = this.max;
-            }
-            else{
-              this.value2 = this.min;
-            }
-          }
-          else {
-            if(this.rtl){
-              this.value = this.max;
-            }
-            else{
-              this.value = this.min;
-            }
-          }
-
-          this.render();
-        }
-        break;
-      }
-
-      case 'ArrowDown': {
-        evt.preventDefault();
-        if (this.type === TypeEnum.Vertical) {
-          if(this.btt){
-            stepBack(this, this._$pointer2);
-          }
-          else{
-            stepForward(this, this._$pointer2);
-          }
-        }
-        else {
-          if (isFocused(this._$pointer2)) {
-            if(this.rtl){
-              this.value2 = this.min;
-            }
-            else{
-              this.value2 = this.max;
-            }
-          }
-          else {
-            if(this.rtl){
-              this.value = this.min;
-            }
-            else{
-              this.value = this.max;
-            }
-          }
-
-          this.render();
-        }
-        break;
-      }
-    }
-
-    sendOnKeyDownEvent(this, evt);
-  }
-
-  onMouseDown(evt: MouseEvent) {
-
-    if (this.disabled) return;
-
-    if (evt.preventDefault) {
-      evt.preventDefault();
-    }
-
-    if (this.animateOnClick && !this._animating) {
-      const $target = evt.target as HTMLElement;
-      if (!$target.classList.contains('pointer-shape') && !$target.classList.contains('pointer')) {
-        this._animating = true;
-        this._$slider?.classList.add('animate-on-click');
-      }
-    }
-
-    this.onValueChange(evt);
-    sendMouseDownEvent(this, evt);
-
-    window.addEventListener('mousemove', this.onValueChange);
-    window.addEventListener('mouseup', this.onMouseUp);
-  }
-
-  onMouseUp(evt: MouseEvent) {
-    if (this.disabled) return;
-
-    window.removeEventListener('mousemove', this.onValueChange);
-    window.removeEventListener('mouseup', this.onValueChange);
-    sendMouseUpEvent(this, evt);
-  }
-
-  onValueChange(evt: MouseEvent | TouchEvent) {
-    if (this.disabled || !this._$slider) return;
-
-    // find the percent [0, 100] of the current mouse position in vertical or horizontal slider
-    let percent;
-
-    if (this.type === TypeEnum.Vertical) {
-      // -------------- vertical -----------------
-
-      const { height: boxHeight, top: boxTop } = this._$slider.getBoundingClientRect();
-      const mouseY = evt.type.indexOf('mouse') !== -1 ? (evt as MouseEvent).clientY : (evt as TouchEvent).touches[0].clientY;
-      const top = Math.min(Math.max(0, mouseY - boxTop), boxHeight);
-      percent = (top * 100) / boxHeight;
-
-      if (this.btt) {
-        percent = 100 - percent;
-      }
-    }
-    else {
-      // -------------- horizontal -----------------
-
-      const { width: boxWidth, left: boxLeft } = this._$slider.getBoundingClientRect();
-      const mouseX = evt.type.indexOf('mouse') !== -1 ? (evt as MouseEvent).clientX : (evt as TouchEvent).touches[0].clientX;
-      const left = Math.min(Math.max(0, mouseX - boxLeft), boxWidth);
-      percent = (left * 100) / boxWidth;
-
-      if (this.rtl) {
-        percent = 100 - percent;
-      }
-    }
-
-    // transform the percent [0, 100] to the actual slider range [min, max],
-    // and also round to the provided step (if needed)
-    if (this.data) {
-      // when textual data or separate values data is provided ---> use index instead of the actual values
-      let index = Math.round(convertRange(0, 100, 0, this.data.length - 1, percent));
-      const stepVal = typeof this.step === 'function' ? this.step(index) : this.step;
-
-      if (stepVal !== undefined) {
-        index = roundToStep(index, stepVal);
-      }
-
-      this._$selectedPointer = updateValueAndFocusPointer(
-        evt,
-        this,
-        this._$selectedPointer,
-        true,
-        this.data[index],
-        this._$pointer,
-        this._$pointer2);
-    }
-    else {
-      let value = convertRange(0, 100, this.min as number, this.max as number, percent);
-      const stepVal = typeof this.step === 'function' ? this.step(value) : this.step;
-
-      if (stepVal !== undefined) {
-        value = roundToStep(value, stepVal);
-      }
-
-      this._$selectedPointer = updateValueAndFocusPointer(
-        evt,
-        this,
-        this._$selectedPointer,
-        false,
-        value,
-        this._$pointer,
-        this._$pointer2);
-    }
-
-    this.render();
-  }
-
-  /**
-   * this should be called if the second pointer was added dynamically via API
-   */
-  initSecondPointer(){
-    if(!this._$pointer) return;
-
-    this._$pointer2 = this._$pointer?.cloneNode(true) as HTMLElement;
-    this._$pointer2.classList.add('pointer-2');
-    this._$pointer?.after(this._$pointer2);
-
-    this._$pointer2.addEventListener('click', this.pointerClicked);
-    this._$pointer2.addEventListener('keydown', this.pointerKeyDown);
-
-    initSecondLabel(this, this._$box);
-  }
-
-  // ------------------------- WEB COMPONENT LIFECYCLE ----------------------------
 
   /**
    * when the custom element connected to DOM
    */
   connectedCallback() {
     if (!this.shadowRoot) return;
-
-    // initial values of attributes
-    this.data = parseData(this.getAttribute(AttributesEnum.Data));
-    this.min = getStringOrNumber(this, AttributesEnum.Min, 0, this.data ? this.data[0] : '');
-    this.max = getStringOrNumber(this, AttributesEnum.Max, 100, this.data ? this.data[this.data.length - 1] : '');
-
-    this.pointersOverlap = this.getAttribute(AttributesEnum.PointersOverlap) === 'true';
-    this.pointersMinDistance = getNumber(this.getAttribute(AttributesEnum.PointersMinDistance), 0);
-    this.pointersMaxDistance = getNumber(this.getAttribute(AttributesEnum.PointersMaxDistance), Infinity);
-
-    this.value = getStringOrNumber(this, AttributesEnum.Value, this.min as number, this.data ? this.data[0] : '');
-
-    if (this.getAttribute(AttributesEnum.Value1) !== null) {
-      this.value = getStringOrNumber(this, AttributesEnum.Value1, this.min as number, this.data ? this.data[0] : '');
-    }
-
-    if (this.getAttribute(AttributesEnum.Value2) !== null) {
-      this.value2 = getStringOrNumber(this, AttributesEnum.Value2, this.min as number, this.data ? this.data[0] : '');
-    }
-
-    this.step = getNumber(this.getAttribute(AttributesEnum.Step), undefined);
-    this.round = getNumber(this.getAttribute(AttributesEnum.Round), DEFAULT_ROUND_PLACES);
-    if (this.round < 0) {
-      this.round = DEFAULT_ROUND_PLACES;
-    }
-
-    this.type = this.getAttribute(AttributesEnum.Type) as TypeEnum || undefined;
-    this.theme = this.getAttribute(AttributesEnum.Theme) || undefined;
-    this.rtl = this.getAttribute(AttributesEnum.RightToLeft) === 'true';
-    this.btt = this.getAttribute(AttributesEnum.BottomToTop) === 'true';
-
-    this.disabled = this.getAttribute(AttributesEnum.Disabled) === 'true';
-    this.keyboardDisabled = this.getAttribute(AttributesEnum.KeyboardDisabled) === 'true';
-    this.pointer1Disabled = this.getAttribute(AttributesEnum.Pointer1Disabled) === 'true';
-    this.pointer2Disabled = this.getAttribute(AttributesEnum.Pointer2Disabled) === 'true';
-
-    this.valueLabel = this.getAttribute(AttributesEnum.ValueLabel) || undefined;
-    this.ariaLabel1 = this.getAttribute(AttributesEnum.AriaLabel1) || undefined;
-    this.ariaLabel2 = this.getAttribute(AttributesEnum.AriaLabel2) || undefined;
-    this.generateLabels = this.getAttribute(AttributesEnum.GenerateLabels) === 'true';
-
-    this.animateOnClick = this.getAttribute(AttributesEnum.AnimateOnClick) || undefined;
-
-    this.storage = (this.getAttribute(AttributesEnum.Storage) as StorageTypeEnum) || undefined;
-    this.storageKey = this.getAttribute(AttributesEnum.StorageKey) || STORAGE_KEY;
-
-    this.sliderWidth = this.getAttribute(AttributesEnum.SliderWidth) || undefined;
-    this.sliderHeight = this.getAttribute(AttributesEnum.SliderHeight) || undefined;
-    this.sliderRadius = this.getAttribute(AttributesEnum.SliderRadius) || undefined;
-    this.sliderBg = this.getAttribute(AttributesEnum.SliderBg) || undefined;
-    this.sliderBgHover = this.getAttribute(AttributesEnum.SliderBgHover) || undefined;
-    this.sliderBgFill = this.getAttribute(AttributesEnum.SliderBgFill) || undefined;
-
-    this.pointerWidth = this.getAttribute(AttributesEnum.PointerWidth) || undefined;
-    this.pointerHeight = this.getAttribute(AttributesEnum.PointerHeight) || undefined;
-    this.pointerRadius = this.getAttribute(AttributesEnum.PointerRadius) || undefined;
-    this.pointerShape = this.getAttribute(AttributesEnum.PointerShape) || undefined;
-
-    this.pointerBg = this.getAttribute(AttributesEnum.PointerBg) || undefined;
-    this.pointerBgHover = this.getAttribute(AttributesEnum.PointerBgHover) || undefined;
-    this.pointerBgFocus = this.getAttribute(AttributesEnum.PointerBgFocus) || undefined;
-
-    this.pointerShadow = this.getAttribute(AttributesEnum.PointerShadow) || undefined;
-    this.pointerShadowHover = this.getAttribute(AttributesEnum.PointerShadowHover) || undefined;
-    this.pointerShadowFocus = this.getAttribute(AttributesEnum.PointerShadowFocus) || undefined;
-
-    this.pointerBorder = this.getAttribute(AttributesEnum.PointerBorder) || undefined;
-    this.pointerBorderHover = this.getAttribute(AttributesEnum.PointerBorderHover) || undefined;
-    this.pointerBorderFocus = this.getAttribute(AttributesEnum.PointerBorderFocus) || undefined;
-
     this.shadowRoot.innerHTML = mainTemplate(styles);
 
-    // init slider elements
-    this._$box = this.shadowRoot.querySelector('.range-slider-box');
-    this._$slider = this.shadowRoot.querySelector('.range-slider');
-    this._$pointer = this.shadowRoot.querySelector('.pointer');
+    // init first pointer
+    const $pointer1 = this.shadowRoot?.querySelector('.pointer') as HTMLElement;
+    const pointer1 = $pointer1 ? Pointer(this, $pointer1, 1) : null;
+    if(!pointer1) return;
 
-    if (this.value2 !== undefined) {
-      this._$pointer2 = this._$pointer?.cloneNode(true) as HTMLElement;
-      this._$pointer2.classList.add('pointer-2');
-      this._$pointer?.after(this._$pointer2);
+    // init second pointer
+    let pointer2: IPointer | null = null;
+    if(this.getAttribute('value2') !== null){
+      const $pointer2 = $pointer1.cloneNode(true) as HTMLElement;
+      $pointer1.after($pointer2);
+      pointer2 = Pointer(this, $pointer2, 2);
     }
 
-    this._$pointer?.classList.add('pointer-1');
-
-    this._$panelFill = this.shadowRoot.querySelector('.panel-fill');
-
-    if (this.valueLabel) {
-      this._$valueLabel = document.querySelector(this.valueLabel);
-    }
-
-    if (this.value2Label) {
-      this._$value2Label = document.querySelector(this.value2Label);
-    }
-
-    // initialize labels
-    if (this.generateLabels) {
-      initLabels(this, this._$slider, this._$box);
-    }
-
-    // init pointer events
-    this._$pointer?.addEventListener('click', this.pointerClicked);
-    this._$pointer?.addEventListener('keydown', this.pointerKeyDown);
-
-    if (this._$pointer2) {
-      this._$pointer2.addEventListener('click', this.pointerClicked);
-      this._$pointer2.addEventListener('keydown', this.pointerKeyDown);
-    }
-
-    // init slider events
-    this._$slider?.addEventListener('mousedown', this.onMouseDown);
-    this._$slider?.addEventListener('mouseup', this.onMouseUp);
-    this._$slider?.addEventListener('touchmove', this.onValueChange);
-    this._$slider?.addEventListener('touchstart', this.onValueChange);
-
-    document.addEventListener('wheel', this.pointerMouseWheel, { passive: false });
-
-    if (this.animateOnClick) {
-      this._$slider?.style.setProperty('--tc-range-slider-animate-onclick', this.animateOnClick);
-      this._$slider?.addEventListener('transitionend', this.onTransitionEnd);
-    }
-
-    // if the storage is enabled ---> try to restore the values
-    if (this.storage){
-      restoreFromStorage(this);
-      this._storageInitialized = true;
-    }
-
-    // update the initial position of the pointer
-    this.render();
+    // init the slider
+    const $slider = this.shadowRoot?.getElementById('range-slider') as HTMLElement;
+    if(!$slider) return;
+    this.slider = Slider(this, $slider, pointer1, pointer2);
   }
 
   /**
    * when the custom element disconnected from DOM
    */
   disconnectedCallback() {
-    this._$pointer?.removeEventListener('click', this.pointerClicked);
-    this._$pointer?.removeEventListener('keydown', this.pointerClicked);
+    if(!this.slider) return
 
-    if (this._$pointer2) {
-      this._$pointer2.removeEventListener('click', this.pointerClicked);
-      this._$pointer2.removeEventListener('keydown', this.pointerKeyDown);
-    }
-
-    document.removeEventListener('wheel', this.pointerMouseWheel);
-
-    this._$slider?.removeEventListener('mousedown', this.onMouseDown);
-    this._$slider?.removeEventListener('mouseup', this.onMouseUp);
-    this._$slider?.removeEventListener('touchmove', this.onValueChange);
-    this._$slider?.removeEventListener('touchstart', this.onValueChange);
-
-    if (this.animateOnClick) {
-      this._$slider?.removeEventListener('transitionend', this.onTransitionEnd);
-    }
+    this.slider.destroy();
   }
 
-  /**
-   * when attributes change
-   */
-  attributeChangedCallback(attrName: string) {
-    onAttributesChange(this, attrName, this._$slider);
+  attributeChangedCallback(attrName: string, oldValue: string, newValue: string) {
+    if(!this.slider) return;
+
+    onAttributesChange(this.slider, attrName, oldValue, newValue);
   }
 }
 

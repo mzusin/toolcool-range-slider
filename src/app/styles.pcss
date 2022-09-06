@@ -215,7 +215,7 @@
 /**
  ---------------- Themes -------------------
  */
-.target{
+.theme-target{
     --tc-range-slider-panel-bg: #D7DCDF;
     --tc-range-slider-panel-bg-hover: #ccd1d3;
     --tc-range-slider-panel-bg-fill: #47a4bc;
@@ -233,14 +233,14 @@
     --tc-range-slider-pointer-border-focus: 0;
 }
 
-.glass{
+.theme-glass{
     --tc-range-slider-pointer-bg: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(206, 206, 206, 1) 48%, rgba(255, 255, 255, 0) 100%);
     --tc-range-slider-pointer-bg-hover: linear-gradient(to bottom, rgba(206, 206, 206, 1) 0%, rgba(255, 255, 255, 0) 48%, rgba(206, 206, 206, 1) 100%);
     --tc-range-slider-pointer-bg-focus: linear-gradient(to bottom, rgba(206, 206, 206, 1) 0%, rgba(255, 255, 255, 0) 48%, rgba(206, 206, 206, 1) 100%);
     --tc-range-slider-pointer-border-radius: 3px;
 }
 
-.rect{
+.theme-rect{
     --tc-range-slider-panel-bg: #9FD2FA;
     --tc-range-slider-panel-bg-hover: #4075E2;
     --tc-range-slider-panel-bg-fill: #4075E2;
@@ -262,7 +262,7 @@
     --tc-range-slider-pointer-border-radius: 0;
 }
 
-.circle{
+.theme-circle{
     --tc-range-slider-height: 0.3rem;
 
     --tc-range-slider-panel-bg: #E6E6E6;
@@ -285,7 +285,7 @@
     --tc-range-slider-pointer-border-focus: 6px solid #fff;
 }
 
-.rainbow{
+.theme-rainbow{
     --tc-range-slider-panel-bg: linear-gradient(
             90deg,
             rgba(255, 0, 0, 1) 0%,
@@ -315,7 +315,7 @@
     --tc-range-slider-pointer-border-focus: 0;
 }
 
-.ruler{
+.theme-ruler{
     --tc-range-slider-height: 1rem;
     --tc-range-slider-panel-bg-border-radius: 2px;
     --tc-range-slider-panel-bg: #fff;
@@ -323,7 +323,7 @@
     --tc-range-slider-panel-bg-fill: #ccc;
 }
 
-.ruler .panel{
+.theme-ruler .panel{
     background-size: 0.4rem 100%;
     background-repeat: repeat-x;
     background-image: linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 2px), var(--tc-range-slider-panel-bg-fill, #000) calc(50%), rgba(0, 0, 0, 0) calc(50% + 2px));
@@ -372,7 +372,8 @@
 /**
  animations
  */
-.animate-on-click .pointer{
+.animate-on-click .pointer,
+.animate-on-click .panel-fill{
     transition: all var(--tc-range-slider-animate-onclick);
 }
 

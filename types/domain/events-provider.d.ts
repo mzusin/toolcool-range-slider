@@ -1,7 +1,10 @@
-import RangeSlider from '../app/range-slider';
-export declare const sendPointerClickedEvent: (slider: RangeSlider, $pointer: HTMLElement) => void;
-export declare const sendMouseDownEvent: (slider: RangeSlider, evt: MouseEvent) => void;
-export declare const sendMouseUpEvent: (slider: RangeSlider, evt: MouseEvent) => void;
-export declare const sendOnKeyDownEvent: (slider: RangeSlider, evt: KeyboardEvent) => void;
-export declare const sendChangeEvent: (slider: RangeSlider) => void;
+export declare const sendPointerClickedEvent: ($component: HTMLElement, $pointer: HTMLElement) => void;
+export declare const sendMouseDownEvent: ($component: HTMLElement, evt: MouseEvent) => void;
+export declare const sendMouseUpEvent: ($component: HTMLElement, evt: MouseEvent) => void;
+export declare const sendOnKeyDownEvent: ($component: HTMLElement, evt: KeyboardEvent) => void;
+export interface IChangeEventDetail {
+    value?: number | string | undefined;
+    value2?: number | string | undefined;
+}
+export declare const sendChangeEvent: ($component: HTMLElement, value1: string | number | undefined, value2: string | number | undefined) => void;
 //# sourceMappingURL=events-provider.d.ts.map

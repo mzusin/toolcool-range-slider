@@ -1,5 +1,3 @@
-export const DEFAULT_ROUND_PLACES = 2;
-
 /**
  * scale a range [min,max] to [a,b]
  * f(x) = (b - a) * (x - min) / (max - min) + a
@@ -15,7 +13,7 @@ export const isNumber = (input: any) => {
 
 // the below function should receive any
 // eslint-disable-next-line
-export const getNumber = (input: any, defaultValue: any) => {
+export const getNumber = (input: any, defaultValue: any) : number => {
   return isNumber(input) ? Number(input) : defaultValue;
 };
 
@@ -36,4 +34,9 @@ export const setDecimalPlaces = (num: number, decimalPlaces = Infinity) => {
 
   const coeff = 10 ** decimalPlaces;
   return Math.round(num * coeff) / coeff;
+};
+
+export const getBoolean = (val: string | null | undefined) => {
+  if(val === null || val === undefined) return false;
+  return val.trim().toLowerCase() === 'true';
 };

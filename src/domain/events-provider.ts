@@ -1,7 +1,7 @@
-import RangeSlider from '../app/range-slider';
+import { getNumber, isNumber } from './math-provider';
 
-export const sendPointerClickedEvent = (slider: RangeSlider, $pointer: HTMLElement) => {
-  slider.dispatchEvent(
+export const sendPointerClickedEvent = ($component: HTMLElement, $pointer: HTMLElement) => {
+  $component.dispatchEvent(
     new CustomEvent('onPointerClicked', {
       detail: {
         $pointer: $pointer,
@@ -10,8 +10,8 @@ export const sendPointerClickedEvent = (slider: RangeSlider, $pointer: HTMLEleme
   );
 };
 
-export const sendMouseDownEvent = (slider: RangeSlider, evt: MouseEvent) => {
-  slider.dispatchEvent(
+export const sendMouseDownEvent = ($component: HTMLElement, evt: MouseEvent) => {
+  $component.dispatchEvent(
     new CustomEvent('onMouseDown', {
       detail: {
         nativeEvent: evt,
@@ -20,8 +20,8 @@ export const sendMouseDownEvent = (slider: RangeSlider, evt: MouseEvent) => {
   );
 };
 
-export const sendMouseUpEvent = (slider: RangeSlider, evt: MouseEvent) => {
-  slider.dispatchEvent(
+export const sendMouseUpEvent = ($component: HTMLElement, evt: MouseEvent) => {
+  $component.dispatchEvent(
     new CustomEvent('onMouseUp', {
       detail: {
         nativeEvent: evt,
@@ -30,8 +30,8 @@ export const sendMouseUpEvent = (slider: RangeSlider, evt: MouseEvent) => {
   );
 };
 
-export const sendOnKeyDownEvent = (slider: RangeSlider, evt: KeyboardEvent) => {
-  slider.dispatchEvent(
+export const sendOnKeyDownEvent = ($component: HTMLElement, evt: KeyboardEvent) => {
+  $component.dispatchEvent(
     new CustomEvent('onKeyDown', {
       detail: {
         nativeEvent: evt,
@@ -40,16 +40,18 @@ export const sendOnKeyDownEvent = (slider: RangeSlider, evt: KeyboardEvent) => {
   );
 };
 
-export const sendChangeEvent = (slider: RangeSlider) => {
-  const detail : { value: number | string, value2? : number | string } = {
-    value: slider.value,
+export interface IChangeEventDetail {
+  value?: number | string | undefined,
+  value2?: number | string | undefined,
+}
+
+export const sendChangeEvent = ($component: HTMLElement, value1: string | number | undefined, value2: string | number | undefined) => {
+  const detail: IChangeEventDetail = {
+    value: isNumber(value1) ? getNumber(value1, value1) : value1,
+    value2: isNumber(value2) ? getNumber(value2, value2) : value2,
   };
 
-  if(slider.value2 !== undefined){
-    detail.value2 = slider.value2;
-  }
-
-  slider.dispatchEvent(
+  $component.dispatchEvent(
     new CustomEvent('change', {
       detail,
     })

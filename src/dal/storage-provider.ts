@@ -1,12 +1,6 @@
-import { getNumber, isNumber } from '../domain/math-provider';
-import RangeSlider from '../app/range-slider';
+import { StorageTypeEnum } from '../enums/storage-type-enum';
 
 export const STORAGE_KEY = 'tc-range-slider';
-
-export enum StorageTypeEnum {
-  localStorage = 'local-storage',
-  sessionStorage = 'session-storage',
-}
 
 export const isStorageEnabled = (storageType: StorageTypeEnum) => {
   if (storageType === StorageTypeEnum.localStorage) {
@@ -91,32 +85,36 @@ export const getFromStorage = (storageType: StorageTypeEnum, storageName: string
   return null;
 };
 
+export const getStorageKey2 = (storageKey: string) => {
+  return `${ storageKey }-2`;
+};
+
 /**
  * try to restore values from session or local storage
  * when component is initialized
  */
-export const restoreFromStorage = (slider: RangeSlider) => {
-  if (!slider.storage) return;
+export const restoreFromStorage = (
+  storage: StorageTypeEnum | undefined,
+  storageKey: string,
+  setInitialPointersValues: (_value: string | null, _value1: string | null, _value2: string | null) => void
+) => {
+  if (!storage) return;
 
-  let restoredValue = getFromStorage(slider.storage, slider.storageKey);
-  if (isNumber(restoredValue)) {
-    slider.value = getNumber(restoredValue, slider.min);
-  }
-  else {
-    if (restoredValue) {
-      slider.value = restoredValue;
-    }
+  let val1: string | null = null;
+  let val2: string | null = null;
+
+  const restoredValue1 = getFromStorage(storage, storageKey);
+  const restoredValue2 = getFromStorage(storage, getStorageKey2(storageKey));
+
+  if(restoredValue1 !== null && restoredValue1 !== undefined){
+    val1 = restoredValue1;
   }
 
-  if (slider.value2 !== undefined) {
-    restoredValue = getFromStorage(slider.storage, slider.storageKey2);
-    if (isNumber(restoredValue)) {
-      slider.value2 = getNumber(restoredValue, slider.min);
-    }
-    else {
-      if (restoredValue) {
-        slider.value2 = restoredValue;
-      }
-    }
+  if(restoredValue2 !== null && restoredValue2 !== undefined){
+    val2 = restoredValue2;
   }
+
+  if(val1 === null && val2 === null) return;
+
+  setInitialPointersValues(val1, val1, val2);
 };

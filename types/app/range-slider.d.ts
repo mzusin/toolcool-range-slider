@@ -1,182 +1,119 @@
-import { StorageTypeEnum } from '../dal/storage-provider';
+import { ISlider } from '../ui/slider';
+import { TData, TStep } from '../types';
 import { TypeEnum } from '../enums/type-enum';
+import { StorageTypeEnum } from '../enums/storage-type-enum';
 import { AttributesEnum } from '../enums/attributes-enum';
+/**
+ * Usage: <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
+ * Documentation: https://github.com/toolcool-org/toolcool-range-slider
+ */
 declare class RangeSlider extends HTMLElement {
     /**
      * the attributes list that are observed by web component;
      * if attribute changes ---> the web component will update accordingly
      */
     static get observedAttributes(): AttributesEnum[];
-    private _$box;
-    private _$slider;
-    private _$panelFill;
-    private _$pointer;
-    private _$pointer2;
-    private _$selectedPointer;
-    private _$valueLabel;
-    private _$value2Label;
-    private _$minLabel;
-    private _$maxLabel;
-    private _value;
-    private _value2;
-    private _data;
-    private _min;
-    private _max;
-    private _step;
-    private _round;
-    private _type;
-    private _theme;
-    private _rtl;
-    private _btt;
-    private _disabled;
-    private _keyboardDisabled;
-    private _pointer1Disabled;
-    private _pointer2Disabled;
-    private _storage;
-    private _storageKey;
-    private _storageInitialized;
-    private _valueLabel;
-    private _value2Label;
-    private _ariaLabel1;
-    private _ariaLabel2;
-    private _pointersOverlap;
-    private _pointersMinDistance;
-    private _pointersMaxDistance;
-    private _generateLabels;
-    private _animateOnClick;
-    private _animating;
-    private _sliderWidth;
-    private _sliderHeight;
-    private _sliderRadius;
-    private _sliderBg;
-    private _sliderBgHover;
-    private _sliderBgFill;
-    private _pointerWidth;
-    private _pointerHeight;
-    private _pointerRadius;
-    private _pointerShape;
-    private _pointerBg;
-    private _pointerBgHover;
-    private _pointerBgFocus;
-    private _pointerShadow;
-    private _pointerShadowHover;
-    private _pointerShadowFocus;
-    private _pointerBorder;
-    private _pointerBorderHover;
-    private _pointerBorderFocus;
-    constructor();
-    private valueUpdateDone;
-    set value(val: string | number);
-    get value(): string | number;
-    /**
-     * value1 is alias for value
-     */
-    set value1(val: string | number);
-    /**
-     * value1 is alias for value
-     */
-    get value1(): string | number;
-    set value2(val: string | number | undefined);
-    get value2(): string | number | undefined;
-    set data(val: (string | number)[] | undefined);
-    get data(): (string | number)[] | undefined;
-    set min(val: number | string);
-    get min(): number | string;
-    set max(val: number | string);
-    get max(): number | string;
-    set step(numOrFunction: number | ((value: number | string) => number) | undefined);
-    get step(): number | ((value: number | string) => number) | undefined;
-    set round(val: number);
-    get round(): number;
-    set type(val: TypeEnum | undefined);
-    get type(): TypeEnum | undefined;
-    set pointersOverlap(val: boolean);
-    get pointersOverlap(): boolean;
-    set pointersMinDistance(val: number);
-    get pointersMinDistance(): number;
-    set pointersMaxDistance(val: number);
-    get pointersMaxDistance(): number;
-    set theme(val: string | undefined);
-    get theme(): string | undefined;
-    set rtl(val: boolean);
-    get rtl(): boolean;
-    set btt(val: boolean);
-    get btt(): boolean;
-    set disabled(val: boolean);
+    slider: ISlider | undefined;
+    set step(_step: TStep);
+    get step(): TStep;
+    set disabled(_disabled: boolean);
     get disabled(): boolean;
-    set keyboardDisabled(val: boolean);
-    get keyboardDisabled(): boolean;
-    set pointer1Disabled(val: boolean);
-    get pointer1Disabled(): boolean;
-    set pointer2Disabled(val: boolean);
-    get pointer2Disabled(): boolean;
-    set animateOnClick(val: string | undefined);
-    get animateOnClick(): string | undefined;
-    set storage(val: StorageTypeEnum | undefined);
-    get storage(): StorageTypeEnum | undefined;
-    set storageKey(val: string);
-    get storageKey(): string;
-    get storageKey2(): string;
-    set valueLabel(val: string | undefined);
-    get valueLabel(): string | undefined;
-    set value2Label(val: string | undefined);
-    get value2Label(): string | undefined;
-    set ariaLabel1(val: string | undefined);
-    get ariaLabel1(): string | undefined;
-    set ariaLabel2(val: string | undefined);
-    get ariaLabel2(): string | undefined;
-    set generateLabels(val: boolean);
-    get generateLabels(): boolean;
-    set sliderWidth(val: string | undefined);
-    get sliderWidth(): string | undefined;
-    set sliderHeight(val: string | undefined);
-    get sliderHeight(): string | undefined;
-    set sliderRadius(val: string | undefined);
-    get sliderRadius(): string | undefined;
-    set sliderBg(val: string | undefined);
-    get sliderBg(): string | undefined;
-    set sliderBgHover(val: string | undefined);
-    get sliderBgHover(): string | undefined;
-    set sliderBgFill(val: string | undefined);
-    get sliderBgFill(): string | undefined;
-    set pointerWidth(val: string | undefined);
-    get pointerWidth(): string | undefined;
-    set pointerHeight(val: string | undefined);
-    get pointerHeight(): string | undefined;
-    set pointerRadius(val: string | undefined);
-    get pointerRadius(): string | undefined;
-    set pointerShape(val: string | undefined);
-    get pointerShape(): string | undefined;
-    set pointerBg(val: string | undefined);
-    get pointerBg(): string | undefined;
-    set pointerBgHover(val: string | undefined);
-    get pointerBgHover(): string | undefined;
-    set pointerBgFocus(val: string | undefined);
-    get pointerBgFocus(): string | undefined;
-    set pointerShadow(val: string | undefined);
-    get pointerShadow(): string | undefined;
-    set pointerShadowHover(val: string | undefined);
-    get pointerShadowHover(): string | undefined;
-    set pointerShadowFocus(val: string | undefined);
-    get pointerShadowFocus(): string | undefined;
-    set pointerBorder(val: string | undefined);
-    get pointerBorder(): string | undefined;
-    set pointerBorderHover(val: string | undefined);
-    get pointerBorderHover(): string | undefined;
-    set pointerBorderFocus(val: string | undefined);
-    get pointerBorderFocus(): string | undefined;
-    render(): void;
-    pointerClicked(evt: MouseEvent): void;
-    pointerMouseWheel(evt: WheelEvent): void;
-    onTransitionEnd(): void;
-    pointerKeyDown(evt: KeyboardEvent): void;
-    onMouseDown(evt: MouseEvent): void;
-    onMouseUp(evt: MouseEvent): void;
-    onValueChange(evt: MouseEvent | TouchEvent): void;
+    set value(_value: string | number | undefined);
+    get value(): string | number | undefined;
     /**
-     * this should be called if the second pointer was added dynamically via API
+     * value1 is alias for value
      */
-    initSecondPointer(): void;
+    set value1(val: string | number | undefined);
+    /**
+     * value1 is alias for value
+     */
+    get value1(): string | number | undefined;
+    set value2(_value2: string | number | undefined);
+    get value2(): string | number | undefined;
+    set data(_data: TData);
+    get data(): TData;
+    set min(_min: number | string | undefined | null);
+    get min(): number | string | undefined | null;
+    set max(_max: number | string | undefined | null);
+    get max(): number | string | undefined | null;
+    set round(_round: number);
+    get round(): number;
+    set type(_type: TypeEnum | undefined);
+    get type(): TypeEnum | undefined;
+    set pointersOverlap(_pointersOverlap: boolean);
+    get pointersOverlap(): boolean;
+    set pointersMinDistance(_pointersMinDistance: number);
+    get pointersMinDistance(): number;
+    set pointersMaxDistance(_pointersMaxDistance: number);
+    get pointersMaxDistance(): number;
+    set theme(_theme: string | null);
+    get theme(): string | null;
+    set rtl(_rtl: boolean);
+    get rtl(): boolean;
+    set btt(_btt: boolean);
+    get btt(): boolean;
+    set keyboardDisabled(_keyboardDisabled: boolean);
+    get keyboardDisabled(): boolean;
+    set animateOnClick(_animateOnClick: string | undefined);
+    get animateOnClick(): string | undefined;
+    set storage(_storage: StorageTypeEnum | undefined);
+    get storage(): StorageTypeEnum | undefined;
+    set storageKey(_storageKey: string);
+    get storageKey(): string;
+    get storageKey2(): string | undefined;
+    set generateLabels(_generateLabels: boolean);
+    get generateLabels(): boolean;
+    set sliderWidth(_sliderWidth: string | undefined);
+    get sliderWidth(): string | undefined;
+    set sliderHeight(_sliderHeight: string | undefined);
+    get sliderHeight(): string | undefined;
+    set sliderRadius(_sliderRadius: string | undefined);
+    get sliderRadius(): string | undefined;
+    set sliderBg(_sliderBg: string | undefined);
+    get sliderBg(): string | undefined;
+    set sliderBgHover(_sliderBgHover: string | undefined);
+    get sliderBgHover(): string | undefined;
+    set sliderBgFill(_sliderBgFill: string | undefined);
+    get sliderBgFill(): string | undefined;
+    set pointerWidth(_pointerWidth: string | undefined);
+    get pointerWidth(): string | undefined;
+    set pointerHeight(_pointerHeight: string | undefined);
+    get pointerHeight(): string | undefined;
+    set pointerRadius(_pointerRadius: string | undefined);
+    get pointerRadius(): string | undefined;
+    set pointerShape(_pointerShape: string | null);
+    get pointerShape(): string | null;
+    set pointerBg(_pointerBg: string | undefined);
+    get pointerBg(): string | undefined;
+    set pointerBgHover(_pointerBgHover: string | undefined);
+    get pointerBgHover(): string | undefined;
+    set pointerBgFocus(_pointerBgFocus: string | undefined);
+    get pointerBgFocus(): string | undefined;
+    set pointerShadow(_pointerShadow: string | undefined);
+    get pointerShadow(): string | undefined;
+    set pointerShadowHover(_pointerShadowHover: string | undefined);
+    get pointerShadowHover(): string | undefined;
+    set pointerShadowFocus(_pointerShadowFocus: string | undefined);
+    get pointerShadowFocus(): string | undefined;
+    set pointerBorder(_pointerBorder: string | undefined);
+    get pointerBorder(): string | undefined;
+    set pointerBorderHover(_pointerBorderHover: string | undefined);
+    get pointerBorderHover(): string | undefined;
+    set pointerBorderFocus(_pointerBorderFocus: string | undefined);
+    get pointerBorderFocus(): string | undefined;
+    set pointer1Disabled(_pointer1Disabled: boolean);
+    get pointer1Disabled(): boolean;
+    set pointer2Disabled(_pointer2Disabled: boolean);
+    get pointer2Disabled(): boolean;
+    set valueLabel(_valueLabel: string | undefined);
+    get valueLabel(): string | undefined;
+    set value2Label(_value2Label: string | undefined);
+    get value2Label(): string | undefined;
+    set ariaLabel1(_ariaLabel1: string | undefined);
+    get ariaLabel1(): string | undefined;
+    set ariaLabel2(_ariaLabel2: string | undefined);
+    get ariaLabel2(): string | undefined;
+    constructor();
     /**
      * when the custom element connected to DOM
      */
@@ -185,10 +122,7 @@ declare class RangeSlider extends HTMLElement {
      * when the custom element disconnected from DOM
      */
     disconnectedCallback(): void;
-    /**
-     * when attributes change
-     */
-    attributeChangedCallback(attrName: string): void;
+    attributeChangedCallback(attrName: string, oldValue: string, newValue: string): void;
 }
 export default RangeSlider;
 //# sourceMappingURL=range-slider.d.ts.map
