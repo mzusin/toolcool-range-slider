@@ -953,7 +953,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     },
 
     set type(_type) {
-      type = _type;
+      setType(_type);
     },
 
     get rightToLeft() {
