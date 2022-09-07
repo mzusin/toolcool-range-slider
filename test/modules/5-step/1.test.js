@@ -1,5 +1,13 @@
-
-QUnit.module('Range Slider Step', () => {
+QUnit.module('Step', (hooks) => {
+  initFixtures(hooks, `
+     <toolcool-range-slider id="slider-1"></toolcool-range-slider>
+     <toolcool-range-slider id="slider-2" value="50" min="1" max="99"></toolcool-range-slider>
+     <toolcool-range-slider id="slider-3" value="string"></toolcool-range-slider>
+     <toolcool-range-slider step="1" id="slider-16"></toolcool-range-slider>
+     <toolcool-range-slider step="5" id="slider-17"></toolcool-range-slider>
+     <toolcool-range-slider step="fake" id="slider-18"></toolcool-range-slider>
+     <toolcool-range-slider step="150" min="0" max="100" id="slider-19"></toolcool-range-slider>
+  `);
 
   QUnit.test('default step should be undefined', (assert) => {
     const $slider = document.querySelector('#slider-1');

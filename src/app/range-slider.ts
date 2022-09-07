@@ -9,7 +9,6 @@ import { TypeEnum } from '../enums/type-enum';
 import { StorageTypeEnum } from '../enums/storage-type-enum';
 import { STORAGE_KEY } from '../dal/storage-provider';
 import { CSSVariables } from '../enums/css-vars-enum';
-import { AttributesEnum } from '../enums/attributes-enum';
 import { createPointer2 } from '../domain/common-provider';
 
 /**
@@ -235,7 +234,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get sliderWidth() {
-    return this.slider?.styles?.getStyle(AttributesEnum.SliderWidth);
+    return this.slider?.styles?.getStyle(CSSVariables.SliderWidth);
   }
 
   public set sliderHeight(_sliderHeight: string | undefined) {
@@ -244,7 +243,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get sliderHeight() {
-    return this.slider?.styles?.getStyle(AttributesEnum.SliderHeight);
+    return this.slider?.styles?.getStyle(CSSVariables.SliderHeight);
   }
 
   public set sliderRadius(_sliderRadius: string | undefined) {
@@ -253,7 +252,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get sliderRadius() {
-    return this.slider?.styles?.getStyle(AttributesEnum.SliderRadius);
+    return this.slider?.styles?.getStyle(CSSVariables.SliderRadius);
   }
 
   public set sliderBg(_sliderBg: string | undefined) {
@@ -262,7 +261,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get sliderBg() {
-    return this.slider?.styles?.getStyle(AttributesEnum.SliderBg);
+    return this.slider?.styles?.getStyle(CSSVariables.SliderBg);
   }
 
   public set sliderBgHover(_sliderBgHover: string | undefined) {
@@ -271,7 +270,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get sliderBgHover() {
-    return this.slider?.styles?.getStyle(AttributesEnum.SliderBgHover);
+    return this.slider?.styles?.getStyle(CSSVariables.SliderBgHover);
   }
 
   public set sliderBgFill(_sliderBgFill: string | undefined) {
@@ -280,7 +279,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get sliderBgFill() {
-    return this.slider?.styles?.getStyle(AttributesEnum.SliderBgFill);
+    return this.slider?.styles?.getStyle(CSSVariables.SliderBgFill);
   }
 
   public set pointerWidth(_pointerWidth: string | undefined) {
@@ -289,7 +288,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerWidth() {
-    return this.slider?.styles?.getStyle(AttributesEnum.PointerWidth);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerWidth);
   }
 
   public set pointerHeight(_pointerHeight: string | undefined) {
@@ -298,7 +297,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerHeight() {
-    return this.slider?.styles?.getStyle(AttributesEnum.PointerHeight);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerHeight);
   }
 
   public set pointerRadius(_pointerRadius: string | undefined) {
@@ -307,7 +306,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerRadius() {
-    return this.slider?.styles?.getStyle(AttributesEnum.PointerRadius);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerRadius);
   }
 
   public set pointerShape(_pointerShape: string | null) {
@@ -325,7 +324,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerBg() {
-    return this.slider?.styles?.getStyle(AttributesEnum.PointerBg);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBg);
   }
 
   public set pointerBgHover(_pointerBgHover: string | undefined) {
@@ -334,7 +333,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerBgHover() {
-    return this.slider?.styles?.getStyle(AttributesEnum.PointerBgHover);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBgHover);
   }
 
   public set pointerBgFocus(_pointerBgFocus: string | undefined) {
@@ -343,7 +342,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerBgFocus() {
-    return this.slider?.styles?.getStyle(AttributesEnum.PointerBgFocus);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBgFocus);
   }
 
   public set pointerShadow(_pointerShadow: string | undefined) {
@@ -352,7 +351,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerShadow() {
-    return this.slider?.styles?.getStyle(AttributesEnum.PointerShadow);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerShadow);
   }
 
   public set pointerShadowHover(_pointerShadowHover: string | undefined) {
@@ -361,7 +360,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerShadowHover() {
-    return this.slider?.styles?.getStyle(AttributesEnum.PointerShadowHover);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerShadowHover);
   }
 
   public set pointerShadowFocus(_pointerShadowFocus: string | undefined) {
@@ -370,7 +369,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerShadowFocus() {
-    return this.slider?.styles?.getStyle(AttributesEnum.PointerShadowFocus);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerShadowFocus);
   }
 
   public set pointerBorder(_pointerBorder: string | undefined) {
@@ -379,7 +378,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerBorder() {
-    return this.slider?.styles?.getStyle(AttributesEnum.PointerBorder);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBorder);
   }
 
   public set pointerBorderHover(_pointerBorderHover: string | undefined) {
@@ -388,7 +387,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerBorderHover() {
-    return this.slider?.styles?.getStyle(AttributesEnum.PointerBorderHover);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBorderHover);
   }
 
   public set pointerBorderFocus(_pointerBorderFocus: string | undefined) {
@@ -397,7 +396,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerBorderFocus() {
-    return this.slider?.styles?.getStyle(AttributesEnum.PointerBorderFocus);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBorderFocus);
   }
 
   public set pointer1Disabled(_pointer1Disabled: boolean) {
