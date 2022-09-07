@@ -166,6 +166,7 @@ export const Pointer = ($component: HTMLElement, $pointer: HTMLElement, index: n
   const destroy = () => {
     $pointer.removeEventListener('keydown', pointerKeyDown);
     $pointer.removeEventListener('click', pointerClicked);
+    $pointer.remove();
   };
 
   return {

@@ -10,6 +10,7 @@ import { StorageTypeEnum } from '../enums/storage-type-enum';
 import { STORAGE_KEY } from '../dal/storage-provider';
 import { CSSVariables } from '../enums/css-vars-enum';
 import { AttributesEnum } from '../enums/attributes-enum';
+import { createPointer2 } from '../domain/common-provider';
 
 /**
  * Usage: <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
@@ -478,9 +479,7 @@ class RangeSlider extends HTMLElement {
     // init second pointer
     let pointer2: IPointer | null = null;
     if(this.getAttribute('value2') !== null){
-      const $pointer2 = $pointer1.cloneNode(true) as HTMLElement;
-      $pointer1.after($pointer2);
-      pointer2 = Pointer(this, $pointer2, 2);
+      pointer2 = createPointer2(this, $pointer1);
     }
 
     // init the slider

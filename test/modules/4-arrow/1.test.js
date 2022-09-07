@@ -1,5 +1,9 @@
-
-QUnit.module('Range Slider Keyboard Arrows', () => {
+QUnit.module('Keyboard Arrows', (hooks) => {
+  initFixtures(hooks, `
+     <toolcool-range-slider id="slider-1"></toolcool-range-slider>
+     <toolcool-range-slider id="slider-2" value="50" min="1" max="99"></toolcool-range-slider>
+     <toolcool-range-slider min="-50" max="50" value="0" id="slider-15"></toolcool-range-slider>
+  `);
 
   QUnit.test('provided value 50 ---> pointer left should be 50%', (assert) => {
     const $slider = document.querySelector('#slider-2');
@@ -259,61 +263,6 @@ QUnit.module('Range Slider Keyboard Arrows', () => {
       bubbles: true,
       cancelable: true,
       key: 'ArrowUp',
-    }));
-
-    const left = $pointer.style.left;
-    assert.equal(left, '0%');
-  });
-
-});
-
-QUnit.module('Range Slider Keyboard Arrows - Data', () => {
-
-  QUnit.test('data="0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100", provided value 50 ---> pointer left should be 50%', (assert) => {
-    const $slider = document.querySelector('#slider-74');
-    const $pointer = $slider.shadowRoot.querySelector('.pointer');
-    assert.equal($pointer.style.left, '50%');
-  });
-
-  QUnit.test('data="0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100", pointer arrow right ---> left pointer position should be 60%', (assert) => {
-    const $slider = document.querySelector('#slider-74');
-    const $pointer = $slider.shadowRoot.querySelector('.pointer');
-
-    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-      view: window,
-      bubbles: true,
-      cancelable: true,
-      key: 'ArrowRight',
-    }));
-
-    const left = $pointer.style.left;
-    assert.equal(left, '60%');
-  });
-
-  QUnit.test('data="0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100", pointer arrow left ---> left pointer position should be 40%', (assert) => {
-    const $slider = document.querySelector('#slider-74');
-    const $pointer = $slider.shadowRoot.querySelector('.pointer');
-
-    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-      view: window,
-      bubbles: true,
-      cancelable: true,
-      key: 'ArrowLeft',
-    }));
-
-    const left = $pointer.style.left;
-    assert.equal(left, '40%');
-  });
-
-  QUnit.test('data="0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100", value="10", pointer arrow left ---> left pointer position should be 0%', (assert) => {
-    const $slider = document.querySelector('#slider-75');
-    const $pointer = $slider.shadowRoot.querySelector('.pointer');
-
-    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
-      view: window,
-      bubbles: true,
-      cancelable: true,
-      key: 'ArrowLeft',
     }));
 
     const left = $pointer.style.left;

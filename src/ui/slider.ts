@@ -12,6 +12,7 @@ import { StorageTypeEnum } from '../enums/storage-type-enum';
 import { getStorageKey2, restoreFromStorage, saveToStorage, STORAGE_KEY } from '../dal/storage-provider';
 import { CSSVariables } from '../enums/css-vars-enum';
 import { CssClasses } from '../enums/css-classes-enum';
+import { createPointer2 } from '../domain/common-provider';
 
 export interface ISlider {
   readonly pointer1: IPointer;
@@ -558,6 +559,18 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     let val: number;
 
+    // handle the case when we set value2 and pointer2 doesn't exist,
+    // or the case when we remove the existing second pointer
+    if(index === 2){
+      if(_val !== undefined && _val !== null && !pointer2){
+        addSecondPointer();
+      }
+
+      if((_val === undefined || _val === null) && !!pointer2){
+        removeSecondPointer();
+      }
+    }
+
     if(data !== undefined){
       val = (_val === undefined || _val === null) ? 0 : findValueIndexInData(_val, data);
       if(val === -1){
@@ -755,6 +768,27 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   };
 
   // --------------------------------------------
+
+  const addSecondPointer = () => {
+    pointer2 = createPointer2($component, pointer1.$pointer);
+    pointer2?.setCallbacks(arrowLeft, arrowRight, arrowUp, arrowDown);
+    pointer2.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer2Disabled));
+
+    const ariaLabel2 = $component.getAttribute(AttributesEnum.AriaLabel2);
+    if(ariaLabel2){
+      pointer2.setAttr('aria-label', ariaLabel2);
+    }
+
+    setGenerateLabels(false);
+    setGenerateLabels(getBoolean($component.getAttribute(AttributesEnum.GenerateLabels)));
+  };
+
+  const removeSecondPointer = () => {
+    pointer2?.destroy();
+    pointer2 = null;
+    setGenerateLabels(false);
+    setGenerateLabels(getBoolean($component.getAttribute(AttributesEnum.GenerateLabels)));
+  };
 
   // initialization ....
   (() => {
