@@ -119,7 +119,6 @@ QUnit.module('Range Slider Value & Pointer', () => {
         assert.strictEqual($slider.min, 50);
     });
 
-    //   <toolcool-range-slider min="50" max="100" id="slider-12"></toolcool-range-slider>
     QUnit.test('max should be 100', (assert) => {
         const $slider = document.querySelector('#slider-12');
         assert.strictEqual($slider.max, 100);

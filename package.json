@@ -33,6 +33,7 @@
     "url": "https://github.com/toolcool-org/toolcool-range-slider"
   },
   "devDependencies": {
+    "@open-wc/testing": "^3.0.0-next.5",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "autoprefixer": "^10.4.7",
