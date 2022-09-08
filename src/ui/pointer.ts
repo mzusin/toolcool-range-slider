@@ -38,7 +38,6 @@ export const Pointer = ($component: HTMLElement, $pointer: HTMLElement, index: n
 
   // -------------- APIs -------------------------
   const updatePosition = (_percent: number, _leftWall: number | undefined, _rightWall: number | undefined, _type: TypeEnum, _rightToLeft: boolean, _bottomToTop: boolean) => {
-
     if(_rightWall !== undefined && _percent > _rightWall){
       _percent = _rightWall;
     }

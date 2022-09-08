@@ -24,8 +24,8 @@ export interface ISlider {
   pointersMinDistance: number;
   pointersMaxDistance: number;
 
-  readonly min: number;
-  readonly max: number;
+  readonly min: number | string;
+  readonly max: number | string;
   readonly step: TStep;
   readonly data: TData;
 
@@ -371,38 +371,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
   // -------------- Helpers ------------------------
 
-  const getPointer1LeftWall = () => {
-    if(pointersOverlap || !pointer2) return undefined;
-    return Math.max(0, pointer2.percent - pointersMaxDistance);
-  };
-
-  const getPointer1RightWall = () => {
-    if(pointersOverlap || !pointer2) return undefined;
-    return Math.max(0, pointer2.percent - pointersMinDistance);
-  };
-
-  const getPointer2LeftWall = () => {
-    if(pointersOverlap) return undefined;
-    return Math.min(pointer1.percent + pointersMinDistance, 100);
-  };
-
-  const getPointer2RightWall = () => {
-    if(pointersOverlap) return undefined;
-    return Math.min(pointer1.percent + pointersMaxDistance, 100);
-  };
-
-  const getRelativeStep = (_percent: number) => {
-
-    // round percent to step
-    let _step = typeof step === 'function' ? step(convertRange(0, 100, min, max, _percent)) : step;
-    if(_step !== undefined){
-      _step = convertRange(min, max, 0, 100, _step as number);
-      return _step;
-    }
-
-    return undefined;
-  };
-
   const goPrev = (index: number, _percent: number | undefined) => {
     if(_percent === undefined) return;
 
@@ -436,6 +404,102 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     setPositions(index, _percent);
   };
+
+  const addSecondPointer = () => {
+    pointer2 = createPointer2($component, pointer1.$pointer);
+    pointer2?.setCallbacks(arrowLeft, arrowRight, arrowUp, arrowDown);
+    pointer2.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer2Disabled));
+
+    const ariaLabel2 = $component.getAttribute(AttributesEnum.AriaLabel2);
+    if(ariaLabel2){
+      pointer2.setAttr('aria-label', ariaLabel2);
+    }
+
+    setGenerateLabels(false);
+    setGenerateLabels(getBoolean($component.getAttribute(AttributesEnum.GenerateLabels)));
+  };
+
+  const removeSecondPointer = () => {
+    pointer2?.destroy();
+    pointer2 = null;
+    setGenerateLabels(false);
+    setGenerateLabels(getBoolean($component.getAttribute(AttributesEnum.GenerateLabels)));
+  };
+
+  const updateLabels = () => {
+    labels?.updateValues(getTextValue(pointer1.percent), getTextValue(pointer2?.percent), getTextMinMax(min), getTextMinMax(max));
+  };
+
+  // -------------- Getters --------------------
+
+  const getPointer1LeftWall = () => {
+    if(pointersOverlap || !pointer2) return undefined;
+    return Math.max(0, pointer2.percent - pointersMaxDistance);
+  };
+
+  const getPointer1RightWall = () => {
+    if(pointersOverlap || !pointer2) return undefined;
+    return Math.max(0, pointer2.percent - pointersMinDistance);
+  };
+
+  const getPointer2LeftWall = () => {
+    if(pointersOverlap) return undefined;
+    return Math.min(pointer1.percent + pointersMinDistance, 100);
+  };
+
+  const getPointer2RightWall = () => {
+    if(pointersOverlap) return undefined;
+    return Math.min(pointer1.percent + pointersMaxDistance, 100);
+  };
+
+  const getRelativeStep = (_percent: number) => {
+
+    // round percent to step
+    let _step = typeof step === 'function' ? step(convertRange(0, 100, min, max, _percent)) : step;
+    if(_step !== undefined){
+      _step = convertRange(min, max, 0, 100, _step as number);
+      return _step;
+    }
+
+    return undefined;
+  };
+
+  const getTextValue = (_percent: number | undefined) => {
+    if(_percent === undefined) return undefined;
+
+    const val = convertRange(0, 100, min, max, _percent);
+
+    if(data !== undefined){
+      return data[val];
+    }
+
+    return setDecimalPlaces(val, round);
+  };
+
+  const getMin = () => {
+
+    if(data !== undefined){
+      return data[min];
+    }
+
+    return min;
+  };
+
+  const getMax = () => {
+
+    if(data !== undefined){
+      return data[max];
+    }
+
+    return max;
+  };
+
+  const getTextMinMax = (minOrMax: number) => {
+    if(data !== undefined) return data[minOrMax];
+    return minOrMax;
+  };
+
+  // -------------- Setters --------------------
 
   const setPositions = (index: number, _percent: number | undefined) => {
 
@@ -480,50 +544,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     sendChangeEvent($component, getTextValue(pointer1.percent), getTextValue(pointer2?.percent));
   };
-
-  const getTextValue = (_percent: number | undefined) => {
-    if(_percent === undefined) return undefined;
-
-    const val = convertRange(0, 100, min, max, _percent);
-
-    if(data !== undefined){
-        return data[val];
-    }
-
-    return setDecimalPlaces(val, round);
-  };
-
-  const getTextMinMax = (minOrMax: number) => {
-    if(data !== undefined) return data[minOrMax];
-    return minOrMax;
-  };
-
-  const addSecondPointer = () => {
-    pointer2 = createPointer2($component, pointer1.$pointer);
-    pointer2?.setCallbacks(arrowLeft, arrowRight, arrowUp, arrowDown);
-    pointer2.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer2Disabled));
-
-    const ariaLabel2 = $component.getAttribute(AttributesEnum.AriaLabel2);
-    if(ariaLabel2){
-      pointer2.setAttr('aria-label', ariaLabel2);
-    }
-
-    setGenerateLabels(false);
-    setGenerateLabels(getBoolean($component.getAttribute(AttributesEnum.GenerateLabels)));
-  };
-
-  const removeSecondPointer = () => {
-    pointer2?.destroy();
-    pointer2 = null;
-    setGenerateLabels(false);
-    setGenerateLabels(getBoolean($component.getAttribute(AttributesEnum.GenerateLabels)));
-  };
-
-  const updateLabels = () => {
-    labels?.updateValues(getTextValue(pointer1.percent), getTextValue(pointer2?.percent), getTextMinMax(min), getTextMinMax(max));
-  };
-
-  // -------------- API ------------------------
 
   /**
    * on component init, min and max should be initialized together
@@ -576,7 +596,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     // init initial values with pointers overlap ----------
     pointersOverlap = true;
-    const val1str = _value1 !== null ? _value1 : _value;
+    let val1str = _value1 !== null ? _value1 : _value;
+
     setValue(val1str, 1);
     setValue(_value2, 2);
     pointersOverlap = false;
@@ -603,6 +624,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     }
 
     if(data !== undefined){
+
       val = (_val === undefined || _val === null) ? 0 : findValueIndexInData(_val, data);
       if(val === -1){
         val = 0;
@@ -622,6 +644,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     // scale a range [min,max] to [a,b]
     const percent = convertRange(min, max, 0, 100, val);
+
     setPositions(index, percent);
   };
 
@@ -683,7 +706,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
       return;
     }
 
-    data = isNumber(_data) ? [_data as number] : parseData(_data as string);
+    data = parseData(_data as string);
     if(data === undefined || data.length <= 0){
       data = undefined;
       return;
@@ -910,11 +933,11 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     },
 
     get min() {
-      return min;
+      return getMin();
     },
 
     get max() {
-      return max;
+      return getMax();
     },
 
     get step() {

@@ -3,6 +3,8 @@ import { isNumber } from '../domain/math-provider';
 export const parseData = (dataString: string | undefined | null): (string | number)[] | undefined => {
   if (dataString === undefined || dataString === null) return undefined;
 
+  if(Array.isArray(dataString)) return dataString as (string | number)[];
+
   const result = dataString.trim();
   if (result === '') return undefined;
 

@@ -57,7 +57,7 @@
 
     <div class="wrapper">
 
-        <div class="row">
+ <!--       <div class="row">
             <label>a</label>
             <toolcool-range-slider
               data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"
@@ -105,9 +105,15 @@
             <label>8192</label>
             <div class="value value-3"></div>
         </div>
+-->
+      <toolcool-range-slider data="1" id="slider-59"></toolcool-range-slider>
 
     </div>
 
     <script src="js/toolcool-range-slider.min.js"></script>
+    <script>
+        const $slider = document.querySelector('#slider-59');
+        console.log($slider.value)
+    </script>
 </body>
 </html>
