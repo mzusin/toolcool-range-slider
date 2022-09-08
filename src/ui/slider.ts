@@ -438,23 +438,27 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   // -------------- Getters --------------------
 
   const getPointer1LeftWall = () => {
-    if(pointersOverlap || !pointer2) return undefined;
-    return Math.max(0, pointer2.percent - pointersMaxDistance);
+    if(pointersOverlap || !pointer2 || max === min) return undefined;
+    const converted = pointersMaxDistance * 100 / (max - min);
+    return Math.max(0, pointer2.percent - converted);
   };
 
   const getPointer1RightWall = () => {
-    if(pointersOverlap || !pointer2) return undefined;
-    return Math.max(0, pointer2.percent - pointersMinDistance);
+    if(pointersOverlap || !pointer2 || max === min) return undefined;
+    const converted = 100 * pointersMinDistance / (max - min);
+    return Math.max(0, pointer2.percent - converted);
   };
 
   const getPointer2LeftWall = () => {
-    if(pointersOverlap) return undefined;
-    return Math.min(pointer1.percent + pointersMinDistance, 100);
+    if(pointersOverlap || max === min) return undefined;
+    const converted = pointersMinDistance * 100 / (max - min);
+    return Math.min(pointer1.percent + converted, 100);
   };
 
   const getPointer2RightWall = () => {
-    if(pointersOverlap) return undefined;
-    return Math.min(pointer1.percent + pointersMaxDistance, 100);
+    if(pointersOverlap || max === min) return undefined;
+    const converted = pointersMaxDistance * 100 / (max - min);
+    return Math.min(pointer1.percent + converted, 100);
   };
 
   const getRelativeStep = (_percent: number) => {

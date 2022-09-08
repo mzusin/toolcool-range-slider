@@ -83,6 +83,7 @@ QUnit.module('Pointers Min Distance', (hooks) => {
     assert.equal($slider.value1, 'h');
   });
 
+  // <toolcool-range-slider id="slider-125" data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z" value1="i" value2="j" pointers-max-distance="2"></toolcool-range-slider>
   QUnit.test('string data, max distance = 2 change value2 to z ---> it should be k', (assert) => {
     const $slider = document.querySelector('#slider-125');
     $slider.value2 = 'z';
