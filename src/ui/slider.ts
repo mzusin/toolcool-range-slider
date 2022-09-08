@@ -37,6 +37,8 @@ export interface ISlider {
   generateLabels: boolean;
   round: number;
   animateOnClick: string | undefined;
+  ariaLabel1: string | undefined;
+  ariaLabel2: string | undefined;
 
   storage: StorageTypeEnum | undefined;
   storageKey: string;
@@ -84,6 +86,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   let storage: StorageTypeEnum | undefined = undefined;
   let storageKey = STORAGE_KEY;
   let storageInitialized = false;
+
+  let ariaLabel1: string | undefined = undefined;
+  let ariaLabel2: string | undefined = undefined;
 
   // -------------- EVENTS --------------------
 
@@ -412,7 +417,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     const ariaLabel2 = $component.getAttribute(AttributesEnum.AriaLabel2);
     if(ariaLabel2){
-      pointer2.setAttr('aria-label', ariaLabel2);
+      setAriaLabel(ariaLabel2, 2);
     }
 
     setGenerateLabels(false);
@@ -455,7 +460,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   const getRelativeStep = (_percent: number) => {
 
     // round percent to step
-    let _step = typeof step === 'function' ? step(convertRange(0, 100, min, max, _percent)) : step;
+    let _step = typeof step === 'function' ? step(convertRange(0, 100, min, max, _percent), _percent) : step;
     if(_step !== undefined){
       _step = convertRange(min, max, 0, 100, _step as number);
       return _step;
@@ -497,6 +502,22 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   const getTextMinMax = (minOrMax: number) => {
     if(data !== undefined) return data[minOrMax];
     return minOrMax;
+  };
+
+  const getPointerMin = (index: number) => {
+    if(index < 2 || pointersOverlap) return getMin();
+    return getTextValue(pointer1.percent) ?? '';
+  };
+
+  const getPointerMax = (index: number) => {
+    if(index >= 2 || pointersOverlap) return getMax();
+
+    if(pointer2){
+      return getTextValue(pointer2?.percent) ?? '';
+    }
+    else{
+      return getMax();
+    }
   };
 
   // -------------- Setters --------------------
@@ -542,6 +563,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
       }
     }
 
+    setAriaMinMax();
+
     sendChangeEvent($component, getTextValue(pointer1.percent), getTextValue(pointer2?.percent));
   };
 
@@ -559,15 +582,24 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     setMax(max);
   };
 
+  const setAriaMinMax = () => {
+    if(pointer1){
+      pointer1.setAttr('aria-valuemin', (getPointerMin(1) ?? '').toString());
+      pointer1.setAttr('aria-valuemax', (getPointerMax(1) ?? '').toString());
+    }
+
+    if(pointer2){
+      pointer2.setAttr('aria-valuemin', (getPointerMin(2) ?? '').toString());
+      pointer2.setAttr('aria-valuemax', (getPointerMax(2) ?? '').toString());
+    }
+  };
+
   const setMin = (_min: number | string | undefined | null) => {
     min = getNumber(_min, MIN_DEFAULT);
 
     if(min > max){
       max = min + MAX_DEFAULT;
     }
-
-    pointer1.setAttr('aria-valuemin', min.toString());
-    pointer2?.setAttr('aria-valuemin', min.toString());
 
     setPositions(1, pointer1.percent);
     setPositions(2, pointer2?.percent);
@@ -580,9 +612,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     if(max < min){
       max = min + MAX_DEFAULT;
     }
-
-    pointer1.setAttr('aria-valuemax', max.toString());
-    pointer2?.setAttr('aria-valuemax', max.toString());
 
     setPositions(1, pointer1.percent);
     setPositions(2, pointer2?.percent);
@@ -678,10 +707,16 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   };
 
   const setPointersMinDistance = (_pointersMinDistance: number) => {
+    if(!isNumber(_pointersMinDistance) || _pointersMinDistance < 0){
+      _pointersMinDistance = 0;
+    }
     pointersMinDistance = _pointersMinDistance;
   };
 
   const setPointersMaxDistance = (_pointersMaxDistance: number) => {
+    if(!isNumber(_pointersMaxDistance) || _pointersMaxDistance < 0){
+      _pointersMaxDistance = Infinity;
+    }
     pointersMaxDistance = _pointersMaxDistance;
   };
 
@@ -805,6 +840,11 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
   const setRound = (_round: number) => {
     round = getNumber(_round, ROUND_DEFAULT);
+
+    if(round < 0){
+      round = ROUND_DEFAULT;
+    }
+
     updateLabels();
   };
 
@@ -818,6 +858,18 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
       animateOnClick = _animateOnClick;
       $slider.style.setProperty(CSSVariables.AnimateOnClick, animateOnClick);
       $slider.classList.add(CssClasses.AnimateOnClick);
+    }
+  };
+
+  const setAriaLabel = (_ariaLabel: string | undefined, index: number) => {
+
+    if(index < 2){
+      ariaLabel1 = _ariaLabel;
+      pointer1.setAttr('aria-label', _ariaLabel);
+    }
+    else{
+      ariaLabel2 = _ariaLabel;
+      pointer2?.setAttr('aria-label', _ariaLabel);
     }
   };
 
@@ -875,12 +927,12 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     const ariaLabel1 = $component.getAttribute(AttributesEnum.AriaLabel1);
     if(ariaLabel1 !== null){
-      pointer1.setAttr('aria-label', ariaLabel1);
+      setAriaLabel(ariaLabel1, 1);
     }
 
     const ariaLabel2 = $component.getAttribute(AttributesEnum.AriaLabel2);
     if(ariaLabel2 !== null && pointer2){
-      pointer2.setAttr('aria-label', ariaLabel2);
+      setAriaLabel(ariaLabel2, 2);
     }
 
     // init styles ---------
@@ -1054,6 +1106,22 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     set keyboardDisabled(_keyboardDisabled){
       keyboardDisabled = _keyboardDisabled;
+    },
+
+    get ariaLabel1(){
+      return ariaLabel1;
+    },
+
+    set ariaLabel1(_ariaLabel1){
+      setAriaLabel(_ariaLabel1, 1);
+    },
+
+    get ariaLabel2(){
+      return ariaLabel2;
+    },
+
+    set ariaLabel2(_ariaLabel2){
+      setAriaLabel(_ariaLabel2, 2);
     },
 
     setMin,

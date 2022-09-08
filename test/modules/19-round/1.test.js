@@ -1,5 +1,12 @@
-
-QUnit.module('Range Slider Round', () => {
+QUnit.module('Round', (hooks) => {
+  initFixtures(hooks, `
+      <toolcool-range-slider id="slider-1"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-2" value="50" min="1" max="99"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-82" round="4"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-83" round="0"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-84" round="test"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-85" round="-1"></toolcool-range-slider>
+  `);
 
   QUnit.test('default round should be 2', (assert) => {
     const $slider = document.querySelector('#slider-1');

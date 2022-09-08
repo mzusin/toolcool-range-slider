@@ -1,61 +1,13 @@
-
-QUnit.module('Range Slider Pointers Min Distance', () => {
-
-  QUnit.test('default pointers min distance value should be 0', (assert) => {
-    const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.pointersMinDistance, 0);
-  });
-
-  QUnit.test('provided pointers min distance value should be 1', (assert) => {
-    const $slider = document.querySelector('#slider-115');
-    assert.equal($slider.pointersMinDistance, 1);
-  });
-
-  QUnit.test('if min distance value < 0 it should be 0', (assert) => {
-    const $slider = document.querySelector('#slider-117');
-    assert.equal($slider.pointersMinDistance, 0);
-  });
-
-  QUnit.test('change pointers min distance value via API to 2', (assert) => {
-    const $slider = document.querySelector('#slider-1');
-    $slider.pointersMinDistance = 2;
-    assert.equal($slider.pointersMinDistance, 2);
-  });
-
-  QUnit.test('change pointers min distance value via attribute to 3', (assert) => {
-    const $slider = document.querySelector('#slider-1');
-    $slider.setAttribute('pointers-min-distance', '3');
-    assert.equal($slider.pointersMinDistance, 3);
-  });
-
-  QUnit.test('change pointers min distance value via API to -1 ---> it should be 0', (assert) => {
-    const $slider = document.querySelector('#slider-115');
-    $slider.pointersMinDistance = -1;
-    assert.equal($slider.pointersMinDistance, 0);
-  });
-
-  QUnit.test('change pointers min distance value via attribute to 10', (assert) => {
-    const $slider = document.querySelector('#slider-115');
-    $slider.setAttribute('pointers-min-distance', '10');
-    assert.equal($slider.pointersMinDistance, 10);
-  });
-
-  // <toolcool-range-slider id="slider-121" value1="50" value2="60" pointers-min-distance="10"></toolcool-range-slider>
-  QUnit.test('min distance = 10, value1=50, value2=60 ---> change value1 to be 55, it still should be 50', (assert) => {
-    const $slider = document.querySelector('#slider-121');
-    $slider.value1 = 55;
-    assert.equal($slider.value1, 50);
-  });
-
-  QUnit.test('min distance = 10, value1=50, value2=60 ---> change value2 to be 55, it still should be 60', (assert) => {
-    const $slider = document.querySelector('#slider-121');
-    $slider.value2 = 55;
-    assert.equal($slider.value2, 60);
-  });
-
-});
-
-QUnit.module('Range Slider Pointers Max Distance', () => {
+QUnit.module('Pointers Min Distance', (hooks) => {
+  initFixtures(hooks, `
+      <toolcool-range-slider id="slider-1"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-2" value="50" min="1" max="99"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-118" value1="50" value2="55" min="-100" max="200" pointers-max-distance="1"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-120" value1="50" value2="55" min="-100" max="200" pointers-max-distance="test"></toolcool-range-slider><toolcool-range-slider id="slider-122" value1="50" value2="60" pointers-max-distance="50"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-123" value1="40" value2="50" pointers-max-distance="10"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-124" data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z" value1="d" value2="s" pointers-min-distance="1"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-125" data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z" value1="i" value2="j" pointers-max-distance="2"></toolcool-range-slider>
+  `);
 
   QUnit.test('default pointers max distance value should be Infinity', (assert) => {
     const $slider = document.querySelector('#slider-1');
@@ -148,5 +100,4 @@ QUnit.module('Range Slider Pointers Max Distance', () => {
     $slider.pointersMaxDistance = 'test';
     assert.strictEqual($slider.pointersMaxDistance, Infinity);
   });
-
 });

@@ -916,8 +916,8 @@ The range slider supports the non-linear step function. For example, the slider 
 <script src="toolcool-range-slider.min.js"></script>
 <script>
     const $slider = document.getElementById('slider-1');
-    $slider.step = (value) => {
-        return value < 50 ? 5 : 10;
+    $slider.step = (value, percent) => {
+        return percent < 50 ? 5 : 10;
     };
 </script>
 ```

@@ -1,5 +1,10 @@
-
-QUnit.module('Range Slider Pointer Overlap', () => {
+QUnit.module('Pointer Overlap', (hooks) => {
+  initFixtures(hooks, `
+      <toolcool-range-slider id="slider-1"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-110" value1="50" value2="55" pointers-overlap="true"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-111" value1="50" value2="55" pointers-overlap="false"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-112" value1="50" value2="55" pointers-overlap="test"></toolcool-range-slider>
+  `);
 
   QUnit.test('default pointers overlap value should be false', (assert) => {
     const $slider = document.querySelector('#slider-1');
@@ -44,5 +49,4 @@ QUnit.module('Range Slider Pointer Overlap', () => {
     $slider.setAttribute('pointers-overlap', 'false');
     assert.equal($slider.pointersOverlap, false);
   });
-
 });
