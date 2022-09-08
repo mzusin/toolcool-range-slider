@@ -25,7 +25,7 @@ const VALUE_LABEL2_CODE_NAME = 'value2-label';
 const MIN_LABEL_CODE_NAME = 'min-label';
 const MAX_LABEL_CODE_NAME = 'max-label';
 
-export const Labels = ($component: HTMLElement, $slider: HTMLElement, requestUpdateValues: Function) : ILabels => {
+export const Labels = ($component: HTMLElement, $slider: HTMLElement, requestUpdateValues: () => void) : ILabels => {
 
   let $labelsRow: HTMLElement | null;
   let generatedLabelsEnabled = false;

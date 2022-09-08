@@ -459,7 +459,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     const value1text = getTextValue(pointer1.percent);
     const value2text = getTextValue(pointer2?.percent);
 
-    labels?.updateValues(value1text, value2text, getTextMinMax(min), getTextMinMax(max));
+    updateLabels();
 
     if(value1text !== undefined){
       pointer1.setAttr('aria-valuenow', value1text.toString());
@@ -498,6 +498,31 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     return minOrMax;
   };
 
+  const addSecondPointer = () => {
+    pointer2 = createPointer2($component, pointer1.$pointer);
+    pointer2?.setCallbacks(arrowLeft, arrowRight, arrowUp, arrowDown);
+    pointer2.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer2Disabled));
+
+    const ariaLabel2 = $component.getAttribute(AttributesEnum.AriaLabel2);
+    if(ariaLabel2){
+      pointer2.setAttr('aria-label', ariaLabel2);
+    }
+
+    setGenerateLabels(false);
+    setGenerateLabels(getBoolean($component.getAttribute(AttributesEnum.GenerateLabels)));
+  };
+
+  const removeSecondPointer = () => {
+    pointer2?.destroy();
+    pointer2 = null;
+    setGenerateLabels(false);
+    setGenerateLabels(getBoolean($component.getAttribute(AttributesEnum.GenerateLabels)));
+  };
+
+  const updateLabels = () => {
+    labels?.updateValues(getTextValue(pointer1.percent), getTextValue(pointer2?.percent), getTextMinMax(min), getTextMinMax(max));
+  };
+
   // -------------- API ------------------------
 
   /**
@@ -523,6 +548,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     pointer1.setAttr('aria-valuemin', min.toString());
     pointer2?.setAttr('aria-valuemin', min.toString());
+
+    setPositions(1, pointer1.percent);
+    setPositions(2, pointer2?.percent);
   };
 
   const setMax = (_max: number | string | undefined | null) => {
@@ -535,6 +563,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     pointer1.setAttr('aria-valuemax', max.toString());
     pointer2?.setAttr('aria-valuemax', max.toString());
+
+    setPositions(1, pointer1.percent);
+    setPositions(2, pointer2?.percent);
   };
 
   /**
@@ -751,7 +782,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
   const setRound = (_round: number) => {
     round = getNumber(_round, ROUND_DEFAULT);
-    labels?.updateValues(getTextValue(pointer1.percent) as number, getTextValue(pointer2?.percent), getTextMinMax(min), getTextMinMax(max));
+    updateLabels();
   };
 
   const setAnimateOnClick = (_animateOnClick: string | null | undefined) => {
@@ -765,29 +796,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
       $slider.style.setProperty(CSSVariables.AnimateOnClick, animateOnClick);
       $slider.classList.add(CssClasses.AnimateOnClick);
     }
-  };
-
-  // --------------------------------------------
-
-  const addSecondPointer = () => {
-    pointer2 = createPointer2($component, pointer1.$pointer);
-    pointer2?.setCallbacks(arrowLeft, arrowRight, arrowUp, arrowDown);
-    pointer2.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer2Disabled));
-
-    const ariaLabel2 = $component.getAttribute(AttributesEnum.AriaLabel2);
-    if(ariaLabel2){
-      pointer2.setAttr('aria-label', ariaLabel2);
-    }
-
-    setGenerateLabels(false);
-    setGenerateLabels(getBoolean($component.getAttribute(AttributesEnum.GenerateLabels)));
-  };
-
-  const removeSecondPointer = () => {
-    pointer2?.destroy();
-    pointer2 = null;
-    setGenerateLabels(false);
-    setGenerateLabels(getBoolean($component.getAttribute(AttributesEnum.GenerateLabels)));
   };
 
   // initialization ....
@@ -804,9 +812,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     }
 
     // init generated and reference labels
-    labels = Labels($component, $slider, () => {
-      labels?.updateValues(getTextValue(pointer1.percent), getTextValue(pointer2?.percent), getTextMinMax(min), getTextMinMax(max));
-    });
+    labels = Labels($component, $slider, updateLabels);
 
     // init main properties from HTML attributes
     setType($component.getAttribute(AttributesEnum.Type));
