@@ -12,8 +12,8 @@ export interface ISlider {
     pointersOverlap: boolean;
     pointersMinDistance: number;
     pointersMaxDistance: number;
-    readonly min: number;
-    readonly max: number;
+    readonly min: number | string;
+    readonly max: number | string;
     readonly step: TStep;
     readonly data: TData;
     type: TypeEnum;
@@ -24,6 +24,8 @@ export interface ISlider {
     generateLabels: boolean;
     round: number;
     animateOnClick: string | undefined;
+    ariaLabel1: string | undefined;
+    ariaLabel2: string | undefined;
     storage: StorageTypeEnum | undefined;
     storageKey: string;
     readonly storageKey2: string;

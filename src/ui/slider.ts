@@ -629,7 +629,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     // init initial values with pointers overlap ----------
     pointersOverlap = true;
-    let val1str = _value1 !== null ? _value1 : _value;
+    const val1str = _value1 !== null ? _value1 : _value;
 
     setValue(val1str, 1);
     setValue(_value2, 2);

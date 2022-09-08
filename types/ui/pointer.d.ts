@@ -6,7 +6,7 @@ export interface IPointer {
     disabled: boolean;
     isClicked: ($target: HTMLElement) => boolean;
     setCallbacks: (arrowLeft: (pointerIndex: number) => void, arrowRight: (pointerIndex: number) => void, arrowUp: (pointerIndex: number) => void, arrowDown: (pointerIndex: number) => void) => void;
-    setAttr: (key: string, value: string) => void;
+    setAttr: (key: string, value: string | null | undefined) => void;
     getAttr: (key: string) => string | null;
     destroy: () => void;
 }

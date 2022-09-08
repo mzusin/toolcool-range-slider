@@ -6,5 +6,5 @@ export interface ILabels {
     referenceLabel1: string | null;
     referenceLabel2: string | null;
 }
-export declare const Labels: ($component: HTMLElement, $slider: HTMLElement) => ILabels;
+export declare const Labels: ($component: HTMLElement, $slider: HTMLElement, requestUpdateValues: () => void) => ILabels;
 //# sourceMappingURL=labels.d.ts.map
