@@ -134,6 +134,18 @@
             <div id="value-6" class="value"></div>
         </div>
 
+        <!-- slider #7 - 2 pointers -->
+        <div class="row">
+            <toolcool-range-slider
+              min="0"
+              max="100"
+              value1="50"
+              value2="70"
+              slider-width="100%"
+              generate-labels="true"
+              id="slider-7"></toolcool-range-slider>
+        </div>
+
     </div>
 
     <script src="js/toolcool-range-slider.min.js"></script>
@@ -194,6 +206,9 @@
             $value6.textContent = value.toString();
         });
         $value6.textContent = $slider6.value;
+
+        // slider #7 ------------------
+        // const $slider7 = document.getElementById('slider-7');
     </script>
 </body>
 </html>
