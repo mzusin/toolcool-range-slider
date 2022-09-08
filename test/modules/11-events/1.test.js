@@ -1,5 +1,8 @@
-
-QUnit.module('Range Slider Events', () => {
+QUnit.module('Events', (hooks) => {
+  initFixtures(hooks, `
+     <toolcool-range-slider id="slider-1"></toolcool-range-slider>
+     <toolcool-range-slider id="slider-107" generate-labels="true" value1="50" value2="60"></toolcool-range-slider>
+  `);
 
   QUnit.test('slider should send change event', (assert) => {
 

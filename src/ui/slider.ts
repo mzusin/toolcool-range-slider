@@ -837,6 +837,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     // additional properties -----------------------------
     setDisabled(getBoolean($component.getAttribute(AttributesEnum.Disabled)));
+    keyboardDisabled = getBoolean($component.getAttribute(AttributesEnum.KeyboardDisabled))
     pointer1.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer1Disabled));
 
     if(pointer2){
