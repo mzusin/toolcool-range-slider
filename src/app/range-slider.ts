@@ -212,7 +212,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get storageKey() {
-    return this.slider?.storage ?? STORAGE_KEY;
+    return this.slider?.storageKey ?? STORAGE_KEY;
   }
 
   public get storageKey2() {
