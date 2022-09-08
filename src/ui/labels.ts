@@ -25,7 +25,7 @@ const VALUE_LABEL2_CODE_NAME = 'value2-label';
 const MIN_LABEL_CODE_NAME = 'min-label';
 const MAX_LABEL_CODE_NAME = 'max-label';
 
-export const Labels = ($component: HTMLElement, $slider: HTMLElement) : ILabels => {
+export const Labels = ($component: HTMLElement, $slider: HTMLElement, requestUpdateValues: Function) : ILabels => {
 
   let $labelsRow: HTMLElement | null;
   let generatedLabelsEnabled = false;
@@ -252,11 +252,13 @@ export const Labels = ($component: HTMLElement, $slider: HTMLElement) : ILabels 
   const setReferenceLabel1 = (_referenceLabel1: string | null) => {
     referenceLabel1 = _referenceLabel1;
     $referenceLabel1 = _referenceLabel1 ? document.querySelector(_referenceLabel1) : null;
+    requestUpdateValues();
   };
 
   const setReferenceLabel2 = (_referenceLabel2: string | null) => {
     referenceLabel2 = _referenceLabel2;
     $referenceLabel2 = _referenceLabel2 ? document.querySelector(_referenceLabel2) : null;
+    requestUpdateValues();
   };
 
   // initialization -------------------------

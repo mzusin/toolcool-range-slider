@@ -804,7 +804,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     }
 
     // init generated and reference labels
-    labels = Labels($component, $slider);
+    labels = Labels($component, $slider, () => {
+      labels?.updateValues(getTextValue(pointer1.percent), getTextValue(pointer2?.percent), getTextMinMax(min), getTextMinMax(max));
+    });
 
     // init main properties from HTML attributes
     setType($component.getAttribute(AttributesEnum.Type));
