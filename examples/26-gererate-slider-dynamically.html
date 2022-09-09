@@ -28,11 +28,15 @@
 <body>
     <h1>Generating slider dynamically</h1>
 
-    <div class="wrapper" id="wrapper"></div>
+    <div class="wrapper">
+        <div id="wrapper-1" style="margin-bottom: 3rem"></div>
+        <div id="wrapper-2"></div>
+    </div>
 
     <script src="js/toolcool-range-slider.min.js"></script>
     <script>
-        const $wrapper = document.getElementById('wrapper');
+        const $wrapper1 = document.getElementById('wrapper-1');
+        const $wrapper2 = document.getElementById('wrapper-2');
 
         const $slider = document.createElement('toolcool-range-slider');
         $slider.setAttribute('min', '-100');
@@ -41,7 +45,18 @@
         $slider.setAttribute('value2', '50');
         $slider.setAttribute('slider-width', '100%');
         $slider.setAttribute('generate-labels', 'true');
-        $wrapper.append($slider);
+        $wrapper1.append($slider);
+
+        const $slider1 = document.createElement('toolcool-range-slider');
+        $wrapper2.append($slider1);
+
+        $slider1.min = -100;
+        $slider1.max = 100;
+        $slider1.value1 = 10;
+        $slider1.value2 = 50;
+        $slider1.sliderWidth = '100%';
+        $slider1.generateLabels = true;
+
     </script>
 </body>
 </html>

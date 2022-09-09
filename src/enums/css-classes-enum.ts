@@ -1,3 +1,3 @@
-export enum CssClasses {
+export const enum CssClasses {
   AnimateOnClick = 'animate-on-click',
 }

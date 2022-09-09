@@ -1,4 +1,4 @@
-export enum CSSVariables {
+export const enum CSSVariables {
 
   AnimateOnClick = '--tc-range-slider-animate-onclick',
   SliderWidth = '--tc-range-slider-width',
