@@ -23,6 +23,7 @@ export interface ISlider {
   pointersOverlap: boolean;
   pointersMinDistance: number;
   pointersMaxDistance: number;
+  rangeDragging: boolean;
 
   readonly min: number | string;
   readonly max: number | string;
@@ -77,6 +78,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   let pointersOverlap = false;
   let pointersMinDistance = 0;
   let pointersMaxDistance = Infinity;
+  let rangeDragging = false;
 
   let disabled = false;
   let keyboardDisabled = false;
@@ -653,6 +655,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
       if((_val === undefined || _val === null) && !!pointer2){
         removeSecondPointer();
+        setRangeDragging(false);
       }
     }
 
@@ -877,6 +880,15 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     }
   };
 
+  const setRangeDragging = (_rangeDragging: boolean) => {
+    if(!pointer2){
+      rangeDragging = false;
+      return;
+    }
+
+    rangeDragging = _rangeDragging;
+  };
+
   // initialization ....
   (() => {
 
@@ -913,6 +925,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     setPointersOverlap(getBoolean($component.getAttribute(AttributesEnum.PointersOverlap)));
     setPointersMinDistance(getNumber($component.getAttribute(AttributesEnum.PointersMinDistance), 0));
     setPointersMaxDistance(getNumber($component.getAttribute(AttributesEnum.PointersMaxDistance), Infinity));
+    setRangeDragging(getBoolean($component.getAttribute(AttributesEnum.RangeDragging)));
 
     // additional properties -----------------------------
     setDisabled(getBoolean($component.getAttribute(AttributesEnum.Disabled)));
@@ -1126,6 +1139,14 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     set ariaLabel2(_ariaLabel2){
       setAriaLabel(_ariaLabel2, 2);
+    },
+
+    get rangeDragging() {
+      return rangeDragging;
+    },
+
+    set rangeDragging(_rangeDragging) {
+      setRangeDragging(_rangeDragging);
     },
 
     setMin,

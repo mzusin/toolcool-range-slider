@@ -4,7 +4,7 @@ import { observedAttributes, onAttributesChange } from '../domain/attributes-pro
 import { ISlider, ROUND_DEFAULT, Slider } from '../ui/slider';
 import { IPointer, Pointer } from '../ui/pointer';
 import { TData, TStep } from '../types';
-import { getNumber, isNumber } from '../domain/math-provider';
+import { getBoolean, getNumber, isNumber } from '../domain/math-provider';
 import { TypeEnum } from '../enums/type-enum';
 import { StorageTypeEnum } from '../enums/storage-type-enum';
 import { STORAGE_KEY } from '../dal/storage-provider';
@@ -451,6 +451,16 @@ class RangeSlider extends HTMLElement {
 
   public get ariaLabel2() {
     return this.slider?.pointer2?.getAttr('aria-label') ?? undefined;
+  }
+
+  public get rangeDragging(){
+    return this.slider?.rangeDragging ?? false;
+  }
+
+  public set rangeDragging(_rangeDragging: boolean | string | undefined | null) {
+    if(this.slider){
+      this.slider.rangeDragging = getBoolean(_rangeDragging);
+    }
   }
 
   // ----------------------------------------------

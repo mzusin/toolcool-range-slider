@@ -38,7 +38,8 @@ export const setDecimalPlaces = (num: number, decimalPlaces = Infinity) => {
   return Math.round(num * coeff) / coeff;
 };
 
-export const getBoolean = (val: string | null | undefined) => {
+export const getBoolean = (val: string | null | undefined | boolean) => {
   if(val === null || val === undefined) return false;
+  if(typeof val === 'boolean') return val;
   return val.trim().toLowerCase() === 'true';
 };

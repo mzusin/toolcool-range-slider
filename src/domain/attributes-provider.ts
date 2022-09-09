@@ -28,6 +28,7 @@ export const observedAttributes = [
   AttributesEnum.KeyboardDisabled,
   AttributesEnum.Pointer1Disabled,
   AttributesEnum.Pointer2Disabled,
+  AttributesEnum.RangeDragging,
 
   AttributesEnum.Storage,
   AttributesEnum.StorageKey,
@@ -106,6 +107,11 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
 
     case AttributesEnum.PointersMinDistance: {
       slider.pointersMinDistance = getNumber(newValue, 0);
+      break;
+    }
+
+    case AttributesEnum.RangeDragging: {
+      slider.rangeDragging = getBoolean(newValue);
       break;
     }
 
