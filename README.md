@@ -1041,6 +1041,28 @@ The slider can be created dynamically as follows:
 </script>
 ```
 
+Another option is to use the API instead of attributes:
+
+```html
+<div class="wrapper" id="wrapper"></div>
+
+<script src="js/toolcool-range-slider.min.js"></script>
+
+<script>
+  const $wrapper = document.getElementById('wrapper');
+
+  const $slider= document.createElement('toolcool-range-slider');
+  $wrapper.append($slider);
+
+  $slider.min = -100;
+  $slider.max = 100;
+  $slider.value1 = 10;
+  $slider.value2 = 50;
+  $slider.sliderWidth = '100%';
+  $slider.generateLabels = true;
+</script>
+```
+
 ## TypeScript Usage
 
 
