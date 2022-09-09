@@ -78,7 +78,11 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   let pointersOverlap = false;
   let pointersMinDistance = 0;
   let pointersMaxDistance = Infinity;
+
   let rangeDragging = false;
+
+  let rangeDraggingStart: number | undefined = undefined;
+  let rangeDraggingDiff: number | undefined = undefined;
 
   let disabled = false;
   let keyboardDisabled = false;
@@ -112,6 +116,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   const onMouseUp = (evt: MouseEvent) => {
     if(disabled) return;
 
+    rangeDraggingStart = undefined;
+    rangeDraggingDiff = undefined;
+
     window.removeEventListener('mousemove', onValueChange);
     window.removeEventListener('mouseup', onValueChange);
 
@@ -132,9 +139,22 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
       return pointer1;
     }
 
-    const isPanelClicked = $target.classList.contains('panel') || $target.classList.contains('panel-fill');
+    const panelFillClicked = isPanelFillClicked($target);
 
-    if(!isPanelClicked){
+    if(rangeDragging){
+      if(panelFillClicked){
+        rangeDraggingStart = percent;
+        rangeDraggingDiff = 0;
+      }
+      else{
+        if(rangeDraggingStart !== undefined){
+          rangeDraggingDiff = percent - rangeDraggingStart;
+          rangeDraggingStart = percent;
+        }
+      }
+    }
+
+    if(!isPanelClicked($target) && !panelFillClicked){
       // if clicked directly on 1 of the pointers ---> return it
       if(pointer1.isClicked($target)){
 
@@ -189,6 +209,13 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     }
 
     selectedPointer = getActivePointer(evt.target as HTMLElement, percent);
+
+    if(rangeDragging && pointer2 && rangeDraggingDiff !== undefined){
+      // handle range dragging
+      setPositions(1, pointer1.percent + rangeDraggingDiff);
+      setPositions(2, pointer2.percent + rangeDraggingDiff);
+      return;
+    }
 
     if(selectedPointer === pointer1 && !pointer1.disabled){
       // update the pointer percent, focus, and update its position
@@ -377,6 +404,14 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   };
 
   // -------------- Helpers ------------------------
+
+  const isPanelClicked = ($target: HTMLElement) => {
+    return $target.classList.contains('panel');
+  };
+
+  const isPanelFillClicked = ($target: HTMLElement) => {
+    return $target.classList.contains('panel-fill');
+  };
 
   const goPrev = (index: number, _percent: number | undefined) => {
     if(_percent === undefined) return;
@@ -881,6 +916,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   };
 
   const setRangeDragging = (_rangeDragging: boolean) => {
+    rangeDraggingStart = undefined;
+
     if(!pointer2){
       rangeDragging = false;
       return;
