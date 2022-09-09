@@ -115,6 +115,7 @@ export const Pointer = ($component: HTMLElement, $pointer: HTMLElement, index: n
 
     switch (evt.key) {
       case 'ArrowLeft': {
+        evt.preventDefault();
         if(typeof arrowLeft === 'function'){
           arrowLeft(index);
         }
@@ -122,6 +123,7 @@ export const Pointer = ($component: HTMLElement, $pointer: HTMLElement, index: n
       }
 
       case 'ArrowRight': {
+        evt.preventDefault();
         if(typeof arrowRight === 'function'){
           arrowRight(index);
         }
