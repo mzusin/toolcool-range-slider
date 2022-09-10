@@ -213,8 +213,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     // handle range dragging
     if(rangeDragging && pointer2 && rangeDraggingDiff !== undefined){
 
-      const pointer1SmallerThanMin = pointer1.percent + rangeDraggingDiff < min;
-      const pointer2GreaterThanMax = pointer2.percent + rangeDraggingDiff > max;
+      const pointer1SmallerThanMin = pointer1.percent + rangeDraggingDiff < 0;
+      const pointer2GreaterThanMax = pointer2.percent + rangeDraggingDiff > 100;
       if(pointer1SmallerThanMin || pointer2GreaterThanMax) return;
 
       setPositions(1, pointer1.percent + rangeDraggingDiff);

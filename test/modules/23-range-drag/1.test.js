@@ -3,10 +3,6 @@ QUnit.module('Range Dragging', (hooks) => {
       <toolcool-range-slider id="slider-1" value1="30" value2="50"></toolcool-range-slider>
       <toolcool-range-slider id="slider-2" value="30"></toolcool-range-slider>
       <toolcool-range-slider id="slider-3" value1="30" value2="50"></toolcool-range-slider>
-      
-      <!--<toolcool-range-slider id="slider-3" min="-300" max="300" value1="30" value2="50"></toolcool-range-slider>
-      <toolcool-range-slider id="slider-4" data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z" value1="g" value2="p"></toolcool-range-slider>-->
-      
       <toolcool-range-slider id="slider-5" range-dragging="true"></toolcool-range-slider>
       <toolcool-range-slider id="slider-6" range-dragging="true" value1="30" value2="50"></toolcool-range-slider>
       <toolcool-range-slider id="slider-8" range-dragging="false" value1="30" value2="50"></toolcool-range-slider>
