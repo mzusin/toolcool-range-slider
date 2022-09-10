@@ -210,8 +210,13 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     selectedPointer = getActivePointer(evt.target as HTMLElement, percent);
 
+    // handle range dragging
     if(rangeDragging && pointer2 && rangeDraggingDiff !== undefined){
-      // handle range dragging
+
+      const pointer1SmallerThanMin = pointer1.percent + rangeDraggingDiff < min;
+      const pointer2GreaterThanMax = pointer2.percent + rangeDraggingDiff > max;
+      if(pointer1SmallerThanMin || pointer2GreaterThanMax) return;
+
       setPositions(1, pointer1.percent + rangeDraggingDiff);
       setPositions(2, pointer2.percent + rangeDraggingDiff);
       return;
