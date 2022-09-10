@@ -22,18 +22,18 @@ QUnit.module('Pointer Border Hover', (hooks) => {
 
   QUnit.test('by default pointer border hover style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-border-hover'), '');
+    assert.equal($slider.style.getPropertyValue('--pointer-border-hover'), '');
   });
 
   QUnit.test('provided pointer border hover style should be none', (assert) => {
     const $slider = document.querySelector('#slider-27');
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-pointer-border-hover'), '0');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--pointer-border-hover'), '0');
   });
 
   QUnit.test('pointer border hover changed to "0 0 2px red" ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-27');
     $slider.pointerBorderHover = '1px solid red';
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-pointer-border-hover'), '1px solid red');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--pointer-border-hover'), '1px solid red');
   });
 
 });

@@ -22,18 +22,18 @@ QUnit.module('Pointer Background', (hooks) => {
 
   QUnit.test('by default pointer bg color style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-bg'), '');
+    assert.equal($slider.style.getPropertyValue('--pointer-bg'), '');
   });
 
   QUnit.test('provided pointer bg color style should be red', (assert) => {
     const $slider = document.querySelector('#slider-25').shadowRoot.querySelector('.range-slider')
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-bg'), 'red');
+    assert.equal($slider.style.getPropertyValue('--pointer-bg'), 'red');
   });
 
   QUnit.test('pointer bg color changed to green ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-25');
     $slider.pointerBg = 'green';
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-pointer-bg'), 'green');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--pointer-bg'), 'green');
   });
 
 });

@@ -22,18 +22,18 @@ QUnit.module('Pointer Border', (hooks) => {
 
   QUnit.test('by default pointer border style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-border'), '');
+    assert.equal($slider.style.getPropertyValue('--pointer-border'), '');
   });
 
   QUnit.test('provided pointer border style should be none', (assert) => {
     const $slider = document.querySelector('#slider-27');
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-pointer-border'), '0');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--pointer-border'), '0');
   });
 
   QUnit.test('pointer border changed to "0 0 2px red" ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-27');
     $slider.pointerBorder = '1px solid red';
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-pointer-border'), '1px solid red');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--pointer-border'), '1px solid red');
   });
 
 });

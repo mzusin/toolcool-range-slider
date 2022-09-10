@@ -22,18 +22,18 @@ QUnit.module('Pointer Radius', (hooks) => {
 
   QUnit.test('by default panel radius style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-panel-bg-border-radius'), '');
+    assert.equal($slider.style.getPropertyValue('--panel-bg-border-radius'), '');
   });
 
   QUnit.test('provided panel radius style should be 5px', (assert) => {
     const $slider = document.querySelector('#slider-23').shadowRoot.querySelector('.range-slider');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-panel-bg-border-radius'), '5px');
+    assert.equal($slider.style.getPropertyValue('--panel-bg-border-radius'), '5px');
   });
 
   QUnit.test('panel radius changed to 30rem ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-23');
     $slider.sliderRadius = '3rem';
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-panel-bg-border-radius'), '3rem');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--panel-bg-border-radius'), '3rem');
   });
 
 });

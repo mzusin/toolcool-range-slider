@@ -22,18 +22,18 @@ QUnit.module('Pointer Shadow', (hooks) => {
 
   QUnit.test('by default pointer shadow style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-shadow'), '');
+    assert.equal($slider.style.getPropertyValue('--pointer-shadow'), '');
   });
 
   QUnit.test('provided pointer shadow style should be none', (assert) => {
     const $slider = document.querySelector('#slider-26').shadowRoot.querySelector('.range-slider')
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-shadow'), 'none');
+    assert.equal($slider.style.getPropertyValue('--pointer-shadow'), 'none');
   });
 
   QUnit.test('pointer shadow changed to "0 0 2px red" ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-26');
     $slider.pointerShadow = '0 0 2px red';
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-pointer-shadow'), '0 0 2px red');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--pointer-shadow'), '0 0 2px red');
   });
 
 });

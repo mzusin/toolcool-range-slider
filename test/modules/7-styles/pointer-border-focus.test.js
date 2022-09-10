@@ -22,18 +22,18 @@ QUnit.module('Pointer Border Focus', (hooks) => {
 
   QUnit.test('by default pointer border focus style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-border-focus'), '');
+    assert.equal($slider.style.getPropertyValue('--pointer-border-focus'), '');
   });
 
   QUnit.test('provided pointer border focus style should be none', (assert) => {
     const $slider = document.querySelector('#slider-27');
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-pointer-border-focus'), '0');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--pointer-border-focus'), '0');
   });
 
   QUnit.test('pointer border focus changed to "0 0 2px red" ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-27');
     $slider.pointerBorderFocus = '1px solid red';
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-pointer-border-focus'), '1px solid red');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--pointer-border-focus'), '1px solid red');
   });
 
 });

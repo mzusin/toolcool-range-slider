@@ -22,18 +22,18 @@ QUnit.module('Pointer Shadow Focus', (hooks) => {
 
   QUnit.test('by default pointer shadow focus style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-shadow-focus'), '');
+    assert.equal($slider.style.getPropertyValue('--pointer-shadow-focus'), '');
   });
 
   QUnit.test('provided pointer shadow focus style should be none', (assert) => {
     const $slider = document.querySelector('#slider-30').shadowRoot.querySelector('.range-slider')
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-shadow-focus'), 'none');
+    assert.equal($slider.style.getPropertyValue('--pointer-shadow-focus'), 'none');
   });
 
   QUnit.test('pointer shadow focus changed to "0 0 2px red" ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-30');
     $slider.pointerShadowFocus = '0 0 2px red';
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-pointer-shadow-focus'), '0 0 2px red');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--pointer-shadow-focus'), '0 0 2px red');
   });
 
 });

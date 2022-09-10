@@ -22,18 +22,18 @@ QUnit.module('Panel Background Fill', (hooks) => {
 
   QUnit.test('by default slider bg fill color style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-panel-bg-fill'), '');
+    assert.equal($slider.style.getPropertyValue('--panel-bg-fill'), '');
   });
 
   QUnit.test('provided slider bg fill color style should be red', (assert) => {
     const $slider = document.querySelector('#slider-32').shadowRoot.querySelector('.range-slider')
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-panel-bg-fill'), 'red');
+    assert.equal($slider.style.getPropertyValue('--panel-bg-fill'), 'red');
   });
 
   QUnit.test('slider bg fill color changed to green ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-32');
     $slider.sliderBgFill = 'green';
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-panel-bg-fill'), 'green');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--panel-bg-fill'), 'green');
   });
 
 });

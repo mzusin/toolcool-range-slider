@@ -38,34 +38,34 @@ QUnit.module('Width & Height', (hooks) => {
 
   QUnit.test('by default width style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-width'), '');
+    assert.equal($slider.style.getPropertyValue('--width'), '');
   });
 
   QUnit.test('by default height style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-height'), '');
+    assert.equal($slider.style.getPropertyValue('--height'), '');
   });
 
   QUnit.test('provided slider width style should be 200px', (assert) => {
     const $slider = document.querySelector('#slider-20').shadowRoot.querySelector('.range-slider');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-width'), '200px');
+    assert.equal($slider.style.getPropertyValue('--width'), '200px');
   });
 
   QUnit.test('provided slider height style should be 20px', (assert) => {
     const $slider = document.querySelector('#slider-20').shadowRoot.querySelector('.range-slider');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-height'), '20px');
+    assert.equal($slider.style.getPropertyValue('--height'), '20px');
   });
 
   QUnit.test('slider width changed to 30rem ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-20');
     $slider.sliderWidth = '30rem';
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-width'), '30rem');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--width'), '30rem');
   });
 
   QUnit.test('slider height changed to 2rem ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-20');
     $slider.sliderHeight = '2rem';
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-height'), '2rem');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--height'), '2rem');
   });
 
 });

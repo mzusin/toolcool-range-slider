@@ -22,18 +22,18 @@ QUnit.module('Panel Background Hover', (hooks) => {
 
   QUnit.test('by default slider bg hover color style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-panel-bg-hover'), '');
+    assert.equal($slider.style.getPropertyValue('--panel-bg-hover'), '');
   });
 
   QUnit.test('provided slider bg hover color style should be red', (assert) => {
     const $slider = document.querySelector('#slider-24').shadowRoot.querySelector('.range-slider')
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-panel-bg-hover'), 'red');
+    assert.equal($slider.style.getPropertyValue('--panel-bg-hover'), 'red');
   });
 
   QUnit.test('slider bg hover color changed to green ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-24');
     $slider.sliderBgHover = 'green';
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-panel-bg-hover'), 'green');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--panel-bg-hover'), 'green');
   });
 
 });

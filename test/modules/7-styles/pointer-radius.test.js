@@ -22,18 +22,18 @@ QUnit.module('Pointer Radius', (hooks) => {
 
   QUnit.test('by default pointer radius style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-border-radius'), '');
+    assert.equal($slider.style.getPropertyValue('--pointer-border-radius'), '');
   });
 
   QUnit.test('provided pointer radius style should be 5px', (assert) => {
     const $slider = document.querySelector('#slider-22').shadowRoot.querySelector('.range-slider')
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-border-radius'), '5px');
+    assert.equal($slider.style.getPropertyValue('--pointer-border-radius'), '5px');
   });
 
   QUnit.test('pointer radius changed to 30rem ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-22');
     $slider.pointerRadius = '3rem';
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-pointer-border-radius'), '3rem');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--pointer-border-radius'), '3rem');
   });
 
 });

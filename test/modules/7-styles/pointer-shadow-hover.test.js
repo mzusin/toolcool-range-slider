@@ -22,18 +22,18 @@ QUnit.module('Pointer Shadow Hover', (hooks) => {
 
   QUnit.test('by default pointer shadow hover style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-shadow-hover'), '');
+    assert.equal($slider.style.getPropertyValue('--pointer-shadow-hover'), '');
   });
 
   QUnit.test('provided pointer shadow hover style should be none', (assert) => {
     const $slider = document.querySelector('#slider-26').shadowRoot.querySelector('.range-slider')
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-shadow-hover'), 'none');
+    assert.equal($slider.style.getPropertyValue('--pointer-shadow-hover'), 'none');
   });
 
   QUnit.test('pointer shadow hover changed to "0 0 2px red" ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-26');
     $slider.pointerShadowHover = '0 0 2px red';
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-pointer-shadow-hover'), '0 0 2px red');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--pointer-shadow-hover'), '0 0 2px red');
   });
 
 });

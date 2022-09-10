@@ -22,20 +22,20 @@ QUnit.module('pointer2 border 2', (hooks) => {
 
   QUnit.test('by default pointer2 border style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-border'), '');
+    assert.equal($slider.style.getPropertyValue('--pointer-border'), '');
   });
 
   QUnit.test('provided pointer2 border style should be none', (assert) => {
     const $slider = document.querySelector('#slider-27');
     const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
-    assert.equal($pointer2.style.getPropertyValue('--tc-range-slider-pointer-border'), '0');
+    assert.equal($pointer2.style.getPropertyValue('--pointer-border'), '0');
   });
 
   QUnit.test('pointer2 border changed to "0 0 2px red" ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-27');
     $slider.pointer2Border = '1px solid red';
     const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
-    assert.equal($pointer2.style.getPropertyValue('--tc-range-slider-pointer-border'), '1px solid red');
+    assert.equal($pointer2.style.getPropertyValue('--pointer-border'), '1px solid red');
   });
 
 });

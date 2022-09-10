@@ -22,18 +22,18 @@ QUnit.module('Panel Background Focus', (hooks) => {
 
   QUnit.test('by default pointer bg focus color style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-bg-focus'), '');
+    assert.equal($slider.style.getPropertyValue('--pointer-bg-focus'), '');
   });
 
   QUnit.test('provided pointer bg focus color style should be red', (assert) => {
     const $slider = document.querySelector('#slider-31').shadowRoot.querySelector('.range-slider')
-    assert.equal($slider.style.getPropertyValue('--tc-range-slider-pointer-bg-focus'), '#000');
+    assert.equal($slider.style.getPropertyValue('--pointer-bg-focus'), '#000');
   });
 
   QUnit.test('pointer bg focus color changed to green ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-31');
     $slider.pointerBgFocus = 'green';
-    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--tc-range-slider-pointer-bg-focus'), 'green');
+    assert.equal($slider.shadowRoot.querySelector('.range-slider').style.getPropertyValue('--pointer-bg-focus'), 'green');
   });
 
 });

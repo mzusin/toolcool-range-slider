@@ -23,20 +23,20 @@ QUnit.module('pointer2 radius 2', (hooks) => {
   QUnit.test('by default pointer2 radius style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
     const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
-    assert.equal($pointer2.style.getPropertyValue('--tc-range-slider-pointer-border-radius'), '');
+    assert.equal($pointer2.style.getPropertyValue('--pointer-border-radius'), '');
   });
 
   QUnit.test('provided pointer2 radius style should be 5px', (assert) => {
     const $slider = document.querySelector('#slider-22');
     const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
-    assert.equal($pointer2.style.getPropertyValue('--tc-range-slider-pointer-border-radius'), '5px');
+    assert.equal($pointer2.style.getPropertyValue('--pointer-border-radius'), '5px');
   });
 
   QUnit.test('pointer2 radius changed to 30rem ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-22');
     $slider.pointer2Radius = '3rem';
     const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
-    assert.equal($pointer2.style.getPropertyValue('--tc-range-slider-pointer-border-radius'), '3rem');
+    assert.equal($pointer2.style.getPropertyValue('--pointer-border-radius'), '3rem');
   });
 
 });
