@@ -2,6 +2,7 @@ QUnit.module('Range Dragging', (hooks) => {
   initFixtures(hooks, `
       <toolcool-range-slider id="slider-1" value1="30" value2="50"></toolcool-range-slider>
       <toolcool-range-slider id="slider-2" value="30"></toolcool-range-slider>
+      <toolcool-range-slider id="slider-3" value1="30" value2="50"></toolcool-range-slider>
       
       <!--<toolcool-range-slider id="slider-3" min="-300" max="300" value1="30" value2="50"></toolcool-range-slider>
       <toolcool-range-slider id="slider-4" data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z" value1="g" value2="p"></toolcool-range-slider>-->
@@ -14,12 +15,24 @@ QUnit.module('Range Dragging', (hooks) => {
 
   QUnit.test('default rangeDragging on slider with 2 pointers should be false', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.rangeDragging, false);
+    assert.strictEqual($slider.rangeDragging, false);
+  });
+
+  QUnit.test('by default the slider with 2 pointers should not have class range-dragging', (assert) => {
+    const $slider = document.querySelector('#slider-3');
+    const $inner = $slider.shadowRoot.querySelector('.range-slider');
+    assert.strictEqual($inner.classList.contains('range-dragging'), false);
   });
 
   QUnit.test('provided rangeDragging on slider with 2 pointers should be true', (assert) => {
     const $slider = document.querySelector('#slider-6');
     assert.equal($slider.rangeDragging, true);
+  });
+
+  QUnit.test('slider with 2 pointers and rangeDragging = true should have class range-dragging', (assert) => {
+    const $slider = document.querySelector('#slider-6');
+    const $inner = $slider.shadowRoot.querySelector('.range-slider');
+    assert.equal($inner.classList.contains('range-dragging'), true);
   });
 
   QUnit.test('provided string instead boolean for rangeDragging on slider with 2 pointers should be false', (assert) => {
@@ -48,10 +61,24 @@ QUnit.module('Range Dragging', (hooks) => {
     assert.equal($slider.rangeDragging, true);
   });
 
+  QUnit.test('change rangeDragging via API to true ---> slider should have class range-dragging', (assert) => {
+    const $slider = document.querySelector('#slider-8');
+    $slider.rangeDragging = true;
+    const $inner = $slider.shadowRoot.querySelector('.range-slider');
+    assert.strictEqual($inner.classList.contains('range-dragging'), true);
+  });
+
   QUnit.test('change rangeDragging via API to false', (assert) => {
     const $slider = document.querySelector('#slider-6');
     $slider.rangeDragging = false;
     assert.equal($slider.rangeDragging, false);
+  });
+
+  QUnit.test('change rangeDragging via API to false ---> slider should not have class range-dragging', (assert) => {
+    const $slider = document.querySelector('#slider-6');
+    $slider.rangeDragging = false;
+    const $inner = $slider.shadowRoot.querySelector('.range-slider');
+    assert.strictEqual($inner.classList.contains('range-dragging'), false);
   });
 
   QUnit.test('change rangeDragging via API to test ---> it should be false', (assert) => {
@@ -67,10 +94,24 @@ QUnit.module('Range Dragging', (hooks) => {
     assert.equal($slider.rangeDragging, true);
   });
 
+  QUnit.test('change rangeDragging via attributes to true ---> slider should have class range-dragging', (assert) => {
+    const $slider = document.querySelector('#slider-8');
+    $slider.setAttribute('range-dragging', 'true');
+    const $inner = $slider.shadowRoot.querySelector('.range-slider');
+    assert.strictEqual($inner.classList.contains('range-dragging'), true);
+  });
+
   QUnit.test('change rangeDragging via attributes to false', (assert) => {
     const $slider = document.querySelector('#slider-6');
     $slider.setAttribute('range-dragging', 'false');
     assert.equal($slider.rangeDragging, false);
+  });
+
+  QUnit.test('change rangeDragging via attributes to false ---> slider should not have class range-dragging', (assert) => {
+    const $slider = document.querySelector('#slider-6');
+    $slider.setAttribute('range-dragging', 'false');
+    const $inner = $slider.shadowRoot.querySelector('.range-slider');
+    assert.strictEqual($inner.classList.contains('range-dragging'), false);
   });
 
   QUnit.test('change rangeDragging via attributes to test ---> it should be false', (assert) => {

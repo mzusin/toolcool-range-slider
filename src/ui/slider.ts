@@ -925,10 +925,12 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     if(!pointer2){
       rangeDragging = false;
+      $slider.classList.remove(CssClasses.RangeDragging);
       return;
     }
 
     rangeDragging = _rangeDragging;
+    $slider.classList.toggle(CssClasses.RangeDragging, rangeDragging);
   };
 
   // initialization ....
