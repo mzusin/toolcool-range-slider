@@ -4,7 +4,7 @@ import { CSSVariables } from '../enums/css-vars-enum';
 export interface IStyles {
 
   setStyle: (key: string, value: string | null | undefined, index: number) => void;
-  getStyle: (key: string) => string | undefined;
+  getStyle: (key: string, index: number) => string | undefined;
 
   theme: string | null;
   pointerShape: string | null;
@@ -64,11 +64,15 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, $pointer2:
     }
   };
 
+  const getKey = (key: string, index: number) => {
+    return `${ key }-${ index }`;
+  };
+
   const setStyle = (key: string, value: string | null | undefined, index: number) => {
 
     if(value === null || value === undefined){
-      if(stylesMap.has(key)){
-        stylesMap.delete(key);
+      if(stylesMap.has(getKey(key, index))){
+        stylesMap.delete(getKey(key, index));
       }
 
       if(index < 2){
@@ -80,7 +84,7 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, $pointer2:
       return;
     }
 
-    stylesMap.set(key, value);
+    stylesMap.set(getKey(key, index), value);
 
     if(index < 2){
       $slider.style.setProperty(key, value);
@@ -90,8 +94,8 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, $pointer2:
     }
   };
 
-  const getStyle = (key: string) => {
-    return stylesMap.get(key);
+  const getStyle = (key: string, index: number) => {
+    return stylesMap.get(getKey(key, index));
   };
 
   // ---- initialization ---------------------

@@ -234,7 +234,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get sliderWidth() {
-    return this.slider?.styles?.getStyle(CSSVariables.SliderWidth);
+    return this.slider?.styles?.getStyle(CSSVariables.SliderWidth, 1);
   }
 
   public set sliderHeight(_sliderHeight: string | undefined) {
@@ -243,7 +243,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get sliderHeight() {
-    return this.slider?.styles?.getStyle(CSSVariables.SliderHeight);
+    return this.slider?.styles?.getStyle(CSSVariables.SliderHeight, 1);
   }
 
   public set sliderRadius(_sliderRadius: string | undefined) {
@@ -252,7 +252,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get sliderRadius() {
-    return this.slider?.styles?.getStyle(CSSVariables.SliderRadius);
+    return this.slider?.styles?.getStyle(CSSVariables.SliderRadius, 1);
   }
 
   public set sliderBg(_sliderBg: string | undefined) {
@@ -261,7 +261,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get sliderBg() {
-    return this.slider?.styles?.getStyle(CSSVariables.SliderBg);
+    return this.slider?.styles?.getStyle(CSSVariables.SliderBg, 1);
   }
 
   public set sliderBgHover(_sliderBgHover: string | undefined) {
@@ -270,7 +270,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get sliderBgHover() {
-    return this.slider?.styles?.getStyle(CSSVariables.SliderBgHover);
+    return this.slider?.styles?.getStyle(CSSVariables.SliderBgHover, 1);
   }
 
   public set sliderBgFill(_sliderBgFill: string | undefined) {
@@ -279,7 +279,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public get sliderBgFill() {
-    return this.slider?.styles?.getStyle(CSSVariables.SliderBgFill);
+    return this.slider?.styles?.getStyle(CSSVariables.SliderBgFill, 1);
   }
 
   public set pointerWidth(_pointerWidth: string | undefined) {
@@ -288,16 +288,16 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerWidth() {
-    return this.slider?.styles?.getStyle(CSSVariables.PointerWidth);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerWidth, 1);
   }
 
   public set pointer2Width(_pointerWidth: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.Pointer2Width, _pointerWidth, 2);
+    this.slider.styles.setStyle(CSSVariables.PointerWidth, _pointerWidth, 2);
   }
 
   public get pointer2Width() {
-    return this.slider?.styles?.getStyle(CSSVariables.Pointer2Width);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerWidth, 2);
   }
 
   public set pointerHeight(_pointerHeight: string | undefined) {
@@ -306,16 +306,16 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerHeight() {
-    return this.slider?.styles?.getStyle(CSSVariables.PointerHeight);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerHeight, 1);
   }
 
   public set pointer2Height(_pointerHeight: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.Pointer2Height, _pointerHeight, 2);
+    this.slider.styles.setStyle(CSSVariables.PointerHeight, _pointerHeight, 2);
   }
 
   public get pointer2Height() {
-    return this.slider?.styles?.getStyle(CSSVariables.Pointer2Height);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerHeight, 2);
   }
 
   public set pointerRadius(_pointerRadius: string | undefined) {
@@ -324,16 +324,16 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerRadius() {
-    return this.slider?.styles?.getStyle(CSSVariables.PointerRadius);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerRadius, 1);
   }
 
   public set pointer2Radius(_pointerRadius: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.Pointer2Radius, _pointerRadius, 1);
+    this.slider.styles.setStyle(CSSVariables.PointerRadius, _pointerRadius, 1);
   }
 
   public get pointer2Radius() {
-    return this.slider?.styles?.getStyle(CSSVariables.Pointer2Radius);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerRadius, 2);
   }
 
   public set pointerShape(_pointerShape: string | null) {
@@ -360,16 +360,16 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerBg() {
-    return this.slider?.styles?.getStyle(CSSVariables.PointerBg);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBg, 1);
   }
 
   public set pointer2Bg(_pointerBg: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.Pointer2Bg, _pointerBg, 2);
+    this.slider.styles.setStyle(CSSVariables.PointerBg, _pointerBg, 2);
   }
 
   public get pointer2Bg() {
-    return this.slider?.styles?.getStyle(CSSVariables.Pointer2Bg);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBg, 2);
   }
 
   public set pointerBgHover(_pointerBgHover: string | undefined) {
@@ -378,16 +378,16 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerBgHover() {
-    return this.slider?.styles?.getStyle(CSSVariables.PointerBgHover);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBgHover, 1);
   }
 
   public set pointer2BgHover(_pointerBgHover: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.Pointer2BgHover, _pointerBgHover, 2);
+    this.slider.styles.setStyle(CSSVariables.PointerBgHover, _pointerBgHover, 2);
   }
 
   public get pointer2BgHover() {
-    return this.slider?.styles?.getStyle(CSSVariables.Pointer2BgHover);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBgHover, 2);
   }
 
   public set pointerBgFocus(_pointerBgFocus: string | undefined) {
@@ -396,16 +396,16 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerBgFocus() {
-    return this.slider?.styles?.getStyle(CSSVariables.PointerBgFocus);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBgFocus, 1);
   }
 
   public set pointer2BgFocus(_pointerBgFocus: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.Pointer2BgFocus, _pointerBgFocus, 2);
+    this.slider.styles.setStyle(CSSVariables.PointerBgFocus, _pointerBgFocus, 2);
   }
 
   public get pointer2BgFocus() {
-    return this.slider?.styles?.getStyle(CSSVariables.Pointer2BgFocus);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBgFocus, 2);
   }
 
   public set pointerShadow(_pointerShadow: string | undefined) {
@@ -414,16 +414,16 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerShadow() {
-    return this.slider?.styles?.getStyle(CSSVariables.PointerShadow);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerShadow, 1);
   }
 
   public set pointer2Shadow(_pointerShadow: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.Pointer2Shadow, _pointerShadow, 1);
+    this.slider.styles.setStyle(CSSVariables.PointerShadow, _pointerShadow, 1);
   }
 
   public get pointer2Shadow() {
-    return this.slider?.styles?.getStyle(CSSVariables.Pointer2Shadow);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerShadow, 2);
   }
 
   public set pointerShadowHover(_pointerShadowHover: string | undefined) {
@@ -432,16 +432,16 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerShadowHover() {
-    return this.slider?.styles?.getStyle(CSSVariables.PointerShadowHover);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerShadowHover, 1);
   }
 
   public set pointer2ShadowHover(_pointerShadowHover: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.Pointer2ShadowHover, _pointerShadowHover, 2);
+    this.slider.styles.setStyle(CSSVariables.PointerShadowHover, _pointerShadowHover, 2);
   }
 
   public get pointer2ShadowHover() {
-    return this.slider?.styles?.getStyle(CSSVariables.Pointer2ShadowHover);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerShadowHover, 2);
   }
 
   public set pointerShadowFocus(_pointerShadowFocus: string | undefined) {
@@ -450,16 +450,16 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerShadowFocus() {
-    return this.slider?.styles?.getStyle(CSSVariables.PointerShadowFocus);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerShadowFocus, 1);
   }
 
   public set pointer2ShadowFocus(_pointerShadowFocus: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.Pointer2ShadowFocus, _pointerShadowFocus, 2);
+    this.slider.styles.setStyle(CSSVariables.PointerShadowFocus, _pointerShadowFocus, 2);
   }
 
   public get pointer2ShadowFocus() {
-    return this.slider?.styles?.getStyle(CSSVariables.Pointer2ShadowFocus);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerShadowFocus, 2);
   }
 
   public set pointerBorder(_pointerBorder: string | undefined) {
@@ -468,16 +468,16 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerBorder() {
-    return this.slider?.styles?.getStyle(CSSVariables.PointerBorder);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBorder, 1);
   }
 
   public set pointer2Border(_pointerBorder: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.Pointer2Border, _pointerBorder, 2);
+    this.slider.styles.setStyle(CSSVariables.PointerBorder, _pointerBorder, 2);
   }
 
   public get pointer2Border() {
-    return this.slider?.styles?.getStyle(CSSVariables.Pointer2Border);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBorder, 2);
   }
 
   public set pointerBorderHover(_pointerBorderHover: string | undefined) {
@@ -486,16 +486,16 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerBorderHover() {
-    return this.slider?.styles?.getStyle(CSSVariables.PointerBorderHover);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBorderHover, 1);
   }
 
   public set pointer2BorderHover(_pointerBorderHover: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.Pointer2BorderHover, _pointerBorderHover, 2);
+    this.slider.styles.setStyle(CSSVariables.PointerBorderHover, _pointerBorderHover, 2);
   }
 
   public get pointer2BorderHover() {
-    return this.slider?.styles?.getStyle(CSSVariables.Pointer2BorderHover);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBorderHover, 2);
   }
 
   public set pointerBorderFocus(_pointerBorderFocus: string | undefined) {
@@ -504,16 +504,16 @@ class RangeSlider extends HTMLElement {
   }
 
   public get pointerBorderFocus() {
-    return this.slider?.styles?.getStyle(CSSVariables.PointerBorderFocus);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBorderFocus, 1);
   }
 
   public set pointer2BorderFocus(_pointerBorderFocus: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.Pointer2BorderFocus, _pointerBorderFocus, 2);
+    this.slider.styles.setStyle(CSSVariables.PointerBorderFocus, _pointerBorderFocus, 2);
   }
 
   public get pointer2BorderFocus() {
-    return this.slider?.styles?.getStyle(CSSVariables.Pointer2BorderFocus);
+    return this.slider?.styles?.getStyle(CSSVariables.PointerBorderFocus, 2);
   }
 
   public set pointer1Disabled(_pointer1Disabled: boolean) {
