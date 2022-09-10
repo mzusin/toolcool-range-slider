@@ -9,7 +9,7 @@ import { TypeEnum } from '../enums/type-enum';
 import { StorageTypeEnum } from '../enums/storage-type-enum';
 import { STORAGE_KEY } from '../dal/storage-provider';
 import { CSSVariables } from '../enums/css-vars-enum';
-import { createPointer2 } from '../domain/common-provider';
+import { createPointer2, removeFocus } from '../domain/common-provider';
 
 /**
  * Usage: <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
@@ -612,6 +612,8 @@ class RangeSlider extends HTMLElement {
     const $slider = this.shadowRoot?.getElementById('range-slider') as HTMLElement;
     if(!$slider) return;
     this.slider = Slider(this, $slider, pointer1, pointer2);
+
+    removeFocus();
   }
 
   /**

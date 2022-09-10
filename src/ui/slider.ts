@@ -12,7 +12,7 @@ import { StorageTypeEnum } from '../enums/storage-type-enum';
 import { getStorageKey2, restoreFromStorage, saveToStorage, STORAGE_KEY } from '../dal/storage-provider';
 import { CSSVariables } from '../enums/css-vars-enum';
 import { CssClasses } from '../enums/css-classes-enum';
-import { createPointer2 } from '../domain/common-provider';
+import { createPointer2, removeFocus } from '../domain/common-provider';
 
 export interface ISlider {
   readonly pointer1: IPointer;
@@ -575,7 +575,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   // -------------- Setters --------------------
 
   const setPositions = (index: number, _percent: number | undefined) => {
-
     if(_percent === undefined) return;
 
     // round percent to step
@@ -728,6 +727,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     const percent = convertRange(min, max, 0, 100, val);
 
     setPositions(index, percent);
+    removeFocus();
   };
 
   const setStep = (_step: TStep) => {
