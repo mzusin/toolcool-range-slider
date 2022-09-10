@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Soft Limits Example | Tool Cool</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="keywords" content="range slider, web components, typescript, ES6"/>
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png" />
+    <link id="favicon-48" rel="icon" type="image/png" sizes="48x48" href="img/favicon/favicon-48.png" />
+    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32.png" />
+    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png" />
+
+    <style>
+        .wrapper{
+            width: 500px;
+            max-width: 100%;
+            margin:3rem auto;
+        }
+
+        h1{
+            text-align: center;
+            font-weight: normal;
+            margin: 3rem 1rem;
+        }
+
+        .row{
+            margin-bottom: 3rem;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            position: relative;
+        }
+
+        toolcool-range-slider{
+            flex: 1;
+        }
+
+        label{
+            margin: 0 1rem;
+            width: 2rem;
+            text-align: center;
+        }
+
+        .value{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Soft Limits Example</h1>
+
+    <div class="wrapper">
+
+        <div class="row">
+            <toolcool-range-slider
+              id="slider"
+              animate-onclick="0.3s"
+              generate-labels="true"
+              round="0"
+              value="30"
+              value2="60"
+              slider-width="100%"
+              slider-height="7px"></toolcool-range-slider>
+        </div>
+
+    </div>
+
+    <script src="js/toolcool-range-slider.min.js"></script>
+    <script>
+        const $slider = document.getElementById('slider');
+
+        $slider.addEventListener('mouseup', (evt) => {
+            if($slider.value < 20) {
+                $slider.value = 20;
+            }
+
+            if($slider.value2 > 80) {
+                $slider.value2 = 80;
+            }
+        });
+    </script>
+</body>
+</html>
