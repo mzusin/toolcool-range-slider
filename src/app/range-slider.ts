@@ -329,7 +329,7 @@ class RangeSlider extends HTMLElement {
 
   public set pointer2Radius(_pointerRadius: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.PointerRadius, _pointerRadius, 1);
+    this.slider.styles.setStyle(CSSVariables.PointerRadius, _pointerRadius, 2);
   }
 
   public get pointer2Radius() {
@@ -419,7 +419,7 @@ class RangeSlider extends HTMLElement {
 
   public set pointer2Shadow(_pointerShadow: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.PointerShadow, _pointerShadow, 1);
+    this.slider.styles.setStyle(CSSVariables.PointerShadow, _pointerShadow, 2);
   }
 
   public get pointer2Shadow() {
