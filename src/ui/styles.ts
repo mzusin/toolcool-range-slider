@@ -3,17 +3,20 @@ import { CSSVariables } from '../enums/css-vars-enum';
 
 export interface IStyles {
 
-  setStyle: (key: string, value: string | null | undefined) => void;
+  setStyle: (key: string, value: string | null | undefined, index: number) => void;
   getStyle: (key: string) => string | undefined;
 
   theme: string | null;
   pointerShape: string | null;
+  pointer2Shape: string | null;
 }
 
-export const Styles = ($component: HTMLElement, $slider: HTMLElement) : IStyles => {
+export const Styles = ($component: HTMLElement, $slider: HTMLElement, $pointer2: HTMLElement | undefined) : IStyles => {
 
   let theme: string | null = null;
   let pointerShape: string | null = null;
+  let pointer2Shape: string | null = null;
+
   const stylesMap: Map<string, string> = new Map();
 
   // ----- SETTERS ---------------------------
@@ -37,28 +40,54 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement) : IStyles 
     }
   };
 
-  const setPointerShape = (val: string | null) => {
-    pointerShape = val;
-    if(typeof val === 'string'){
-      $slider.classList.add('shape', `shape-${ val }`);
+  const setPointerShape = (val: string | null, index: number) => {
+
+    if(index < 2){
+      pointerShape = val;
+
+      if(typeof val === 'string'){
+        $slider.classList.add('shape', `shape-${ val }`);
+      }
+      else{
+        removeClassesStartWith('shape-');
+      }
     }
     else{
-      removeClassesStartWith('shape-');
+      pointer2Shape = val;
+
+      if(typeof val === 'string'){
+        $slider.classList.add('shape2', `shape2-${ val }`);
+      }
+      else{
+        removeClassesStartWith('shape2-');
+      }
     }
   };
 
-  const setStyle = (key: string, value: string | null | undefined) => {
+  const setStyle = (key: string, value: string | null | undefined, index: number) => {
+
     if(value === null || value === undefined){
       if(stylesMap.has(key)){
         stylesMap.delete(key);
       }
 
-      $slider.style.removeProperty(key);
+      if(index < 2){
+        $slider.style.removeProperty(key);
+      }
+      else{
+        $pointer2?.style.removeProperty(key);
+      }
       return;
     }
 
     stylesMap.set(key, value);
-    $slider.style.setProperty(key, value);
+
+    if(index < 2){
+      $slider.style.setProperty(key, value);
+    }
+    else{
+      $pointer2?.style.setProperty(key, value);
+    }
   };
 
   const getStyle = (key: string) => {
@@ -69,39 +98,49 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement) : IStyles 
   (() => {
 
     const list = [
-      [CSSVariables.SliderWidth, $component.getAttribute(AttributesEnum.SliderWidth)],
-      [CSSVariables.SliderHeight, $component.getAttribute(AttributesEnum.SliderHeight)],
-      [CSSVariables.SliderRadius, $component.getAttribute(AttributesEnum.SliderRadius)],
+      [CSSVariables.SliderWidth, $component.getAttribute(AttributesEnum.SliderWidth), 1],
+      [CSSVariables.SliderHeight, $component.getAttribute(AttributesEnum.SliderHeight), 1],
+      [CSSVariables.SliderRadius, $component.getAttribute(AttributesEnum.SliderRadius), 1],
 
-      [CSSVariables.SliderBg, $component.getAttribute(AttributesEnum.SliderBg)],
-      [CSSVariables.SliderBgHover, $component.getAttribute(AttributesEnum.SliderBgHover)],
-      [CSSVariables.SliderBgFill, $component.getAttribute(AttributesEnum.SliderBgFill)],
+      [CSSVariables.SliderBg, $component.getAttribute(AttributesEnum.SliderBg), 1],
+      [CSSVariables.SliderBgHover, $component.getAttribute(AttributesEnum.SliderBgHover), 1],
+      [CSSVariables.SliderBgFill, $component.getAttribute(AttributesEnum.SliderBgFill), 1],
 
-      [CSSVariables.PointerWidth, $component.getAttribute(AttributesEnum.PointerWidth)],
-      [CSSVariables.PointerHeight, $component.getAttribute(AttributesEnum.PointerHeight)],
-      [CSSVariables.PointerRadius, $component.getAttribute(AttributesEnum.PointerRadius)],
+      [CSSVariables.PointerWidth, $component.getAttribute(AttributesEnum.PointerWidth), 1],
+      [CSSVariables.PointerHeight, $component.getAttribute(AttributesEnum.PointerHeight), 1],
+      [CSSVariables.PointerRadius, $component.getAttribute(AttributesEnum.PointerRadius), 1],
+      [CSSVariables.PointerBg, $component.getAttribute(AttributesEnum.PointerBg), 1],
+      [CSSVariables.PointerBgHover, $component.getAttribute(AttributesEnum.PointerBgHover), 1],
+      [CSSVariables.PointerBgFocus, $component.getAttribute(AttributesEnum.PointerBgFocus), 1],
+      [CSSVariables.PointerShadow, $component.getAttribute(AttributesEnum.PointerShadow), 1],
+      [CSSVariables.PointerShadowHover, $component.getAttribute(AttributesEnum.PointerShadowHover), 1],
+      [CSSVariables.PointerShadowFocus, $component.getAttribute(AttributesEnum.PointerShadowFocus), 1],
+      [CSSVariables.PointerBorder, $component.getAttribute(AttributesEnum.PointerBorder), 1],
+      [CSSVariables.PointerBorderHover, $component.getAttribute(AttributesEnum.PointerBorderHover), 1],
+      [CSSVariables.PointerBorderFocus, $component.getAttribute(AttributesEnum.PointerBorderFocus), 1],
 
-      [CSSVariables.PointerBg, $component.getAttribute(AttributesEnum.PointerBg)],
-      [CSSVariables.PointerBgHover, $component.getAttribute(AttributesEnum.PointerBgHover)],
-      [CSSVariables.PointerBgFocus, $component.getAttribute(AttributesEnum.PointerBgFocus)],
-
-      [CSSVariables.PointerShadow, $component.getAttribute(AttributesEnum.PointerShadow)],
-      [CSSVariables.PointerShadowHover, $component.getAttribute(AttributesEnum.PointerShadowHover)],
-      [CSSVariables.PointerShadowFocus, $component.getAttribute(AttributesEnum.PointerShadowFocus)],
-
-      [CSSVariables.PointerBorder, $component.getAttribute(AttributesEnum.PointerBorder)],
-      [CSSVariables.PointerBorderHover, $component.getAttribute(AttributesEnum.PointerBorderHover)],
-      [CSSVariables.PointerBorderFocus, $component.getAttribute(AttributesEnum.PointerBorderFocus)],
+      [CSSVariables.PointerWidth, $component.getAttribute(AttributesEnum.Pointer2Width), 2],
+      [CSSVariables.PointerHeight, $component.getAttribute(AttributesEnum.Pointer2Height), 2],
+      [CSSVariables.PointerRadius, $component.getAttribute(AttributesEnum.Pointer2Radius), 2],
+      [CSSVariables.PointerBg, $component.getAttribute(AttributesEnum.Pointer2Bg), 2],
+      [CSSVariables.PointerBgHover, $component.getAttribute(AttributesEnum.Pointer2BgHover), 2],
+      [CSSVariables.PointerBgFocus, $component.getAttribute(AttributesEnum.Pointer2BgFocus), 2],
+      [CSSVariables.PointerShadow, $component.getAttribute(AttributesEnum.Pointer2Shadow), 2],
+      [CSSVariables.PointerShadowHover, $component.getAttribute(AttributesEnum.Pointer2ShadowHover), 2],
+      [CSSVariables.PointerShadowFocus, $component.getAttribute(AttributesEnum.Pointer2ShadowFocus), 2],
+      [CSSVariables.PointerBorder, $component.getAttribute(AttributesEnum.Pointer2Border), 2],
+      [CSSVariables.PointerBorderHover, $component.getAttribute(AttributesEnum.Pointer2BorderHover), 2],
+      [CSSVariables.PointerBorderFocus, $component.getAttribute(AttributesEnum.Pointer2BorderFocus), 2],
     ];
 
     for(const item of list){
-      const cssVariableName = item[0] as string;
-      const cssVariableValue = item[1];
-      setStyle(cssVariableName, cssVariableValue);
+      const [cssVariableName, cssVariableValue, index] = item;
+      setStyle(cssVariableName as string, cssVariableValue as string, index as number);
     }
 
     setTheme($component.getAttribute(AttributesEnum.Theme));
-    setPointerShape($component.getAttribute(AttributesEnum.PointerShape));
+    setPointerShape($component.getAttribute(AttributesEnum.PointerShape), 1);
+    setPointerShape($component.getAttribute(AttributesEnum.Pointer2Shape), 2);
   })();
 
   return {
@@ -121,7 +160,15 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement) : IStyles 
     },
 
     set pointerShape(val){
-      setPointerShape(val);
+      setPointerShape(val, 1);
+    },
+
+    get pointer2Shape() {
+      return pointer2Shape;
+    },
+
+    set pointer2Shape(val){
+      setPointerShape(val, 2);
     },
 
   };

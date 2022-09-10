@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pointer 2 Styling | Tool Cool</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link id="favicon-48" rel="icon" type="image/png" sizes="48x48" href="img/favicon/favicon-48.png">
+    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32.png">
+    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png">
+
+    <style>
+        .wrapper{
+            width: 500px;
+            max-width: 100%;
+            margin:3rem auto;
+        }
+
+        h1{
+            text-align: center;
+            font-weight: normal;
+            margin: 3rem 1rem;
+        }
+
+        .row{
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 0 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pointer 2 Styling</h1>
+
+    <div class="wrapper">
+
+        <div class="row">
+            <toolcool-range-slider
+              min="0"
+              max="100"
+              value1="50"
+              value2="80"
+
+              slider-width="400px"
+              slider-height="0.5rem"
+              slider-bg="#6AD3BA"
+              slider-bg-hover="#3F8A8A"
+              slider-bg-fill="#378c8a"
+
+              pointer-width="1.5rem"
+              pointer-height="1.5rem"
+              pointer-bg="#fff"
+              pointer-bg-hover="#c6f7eb"
+              pointer-bg-focus="#c6f7eb"
+              pointer-border-hover="1px solid #6AD3BA"
+              pointer-border-focus="1px solid #6AD3BA"
+
+              pointer2-width="2rem"
+              pointer2-height="2rem"
+              pointer2-bg="#9f93d4"
+              pointer2-bg-hover="#796ea9"
+              pointer2-bg-focus="#796ea9"
+              pointer2-border="1px solid #1f2121"
+              pointer2-border-hover="1px solid #1f2121"
+              pointer2-border-focus="1px solid #1f2121"></toolcool-range-slider>
+        </div>
+
+    </div>
+
+    <script src="js/toolcool-range-slider.min.js"></script>
+</body>
+</html>

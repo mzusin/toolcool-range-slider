@@ -230,7 +230,7 @@ class RangeSlider extends HTMLElement {
 
   public set sliderWidth(_sliderWidth: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.SliderWidth, _sliderWidth);
+    this.slider.styles.setStyle(CSSVariables.SliderWidth, _sliderWidth, 1);
   }
 
   public get sliderWidth() {
@@ -239,7 +239,7 @@ class RangeSlider extends HTMLElement {
 
   public set sliderHeight(_sliderHeight: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.SliderHeight, _sliderHeight);
+    this.slider.styles.setStyle(CSSVariables.SliderHeight, _sliderHeight, 1);
   }
 
   public get sliderHeight() {
@@ -248,7 +248,7 @@ class RangeSlider extends HTMLElement {
 
   public set sliderRadius(_sliderRadius: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.SliderRadius, _sliderRadius);
+    this.slider.styles.setStyle(CSSVariables.SliderRadius, _sliderRadius, 1);
   }
 
   public get sliderRadius() {
@@ -257,7 +257,7 @@ class RangeSlider extends HTMLElement {
 
   public set sliderBg(_sliderBg: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.SliderBg, _sliderBg);
+    this.slider.styles.setStyle(CSSVariables.SliderBg, _sliderBg, 1);
   }
 
   public get sliderBg() {
@@ -266,7 +266,7 @@ class RangeSlider extends HTMLElement {
 
   public set sliderBgHover(_sliderBgHover: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.SliderBgHover, _sliderBgHover);
+    this.slider.styles.setStyle(CSSVariables.SliderBgHover, _sliderBgHover, 1);
   }
 
   public get sliderBgHover() {
@@ -275,7 +275,7 @@ class RangeSlider extends HTMLElement {
 
   public set sliderBgFill(_sliderBgFill: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.SliderBgFill, _sliderBgFill);
+    this.slider.styles.setStyle(CSSVariables.SliderBgFill, _sliderBgFill, 1);
   }
 
   public get sliderBgFill() {
@@ -284,29 +284,56 @@ class RangeSlider extends HTMLElement {
 
   public set pointerWidth(_pointerWidth: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.PointerWidth, _pointerWidth);
+    this.slider.styles.setStyle(CSSVariables.PointerWidth, _pointerWidth, 1);
   }
 
   public get pointerWidth() {
     return this.slider?.styles?.getStyle(CSSVariables.PointerWidth);
   }
 
+  public set pointer2Width(_pointerWidth: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.Pointer2Width, _pointerWidth, 2);
+  }
+
+  public get pointer2Width() {
+    return this.slider?.styles?.getStyle(CSSVariables.Pointer2Width);
+  }
+
   public set pointerHeight(_pointerHeight: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.PointerHeight, _pointerHeight);
+    this.slider.styles.setStyle(CSSVariables.PointerHeight, _pointerHeight, 1);
   }
 
   public get pointerHeight() {
     return this.slider?.styles?.getStyle(CSSVariables.PointerHeight);
   }
 
+  public set pointer2Height(_pointerHeight: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.Pointer2Height, _pointerHeight, 2);
+  }
+
+  public get pointer2Height() {
+    return this.slider?.styles?.getStyle(CSSVariables.Pointer2Height);
+  }
+
   public set pointerRadius(_pointerRadius: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.PointerRadius, _pointerRadius);
+    this.slider.styles.setStyle(CSSVariables.PointerRadius, _pointerRadius, 1);
   }
 
   public get pointerRadius() {
     return this.slider?.styles?.getStyle(CSSVariables.PointerRadius);
+  }
+
+  public set pointer2Radius(_pointerRadius: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.Pointer2Radius, _pointerRadius, 1);
+  }
+
+  public get pointer2Radius() {
+    return this.slider?.styles?.getStyle(CSSVariables.Pointer2Radius);
   }
 
   public set pointerShape(_pointerShape: string | null) {
@@ -318,85 +345,175 @@ class RangeSlider extends HTMLElement {
     return this.slider?.styles?.pointerShape ?? null;
   }
 
+  public set pointer2Shape(_pointerShape: string | null) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.pointer2Shape = _pointerShape;
+  }
+
+  public get pointer2Shape() {
+    return this.slider?.styles?.pointer2Shape ?? null;
+  }
+
   public set pointerBg(_pointerBg: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.PointerBg, _pointerBg);
+    this.slider.styles.setStyle(CSSVariables.PointerBg, _pointerBg, 1);
   }
 
   public get pointerBg() {
     return this.slider?.styles?.getStyle(CSSVariables.PointerBg);
   }
 
+  public set pointer2Bg(_pointerBg: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.Pointer2Bg, _pointerBg, 2);
+  }
+
+  public get pointer2Bg() {
+    return this.slider?.styles?.getStyle(CSSVariables.Pointer2Bg);
+  }
+
   public set pointerBgHover(_pointerBgHover: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.PointerBgHover, _pointerBgHover);
+    this.slider.styles.setStyle(CSSVariables.PointerBgHover, _pointerBgHover, 1);
   }
 
   public get pointerBgHover() {
     return this.slider?.styles?.getStyle(CSSVariables.PointerBgHover);
   }
 
+  public set pointer2BgHover(_pointerBgHover: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.Pointer2BgHover, _pointerBgHover, 2);
+  }
+
+  public get pointer2BgHover() {
+    return this.slider?.styles?.getStyle(CSSVariables.Pointer2BgHover);
+  }
+
   public set pointerBgFocus(_pointerBgFocus: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.PointerBgFocus, _pointerBgFocus);
+    this.slider.styles.setStyle(CSSVariables.PointerBgFocus, _pointerBgFocus, 1);
   }
 
   public get pointerBgFocus() {
     return this.slider?.styles?.getStyle(CSSVariables.PointerBgFocus);
   }
 
+  public set pointer2BgFocus(_pointerBgFocus: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.Pointer2BgFocus, _pointerBgFocus, 2);
+  }
+
+  public get pointer2BgFocus() {
+    return this.slider?.styles?.getStyle(CSSVariables.Pointer2BgFocus);
+  }
+
   public set pointerShadow(_pointerShadow: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.PointerShadow, _pointerShadow);
+    this.slider.styles.setStyle(CSSVariables.PointerShadow, _pointerShadow, 1);
   }
 
   public get pointerShadow() {
     return this.slider?.styles?.getStyle(CSSVariables.PointerShadow);
   }
 
+  public set pointer2Shadow(_pointerShadow: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.Pointer2Shadow, _pointerShadow, 1);
+  }
+
+  public get pointer2Shadow() {
+    return this.slider?.styles?.getStyle(CSSVariables.Pointer2Shadow);
+  }
+
   public set pointerShadowHover(_pointerShadowHover: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.PointerShadowHover, _pointerShadowHover);
+    this.slider.styles.setStyle(CSSVariables.PointerShadowHover, _pointerShadowHover, 1);
   }
 
   public get pointerShadowHover() {
     return this.slider?.styles?.getStyle(CSSVariables.PointerShadowHover);
   }
 
+  public set pointer2ShadowHover(_pointerShadowHover: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.Pointer2ShadowHover, _pointerShadowHover, 2);
+  }
+
+  public get pointer2ShadowHover() {
+    return this.slider?.styles?.getStyle(CSSVariables.Pointer2ShadowHover);
+  }
+
   public set pointerShadowFocus(_pointerShadowFocus: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.PointerShadowFocus, _pointerShadowFocus);
+    this.slider.styles.setStyle(CSSVariables.PointerShadowFocus, _pointerShadowFocus, 1);
   }
 
   public get pointerShadowFocus() {
     return this.slider?.styles?.getStyle(CSSVariables.PointerShadowFocus);
   }
 
+  public set pointer2ShadowFocus(_pointerShadowFocus: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.Pointer2ShadowFocus, _pointerShadowFocus, 2);
+  }
+
+  public get pointer2ShadowFocus() {
+    return this.slider?.styles?.getStyle(CSSVariables.Pointer2ShadowFocus);
+  }
+
   public set pointerBorder(_pointerBorder: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.PointerBorder, _pointerBorder);
+    this.slider.styles.setStyle(CSSVariables.PointerBorder, _pointerBorder, 1);
   }
 
   public get pointerBorder() {
     return this.slider?.styles?.getStyle(CSSVariables.PointerBorder);
   }
 
+  public set pointer2Border(_pointerBorder: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.Pointer2Border, _pointerBorder, 2);
+  }
+
+  public get pointer2Border() {
+    return this.slider?.styles?.getStyle(CSSVariables.Pointer2Border);
+  }
+
   public set pointerBorderHover(_pointerBorderHover: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.PointerBorderHover, _pointerBorderHover);
+    this.slider.styles.setStyle(CSSVariables.PointerBorderHover, _pointerBorderHover, 1);
   }
 
   public get pointerBorderHover() {
     return this.slider?.styles?.getStyle(CSSVariables.PointerBorderHover);
   }
 
+  public set pointer2BorderHover(_pointerBorderHover: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.Pointer2BorderHover, _pointerBorderHover, 2);
+  }
+
+  public get pointer2BorderHover() {
+    return this.slider?.styles?.getStyle(CSSVariables.Pointer2BorderHover);
+  }
+
   public set pointerBorderFocus(_pointerBorderFocus: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.setStyle(CSSVariables.PointerBorderFocus, _pointerBorderFocus);
+    this.slider.styles.setStyle(CSSVariables.PointerBorderFocus, _pointerBorderFocus, 1);
   }
 
   public get pointerBorderFocus() {
     return this.slider?.styles?.getStyle(CSSVariables.PointerBorderFocus);
+  }
+
+  public set pointer2BorderFocus(_pointerBorderFocus: string | undefined) {
+    if(!this.slider || !this.slider.styles) return;
+    this.slider.styles.setStyle(CSSVariables.Pointer2BorderFocus, _pointerBorderFocus, 2);
+  }
+
+  public get pointer2BorderFocus() {
+    return this.slider?.styles?.getStyle(CSSVariables.Pointer2BorderFocus);
   }
 
   public set pointer1Disabled(_pointer1Disabled: boolean) {

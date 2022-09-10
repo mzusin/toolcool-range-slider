@@ -45,18 +45,29 @@ export const observedAttributes = [
   AttributesEnum.PointerHeight,
   AttributesEnum.PointerRadius,
   AttributesEnum.PointerShape,
-
   AttributesEnum.PointerBg,
   AttributesEnum.PointerBgHover,
   AttributesEnum.PointerBgFocus,
-
   AttributesEnum.PointerShadow,
   AttributesEnum.PointerShadowHover,
   AttributesEnum.PointerShadowFocus,
-
   AttributesEnum.PointerBorder,
   AttributesEnum.PointerBorderHover,
   AttributesEnum.PointerBorderFocus,
+
+  AttributesEnum.Pointer2Width,
+  AttributesEnum.Pointer2Height,
+  AttributesEnum.Pointer2Radius,
+  AttributesEnum.Pointer2Shape,
+  AttributesEnum.Pointer2Bg,
+  AttributesEnum.Pointer2BgHover,
+  AttributesEnum.Pointer2BgFocus,
+  AttributesEnum.Pointer2Shadow,
+  AttributesEnum.Pointer2ShadowHover,
+  AttributesEnum.Pointer2ShadowFocus,
+  AttributesEnum.Pointer2Border,
+  AttributesEnum.Pointer2BorderHover,
+  AttributesEnum.Pointer2BorderFocus,
 
   AttributesEnum.ValueLabel,
   AttributesEnum.Value2Label,
@@ -208,126 +219,210 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
 
     case AttributesEnum.SliderWidth: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.SliderWidth, newValue);
+        slider.styles.setStyle(CSSVariables.SliderWidth, newValue, 1);
       }
       break;
     }
 
     case AttributesEnum.SliderHeight: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.SliderHeight, newValue);
+        slider.styles.setStyle(CSSVariables.SliderHeight, newValue, 1);
       }
       break;
     }
 
     case AttributesEnum.SliderRadius: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.SliderRadius, newValue);
+        slider.styles.setStyle(CSSVariables.SliderRadius, newValue, 1);
       }
       break;
     }
 
     case AttributesEnum.SliderBg: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.SliderBg, newValue);
+        slider.styles.setStyle(CSSVariables.SliderBg, newValue, 1);
       }
       break;
     }
 
     case AttributesEnum.SliderBgHover: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.SliderBgHover, newValue);
+        slider.styles.setStyle(CSSVariables.SliderBgHover, newValue, 1);
       }
       break;
     }
 
     case AttributesEnum.SliderBgFill: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.SliderBgFill, newValue);
+        slider.styles.setStyle(CSSVariables.SliderBgFill, newValue, 1);
       }
       break;
     }
 
     case AttributesEnum.PointerWidth: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.PointerWidth, newValue);
+        slider.styles.setStyle(CSSVariables.PointerWidth, newValue, 1);
+      }
+      break;
+    }
+
+    case AttributesEnum.Pointer2Width: {
+      if(slider.styles){
+        slider.styles.setStyle(CSSVariables.PointerWidth, newValue, 2);
       }
       break;
     }
 
     case AttributesEnum.PointerHeight: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.PointerHeight, newValue);
+        slider.styles.setStyle(CSSVariables.PointerHeight, newValue, 1);
+      }
+      break;
+    }
+
+    case AttributesEnum.Pointer2Height: {
+      if(slider.styles){
+        slider.styles.setStyle(CSSVariables.PointerHeight, newValue, 2);
       }
       break;
     }
 
     case AttributesEnum.PointerRadius: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.PointerRadius, newValue);
+        slider.styles.setStyle(CSSVariables.PointerRadius, newValue, 1);
+      }
+      break;
+    }
+
+    case AttributesEnum.Pointer2Radius: {
+      if(slider.styles){
+        slider.styles.setStyle(CSSVariables.PointerRadius, newValue, 2);
       }
       break;
     }
 
     case AttributesEnum.PointerBg: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.PointerBg, newValue);
+        slider.styles.setStyle(CSSVariables.PointerBg, newValue, 1);
+      }
+      break;
+    }
+
+    case AttributesEnum.Pointer2Bg: {
+      if(slider.styles){
+        slider.styles.setStyle(CSSVariables.PointerBg, newValue, 2);
       }
       break;
     }
 
     case AttributesEnum.PointerBgHover: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.PointerBgHover, newValue);
+        slider.styles.setStyle(CSSVariables.PointerBgHover, newValue, 1);
+      }
+      break;
+    }
+
+    case AttributesEnum.Pointer2BgHover: {
+      if(slider.styles){
+        slider.styles.setStyle(CSSVariables.PointerBgHover, newValue, 2);
       }
       break;
     }
 
     case AttributesEnum.PointerBgFocus: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.PointerBgFocus, newValue);
+        slider.styles.setStyle(CSSVariables.PointerBgFocus, newValue, 1);
+      }
+      break;
+    }
+
+    case AttributesEnum.Pointer2BgFocus: {
+      if(slider.styles){
+        slider.styles.setStyle(CSSVariables.PointerBgFocus, newValue, 2);
       }
       break;
     }
 
     case AttributesEnum.PointerShadow: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.PointerShadow, newValue);
+        slider.styles.setStyle(CSSVariables.PointerShadow, newValue, 1);
+      }
+      break;
+    }
+
+    case AttributesEnum.Pointer2Shadow: {
+      if(slider.styles){
+        slider.styles.setStyle(CSSVariables.PointerShadow, newValue, 2);
       }
       break;
     }
 
     case AttributesEnum.PointerShadowHover: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.PointerShadowHover, newValue);
+        slider.styles.setStyle(CSSVariables.PointerShadowHover, newValue, 1);
+      }
+      break;
+    }
+
+    case AttributesEnum.Pointer2ShadowHover: {
+      if(slider.styles){
+        slider.styles.setStyle(CSSVariables.PointerShadowHover, newValue, 2);
       }
       break;
     }
 
     case AttributesEnum.PointerShadowFocus: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.PointerShadowFocus, newValue);
+        slider.styles.setStyle(CSSVariables.PointerShadowFocus, newValue, 1);
+      }
+      break;
+    }
+
+    case AttributesEnum.Pointer2ShadowFocus: {
+      if(slider.styles){
+        slider.styles.setStyle(CSSVariables.PointerShadowFocus, newValue, 2);
       }
       break;
     }
 
     case AttributesEnum.PointerBorder: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.PointerBorder, newValue);
+        slider.styles.setStyle(CSSVariables.PointerBorder, newValue, 1);
+      }
+      break;
+    }
+
+    case AttributesEnum.Pointer2Border: {
+      if(slider.styles){
+        slider.styles.setStyle(CSSVariables.PointerBorder, newValue, 2);
       }
       break;
     }
 
     case AttributesEnum.PointerBorderHover: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.PointerBorderHover, newValue);
+        slider.styles.setStyle(CSSVariables.PointerBorderHover, newValue, 1);
+      }
+      break;
+    }
+
+    case AttributesEnum.Pointer2BorderHover: {
+      if(slider.styles){
+        slider.styles.setStyle(CSSVariables.PointerBorderHover, newValue, 2);
       }
       break;
     }
 
     case AttributesEnum.PointerBorderFocus: {
       if(slider.styles){
-        slider.styles.setStyle(CSSVariables.PointerBorderFocus, newValue);
+        slider.styles.setStyle(CSSVariables.PointerBorderFocus, newValue, 1);
+      }
+      break;
+    }
+
+    case AttributesEnum.Pointer2BorderFocus: {
+      if(slider.styles){
+        slider.styles.setStyle(CSSVariables.PointerBorderFocus, newValue, 2);
       }
       break;
     }
@@ -342,6 +437,13 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
     case AttributesEnum.PointerShape: {
       if(slider.styles){
         slider.styles.pointerShape = newValue;
+      }
+      break;
+    }
+
+    case AttributesEnum.Pointer2Shape: {
+      if(slider.styles){
+        slider.styles.pointer2Shape = newValue;
       }
       break;
     }

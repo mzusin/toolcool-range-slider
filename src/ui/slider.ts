@@ -1003,7 +1003,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     }
 
     // init styles ---------
-    styles = Styles($component, $slider);
+    styles = Styles($component, $slider, pointer2?.$pointer);
     setAnimateOnClick($component.getAttribute(AttributesEnum.AnimateOnClick));
 
     // if the storage is enabled ---> try to restore the values

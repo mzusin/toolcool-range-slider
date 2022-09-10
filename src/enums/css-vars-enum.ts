@@ -11,16 +11,13 @@ export const enum CSSVariables {
   
   PointerWidth = '--tc-range-slider-pointer-width',
   PointerHeight = '--tc-range-slider-pointer-height',
-  
   PointerRadius = '--tc-range-slider-pointer-border-radius',
   PointerBg = '--tc-range-slider-pointer-bg',
   PointerBgHover = '--tc-range-slider-pointer-bg-hover',
   PointerBgFocus = '--tc-range-slider-pointer-bg-focus',
-  
   PointerShadow = '--tc-range-slider-pointer-shadow',
   PointerShadowHover = '--tc-range-slider-pointer-shadow-hover',
   PointerShadowFocus = '--tc-range-slider-pointer-shadow-focus',
-  
   PointerBorder = '--tc-range-slider-pointer-border',
   PointerBorderHover = '--tc-range-slider-pointer-border-hover',
   PointerBorderFocus = '--tc-range-slider-pointer-border-focus',
