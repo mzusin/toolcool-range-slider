@@ -8,7 +8,7 @@
 [![Featured on Openbase](https://badges.openbase.com/js/featured/toolcool-range-slider.svg?token=sUaswkA1YmMFk8F+JBWQZoWo4wGL7wZwyIaglD6kAlQ=)](https://openbase.com/js/toolcool-range-slider?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)
 
-Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including one and two pointers, a vertical slider, touch, mousewheel and keyboard support, local and session storage, and RTL support.
+Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including one and two pointers, a vertical slider, touch, mousewheel and keyboard support, local and session storage, RTL support, and range dragging.
 
 [![Tool Cool Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/toolcool-range-slider-preview-2.png?raw=true)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html)
 
@@ -38,6 +38,7 @@ Responsive range slider library written in typescript and using web component te
 - Automatically generated labels (optional).
 - Supports multiple sliders on one page.
 - Supports two pointers **overlap**, pointers **max** and **min** distance.
+- Supports range dragging.
 
 ## Table of contents
 - [Basic usage](#basic-usage)
@@ -62,6 +63,7 @@ Responsive range slider library written in typescript and using web component te
 - [Pointers overlap](#pointers-overlap)
 - [Pointers max and min distance](#pointers-max-and-min-distance)
 - [Animation on panel click](#animation-on-panel-click)
+- [Range dragging](#range-dragging)
 - [Generating slider dynamically](#Generating-slider-dynamically)
 - [TypeScript Usage](#typescript-usage)
 - [Usage with React and TypeScript](#usage-with-react-and-typescript)
@@ -1005,7 +1007,7 @@ It's possible to enable animation on panel click with the **animate-onclick** pr
 
 The value of the **animate-onclick** property is specified in seconds, ms, etc. and is the same as the css [transition-duration](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration) property.
 
-There is also a corresponding API properties:
+There is also a corresponding API:
 
 ```js
 const $slider = document.querySelector('#slider');
@@ -1017,6 +1019,23 @@ $slider.animateOnClick = undefined; // disable
 ```
 
 :pushpin: The page with example can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/18-animation-on-click.html).
+
+## Range dragging
+
+It's possible to enable range dragging for a 2-pointer slider using the **range-dragging** property:
+
+```html
+<toolcool-range-slider range-dragging="true"></toolcool-range-slider>
+```
+
+There is also a corresponding API:
+
+```js
+const $slider = document.querySelector('#slider');
+$slider.rangeDragging = true; // or false
+```
+
+:pushpin: The page with example can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/28-range-drag.html).
 
 ## Generating slider dynamically
 
