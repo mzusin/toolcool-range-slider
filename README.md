@@ -81,6 +81,14 @@ Add the following html to the page:
 <script type="text/javascript" src="toolcool-range-slider.min.js"></script>
 ```
 
+Or alternatively:
+
+```html
+<tc-range-slider></tc-range-slider>
+
+<script type="text/javascript" src="toolcool-range-slider.min.js"></script>
+```
+
 You can control the range slider by referencing the `toolcool-range-slider` HTML tag.
 
 ```html
