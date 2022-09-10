@@ -112,6 +112,8 @@ declare class RangeSlider extends HTMLElement {
     get ariaLabel1(): string | undefined;
     set ariaLabel2(_ariaLabel2: string | undefined);
     get ariaLabel2(): string | undefined;
+    get rangeDragging(): boolean | string | undefined | null;
+    set rangeDragging(_rangeDragging: boolean | string | undefined | null);
     constructor();
     /**
      * when the custom element connected to DOM

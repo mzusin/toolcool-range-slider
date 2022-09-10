@@ -12,6 +12,7 @@ export interface ISlider {
     pointersOverlap: boolean;
     pointersMinDistance: number;
     pointersMaxDistance: number;
+    rangeDragging: boolean;
     readonly min: number | string;
     readonly max: number | string;
     readonly step: TStep;

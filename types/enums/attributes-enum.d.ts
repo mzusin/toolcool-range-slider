@@ -5,6 +5,7 @@ export declare const enum AttributesEnum {
     PointersOverlap = "pointers-overlap",
     PointersMinDistance = "pointers-min-distance",
     PointersMaxDistance = "pointers-max-distance",
+    RangeDragging = "range-dragging",
     Data = "data",
     Min = "min",
     Max = "max",
