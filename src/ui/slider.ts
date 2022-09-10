@@ -143,7 +143,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     if(rangeDragging){
       let _dragPercent = percent;
-      let _step = getRelativeStep(_dragPercent);
+      const _step = getRelativeStep(_dragPercent);
       if(_step !== undefined){
         _dragPercent = roundToStep(_dragPercent, _step);
       }
@@ -223,11 +223,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
       const pointer2GreaterThanMax = pointer2.percent + rangeDraggingDiff > 100;
       if(pointer1SmallerThanMin || pointer2GreaterThanMax) return;
 
-      let percent1 = pointer1.percent + rangeDraggingDiff;
-      let percent2 = pointer2.percent + rangeDraggingDiff;
-
-      setPositions(1, percent1);
-      setPositions(2, percent2);
+      setPositions(1, pointer1.percent + rangeDraggingDiff);
+      setPositions(2, pointer2.percent + rangeDraggingDiff);
       return;
     }
 
