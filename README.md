@@ -326,23 +326,48 @@ Pointer width, height, and border-radius can be change using **pointer-width**, 
         pointer-width="35px"
         pointer-height="35px"
         pointer-radius="5px"></toolcool-range-slider>
+
+<toolcool-range-slider
+        value1="30"
+        value2="60"
+        pointer-width="35px"
+        pointer-height="35px"
+        pointer-radius="5px"></toolcool-range-slider>
+```
+
+It's also possible to make different styles for the second pointer:
+
+```html
+<toolcool-range-slider
+        value1="30"
+        value2="60"
+        pointer-width="35px"
+        pointer-height="35px"
+        pointer-radius="5px"
+
+        pointer2-width="45px"
+        pointer2-height="45px"
+        pointer2-radius="10px"></toolcool-range-slider>
 ```
 
 Default values table:
 
-| HTML Property  | Default Value | API Property  |
-|----------------|---------------|---------------|
-| slider-width   | 300px         | sliderWidth   |
-| slider-height  | 0.25rem       | sliderHeight  | 
-| slider-radius  | 1rem          | sliderRadius  |
-| pointer-width  | 1rem          | pointerWidth  |
-| pointer-height | 1rem          | pointerHeight |
-| pointer-radius | 100%          | pointerRadius | 
+| HTML Property   | Default Value           | API Property  |
+|-----------------|-------------------------|---------------|
+| slider-width    | 300px                   | sliderWidth   |
+| slider-height   | 0.25rem                 | sliderHeight  | 
+| slider-radius   | 1rem                    | sliderRadius  |
+| pointer-width   | 1rem                    | pointerWidth  |
+| pointer-height  | 1rem                    | pointerHeight |
+| pointer-radius  | 100%                    | pointerRadius | 
+| pointer2-width  | inherits pointer-width  | pointerWidth  |
+| pointer2-height | inherits pointer-height | pointerHeight |
+| pointer2-radius | inherits pointer-radius | pointerRadius | 
 
 Each property can also be changed via the API:
 
 ```html
-<toolcool-range-slider id="slider-1"></toolcool-range-slider>
+<toolcool-range-slider id="slider-1" value1="30" value2-60></toolcool-range-slider>
 
 <script type="text/javascript" src="toolcool-range-slider.min.js"></script>
 
@@ -354,9 +379,14 @@ Each property can also be changed via the API:
     $slider.sliderWidth = '300px';
     $slider.sliderHeight = '1rem';
     $slider.sliderRadius = 0;
+    
     $slider.pointerWidth = '1rem';
     $slider.pointerHeight = '1rem';
     $slider.pointerRadius = '100%';
+
+    $slider.pointer2Width = '2rem';
+    $slider.pointer2Height = '2rem';
+    $slider.pointer2Radius = '0';
 
     // or 
     // $slider.setAttribute('sliderWidth', '300px');
@@ -542,20 +572,29 @@ Color and other styles can be customized with the following attributes:
 
 The list of attributes and default values:
 
-| HTML Attribute       | Default Value                   | API Property     |
-|----------------------|---------------------------------|------------------|
-| slider-bg            | #4d69ad                         |  sliderBg |
-| slider-bg-hover      | #5f79b7                         |  sliderBgHover |
-| slider-bg-fill       | #000                            |  sliderBgFill |
-| pointer-bg           | #fff                            |  pointerBg |
-| pointer-bg-hover     | #dcdcdc                         |  pointerBgHover |
-| pointer-bg-focus     | #dcdcdc                         |  pointerBgFocus |
-| pointer-shadow       | 0 0 2px rgba(0, 0, 0, 0.6)      |  pointerShadow |
-| pointer-shadow-hover | 0 0 2px rgb(0, 0, 0)            |  pointerShadowHover |
-| pointer-shadow-focus | 0 0 2px rgb(0, 0, 0)            |  pointerShadowFocus |
-| pointer-border       | 1px solid hsla(0, 0%, 88%, 0.5) |  pointerBorder |
-| pointer-border-hover | 1px solid hsla(0, 0%, 88%, 0.5) |  pointerBorderHover |
-| pointer-border-focus | 1px solid hsl(201, 72%, 59%)    |  pointerBorderFocus |
+| HTML Attribute        | Default Value                   | API Property       |
+|-----------------------|---------------------------------|--------------------|
+| slider-bg             | #4d69ad                         | sliderBg           |
+| slider-bg-hover       | #5f79b7                         | sliderBgHover      |
+| slider-bg-fill        | #000                            | sliderBgFill       |
+| pointer-bg            | #fff                            | pointerBg          |
+| pointer-bg-hover      | #dcdcdc                         | pointerBgHover     |
+| pointer-bg-focus      | #dcdcdc                         | pointerBgFocus     |
+| pointer-shadow        | 0 0 2px rgba(0, 0, 0, 0.6)      | pointerShadow      |
+| pointer-shadow-hover  | 0 0 2px rgb(0, 0, 0)            | pointerShadowHover |
+| pointer-shadow-focus  | 0 0 2px rgb(0, 0, 0)            | pointerShadowFocus |
+| pointer-border        | 1px solid hsla(0, 0%, 88%, 0.5) | pointerBorder      |
+| pointer-border-hover  | 1px solid hsla(0, 0%, 88%, 0.5) | pointerBorderHover |
+| pointer-border-focus  | 1px solid hsl(201, 72%, 59%)    | pointerBorderFocus |
+| pointer2-bg           | inherits from pointer1          | pointerBg          |
+| pointer2-bg-hover     | inherits from pointer1          | pointerBgHover     |
+| pointer2-bg-focus     | inherits from pointer1          | pointerBgFocus     |
+| pointer2-shadow       | inherits from pointer1          | pointerShadow      |
+| pointer2-shadow-hover | inherits from pointer1          | pointerShadowHover |
+| pointer2-shadow-focus | inherits from pointer1          | pointerShadowFocus |
+| pointer2-border       | inherits from pointer1 )        | pointerBorder      |
+| pointer2-border-hover | inherits from pointer1          | pointerBorderHover |
+| pointer2-border-focus | inherits from pointer1          | pointerBorderFocus |
 
 API:
 
@@ -632,6 +671,26 @@ There are also several predefined pointer shapes that can be defined using the *
   max="100"
   value="10"
   pointer-shape="triangle"
+  pointer-width="2rem"
+  pointer-height="2rem"
+  pointer-bg="#d7067d"
+  pointer-bg-hover="#0b94c7"
+  pointer-bg-focus="#0b94c7"
+  slider-width="400px"
+  slider-bg="#6787cd"></toolcool-range-slider>
+```
+
+It's also possible to define a different shape for the second pointer:
+
+```html
+<toolcool-range-slider
+  min="0"
+  max="100"
+  value="10"
+  
+  pointer-shape="triangle"
+  pointer2-shape="star"
+  
   pointer-width="2rem"
   pointer-height="2rem"
   pointer-bg="#d7067d"
