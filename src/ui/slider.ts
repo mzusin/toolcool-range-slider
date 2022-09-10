@@ -142,14 +142,20 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     const panelFillClicked = isPanelFillClicked($target);
 
     if(rangeDragging){
+      let _dragPercent = percent;
+      let _step = getRelativeStep(_dragPercent);
+      if(_step !== undefined){
+        _dragPercent = roundToStep(_dragPercent, _step);
+      }
+
       if(panelFillClicked){
-        rangeDraggingStart = percent;
+        rangeDraggingStart = _dragPercent;
         rangeDraggingDiff = 0;
       }
       else{
         if(rangeDraggingStart !== undefined){
-          rangeDraggingDiff = percent - rangeDraggingStart;
-          rangeDraggingStart = percent;
+          rangeDraggingDiff = _dragPercent - rangeDraggingStart;
+          rangeDraggingStart = _dragPercent;
         }
       }
     }
@@ -217,8 +223,11 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
       const pointer2GreaterThanMax = pointer2.percent + rangeDraggingDiff > 100;
       if(pointer1SmallerThanMin || pointer2GreaterThanMax) return;
 
-      setPositions(1, pointer1.percent + rangeDraggingDiff);
-      setPositions(2, pointer2.percent + rangeDraggingDiff);
+      let percent1 = pointer1.percent + rangeDraggingDiff;
+      let percent2 = pointer2.percent + rangeDraggingDiff;
+
+      setPositions(1, percent1);
+      setPositions(2, percent2);
       return;
     }
 
