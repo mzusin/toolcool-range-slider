@@ -69,4 +69,5 @@ export const enum AttributesEnum {
   AriaLabel2 = 'aria-label2',
 
   AnimateOnClick = 'animate-onclick',
+  CSSLinks = 'css-links',
 }

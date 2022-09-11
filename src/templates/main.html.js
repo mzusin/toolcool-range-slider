@@ -1,5 +1,7 @@
-export default (styles) => {
+export default (styles, linkHrefs) => {
   return `
+    ${ linkHrefs && linkHrefs.length > 0 ? linkHrefs.map(linkHref => `<link rel="stylesheet" href="${ linkHref }" />`).join('')  : '' }
+
     <style>
         ${styles}
     </style>
