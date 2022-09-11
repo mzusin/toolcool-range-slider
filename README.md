@@ -49,6 +49,7 @@ Responsive range slider library written in typescript and using web component te
 - [Width, Height, and Border Radius](#width-height-and-border-radius)
 - [Automatically generated labels](#automatically-generated-labels)
 - [Predefined Styles (Themes)](#predefined-styles-themes)
+- [CSS Links](#css-links)
 - [Images and SVGs as pointers](#images-and-svgs-as-pointers)
 - [Colors](#colors)
 - [Vertical Slider](#vertical-slider)
@@ -474,14 +475,14 @@ The slider has several optional predefined themes. Each theme defines a unique l
 
 The slider has the following themes:
 
-| Theme Code Name | Example                                                                                                                                                                                               |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Theme Code Name | Example                                                                                                                                                                                                     |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | target          | [Example 1](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html), [Example 2](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html) |
 | glass           | [Example 1](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html), [Example 2](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html) |
 | rect            | [Example 1](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html), [Example 2](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html) |
 | circle          | [Example 1](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html), [Example 2](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html) |
-| gradient        | [Example](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/6-gradient.html) |
-| ruler           | [Example](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html)  |
+| gradient        | [Example](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/6-gradient.html)                                                                                                         |
+| ruler           | [Example](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html)                                                                                                           |
 
 Usage examples:
 
@@ -519,6 +520,22 @@ API:
     // $slider.setAttribute('theme', 'rect');
 </script>
 ```
+
+## CSS Links
+
+It's possible to provide the paths to CSS files using **css-links** attribute as follows:
+
+```html
+<toolcool-range-slider css-links="test-1.css"></toolcool-range-slider>
+```
+
+You can add more than one path by separating them with **;**
+
+```html
+<toolcool-range-slider css-links="test-1.css; test-2.css;"></toolcool-range-slider>
+```
+
+:pushpin: Example page can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/31-external-css.html).
 
 ## Images and SVGs as pointers
 
