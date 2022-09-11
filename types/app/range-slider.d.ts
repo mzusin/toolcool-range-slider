@@ -13,6 +13,7 @@ declare class RangeSlider extends HTMLElement {
      */
     static get observedAttributes(): import("../enums/attributes-enum.js").AttributesEnum[];
     slider: ISlider | undefined;
+    private _externalCSSList;
     set step(_step: TStep);
     get step(): TStep;
     set disabled(_disabled: boolean);
@@ -140,6 +141,7 @@ declare class RangeSlider extends HTMLElement {
     get ariaLabel2(): string | undefined;
     get rangeDragging(): boolean | string | undefined | null;
     set rangeDragging(_rangeDragging: boolean | string | undefined | null);
+    get externalCSSList(): string[] | null;
     constructor();
     /**
      * when the custom element connected to DOM

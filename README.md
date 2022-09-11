@@ -535,6 +535,8 @@ You can add more than one path by separating them with **;**
 <toolcool-range-slider css-links="test-1.css; test-2.css;"></toolcool-range-slider>
 ```
 
+The priority of loaded CSS rules will be higher than web component attributes.
+
 :pushpin: Example page can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/31-external-css.html).
 
 ## Images and SVGs as pointers

@@ -27,7 +27,7 @@ export const getExternalCSSList = ($component: HTMLElement) => {
   const parts = str.split(';');
   const cssList: string[] = [];
 
-  for(let part of parts){
+  for(const part of parts){
     if(part.trim() === '') continue;
     cssList.push(part.trim());
   }

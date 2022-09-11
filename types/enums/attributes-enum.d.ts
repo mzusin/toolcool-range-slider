@@ -58,6 +58,7 @@ export declare const enum AttributesEnum {
     GenerateLabels = "generate-labels",
     AriaLabel1 = "aria-label1",
     AriaLabel2 = "aria-label2",
-    AnimateOnClick = "animate-onclick"
+    AnimateOnClick = "animate-onclick",
+    CSSLinks = "css-links"
 }
 //# sourceMappingURL=attributes-enum.d.ts.map
