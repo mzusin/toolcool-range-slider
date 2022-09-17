@@ -221,15 +221,6 @@ class RangeSlider extends HTMLElement {
     return this.slider?.storageKey2;
   }
 
-  public set generateLabels(_generateLabels: boolean) {
-    if(!this.slider) return;
-    this.slider.generateLabels = _generateLabels;
-  }
-
-  public get generateLabels() {
-    return this.slider?.generateLabels ?? false;
-  }
-
   public set sliderWidth(_sliderWidth: string | undefined) {
     if(!this.slider || !this.slider.styles) return;
     this.slider.styles.setStyle(CSSVariables.SliderWidth, _sliderWidth, 1);

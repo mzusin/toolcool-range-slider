@@ -69,7 +69,6 @@ export const observedAttributes = [
   AttributesEnum.Pointer2BorderHover,
   AttributesEnum.Pointer2BorderFocus,
 
-  AttributesEnum.GenerateLabels,
   AttributesEnum.AriaLabel1,
   AttributesEnum.AriaLabel2,
 
@@ -184,11 +183,6 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
 
     case AttributesEnum.BottomToTop: {
       slider.bottomToTop = getBoolean(newValue);
-      break;
-    }
-
-    case AttributesEnum.GenerateLabels: {
-      slider.generateLabels = getBoolean(newValue);
       break;
     }
 

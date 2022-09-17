@@ -11,7 +11,9 @@
     "eslint": "eslint ./src/**",
     "typescript-declarations": "tsc --emitDeclarationOnly",
     "binding-labels-plugin:build": "node run/plugins/binding-labels-plugin.js",
-    "binding-labels-plugin:watch": "node run/plugins/binding-labels-plugin.js -- watch"
+    "binding-labels-plugin:watch": "node run/plugins/binding-labels-plugin.js -- watch",
+    "generated-labels-plugin:build": "node run/plugins/generated-labels-plugin.js",
+    "generated-labels-plugin:watch": "node run/plugins/generated-labels-plugin.js -- watch"
   },
   "type": "module",
   "keywords": [

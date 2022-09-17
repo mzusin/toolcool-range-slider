@@ -5,7 +5,6 @@ import { TData, TStep } from '../types';
 import { findValueIndexInData, parseData } from '../dal/data-provider';
 import { TypeEnum } from '../enums/type-enum';
 import { IPanelFill, PanelFill } from './panel-fill';
-import { ILabels, Labels } from './labels';
 import { sendChangeEvent, sendMouseDownEvent, sendMouseUpEvent } from '../domain/events-provider';
 import { IStyles, Styles } from './styles';
 import { StorageTypeEnum } from '../enums/storage-type-enum';
@@ -18,7 +17,6 @@ import { IPluginsManager, PluginsManager } from '../plugins/plugins-manager';
 export interface ISlider {
   readonly pointer1: IPointer;
   readonly pointer2: IPointer | null;
-  readonly labels: ILabels | null;
   readonly styles: IStyles | null;
   readonly pluginsManager: IPluginsManager | null;
 
@@ -37,7 +35,6 @@ export interface ISlider {
   bottomToTop: boolean;
   disabled: boolean;
   keyboardDisabled: boolean;
-  generateLabels: boolean;
   round: number;
   animateOnClick: string | undefined;
   ariaLabel1: string | undefined;
@@ -65,7 +62,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
   let selectedPointer: IPointer | null = null;
   let panelFill: IPanelFill | null = null;
-  let labels: ILabels | null = null;
   let styles: IStyles | null = null;
   let pluginsManager: IPluginsManager | null = null;
 
@@ -89,7 +85,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
   let disabled = false;
   let keyboardDisabled = false;
-  let generateLabels = false;
   let animateOnClick: string | undefined = undefined;
 
   let storage: StorageTypeEnum | undefined = undefined;
@@ -471,19 +466,14 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
       setAriaLabel(ariaLabel2, 2);
     }
 
-    setGenerateLabels(false);
-    setGenerateLabels(getBoolean($component.getAttribute(AttributesEnum.GenerateLabels)));
+    updatePlugins();
   };
 
   const removeSecondPointer = () => {
     pointer2?.destroy();
     pointer2 = null;
-    setGenerateLabels(false);
-    setGenerateLabels(getBoolean($component.getAttribute(AttributesEnum.GenerateLabels)));
-  };
 
-  const updateLabels = () => {
-    labels?.updateValues(getTextValue(pointer1.percent), getTextValue(pointer2?.percent), getTextMinMax(min), getTextMinMax(max));
+    updatePlugins();
   };
 
   const updatePlugins = () => {
@@ -617,7 +607,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     const value1text = getTextValue(pointer1.percent);
     const value2text = getTextValue(pointer2?.percent);
 
-    updateLabels();
     updatePlugins();
 
     if(value1text !== undefined){
@@ -875,7 +864,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     setPositions(1, pointer1.percent);
     setPositions(2, pointer2?.percent);
 
-    labels?.setLabelsOrder(rightToLeft || bottomToTop);
+    updatePlugins();
   };
 
   const setBottomToTop = (_bottomToTop: boolean) => {
@@ -896,22 +885,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     setPositions(1, pointer1.percent);
     setPositions(2, pointer2?.percent);
 
-    labels?.setLabelsOrder(rightToLeft || bottomToTop);
-  };
-
-  const setGenerateLabels = (_enabled: boolean) => {
-
-    if(!labels) return;
-
-    generateLabels = _enabled;
-
-    labels.setGenLabelsEnabled(
-      _enabled,
-      getTextValue(pointer1.percent),
-      getTextValue(pointer2?.percent),
-      rightToLeft || bottomToTop,
-      getTextMinMax(min),
-      getTextMinMax(max));
+    updatePlugins();
   };
 
   const setRound = (_round: number) => {
@@ -921,7 +895,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
       round = ROUND_DEFAULT;
     }
 
-    updateLabels();
     updatePlugins();
   };
 
@@ -976,9 +949,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
       panelFill = PanelFill($fill);
     }
 
-    // init generated and reference labels
-    labels = Labels($component, $slider);
-
     // init main properties from HTML attributes
     setType($component.getAttribute(AttributesEnum.Type));
     setRightToLeft(getBoolean($component.getAttribute(AttributesEnum.RightToLeft)));
@@ -1009,8 +979,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     if(pointer2){
       pointer2.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer2Disabled));
     }
-
-    setGenerateLabels(getBoolean($component.getAttribute(AttributesEnum.GenerateLabels)));
 
     setRound(getNumber($component.getAttribute(AttributesEnum.Round), ROUND_DEFAULT));
 
@@ -1067,10 +1035,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     get pointer2() {
       return pointer2;
-    },
-
-    get labels() {
-      return labels;
     },
 
     get styles() {
@@ -1151,14 +1115,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     set bottomToTop(_bottomToTop) {
       setBottomToTop(_bottomToTop);
-    },
-
-    get generateLabels() {
-      return generateLabels;
-    },
-
-    set generateLabels(_enabled) {
-      setGenerateLabels(_enabled);
     },
 
     get round() {

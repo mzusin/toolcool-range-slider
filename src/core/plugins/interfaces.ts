@@ -11,7 +11,9 @@ export interface IPlugin {
     min: number,
     max: number,
     textMin: number | string | undefined,
-    textMax: number | string | undefined
+    textMax: number | string | undefined,
+    rightToLeft: boolean,
+    bottomToTop: boolean
   ) => void;
 
   onAttrChange: (attrName: string, _oldValue: string, newValue: string) =>  void;

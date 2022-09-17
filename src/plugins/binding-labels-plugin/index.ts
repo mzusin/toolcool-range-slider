@@ -77,7 +77,9 @@ const BindingLabelsPlugin = () : IPlugin => {
       _min: number,
       _max: number,
       _textMin: number | string | undefined,
-      _textMax: number | string | undefined
+      _textMax: number | string | undefined,
+      _rightToLeft: boolean,
+      _bottomToTop: boolean
     ) => {
       if($referenceLabel1 && _textValue1 !== undefined){
         $referenceLabel1.textContent = _textValue1.toString();
