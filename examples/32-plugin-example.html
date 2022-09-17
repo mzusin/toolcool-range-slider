@@ -75,6 +75,14 @@
             <div class="value-22" style="margin-right: 1rem"></div>
         </div>
 
+        <div class="row">
+            <toolcool-range-slider
+              id="slider-3"
+              slider-width="100%"
+              value1="10"
+              value2="90"></toolcool-range-slider>
+        </div>
+
     </div>
 
     <script>
@@ -187,9 +195,10 @@
         });
     </script>
     <script src="js/toolcool-range-slider.min.js"></script>
-    <!--<script>
+    <script>
         const $slider1 = document.getElementById('slider-1');
         const $slider2 = document.getElementById('slider-2');
+        const $slider3 = document.getElementById('slider-3');
 
         console.log('$slider1.valueLabel', $slider1.valueLabel)
 
@@ -198,6 +207,8 @@
         $slider1.valueLabel = '.value-13';
         $slider1.value2Label = '.value-14';
 
-    </script>-->
+        console.log('$slider3.valueLabel', $slider3.valueLabel)
+
+    </script>
 </body>
 </html>

@@ -6,7 +6,7 @@
   "types": "./types/app/range-slider.d.ts",
   "scripts": {
     "build": "node run/build.js",
-    "watch": "node run/watch.js",
+    "watch": "node run/build.js -- watch",
     "test": "./node_modules/karma/bin/karma start ./karma.conf.cjs",
     "eslint": "eslint ./src/**",
     "typescript-declarations": "tsc --emitDeclarationOnly"
