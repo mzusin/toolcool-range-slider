@@ -487,7 +487,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
       min,
       max,
       getTextMinMax(min),
-      getTextMinMax(max)
+      getTextMinMax(max),
+      rightToLeft,
+      bottomToTop
     );
   };
 

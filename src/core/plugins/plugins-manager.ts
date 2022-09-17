@@ -18,7 +18,9 @@ export interface IPluginsManager {
     min: number,
     max: number,
     textMin: number | string | undefined,
-    textMax: number | string | undefined
+    textMax: number | string | undefined,
+    rightToLeft: boolean,
+    bottomToTop: boolean
   ) => void;
 
   onAttrChange: (attrName: string, oldValue: string, newValue: string) =>  void;
@@ -38,7 +40,9 @@ export const PluginsManager = ($component: HTMLElement, requestUpdatePlugins: ()
     min: number,
     max: number,
     textMin: number | string | undefined,
-    textMax: number | string | undefined
+    textMax: number | string | undefined,
+    rightToLeft: boolean,
+    bottomToTop: boolean
   ) => {
     for(const plugin of plugins){
       if(plugin.update && typeof plugin.update === 'function'){
@@ -50,7 +54,9 @@ export const PluginsManager = ($component: HTMLElement, requestUpdatePlugins: ()
           min,
           max,
           textMin,
-          textMax
+          textMax,
+          rightToLeft,
+          bottomToTop
         );
       }
     }
