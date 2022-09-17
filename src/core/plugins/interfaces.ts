@@ -1,7 +1,11 @@
 export interface IPlugin {
   readonly name: string,
 
-  init: ($component: HTMLElement, requestUpdate: () => void) => void;
+  init: (
+    $component: HTMLElement,
+    requestUpdate: () => void,
+    updatePointers: (value1: string | number | undefined, value2: string | number | undefined) => void,
+  ) => void;
 
   update: (
     percent1: number,

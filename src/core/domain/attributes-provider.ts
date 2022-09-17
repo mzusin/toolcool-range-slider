@@ -3,7 +3,6 @@ import { ISlider, ROUND_DEFAULT } from '../ui/slider';
 import { getBoolean, getNumber } from './math-provider';
 import { TypeEnum } from '../enums/type-enum';
 import { CSSVariables } from '../enums/css-vars-enum';
-import { StorageTypeEnum } from '../enums/storage-type-enum';
 
 export const observedAttributes = [
   AttributesEnum.Value,
@@ -29,9 +28,6 @@ export const observedAttributes = [
   AttributesEnum.Pointer1Disabled,
   AttributesEnum.Pointer2Disabled,
   AttributesEnum.RangeDragging,
-
-  AttributesEnum.Storage,
-  AttributesEnum.StorageKey,
 
   AttributesEnum.SliderWidth,
   AttributesEnum.SliderHeight,
@@ -136,16 +132,6 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
 
     case AttributesEnum.Disabled: {
       slider.disabled = getBoolean(newValue);
-      break;
-    }
-
-    case AttributesEnum.Storage: {
-      slider.storage = newValue as StorageTypeEnum;
-      break;
-    }
-
-    case AttributesEnum.StorageKey: {
-      slider.storageKey = newValue;
       break;
     }
 

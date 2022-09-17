@@ -56,13 +56,11 @@ const BindingLabelsPlugin = () : IPlugin => {
     /**
      * Optional: plugin initialization
      */
-    init: (_$component, _requestUpdate) => {
-      console.log('aaa')
+    init: (_$component, _requestUpdate, _updatePointers) => {
       requestUpdate = _requestUpdate;
 
       setReferenceLabel1(_$component.getAttribute('value-label'));
       setReferenceLabel2(_$component.getAttribute('value2-label'));
-      console.log(_$component.getAttribute('value2-label'))
     },
 
     /**

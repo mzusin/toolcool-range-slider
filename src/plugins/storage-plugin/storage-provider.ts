@@ -1,5 +1,4 @@
-import { StorageTypeEnum } from '../enums/storage-type-enum';
-
+import { StorageTypeEnum } from './storage-type-enum';
 export const STORAGE_KEY = 'tc-range-slider';
 
 export const isStorageEnabled = (storageType: StorageTypeEnum) => {
@@ -96,7 +95,7 @@ export const getStorageKey2 = (storageKey: string) => {
 export const restoreFromStorage = (
   storage: StorageTypeEnum | undefined,
   storageKey: string,
-  setInitialPointersValues: (_value: string | null, _value1: string | null, _value2: string | null) => void
+  updatePointers: (value1: string | number | undefined | null, value2: string | number | undefined | null) => void
 ) => {
   if (!storage) return;
 
@@ -116,5 +115,5 @@ export const restoreFromStorage = (
 
   if(val1 === null && val2 === null) return;
 
-  setInitialPointersValues(val1, val1, val2);
+  updatePointers(val1 !== null ? val1 : val2, val2);
 };

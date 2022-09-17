@@ -13,7 +13,9 @@
     "binding-labels-plugin:build": "node run/plugins/binding-labels-plugin.js",
     "binding-labels-plugin:watch": "node run/plugins/binding-labels-plugin.js -- watch",
     "generated-labels-plugin:build": "node run/plugins/generated-labels-plugin.js",
-    "generated-labels-plugin:watch": "node run/plugins/generated-labels-plugin.js -- watch"
+    "generated-labels-plugin:watch": "node run/plugins/generated-labels-plugin.js -- watch",
+    "storage-plugin:build": "node run/plugins/storage-plugin.js",
+    "storage-plugin:watch": "node run/plugins/storage-plugin.js -- watch"
   },
   "type": "module",
   "keywords": [

@@ -7,8 +7,6 @@ import { TypeEnum } from '../enums/type-enum';
 import { IPanelFill, PanelFill } from './panel-fill';
 import { sendChangeEvent, sendMouseDownEvent, sendMouseUpEvent } from '../domain/events-provider';
 import { IStyles, Styles } from './styles';
-import { StorageTypeEnum } from '../enums/storage-type-enum';
-import { getStorageKey2, restoreFromStorage, saveToStorage, STORAGE_KEY } from '../dal/storage-provider';
 import { CSSVariables } from '../enums/css-vars-enum';
 import { CssClasses } from '../enums/css-classes-enum';
 import { createPointer2, removeFocus } from '../domain/common-provider';
@@ -39,10 +37,6 @@ export interface ISlider {
   animateOnClick: string | undefined;
   ariaLabel1: string | undefined;
   ariaLabel2: string | undefined;
-
-  storage: StorageTypeEnum | undefined;
-  storageKey: string;
-  readonly storageKey2: string;
 
   setMin: (value: number | string | undefined | null) => void;
   setMax: (value: number | string | undefined | null) => void;
@@ -86,10 +80,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   let disabled = false;
   let keyboardDisabled = false;
   let animateOnClick: string | undefined = undefined;
-
-  let storage: StorageTypeEnum | undefined = undefined;
-  let storageKey = STORAGE_KEY;
-  let storageInitialized = false;
 
   let ariaLabel1: string | undefined = undefined;
   let ariaLabel2: string | undefined = undefined;
@@ -497,6 +487,12 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     updatePlugins();
   };
 
+  const updatePointersFromPlugins = (value1: string | number | undefined, value2: string | number | undefined) => {
+    const val1 = (value1 === null || value1 === undefined) ? null : value1.toString();
+    const val2 = (value2 === null || value2 === undefined) ? null : value2.toString();
+    setInitialPointersValues(val1, val1, val2);
+  };
+
   // -------------- Getters --------------------
 
   const getPointer1LeftWall = () => {
@@ -619,13 +615,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     if(value2text !== undefined && pointer2){
       pointer2.setAttr('aria-valuenow', value2text.toString());
       pointer2.setAttr('aria-valuetext', value2text.toString());
-    }
-
-    if (storage && storageInitialized) {
-      saveToStorage(storage, storageKey, value1text);
-      if(pointer2){
-        saveToStorage(storage, getStorageKey2(storageKey), value2text);
-      }
     }
 
     setAriaMinMax();
@@ -998,15 +987,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     styles = Styles($component, $slider, pointer2?.$pointer);
     setAnimateOnClick($component.getAttribute(AttributesEnum.AnimateOnClick));
 
-    // if the storage is enabled ---> try to restore the values
-    storage = ($component.getAttribute(AttributesEnum.Storage) as StorageTypeEnum) || undefined;
-    storageKey = $component.getAttribute(AttributesEnum.StorageKey) || STORAGE_KEY;
-
-    if (storage){
-      restoreFromStorage(storage, storageKey, setInitialPointersValues);
-      storageInitialized = true;
-    }
-
     // init slider events -------------------------------------
     $slider.addEventListener('mousedown', onMouseDown);
     $slider.addEventListener('mouseup', onMouseUp);
@@ -1015,7 +995,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     document.addEventListener('wheel', pointerMouseWheel, { passive: false });
 
     // init plugins ---------------
-    pluginsManager = PluginsManager($component, requestUpdatePlugins);
+    pluginsManager = PluginsManager($component, requestUpdatePlugins, updatePointersFromPlugins);
     pluginsManager.init();
   })();
 
@@ -1125,26 +1105,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     set round(_round) {
       setRound(_round);
-    },
-
-    get storage(){
-      return storage;
-    },
-
-    set storage(_storage){
-      storage = _storage;
-    },
-
-    get storageKey(){
-      return storageKey;
-    },
-
-    get storageKey2(){
-      return getStorageKey2(storageKey);
-    },
-
-    set storageKey(_storageKey){
-      storageKey = _storageKey;
     },
 
     get animateOnClick() {

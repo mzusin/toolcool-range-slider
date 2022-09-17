@@ -6,8 +6,6 @@ import { IPointer, Pointer } from '../ui/pointer';
 import { TData, TStep } from '../types';
 import { getBoolean, getNumber, isNumber } from '../domain/math-provider';
 import { TypeEnum } from '../enums/type-enum';
-import { StorageTypeEnum } from '../enums/storage-type-enum';
-import { STORAGE_KEY } from '../dal/storage-provider';
 import { CSSVariables } from '../enums/css-vars-enum';
 import { createPointer2, getExternalCSSList, removeFocus } from '../domain/common-provider';
 
@@ -197,28 +195,6 @@ class RangeSlider extends HTMLElement {
 
   public get animateOnClick() {
     return this.slider?.animateOnClick;
-  }
-
-  public set storage(_storage: StorageTypeEnum | undefined) {
-    if(!this.slider) return;
-    this.slider.storage = _storage;
-  }
-
-  public get storage() {
-    return this.slider?.storage;
-  }
-
-  public set storageKey(_storageKey: string) {
-    if(!this.slider) return;
-    this.slider.storageKey = _storageKey;
-  }
-
-  public get storageKey() {
-    return this.slider?.storageKey ?? STORAGE_KEY;
-  }
-
-  public get storageKey2() {
-    return this.slider?.storageKey2;
   }
 
   public set sliderWidth(_sliderWidth: string | undefined) {

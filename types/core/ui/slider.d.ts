@@ -2,7 +2,6 @@ import { IPointer } from './pointer';
 import { TData, TStep } from '../types';
 import { TypeEnum } from '../enums/type-enum';
 import { IStyles } from './styles';
-import { StorageTypeEnum } from '../enums/storage-type-enum';
 import { IPluginsManager } from '../plugins/plugins-manager';
 export interface ISlider {
     readonly pointer1: IPointer;
@@ -26,9 +25,6 @@ export interface ISlider {
     animateOnClick: string | undefined;
     ariaLabel1: string | undefined;
     ariaLabel2: string | undefined;
-    storage: StorageTypeEnum | undefined;
-    storageKey: string;
-    readonly storageKey2: string;
     setMin: (value: number | string | undefined | null) => void;
     setMax: (value: number | string | undefined | null) => void;
     setValue: (value: number | string | undefined | null, index: number) => void;

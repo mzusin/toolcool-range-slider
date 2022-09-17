@@ -249,7 +249,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
     /**
      * Optional: plugin initialization
      */
-    init: (_$component, _requestUpdate) => {
+    init: (_$component, _requestUpdate, _updatePointers) => {
       $component = _$component;
       requestUpdate = _requestUpdate;
 

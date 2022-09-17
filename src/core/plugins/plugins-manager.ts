@@ -26,7 +26,11 @@ export interface IPluginsManager {
   onAttrChange: (attrName: string, oldValue: string, newValue: string) =>  void;
 }
 
-export const PluginsManager = ($component: HTMLElement, requestUpdatePlugins: () => void) : IPluginsManager => {
+export const PluginsManager = (
+  $component: HTMLElement,
+  requestUpdatePlugins: () => void,
+  updatePointers: (value1: string | number | undefined, value2: string | number | undefined) => void
+) : IPluginsManager => {
 
   const plugins: IPlugin[] = [];
 
@@ -98,7 +102,7 @@ export const PluginsManager = ($component: HTMLElement, requestUpdatePlugins: ()
       plugins.push(plugin);
 
       if(plugin.init && typeof plugin.init === 'function'){
-        plugin.init($component, requestUpdatePlugins);
+        plugin.init($component, requestUpdatePlugins, updatePointers);
         defineSettersGetters(plugin);
       }
     }

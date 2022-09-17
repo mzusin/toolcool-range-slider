@@ -19,8 +19,6 @@ export declare const enum AttributesEnum {
     KeyboardDisabled = "keyboard-disabled",
     Pointer1Disabled = "pointer1-disabled",
     Pointer2Disabled = "pointer2-disabled",
-    Storage = "storage",
-    StorageKey = "storage-key",
     SliderWidth = "slider-width",
     SliderHeight = "slider-height",
     SliderRadius = "slider-radius",

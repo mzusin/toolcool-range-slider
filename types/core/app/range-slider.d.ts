@@ -1,7 +1,6 @@
 import { ISlider } from '../ui/slider';
 import { TData, TStep } from '../types';
 import { TypeEnum } from '../enums/type-enum';
-import { StorageTypeEnum } from '../enums/storage-type-enum';
 /**
  * Usage: <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
  * Documentation: https://github.com/toolcool-org/toolcool-range-slider
@@ -56,11 +55,6 @@ declare class RangeSlider extends HTMLElement {
     get keyboardDisabled(): boolean;
     set animateOnClick(_animateOnClick: string | undefined);
     get animateOnClick(): string | undefined;
-    set storage(_storage: StorageTypeEnum | undefined);
-    get storage(): StorageTypeEnum | undefined;
-    set storageKey(_storageKey: string);
-    get storageKey(): string;
-    get storageKey2(): string | undefined;
     set sliderWidth(_sliderWidth: string | undefined);
     get sliderWidth(): string | undefined;
     set sliderHeight(_sliderHeight: string | undefined);
