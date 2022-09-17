@@ -9,7 +9,7 @@ import { getBoolean } from '../../core/domain/math-provider';
 /**
  * Required: init ToolCool Range Slider plugins namespace if not defined yet
  */
-window.tcRangeSliderPlugins = window.tcRangeSliderPlugins = [];
+window.tcRangeSliderPlugins = window.tcRangeSliderPlugins || [];
 
 /**
  * Optional: array of attribute names to monitor for changes
@@ -68,32 +68,40 @@ const GeneratedLabelsPlugin = () : IPlugin => {
     max: number | string | undefined
   ) => {
 
-    // create first generated label ---------------------
-    $genValue1Label = getLabelFromSlot(VALUE_LABEL1_CODE_NAME);
     if(!$genValue1Label){
-      $genValue1Label = createLabel(VALUE_LABEL1_CODE_NAME);
-      $labelsRow?.append($genValue1Label);
-    }
-
-    // create second generated label --------------------
-    if(textValue2 !== undefined){
-      $genValue2Label = getLabelFromSlot(VALUE_LABEL2_CODE_NAME);
-      if(!$genValue2Label){
-        $genValue2Label = createLabel(VALUE_LABEL2_CODE_NAME);
-        $labelsRow?.append($genValue2Label);
+      // create first generated label ---------------------
+      $genValue1Label = getLabelFromSlot(VALUE_LABEL1_CODE_NAME);
+      if(!$genValue1Label){
+        $genValue1Label = createLabel(VALUE_LABEL1_CODE_NAME);
+        $labelsRow?.append($genValue1Label);
       }
     }
 
-    $genMinLabel = getLabelFromSlot(MIN_LABEL_CODE_NAME);
-    if(!$genMinLabel){
-      $genMinLabel = createLabel(MIN_LABEL_CODE_NAME);
-      $slider?.after($genMinLabel);
+    if(!$genValue2Label){
+      // create second generated label --------------------
+      if(textValue2 !== undefined){
+        $genValue2Label = getLabelFromSlot(VALUE_LABEL2_CODE_NAME);
+        if(!$genValue2Label){
+          $genValue2Label = createLabel(VALUE_LABEL2_CODE_NAME);
+          $labelsRow?.append($genValue2Label);
+        }
+      }
     }
 
-    $genMaxLabel = getLabelFromSlot(MAX_LABEL_CODE_NAME);
+    if(!$genMinLabel){
+      $genMinLabel = getLabelFromSlot(MIN_LABEL_CODE_NAME);
+      if(!$genMinLabel){
+        $genMinLabel = createLabel(MIN_LABEL_CODE_NAME);
+        $slider?.after($genMinLabel);
+      }
+    }
+
     if(!$genMaxLabel){
-      $genMaxLabel = createLabel(MAX_LABEL_CODE_NAME);
-      $slider?.after($genMaxLabel);
+      $genMaxLabel = getLabelFromSlot(MAX_LABEL_CODE_NAME);
+      if(!$genMaxLabel){
+        $genMaxLabel = createLabel(MAX_LABEL_CODE_NAME);
+        $slider?.after($genMaxLabel);
+      }
     }
 
     setLabelsOrder(rtlOrBtt);
@@ -125,6 +133,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
   // -------- APIs -------------------------
 
   const setGenLabelsEnabled = (enabled: boolean) => {
+    if(enabled === generatedLabelsEnabled) return;
 
     generatedLabelsEnabled = enabled;
 
@@ -268,6 +277,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       _rightToLeft: boolean,
       _bottomToTop: boolean
     ) => {
+
       if(generatedLabelsEnabled){
         createGenerateLabels(_textValue1, _textValue2, _rightToLeft || _bottomToTop, _textMin, _textMax);
       }
@@ -293,7 +303,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
      */
     gettersAndSetters: [
       {
-        name: 'generate-labels',
+        name: 'generateLabels',
         attributes: {
           get () {
             return generatedLabelsEnabled ?? false;

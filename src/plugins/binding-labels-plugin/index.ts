@@ -8,7 +8,7 @@ import { IPlugin } from '../../core/plugins/interfaces';
 /**
  * Required: init ToolCool Range Slider plugins namespace if not defined yet
  */
-window.tcRangeSliderPlugins = window.tcRangeSliderPlugins = [];
+window.tcRangeSliderPlugins = window.tcRangeSliderPlugins || [];
 
 /**
  * Optional: array of attribute names to monitor for changes
@@ -57,10 +57,12 @@ const BindingLabelsPlugin = () : IPlugin => {
      * Optional: plugin initialization
      */
     init: (_$component, _requestUpdate) => {
+      console.log('aaa')
       requestUpdate = _requestUpdate;
 
       setReferenceLabel1(_$component.getAttribute('value-label'));
       setReferenceLabel2(_$component.getAttribute('value2-label'));
+      console.log(_$component.getAttribute('value2-label'))
     },
 
     /**
