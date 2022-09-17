@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Range Slider | Tool Cool</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="keywords" content="range slider, web components, typescript, ES6"/>
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png" />
+    <link id="favicon-48" rel="icon" type="image/png" sizes="48x48" href="img/favicon/favicon-48.png" />
+    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32.png" />
+    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png" />
+
+    <style>
+        .wrapper{
+            width: 500px;
+            max-width: 100%;
+            margin: 3rem auto;
+        }
+
+        h1{
+            text-align: center;
+            font-weight: normal;
+            margin: 3rem 1rem;
+        }
+
+        .row{
+            margin-bottom: 3rem;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            position: relative;
+        }
+
+        toolcool-range-slider,
+        tc-range-slider{
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tool Cool Range Slider Examples</h1>
+
+    <div class="wrapper">
+
+        <div class="row">
+            <toolcool-range-slider
+              id="slider-1"
+              slider-width="100%"
+              value1="30"
+              value2="70"
+              value-label=".value-11"
+              value2-label=".value-12"></toolcool-range-slider>
+        </div>
+        <div style="margin: 1rem">
+            <div class="value-11" style="margin-right: 1rem"></div>
+            <div class="value-12" style="margin-right: 1rem"></div>
+            <div class="value-13" style="color: red; margin-right: 1rem"></div>
+            <div class="value-14" style="color: red; margin-right: 1rem"></div>
+        </div>
+
+        <div class="row">
+            <toolcool-range-slider
+              id="slider-2"
+              slider-width="100%"
+              value1="10"
+              value2="90"
+              value-label=".value-21"
+              value2-label=".value-22"></toolcool-range-slider>
+        </div>
+        <div style="margin: 1rem">
+            <div class="value-21" style="margin-right: 1rem"></div>
+            <div class="value-22" style="margin-right: 1rem"></div>
+        </div>
+
+    </div>
+
+    <script>
+        window.tcRangeSliderPlugins = window.tcRangeSliderPlugins = [];
+
+        window.tcRangeSliderObservedAttr = window.tcRangeSliderObservedAttr || [];
+        window.tcRangeSliderObservedAttr.push('value-label');
+        window.tcRangeSliderObservedAttr.push('value2-label');
+
+        window.tcRangeSliderPlugins.push(() => {
+            let requestUpdate = null;
+
+            let referenceLabel1 = null;
+            let referenceLabel2 = null;
+
+            let $referenceLabel1 = null;
+            let $referenceLabel2 = null;
+
+            const setReferenceLabel1 = (_referenceLabel1) => {
+                referenceLabel1 = _referenceLabel1;
+                $referenceLabel1 = _referenceLabel1 ? document.querySelector(_referenceLabel1) : null;
+
+                if(requestUpdate && typeof requestUpdate === 'function'){
+                    requestUpdate();
+                }
+            };
+
+            const setReferenceLabel2 = (_referenceLabel2) => {
+                referenceLabel2 = _referenceLabel2;
+                $referenceLabel2 = _referenceLabel2 ? document.querySelector(_referenceLabel2) : null;
+
+                if(requestUpdate && typeof requestUpdate === 'function'){
+                    requestUpdate();
+                }
+            };
+
+            return {
+                get name() {
+                    return 'Binding Labels';
+                },
+
+                init: (_$component, _requestUpdate) => {
+                    requestUpdate = _requestUpdate;
+
+                    setReferenceLabel1(_$component.getAttribute('value-label'));
+                    setReferenceLabel2(_$component.getAttribute('value2-label'));
+                },
+
+                update: (
+                  percent1,
+                  percent2,
+                  textValue1,
+                  textValue2,
+                  min,
+                  max,
+                  textMin,
+                  textMax
+                ) => {
+                    if($referenceLabel1 && textValue1 !== undefined){
+                        $referenceLabel1.textContent = textValue1.toString();
+                    }
+
+                    if($referenceLabel2 && textValue2 !== undefined){
+                        $referenceLabel2.textContent = textValue2.toString();
+                    }
+                },
+
+                onAttrChange: (attrName, oldValue, newValue) => {
+
+                    switch (attrName){
+                        case 'value-label': {
+                            setReferenceLabel1(newValue);
+                            break;
+                        }
+
+                        case 'value2-label': {
+                            setReferenceLabel2(newValue);
+                            break;
+                        }
+                    }
+                },
+
+                gettersAndSetters: [
+                    {
+                        name: 'valueLabel',
+                        attributes: {
+                            get () {
+                                return referenceLabel1;
+                            },
+
+                            set: (_referenceLabel1) => {
+                                setReferenceLabel1(_referenceLabel1);
+                            },
+                        }
+                    },
+                    {
+                        name: 'value2Label',
+                        attributes: {
+                            get () {
+                                return referenceLabel2;
+                            },
+
+                            set: (_referenceLabel2) => {
+                                setReferenceLabel2(_referenceLabel2);
+                            },
+                        }
+                    }
+                ],
+            };
+        });
+    </script>
+    <script src="js/toolcool-range-slider.min.js"></script>
+    <script>
+        const $slider1 = document.getElementById('slider-1');
+        const $slider2 = document.getElementById('slider-2');
+
+        console.log('$slider1.valueLabel', $slider1.valueLabel)
+
+        //$slider1.setAttribute('value-label', '.value-13');
+        //$slider1.setAttribute('value2-label', '.value-14');
+        $slider1.valueLabel = '.value-13';
+        $slider1.value2Label = '.value-14';
+
+    </script>
+</body>
+</html>

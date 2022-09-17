@@ -536,24 +536,6 @@ class RangeSlider extends HTMLElement {
     return this.slider?.pointer2?.disabled ?? false;
   }
 
-  public set valueLabel(_valueLabel: string | undefined) {
-    if(!this.slider || !this.slider.labels) return;
-    this.slider.labels.referenceLabel1 = _valueLabel ?? null;
-  }
-
-  public get valueLabel() {
-    return this.slider?.labels?.referenceLabel1 ?? '';
-  }
-
-  public set value2Label(_value2Label: string | undefined) {
-    if(!this.slider || !this.slider.labels) return;
-    this.slider.labels.referenceLabel2 = _value2Label ?? null;
-  }
-
-  public get value2Label() {
-    return this.slider?.labels?.referenceLabel2 ?? '';
-  }
-
   public set ariaLabel1(_ariaLabel1: string | undefined) {
     if(!this.slider) return;
     this.slider.ariaLabel1 = _ariaLabel1;

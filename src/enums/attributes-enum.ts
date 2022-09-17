@@ -62,8 +62,6 @@ export const enum AttributesEnum {
   Pointer2BorderHover = 'pointer2-border-hover',
   Pointer2BorderFocus = 'pointer2-border-focus',
 
-  ValueLabel = 'value-label',
-  Value2Label = 'value2-label',
   GenerateLabels = 'generate-labels',
   AriaLabel1 = 'aria-label1',
   AriaLabel2 = 'aria-label2',

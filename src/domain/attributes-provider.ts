@@ -69,14 +69,18 @@ export const observedAttributes = [
   AttributesEnum.Pointer2BorderHover,
   AttributesEnum.Pointer2BorderFocus,
 
-  AttributesEnum.ValueLabel,
-  AttributesEnum.Value2Label,
   AttributesEnum.GenerateLabels,
   AttributesEnum.AriaLabel1,
   AttributesEnum.AriaLabel2,
 
   AttributesEnum.AnimateOnClick,
 ];
+
+if(window.tcRangeSliderObservedAttr){
+  for(const attr of window.tcRangeSliderObservedAttr){
+    observedAttributes.push(attr as AttributesEnum);
+  }
+}
 
 export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue: string, newValue: string) => {
   switch (attrName) {
@@ -185,20 +189,6 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
 
     case AttributesEnum.GenerateLabels: {
       slider.generateLabels = getBoolean(newValue);
-      break;
-    }
-
-    case AttributesEnum.ValueLabel: {
-      if(slider.labels){
-        slider.labels.referenceLabel1 = newValue;
-      }
-      break;
-    }
-
-    case AttributesEnum.Value2Label: {
-      if(slider.labels){
-        slider.labels.referenceLabel2 = newValue;
-      }
       break;
     }
 
@@ -453,4 +443,7 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
       break;
     }
   }
+
+  if(!slider || !slider.pluginsManager) return;
+  slider.pluginsManager.onAttrChange(attrName, _oldValue, newValue);
 };

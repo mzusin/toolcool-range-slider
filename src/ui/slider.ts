@@ -13,12 +13,14 @@ import { getStorageKey2, restoreFromStorage, saveToStorage, STORAGE_KEY } from '
 import { CSSVariables } from '../enums/css-vars-enum';
 import { CssClasses } from '../enums/css-classes-enum';
 import { createPointer2, removeFocus } from '../domain/common-provider';
+import { IPluginsManager, PluginsManager } from '../plugins/plugins-manager';
 
 export interface ISlider {
   readonly pointer1: IPointer;
   readonly pointer2: IPointer | null;
   readonly labels: ILabels | null;
   readonly styles: IStyles | null;
+  readonly pluginsManager: IPluginsManager | null;
 
   pointersOverlap: boolean;
   pointersMinDistance: number;
@@ -65,6 +67,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   let panelFill: IPanelFill | null = null;
   let labels: ILabels | null = null;
   let styles: IStyles | null = null;
+  let pluginsManager: IPluginsManager | null = null;
 
   let min = MIN_DEFAULT;
   let max = MAX_DEFAULT;
@@ -483,6 +486,25 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     labels?.updateValues(getTextValue(pointer1.percent), getTextValue(pointer2?.percent), getTextMinMax(min), getTextMinMax(max));
   };
 
+  const updatePlugins = () => {
+
+    if(!pluginsManager) return;
+    pluginsManager.update(
+      pointer1.percent,
+      pointer2?.percent,
+      getTextValue(pointer1.percent),
+      getTextValue(pointer2?.percent),
+      min,
+      max,
+      getTextMinMax(min),
+      getTextMinMax(max)
+    );
+  };
+
+  const requestUpdatePlugins = () => {
+    updatePlugins();
+  };
+
   // -------------- Getters --------------------
 
   const getPointer1LeftWall = () => {
@@ -596,6 +618,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     const value2text = getTextValue(pointer2?.percent);
 
     updateLabels();
+    updatePlugins();
 
     if(value1text !== undefined){
       pointer1.setAttr('aria-valuenow', value1text.toString());
@@ -899,6 +922,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     }
 
     updateLabels();
+    updatePlugins();
   };
 
   const setAnimateOnClick = (_animateOnClick: string | null | undefined) => {
@@ -953,7 +977,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     }
 
     // init generated and reference labels
-    labels = Labels($component, $slider, updateLabels);
+    labels = Labels($component, $slider);
 
     // init main properties from HTML attributes
     setType($component.getAttribute(AttributesEnum.Type));
@@ -987,8 +1011,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     }
 
     setGenerateLabels(getBoolean($component.getAttribute(AttributesEnum.GenerateLabels)));
-    labels.referenceLabel1 = $component.getAttribute(AttributesEnum.ValueLabel);
-    labels.referenceLabel2 = $component.getAttribute(AttributesEnum.Value2Label);
 
     setRound(getNumber($component.getAttribute(AttributesEnum.Round), ROUND_DEFAULT));
 
@@ -1021,6 +1043,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     $slider.addEventListener('touchmove', onValueChange);
     $slider.addEventListener('touchstart', onValueChange);
     document.addEventListener('wheel', pointerMouseWheel, { passive: false });
+
+    // init plugins ---------------
+    pluginsManager = PluginsManager($component, requestUpdatePlugins);
+    pluginsManager.init();
   })();
 
   const destroy = () => {
@@ -1049,6 +1075,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     get styles() {
       return styles;
+    },
+
+    get pluginsManager() {
+      return pluginsManager;
     },
 
     get min() {

@@ -15,9 +15,6 @@ export interface ILabels {
     max: number | string | undefined) => void;
 
   setLabelsOrder: (rtlOrBtt: boolean) => void;
-
-  referenceLabel1: string | null;
-  referenceLabel2: string | null;
 }
 
 const VALUE_LABEL1_CODE_NAME = 'value-label';
@@ -25,7 +22,7 @@ const VALUE_LABEL2_CODE_NAME = 'value2-label';
 const MIN_LABEL_CODE_NAME = 'min-label';
 const MAX_LABEL_CODE_NAME = 'max-label';
 
-export const Labels = ($component: HTMLElement, $slider: HTMLElement, requestUpdateValues: () => void) : ILabels => {
+export const Labels = ($component: HTMLElement, $slider: HTMLElement) : ILabels => {
 
   let $labelsRow: HTMLElement | null;
   let generatedLabelsEnabled = false;
@@ -34,11 +31,6 @@ export const Labels = ($component: HTMLElement, $slider: HTMLElement, requestUpd
   let $genValue2Label: HTMLElement | null = null;
   let $genMinLabel: HTMLElement | null = null;
   let $genMaxLabel: HTMLElement | null = null;
-
-  let referenceLabel1: string | null = null;
-  let referenceLabel2: string | null = null;
-  let $referenceLabel1: HTMLElement | null = null;
-  let $referenceLabel2: HTMLElement | null = null;
 
   // ---------- HELPERS ------------------------------
 
@@ -239,26 +231,6 @@ export const Labels = ($component: HTMLElement, $slider: HTMLElement, requestUpd
     if($genMaxLabel){
       $genMaxLabel.textContent = max === undefined ? '' : max.toString();
     }
-
-    if($referenceLabel1 && textValue1 !== undefined){
-      $referenceLabel1.textContent = textValue1.toString();
-    }
-
-    if($referenceLabel2 && textValue2 !== undefined){
-      $referenceLabel2.textContent = textValue2.toString();
-    }
-  };
-
-  const setReferenceLabel1 = (_referenceLabel1: string | null) => {
-    referenceLabel1 = _referenceLabel1;
-    $referenceLabel1 = _referenceLabel1 ? document.querySelector(_referenceLabel1) : null;
-    requestUpdateValues();
-  };
-
-  const setReferenceLabel2 = (_referenceLabel2: string | null) => {
-    referenceLabel2 = _referenceLabel2;
-    $referenceLabel2 = _referenceLabel2 ? document.querySelector(_referenceLabel2) : null;
-    requestUpdateValues();
   };
 
   // initialization -------------------------
@@ -274,21 +246,5 @@ export const Labels = ($component: HTMLElement, $slider: HTMLElement, requestUpd
     setGenLabelsEnabled,
     updateValues,
     setLabelsOrder,
-
-    get referenceLabel1() {
-      return referenceLabel1;
-    },
-
-    set referenceLabel1(_referenceLabel1) {
-      setReferenceLabel1(_referenceLabel1);
-    },
-
-    get referenceLabel2() {
-      return referenceLabel2;
-    },
-
-    set referenceLabel2(_referenceLabel2) {
-      setReferenceLabel2(_referenceLabel2);
-    },
   };
 };
