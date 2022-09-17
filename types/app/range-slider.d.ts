@@ -131,10 +131,6 @@ declare class RangeSlider extends HTMLElement {
     get pointer1Disabled(): boolean;
     set pointer2Disabled(_pointer2Disabled: boolean);
     get pointer2Disabled(): boolean;
-    set valueLabel(_valueLabel: string | undefined);
-    get valueLabel(): string | undefined;
-    set value2Label(_value2Label: string | undefined);
-    get value2Label(): string | undefined;
     set ariaLabel1(_ariaLabel1: string | undefined);
     get ariaLabel1(): string | undefined;
     set ariaLabel2(_ariaLabel2: string | undefined);

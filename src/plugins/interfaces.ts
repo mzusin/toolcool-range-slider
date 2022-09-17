@@ -18,6 +18,7 @@ export interface IPlugin {
 
   gettersAndSetters: ({
     name: PropertyKey,
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     attributes:  PropertyDescriptor & ThisType<any>
   })[];
 }

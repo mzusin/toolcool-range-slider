@@ -4,11 +4,13 @@ import { TypeEnum } from '../enums/type-enum';
 import { ILabels } from './labels';
 import { IStyles } from './styles';
 import { StorageTypeEnum } from '../enums/storage-type-enum';
+import { IPluginsManager } from '../plugins/plugins-manager';
 export interface ISlider {
     readonly pointer1: IPointer;
     readonly pointer2: IPointer | null;
     readonly labels: ILabels | null;
     readonly styles: IStyles | null;
+    readonly pluginsManager: IPluginsManager | null;
     pointersOverlap: boolean;
     pointersMinDistance: number;
     pointersMaxDistance: number;
