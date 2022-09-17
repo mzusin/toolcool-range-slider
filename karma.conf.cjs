@@ -1,6 +1,8 @@
 // Karma configuration
 // Generated on Wed Sep 07 2022 08:05:39 GMT+0300 (Israel Daylight Time)
 
+const path = require('path');
+
 module.exports = function(config) {
   config.set({
 
@@ -17,11 +19,11 @@ module.exports = function(config) {
       'karma-qunit',
       'karma-chrome-launcher',
       'karma-spec-reporter',
-      'karma-coverage', // https://www.npmjs.com/package/karma-coverage
     ],
 
     // list of files / patterns to load in the browser
     files: [
+      path.join(__dirname, './dist/toolcool-range-slider.min.js'),
       './test/toolcool-range-slider.min.js',
       './test/helpers/*.js',
       './test/modules/**/*.test.js',
@@ -34,9 +36,6 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
-    preprocessors: {
-      './src/**/*.ts': ['coverage']
-    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -44,7 +43,6 @@ module.exports = function(config) {
     reporters: [
       // 'progress',
       'spec',
-      'coverage',
     ],
 
 
