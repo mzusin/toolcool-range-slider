@@ -5,11 +5,13 @@
   "main": "./dist/toolcool-range-slider.min.js",
   "types": "./types/app/range-slider.d.ts",
   "scripts": {
-    "build": "node run/core.js",
-    "watch": "node run/core.js -- watch",
+    "core:build": "node run/core.js",
+    "core:watch": "node run/core.js -- watch",
     "test": "./node_modules/karma/bin/karma start ./karma.conf.cjs",
     "eslint": "eslint ./src/**",
-    "typescript-declarations": "tsc --emitDeclarationOnly"
+    "typescript-declarations": "tsc --emitDeclarationOnly",
+    "binding-labels-plugin:build": "node run/plugins/binding-labels-plugin.js",
+    "binding-labels-plugin:watch": "node run/plugins/binding-labels-plugin.js -- watch"
   },
   "type": "module",
   "keywords": [

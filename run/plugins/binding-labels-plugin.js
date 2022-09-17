@@ -1,33 +1,18 @@
 import esbuild from 'esbuild';
-import pcssPlugin from './esbuild-plugins/esbuild-pcss-plugin.js';
-import esbuildTemplateLiteralsPlugin from './esbuild-plugins/esbuild-template-literals-plugin.js';
-import fs from 'fs';
-import path from 'path';
 
-const packageJson = fs.readFileSync(path.join(process.cwd(), './package.json'), 'utf-8');
-let version = '1.0.1';
-
-try {
-  const parsed = JSON.parse(packageJson);
-  version = parsed.version;
-} catch (ex) {}
+const VERSION = '1.0.0';
 
 const settings = {
-  entryPoints: ['./src/core/index.ts'],
+  entryPoints: ['./src/plugins/binding-labels-plugin/index.ts'],
   bundle: true,
   sourcemap: 'external',
   minify: true,
   target: ['es6'],
-  outfile: './dist/toolcool-range-slider.min.js',
-  loader: {
-    '.png': 'text',
-    '.svg': 'dataurl',
-  },
-  plugins: [pcssPlugin, esbuildTemplateLiteralsPlugin],
+  outfile: './dist/plugins/tcrs-binding-labels.min.js',
   banner: {
     js: `/* 
-Tool Cool Range Slider 
-Version: ${version}
+Tool Cool Range Slider - Binding Labels Plugin
+Version: ${ VERSION }
 Documentation: https://github.com/toolcool-org/toolcool-range-slider 
 License: MIT License        
 Author: Tool Cool, toolcool.org@gmail.com>                          

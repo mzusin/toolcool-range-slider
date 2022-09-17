@@ -23,6 +23,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      path.join(__dirname, './dist/plugins/tcrs-binding-labels.min.js'),
       path.join(__dirname, './dist/toolcool-range-slider.min.js'),
       './test/toolcool-range-slider.min.js',
       './test/helpers/*.js',

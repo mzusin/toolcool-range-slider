@@ -15,9 +15,9 @@ QUnit.module('Value Label 2', (hooks) => {
       <div class="value-9">20</div>
   `);
 
-  QUnit.test('default value label 2 should be empty string', (assert) => {
+  QUnit.test('default value label 2 should be null', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.value2Label, '');
+    assert.equal($slider.value2Label, null);
   });
 
   QUnit.test('provided value label should be .value-2', (assert) => {
