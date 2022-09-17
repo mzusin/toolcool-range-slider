@@ -1164,7 +1164,7 @@ The slider can be created dynamically as follows:
 ```html
 <div class="wrapper" id="wrapper"></div>
 
-<script src="js/toolcool-range-slider.min.js"></script>
+<script src="toolcool-range-slider.min.js"></script>
 
 <script>
   const $wrapper = document.getElementById('wrapper');
@@ -1185,7 +1185,7 @@ Another option is to use the API instead of attributes:
 ```html
 <div class="wrapper" id="wrapper"></div>
 
-<script src="js/toolcool-range-slider.min.js"></script>
+<script src="toolcool-range-slider.min.js"></script>
 
 <script>
   const $wrapper = document.getElementById('wrapper');
