@@ -1,7 +1,6 @@
 import esbuild from 'esbuild';
 import pcssPlugin from './esbuild-plugins/esbuild-pcss-plugin.js';
 import esbuildTemplateLiteralsPlugin from './esbuild-plugins/esbuild-template-literals-plugin.js';
-import esbuildCopyPlugin from './esbuild-plugins/esbuild-copy-plugin.js';
 import fs from 'fs';
 import path from 'path';
 
@@ -19,12 +18,12 @@ const settings = {
   sourcemap: 'external',
   minify: true,
   target: ['es6'],
-  outfile: './examples/js/toolcool-range-slider.min.js',
+  outfile: './dist/toolcool-range-slider.min.js',
   loader: {
     '.png': 'text',
     '.svg': 'dataurl',
   },
-  plugins: [pcssPlugin, esbuildTemplateLiteralsPlugin, esbuildCopyPlugin],
+  plugins: [pcssPlugin, esbuildTemplateLiteralsPlugin],
   banner: {
     js: `/* 
 Tool Cool Range Slider 

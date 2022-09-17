@@ -5,8 +5,8 @@
   "main": "./dist/toolcool-range-slider.min.js",
   "types": "./types/app/range-slider.d.ts",
   "scripts": {
-    "build": "node run/build.js",
-    "watch": "node run/build.js -- watch",
+    "build": "node run/core.js",
+    "watch": "node run/core.js -- watch",
     "test": "./node_modules/karma/bin/karma start ./karma.conf.cjs",
     "eslint": "eslint ./src/**",
     "typescript-declarations": "tsc --emitDeclarationOnly"
