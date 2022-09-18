@@ -9,8 +9,6 @@ export default (styles, linkHrefs) => {
     <div class="range-slider-box">
     
       <div class="row">
-        <slot name="min-label"></slot>
-        
         <div id="range-slider" class="range-slider">
           <div class="container">
             <div class="panel"></div>
@@ -24,8 +22,6 @@ export default (styles, linkHrefs) => {
         
           </div>
         </div>
-        
-        <slot name="max-label"></slot>
       </div>
       
   </div>`;

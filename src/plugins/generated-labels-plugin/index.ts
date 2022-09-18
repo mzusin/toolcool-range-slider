@@ -256,7 +256,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
 
       $slider = _$component.shadowRoot?.getElementById('range-slider') as HTMLElement;
 
-      // generate labels row
+      // generate labels row with slots
       const $box = _$component.shadowRoot?.querySelector('.range-slider-box')  as HTMLElement;
       $labelsRow = document.createElement('div');
       $labelsRow.classList.add('labels-row');
@@ -265,6 +265,15 @@ const GeneratedLabelsPlugin = () : IPlugin => {
         <slot name="value2-label"></slot>
       `;
       $box.prepend($labelsRow);
+
+      // generate min / max slots
+      const $min = document.createElement('slot');
+      $min.setAttribute('name', 'min-label');
+      $slider.before($min);
+
+      const $max = document.createElement('slot');
+      $max.setAttribute('name', 'max-label');
+      $slider.after($max);
 
       setGenLabelsEnabled(getBoolean($component.getAttribute('generate-labels')));
     },
@@ -341,6 +350,33 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       .type-vertical .labels-row{
           flex-direction: column;
           order: 1;
+      }
+      
+      .max-label,
+      .min-label,
+      ::slotted([slot="max-label"]),
+      ::slotted([slot="min-label"]){
+          margin: 0 1rem;
+          width: 2rem;
+          text-align: center;
+          white-space: nowrap;
+      }
+      
+      .value-label,
+      .value2-label,
+      ::slotted([slot="value-label"]),
+      ::slotted([slot="value2-label"]){
+          text-align: center;
+          margin: 0 0.5rem;
+          white-space: nowrap;
+      }
+
+      .type-vertical .max-label,
+      .type-vertical .min-label,
+      .type-vertical ::slotted([slot="max-label"]),
+      .type-vertical ::slotted([slot="min-label"]){
+          margin: 1rem 0;
+          width: auto;
       }
     `,
   };
