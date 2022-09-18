@@ -16,8 +16,10 @@
     "generated-labels-plugin:watch": "node run/plugins/generated-labels-plugin.js -- watch",
     "storage-plugin:build": "node run/plugins/storage-plugin.js",
     "storage-plugin:watch": "node run/plugins/storage-plugin.js -- watch",
-    "themes-css-plugin:build": "node run/plugins/themes-css.js",
-    "themes-css-plugin:watch": "node run/plugins/themes-css.js -- watch"
+    "themes-css-plugin:build": "node run/plugins/themes-css-plugin.js",
+    "themes-css-plugin:watch": "node run/plugins/themes-css-plugin.js -- watch",
+    "pointer-shapes-css-plugin:build": "node run/plugins/pointer-shapes-css-plugin.js",
+    "pointer-shapes-css-plugin:watch": "node run/plugins/pointer-shapes-css-plugin.js -- watch"
   },
   "type": "module",
   "keywords": [

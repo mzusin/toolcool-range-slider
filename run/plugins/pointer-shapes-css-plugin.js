@@ -3,15 +3,15 @@ import esbuild from 'esbuild';
 const VERSION = '1.0.0';
 
 const settings = {
-  entryPoints: ['./src/plugins/themes-css/index.css'],
+  entryPoints: ['./src/plugins/pointer-shapes-css-plugin/index.css'],
   bundle: true,
   sourcemap: 'external',
   minify: true,
   target: ['es6'],
-  outfile: './dist/plugins/tcrs-themes.min.css',
+  outfile: './dist/plugins/tcrs-pointer-shapes.min.css',
   banner: {
     css: `/* 
-Tool Cool Range Slider - Themes
+Tool Cool Range Slider - Pointer Shapes CSS Plugin
 Version: ${ VERSION }
 Documentation: https://github.com/toolcool-org/toolcool-range-slider 
 License: MIT License        
