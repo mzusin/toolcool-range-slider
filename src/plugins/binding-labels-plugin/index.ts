@@ -56,6 +56,7 @@ const BindingLabelsPlugin = () : IPlugin => {
     /**
      * Optional: plugin initialization
      */
+    /* eslint-disable @typescript-eslint/no-unused-vars */
     init: (_$component, _requestUpdate, _updatePointers) => {
       requestUpdate = _requestUpdate;
 

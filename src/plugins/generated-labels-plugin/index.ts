@@ -249,12 +249,22 @@ const GeneratedLabelsPlugin = () : IPlugin => {
     /**
      * Optional: plugin initialization
      */
+    /* eslint-disable @typescript-eslint/no-unused-vars */
     init: (_$component, _requestUpdate, _updatePointers) => {
       $component = _$component;
       requestUpdate = _requestUpdate;
 
       $slider = _$component.shadowRoot?.getElementById('range-slider') as HTMLElement;
-      $labelsRow = _$component.shadowRoot?.querySelector('.labels-row') as HTMLElement;
+
+      // generate labels row
+      const $box = _$component.shadowRoot?.querySelector('.range-slider-box')  as HTMLElement;
+      $labelsRow = document.createElement('div');
+      $labelsRow.classList.add('labels-row');
+      $labelsRow.innerHTML = `
+        <slot name="value-label"></slot>
+        <slot name="value2-label"></slot>
+      `;
+      $box.prepend($labelsRow);
 
       setGenLabelsEnabled(getBoolean($component.getAttribute('generate-labels')));
     },
@@ -315,6 +325,24 @@ const GeneratedLabelsPlugin = () : IPlugin => {
         }
       },
     ],
+
+    /**
+     * Optional:
+     * Small groups of CSS rules can be passed here as a string.
+     * Bigger CSS files should be passed via css-links="file1.css;file2.css;" property.
+     */
+    css: `
+      .labels-row{
+          text-align: center;
+          display: flex;
+          justify-content: center;
+      }
+      
+      .type-vertical .labels-row{
+          flex-direction: column;
+          order: 1;
+      }
+    `,
   };
 };
 

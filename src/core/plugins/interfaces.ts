@@ -1,13 +1,13 @@
 export interface IPlugin {
   readonly name: string,
 
-  init: (
+  init?: (
     $component: HTMLElement,
     requestUpdate: () => void,
     updatePointers: (value1: string | number | undefined, value2: string | number | undefined) => void,
   ) => void;
 
-  update: (
+  update?: (
     percent1: number,
     percent2: number | undefined,
     textValue1: string | number | undefined,
@@ -20,11 +20,13 @@ export interface IPlugin {
     bottomToTop: boolean
   ) => void;
 
-  onAttrChange: (attrName: string, _oldValue: string, newValue: string) =>  void;
+  onAttrChange?: (attrName: string, _oldValue: string, newValue: string) =>  void;
 
-  gettersAndSetters: ({
+  gettersAndSetters?: ({
     name: PropertyKey,
     // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     attributes:  PropertyDescriptor & ThisType<any>
   })[];
+
+  css?: string,
 }

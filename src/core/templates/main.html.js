@@ -8,11 +8,6 @@ export default (styles, linkHrefs) => {
     
     <div class="range-slider-box">
     
-      <div class="labels-row">
-        <slot name="value-label"></slot>
-        <slot name="value2-label"></slot>
-      </div>
-      
       <div class="row">
         <slot name="min-label"></slot>
         

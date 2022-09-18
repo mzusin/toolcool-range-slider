@@ -93,6 +93,15 @@ export const PluginsManager = (
     }
   };
 
+  const initStyles = (plugin: IPlugin) => {
+    if(!plugin.css) return;
+
+    const $style = $component.shadowRoot?.querySelector('style');
+    if(!$style) return;
+
+    $style.innerHTML += plugin.css;
+  };
+
   // ------ initialization ------------------
   const init = () => {
     if(!window.tcRangeSliderPlugins) return;
@@ -102,8 +111,15 @@ export const PluginsManager = (
       plugins.push(plugin);
 
       if(plugin.init && typeof plugin.init === 'function'){
+
+        // call plugin initialization function
         plugin.init($component, requestUpdatePlugins, updatePointers);
+
+        // if plugin has getters and setters that used for APIs ---> define them
         defineSettersGetters(plugin);
+
+        // if plugin has css rules defined as plain text ---> they can be added dynamically
+        initStyles(plugin);
       }
     }
   };
