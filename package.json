@@ -15,7 +15,9 @@
     "generated-labels-plugin:build": "node run/plugins/generated-labels-plugin.js",
     "generated-labels-plugin:watch": "node run/plugins/generated-labels-plugin.js -- watch",
     "storage-plugin:build": "node run/plugins/storage-plugin.js",
-    "storage-plugin:watch": "node run/plugins/storage-plugin.js -- watch"
+    "storage-plugin:watch": "node run/plugins/storage-plugin.js -- watch",
+    "themes-css-plugin:build": "node run/plugins/themes-css.js",
+    "themes-css-plugin:watch": "node run/plugins/themes-css.js -- watch"
   },
   "type": "module",
   "keywords": [

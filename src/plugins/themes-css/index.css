@@ -1,0 +1,117 @@
+
+/**
+ ---------------- Themes -------------------
+ */
+.theme-target{
+    --panel-bg: #D7DCDF;
+    --panel-bg-hover: #ccd1d3;
+    --panel-bg-fill: #47a4bc;
+
+    --pointer-bg: #1aa4bc;
+    --pointer-bg-hover: #0f7b8c;
+    --pointer-bg-focus: #0f7b8c;
+
+    --pointer-shadow: 0 0 0 3px #fff, 0 0 0 6px #1aa4bc;
+    --pointer-shadow-hover: 0 0 0 3px #fff, 0 0 0 6px #0f7b8c;
+    --pointer-shadow-focus: 0 0 0 3px #fff, 0 0 0 6px #0f7b8c;
+
+    --pointer-border: 0;
+    --pointer-border-hover: 0;
+    --pointer-border-focus: 0;
+}
+
+.theme-glass{
+    --pointer-bg: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(206, 206, 206, 1) 48%, rgba(255, 255, 255, 0) 100%);
+    --pointer-bg-hover: linear-gradient(to bottom, rgba(206, 206, 206, 1) 0%, rgba(255, 255, 255, 0) 48%, rgba(206, 206, 206, 1) 100%);
+    --pointer-bg-focus: linear-gradient(to bottom, rgba(206, 206, 206, 1) 0%, rgba(255, 255, 255, 0) 48%, rgba(206, 206, 206, 1) 100%);
+    --pointer-border-radius: 3px;
+}
+
+.theme-rect{
+    --panel-bg: #9FD2FA;
+    --panel-bg-hover: #4075E2;
+    --panel-bg-fill: #4075E2;
+
+    --pointer-width: 10px;
+    --pointer-height: 20px;
+
+    --pointer-bg: #4075E2;
+    --pointer-bg-hover: #4075E2;
+    --pointer-bg-focus: #4075E2;
+
+    --pointer-border: 0;
+    --pointer-border-hover: 0;
+    --pointer-border-focus: 0;
+
+    --pointer-shadow: none;
+    --pointer-shadow-hover: none;
+    --pointer-shadow-focus: none;
+    --pointer-border-radius: 0;
+}
+
+.theme-circle{
+    --height: 0.3rem;
+
+    --panel-bg: #E6E6E6;
+    --panel-bg-hover: #E6E6E6;
+    --panel-bg-fill: #60CD17;
+
+    --pointer-width: 1.5rem;
+    --pointer-height: 1.5rem;
+
+    --pointer-bg: #333940;
+    --pointer-bg-hover: #333940;
+    --pointer-bg-focus: #333940;
+
+    --pointer-shadow: 0px 4px 25px rgb(0, 0, 0, 0.5);
+    --pointer-shadow-hover: 0px 4px 25px rgb(0, 0, 0, 0.5);
+    --pointer-shadow-focus: 0px 4px 25px rgb(0, 0, 0, 0.5);
+
+    --pointer-border: 6px solid #fff;
+    --pointer-border-hover: 6px solid #fff;
+    --pointer-border-focus: 6px solid #fff;
+}
+
+.theme-rainbow{
+    --panel-bg: linear-gradient(
+            90deg,
+            rgba(255, 0, 0, 1) 0%,
+            rgba(255, 154, 0, 1) 10%,
+            rgba(208, 222, 33, 1) 20%,
+            rgba(79, 220, 74, 1) 30%,
+            rgba(63, 218, 216, 1) 40%,
+            rgba(47, 201, 226, 1) 50%,
+            rgba(28, 127, 238, 1) 60%,
+            rgba(95, 21, 242, 1) 70%,
+            rgba(186, 12, 248, 1) 80%,
+            rgba(251, 7, 217, 1) 90%,
+            rgba(255, 0, 0, 1) 100%
+    );
+    --panel-bg-hover: var(--panel-bg);
+    --panel-bg-fill: rgba(0, 0, 0, 0.6);
+
+    --pointer-width: 1.7rem;
+    --pointer-height: 1.7rem;
+
+    --pointer-bg: #fff;
+    --pointer-bg-hover: #dcdcdc;
+    --pointer-bg-focus: #dcdcdc;
+
+    --pointer-border: 0;
+    --pointer-border-hover: 0;
+    --pointer-border-focus: 0;
+}
+
+.theme-ruler{
+    --height: 1rem;
+    --panel-bg-border-radius: 2px;
+    --panel-bg: #fff;
+    --panel-bg-hover: #fff;
+    --panel-bg-fill: #ccc;
+}
+
+.theme-ruler .panel{
+    background-size: 0.4rem 100%;
+    background-repeat: repeat-x;
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0) calc(50% - 2px), var(--panel-bg-fill, #000) calc(50%), rgba(0, 0, 0, 0) calc(50% + 2px));
+}
