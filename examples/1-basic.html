@@ -158,11 +158,17 @@
               generate-labels="true"></tc-range-slider>
         </div>
 
+        <toolcool-range-slider value1="10" value2="30" pointer2-bg="red" pointer2-bg-hover="red" id="slider-25"></toolcool-range-slider>
+
     </div>
 
     <script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
     <script src="../dist/toolcool-range-slider.min.js"></script>
     <script>
+
+        const $slider = document.querySelector('#slider-25');
+        console.log($slider.pointer2Bg)
+
         // slider #1 ------------------
         const $slider1 = document.getElementById('slider-1');
         const $value1 = document.getElementById('value-1');
