@@ -1,5 +1,5 @@
-import { AttributesEnum } from '../enums/attributes-enum';
-import { CSSVariables } from '../enums/css-vars-enum';
+import * as AttributesEnum from '../enums/attributes-enum';
+import * as CSSVariables from '../enums/css-vars-enum';
 
 export interface IStyles {
 

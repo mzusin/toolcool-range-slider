@@ -1,6 +1,5 @@
 import { IPointer } from './pointer';
 import { TData, TStep } from '../types';
-import { TypeEnum } from '../enums/type-enum';
 import { IStyles } from './styles';
 import { IPluginsManager } from '../plugins/plugins-manager';
 export interface ISlider {
@@ -16,7 +15,7 @@ export interface ISlider {
     readonly max: number | string;
     readonly step: TStep;
     readonly data: TData;
-    type: TypeEnum;
+    type: string;
     rightToLeft: boolean;
     bottomToTop: boolean;
     disabled: boolean;

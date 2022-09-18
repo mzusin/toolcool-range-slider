@@ -1,8 +1,7 @@
-import { AttributesEnum } from '../enums/attributes-enum';
+import * as AttributesEnum from '../enums/attributes-enum';
 import { ISlider, ROUND_DEFAULT } from '../ui/slider';
 import { getBoolean, getNumber } from './math-provider';
-import { TypeEnum } from '../enums/type-enum';
-import { CSSVariables } from '../enums/css-vars-enum';
+import * as CSSVariables from '../enums/css-vars-enum';
 
 export const observedAttributes = [
   AttributesEnum.Value,
@@ -73,7 +72,7 @@ export const observedAttributes = [
 
 if(window.tcRangeSliderObservedAttr){
   for(const attr of window.tcRangeSliderObservedAttr){
-    observedAttributes.push(attr as AttributesEnum);
+    observedAttributes.push(attr);
   }
 }
 
@@ -158,7 +157,7 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
     }
 
     case AttributesEnum.Type: {
-      slider.type = newValue as TypeEnum;
+      slider.type = newValue;
       break;
     }
 

@@ -1,12 +1,12 @@
-import { TypeEnum } from '../enums/type-enum';
+import * as TypeEnum from '../enums/type-enum';
 
 export interface IPanelFill {
-  updatePosition: (type: TypeEnum, percent1: number, percent2: number | undefined, rightToLeft: boolean, bottomToTop: boolean) => void;
+  updatePosition: (type: string, percent1: number, percent2: number | undefined, rightToLeft: boolean, bottomToTop: boolean) => void;
 }
 
 export const PanelFill = ($fill: HTMLElement) : IPanelFill => {
 
-  const updatePosition = (type: TypeEnum, percent1: number, percent2: number | undefined, rightToLeft: boolean, bottomToTop: boolean) => {
+  const updatePosition = (type: string, percent1: number, percent2: number | undefined, rightToLeft: boolean, bottomToTop: boolean) => {
 
     if (type === TypeEnum.Vertical) {
       $fill.style.removeProperty('width');

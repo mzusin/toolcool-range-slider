@@ -1,14 +1,14 @@
 import { IPointer } from './pointer';
 import { convertRange, getBoolean, getNumber, isNumber, roundToStep, setDecimalPlaces } from '../domain/math-provider';
-import { AttributesEnum } from '../enums/attributes-enum';
+import * as AttributesEnum from '../enums/attributes-enum';
 import { TData, TStep } from '../types';
 import { findValueIndexInData, parseData } from '../dal/data-provider';
-import { TypeEnum } from '../enums/type-enum';
+import * as TypeEnum from '../enums/type-enum';
 import { IPanelFill, PanelFill } from './panel-fill';
 import { sendChangeEvent, sendMouseDownEvent, sendMouseUpEvent } from '../domain/events-provider';
 import { IStyles, Styles } from './styles';
-import { CSSVariables } from '../enums/css-vars-enum';
-import { CssClasses } from '../enums/css-classes-enum';
+import * as CSSVariables from '../enums/css-vars-enum';
+import * as CssClasses from '../enums/css-classes-enum';
 import { createPointer2, removeFocus } from '../domain/common-provider';
 import { IPluginsManager, PluginsManager } from '../plugins/plugins-manager';
 
@@ -28,7 +28,7 @@ export interface ISlider {
   readonly step: TStep;
   readonly data: TData;
 
-  type: TypeEnum;
+  type: string;
   rightToLeft: boolean;
   bottomToTop: boolean;
   disabled: boolean;
@@ -63,7 +63,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   let max = MAX_DEFAULT;
   let step: TStep = undefined;
   let data: TData = undefined;
-  let type: TypeEnum = TypeEnum.Horizontal;
+  let type: string = TypeEnum.Horizontal;
   let round: number = ROUND_DEFAULT;
   let rightToLeft = false;
   let bottomToTop = false;

@@ -1,6 +1,5 @@
 import { ISlider } from '../ui/slider';
 import { TData, TStep } from '../types';
-import { TypeEnum } from '../enums/type-enum';
 /**
  * Usage: <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
  * Documentation: https://github.com/toolcool-org/toolcool-range-slider
@@ -10,7 +9,7 @@ declare class RangeSlider extends HTMLElement {
      * the attributes list that are observed by web component;
      * if attribute changes ---> the web component will update accordingly
      */
-    static get observedAttributes(): import("../enums/attributes-enum.js").AttributesEnum[];
+    static get observedAttributes(): string[];
     slider: ISlider | undefined;
     private _externalCSSList;
     set step(_step: TStep);
@@ -37,8 +36,8 @@ declare class RangeSlider extends HTMLElement {
     get max(): number | string | undefined | null;
     set round(_round: number);
     get round(): number;
-    set type(_type: TypeEnum | undefined);
-    get type(): TypeEnum | undefined;
+    set type(_type: string | undefined);
+    get type(): string | undefined;
     set pointersOverlap(_pointersOverlap: boolean);
     get pointersOverlap(): boolean;
     set pointersMinDistance(_pointersMinDistance: number);

@@ -1,5 +1,5 @@
 import { Pointer } from '../ui/pointer';
-import { AttributesEnum } from '../enums/attributes-enum';
+import * as AttributesEnum from '../enums/attributes-enum';
 
 export const createPointer2 = ($component: HTMLElement, $pointer1: HTMLElement) => {
   const $pointer2 = $pointer1.cloneNode(true) as HTMLElement;

@@ -5,8 +5,8 @@ import { ISlider, ROUND_DEFAULT, Slider } from '../ui/slider';
 import { IPointer, Pointer } from '../ui/pointer';
 import { TData, TStep } from '../types';
 import { getBoolean, getNumber, isNumber } from '../domain/math-provider';
-import { TypeEnum } from '../enums/type-enum';
-import { CSSVariables } from '../enums/css-vars-enum';
+import * as TypeEnum from '../enums/type-enum';
+import * as CSSVariables from '../enums/css-vars-enum';
 import { createPointer2, getExternalCSSList, removeFocus } from '../domain/common-provider';
 
 /**
@@ -116,7 +116,7 @@ class RangeSlider extends HTMLElement {
     return this.slider?.round ?? ROUND_DEFAULT;
   }
 
-  public set type(_type: TypeEnum | undefined) {
+  public set type(_type: string | undefined) {
     if(!this.slider) return;
     this.slider.type = _type ?? TypeEnum.Horizontal;
   }

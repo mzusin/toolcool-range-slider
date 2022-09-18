@@ -1,11 +1,11 @@
-import { TypeEnum } from '../enums/type-enum';
+import * as TypeEnum from '../enums/type-enum';
 import { sendOnKeyDownEvent, sendPointerClickedEvent } from '../domain/events-provider';
 
 export interface IPointer {
   readonly percent: number;
   readonly $pointer: HTMLElement;
 
-  updatePosition: (percent: number, leftWall: number | undefined, rightWall: number | undefined, type: TypeEnum, rightToLeft: boolean, bottomToTop: boolean) => void;
+  updatePosition: (percent: number, leftWall: number | undefined, rightWall: number | undefined, type: string, rightToLeft: boolean, bottomToTop: boolean) => void;
 
   disabled: boolean;
 
@@ -37,7 +37,7 @@ export const Pointer = ($component: HTMLElement, $pointer: HTMLElement, index: n
   let disabled = false;
 
   // -------------- APIs -------------------------
-  const updatePosition = (_percent: number, _leftWall: number | undefined, _rightWall: number | undefined, _type: TypeEnum, _rightToLeft: boolean, _bottomToTop: boolean) => {
+  const updatePosition = (_percent: number, _leftWall: number | undefined, _rightWall: number | undefined, _type: string, _rightToLeft: boolean, _bottomToTop: boolean) => {
     if(_rightWall !== undefined && _percent > _rightWall){
       _percent = _rightWall;
     }
