@@ -39,6 +39,9 @@ export interface IPluginGetters {
   getTextMax: () => string | number;
 
   getStep: () => TStep;
+
+  isRTL: () => boolean;
+  isBTT: () => boolean;
 }
 
 export interface IPlugin {

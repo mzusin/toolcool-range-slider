@@ -28,6 +28,8 @@ export interface IPluginGetters {
     getTextMin: () => string | number;
     getTextMax: () => string | number;
     getStep: () => TStep;
+    isRTL: () => boolean;
+    isBTT: () => boolean;
 }
 export interface IPlugin {
     readonly name: string;

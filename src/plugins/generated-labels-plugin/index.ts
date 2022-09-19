@@ -25,7 +25,7 @@ const MAX_LABEL_CODE_NAME = 'max-label';
 
 const GeneratedLabelsPlugin = () : IPlugin => {
 
-  let requestUpdate: (() => void) | null = null;
+  let getters: IPluginGetters | null = null;
   let $component: HTMLElement | null = null;
   let $slider: HTMLElement | null = null;
   let $labelsRow: HTMLElement | null = null;
@@ -58,88 +58,6 @@ const GeneratedLabelsPlugin = () : IPlugin => {
 
     if(!$slot) return null;
     return $slot.querySelector(`.${ codeName }`) as HTMLElement;
-  };
-
-  const createGenerateLabels = (
-    textValue1: string | number | undefined,
-    textValue2: string | number | undefined,
-    rtlOrBtt: boolean,
-    min: number | string | undefined,
-    max: number | string | undefined
-  ) => {
-
-    if(!$genValue1Label){
-      // create first generated label ---------------------
-      $genValue1Label = getLabelFromSlot(VALUE_LABEL1_CODE_NAME);
-      if(!$genValue1Label){
-        $genValue1Label = createLabel(VALUE_LABEL1_CODE_NAME);
-        $labelsRow?.append($genValue1Label);
-      }
-    }
-
-    if(!$genValue2Label){
-      // create second generated label --------------------
-      if(textValue2 !== undefined){
-        $genValue2Label = getLabelFromSlot(VALUE_LABEL2_CODE_NAME);
-        if(!$genValue2Label){
-          $genValue2Label = createLabel(VALUE_LABEL2_CODE_NAME);
-          $labelsRow?.append($genValue2Label);
-        }
-      }
-    }
-
-    if(!$genMinLabel){
-      $genMinLabel = getLabelFromSlot(MIN_LABEL_CODE_NAME);
-      if(!$genMinLabel){
-        $genMinLabel = createLabel(MIN_LABEL_CODE_NAME);
-        $slider?.after($genMinLabel);
-      }
-    }
-
-    if(!$genMaxLabel){
-      $genMaxLabel = getLabelFromSlot(MAX_LABEL_CODE_NAME);
-      if(!$genMaxLabel){
-        $genMaxLabel = createLabel(MAX_LABEL_CODE_NAME);
-        $slider?.after($genMaxLabel);
-      }
-    }
-
-    setLabelsOrder(rtlOrBtt);
-    updateValues(textValue1, textValue2, min, max);
-  };
-
-  const removeGeneratedLabels = () => {
-    if($genValue1Label){
-      $genValue1Label.remove();
-      $genValue1Label = null;
-    }
-
-    if($genValue2Label){
-      $genValue2Label.remove();
-      $genValue2Label = null;
-    }
-
-    if($genMaxLabel){
-      $genMaxLabel.remove();
-      $genMaxLabel = null;
-    }
-
-    if($genMinLabel){
-      $genMinLabel.remove();
-      $genMinLabel = null;
-    }
-  };
-
-  // -------- APIs -------------------------
-
-  const setGenLabelsEnabled = (enabled: boolean) => {
-    if(enabled === generatedLabelsEnabled) return;
-
-    generatedLabelsEnabled = enabled;
-
-    if(requestUpdate && typeof requestUpdate === 'function'){
-      requestUpdate();
-    }
   };
 
   const setLabelsOrder = (rtlOrBtt: boolean) => {
@@ -214,6 +132,94 @@ const GeneratedLabelsPlugin = () : IPlugin => {
     }
   };
 
+  const createLabels = (
+    textValue1: string | number | undefined,
+    textValue2: string | number | undefined,
+    rtlOrBtt: boolean,
+    min: number | string | undefined,
+    max: number | string | undefined
+  ) => {
+
+    if(!$genValue1Label){
+      // create first generated label ---------------------
+      $genValue1Label = getLabelFromSlot(VALUE_LABEL1_CODE_NAME);
+      if(!$genValue1Label){
+        $genValue1Label = createLabel(VALUE_LABEL1_CODE_NAME);
+        $labelsRow?.append($genValue1Label);
+      }
+    }
+
+    if(!$genValue2Label){
+      // create second generated label --------------------
+      if(textValue2 !== undefined){
+        $genValue2Label = getLabelFromSlot(VALUE_LABEL2_CODE_NAME);
+        if(!$genValue2Label){
+          $genValue2Label = createLabel(VALUE_LABEL2_CODE_NAME);
+          $labelsRow?.append($genValue2Label);
+        }
+      }
+    }
+
+    if(!$genMinLabel){
+      $genMinLabel = getLabelFromSlot(MIN_LABEL_CODE_NAME);
+      if(!$genMinLabel){
+        $genMinLabel = createLabel(MIN_LABEL_CODE_NAME);
+        $slider?.after($genMinLabel);
+      }
+    }
+
+    if(!$genMaxLabel){
+      $genMaxLabel = getLabelFromSlot(MAX_LABEL_CODE_NAME);
+      if(!$genMaxLabel){
+        $genMaxLabel = createLabel(MAX_LABEL_CODE_NAME);
+        $slider?.after($genMaxLabel);
+      }
+    }
+
+    setLabelsOrder(rtlOrBtt);
+    updateValues(textValue1, textValue2, min, max);
+  };
+
+  const removeGeneratedLabels = () => {
+    if($genValue1Label){
+      $genValue1Label.remove();
+      $genValue1Label = null;
+    }
+
+    if($genValue2Label){
+      $genValue2Label.remove();
+      $genValue2Label = null;
+    }
+
+    if($genMaxLabel){
+      $genMaxLabel.remove();
+      $genMaxLabel = null;
+    }
+
+    if($genMinLabel){
+      $genMinLabel.remove();
+      $genMinLabel = null;
+    }
+  };
+
+  const createOrRemove = () => {
+    if(!getters) return;
+
+    if(generatedLabelsEnabled){
+      createLabels(getters.getTextValue1(), getters.getTextValue2(), getters.isRTL() || getters.isBTT(), getters.getTextMin(), getters.getTextMax());
+    }
+    else{
+      removeGeneratedLabels();
+    }
+  };
+
+  const setGenLabelsEnabled = (enabled: boolean) => {
+    if(enabled === generatedLabelsEnabled) return;
+
+    generatedLabelsEnabled = enabled;
+    createOrRemove();
+  };
+
   const updateValues = (
     textValue1: string | number | undefined,
     textValue2: string | number | undefined,
@@ -256,9 +262,8 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       _setters: IPluginSetters,
       _getters: IPluginGetters
     ) => {
+      getters = _getters;
       $component = _$component;
-      requestUpdate = _requestUpdate;
-
       $slider = _$component.shadowRoot?.getElementById('range-slider') as HTMLElement;
 
       // generate labels row with slots
@@ -281,6 +286,8 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       $slider.after($max);
 
       setGenLabelsEnabled(getBoolean($component.getAttribute('generate-labels')));
+
+      createOrRemove();
     },
 
     /**
@@ -289,13 +296,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
      * range slider updates pointer positions
      */
     update: (data: IPluginUpdateData) => {
-
-      if(generatedLabelsEnabled){
-        createGenerateLabels(data.textValue1, data.textValue2, data.rightToLeft || data.bottomToTop, data.textMin, data.textMax);
-      }
-      else{
-        removeGeneratedLabels();
-      }
+      updateValues(data.textValue1, data.textValue2, data.textMin, data.textMax);
     },
 
     /**

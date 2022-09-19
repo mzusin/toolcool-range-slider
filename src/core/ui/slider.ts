@@ -570,6 +570,14 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     return step;
   };
 
+  const isRTL = () => {
+    return rightToLeft;
+  };
+
+  const isBTT = () => {
+    return bottomToTop;
+  };
+
   const getPointerMin = (index: number) => {
     if(index < 2 || pointersOverlap) return getMin();
     return getTextValue(pointer1.percent) ?? '';
@@ -1045,6 +1053,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
         getTextMin: getMin,
         getTextMax: getMax,
+
+        isRTL,
+        isBTT,
       }
     );
     pluginsManager.init();
