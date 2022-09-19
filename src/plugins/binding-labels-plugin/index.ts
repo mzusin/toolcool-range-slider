@@ -24,6 +24,7 @@ const BindingLabelsPlugin = () : IPlugin => {
 
   let referenceLabel1: string | null = null;
   let referenceLabel2: string | null = null;
+
   let $referenceLabel1: HTMLElement | null = null;
   let $referenceLabel2: HTMLElement | null = null;
 

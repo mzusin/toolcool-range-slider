@@ -60,11 +60,11 @@ const StoragePlugin = () : IPlugin => {
      * range slider updates pointer positions
      */
     update: (data: IPluginUpdateData) => {
-      if (storage && storageInitialized) {
-        saveToStorage(storage, storageKey, data.textValue1);
-        if(data.percent2 !== undefined){
-          saveToStorage(storage, getStorageKey2(storageKey), data.textValue2);
-        }
+      if (!storage || !storageInitialized) return;
+
+      saveToStorage(storage, storageKey, data.textValue1);
+      if(data.percent2 !== undefined){
+        saveToStorage(storage, getStorageKey2(storageKey), data.textValue2);
       }
     },
 

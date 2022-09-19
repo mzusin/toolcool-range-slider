@@ -6,6 +6,7 @@ export interface IPluginUpdateData {
     textValue2: string | number | undefined;
     min: number;
     max: number;
+    step: TStep;
     textMin: number | string | undefined;
     textMax: number | string | undefined;
     rightToLeft: boolean;
@@ -18,8 +19,14 @@ export interface IPluginSetters {
     setStep: (step: TStep) => void;
 }
 export interface IPluginGetters {
-    getMin: () => string | number;
-    getMax: () => string | number;
+    getPercent1: () => number;
+    getPercent2: () => number | undefined;
+    getTextValue1: () => string | number | undefined;
+    getTextValue2: () => string | number | undefined;
+    getMin: () => number;
+    getMax: () => number;
+    getTextMin: () => string | number;
+    getTextMax: () => string | number;
     getStep: () => TStep;
 }
 export interface IPlugin {

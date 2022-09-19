@@ -470,14 +470,19 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     if(!pluginsManager) return;
     pluginsManager.update({
-        percent1: pointer1.percent,
-        percent2: pointer2?.percent,
-        textValue1: getTextValue(pointer1.percent),
-        textValue2: getTextValue(pointer2?.percent),
-        min,
-        max,
-        textMin: getTextMinMax(min),
-        textMax: getTextMinMax(max),
+        percent1: getPercent1(),
+        percent2: getPercent2(),
+
+        textValue1: getTextValue1(),
+        textValue2: getTextValue2(),
+
+        min: getNumericMin(),
+        max: getNumericMax(),
+        step: getStep(),
+
+        textMin: getMin(),
+        textMax: getMax(),
+
         rightToLeft,
         bottomToTop
     });
@@ -565,11 +570,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     return step;
   };
 
-  const getTextMinMax = (minOrMax: number) => {
-    if(data !== undefined) return data[minOrMax];
-    return minOrMax;
-  };
-
   const getPointerMin = (index: number) => {
     if(index < 2 || pointersOverlap) return getMin();
     return getTextValue(pointer1.percent) ?? '';
@@ -584,6 +584,30 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     else{
       return getMax();
     }
+  };
+
+  const getPercent1 = () => {
+    return pointer1.percent;
+  };
+
+  const getPercent2 = () => {
+    return pointer2?.percent;
+  };
+
+  const getTextValue1 = () => {
+    return getTextValue(pointer1.percent);
+  }
+
+  const getTextValue2 = () => {
+    return getTextValue(pointer2?.percent);
+  }
+
+  const getNumericMin = () => {
+    return min;
+  };
+
+  const getNumericMax = () => {
+    return max;
   };
 
   // -------------- Setters --------------------
@@ -1009,9 +1033,18 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
         setStep,
       },
       {
-        getMin,
-        getMax,
+        getPercent1,
+        getPercent2,
+
+        getTextValue1,
+        getTextValue2,
+
+        getMin: getNumericMin,
+        getMax: getNumericMax,
         getStep,
+
+        getTextMin: getMin,
+        getTextMax: getMax,
       }
     );
     pluginsManager.init();
