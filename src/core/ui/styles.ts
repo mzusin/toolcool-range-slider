@@ -137,7 +137,6 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, $pointer2:
   // ---- initialization ---------------------
   (() => {
 
-
     for(const item of stylePropertiesList){
       // '--pointer-width', 'pointer-width', 1, 'pointerWidth'
       const [cssVariableName, attrName, index, apiProperty] = item;

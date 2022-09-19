@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/plugins/generated-labels-plugin/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,+BAA+B,CAAC;AAyBxD,QAAA,MAAM,qBAAqB,QAAQ,OAqWlC,CAAC;AAOF,eAAe,qBAAqB,CAAC"}
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/plugins/generated-labels-plugin/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAqD,MAAM,+BAA+B,CAAC;AAyB3G,QAAA,MAAM,qBAAqB,QAAQ,OA8VlC,CAAC;AAOF,eAAe,qBAAqB,CAAC"}

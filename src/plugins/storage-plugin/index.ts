@@ -1,4 +1,4 @@
-import { IPlugin } from '../../core/plugins/interfaces';
+import { IPlugin, IPluginGetters, IPluginSetters, IPluginUpdateData } from '../../core/plugins/interfaces';
 import { StorageTypeEnum } from './storage-type-enum';
 import { getStorageKey2, restoreFromStorage, saveToStorage, STORAGE_KEY } from './storage-provider';
 
@@ -37,17 +37,21 @@ const StoragePlugin = () : IPlugin => {
     /**
      * Optional: plugin initialization
      */
-    init: (_$component, _requestUpdate, _updatePointers) => {
+    init: (
+      _$component,
+      _requestUpdate,
+      _setters: IPluginSetters,
+      _getters: IPluginGetters
+    ) => {
 
       // if the storage is enabled ---> try to restore the values
       storage = (_$component.getAttribute('storage') as StorageTypeEnum) || undefined;
       storageKey = _$component.getAttribute('storage-key') || STORAGE_KEY;
 
       if (storage){
-        restoreFromStorage(storage, storageKey, _updatePointers);
+        restoreFromStorage(storage, storageKey, _setters.setValues);
         storageInitialized = true;
       }
-
     },
 
     /**
@@ -55,23 +59,11 @@ const StoragePlugin = () : IPlugin => {
      * this will be called each time
      * range slider updates pointer positions
      */
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    update: (
-      _percent1: number,
-      _percent2: number | undefined,
-      _textValue1: string | number | undefined,
-      _textValue2: string | number | undefined,
-      _min: number,
-      _max: number,
-      _textMin: number | string | undefined,
-      _textMax: number | string | undefined,
-      _rightToLeft: boolean,
-      _bottomToTop: boolean
-    ) => {
+    update: (data: IPluginUpdateData) => {
       if (storage && storageInitialized) {
-        saveToStorage(storage, storageKey, _textValue1);
-        if(_percent2 !== undefined){
-          saveToStorage(storage, getStorageKey2(storageKey), _textValue2);
+        saveToStorage(storage, storageKey, data.textValue1);
+        if(data.percent2 !== undefined){
+          saveToStorage(storage, getStorageKey2(storageKey), data.textValue2);
         }
       }
     },

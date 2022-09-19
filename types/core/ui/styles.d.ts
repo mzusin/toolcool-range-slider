@@ -5,5 +5,6 @@ export interface IStyles {
     pointerShape: string | null;
     pointer2Shape: string | null;
 }
+export declare const stylePropertiesList: [string, string, number, string][];
 export declare const Styles: ($component: HTMLElement, $slider: HTMLElement, $pointer2: HTMLElement | undefined) => IStyles;
 //# sourceMappingURL=styles.d.ts.map

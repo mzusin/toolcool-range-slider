@@ -469,18 +469,18 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   const updatePlugins = () => {
 
     if(!pluginsManager) return;
-    pluginsManager.update(
-      pointer1.percent,
-      pointer2?.percent,
-      getTextValue(pointer1.percent),
-      getTextValue(pointer2?.percent),
-      min,
-      max,
-      getTextMinMax(min),
-      getTextMinMax(max),
-      rightToLeft,
-      bottomToTop
-    );
+    pluginsManager.update({
+        percent1: pointer1.percent,
+        percent2: pointer2?.percent,
+        textValue1: getTextValue(pointer1.percent),
+        textValue2: getTextValue(pointer2?.percent),
+        min,
+        max,
+        textMin: getTextMinMax(min),
+        textMax: getTextMinMax(max),
+        rightToLeft,
+        bottomToTop
+    });
   };
 
   const requestUpdatePlugins = () => {
@@ -559,6 +559,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     }
 
     return max;
+  };
+
+  const getStep = () => {
+    return step;
   };
 
   const getTextMinMax = (minOrMax: number) => {
@@ -995,7 +999,21 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     document.addEventListener('wheel', pointerMouseWheel, { passive: false });
 
     // init plugins ---------------
-    pluginsManager = PluginsManager($component, requestUpdatePlugins, updatePointersFromPlugins);
+    pluginsManager = PluginsManager(
+      $component,
+      requestUpdatePlugins,
+      {
+        setValues: updatePointersFromPlugins,
+        setMin,
+        setMax,
+        setStep,
+      },
+      {
+        getMin,
+        getMax,
+        getStep,
+      }
+    );
     pluginsManager.init();
   })();
 
@@ -1036,7 +1054,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     },
 
     get step() {
-      return step;
+      return getStep();
     },
 
     get pointersOverlap() {

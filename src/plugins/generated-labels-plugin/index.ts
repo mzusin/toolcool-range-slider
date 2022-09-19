@@ -1,4 +1,4 @@
-import { IPlugin } from '../../core/plugins/interfaces';
+import { IPlugin, IPluginGetters, IPluginSetters, IPluginUpdateData } from '../../core/plugins/interfaces';
 import { getBoolean } from '../../core/domain/math-provider';
 
 /**
@@ -250,7 +250,12 @@ const GeneratedLabelsPlugin = () : IPlugin => {
      * Optional: plugin initialization
      */
     /* eslint-disable @typescript-eslint/no-unused-vars */
-    init: (_$component, _requestUpdate, _updatePointers) => {
+    init: (
+      _$component,
+      _requestUpdate,
+      _setters: IPluginSetters,
+      _getters: IPluginGetters
+    ) => {
       $component = _$component;
       requestUpdate = _requestUpdate;
 
@@ -283,22 +288,10 @@ const GeneratedLabelsPlugin = () : IPlugin => {
      * this will be called each time
      * range slider updates pointer positions
      */
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    update: (
-      _percent1: number,
-      _percent2: number | undefined,
-      _textValue1: string | number | undefined,
-      _textValue2: string | number | undefined,
-      _min: number,
-      _max: number,
-      _textMin: number | string | undefined,
-      _textMax: number | string | undefined,
-      _rightToLeft: boolean,
-      _bottomToTop: boolean
-    ) => {
+    update: (data: IPluginUpdateData) => {
 
       if(generatedLabelsEnabled){
-        createGenerateLabels(_textValue1, _textValue2, _rightToLeft || _bottomToTop, _textMin, _textMax);
+        createGenerateLabels(data.textValue1, data.textValue2, data.rightToLeft || data.bottomToTop, data.textMin, data.textMax);
       }
       else{
         removeGeneratedLabels();

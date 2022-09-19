@@ -1,4 +1,4 @@
-import { IPlugin } from './interfaces';
+import { IPlugin, IPluginGetters, IPluginSetters, IPluginUpdateData } from './interfaces';
 
 declare global {
   interface Window {
@@ -10,18 +10,7 @@ declare global {
 export interface IPluginsManager {
   init: () => void;
 
-  update: (
-    percent1: number,
-    percent2: number | undefined,
-    textValue1: string | number | undefined,
-    textValue2: string | number | undefined,
-    min: number,
-    max: number,
-    textMin: number | string | undefined,
-    textMax: number | string | undefined,
-    rightToLeft: boolean,
-    bottomToTop: boolean
-  ) => void;
+  update: (data: IPluginUpdateData) => void;
 
   onAttrChange: (attrName: string, oldValue: string, newValue: string) =>  void;
 }
@@ -29,39 +18,18 @@ export interface IPluginsManager {
 export const PluginsManager = (
   $component: HTMLElement,
   requestUpdatePlugins: () => void,
-  updatePointers: (value1: string | number | undefined, value2: string | number | undefined) => void
+  setters: IPluginSetters,
+  getters: IPluginGetters,
 ) : IPluginsManager => {
 
   const plugins: IPlugin[] = [];
 
   // ------ APIs ----------------------------
 
-  const update = (
-    percent1: number,
-    percent2: number | undefined,
-    textValue1: string | number | undefined,
-    textValue2: string | number | undefined,
-    min: number,
-    max: number,
-    textMin: number | string | undefined,
-    textMax: number | string | undefined,
-    rightToLeft: boolean,
-    bottomToTop: boolean
-  ) => {
+  const update = (data: IPluginUpdateData) => {
     for(const plugin of plugins){
       if(plugin.update && typeof plugin.update === 'function'){
-        plugin.update(
-          percent1,
-          percent2,
-          textValue1,
-          textValue2,
-          min,
-          max,
-          textMin,
-          textMax,
-          rightToLeft,
-          bottomToTop
-        );
+        plugin.update(data);
       }
     }
   };
@@ -85,7 +53,9 @@ export const PluginsManager = (
       if(!item.name || !item.attributes) continue;
 
       try{
-        Object.defineProperty($component, item.name, item.attributes);
+        if(!$component.hasOwnProperty(item.name)){
+          Object.defineProperty($component, item.name, item.attributes);
+        }
       }
       catch (ex){
         console.error('defineSettersGetters error:', ex);
@@ -113,7 +83,12 @@ export const PluginsManager = (
       if(plugin.init && typeof plugin.init === 'function'){
 
         // call plugin initialization function
-        plugin.init($component, requestUpdatePlugins, updatePointers);
+        plugin.init(
+          $component,
+          requestUpdatePlugins,
+          setters,
+          getters,
+        );
 
         // if plugin has getters and setters that used for APIs ---> define them
         defineSettersGetters(plugin);
