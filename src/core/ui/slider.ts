@@ -455,28 +455,37 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
 
   // -------------- Getters --------------------
 
-  const getPointer1LeftWall = () => {
-    if(pointersOverlap || !pointer2 || max === min) return undefined;
-    const converted = pointersMaxDistance * 100 / (max - min);
-    return Math.max(0, pointer2.percent - converted);
+  const getPointerLeftWall = (pointerIndex: number) => {
+    if(pointersOverlap || pointers.length <= 1 || max === min) return undefined;
+
+    if(pointerIndex === 0){
+      // by default 0, but if min distance between pointers is defined --->
+      // then the distance to the next pointer
+      const converted = pointersMaxDistance * 100 / (max - min);
+      return Math.max(0, pointers[pointerIndex + 1].percent - converted);
+    }
+    else{
+      // by default previous pointer, but if min distance between pointers is defined --->
+      // then the distance to the next pointer
+      const converted = pointersMinDistance * 100 / (max - min);
+      return Math.min(pointers[pointerIndex - 1].percent + converted, 100);
+    }
   };
 
-  const getPointer1RightWall = () => {
-    if(pointersOverlap || !pointer2 || max === min) return undefined;
-    const converted = 100 * pointersMinDistance / (max - min);
-    return Math.max(0, pointer2.percent - converted);
-  };
+  const getPointerRightWall = (pointerIndex: number) => {
+    if(pointersOverlap || pointers.length <= 1 || max === min) return undefined;
 
-  const getPointer2LeftWall = () => {
-    if(pointersOverlap || max === min) return undefined;
-    const converted = pointersMinDistance * 100 / (max - min);
-    return Math.min(pointer1.percent + converted, 100);
-  };
-
-  const getPointer2RightWall = () => {
-    if(pointersOverlap || max === min) return undefined;
-    const converted = pointersMaxDistance * 100 / (max - min);
-    return Math.min(pointer1.percent + converted, 100);
+    if(pointerIndex === pointers.length - 1){
+      // by default 100, but if min distance between pointers is defined --->
+      // then the distance to the previous pointer
+      const converted = pointersMaxDistance * 100 / (max - min);
+      return Math.min(pointers[pointerIndex - 1].percent + converted, 100);
+    }
+    else{
+      // distance to the next pointer
+      const converted = pointersMinDistance * 100 / (max - min);
+      return Math.max(0, pointers[pointerIndex + 1].percent - converted);
+    }
   };
 
   const getRelativeStep = (_percent: number) => {
@@ -613,10 +622,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     }
 
     if(index < 2){
-      pointer1.updatePosition(_percent, getPointer1LeftWall(), getPointer1RightWall(), type, rightToLeft, bottomToTop);
+      pointer1.updatePosition(_percent, getPointerLeftWall(0), getPointerRightWall(0), type, rightToLeft, bottomToTop);
     }
     else{
-      pointer2?.updatePosition(_percent, getPointer2LeftWall(), getPointer2RightWall(), type, rightToLeft, bottomToTop);
+      pointer2?.updatePosition(_percent, getPointerLeftWall(1), getPointerRightWall(1), type, rightToLeft, bottomToTop);
     }
 
     panelFill?.updatePosition(type, pointer1.percent, pointer2?.percent, rightToLeft, bottomToTop);
