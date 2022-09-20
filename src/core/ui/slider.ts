@@ -654,14 +654,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
   };
 
   const setAriaMinMax = () => {
-    if(pointer1){
-      pointer1.setAttr('aria-valuemin', (getPointerMin(0) ?? '').toString());
-      pointer1.setAttr('aria-valuemax', (getPointerMax(0) ?? '').toString());
-    }
-
-    if(pointer2){
-      pointer2.setAttr('aria-valuemin', (getPointerMin(1) ?? '').toString());
-      pointer2.setAttr('aria-valuemax', (getPointerMax(1) ?? '').toString());
+    for(let i=0; i<pointers.length; i++){
+      const pointer = pointers[i];
+      pointer.setAttr('aria-valuemin', (getPointerMin(i) ?? '').toString());
+      pointer.setAttr('aria-valuemax', (getPointerMax(i) ?? '').toString());
     }
   };
 
