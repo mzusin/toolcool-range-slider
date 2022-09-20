@@ -186,6 +186,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     return minDistancePointer;
   };
 
+  const getSelectedPointerIndex = () => {
+    return pointers.findIndex(pointer => selectedPointer === pointer && !pointer.disabled);
+  };
+
   const onValueChange = (evt: MouseEvent | TouchEvent) => {
 
     // find the percent [0, 100] of the current mouse position in vertical or horizontal slider
@@ -225,17 +229,16 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       return;
     }
 
-    const foundIndex = pointers.findIndex(pointer => selectedPointer === pointer && !pointer.disabled);
+    const foundIndex = getSelectedPointerIndex();
     if(foundIndex !== -1){
       setPositions(foundIndex + 1, percent);
     }
   };
 
   const pointerMouseWheel = (evt: WheelEvent) => {
-    if (disabled || document.activeElement !== $component) return;
-
-    if((selectedPointer === pointer1 && pointer1.disabled) ||
-       (selectedPointer === pointer2 && pointer2?.disabled)) return;
+    if (disabled ||
+      document.activeElement !== $component ||
+      selectedPointer?.disabled) return;
 
     evt.stopPropagation();
     evt.preventDefault();
@@ -244,23 +247,14 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     const rightOrBottom = rightToLeft || bottomToTop;
     const shouldGoPrev = scrollTop ? !rightOrBottom : rightOrBottom;
 
-    if(shouldGoPrev){
-      if(selectedPointer === pointer1){
-        goPrev(1, pointer1.percent);
-      }
+    const foundIndex = getSelectedPointerIndex();
+    if(foundIndex === -1) return;
 
-      if(selectedPointer === pointer2){
-        goPrev(2, pointer2?.percent);
-      }
+    if(shouldGoPrev){
+      goPrev(foundIndex + 1, pointers[foundIndex].percent);
     }
     else{
-      if(selectedPointer === pointer1){
-        goNext(1, pointer1.percent);
-      }
-
-      if(selectedPointer === pointer2){
-        goNext(2, pointer2?.percent);
-      }
+      goNext(foundIndex + 1, pointers[foundIndex].percent);
     }
   };
 
