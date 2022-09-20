@@ -9,7 +9,7 @@ import { sendChangeEvent, sendMouseDownEvent, sendMouseUpEvent } from '../domain
 import { IStyles, Styles } from './styles';
 import * as CSSVariables from '../enums/css-vars-enum';
 import * as CssClasses from '../enums/css-classes-enum';
-import { createPointer2, removeFocus } from '../domain/common-provider';
+import { removeFocus } from '../domain/common-provider';
 import { IPluginsManager, PluginsManager } from '../plugins/plugins-manager';
 
 export interface ISlider {
@@ -405,36 +405,19 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
   };
 
   const addSecondPointer = () => {
-    const newPointer = createPointer2($component, pointer1.$pointer);
-    newPointer?.setCallbacks(arrowLeft, arrowRight, arrowUp, arrowDown);
-    newPointer.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer2Disabled));
-    pointers.push(newPointer);
-    pointer2 = newPointer;
-
-    const ariaLabel2 = $component.getAttribute(AttributesEnum.AriaLabel2);
-    if(ariaLabel2){
-      setAriaLabel(ariaLabel2, 2);
-    }
-
-    updatePlugins();
+    // TODO
   };
 
   const removeSecondPointer = () => {
-    pointers[1]?.destroy();
-    pointers.splice(1, 1);
-
-    updatePlugins();
+    // TODO
   };
 
   const updatePlugins = () => {
 
     if(!pluginsManager) return;
     pluginsManager.update({
-      percent1: getPercent1(),
-      percent2: getPercent2(),
-
-      textValue1: getTextValue1(),
-      textValue2: getTextValue2(),
+      percents: getPercents(),
+      values: getValues(),
 
       min: getNumericMin(),
       max: getNumericMax(),
@@ -558,20 +541,12 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     }
   };
 
-  const getPercent1 = () => {
-    return pointer1.percent;
+  const getPercents = () => {
+    return pointers.map(pointer => pointer.percent);
   };
 
-  const getPercent2 = () => {
-    return pointer2?.percent;
-  };
-
-  const getTextValue1 = () => {
-    return getTextValue(pointer1.percent);
-  }
-
-  const getTextValue2 = () => {
-    return getTextValue(pointer2?.percent);
+  const getValues = () => {
+    return pointers.map(pointer => getTextValue(pointer.percent));
   }
 
   const getNumericMin = () => {
@@ -1064,11 +1039,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
         setData,
       },
       {
-        getPercent1,
-        getPercent2,
-
-        getTextValue1,
-        getTextValue2,
+        getPercents,
+        getValues,
 
         getMin: getNumericMin,
         getMax: getNumericMax,

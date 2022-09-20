@@ -1,11 +1,8 @@
 import { TData, TStep } from '../types';
 
 export interface IPluginUpdateData {
-  percent1: number;
-  percent2: number | undefined;
-
-  textValue1: string | number | undefined;
-  textValue2: string | number | undefined;
+  percents: number[],
+  values: (string | number | undefined)[],
 
   min: number;
   max: number;
@@ -52,11 +49,8 @@ export interface IPluginSetters {
 }
 
 export interface IPluginGetters {
-  getPercent1: () => number;
-  getPercent2: () => number | undefined;
-
-  getTextValue1: () => string | number | undefined;
-  getTextValue2: () => string | number | undefined;
+  getPercents: () => number[];
+  getValues: () => (string | number | undefined)[];
 
   getMin: () => number;
   getMax: () => number;
