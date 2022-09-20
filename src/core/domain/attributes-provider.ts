@@ -149,14 +149,18 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
     }
 
     case AttributesEnum.Pointer1Disabled: {
-      slider.pointer1.disabled = getBoolean(newValue);
+      const pointer1 = slider?.pointers[0];
+      if(!pointer1) return;
+
+      pointer1.disabled = getBoolean(newValue);
       break;
     }
 
     case AttributesEnum.Pointer2Disabled: {
-      if(slider.pointer2){
-        slider.pointer2.disabled = getBoolean(newValue);
-      }
+      const pointer2 = slider?.pointers[1];
+      if(!pointer2) return;
+
+      pointer2.disabled = getBoolean(newValue);
       break;
     }
 

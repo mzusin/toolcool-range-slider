@@ -13,8 +13,7 @@ import { createPointer2, removeFocus } from '../domain/common-provider';
 import { IPluginsManager, PluginsManager } from '../plugins/plugins-manager';
 
 export interface ISlider {
-  readonly pointer1: IPointer;
-  readonly pointer2: IPointer | null;
+  readonly pointers: IPointer[];
   readonly styles: IStyles | null;
   readonly pluginsManager: IPluginsManager | null;
 
@@ -52,7 +51,10 @@ export const MIN_DEFAULT = 0;
 export const MAX_DEFAULT = 100;
 export const ROUND_DEFAULT = 2;
 
-export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: IPointer, pointer2: IPointer | null) : ISlider => {
+export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: IPointer[]) : ISlider => {
+
+  const pointer1 = pointers[0];
+  let pointer2 = pointers[1];
 
   let selectedPointer: IPointer | null = null;
   let panelFill: IPanelFill | null = null;
@@ -447,9 +449,11 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   };
 
   const addSecondPointer = () => {
-    pointer2 = createPointer2($component, pointer1.$pointer);
-    pointer2?.setCallbacks(arrowLeft, arrowRight, arrowUp, arrowDown);
-    pointer2.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer2Disabled));
+    const newPointer = createPointer2($component, pointer1.$pointer);
+    newPointer?.setCallbacks(arrowLeft, arrowRight, arrowUp, arrowDown);
+    newPointer.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer2Disabled));
+    pointers.push(newPointer);
+    pointer2 = newPointer;
 
     const ariaLabel2 = $component.getAttribute(AttributesEnum.AriaLabel2);
     if(ariaLabel2){
@@ -460,8 +464,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   };
 
   const removeSecondPointer = () => {
-    pointer2?.destroy();
-    pointer2 = null;
+    pointers[1]?.destroy();
+    pointers.splice(1, 1);
 
     updatePlugins();
   };
@@ -1148,12 +1152,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
   };
 
   return {
-    get pointer1() {
-      return pointer1;
-    },
-
-    get pointer2() {
-      return pointer2;
+    get pointers() {
+      return pointers;
     },
 
     get styles() {

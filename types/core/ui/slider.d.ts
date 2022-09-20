@@ -3,8 +3,7 @@ import { TData, TStep } from '../types';
 import { IStyles } from './styles';
 import { IPluginsManager } from '../plugins/plugins-manager';
 export interface ISlider {
-    readonly pointer1: IPointer;
-    readonly pointer2: IPointer | null;
+    readonly pointers: IPointer[];
     readonly styles: IStyles | null;
     readonly pluginsManager: IPluginsManager | null;
     pointersOverlap: boolean;

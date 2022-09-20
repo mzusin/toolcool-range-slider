@@ -54,7 +54,11 @@ class RangeSlider extends HTMLElement {
 
   public get value() {
     if(!this.slider) return undefined;
-    const val = this.slider.getTextValue(this.slider.pointer1.percent);
+
+    const pointer1 = this.slider.pointers[0];
+    if(!pointer1) return undefined;
+
+    const val = this.slider.getTextValue(pointer1.percent);
     return isNumber(val) ? getNumber(val, val) : val;
   }
 
@@ -77,8 +81,12 @@ class RangeSlider extends HTMLElement {
   }
 
   public get value2() {
-    if(!this.slider || !this.slider.pointer2) return undefined;
-    const val = this.slider.getTextValue(this.slider.pointer2.percent);
+    if(!this.slider) return undefined;
+
+    const pointer2 = this.slider.pointers[1];
+    if(!pointer2) return undefined;
+
+    const val = this.slider.getTextValue(pointer2.percent);
     return isNumber(val) ? getNumber(val, val) : val;
   }
 
@@ -216,20 +224,30 @@ class RangeSlider extends HTMLElement {
 
   public set pointer1Disabled(_pointer1Disabled: boolean) {
     if(!this.slider) return;
-    this.slider.pointer1.disabled = _pointer1Disabled;
+
+    const pointer1 = this.slider.pointers[0];
+    if(!pointer1) return;
+
+    pointer1.disabled = _pointer1Disabled;
   }
 
   public get pointer1Disabled() {
-    return this.slider?.pointer1.disabled ?? false;
+    const pointer1 = this.slider?.pointers[0];
+    return pointer1?.disabled ?? false;
   }
 
   public set pointer2Disabled(_pointer2Disabled: boolean) {
-    if(!this.slider || !this.slider.pointer2) return;
-    this.slider.pointer2.disabled = _pointer2Disabled;
+    if(!this.slider) return;
+
+    const pointer2 = this.slider?.pointers[1];
+    if(!pointer2) return;
+
+    pointer2.disabled = _pointer2Disabled;
   }
 
   public get pointer2Disabled() {
-    return this.slider?.pointer2?.disabled ?? false;
+    const pointer2 = this.slider?.pointers[1];
+    return pointer2?.disabled ?? false;
   }
 
   public set ariaLabel1(_ariaLabel1: string | undefined) {
@@ -238,7 +256,8 @@ class RangeSlider extends HTMLElement {
   }
 
   public get ariaLabel1() {
-    return this.slider?.pointer1.getAttr('aria-label') ?? undefined;
+    const pointer1 = this.slider?.pointers[0];
+    return pointer1?.getAttr('aria-label') ?? undefined;
   }
 
   public set ariaLabel2(_ariaLabel2: string | undefined) {
@@ -247,7 +266,8 @@ class RangeSlider extends HTMLElement {
   }
 
   public get ariaLabel2() {
-    return this.slider?.pointer2?.getAttr('aria-label') ?? undefined;
+    const pointer2 = this.slider?.pointers[1];
+    return pointer2?.getAttr('aria-label') ?? undefined;
   }
 
   public get rangeDragging(){
@@ -295,10 +315,18 @@ class RangeSlider extends HTMLElement {
       pointer2 = createPointer2(this, $pointer1);
     }
 
+    const pointers: IPointer[] = [];
+    if(pointer1){
+      pointers.push(pointer1);
+    }
+    if(pointer2){
+      pointers.push(pointer2);
+    }
+
     // init the slider
     const $slider = this.shadowRoot?.getElementById('range-slider') as HTMLElement;
     if(!$slider) return;
-    this.slider = Slider(this, $slider, pointer1, pointer2);
+    this.slider = Slider(this, $slider, pointers);
 
     removeFocus();
   }
