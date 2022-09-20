@@ -34,5 +34,5 @@ export interface ISlider {
 export declare const MIN_DEFAULT = 0;
 export declare const MAX_DEFAULT = 100;
 export declare const ROUND_DEFAULT = 2;
-export declare const Slider: ($component: HTMLElement, $slider: HTMLElement, pointer1: IPointer, pointer2: IPointer | null) => ISlider;
+export declare const Slider: ($component: HTMLElement, $slider: HTMLElement, pointers: IPointer[]) => ISlider;
 //# sourceMappingURL=slider.d.ts.map

@@ -62,9 +62,9 @@ const StoragePlugin = () : IPlugin => {
     update: (data: IPluginUpdateData) => {
       if (!storage || !storageInitialized) return;
 
-      saveToStorage(storage, storageKey, data.textValue1);
-      if(data.percent2 !== undefined){
-        saveToStorage(storage, getStorageKey2(storageKey), data.textValue2);
+      saveToStorage(storage, storageKey, data.values[0]);
+      if(data.percents[1] !== undefined){
+        saveToStorage(storage, getStorageKey2(storageKey), data.percents[1]);
       }
     },
 

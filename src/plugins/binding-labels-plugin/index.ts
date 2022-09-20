@@ -76,12 +76,15 @@ const BindingLabelsPlugin = () : IPlugin => {
      * range slider updates pointer positions
      */
     update: (data: IPluginUpdateData) => {
-      if($referenceLabel1 && data.textValue1 !== undefined){
-        $referenceLabel1.textContent = data.textValue1.toString();
+      const textValue1 = data.values[0];
+      const textValue2 = data.values[1];
+
+      if($referenceLabel1 && textValue1 !== undefined){
+        $referenceLabel1.textContent = textValue1.toString();
       }
 
-      if($referenceLabel2 && data.textValue2 !== undefined){
-        $referenceLabel2.textContent = data.textValue2.toString();
+      if($referenceLabel2 && textValue2 !== undefined){
+        $referenceLabel2.textContent = textValue2.toString();
       }
     },
 

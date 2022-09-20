@@ -205,8 +205,12 @@ const GeneratedLabelsPlugin = () : IPlugin => {
   const createOrRemove = () => {
     if(!getters) return;
 
+    const values = getters.getValues();
+    const textValue1 = values[0];
+    const textValue2 = values[1];
+
     if(generatedLabelsEnabled){
-      createLabels(getters.getTextValue1(), getters.getTextValue2(), getters.isRightToLeft() || getters.isBottomToTop(), getters.getTextMin(), getters.getTextMax());
+      createLabels(textValue1, textValue2, getters.isRightToLeft() || getters.isBottomToTop(), getters.getTextMin(), getters.getTextMax());
     }
     else{
       removeGeneratedLabels();
@@ -295,7 +299,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
      * range slider updates pointer positions
      */
     update: (data: IPluginUpdateData) => {
-      updateValues(data.textValue1, data.textValue2, data.textMin, data.textMax);
+      updateValues(data.values[0], data.values[1], data.textMin, data.textMax);
     },
 
     /**
