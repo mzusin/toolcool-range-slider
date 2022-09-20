@@ -316,21 +316,11 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     if(type === TypeEnum.Vertical){
       if(bottomToTop){
         // go forwards
-        if(pointerIndex < 2){
-          goNext(1, pointer1.percent);
-        }
-        else{
-          goNext(2, pointer2?.percent);
-        }
+        goNext(pointerIndex, pointers[pointerIndex - 1].percent);
       }
       else{
         // go backwards
-        if(pointerIndex < 2){
-          goPrev(1, pointer1.percent);
-        }
-        else{
-          goPrev(2, pointer2?.percent);
-        }
+        goPrev(pointerIndex, pointers[pointerIndex - 1].percent);
       }
     }
     else{
@@ -351,21 +341,11 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     if(type === TypeEnum.Vertical){
       if(bottomToTop){
         // go backward
-        if(pointerIndex < 2){
-          goPrev(1, pointer1.percent);
-        }
-        else{
-          goPrev(2, pointer2?.percent);
-        }
+        goPrev(pointerIndex, pointers[pointerIndex - 1].percent);
       }
       else{
         // go forward
-        if(pointerIndex < 2){
-          goNext(1, pointer1.percent);
-        }
-        else{
-          goNext(2, pointer2?.percent);
-        }
+        goNext(pointerIndex, pointers[pointerIndex - 1].percent);
       }
     }
     else{
