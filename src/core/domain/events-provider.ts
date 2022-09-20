@@ -43,12 +43,20 @@ export const sendOnKeyDownEvent = ($component: HTMLElement, evt: KeyboardEvent) 
 export interface IChangeEventDetail {
   value?: number | string | undefined,
   value2?: number | string | undefined,
+  values: (string | number | undefined)[],
 }
 
-export const sendChangeEvent = ($component: HTMLElement, value1: string | number | undefined, value2: string | number | undefined) => {
+export const sendChangeEvent = (
+  $component: HTMLElement,
+  values: (string | number | undefined)[],
+) => {
+
+  const transformed = values.map(value => isNumber(value) ? getNumber(value, value) : value);
+
   const detail: IChangeEventDetail = {
-    value: isNumber(value1) ? getNumber(value1, value1) : value1,
-    value2: isNumber(value2) ? getNumber(value2, value2) : value2,
+    value: transformed[0],
+    value2: transformed[1],
+    values: transformed || [],
   };
 
   $component.dispatchEvent(

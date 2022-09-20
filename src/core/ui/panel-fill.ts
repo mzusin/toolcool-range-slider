@@ -1,30 +1,36 @@
 import * as TypeEnum from '../enums/type-enum';
 
 export interface IPanelFill {
-  updatePosition: (type: string, percent1: number, percent2: number | undefined, rightToLeft: boolean, bottomToTop: boolean) => void;
+  updatePosition: (type: string, percents: (number | undefined)[], rightToLeft: boolean, bottomToTop: boolean) => void;
 }
 
 export const PanelFill = ($fill: HTMLElement) : IPanelFill => {
 
-  const updatePosition = (type: string, percent1: number, percent2: number | undefined, rightToLeft: boolean, bottomToTop: boolean) => {
+  const updatePosition = (type: string, percents: (number | undefined)[], rightToLeft: boolean, bottomToTop: boolean) => {
+
+    if(percents.length <= 0) return;
+
+    const oneOnly = percents.length === 1;
+    const first = percents[0] as number;
+    const last = percents[percents.length - 1] as number;
 
     if (type === TypeEnum.Vertical) {
       $fill.style.removeProperty('width');
       $fill.style.removeProperty('right');
       $fill.style.removeProperty('left');
 
-      if (percent2 !== undefined) {
-        $fill.style.height = `${Math.abs(percent1 - percent2)}%`;
+      if (!oneOnly) {
+        $fill.style.height = `${Math.abs(first - last)}%`;
       }
       else{
-        $fill.style.height = `${ percent1 }%`;
+        $fill.style.height = `${ first }%`;
       }
 
       if (bottomToTop) {
         $fill.style.bottom = '0%';
 
-        if (percent2 !== undefined) {
-          $fill.style.top = `${Math.min(100 - percent2, 100 - percent1)}%`;
+        if (!oneOnly) {
+          $fill.style.top = `${Math.min(100 - last, 100 - first)}%`;
         }
         else{
           $fill.style.top = 'auto';
@@ -33,8 +39,8 @@ export const PanelFill = ($fill: HTMLElement) : IPanelFill => {
       else {
         $fill.style.bottom = 'auto';
 
-        if (percent2 !== undefined) {
-          $fill.style.top = `${Math.min(percent1, percent2)}%`;
+        if (!oneOnly) {
+          $fill.style.top = `${Math.min(first, last)}%`;
         }
         else{
           $fill.style.top = '0%';
@@ -46,18 +52,18 @@ export const PanelFill = ($fill: HTMLElement) : IPanelFill => {
       $fill.style.removeProperty('top');
       $fill.style.removeProperty('bottom');
 
-      if (percent2 !== undefined) {
-        $fill.style.width = `${ Math.abs(percent1 - percent2) }%`;
+      if (!oneOnly) {
+        $fill.style.width = `${ Math.abs(first - last) }%`;
       }
       else{
-        $fill.style.width = `${ percent1 }%`;
+        $fill.style.width = `${ first }%`;
       }
 
       if (rightToLeft) {
         $fill.style.right = '0%';
 
-        if (percent2 !== undefined) {
-          $fill.style.left = `${ Math.min(100 - percent2, 100 - percent1) }%`;
+        if (!oneOnly) {
+          $fill.style.left = `${ Math.min(100 - last, 100 - first) }%`;
         }
         else{
           $fill.style.left = 'auto';
@@ -66,8 +72,8 @@ export const PanelFill = ($fill: HTMLElement) : IPanelFill => {
       else {
         $fill.style.right = 'auto';
 
-        if (percent2 !== undefined) {
-          $fill.style.left = `${ Math.min(percent1, percent2) }%`;
+        if (!oneOnly) {
+          $fill.style.left = `${ Math.min(first, last) }%`;
         }
         else{
           $fill.style.left = '0%';

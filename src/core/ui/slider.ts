@@ -224,14 +224,14 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       const lastGreaterThanMax = lastPointer.percent + rangeDraggingDiff > 100;
       if(firstSmallerThanMin || lastGreaterThanMax) return;
 
-      setPositions(1, firstPointer.percent + rangeDraggingDiff);
-      setPositions(2, lastPointer.percent + rangeDraggingDiff);
+      setPositions(0, firstPointer.percent + rangeDraggingDiff);
+      setPositions(1, lastPointer.percent + rangeDraggingDiff);
       return;
     }
 
     const foundIndex = getSelectedPointerIndex();
     if(foundIndex !== -1){
-      setPositions(foundIndex + 1, percent);
+      setPositions(foundIndex, percent);
     }
   };
 
@@ -266,11 +266,11 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     if(type === TypeEnum.Vertical){
       if(bottomToTop){
         // jump to the max value
-        setPositions(pointerIndex, 100);
+        setPositions(pointerIndex - 1, 100);
       }
       else{
         // jump to the min value
-        setPositions(pointerIndex, 0);
+        setPositions(pointerIndex - 1, 0);
       }
     }
     else{
@@ -291,11 +291,11 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     if(type === TypeEnum.Vertical){
       if(bottomToTop){
         // jump to the min value
-        setPositions(pointerIndex, 0);
+        setPositions(pointerIndex - 1, 0);
       }
       else{
         // jump to the max value
-        setPositions(pointerIndex, 100);
+        setPositions(pointerIndex - 1, 100);
       }
     }
     else{
@@ -326,11 +326,11 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     else{
       if(rightToLeft){
         // jump to the max value
-        setPositions(pointerIndex, 100);
+        setPositions(pointerIndex - 1, 100);
       }
       else{
         // jump to the min value
-        setPositions(pointerIndex, 0);
+        setPositions(pointerIndex - 1, 0);
       }
     }
   };
@@ -351,11 +351,11 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     else{
       if(rightToLeft){
         // jump to the min value
-        setPositions(pointerIndex, 0);
+        setPositions(pointerIndex - 1, 0);
       }
       else{
         // jump to the max value
-        setPositions(pointerIndex, 100);
+        setPositions(pointerIndex - 1, 100);
       }
     }
   };
@@ -384,7 +384,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       _percent = 0;
     }
 
-    setPositions(index, _percent);
+    setPositions(index - 1, _percent);
   };
 
   const goNext = (index: number, _percent: number | undefined) => {
@@ -401,7 +401,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       _percent = 100;
     }
 
-    setPositions(index, _percent);
+    setPositions(index - 1, _percent);
   };
 
   const addSecondPointer = () => {
@@ -618,33 +618,25 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       _percent = roundToStep(_percent, _step);
     }
 
-    if(index < 2){
-      pointer1.updatePosition(_percent, getPointerLeftWall(0), getPointerRightWall(0), type, rightToLeft, bottomToTop);
-    }
-    else{
-      pointer2?.updatePosition(_percent, getPointerLeftWall(1), getPointerRightWall(1), type, rightToLeft, bottomToTop);
-    }
+    const pointer = pointers[index];
+    if(!pointer) return;
 
-    panelFill?.updatePosition(type, pointer1.percent, pointer2?.percent, rightToLeft, bottomToTop);
-
-    const value1text = getTextValue(pointer1.percent);
-    const value2text = getTextValue(pointer2?.percent);
+    pointer.updatePosition(_percent, getPointerLeftWall(index), getPointerRightWall(index), type, rightToLeft, bottomToTop);
+    panelFill?.updatePosition(type, pointers.map(pointer => pointer.percent), rightToLeft, bottomToTop);
 
     updatePlugins();
 
-    if(value1text !== undefined){
-      pointer1.setAttr('aria-valuenow', value1text.toString());
-      pointer1.setAttr('aria-valuetext', value1text.toString());
-    }
-
-    if(value2text !== undefined && pointer2){
-      pointer2.setAttr('aria-valuenow', value2text.toString());
-      pointer2.setAttr('aria-valuetext', value2text.toString());
+    for(const pointer of pointers){
+      const valueText = getTextValue(pointer.percent);
+      if(valueText !== undefined){
+        pointer.setAttr('aria-valuenow', valueText.toString());
+        pointer.setAttr('aria-valuetext', valueText.toString());
+      }
     }
 
     setAriaMinMax();
 
-    sendChangeEvent($component, getTextValue(pointer1.percent), getTextValue(pointer2?.percent));
+    sendChangeEvent($component, pointers.map(pointer => getTextValue(pointer.percent)));
   };
 
   /**
@@ -680,8 +672,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       max = min + MAX_DEFAULT;
     }
 
-    setPositions(1, pointer1.percent);
-    setPositions(2, pointer2?.percent);
+    setPositions(0, pointer1.percent);
+    setPositions(1, pointer2?.percent);
   };
 
   const setMax = (_max: number | string | undefined | null) => {
@@ -692,8 +684,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       max = min + MAX_DEFAULT;
     }
 
-    setPositions(1, pointer1.percent);
-    setPositions(2, pointer2?.percent);
+    setPositions(0, pointer1.percent);
+    setPositions(1, pointer2?.percent);
   };
 
   /**
@@ -754,7 +746,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     // scale a range [min,max] to [a,b]
     const percent = convertRange(min, max, 0, 100, val);
 
-    setPositions(index, percent);
+    setPositions(index - 1, percent);
     removeFocus();
   };
 
@@ -784,7 +776,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
 
   const setPointersOverlap = (_pointersOverlap: boolean) => {
     pointersOverlap = _pointersOverlap;
-    setPositions(1, pointer1.percent);
+    setPositions(0, pointer1.percent);
   };
 
   const setPointersMinDistance = (_pointersMinDistance: number) => {
@@ -854,10 +846,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     $box.className = `range-slider-box type-${ type }`;
 
     // update fill position and pointers positions
-    setPositions(1, pointer1.percent);
+    setPositions(0, pointer1.percent);
 
     if(pointer2){
-      setPositions(2, pointer2.percent);
+      setPositions(1, pointer2.percent);
     }
 
     // update accessibility properties
@@ -881,8 +873,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       }
     }
 
-    setPositions(1, pointer1.percent);
-    setPositions(2, pointer2?.percent);
+    setPositions(0, pointer1.percent);
+    setPositions(1, pointer2?.percent);
 
     updatePlugins();
   };
@@ -902,8 +894,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       }
     }
 
-    setPositions(1, pointer1.percent);
-    setPositions(2, pointer2?.percent);
+    setPositions(0, pointer1.percent);
+    setPositions(1, pointer2?.percent);
 
     updatePlugins();
   };
