@@ -49,7 +49,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public set value(_value: string | number | undefined) {
-    this.slider?.setValue(_value, 1);
+    this.slider?.setValue(_value, 0);
   }
 
   public get value() {
@@ -77,7 +77,7 @@ class RangeSlider extends HTMLElement {
   }
 
   public set value2(_value2: string | number | undefined) {
-    this.slider?.setValue(_value2, 2);
+    this.slider?.setValue(_value2, 1);
   }
 
   public get value2() {

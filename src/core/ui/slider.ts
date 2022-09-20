@@ -698,13 +698,13 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     pointersOverlap = true;
     const val1str = _value1 !== null ? _value1 : _value;
 
-    setValue(val1str, 1);
-    setValue(_value2, 2);
+    setValue(val1str, 0);
+    setValue(_value2, 1);
     pointersOverlap = false;
 
     // add all required validations ------------------------
-    setValue(val1str, 1);
-    setValue(_value2, 2);
+    setValue(val1str, 0);
+    setValue(_value2, 1);
   };
 
   const setValue = (_val: number | string | undefined | null, index: number) => {
@@ -713,7 +713,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
 
     // handle the case when we set value2 and pointer2 doesn't exist,
     // or the case when we remove the existing second pointer
-    if(index === 2){
+    if(index === 1){
       if(_val !== undefined && _val !== null && !pointer2){
         addSecondPointer();
       }
@@ -746,7 +746,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     // scale a range [min,max] to [a,b]
     const percent = convertRange(min, max, 0, 100, val);
 
-    setPositions(index - 1, percent);
+    setPositions(index, percent);
     removeFocus();
   };
 
@@ -776,7 +776,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
 
   const setPointersOverlap = (_pointersOverlap: boolean) => {
     pointersOverlap = _pointersOverlap;
-    setPositions(0, pointer1.percent);
+    setAllPositions();
   };
 
   const setPointersMinDistance = (_pointersMinDistance: number) => {

@@ -99,17 +99,17 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
     }
 
     case AttributesEnum.Value: {
-      slider.setValue(newValue, 1);
+      slider.setValue(newValue, 0);
       break;
     }
 
     case AttributesEnum.Value1: {
-      slider.setValue(newValue, 1);
+      slider.setValue(newValue, 0);
       break;
     }
 
     case AttributesEnum.Value2: {
-      slider.setValue(newValue, 2);
+      slider.setValue(newValue, 1);
       break;
     }
 
