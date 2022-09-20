@@ -945,8 +945,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
   (() => {
 
     // init pointers
-    pointer1.setCallbacks(arrowLeft, arrowRight, arrowUp, arrowDown);
-    pointer2?.setCallbacks(arrowLeft, arrowRight, arrowUp, arrowDown);
+    for(const pointer of pointers){
+      pointer.setCallbacks(arrowLeft, arrowRight, arrowUp, arrowDown);
+    }
 
     // init panel fill
     const $fill = $component.shadowRoot?.querySelector('.panel-fill') as HTMLElement;
@@ -1066,8 +1067,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     $slider.removeEventListener('touchstart', onValueChange);
     document.removeEventListener('wheel', pointerMouseWheel);
 
-    pointer1.destroy();
-    pointer2?.destroy();
+    for(const pointer of pointers){
+      pointer.destroy();
+    }
   };
 
   return {
