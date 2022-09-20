@@ -639,6 +639,12 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     sendChangeEvent($component, pointers.map(pointer => getTextValue(pointer.percent)));
   };
 
+  const setAllPositions = () => {
+    for(let i=0; i<pointers.length; i++){
+      setPositions(i, pointers[i].percent);
+    }
+  };
+
   /**
    * on component init, min and max should be initialized together
    * because their validations depend on each other;
@@ -668,8 +674,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       max = min + MAX_DEFAULT;
     }
 
-    setPositions(0, pointer1.percent);
-    setPositions(1, pointer2?.percent);
+    setAllPositions();
   };
 
   const setMax = (_max: number | string | undefined | null) => {
@@ -680,8 +685,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       max = min + MAX_DEFAULT;
     }
 
-    setPositions(0, pointer1.percent);
-    setPositions(1, pointer2?.percent);
+    setAllPositions();
   };
 
   /**
