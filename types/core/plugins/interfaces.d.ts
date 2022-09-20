@@ -6,11 +6,20 @@ export interface IPluginUpdateData {
     textValue2: string | number | undefined;
     min: number;
     max: number;
+    round: number;
     step: TStep;
+    data: TData;
+    type: string;
     textMin: number | string | undefined;
     textMax: number | string | undefined;
     rightToLeft: boolean;
     bottomToTop: boolean;
+    pointersOverlap: boolean;
+    pointersMinDistance: number;
+    pointersMaxDistance: number;
+    rangeDragging: boolean;
+    disabled: boolean;
+    keyboardDisabled: boolean;
 }
 export interface IPluginSetters {
     setValues: (value1: string | number | undefined, value2: string | number | undefined) => void;

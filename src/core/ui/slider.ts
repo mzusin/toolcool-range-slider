@@ -470,21 +470,33 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
     if(!pluginsManager) return;
     pluginsManager.update({
-        percent1: getPercent1(),
-        percent2: getPercent2(),
+      percent1: getPercent1(),
+      percent2: getPercent2(),
 
-        textValue1: getTextValue1(),
-        textValue2: getTextValue2(),
+      textValue1: getTextValue1(),
+      textValue2: getTextValue2(),
 
-        min: getNumericMin(),
-        max: getNumericMax(),
-        step: getStep(),
+      min: getNumericMin(),
+      max: getNumericMax(),
 
-        textMin: getMin(),
-        textMax: getMax(),
+      data: getData(),
+      step: getStep(),
+      round: getRound(),
+      type: getType(),
 
-        rightToLeft,
-        bottomToTop
+      textMin: getMin(),
+      textMax: getMax(),
+
+      rightToLeft: isRightToLeft(),
+      bottomToTop: isBottomToTop(),
+
+      pointersOverlap: isPointersOverlap(),
+      pointersMinDistance: getPointersMinDistance(),
+      pointersMaxDistance: getPointersMaxDistance(),
+      rangeDragging: isRangeDraggingEnabled(),
+
+      disabled: isDisabled(),
+      keyboardDisabled: isKeyboardDisabled(),
     });
   };
 
