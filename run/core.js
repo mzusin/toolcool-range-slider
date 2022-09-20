@@ -15,7 +15,7 @@ try {
 const settings = {
   entryPoints: ['./src/core/index.ts'],
   bundle: true,
-  sourcemap: 'external',
+  sourcemap: 'linked', // external
   minify: true,
   target: ['es6'],
   outfile: './dist/toolcool-range-slider.min.js',

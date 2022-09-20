@@ -211,25 +211,23 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     selectedPointer = getActivePointer(evt.target as HTMLElement, percent);
 
     // handle range dragging
-    if(rangeDragging && pointer2 && rangeDraggingDiff !== undefined){
+    if(rangeDragging && pointers.length > 1 && rangeDraggingDiff !== undefined){
 
-      const pointer1SmallerThanMin = pointer1.percent + rangeDraggingDiff < 0;
-      const pointer2GreaterThanMax = pointer2.percent + rangeDraggingDiff > 100;
-      if(pointer1SmallerThanMin || pointer2GreaterThanMax) return;
+      const firstPointer = pointers[0];
+      const lastPointer = pointers[pointers.length - 1];
 
-      setPositions(1, pointer1.percent + rangeDraggingDiff);
-      setPositions(2, pointer2.percent + rangeDraggingDiff);
+      const firstSmallerThanMin = firstPointer.percent + rangeDraggingDiff < 0;
+      const lastGreaterThanMax = lastPointer.percent + rangeDraggingDiff > 100;
+      if(firstSmallerThanMin || lastGreaterThanMax) return;
+
+      setPositions(1, firstPointer.percent + rangeDraggingDiff);
+      setPositions(2, lastPointer.percent + rangeDraggingDiff);
       return;
     }
 
-    if(selectedPointer === pointer1 && !pointer1.disabled){
-      // update the pointer percent, focus, and update its position
-      setPositions(1, percent);
-    }
-
-    if(selectedPointer === pointer2 && !pointer2?.disabled){
-      // update the pointer percent, focus, and update its position
-      setPositions(2, percent);
+    const foundIndex = pointers.findIndex(pointer => selectedPointer === pointer && !pointer.disabled);
+    if(foundIndex !== -1){
+      setPositions(foundIndex + 1, percent);
     }
   };
 
