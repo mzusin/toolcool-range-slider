@@ -56,7 +56,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
   const pointer1 = pointers[0];
   let pointer2 = pointers[1];
 
-  let selectedPointer: IPointer | null = null;
+  let selectedPointer: IPointer | null | undefined = null;
   let panelFill: IPanelFill | null = null;
   let styles: IStyles | null = null;
   let pluginsManager: IPluginsManager | null = null;
@@ -120,13 +120,15 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
   };
 
   const getActivePointer = ($target: HTMLElement, percent: number) => {
+    if(pointers.length <= 0) return;
+
     // if only 1 pointer exists --> return it
-    if(!pointer2){
-      if(pointer1.isClicked($target) && animateOnClick){
+    if(pointers.length === 1){
+      if(pointers[0].isClicked($target) && animateOnClick){
         $slider.classList.remove(CssClasses.AnimateOnClick);
       }
 
-      return pointer1;
+      return pointers[0];
     }
 
     const panelFillClicked = isPanelFillClicked($target);
@@ -151,35 +153,37 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     }
 
     if(!isPanelClicked($target) && !panelFillClicked){
+
       // if clicked directly on 1 of the pointers ---> return it
-      if(pointer1.isClicked($target)){
+      for(let pointer of pointers){
+        if(!pointer.isClicked($target)) continue;
 
         if(animateOnClick){
           $slider.classList.remove(CssClasses.AnimateOnClick);
         }
 
-        return pointer1;
-      }
-
-      const isPointer2Clicked = pointer2?.isClicked($target) ?? false;
-      if(isPointer2Clicked){
-
-        if(animateOnClick){
-          $slider.classList.remove(CssClasses.AnimateOnClick);
-        }
-
-        return pointer2;
+        return pointer;
       }
 
       // if already selected pointer ---> return it
-      if(selectedPointer === pointer1) return pointer1;
-      if(selectedPointer === pointer2) return pointer2;
+      for(let pointer of pointers){
+        if(selectedPointer === pointer) return pointer;
+      }
     }
 
     // find the closest pointer and return it
-    const distance1 = Math.abs(percent - pointer1.percent);
-    const distance2 = Math.abs(percent - pointer2.percent);
-    return distance1 <= distance2 ? pointer1 : pointer2;
+    let minDistance = Infinity;
+    let minDistancePointer = null;
+
+    for(let pointer of pointers){
+      const distance = Math.abs(percent - pointer.percent);
+      if(distance < minDistance){
+        minDistance = distance;
+        minDistancePointer = pointer;
+      }
+    }
+
+    return minDistancePointer;
   };
 
   const onValueChange = (evt: MouseEvent | TouchEvent) => {
