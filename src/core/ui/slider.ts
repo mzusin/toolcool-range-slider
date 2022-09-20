@@ -845,17 +845,13 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     if(!$box) return;
     $box.className = `range-slider-box type-${ type }`;
 
-    // update fill position and pointers positions
-    setPositions(0, pointer1.percent);
-
-    if(pointer2){
-      setPositions(1, pointer2.percent);
-    }
+    setAllPositions();
 
     // update accessibility properties
-    const aria = type === TypeEnum.Vertical ?  'vertical' : 'horizontal';
-    pointer1.setAttr('aria-orientation', aria);
-    pointer2?.setAttr('aria-orientation', aria);
+    const aria = type === TypeEnum.Vertical ? 'vertical' : 'horizontal';
+    for(const pointer of pointers){
+      pointer.setAttr('aria-orientation', aria);
+    }
   };
 
   const setRightToLeft = (_rightToLeft: boolean) => {
