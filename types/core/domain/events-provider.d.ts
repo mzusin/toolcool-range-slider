@@ -5,6 +5,7 @@ export declare const sendOnKeyDownEvent: ($component: HTMLElement, evt: Keyboard
 export interface IChangeEventDetail {
     value?: number | string | undefined;
     value2?: number | string | undefined;
+    values: (string | number | undefined)[];
 }
-export declare const sendChangeEvent: ($component: HTMLElement, value1: string | number | undefined, value2: string | number | undefined) => void;
+export declare const sendChangeEvent: ($component: HTMLElement, values: (string | number | undefined)[]) => void;
 //# sourceMappingURL=events-provider.d.ts.map

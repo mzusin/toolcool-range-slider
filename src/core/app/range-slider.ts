@@ -252,7 +252,7 @@ class RangeSlider extends HTMLElement {
 
   public set ariaLabel1(_ariaLabel1: string | undefined) {
     if(!this.slider) return;
-    this.slider.ariaLabel1 = _ariaLabel1;
+    this.slider.setAriaLabel(0, _ariaLabel1);
   }
 
   public get ariaLabel1() {
@@ -262,7 +262,7 @@ class RangeSlider extends HTMLElement {
 
   public set ariaLabel2(_ariaLabel2: string | undefined) {
     if(!this.slider) return;
-    this.slider.ariaLabel2 = _ariaLabel2;
+    this.slider.setAriaLabel(1, _ariaLabel2);
   }
 
   public get ariaLabel2() {

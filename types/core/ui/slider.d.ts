@@ -21,8 +21,8 @@ export interface ISlider {
     keyboardDisabled: boolean;
     round: number;
     animateOnClick: string | undefined;
-    ariaLabel1: string | undefined;
-    ariaLabel2: string | undefined;
+    getAriaLabel: (index: number) => (string | undefined);
+    setAriaLabel: (index: number, ariaLabel: string | undefined) => void;
     setMin: (value: number | string | undefined | null) => void;
     setMax: (value: number | string | undefined | null) => void;
     setValue: (value: number | string | undefined | null, index: number) => void;

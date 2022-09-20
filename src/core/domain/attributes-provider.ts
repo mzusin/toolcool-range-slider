@@ -190,12 +190,12 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
     }
 
     case AttributesEnum.AriaLabel1: {
-      slider.ariaLabel1 = newValue;
+      slider.setAriaLabel(0, newValue);
       break;
     }
 
     case AttributesEnum.AriaLabel2: {
-      slider.ariaLabel2 = newValue;
+      slider.setAriaLabel(1, newValue);
       break;
     }
 

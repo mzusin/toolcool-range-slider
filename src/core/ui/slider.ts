@@ -34,8 +34,9 @@ export interface ISlider {
   keyboardDisabled: boolean;
   round: number;
   animateOnClick: string | undefined;
-  ariaLabel1: string | undefined;
-  ariaLabel2: string | undefined;
+
+  getAriaLabel: (index: number) => (string | undefined);
+  setAriaLabel: (index: number, ariaLabel: string | undefined) => void;
 
   setMin: (value: number | string | undefined | null) => void;
   setMax: (value: number | string | undefined | null) => void;
@@ -83,8 +84,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
   let keyboardDisabled = false;
   let animateOnClick: string | undefined = undefined;
 
-  let ariaLabel1: string | undefined = undefined;
-  let ariaLabel2: string | undefined = undefined;
+  const ariaLabels: (string | undefined)[] = [];
 
   // -------------- EVENTS --------------------
 
@@ -869,9 +869,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       }
     }
 
-    setPositions(0, pointer1.percent);
-    setPositions(1, pointer2?.percent);
-
+    setAllPositions();
     updatePlugins();
   };
 
@@ -890,9 +888,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       }
     }
 
-    setPositions(0, pointer1.percent);
-    setPositions(1, pointer2?.percent);
-
+    setAllPositions();
     updatePlugins();
   };
 
@@ -919,16 +915,17 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     }
   };
 
-  const setAriaLabel = (_ariaLabel: string | undefined, index: number) => {
+  const setAriaLabel = (index: number, _ariaLabel: string | undefined) => {
 
-    if(index < 2){
-      ariaLabel1 = _ariaLabel;
-      pointer1.setAttr('aria-label', _ariaLabel);
-    }
-    else{
-      ariaLabel2 = _ariaLabel;
-      pointer2?.setAttr('aria-label', _ariaLabel);
-    }
+    const pointer = pointers[index];
+    if(!pointer) return;
+
+    pointer.setAttr('aria-label', _ariaLabel);
+    ariaLabels[index] = _ariaLabel;
+  };
+
+  const getAriaLabel = (index: number) => {
+    return ariaLabels[index];
   };
 
   const setRangeDragging = (_rangeDragging: boolean) => {
@@ -992,12 +989,12 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
 
     const ariaLabel1 = $component.getAttribute(AttributesEnum.AriaLabel1);
     if(ariaLabel1 !== null){
-      setAriaLabel(ariaLabel1, 1);
+      setAriaLabel(0, ariaLabel1);
     }
 
     const ariaLabel2 = $component.getAttribute(AttributesEnum.AriaLabel2);
     if(ariaLabel2 !== null && pointer2){
-      setAriaLabel(ariaLabel2, 2);
+      setAriaLabel(1, ariaLabel2);
     }
 
     // init styles ---------
@@ -1182,22 +1179,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       setKeyboardDisabled(_keyboardDisabled);
     },
 
-    get ariaLabel1(){
-      return ariaLabel1;
-    },
-
-    set ariaLabel1(_ariaLabel1){
-      setAriaLabel(_ariaLabel1, 1);
-    },
-
-    get ariaLabel2(){
-      return ariaLabel2;
-    },
-
-    set ariaLabel2(_ariaLabel2){
-      setAriaLabel(_ariaLabel2, 2);
-    },
-
     get rangeDragging() {
       return isRangeDraggingEnabled();
     },
@@ -1212,6 +1193,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     setStep,
     setData,
     getTextValue,
+    setAriaLabel,
+    getAriaLabel,
     destroy,
   };
 };
