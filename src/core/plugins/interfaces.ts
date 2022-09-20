@@ -1,4 +1,4 @@
-import { TStep } from '../types';
+import { TData, TStep } from '../types';
 
 export interface IPluginUpdateData {
   percent1: number;
@@ -39,9 +39,19 @@ export interface IPluginGetters {
   getTextMax: () => string | number;
 
   getStep: () => TStep;
+  getData: () => TData;
+  getType: () => string;
+  getRound: () => number;
 
-  isRTL: () => boolean;
-  isBTT: () => boolean;
+  isRightToLeft: () => boolean;
+  isBottomToTop: () => boolean;
+  isDisabled: () => boolean;
+  isKeyboardDisabled: () => boolean;
+
+  isPointersOverlap: () => boolean;
+  isRangeDraggingEnabled: () => boolean;
+  getPointersMinDistance: () => number;
+  getPointersMaxDistance: () => number;
 }
 
 export interface IPlugin {

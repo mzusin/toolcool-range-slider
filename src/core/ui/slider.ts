@@ -570,14 +570,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     return step;
   };
 
-  const isRTL = () => {
-    return rightToLeft;
-  };
-
-  const isBTT = () => {
-    return bottomToTop;
-  };
-
   const getPointerMin = (index: number) => {
     if(index < 2 || pointersOverlap) return getMin();
     return getTextValue(pointer1.percent) ?? '';
@@ -616,6 +608,50 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
   const getNumericMax = () => {
     return max;
+  };
+
+  const getData = () => {
+    return data;
+  };
+
+  const getType = () => {
+    return type;
+  };
+
+  const getRound = () => {
+    return round;
+  };
+
+  const isRightToLeft = () => {
+    return rightToLeft;
+  };
+
+  const isBottomToTop = () => {
+    return bottomToTop;
+  };
+
+  const isDisabled = () => {
+    return disabled;
+  };
+
+  const isKeyboardDisabled = () => {
+    return keyboardDisabled;
+  };
+
+  const isPointersOverlap = () => {
+    return pointersOverlap;
+  };
+
+  const isRangeDraggingEnabled = () => {
+    return rangeDragging;
+  };
+
+  const getPointersMinDistance = () => {
+    return pointersMinDistance;
+  };
+
+  const getPointersMaxDistance = () => {
+    return pointersMaxDistance;
   };
 
   // -------------- Setters --------------------
@@ -1049,13 +1085,25 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
 
         getMin: getNumericMin,
         getMax: getNumericMax,
+
         getStep,
+        getData,
+        getType,
+        getRound,
 
         getTextMin: getMin,
         getTextMax: getMax,
 
-        isRTL,
-        isBTT,
+        isRightToLeft,
+        isBottomToTop,
+
+        isDisabled,
+        isKeyboardDisabled,
+
+        isPointersOverlap,
+        isRangeDraggingEnabled,
+        getPointersMinDistance,
+        getPointersMaxDistance,
       }
     );
     pluginsManager.init();
@@ -1102,7 +1150,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     },
 
     get pointersOverlap() {
-      return pointersOverlap;
+      return isPointersOverlap();
     },
 
     set pointersOverlap(_pointersOverlap) {
@@ -1110,7 +1158,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     },
 
     get pointersMinDistance() {
-      return pointersMinDistance;
+      return getPointersMinDistance();
     },
 
     set pointersMinDistance(_pointersMinDistance) {
@@ -1118,7 +1166,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     },
 
     get pointersMaxDistance() {
-      return pointersMaxDistance;
+      return getPointersMaxDistance();
     },
 
     set pointersMaxDistance(_pointersMaxDistance) {
@@ -1126,7 +1174,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     },
 
     get disabled() {
-      return disabled;
+      return isDisabled();
     },
 
     set disabled(_disabled) {
@@ -1134,11 +1182,11 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     },
 
     get data() {
-      return data;
+      return getData();
     },
 
     get type() {
-      return type;
+      return getType();
     },
 
     set type(_type) {
@@ -1146,7 +1194,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     },
 
     get rightToLeft() {
-      return rightToLeft;
+      return isRightToLeft();
     },
 
     set rightToLeft(_rightToLeft) {
@@ -1154,7 +1202,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     },
 
     get bottomToTop() {
-      return bottomToTop;
+      return isBottomToTop();
     },
 
     set bottomToTop(_bottomToTop) {
@@ -1162,7 +1210,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     },
 
     get round() {
-      return round;
+      return getRound();
     },
 
     set round(_round) {
@@ -1178,7 +1226,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     },
 
     get keyboardDisabled() {
-      return keyboardDisabled;
+      return isKeyboardDisabled();
     },
 
     set keyboardDisabled(_keyboardDisabled){
@@ -1202,7 +1250,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     },
 
     get rangeDragging() {
-      return rangeDragging;
+      return isRangeDraggingEnabled();
     },
 
     set rangeDragging(_rangeDragging) {

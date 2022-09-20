@@ -206,7 +206,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
     if(!getters) return;
 
     if(generatedLabelsEnabled){
-      createLabels(getters.getTextValue1(), getters.getTextValue2(), getters.isRTL() || getters.isBTT(), getters.getTextMin(), getters.getTextMax());
+      createLabels(getters.getTextValue1(), getters.getTextValue2(), getters.isRightToLeft() || getters.isBottomToTop(), getters.getTextMin(), getters.getTextMax());
     }
     else{
       removeGeneratedLabels();
@@ -255,7 +255,6 @@ const GeneratedLabelsPlugin = () : IPlugin => {
     /**
      * Optional: plugin initialization
      */
-    /* eslint-disable @typescript-eslint/no-unused-vars */
     init: (
       _$component,
       _requestUpdate,
