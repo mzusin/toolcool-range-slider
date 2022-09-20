@@ -862,6 +862,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     }
   };
 
+  const setKeyboardDisabled = (_disabled: boolean) => {
+    keyboardDisabled = _disabled;
+  };
+
   const setData = (_data: TData | string | number | null) => {
 
     if(_data === null || _data === undefined){
@@ -1075,6 +1079,17 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
         setMin,
         setMax,
         setStep,
+        setPointersOverlap,
+        setPointersMinDistance,
+        setPointersMaxDistance,
+        setDisabled,
+        setType,
+        setRightToLeft,
+        setBottomToTop,
+        setRound,
+        setKeyboardDisabled,
+        setRangeDragging,
+        setData,
       },
       {
         getPercent1,
@@ -1230,7 +1245,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointer1: 
     },
 
     set keyboardDisabled(_keyboardDisabled){
-      keyboardDisabled = _keyboardDisabled;
+      setKeyboardDisabled(_keyboardDisabled);
     },
 
     get ariaLabel1(){
