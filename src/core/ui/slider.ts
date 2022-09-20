@@ -535,19 +535,16 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
   };
 
   const getPointerMin = (index: number) => {
-    if(index < 2 || pointersOverlap) return getMin();
-    return getTextValue(pointer1.percent) ?? '';
+    if(index <= 0 || pointersOverlap) return getMin();
+    return getTextValue(pointers[index - 1].percent) ?? '';
   };
 
   const getPointerMax = (index: number) => {
-    if(index >= 2 || pointersOverlap) return getMax();
+    if(pointers.length <= 1 ||
+      index >= pointers.length - 1 ||
+      pointersOverlap) return getMax();
 
-    if(pointer2){
-      return getTextValue(pointer2?.percent) ?? '';
-    }
-    else{
-      return getMax();
-    }
+    return getTextValue(pointers[index + 1].percent) ?? '';
   };
 
   const getPercents = () => {
@@ -666,13 +663,13 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
 
   const setAriaMinMax = () => {
     if(pointer1){
-      pointer1.setAttr('aria-valuemin', (getPointerMin(1) ?? '').toString());
-      pointer1.setAttr('aria-valuemax', (getPointerMax(1) ?? '').toString());
+      pointer1.setAttr('aria-valuemin', (getPointerMin(0) ?? '').toString());
+      pointer1.setAttr('aria-valuemax', (getPointerMax(0) ?? '').toString());
     }
 
     if(pointer2){
-      pointer2.setAttr('aria-valuemin', (getPointerMin(2) ?? '').toString());
-      pointer2.setAttr('aria-valuemax', (getPointerMax(2) ?? '').toString());
+      pointer2.setAttr('aria-valuemin', (getPointerMin(1) ?? '').toString());
+      pointer2.setAttr('aria-valuemax', (getPointerMax(1) ?? '').toString());
     }
   };
 
