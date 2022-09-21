@@ -928,6 +928,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     setDisabled(getBoolean($component.getAttribute(AttributesEnum.Disabled)));
     keyboardDisabled = getBoolean($component.getAttribute(AttributesEnum.KeyboardDisabled))
 
+    // TODO: remove these properties?
     // handle 'pointer1-disabled, pointer2-disabled, etc.
     const disabledList = getAttributesByRegex($component, /^pointer([0-9]*)-disabled$/, (val: string) => {
       return getBoolean(val);
@@ -937,6 +938,17 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
       const pointerIndex = item[0];
       if(!pointers[pointerIndex]) continue;
       pointers[pointerIndex].disabled = item[1];
+    }
+  };
+
+  const initAriaLabels = () => {
+    // TODO: remove these properties?
+    // handle 'aria-label1', 'aria-label2', etc.
+    const ariaLabelsList = getAttributesByRegex($component, /^aria-label([0-9]*)$/);
+
+    for(const item of ariaLabelsList){
+      const index = item[0];
+      setAriaLabel(index, item[1] as string);
     }
   };
 
@@ -977,20 +989,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     setRangeDragging(getBoolean($component.getAttribute(AttributesEnum.RangeDragging)));
 
     // additional properties -----------------------------
-    initDisabled();
-
     setRound(getNumber($component.getAttribute(AttributesEnum.Round), ROUND_DEFAULT));
-
-    const ariaLabel1 = $component.getAttribute(AttributesEnum.AriaLabel1);
-    if(ariaLabel1 !== null){
-      setAriaLabel(0, ariaLabel1);
-    }
-
-    // TODO
-    /*const ariaLabel2 = $component.getAttribute(AttributesEnum.AriaLabel2);
-    if(ariaLabel2 !== null && pointer2){
-      setAriaLabel(1, ariaLabel2);
-    }*/
+    initDisabled();
+    initAriaLabels();
 
     // init styles ---------
     // TODO: pointers[1]?.$pointer
