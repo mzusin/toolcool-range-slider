@@ -857,7 +857,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     rightToLeft = _rightToLeft;
 
     if(pointers.length > 1){
-      changePointersOrder(pointers, rightToLeft);
+      changePointersOrder(pointers, rightToLeft, $component);
     }
 
     setAllPositions();
@@ -868,7 +868,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     bottomToTop = _bottomToTop;
 
     if(pointers.length > 1){
-      changePointersOrder(pointers, bottomToTop);
+      changePointersOrder(pointers, bottomToTop, $component);
     }
 
     setAllPositions();

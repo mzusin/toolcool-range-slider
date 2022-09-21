@@ -41,30 +41,19 @@ export const initPointers = ($component: HTMLElement, $pointer: HTMLElement) => 
   return pointers;
 };
 
-export const changePointersOrder = (_pointers: IPointer[], _isDesc: boolean) => {
-  // TODO:
-  // change pointers order
-  /*if(rightToLeft){
-    // pointer1 should be after pointer2
-    pointer2.$pointer.after(pointer1.$pointer);
+export const changePointersOrder = (pointers: IPointer[], isDesc: boolean, $component: HTMLElement) => {
+
+  const $container = $component.shadowRoot?.querySelector('.container') as HTMLElement
+  if(!$container) return;
+
+  for(const pointer of pointers){
+    if(isDesc){
+      $container.prepend(pointer.$pointer);
+    }
+    else{
+      $container.append(pointer.$pointer);
+    }
   }
-  else{
-    // pointer2 should be after pointer1
-    pointer1.$pointer.after(pointer2.$pointer);
-  }*/
-
-  /* if(pointer2){
-      // change pointers order
-      if(bottomToTop){
-        // pointer1 should be after pointer2
-        pointer2.$pointer.after(pointer1.$pointer);
-      }
-      else{
-        // pointer2 should be after pointer1
-        pointer1.$pointer.after(pointer2.$pointer);
-      }
-    }*/
-
 };
 
 export const removeFocus = () => {
