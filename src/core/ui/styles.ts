@@ -9,8 +9,8 @@ export interface IStyles {
   getStyle: (key: string, index: number) => string | undefined;
 
   theme: string | null;
-  pointerShape: string | null;
-  pointer2Shape: string | null;
+  readonly pointerShapes: (string | null)[];
+  setPointerShape: (index: number, value: string | null) => void;
 }
 
 export const stylePropertiesList: [string, string, string, RegExp | null][] = [
@@ -39,9 +39,7 @@ export const stylePropertiesList: [string, string, string, RegExp | null][] = [
 export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: IPointer[]) : IStyles => {
 
   let theme: string | null = null;
-  let pointerShape: string | null = null;
-  let pointer2Shape: string | null = null;
-
+  const pointerShapes: (string | null)[] = [];
   const stylesMap: Map<string, string> = new Map();
 
   // ----- SETTERS ---------------------------
@@ -65,28 +63,33 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     }
   };
 
-  const setPointerShape = (val: string | null, index: number) => {
-
-    if(index < 2){
-      pointerShape = val;
-
-      if(typeof val === 'string'){
-        $slider.classList.add('shape', `shape-${ val }`);
-      }
-      else{
-        removeClassesStartWith('shape-');
-      }
+  const updatePointerShapes = () => {
+    removeClassesStartWith('shape-');
+    for(let i=0; i<pointerShapes.length; i++){
+      const item = pointerShapes[i];
+      if(!item) continue;
+      $slider.classList.add('shape', `shape${ i }-${ item }`);
     }
-    else{
-      pointer2Shape = val;
+  };
 
-      if(typeof val === 'string'){
-        $slider.classList.add('shape2', `shape2-${ val }`);
-      }
-      else{
-        removeClassesStartWith('shape2-');
-      }
+  const setPointerShape = (index: number, value: string) => {
+    pointerShapes[index] = value;
+    updatePointerShapes();
+  };
+
+  const setPointerShapes = () => {
+
+    // pointer-shape, pointer2-shape, ...
+    const list = getAttributesByRegex($component, /^pointer([0-9]*)-shape$/);
+
+    removeClassesStartWith('shape-');
+
+    for(const item of list){
+      const index = item[0] as number;
+      pointerShapes[index] = item[1] as string;
     }
+
+    updatePointerShapes();
   };
 
   const getKey = (key: string, index: number) => {
@@ -180,8 +183,7 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     }
 
     setTheme($component.getAttribute(AttributesEnum.Theme));
-    setPointerShape($component.getAttribute(AttributesEnum.PointerShape), 1);
-    setPointerShape($component.getAttribute(AttributesEnum.Pointer2Shape), 2);
+    setPointerShapes();
   })();
 
   return {
@@ -196,21 +198,10 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       setTheme(val);
     },
 
-    get pointerShape() {
-      return pointerShape;
+    get pointerShapes() {
+      return pointerShapes;
     },
 
-    set pointerShape(val){
-      setPointerShape(val, 1);
-    },
-
-    get pointer2Shape() {
-      return pointer2Shape;
-    },
-
-    set pointer2Shape(val){
-      setPointerShape(val, 2);
-    },
-
+    setPointerShape,
   };
 };

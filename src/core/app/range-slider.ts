@@ -205,20 +205,20 @@ class RangeSlider extends HTMLElement {
 
   public set pointerShape(_pointerShape: string | null) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.pointerShape = _pointerShape;
+    this.slider.styles.setPointerShape(0, _pointerShape);
   }
 
   public get pointerShape() {
-    return this.slider?.styles?.pointerShape ?? null;
+    return this.slider?.styles?.pointerShapes[0] ?? null;
   }
 
   public set pointer2Shape(_pointerShape: string | null) {
     if(!this.slider || !this.slider.styles) return;
-    this.slider.styles.pointer2Shape = _pointerShape;
+    this.slider.styles.setPointerShape(1, _pointerShape);
   }
 
   public get pointer2Shape() {
-    return this.slider?.styles?.pointer2Shape ?? null;
+    return this.slider?.styles?.pointerShapes[1] ?? null;
   }
 
   public set pointer1Disabled(_pointer1Disabled: boolean) {

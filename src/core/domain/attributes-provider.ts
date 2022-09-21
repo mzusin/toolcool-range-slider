@@ -215,14 +215,14 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
 
     case AttributesEnum.PointerShape: {
       if(slider.styles){
-        slider.styles.pointerShape = newValue;
+        slider.styles.setPointerShape(0, newValue);
       }
       break;
     }
 
     case AttributesEnum.Pointer2Shape: {
       if(slider.styles){
-        slider.styles.pointer2Shape = newValue;
+        slider.styles.setPointerShape(1, newValue);
       }
       break;
     }

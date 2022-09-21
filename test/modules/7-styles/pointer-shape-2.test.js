@@ -29,20 +29,20 @@ QUnit.module('Pointer2 Shape', (hooks) => {
   QUnit.test('fake pointerShape ---> class should be added', (assert) => {
     const $slider = document.querySelector('#slider-33');
     const $inner = $slider.shadowRoot.querySelector('.range-slider');
-    assert.equal($inner.classList.contains('shape2-fake'), true);
+    assert.equal($inner.classList.contains('shape1-fake'), true);
   });
 
   QUnit.test('add pointer2 shape via set ---> class should be added', (assert) => {
     const $slider = document.querySelector('#slider-1');
     $slider.pointer2Shape = 'fake1';
     const $inner = $slider.shadowRoot.querySelector('.range-slider');
-    assert.equal($inner.classList.contains('shape2-fake1'), true);
+    assert.equal($inner.classList.contains('shape1-fake1'), true);
   });
 
   QUnit.test('add pointer2 shape via attribute ---> class should be added', (assert) => {
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('pointer2-shape', 'fake-2');
     const $inner = $slider.shadowRoot.querySelector('.range-slider');
-    assert.equal($inner.classList.contains('shape2-fake-2'), true);
+    assert.equal($inner.classList.contains('shape1-fake-2'), true);
   });
 });
