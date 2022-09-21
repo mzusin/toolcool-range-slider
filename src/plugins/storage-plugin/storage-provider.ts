@@ -103,7 +103,9 @@ export const restoreFromStorage = (
   try{
     parsed = JSON.parse(restoredValues);
   }
-  catch (ex){}
+  catch (ex){
+    // empty
+  }
   if(!parsed) return;
 
   updatePointers(parsed);

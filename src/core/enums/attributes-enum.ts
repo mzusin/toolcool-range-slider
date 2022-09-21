@@ -1,10 +1,6 @@
 /**
  * Constants instead of typescript enums ---> smaller bundle size
  */
-export const Value = 'value';
-export const Value1 = 'value1';
-export const Value2 = 'value2';
-
 export const PointersOverlap = 'pointers-overlap';
 export const PointersMinDistance = 'pointers-min-distance';
 export const PointersMaxDistance = 'pointers-max-distance';
@@ -22,8 +18,6 @@ export const BottomToTop = 'btt';
 
 export const Disabled = 'disabled';
 export const KeyboardDisabled = 'keyboard-disabled';
-export const Pointer1Disabled = 'pointer1-disabled';
-export const Pointer2Disabled = 'pointer2-disabled';
 
 export const SliderWidth = 'slider-width';
 export const SliderHeight = 'slider-height';
@@ -60,9 +54,6 @@ export const Pointer2ShadowFocus = 'pointer2-shadow-focus';
 export const Pointer2Border = 'pointer2-border';
 export const Pointer2BorderHover = 'pointer2-border-hover';
 export const Pointer2BorderFocus = 'pointer2-border-focus';
-
-export const AriaLabel1 = 'aria-label1';
-export const AriaLabel2 = 'aria-label2';
 
 export const AnimateOnClick = 'animate-onclick';
 export const CSSLinks = 'css-links';

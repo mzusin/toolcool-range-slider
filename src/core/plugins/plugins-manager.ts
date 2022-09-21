@@ -53,7 +53,7 @@ export const PluginsManager = (
       if(!item.name || !item.attributes) continue;
 
       try{
-        if(!$component.hasOwnProperty(item.name)){
+        if(!Object.prototype.hasOwnProperty.call($component, item.name)){
           Object.defineProperty($component, item.name, item.attributes);
         }
       }

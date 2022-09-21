@@ -12,6 +12,7 @@ declare class RangeSlider extends HTMLElement {
     static get observedAttributes(): string[];
     slider: ISlider | undefined;
     private _externalCSSList;
+    private _observer;
     set step(_step: TStep);
     get step(): TStep;
     set disabled(_disabled: boolean);
@@ -42,14 +43,6 @@ declare class RangeSlider extends HTMLElement {
     get keyboardDisabled(): boolean;
     set animateOnClick(_animateOnClick: string | undefined);
     get animateOnClick(): string | undefined;
-    set pointerShape(_pointerShape: string | null);
-    get pointerShape(): string | null;
-    set pointer2Shape(_pointerShape: string | null);
-    get pointer2Shape(): string | null;
-    set pointer1Disabled(_pointer1Disabled: boolean);
-    get pointer1Disabled(): boolean;
-    set pointer2Disabled(_pointer2Disabled: boolean);
-    get pointer2Disabled(): boolean;
     get rangeDragging(): boolean | string | undefined | null;
     set rangeDragging(_rangeDragging: boolean | string | undefined | null);
     get externalCSSList(): string[] | null;

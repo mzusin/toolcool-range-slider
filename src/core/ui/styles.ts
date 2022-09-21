@@ -165,7 +165,7 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
           const propName = item[0];
           const index = item[1];
 
-          if(!$component.hasOwnProperty(propName)){
+          if(!Object.prototype.hasOwnProperty.call($component, propName)){
             Object.defineProperty($component, propName, {
               get () {
                 return getStyle(cssVariableName, index);

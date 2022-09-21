@@ -1,9 +1,6 @@
 /**
  * Constants instead of typescript enums ---> smaller bundle size
  */
-export declare const Value = "value";
-export declare const Value1 = "value1";
-export declare const Value2 = "value2";
 export declare const PointersOverlap = "pointers-overlap";
 export declare const PointersMinDistance = "pointers-min-distance";
 export declare const PointersMaxDistance = "pointers-max-distance";
@@ -19,8 +16,6 @@ export declare const RightToLeft = "rtl";
 export declare const BottomToTop = "btt";
 export declare const Disabled = "disabled";
 export declare const KeyboardDisabled = "keyboard-disabled";
-export declare const Pointer1Disabled = "pointer1-disabled";
-export declare const Pointer2Disabled = "pointer2-disabled";
 export declare const SliderWidth = "slider-width";
 export declare const SliderHeight = "slider-height";
 export declare const SliderRadius = "slider-radius";
@@ -53,8 +48,6 @@ export declare const Pointer2ShadowFocus = "pointer2-shadow-focus";
 export declare const Pointer2Border = "pointer2-border";
 export declare const Pointer2BorderHover = "pointer2-border-hover";
 export declare const Pointer2BorderFocus = "pointer2-border-focus";
-export declare const AriaLabel1 = "aria-label1";
-export declare const AriaLabel2 = "aria-label2";
 export declare const AnimateOnClick = "animate-onclick";
 export declare const CSSLinks = "css-links";
 //# sourceMappingURL=attributes-enum.d.ts.map
