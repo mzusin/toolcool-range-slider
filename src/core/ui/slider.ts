@@ -686,13 +686,32 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     setAllPositions();
   };
 
+  const initPointerValues = () => {
+
+    // init initial values with pointers overlap ----------
+    pointersOverlap = true;
+
+    for(let i=0; i<pointersList.length; i++){
+      const item = pointersList[i];
+      setValue(item[1], i);
+    }
+
+    pointersOverlap = false;
+
+    // add all required validations ------------------------
+    for(let i=0; i<pointersList.length; i++){
+      const item = pointersList[i];
+      setValue(item[1], i);
+    }
+  };
+
   /**
    * on component init, value, value1, and value2 should be initialized together
    * because their validations may depend on each other;
    */
   const setInitialPointersValues = (_value: string | null, _value1: string | null, _value2: string | null) => {
 
-    // init initial values with pointers overlap ----------
+    /*// init initial values with pointers overlap ----------
     pointersOverlap = true;
     const val1str = _value1 !== null ? _value1 : _value;
 
@@ -702,7 +721,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
     // add all required validations ------------------------
     setValue(val1str, 0);
-    setValue(_value2, 1);
+    setValue(_value2, 1);*/
   };
 
   const setValue = (_val: number | string | undefined | null, index: number) => {
@@ -976,11 +995,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     setData($component.getAttribute(AttributesEnum.Data));
 
     // set value and render the pointers ----------------------
-    setInitialPointersValues(
-      $component.getAttribute(AttributesEnum.Value),
-      $component.getAttribute(AttributesEnum.Value1),
-      $component.getAttribute(AttributesEnum.Value2)
-    );
+    initPointerValues();
 
     // overlaps MUST be defined after the pointer values
     setPointersOverlap(getBoolean($component.getAttribute(AttributesEnum.PointersOverlap)));

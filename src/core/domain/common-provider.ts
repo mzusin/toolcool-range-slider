@@ -43,7 +43,7 @@ export const initPointers = ($component: HTMLElement, $pointer: HTMLElement) => 
   const pointers: [IPointer, string | number | undefined][] = [];
 
   // first pointer always exists
-  pointers.push([Pointer($component, $pointer, 0), 0]);
+  pointers.push([Pointer($component, $pointer, 0), map.get(0)]);
 
   // add all other pointers
   let $latestPointer = $pointer;
