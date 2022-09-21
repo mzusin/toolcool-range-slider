@@ -567,6 +567,18 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     return round;
   };
 
+  const getPointersMinDistance = () => {
+    return pointersMinDistance;
+  };
+
+  const getPointersMaxDistance = () => {
+    return pointersMaxDistance;
+  };
+
+  const getAriaLabel = (index: number) => {
+    return ariaLabels[index];
+  };
+
   const isRightToLeft = () => {
     return rightToLeft;
   };
@@ -589,14 +601,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
   const isRangeDraggingEnabled = () => {
     return rangeDragging;
-  };
-
-  const getPointersMinDistance = () => {
-    return pointersMinDistance;
-  };
-
-  const getPointersMaxDistance = () => {
-    return pointersMaxDistance;
   };
 
   // -------------- Setters --------------------
@@ -902,10 +906,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     ariaLabels[index] = _ariaLabel;
   };
 
-  const getAriaLabel = (index: number) => {
-    return ariaLabels[index];
-  };
-
   const setRangeDragging = (_rangeDragging: boolean) => {
     rangeDraggingStart = undefined;
 
@@ -918,6 +918,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     rangeDragging = _rangeDragging;
     $slider.classList.toggle(CssClasses.RangeDragging, rangeDragging);
   };
+
+  // initialization -------------------------------------
 
   const initDisabled = () => {
     setDisabled(getBoolean($component.getAttribute(AttributesEnum.Disabled)));
@@ -947,10 +949,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     }
   };
 
-  // initialization ....
   (() => {
 
-    // init pointers
+    // init pointer callbacks for arrow keys
     for(const pointer of pointers){
       pointer.setCallbacks(arrowLeft, arrowRight, arrowUp, arrowDown);
     }

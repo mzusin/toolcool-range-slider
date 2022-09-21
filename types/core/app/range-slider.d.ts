@@ -16,18 +16,6 @@ declare class RangeSlider extends HTMLElement {
     get step(): TStep;
     set disabled(_disabled: boolean);
     get disabled(): boolean;
-    set value(_value: string | number | undefined);
-    get value(): string | number | undefined;
-    /**
-     * value1 is alias for value
-     */
-    set value1(val: string | number | undefined);
-    /**
-     * value1 is alias for value
-     */
-    get value1(): string | number | undefined;
-    set value2(_value2: string | number | undefined);
-    get value2(): string | number | undefined;
     set data(_data: TData);
     get data(): TData;
     set min(_min: number | string | undefined | null);

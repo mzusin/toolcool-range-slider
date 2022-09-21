@@ -3,9 +3,9 @@ import styles from './styles.pcss';
 import { observedAttributes, onAttributesChange } from '../domain/attributes-provider';
 import { ISlider, ROUND_DEFAULT, Slider } from '../ui/slider';
 import { TData, TStep } from '../types';
-import { getBoolean, getNumber, isNumber } from '../domain/math-provider';
+import { getBoolean } from '../domain/math-provider';
 import * as TypeEnum from '../enums/type-enum';
-import { getExternalCSSList, initPointers, removeFocus } from '../domain/common-provider';
+import { getExternalCSSList, initPointerAPIs, initPointers, removeFocus } from '../domain/common-provider';
 
 /**
  * Usage: <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
@@ -45,48 +45,6 @@ class RangeSlider extends HTMLElement {
 
   public get disabled() {
     return this.slider?.disabled ?? false;
-  }
-
-  public set value(_value: string | number | undefined) {
-    this.slider?.setValue(_value, 0);
-  }
-
-  public get value() {
-    if(!this.slider) return undefined;
-
-    const pointer1 = this.slider.pointers[0];
-    if(!pointer1) return undefined;
-
-    const val = this.slider.getTextValue(pointer1.percent);
-    return isNumber(val) ? getNumber(val, val) : val;
-  }
-
-  /**
-   * value1 is alias for value
-   */
-  public set value1(val: string | number | undefined) {
-    this.value = val;
-  }
-
-  /**
-   * value1 is alias for value
-   */
-  public get value1() {
-    return this.value;
-  }
-
-  public set value2(_value2: string | number | undefined) {
-    this.slider?.setValue(_value2, 1);
-  }
-
-  public get value2() {
-    if(!this.slider) return undefined;
-
-    const pointer2 = this.slider.pointers[1];
-    if(!pointer2) return undefined;
-
-    const val = this.slider.getTextValue(pointer2.percent);
-    return isNumber(val) ? getNumber(val, val) : val;
   }
 
   public set data(_data: TData) {
@@ -311,7 +269,10 @@ class RangeSlider extends HTMLElement {
     const $slider = this.shadowRoot?.getElementById('range-slider') as HTMLElement;
     if(!$slider) return;
 
-    this.slider = Slider(this, $slider, initPointers(this, $pointer));
+    const pointers = initPointers(this, $pointer);
+    this.slider = Slider(this, $slider, pointers);
+
+    initPointerAPIs(this, this.slider);
 
     removeFocus();
   }

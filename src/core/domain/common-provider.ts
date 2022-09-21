@@ -1,6 +1,7 @@
 import { IPointer, Pointer } from '../ui/pointer';
 import * as AttributesEnum from '../enums/attributes-enum';
 import { getNumber, isNumber } from './math-provider';
+import { ISlider } from '../ui/slider';
 
 export const getAttributesByRegex = <T>($component: HTMLElement, regex: RegExp, parseValue?: (val: string) => T) : Map<number, T> => {
 
@@ -57,6 +58,47 @@ export const initPointers = ($component: HTMLElement, $pointer: HTMLElement) => 
   }
 
   return pointers;
+};
+
+export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
+
+  const apiProperties: [string, number][] = [
+    ['value', 0],
+    ['value0', 0],
+    ['value1', 0],
+  ];
+
+  for(let i=1; i<slider.pointers.length; i++){
+    apiProperties.push([`value${ i + 1 }`, i]);
+  }
+
+  for(let item of apiProperties){
+    try{
+      const propName = item[0];
+      const index = item[1];
+
+      if(!$component.hasOwnProperty(propName)){
+        Object.defineProperty($component, propName, {
+          get () {
+            if(!slider) return undefined;
+
+            const pointer = slider.pointers[index];
+            if(!pointer) return undefined;
+
+            const val = slider.getTextValue(pointer.percent);
+            return isNumber(val) ? getNumber(val, val) : val;
+          },
+
+          set: (val) => {
+            slider?.setValue(val, index);
+          },
+        });
+      }
+    }
+    catch (ex){
+      console.error(ex);
+    }
+  }
 };
 
 export const changePointersOrder = (pointers: IPointer[], isDesc: boolean, $component: HTMLElement) => {
