@@ -22,10 +22,10 @@ export const initPointers = ($component: HTMLElement, $pointer: HTMLElement) => 
 
   // find the max value number in the map
   const max = Math.max(...Array.from(map.keys()));
-  const pointers: IPointer[] = [];
+  const pointers: [IPointer, string | number | undefined][] = [];
 
   // first pointer always exists
-  pointers.push(Pointer($component, $pointer, 0));
+  pointers.push([Pointer($component, $pointer, 0), 0]);
 
   // add all other pointers
   let $latestPointer = $pointer;
@@ -35,10 +35,36 @@ export const initPointers = ($component: HTMLElement, $pointer: HTMLElement) => 
     $latestPointer.after($newPointer);
 
     $latestPointer = $newPointer;
-    pointers.push(Pointer($component, $newPointer, i));
+    pointers.push([Pointer($component, $newPointer, i), map.get(i)]);
   }
 
   return pointers;
+};
+
+export const changePointersOrder = (_pointers: IPointer[], _isDesc: boolean) => {
+  // TODO:
+  // change pointers order
+  /*if(rightToLeft){
+    // pointer1 should be after pointer2
+    pointer2.$pointer.after(pointer1.$pointer);
+  }
+  else{
+    // pointer2 should be after pointer1
+    pointer1.$pointer.after(pointer2.$pointer);
+  }*/
+
+  /* if(pointer2){
+      // change pointers order
+      if(bottomToTop){
+        // pointer1 should be after pointer2
+        pointer2.$pointer.after(pointer1.$pointer);
+      }
+      else{
+        // pointer2 should be after pointer1
+        pointer1.$pointer.after(pointer2.$pointer);
+      }
+    }*/
+
 };
 
 export const removeFocus = () => {

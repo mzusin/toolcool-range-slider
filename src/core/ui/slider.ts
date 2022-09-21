@@ -9,7 +9,7 @@ import { sendChangeEvent, sendMouseDownEvent, sendMouseUpEvent } from '../domain
 import { IStyles, Styles } from './styles';
 import * as CSSVariables from '../enums/css-vars-enum';
 import * as CssClasses from '../enums/css-classes-enum';
-import { removeFocus } from '../domain/common-provider';
+import { changePointersOrder, removeFocus } from '../domain/common-provider';
 import { IPluginsManager, PluginsManager } from '../plugins/plugins-manager';
 
 export interface ISlider {
@@ -52,11 +52,9 @@ export const MIN_DEFAULT = 0;
 export const MAX_DEFAULT = 100;
 export const ROUND_DEFAULT = 2;
 
-export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: IPointer[]) : ISlider => {
+export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersList: [IPointer, string | number | undefined][]) : ISlider => {
 
-  const pointer1 = pointers[0];
-  let pointer2 = pointers[1];
-
+  const pointers = pointersList.map(item => item[0]);
   let selectedPointer: IPointer | null | undefined = null;
   let panelFill: IPanelFill | null = null;
   let styles: IStyles | null = null;
@@ -404,13 +402,13 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     setPositions(index, _percent);
   };
 
-  const addSecondPointer = () => {
+  /*const addSecondPointer = () => {
     // TODO
   };
 
   const removeSecondPointer = () => {
     // TODO
-  };
+  };*/
 
   const updatePlugins = () => {
 
@@ -711,7 +709,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
 
     let val: number;
 
-    // handle the case when we set value2 and pointer2 doesn't exist,
+    /*// handle the case when we set value2 and pointer2 doesn't exist,
+    TODO:
     // or the case when we remove the existing second pointer
     if(index === 1){
       if(_val !== undefined && _val !== null && !pointer2){
@@ -722,7 +721,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
         removeSecondPointer();
         setRangeDragging(false);
       }
-    }
+    }*/
 
     if(data !== undefined){
 
@@ -857,16 +856,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
   const setRightToLeft = (_rightToLeft: boolean) => {
     rightToLeft = _rightToLeft;
 
-    if(pointer2){
-      // change pointers order
-      if(rightToLeft){
-        // pointer1 should be after pointer2
-        pointer2.$pointer.after(pointer1.$pointer);
-      }
-      else{
-        // pointer2 should be after pointer1
-        pointer1.$pointer.after(pointer2.$pointer);
-      }
+    if(pointers.length > 1){
+      changePointersOrder(pointers, rightToLeft);
     }
 
     setAllPositions();
@@ -876,16 +867,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
   const setBottomToTop = (_bottomToTop: boolean) => {
     bottomToTop = _bottomToTop;
 
-    if(pointer2){
-      // change pointers order
-      if(bottomToTop){
-        // pointer1 should be after pointer2
-        pointer2.$pointer.after(pointer1.$pointer);
-      }
-      else{
-        // pointer2 should be after pointer1
-        pointer1.$pointer.after(pointer2.$pointer);
-      }
+    if(pointers.length > 1){
+      changePointersOrder(pointers, bottomToTop);
     }
 
     setAllPositions();
@@ -931,7 +914,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
   const setRangeDragging = (_rangeDragging: boolean) => {
     rangeDraggingStart = undefined;
 
-    if(!pointer2){
+    if(pointers.length <= 1){
       rangeDragging = false;
       $slider.classList.remove(CssClasses.RangeDragging);
       return;
@@ -980,11 +963,13 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     // additional properties -----------------------------
     setDisabled(getBoolean($component.getAttribute(AttributesEnum.Disabled)));
     keyboardDisabled = getBoolean($component.getAttribute(AttributesEnum.KeyboardDisabled))
-    pointer1.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer1Disabled));
+
+    // TODO
+    /*pointer1.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer1Disabled));
 
     if(pointer2){
       pointer2.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer2Disabled));
-    }
+    }*/
 
     setRound(getNumber($component.getAttribute(AttributesEnum.Round), ROUND_DEFAULT));
 
@@ -993,13 +978,15 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       setAriaLabel(0, ariaLabel1);
     }
 
-    const ariaLabel2 = $component.getAttribute(AttributesEnum.AriaLabel2);
+    // TODO
+    /*const ariaLabel2 = $component.getAttribute(AttributesEnum.AriaLabel2);
     if(ariaLabel2 !== null && pointer2){
       setAriaLabel(1, ariaLabel2);
-    }
+    }*/
 
     // init styles ---------
-    styles = Styles($component, $slider, pointer2?.$pointer);
+    // TODO: pointers[1]?.$pointer
+    styles = Styles($component, $slider, pointers[1]?.$pointer);
     setAnimateOnClick($component.getAttribute(AttributesEnum.AnimateOnClick));
 
     // init slider events -------------------------------------
