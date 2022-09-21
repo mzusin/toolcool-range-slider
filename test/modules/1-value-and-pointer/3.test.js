@@ -79,87 +79,87 @@ QUnit.module('Value-2', (hooks) => {
 
   QUnit.test('the first pointer should have class pointer-1', (assert) => {
     const $slider = document.querySelector('#slider-92');
-    assert.ok($slider.shadowRoot.querySelector('.pointer-1'));
+    assert.ok($slider.shadowRoot.querySelector('.pointer-0'));
   });
 
   QUnit.test('the first should not have class pointer-2', (assert) => {
     const $slider = document.querySelector('#slider-92');
-    const $first = $slider.shadowRoot.querySelector('.pointer-1');
+    const $first = $slider.shadowRoot.querySelector('.pointer-0');
     assert.deepEqual($first.classList.contains('pointer-2'), false);
   });
 
   QUnit.test('the second pointer should have class pointer-2', (assert) => {
     const $slider = document.querySelector('#slider-92');
-    assert.ok($slider.shadowRoot.querySelector('.pointer-2'));
+    assert.ok($slider.shadowRoot.querySelector('.pointer-1'));
   });
 
-  QUnit.test('the second should not have class pointer-1', (assert) => {
+  QUnit.test('the second should not have class pointer-0', (assert) => {
     const $slider = document.querySelector('#slider-92');
-    const $first = $slider.shadowRoot.querySelector('.pointer-2');
-    assert.deepEqual($first.classList.contains('pointer-1'), false);
+    const $first = $slider.shadowRoot.querySelector('.pointer-1');
+    assert.deepEqual($first.classList.contains('pointer-0'), false);
   });
 
   QUnit.test('if min = -50, max = 50, and value2 = 0 ---> pointer 2 position should be 50%', (assert) => {
     const $slider = document.querySelector('#slider-92');
-    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-1');
     assert.strictEqual($pointer2.style.left, '50%');
   });
 
   QUnit.test('provided value2 50 ---> pointer left should be 50%', (assert) => {
     const $slider = document.querySelector('#slider-86');
-    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer2.style.left, '50%');
   });
 
   QUnit.test('provided value2 should be 100 ---> pointer left should be 100%', (assert) => {
     const $slider = document.querySelector('#slider-87');
-    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer2.style.left, '100%');
   });
 
   QUnit.test('if provided value2 is string ---> pointer left should be 0%', (assert) => {
     const $slider = document.querySelector('#slider-88');
-    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer2.style.left, '0%');
   });
 
   QUnit.test('if provided value2 is negative and min="0" --> pointer left should be 0%', (assert) => {
     const $slider = document.querySelector('#slider-89');
-    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer2.style.left, '0%');
   });
 
   QUnit.test('if provided value2 > 100, and max="100"  ---> pointer left should be 100%', (assert) => {
     const $slider = document.querySelector('#slider-90');
-    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer2.style.left, '100%');
   });
 
   QUnit.test('change value2 via API to 30 ---> pointer left should be 30%', (assert) => {
     const $slider = document.querySelector('#slider-86');
     $slider.value2 = 30;
-    const $pointer = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer.style.left, '30%');
   });
 
   QUnit.test('change value2 via attribute to 41.5 ---> pointer left should be 41.5%', (assert) => {
     const $slider = document.querySelector('#slider-86');
     $slider.setAttribute('value2', 41.5);
-    const $pointer = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer.style.left, '41.5%');
   });
 
   QUnit.test('given 1 pointers slider ---> add second pointer via API', (assert) => {
     const $slider = document.querySelector('#slider-1');
     $slider.value2 = 50;
-    const $pointer = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer = $slider.shadowRoot.querySelector('.pointer-1');
     assert.ok($pointer);
   });
 
   QUnit.test('given 1 pointers slider ---> add second pointer via attribute', (assert) => {
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('value2', '50');
-    const $pointer = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer = $slider.shadowRoot.querySelector('.pointer-1');
     assert.ok($pointer);
   });
 

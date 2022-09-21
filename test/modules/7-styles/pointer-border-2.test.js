@@ -27,14 +27,14 @@ QUnit.module('pointer2 border 2', (hooks) => {
 
   QUnit.test('provided pointer2 border style should be none', (assert) => {
     const $slider = document.querySelector('#slider-27');
-    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer2.style.getPropertyValue('--pointer-border'), '0');
   });
 
   QUnit.test('pointer2 border changed to "0 0 2px red" ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-27');
     $slider.pointer2Border = '1px solid red';
-    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer2.style.getPropertyValue('--pointer-border'), '1px solid red');
   });
 

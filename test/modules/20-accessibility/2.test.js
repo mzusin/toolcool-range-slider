@@ -55,25 +55,25 @@ QUnit.module('Area Labels', (hooks) => {
 
   QUnit.test('first pointer should have aria-label = lower', (assert) => {
     const $slider = document.querySelector('#slider-129');
-    const $pointer = $slider.shadowRoot.querySelector('.pointer-1');
+    const $pointer = $slider.shadowRoot.querySelector('.pointer-0');
     assert.strictEqual($pointer.getAttribute('aria-label'), 'lower');
   });
 
   QUnit.test('second pointer should have aria-label = upper', (assert) => {
     const $slider = document.querySelector('#slider-130');
-    const $pointer = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer = $slider.shadowRoot.querySelector('.pointer-1');
     assert.strictEqual($pointer.getAttribute('aria-label'), 'upper');
   });
 
   QUnit.test('by default, the first pointer should not have aria-label attribute', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    const $pointer = $slider.shadowRoot.querySelector('.pointer-1');
+    const $pointer = $slider.shadowRoot.querySelector('.pointer-0');
     assert.strictEqual($pointer.getAttribute('aria-label'), null);
   });
 
   QUnit.test('by default, the second pointer should not have aria-label attribute', (assert) => {
     const $slider = document.querySelector('#slider-110');
-    const $pointer = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer = $slider.shadowRoot.querySelector('.pointer-1');
     assert.strictEqual($pointer.getAttribute('aria-label'), null);
   });
 });

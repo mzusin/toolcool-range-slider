@@ -22,20 +22,20 @@ QUnit.module('Pointer Background Hover 2', (hooks) => {
 
   QUnit.test('by default pointer2 bg hover color style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer2.style.getPropertyValue('--pointer-bg-hover'), '');
   });
 
   QUnit.test('provided pointer2 bg hover color style should be red', (assert) => {
     const $slider = document.querySelector('#slider-25');
-    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer2.style.getPropertyValue('--pointer-bg-hover'), 'red');
   });
 
   QUnit.test('pointer2 bg hover color changed to green ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-25');
     $slider.pointer2BgHover = 'green';
-    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer2.style.getPropertyValue('--pointer-bg-hover'), 'green');
   });
 

@@ -22,20 +22,20 @@ QUnit.module('Pointer2 Shadow Focus', (hooks) => {
 
   QUnit.test('by default pointer2 shadow focus style is empty', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer2.style.getPropertyValue('--pointer-shadow-focus'), '');
   });
 
   QUnit.test('provided pointer2 shadow focus style should be none', (assert) => {
     const $slider = document.querySelector('#slider-30');
-    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer2.style.getPropertyValue('--pointer-shadow-focus'), 'none');
   });
 
   QUnit.test('pointer2 shadow focus changed to "0 0 2px red" ---> style should change', (assert) => {
     const $slider = document.querySelector('#slider-30');
     $slider.pointer2ShadowFocus = '0 0 2px red';
-    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-2');
+    const $pointer2 = $slider.shadowRoot.querySelector('.pointer-1');
     assert.equal($pointer2.style.getPropertyValue('--pointer-shadow-focus'), '0 0 2px red');
   });
 
