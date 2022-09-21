@@ -9,7 +9,7 @@ import { sendChangeEvent, sendMouseDownEvent, sendMouseUpEvent } from '../domain
 import { IStyles, Styles } from './styles';
 import * as CSSVariables from '../enums/css-vars-enum';
 import * as CssClasses from '../enums/css-classes-enum';
-import { changePointersOrder, removeFocus } from '../domain/common-provider';
+import { changePointersOrder, getAttributesByRegex, removeFocus } from '../domain/common-provider';
 import { IPluginsManager, PluginsManager } from '../plugins/plugins-manager';
 
 export interface ISlider {
@@ -924,6 +924,22 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     $slider.classList.toggle(CssClasses.RangeDragging, rangeDragging);
   };
 
+  const initDisabled = () => {
+    setDisabled(getBoolean($component.getAttribute(AttributesEnum.Disabled)));
+    keyboardDisabled = getBoolean($component.getAttribute(AttributesEnum.KeyboardDisabled))
+
+    // handle 'pointer1-disabled, pointer2-disabled, etc.
+    const disabledList = getAttributesByRegex($component, /^pointer([0-9]*)-disabled$/, (val: string) => {
+      return getBoolean(val);
+    });
+
+    for(const item of disabledList){
+      const pointerIndex = item[0];
+      if(!pointers[pointerIndex]) continue;
+      pointers[pointerIndex].disabled = item[1];
+    }
+  };
+
   // initialization ....
   (() => {
 
@@ -961,15 +977,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     setRangeDragging(getBoolean($component.getAttribute(AttributesEnum.RangeDragging)));
 
     // additional properties -----------------------------
-    setDisabled(getBoolean($component.getAttribute(AttributesEnum.Disabled)));
-    keyboardDisabled = getBoolean($component.getAttribute(AttributesEnum.KeyboardDisabled))
-
-    // TODO
-    /*pointer1.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer1Disabled));
-
-    if(pointer2){
-      pointer2.disabled = getBoolean($component.getAttribute(AttributesEnum.Pointer2Disabled));
-    }*/
+    initDisabled();
 
     setRound(getNumber($component.getAttribute(AttributesEnum.Round), ROUND_DEFAULT));
 

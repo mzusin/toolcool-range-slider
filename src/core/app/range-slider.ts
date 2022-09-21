@@ -303,16 +303,15 @@ class RangeSlider extends HTMLElement {
     this._externalCSSList = getExternalCSSList(this);
     this.shadowRoot.innerHTML = mainTemplate(styles, this._externalCSSList);
 
+    // init first pointer
     const $pointer = this.shadowRoot?.querySelector('.pointer') as HTMLElement;
     if(!$pointer) return;
-
-    // init first pointer
-    const pointers = initPointers(this, $pointer);
 
     // init the slider
     const $slider = this.shadowRoot?.getElementById('range-slider') as HTMLElement;
     if(!$slider) return;
-    this.slider = Slider(this, $slider, pointers);
+
+    this.slider = Slider(this, $slider, initPointers(this, $pointer));
 
     removeFocus();
   }

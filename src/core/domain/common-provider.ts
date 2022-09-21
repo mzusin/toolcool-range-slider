@@ -2,6 +2,24 @@ import { IPointer, Pointer } from '../ui/pointer';
 import * as AttributesEnum from '../enums/attributes-enum';
 import { getNumber, isNumber } from './math-provider';
 
+export const getAttributesByRegex = <T>($component: HTMLElement, regex: RegExp, parseValue?: (val: string) => T) : Map<number, T> => {
+
+  const map = new Map<number, T>();
+
+  for (const attr of $component.attributes) {
+    const valueProp = attr.nodeName.trim().toLowerCase();
+    const isValue = regex.test(valueProp);
+    if(!isValue) continue;
+
+    let key = valueProp.replace(/\D/g, '').trim();
+    const keyNum = (key === '' || key === '0' || key === '1') ? 0 : (getNumber(key, 0) - 1);
+    const value = parseValue && typeof parseValue === 'function' ? parseValue(attr.value) : attr.value;
+    map.set(keyNum, value as T);
+  }
+
+  return map;
+};
+
 export const initPointers = ($component: HTMLElement, $pointer: HTMLElement) => {
   const map = new Map<number, number | string>();
   const regex = /^value([0-9]*)$/;
