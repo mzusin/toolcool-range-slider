@@ -62,23 +62,24 @@ export const initPointers = ($component: HTMLElement, $pointer: HTMLElement) => 
 
 export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
 
-  const apiProperties: [string, number][] = [
-    ['value', 0],
-    ['value0', 0],
-    ['value1', 0],
+  const apiProperties: [string, string, number][] = [
+    ['value', 'ariaLabel', 0],
+    ['value0', 'ariaLabel0', 0],
+    ['value1', 'ariaLabel1', 0],
   ];
 
   for(let i=1; i<slider.pointers.length; i++){
-    apiProperties.push([`value${ i + 1 }`, i]);
+    apiProperties.push([`value${ i + 1 }`, `ariaLabel${ i + 1 }`, i]);
   }
 
   for(let item of apiProperties){
     try{
-      const propName = item[0];
-      const index = item[1];
+      const valueProp = item[0];
+      const ariaLabelProp = item[1];
+      const index = item[2];
 
-      if(!$component.hasOwnProperty(propName)){
-        Object.defineProperty($component, propName, {
+      if(!$component.hasOwnProperty(valueProp)){
+        Object.defineProperty($component, valueProp, {
           get () {
             if(!slider) return undefined;
 
@@ -91,6 +92,20 @@ export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
 
           set: (val) => {
             slider?.setValue(val, index);
+          },
+        });
+      }
+
+      if(!$component.hasOwnProperty(ariaLabelProp)){
+        Object.defineProperty($component, ariaLabelProp, {
+          get () {
+            const pointer = slider?.pointers[index];
+            return pointer?.getAttr('aria-label') ?? undefined;
+          },
+
+          set: (val) => {
+            if(!slider) return;
+            slider.setAriaLabel(index, val);
           },
         });
       }

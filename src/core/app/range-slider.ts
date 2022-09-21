@@ -207,26 +207,6 @@ class RangeSlider extends HTMLElement {
     return pointer2?.disabled ?? false;
   }
 
-  public set ariaLabel1(_ariaLabel1: string | undefined) {
-    if(!this.slider) return;
-    this.slider.setAriaLabel(0, _ariaLabel1);
-  }
-
-  public get ariaLabel1() {
-    const pointer1 = this.slider?.pointers[0];
-    return pointer1?.getAttr('aria-label') ?? undefined;
-  }
-
-  public set ariaLabel2(_ariaLabel2: string | undefined) {
-    if(!this.slider) return;
-    this.slider.setAriaLabel(1, _ariaLabel2);
-  }
-
-  public get ariaLabel2() {
-    const pointer2 = this.slider?.pointers[1];
-    return pointer2?.getAttr('aria-label') ?? undefined;
-  }
-
   public get rangeDragging(){
     return this.slider?.rangeDragging ?? false;
   }

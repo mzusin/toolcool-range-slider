@@ -50,10 +50,6 @@ declare class RangeSlider extends HTMLElement {
     get pointer1Disabled(): boolean;
     set pointer2Disabled(_pointer2Disabled: boolean);
     get pointer2Disabled(): boolean;
-    set ariaLabel1(_ariaLabel1: string | undefined);
-    get ariaLabel1(): string | undefined;
-    set ariaLabel2(_ariaLabel2: string | undefined);
-    get ariaLabel2(): string | undefined;
     get rangeDragging(): boolean | string | undefined | null;
     set rangeDragging(_rangeDragging: boolean | string | undefined | null);
     get externalCSSList(): string[] | null;
