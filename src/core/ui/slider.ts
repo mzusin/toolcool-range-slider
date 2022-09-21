@@ -153,7 +153,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     if(!isPanelClicked($target) && !panelFillClicked){
 
       // if clicked directly on 1 of the pointers ---> return it
-      for(let pointer of pointers){
+      for(const pointer of pointers){
         if(!pointer.isClicked($target)) continue;
 
         if(animateOnClick){
@@ -164,7 +164,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
       }
 
       // if already selected pointer ---> return it
-      for(let pointer of pointers){
+      for(const pointer of pointers){
         if(selectedPointer === pointer) return pointer;
       }
     }
@@ -173,7 +173,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     let minDistance = Infinity;
     let minDistancePointer = null;
 
-    for(let pointer of pointers){
+    for(const pointer of pointers){
       const distance = Math.abs(percent - pointer.percent);
       if(distance < minDistance){
         minDistance = distance;

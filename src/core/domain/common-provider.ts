@@ -11,7 +11,7 @@ export const getAttributesByRegex = <T>($component: HTMLElement, regex: RegExp, 
     const isValue = regex.test(valueProp);
     if(!isValue) continue;
 
-    let key = valueProp.replace(/\D/g, '').trim();
+    const key = valueProp.replace(/\D/g, '').trim();
     const keyNum = (key === '' || key === '0' || key === '1') ? 0 : (getNumber(key, 0) - 1);
     const value = parseValue && typeof parseValue === 'function' ? parseValue(attr.value) : attr.value;
     map.set(keyNum, value as T);

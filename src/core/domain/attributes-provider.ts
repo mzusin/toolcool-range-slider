@@ -79,10 +79,17 @@ if(window.tcRangeSliderObservedAttr){
 export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue: string, newValue: string) => {
 
   // try to get style property - ['--pointer-width', 'pointer-width', 1, 'pointerWidth']
-  const found = stylePropertiesList.find(([_cssVariableName, _attrName, _index, _apiProperty]) => _attrName === attrName);
+  const found = stylePropertiesList.find(([_cssVariableName, _attrName, _apiProperty, _regex]) => {
+    return _attrName.replace('#', '') === attrName.replace(/\d+/g, '');
+  });
+
   if(found && slider.styles){
-    const [_cssVariableName, _attrName, _index, _apiProperty] = found;
-    slider.styles.setStyle(_cssVariableName, newValue, _index);
+    const [_cssVariableName, _attrName, _apiProperty, _regex] = found;
+
+    const key = attrName.replace(/\D/g, '').trim();
+    const index = (key === '' || key === '0' || key === '1') ? 0 : (getNumber(key, 0) - 1);
+
+    slider.styles.setStyle(_cssVariableName, newValue, index);
     return;
   }
 

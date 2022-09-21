@@ -1,3 +1,4 @@
+import { IPointer } from './pointer';
 export interface IStyles {
     setStyle: (key: string, value: string | null | undefined, index: number) => void;
     getStyle: (key: string, index: number) => string | undefined;
@@ -5,6 +6,6 @@ export interface IStyles {
     pointerShape: string | null;
     pointer2Shape: string | null;
 }
-export declare const stylePropertiesList: [string, string, number, string][];
-export declare const Styles: ($component: HTMLElement, $slider: HTMLElement, $pointer2: HTMLElement | undefined) => IStyles;
+export declare const stylePropertiesList: [string, string, string, RegExp | null][];
+export declare const Styles: ($component: HTMLElement, $slider: HTMLElement, pointers: IPointer[]) => IStyles;
 //# sourceMappingURL=styles.d.ts.map

@@ -22,18 +22,18 @@ export const stylePropertiesList: [string, string, string, RegExp | null][] = [
   [CSSVariables.SliderBgHover, AttributesEnum.SliderBgHover, 'sliderBgHover', null],
   [CSSVariables.SliderBgFill, AttributesEnum.SliderBgFill, 'sliderBgFill', null],
 
-  [CSSVariables.PointerWidth, AttributesEnum.PointerWidth, 'pointerWidth', /^pointer([0-9]*)-width$/], // pointer-width, pointer2-width, ...
-  [CSSVariables.PointerHeight, AttributesEnum.PointerHeight, 'pointerHeight', /^pointer([0-9]*)-height$/], // pointer-height$, pointer2-height, ...
-  [CSSVariables.PointerRadius, AttributesEnum.PointerRadius, 'pointerRadius', /^pointer([0-9]*)-radius$/], // pointer-radius, pointer2-radius, ...
-  [CSSVariables.PointerBg, AttributesEnum.PointerBg, 'pointerBg', /^pointer([0-9]*)-bg$/], // pointer-bg, pointer2-bg, ...
-  [CSSVariables.PointerBgHover, AttributesEnum.PointerBgHover, 'pointerBgHover', /^pointer([0-9]*)-bg-hover$/], // pointer-bg-hover, pointer2-bg-hover, ...
-  [CSSVariables.PointerBgFocus, AttributesEnum.PointerBgFocus, 'pointerBgFocus', /^pointer([0-9]*)-bg-focus$/], // pointer-bg-focus, pointer2-bg-focus, ...
-  [CSSVariables.PointerShadow, AttributesEnum.PointerShadow, 'pointerShadow', /^pointer([0-9]*)-shadow$/], // pointer-shadow, pointer2-shadow, ...
-  [CSSVariables.PointerShadowHover, AttributesEnum.PointerShadowHover, 'pointerShadowHover', /^pointer([0-9]*)-shadow-hover$/], // pointer-shadow-hover, pointer2-shadow-hover, ...
-  [CSSVariables.PointerShadowFocus, AttributesEnum.PointerShadowFocus, 'pointerShadowFocus', /^pointer([0-9]*)-shadow-focus$/], // pointer-shadow-focus, pointer2-shadow-focus, .
-  [CSSVariables.PointerBorder, AttributesEnum.PointerBorder, 'pointerBorder', /^pointer([0-9]*)-border$/], // pointer-border, pointer2-border, ...
-  [CSSVariables.PointerBorderHover, AttributesEnum.PointerBorderHover, 'pointerBorderHover', /^pointer([0-9]*)-border-hover$/], // pointer-border-hover, pointer2-border-hover, ...
-  [CSSVariables.PointerBorderFocus, AttributesEnum.PointerBorderFocus, 'pointerBorderFocus', /^pointer([0-9]*)-border-focus$/], // pointer-border-focus, pointer2-border-focus, ...
+  [CSSVariables.PointerWidth, AttributesEnum.PointerWidth, 'pointer#Width', /^pointer([0-9]*)-width$/], // pointer-width, pointer2-width, ...
+  [CSSVariables.PointerHeight, AttributesEnum.PointerHeight, 'pointer#Height', /^pointer([0-9]*)-height$/], // pointer-height$, pointer2-height, ...
+  [CSSVariables.PointerRadius, AttributesEnum.PointerRadius, 'pointer#Radius', /^pointer([0-9]*)-radius$/], // pointer-radius, pointer2-radius, ...
+  [CSSVariables.PointerBg, AttributesEnum.PointerBg, 'pointer#Bg', /^pointer([0-9]*)-bg$/], // pointer-bg, pointer2-bg, ...
+  [CSSVariables.PointerBgHover, AttributesEnum.PointerBgHover, 'pointer#BgHover', /^pointer([0-9]*)-bg-hover$/], // pointer-bg-hover, pointer2-bg-hover, ...
+  [CSSVariables.PointerBgFocus, AttributesEnum.PointerBgFocus, 'pointer#BgFocus', /^pointer([0-9]*)-bg-focus$/], // pointer-bg-focus, pointer2-bg-focus, ...
+  [CSSVariables.PointerShadow, AttributesEnum.PointerShadow, 'pointer#Shadow', /^pointer([0-9]*)-shadow$/], // pointer-shadow, pointer2-shadow, ...
+  [CSSVariables.PointerShadowHover, AttributesEnum.PointerShadowHover, 'pointer#ShadowHover', /^pointer([0-9]*)-shadow-hover$/], // pointer-shadow-hover, pointer2-shadow-hover, ...
+  [CSSVariables.PointerShadowFocus, AttributesEnum.PointerShadowFocus, 'pointer#ShadowFocus', /^pointer([0-9]*)-shadow-focus$/], // pointer-shadow-focus, pointer2-shadow-focus, .
+  [CSSVariables.PointerBorder, AttributesEnum.PointerBorder, 'pointer#Border', /^pointer([0-9]*)-border$/], // pointer-border, pointer2-border, ...
+  [CSSVariables.PointerBorderHover, AttributesEnum.PointerBorderHover, 'pointer#BorderHover', /^pointer([0-9]*)-border-hover$/], // pointer-border-hover, pointer2-border-hover, ...
+  [CSSVariables.PointerBorderFocus, AttributesEnum.PointerBorderFocus, 'pointer#BorderFocus', /^pointer([0-9]*)-border-focus$/], // pointer-border-focus, pointer2-border-focus, ...
 ];
 
 export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: IPointer[]) : IStyles => {
@@ -123,7 +123,6 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
 
       // '--pointer-width', 'pointer-width', 'pointerWidth', regex or null
       const [cssVariableName, attrName, apiProperty, regex] = item;
-      console.log(apiProperty)
 
       // apply the styles via CSS variables;
       // if index = 0 ---> apply the style on the whole slider, so all
@@ -143,22 +142,41 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       }
 
       // add APIs --------------------------
-      try{
-        /*
-        if(!$component.hasOwnProperty(apiProperty)){
-          Object.defineProperty($component, apiProperty, {
-            get () {
-              return getStyle(cssVariableName, index);
-            },
+      const apiProperties: [string, number][] = [];
 
-            set: (_val) => {
-              setStyle(cssVariableName, _val, index);
-            },
-          });
-        }*/
+      if(apiProperty.indexOf('#') === -1){
+        apiProperties.push([apiProperty, 0]);
+        apiProperties.push([apiProperty, 1]);
       }
-      catch (ex){
-        console.error(ex);
+      else{
+        apiProperties.push([apiProperty.replace('#', ''), 0]);
+        apiProperties.push([apiProperty.replace('#', '0'), 0]);
+        apiProperties.push([apiProperty.replace('#', '1'), 0]);
+        for(let i=1; i<pointers.length; i++){
+          apiProperties.push([apiProperty.replace('#', (i + 1).toString()), i]);
+        }
+      }
+
+      for(const item of apiProperties){
+        try{
+          const propName = item[0];
+          const index = item[1];
+
+          if(!$component.hasOwnProperty(propName)){
+            Object.defineProperty($component, propName, {
+              get () {
+                return getStyle(cssVariableName, index);
+              },
+
+              set: (val) => {
+                setStyle(cssVariableName, val, index);
+              },
+            });
+          }
+        }
+        catch (ex){
+          console.error(ex);
+        }
       }
     }
 
