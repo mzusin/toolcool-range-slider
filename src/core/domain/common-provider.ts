@@ -1,11 +1,45 @@
-import { Pointer } from '../ui/pointer';
+import { IPointer, Pointer } from '../ui/pointer';
 import * as AttributesEnum from '../enums/attributes-enum';
+import { getNumber, isNumber } from './math-provider';
 
-export const createPointer2 = ($component: HTMLElement, $pointer1: HTMLElement) => {
-  const $pointer2 = $pointer1.cloneNode(true) as HTMLElement;
-  $pointer1.after($pointer2);
-  return Pointer($component, $pointer2, 2);
-}
+export const initPointers = ($component: HTMLElement, $pointer: HTMLElement) => {
+  const map = new Map<number, number | string>();
+  const regex = /^value([0-9]*)$/;
+
+  // collect data about key / value pairs: value=50, value2=70, etc.
+  // value = value0 = value1 (all these are aliases of each other)
+  for (const attr of $component.attributes) {
+    const valueProp = attr.nodeName.trim().toLowerCase();
+    const isValue = regex.test(valueProp);
+    if(!isValue) continue;
+
+    const key = valueProp.replace('value', '').trim();
+    const keyNum = (key === '' || key === '0' || key === '1') ? 0 : (getNumber(key, 0) - 1);
+    const value = isNumber(attr.value) ? getNumber(attr.value, 0) : attr.value;
+
+    map.set(keyNum, value);
+  }
+
+  // find the max value number in the map
+  const max = Math.max(...Array.from(map.keys()));
+  const pointers: IPointer[] = [];
+
+  // first pointer always exists
+  pointers.push(Pointer($component, $pointer, 0));
+
+  // add all other pointers
+  let $latestPointer = $pointer;
+
+  for(let i=1; i<=max; i++){
+    const $newPointer = $pointer.cloneNode(true) as HTMLElement;
+    $latestPointer.after($newPointer);
+
+    $latestPointer = $newPointer;
+    pointers.push(Pointer($component, $newPointer, i));
+  }
+
+  return pointers;
+};
 
 export const removeFocus = () => {
   if(!document.activeElement) return;

@@ -2,11 +2,10 @@ import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
 import styles from './styles.pcss';
 import { observedAttributes, onAttributesChange } from '../domain/attributes-provider';
 import { ISlider, ROUND_DEFAULT, Slider } from '../ui/slider';
-import { IPointer, Pointer } from '../ui/pointer';
 import { TData, TStep } from '../types';
 import { getBoolean, getNumber, isNumber } from '../domain/math-provider';
 import * as TypeEnum from '../enums/type-enum';
-import { createPointer2, getExternalCSSList, removeFocus } from '../domain/common-provider';
+import { getExternalCSSList, initPointers, removeFocus } from '../domain/common-provider';
 
 /**
  * Usage: <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
@@ -304,24 +303,11 @@ class RangeSlider extends HTMLElement {
     this._externalCSSList = getExternalCSSList(this);
     this.shadowRoot.innerHTML = mainTemplate(styles, this._externalCSSList);
 
+    const $pointer = this.shadowRoot?.querySelector('.pointer') as HTMLElement;
+    if(!$pointer) return;
+
     // init first pointer
-    const $pointer1 = this.shadowRoot?.querySelector('.pointer') as HTMLElement;
-    const pointer1 = $pointer1 ? Pointer(this, $pointer1, 1) : null;
-    if(!pointer1) return;
-
-    // init second pointer
-    let pointer2: IPointer | null = null;
-    if(this.getAttribute('value2') !== null){
-      pointer2 = createPointer2(this, $pointer1);
-    }
-
-    const pointers: IPointer[] = [];
-    if(pointer1){
-      pointers.push(pointer1);
-    }
-    if(pointer2){
-      pointers.push(pointer2);
-    }
+    const pointers = initPointers(this, $pointer);
 
     // init the slider
     const $slider = this.shadowRoot?.getElementById('range-slider') as HTMLElement;

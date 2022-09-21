@@ -251,10 +251,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     if(foundIndex === -1) return;
 
     if(shouldGoPrev){
-      goPrev(foundIndex + 1, pointers[foundIndex].percent);
+      goPrev(foundIndex, pointers[foundIndex].percent);
     }
     else{
-      goNext(foundIndex + 1, pointers[foundIndex].percent);
+      goNext(foundIndex, pointers[foundIndex].percent);
     }
   };
 
@@ -266,21 +266,21 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     if(type === TypeEnum.Vertical){
       if(bottomToTop){
         // jump to the max value
-        setPositions(pointerIndex - 1, 100);
+        setPositions(pointerIndex, 100);
       }
       else{
         // jump to the min value
-        setPositions(pointerIndex - 1, 0);
+        setPositions(pointerIndex, 0);
       }
     }
     else{
       if(rightToLeft){
         // go forward
-        goNext(pointerIndex, pointers[pointerIndex - 1].percent);
+        goNext(pointerIndex, pointers[pointerIndex].percent);
       }
       else{
         // go backwards
-        goPrev(pointerIndex, pointers[pointerIndex - 1].percent);
+        goPrev(pointerIndex, pointers[pointerIndex].percent);
       }
     }
   };
@@ -291,21 +291,21 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     if(type === TypeEnum.Vertical){
       if(bottomToTop){
         // jump to the min value
-        setPositions(pointerIndex - 1, 0);
+        setPositions(pointerIndex, 0);
       }
       else{
         // jump to the max value
-        setPositions(pointerIndex - 1, 100);
+        setPositions(pointerIndex, 100);
       }
     }
     else{
       if(rightToLeft){
         // go backward
-        goPrev(pointerIndex, pointers[pointerIndex - 1].percent);
+        goPrev(pointerIndex, pointers[pointerIndex].percent);
       }
       else{
         // go forward
-        goNext(pointerIndex, pointers[pointerIndex - 1].percent);
+        goNext(pointerIndex, pointers[pointerIndex].percent);
       }
     }
   };
@@ -316,21 +316,21 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     if(type === TypeEnum.Vertical){
       if(bottomToTop){
         // go forwards
-        goNext(pointerIndex, pointers[pointerIndex - 1].percent);
+        goNext(pointerIndex, pointers[pointerIndex].percent);
       }
       else{
         // go backwards
-        goPrev(pointerIndex, pointers[pointerIndex - 1].percent);
+        goPrev(pointerIndex, pointers[pointerIndex].percent);
       }
     }
     else{
       if(rightToLeft){
         // jump to the max value
-        setPositions(pointerIndex - 1, 100);
+        setPositions(pointerIndex, 100);
       }
       else{
         // jump to the min value
-        setPositions(pointerIndex - 1, 0);
+        setPositions(pointerIndex, 0);
       }
     }
   };
@@ -341,21 +341,21 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     if(type === TypeEnum.Vertical){
       if(bottomToTop){
         // go backward
-        goPrev(pointerIndex, pointers[pointerIndex - 1].percent);
+        goPrev(pointerIndex, pointers[pointerIndex].percent);
       }
       else{
         // go forward
-        goNext(pointerIndex, pointers[pointerIndex - 1].percent);
+        goNext(pointerIndex, pointers[pointerIndex].percent);
       }
     }
     else{
       if(rightToLeft){
         // jump to the min value
-        setPositions(pointerIndex - 1, 0);
+        setPositions(pointerIndex, 0);
       }
       else{
         // jump to the max value
-        setPositions(pointerIndex - 1, 100);
+        setPositions(pointerIndex, 100);
       }
     }
   };
@@ -384,7 +384,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       _percent = 0;
     }
 
-    setPositions(index - 1, _percent);
+    setPositions(index, _percent);
   };
 
   const goNext = (index: number, _percent: number | undefined) => {
@@ -401,7 +401,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointers: 
       _percent = 100;
     }
 
-    setPositions(index - 1, _percent);
+    setPositions(index, _percent);
   };
 
   const addSecondPointer = () => {
