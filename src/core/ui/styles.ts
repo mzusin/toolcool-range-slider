@@ -146,7 +146,6 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
 
       if(apiProperty.indexOf('#') === -1){
         apiProperties.push([apiProperty, 0]);
-        apiProperties.push([apiProperty, 1]);
       }
       else{
         apiProperties.push([apiProperty.replace('#', ''), 0]);
