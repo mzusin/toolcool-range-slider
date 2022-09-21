@@ -62,21 +62,22 @@ export const initPointers = ($component: HTMLElement, $pointer: HTMLElement) => 
 
 export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
 
-  const apiProperties: [string, string, number][] = [
-    ['value', 'ariaLabel', 0],
-    ['value0', 'ariaLabel0', 0],
-    ['value1', 'ariaLabel1', 0],
+  const apiProperties: [string, string, string, number][] = [
+    ['value', 'ariaLabel', 'pointerShape', 0],
+    ['value0', 'ariaLabel0', 'pointerShape0', 0],
+    ['value1', 'ariaLabel1', 'pointerShape1', 0],
   ];
 
   for(let i=1; i<slider.pointers.length; i++){
-    apiProperties.push([`value${ i + 1 }`, `ariaLabel${ i + 1 }`, i]);
+    apiProperties.push([`value${ i + 1 }`, `ariaLabel${ i + 1 }`, `pointer${ i + 1 }Shape`, i]);
   }
 
   for(let item of apiProperties){
     try{
       const valueProp = item[0];
       const ariaLabelProp = item[1];
-      const index = item[2];
+      const pointerShapeProp = item[2];
+      const index = item[3];
 
       if(!$component.hasOwnProperty(valueProp)){
         Object.defineProperty($component, valueProp, {
@@ -106,6 +107,19 @@ export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
           set: (val) => {
             if(!slider) return;
             slider.setAriaLabel(index, val);
+          },
+        });
+      }
+
+      if(!$component.hasOwnProperty(pointerShapeProp)){
+        Object.defineProperty($component, pointerShapeProp, {
+          get () {
+            return slider?.styles?.pointerShapes[index] ?? null;
+          },
+
+          set: (val) => {
+            if(!slider || !slider.styles) return;
+            slider.styles.setPointerShape(index, val);
           },
         });
       }
