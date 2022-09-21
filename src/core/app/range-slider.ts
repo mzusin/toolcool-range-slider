@@ -161,34 +161,6 @@ class RangeSlider extends HTMLElement {
     return this.slider?.animateOnClick;
   }
 
-  public set pointer1Disabled(_pointer1Disabled: boolean) {
-    if(!this.slider) return;
-
-    const pointer1 = this.slider.pointers[0];
-    if(!pointer1) return;
-
-    pointer1.disabled = _pointer1Disabled;
-  }
-
-  public get pointer1Disabled() {
-    const pointer1 = this.slider?.pointers[0];
-    return pointer1?.disabled ?? false;
-  }
-
-  public set pointer2Disabled(_pointer2Disabled: boolean) {
-    if(!this.slider) return;
-
-    const pointer2 = this.slider?.pointers[1];
-    if(!pointer2) return;
-
-    pointer2.disabled = _pointer2Disabled;
-  }
-
-  public get pointer2Disabled() {
-    const pointer2 = this.slider?.pointers[1];
-    return pointer2?.disabled ?? false;
-  }
-
   public get rangeDragging(){
     return this.slider?.rangeDragging ?? false;
   }

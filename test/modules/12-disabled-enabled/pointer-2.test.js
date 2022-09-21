@@ -6,11 +6,6 @@ QUnit.module('Disabled / Enabled - Pointer 2', (hooks) => {
      <toolcool-range-slider id="slider-136" pointer2-disabled="test" value1="10" value2="20"></toolcool-range-slider>
   `);
 
-  QUnit.test('if not provided ---> pointer2Disabled value should be false', (assert) => {
-    const $slider = document.querySelector('#slider-1');
-    assert.equal($slider.pointer2Disabled, false);
-  });
-
   QUnit.test('pointer2Disabled = true', (assert) => {
     const $slider = document.querySelector('#slider-134');
     assert.equal($slider.pointer2Disabled, true);

@@ -62,14 +62,14 @@ export const initPointers = ($component: HTMLElement, $pointer: HTMLElement) => 
 
 export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
 
-  const apiProperties: [string, string, string, number][] = [
-    ['value', 'ariaLabel', 'pointerShape', 0],
-    ['value0', 'ariaLabel0', 'pointerShape0', 0],
-    ['value1', 'ariaLabel1', 'pointerShape1', 0],
+  const apiProperties: [string, string, string, string, number][] = [
+    ['value', 'ariaLabel', 'pointerShape', 'pointerDisabled', 0],
+    ['value0', 'ariaLabel0', 'pointerShape0', 'pointer0Disabled', 0],
+    ['value1', 'ariaLabel1', 'pointerShape1', 'pointer1Disabled', 0],
   ];
 
   for(let i=1; i<slider.pointers.length; i++){
-    apiProperties.push([`value${ i + 1 }`, `ariaLabel${ i + 1 }`, `pointer${ i + 1 }Shape`, i]);
+    apiProperties.push([`value${ i + 1 }`, `ariaLabel${ i + 1 }`, `pointer${ i + 1 }Shape`, `pointer${ i + 1 }Disabled`, i]);
   }
 
   for(let item of apiProperties){
@@ -77,7 +77,8 @@ export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
       const valueProp = item[0];
       const ariaLabelProp = item[1];
       const pointerShapeProp = item[2];
-      const index = item[3];
+      const pointerDisabledProp = item[3];
+      const index = item[4];
 
       if(!$component.hasOwnProperty(valueProp)){
         Object.defineProperty($component, valueProp, {
@@ -100,8 +101,7 @@ export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
       if(!$component.hasOwnProperty(ariaLabelProp)){
         Object.defineProperty($component, ariaLabelProp, {
           get () {
-            const pointer = slider?.pointers[index];
-            return pointer?.getAttr('aria-label') ?? undefined;
+            return slider?.pointers[index]?.getAttr('aria-label') ?? undefined;
           },
 
           set: (val) => {
@@ -120,6 +120,23 @@ export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
           set: (val) => {
             if(!slider || !slider.styles) return;
             slider.styles.setPointerShape(index, val);
+          },
+        });
+      }
+
+      if(!$component.hasOwnProperty(pointerDisabledProp)){
+        Object.defineProperty($component, pointerDisabledProp, {
+          get () {
+            return slider?.pointers[index].disabled ?? false;
+          },
+
+          set: (val) => {
+            if(!slider) return;
+
+            const pointer = slider?.pointers[index];
+            if(!pointer) return;
+
+            pointer.disabled = val;
           },
         });
       }
