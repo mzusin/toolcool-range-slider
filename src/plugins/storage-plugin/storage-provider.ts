@@ -84,10 +84,6 @@ export const getFromStorage = (storageType: StorageTypeEnum, storageName: string
   return null;
 };
 
-export const getStorageKey2 = (storageKey: string) => {
-  return `${ storageKey }-2`;
-};
-
 /**
  * try to restore values from session or local storage
  * when component is initialized
@@ -95,25 +91,20 @@ export const getStorageKey2 = (storageKey: string) => {
 export const restoreFromStorage = (
   storage: StorageTypeEnum | undefined,
   storageKey: string,
-  updatePointers: (value1: string | number | undefined | null, value2: string | number | undefined | null) => void
+  updatePointers: (values: (string | number | undefined | null)[]) => void
 ) => {
   if (!storage) return;
 
-  let val1: string | null = null;
-  let val2: string | null = null;
+  const restoredValues = getFromStorage(storage, storageKey);
+  if(!restoredValues) return;
 
-  const restoredValue1 = getFromStorage(storage, storageKey);
-  const restoredValue2 = getFromStorage(storage, getStorageKey2(storageKey));
+  let parsed: (string | number | undefined | null)[] | null = null;
 
-  if(restoredValue1 !== null && restoredValue1 !== undefined){
-    val1 = restoredValue1;
+  try{
+    parsed = JSON.parse(restoredValues);
   }
+  catch (ex){}
+  if(!parsed) return;
 
-  if(restoredValue2 !== null && restoredValue2 !== undefined){
-    val2 = restoredValue2;
-  }
-
-  if(val1 === null && val2 === null) return;
-
-  updatePointers(val1 !== null ? val1 : val2, val2);
+  updatePointers(parsed);
 };

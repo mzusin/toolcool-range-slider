@@ -28,7 +28,7 @@ export interface IPluginUpdateData {
 }
 
 export interface IPluginSetters {
-  setValues: (value1: string | number | undefined, value2: string | number | undefined) => void;
+  setValues: (values: (string | number | undefined)[]) => void;
   setMin: (min: number | string | undefined | null) => void;
   setMax: (max: number | string | undefined | null) => void;
   setStep: (step: TStep) => void;

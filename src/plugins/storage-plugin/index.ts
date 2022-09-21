@@ -1,6 +1,6 @@
 import { IPlugin, IPluginGetters, IPluginSetters, IPluginUpdateData } from '../../core/plugins/interfaces';
 import { StorageTypeEnum } from './storage-type-enum';
-import { getStorageKey2, restoreFromStorage, saveToStorage, STORAGE_KEY } from './storage-provider';
+import { restoreFromStorage, saveToStorage, STORAGE_KEY } from './storage-provider';
 
 /**
  * Storage Plugin.
@@ -61,11 +61,7 @@ const StoragePlugin = () : IPlugin => {
      */
     update: (data: IPluginUpdateData) => {
       if (!storage || !storageInitialized) return;
-
-      saveToStorage(storage, storageKey, data.values[0]);
-      if(data.percents[1] !== undefined){
-        saveToStorage(storage, getStorageKey2(storageKey), data.percents[1]);
-      }
+      saveToStorage(storage, storageKey, data.values);
     },
 
     /**
@@ -114,14 +110,6 @@ const StoragePlugin = () : IPlugin => {
 
           set: (_storageKey) => {
             storageKey = _storageKey;
-          },
-        }
-      },
-      {
-        name: 'storageKey2',
-        attributes: {
-          get () {
-            return getStorageKey2(storageKey);
           },
         }
       }

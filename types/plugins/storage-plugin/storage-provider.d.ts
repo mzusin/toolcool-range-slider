@@ -12,5 +12,5 @@ export declare const getStorageKey2: (storageKey: string) => string;
  * try to restore values from session or local storage
  * when component is initialized
  */
-export declare const restoreFromStorage: (storage: StorageTypeEnum | undefined, storageKey: string, updatePointers: (value1: string | number | undefined | null, value2: string | number | undefined | null) => void) => void;
+export declare const restoreFromStorage: (storage: StorageTypeEnum | undefined, storageKey: string, updatePointers: (values: (string | number | undefined | null)[]) => void) => void;
 //# sourceMappingURL=storage-provider.d.ts.map
