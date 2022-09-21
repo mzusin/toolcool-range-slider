@@ -1,5 +1,7 @@
 import * as AttributesEnum from '../enums/attributes-enum';
 import * as CSSVariables from '../enums/css-vars-enum';
+import { IPointer } from './pointer';
+import { getAttributesByRegex } from '../domain/common-provider';
 
 export interface IStyles {
 
@@ -11,43 +13,30 @@ export interface IStyles {
   pointer2Shape: string | null;
 }
 
-export const stylePropertiesList: [string, string, number, string][] = [
-  [CSSVariables.SliderWidth, AttributesEnum.SliderWidth, 1, 'sliderWidth'],
-  [CSSVariables.SliderHeight, AttributesEnum.SliderHeight, 1, 'sliderHeight'],
-  [CSSVariables.SliderRadius, AttributesEnum.SliderRadius, 1, 'sliderRadius'],
+export const stylePropertiesList: [string, string, string, RegExp | null][] = [
+  [CSSVariables.SliderWidth, AttributesEnum.SliderWidth, 'sliderWidth', null],
+  [CSSVariables.SliderHeight, AttributesEnum.SliderHeight, 'sliderHeight', null],
+  [CSSVariables.SliderRadius, AttributesEnum.SliderRadius, 'sliderRadius', null],
 
-  [CSSVariables.SliderBg, AttributesEnum.SliderBg, 1, 'sliderBg'],
-  [CSSVariables.SliderBgHover, AttributesEnum.SliderBgHover, 1, 'sliderBgHover'],
-  [CSSVariables.SliderBgFill, AttributesEnum.SliderBgFill, 1, 'sliderBgFill'],
+  [CSSVariables.SliderBg, AttributesEnum.SliderBg, 'sliderBg', null],
+  [CSSVariables.SliderBgHover, AttributesEnum.SliderBgHover, 'sliderBgHover', null],
+  [CSSVariables.SliderBgFill, AttributesEnum.SliderBgFill, 'sliderBgFill', null],
 
-  [CSSVariables.PointerWidth, AttributesEnum.PointerWidth, 1, 'pointerWidth'],
-  [CSSVariables.PointerHeight, AttributesEnum.PointerHeight, 1, 'pointerHeight'],
-  [CSSVariables.PointerRadius, AttributesEnum.PointerRadius, 1, 'pointerRadius'],
-  [CSSVariables.PointerBg, AttributesEnum.PointerBg, 1, 'pointerBg'],
-  [CSSVariables.PointerBgHover, AttributesEnum.PointerBgHover, 1, 'pointerBgHover'],
-  [CSSVariables.PointerBgFocus, AttributesEnum.PointerBgFocus, 1, 'pointerBgFocus'],
-  [CSSVariables.PointerShadow, AttributesEnum.PointerShadow, 1, 'pointerShadow'],
-  [CSSVariables.PointerShadowHover, AttributesEnum.PointerShadowHover, 1, 'pointerShadowHover'],
-  [CSSVariables.PointerShadowFocus, AttributesEnum.PointerShadowFocus, 1, 'pointerShadowFocus'],
-  [CSSVariables.PointerBorder, AttributesEnum.PointerBorder, 1, 'pointerBorder'],
-  [CSSVariables.PointerBorderHover, AttributesEnum.PointerBorderHover, 1, 'pointerBorderHover'],
-  [CSSVariables.PointerBorderFocus, AttributesEnum.PointerBorderFocus, 1, 'pointerBorderFocus'],
-
-  [CSSVariables.PointerWidth, AttributesEnum.Pointer2Width, 2, 'pointer2Width'],
-  [CSSVariables.PointerHeight, AttributesEnum.Pointer2Height, 2, 'pointer2Height'],
-  [CSSVariables.PointerRadius, AttributesEnum.Pointer2Radius, 2, 'pointer2Radius'],
-  [CSSVariables.PointerBg, AttributesEnum.Pointer2Bg, 2, 'pointer2Bg'],
-  [CSSVariables.PointerBgHover, AttributesEnum.Pointer2BgHover, 2, 'pointer2BgHover'],
-  [CSSVariables.PointerBgFocus, AttributesEnum.Pointer2BgFocus, 2, 'pointer2BgFocus'],
-  [CSSVariables.PointerShadow, AttributesEnum.Pointer2Shadow, 2, 'pointer2Shadow'],
-  [CSSVariables.PointerShadowHover, AttributesEnum.Pointer2ShadowHover, 2, 'pointer2ShadowHover'],
-  [CSSVariables.PointerShadowFocus, AttributesEnum.Pointer2ShadowFocus, 2, 'pointer2ShadowFocus'],
-  [CSSVariables.PointerBorder, AttributesEnum.Pointer2Border, 2, 'pointer2Border'],
-  [CSSVariables.PointerBorderHover, AttributesEnum.Pointer2BorderHover, 2, 'pointer2BorderHover'],
-  [CSSVariables.PointerBorderFocus, AttributesEnum.Pointer2BorderFocus, 2, 'pointer2BorderFocus'],
+  [CSSVariables.PointerWidth, AttributesEnum.PointerWidth, 'pointerWidth', /^pointer([0-9]*)-width$/], // pointer-width, pointer2-width, ...
+  [CSSVariables.PointerHeight, AttributesEnum.PointerHeight, 'pointerHeight', /^pointer([0-9]*)-height$/], // pointer-height$, pointer2-height, ...
+  [CSSVariables.PointerRadius, AttributesEnum.PointerRadius, 'pointerRadius', /^pointer([0-9]*)-radius$/], // pointer-radius, pointer2-radius, ...
+  [CSSVariables.PointerBg, AttributesEnum.PointerBg, 'pointerBg', /^pointer([0-9]*)-bg$/], // pointer-bg, pointer2-bg, ...
+  [CSSVariables.PointerBgHover, AttributesEnum.PointerBgHover, 'pointerBgHover', /^pointer([0-9]*)-bg-hover$/], // pointer-bg-hover, pointer2-bg-hover, ...
+  [CSSVariables.PointerBgFocus, AttributesEnum.PointerBgFocus, 'pointerBgFocus', /^pointer([0-9]*)-bg-focus$/], // pointer-bg-focus, pointer2-bg-focus, ...
+  [CSSVariables.PointerShadow, AttributesEnum.PointerShadow, 'pointerShadow', /^pointer([0-9]*)-shadow$/], // pointer-shadow, pointer2-shadow, ...
+  [CSSVariables.PointerShadowHover, AttributesEnum.PointerShadowHover, 'pointerShadowHover', /^pointer([0-9]*)-shadow-hover$/], // pointer-shadow-hover, pointer2-shadow-hover, ...
+  [CSSVariables.PointerShadowFocus, AttributesEnum.PointerShadowFocus, 'pointerShadowFocus', /^pointer([0-9]*)-shadow-focus$/], // pointer-shadow-focus, pointer2-shadow-focus, .
+  [CSSVariables.PointerBorder, AttributesEnum.PointerBorder, 'pointerBorder', /^pointer([0-9]*)-border$/], // pointer-border, pointer2-border, ...
+  [CSSVariables.PointerBorderHover, AttributesEnum.PointerBorderHover, 'pointerBorderHover', /^pointer([0-9]*)-border-hover$/], // pointer-border-hover, pointer2-border-hover, ...
+  [CSSVariables.PointerBorderFocus, AttributesEnum.PointerBorderFocus, 'pointerBorderFocus', /^pointer([0-9]*)-border-focus$/], // pointer-border-focus, pointer2-border-focus, ...
 ];
 
-export const Styles = ($component: HTMLElement, $slider: HTMLElement, $pointer2: HTMLElement | undefined) : IStyles => {
+export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: IPointer[]) : IStyles => {
 
   let theme: string | null = null;
   let pointerShape: string | null = null;
@@ -106,28 +95,21 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, $pointer2:
 
   const setStyle = (key: string, value: string | null | undefined, index: number) => {
 
+    const pointer = pointers[index];
+    if(!pointer) return;
+
+    const $styleHolder = index === 0 ? $slider : pointer.$pointer;
+
     if(value === null || value === undefined){
       if(stylesMap.has(getKey(key, index))){
         stylesMap.delete(getKey(key, index));
       }
-
-      if(index < 2){
-        $slider.style.removeProperty(key);
-      }
-      else{
-        $pointer2?.style.removeProperty(key);
-      }
+      $styleHolder.style.removeProperty(key);
       return;
     }
 
     stylesMap.set(getKey(key, index), value);
-
-    if(index < 2){
-      $slider.style.setProperty(key, value);
-    }
-    else{
-      $pointer2?.style.setProperty(key, value);
-    }
+    $styleHolder.style.setProperty(key, value);
   };
 
   const getStyle = (key: string, index: number) => {
@@ -138,12 +120,31 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, $pointer2:
   (() => {
 
     for(const item of stylePropertiesList){
-      // '--pointer-width', 'pointer-width', 1, 'pointerWidth'
-      const [cssVariableName, attrName, index, apiProperty] = item;
-      const cssVariableValue = $component.getAttribute(attrName);
-      setStyle(cssVariableName, cssVariableValue, index);
 
+      // '--pointer-width', 'pointer-width', 'pointerWidth', regex or null
+      const [cssVariableName, attrName, apiProperty, regex] = item;
+      console.log(apiProperty)
+
+      // apply the styles via CSS variables;
+      // if index = 0 ---> apply the style on the whole slider, so all
+      // pointers will inherit it;
+      // otherwise, apply styles on the individual pointers;
+      if(regex){
+        const list = getAttributesByRegex($component, regex);
+        for(const item of list){
+          const index = item[0];
+          const value = item[1] as string;
+          setStyle(cssVariableName, value, index);
+        }
+      }
+      else{
+        const cssVariableValue = $component.getAttribute(attrName);
+        setStyle(cssVariableName, cssVariableValue, 0);
+      }
+
+      // add APIs --------------------------
       try{
+        /*
         if(!$component.hasOwnProperty(apiProperty)){
           Object.defineProperty($component, apiProperty, {
             get () {
@@ -154,7 +155,7 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, $pointer2:
               setStyle(cssVariableName, _val, index);
             },
           });
-        }
+        }*/
       }
       catch (ex){
         console.error(ex);

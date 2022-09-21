@@ -985,8 +985,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     initAriaLabels();
 
     // init styles ---------
-    // TODO: pointers[1]?.$pointer
-    styles = Styles($component, $slider, pointers[1]?.$pointer);
+    styles = Styles($component, $slider, pointers);
     setAnimateOnClick($component.getAttribute(AttributesEnum.AnimateOnClick));
 
     // init slider events -------------------------------------
