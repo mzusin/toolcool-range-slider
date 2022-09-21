@@ -34,15 +34,27 @@ QUnit.module('Disabled / Enabled - Pointer 2', (hooks) => {
   });
 
   QUnit.test('change pointer2Disabled via attribute to true', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-135');
     $slider.setAttribute('pointer2-disabled', 'true');
-    assert.equal($slider.pointer2Disabled, true);
+
+    window.setTimeout(() => {
+      assert.equal($slider.pointer2Disabled, true);
+      done();
+    }, 10);
   });
 
   QUnit.test('change pointer2Disabled via attribute to false', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-134');
     $slider.setAttribute('pointer2-disabled', 'false');
-    assert.equal($slider.pointer2Disabled, false);
+
+    window.setTimeout(() => {
+      assert.equal($slider.pointer2Disabled, false);
+      done();
+    }, 10);
   });
 
 });

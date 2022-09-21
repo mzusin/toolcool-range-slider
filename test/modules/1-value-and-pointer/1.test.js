@@ -71,9 +71,15 @@ QUnit.module('Value & Pointer', (hooks) => {
   });
 
   QUnit.test('change value via attribute to 41.5', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('value', 41.5);
-    assert.strictEqual($slider.value, 41.5);
+
+    window.setTimeout(() => {
+      assert.strictEqual($slider.value, 41.5);
+      done();
+    }, 10);
   });
 
   QUnit.test('by default pointer left should be 0%', (assert) => {
@@ -120,10 +126,16 @@ QUnit.module('Value & Pointer', (hooks) => {
   });
 
   QUnit.test('change value via attribute to 41.5 ---> pointer left should be 41.5%', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('value', 41.5);
     const $pointer = $slider.shadowRoot.querySelector('.pointer');
-    assert.strictEqual($pointer.style.left, '41.5%');
+
+    window.setTimeout(() => {
+      assert.strictEqual($pointer.style.left, '41.5%');
+      done();
+    }, 10);
   });
 
   // <toolcool-range-slider min="50" max="100" id="slider-12"></toolcool-range-slider>

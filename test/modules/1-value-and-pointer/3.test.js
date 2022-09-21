@@ -48,9 +48,15 @@ QUnit.module('Value-2', (hooks) => {
   });
 
   QUnit.test('change value2 via attribute to 80', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-86');
     $slider.setAttribute('value2', '80');
-    assert.strictEqual($slider.value2, 80);
+
+    window.setTimeout(() => {
+      assert.strictEqual($slider.value2, 80);
+      done();
+    }, 10);
   });
 
   // <toolcool-range-slider id="slider-1"></toolcool-range-slider>
@@ -61,9 +67,15 @@ QUnit.module('Value-2', (hooks) => {
   });
 
   QUnit.test('change value2 via attribute to 41.5', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('value2', 41.5);
-    assert.strictEqual($slider.value2, 41.5);
+
+    window.setTimeout(() => {
+      assert.strictEqual($slider.value2, 41.5);
+      done();
+    }, 10);
   });
 
   // <toolcool-range-slider min="50" max="100" id="slider-12"></toolcool-range-slider>
@@ -143,10 +155,16 @@ QUnit.module('Value-2', (hooks) => {
   });
 
   QUnit.test('change value2 via attribute to 41.5 ---> pointer left should be 41.5%', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-86');
     $slider.setAttribute('value2', 41.5);
     const $pointer = $slider.shadowRoot.querySelector('.pointer-1');
-    assert.equal($pointer.style.left, '41.5%');
+
+    window.setTimeout(() => {
+      assert.equal($pointer.style.left, '41.5%');
+      done();
+    }, 10);
   });
 
   QUnit.test('given 1 pointers slider ---> add second pointer via API', (assert) => {
@@ -157,10 +175,16 @@ QUnit.module('Value-2', (hooks) => {
   });
 
   QUnit.test('given 1 pointers slider ---> add second pointer via attribute', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('value2', '50');
     const $pointer = $slider.shadowRoot.querySelector('.pointer-1');
-    assert.ok($pointer);
+
+    window.setTimeout(() => {
+      assert.ok($pointer);
+      done();
+    }, 10);
   });
 
   QUnit.test('change to the text value via api', (assert) => {

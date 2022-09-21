@@ -143,21 +143,39 @@ QUnit.module('Data', (hooks) => {
   });
 
   QUnit.test('when data="1, 2, 3" ---> change value via attribute to 2', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-71');
     $slider.setAttribute('value', '2');
-    assert.equal($slider.value, 2);
+
+    window.setTimeout(() => {
+      assert.equal($slider.value, 2);
+      done();
+    }, 10);
   });
 
   QUnit.test('when data="a, b, c" ---> change value via attribute to c', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-67');
     $slider.setAttribute('value', 'c');
-    assert.equal($slider.value, 'c');
+
+    window.setTimeout(() => {
+      assert.equal($slider.value, 'c');
+      done();
+    }, 10);
   });
 
   QUnit.test('when data="sky, blue" ---> change value via attribute to blue', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-68');
     $slider.setAttribute('value', 'blue');
-    assert.equal($slider.value, 'blue');
+
+    window.setTimeout(() => {
+      assert.equal($slider.value, 'blue');
+      done();
+    }, 10);
   });
 
   QUnit.test('when data="a, b, c" ---> change value via attribute to non existing item', (assert) => {
@@ -233,9 +251,15 @@ QUnit.module('Data', (hooks) => {
   });
 
   QUnit.test('when data="0, 1, 2, 3, 4, 5" ---> change value to 3 via attributes', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-69');
     $slider.setAttribute('value', '3');
-    assert.equal($slider.value, 3);
+
+    window.setTimeout(() => {
+      assert.equal($slider.value, 3);
+      done();
+    }, 10);
   });
 
   // ------
@@ -247,9 +271,15 @@ QUnit.module('Data', (hooks) => {
   });
 
   QUnit.test('when data="sky, blue" ---> change value to "blue" via attribute.', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-68');
     $slider.setAttribute('value', 'blue');
-    assert.equal($slider.value, 'blue');
+
+    window.setTimeout(() => {
+      assert.equal($slider.value, 'blue');
+      done();
+    }, 10);
   });
 
   QUnit.test('data="0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100", min should be 0', (assert) => {
@@ -288,15 +318,27 @@ QUnit.module('Data', (hooks) => {
   });
 
   QUnit.test('2 pointers, when data="red, green, blue, yellow, silver, gold" ---> change value1 to "red" via attribute.', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-108');
     $slider.setAttribute('value', 'red');
-    assert.equal($slider.value, 'red');
+
+    window.setTimeout(() => {
+      assert.equal($slider.value, 'red');
+      done();
+    }, 10);
   });
 
   QUnit.test('2 pointers, when data="red, green, blue, yellow, silver, gold" ---> change value2 to "blue" via attribute.', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-108');
     $slider.setAttribute('value2', 'blue');
-    assert.equal($slider.value2, 'blue');
+
+    window.setTimeout(() => {
+      assert.equal($slider.value2, 'blue');
+      done();
+    }, 10);
   });
 
 });

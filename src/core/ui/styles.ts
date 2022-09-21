@@ -74,6 +74,7 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
 
   const setPointerShape = (index: number, value: string) => {
     pointerShapes[index] = value;
+    console.log(pointerShapes)
     updatePointerShapes();
   };
 

@@ -4,10 +4,6 @@ import { getBoolean, getNumber } from './math-provider';
 import { stylePropertiesList } from '../ui/styles';
 
 export const observedAttributes = [
-  AttributesEnum.Value,
-  AttributesEnum.Value1,
-  AttributesEnum.Value2,
-
   AttributesEnum.PointersOverlap,
   AttributesEnum.PointersMinDistance,
   AttributesEnum.PointersMaxDistance,
@@ -24,8 +20,6 @@ export const observedAttributes = [
 
   AttributesEnum.Disabled,
   AttributesEnum.KeyboardDisabled,
-  AttributesEnum.Pointer1Disabled,
-  AttributesEnum.Pointer2Disabled,
   AttributesEnum.RangeDragging,
 
   AttributesEnum.SliderWidth,
@@ -63,9 +57,6 @@ export const observedAttributes = [
   AttributesEnum.Pointer2Border,
   AttributesEnum.Pointer2BorderHover,
   AttributesEnum.Pointer2BorderFocus,
-
-  AttributesEnum.AriaLabel1,
-  AttributesEnum.AriaLabel2,
 
   AttributesEnum.AnimateOnClick,
 ];
@@ -105,21 +96,6 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
       break;
     }
 
-    case AttributesEnum.Value: {
-      slider.setValue(newValue, 0);
-      break;
-    }
-
-    case AttributesEnum.Value1: {
-      slider.setValue(newValue, 0);
-      break;
-    }
-
-    case AttributesEnum.Value2: {
-      slider.setValue(newValue, 1);
-      break;
-    }
-
     case AttributesEnum.Step: {
       slider.setStep(newValue);
       break;
@@ -155,22 +131,6 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
       break;
     }
 
-    case AttributesEnum.Pointer1Disabled: {
-      const pointer1 = slider?.pointers[0];
-      if(!pointer1) return;
-
-      pointer1.disabled = getBoolean(newValue);
-      break;
-    }
-
-    case AttributesEnum.Pointer2Disabled: {
-      const pointer2 = slider?.pointers[1];
-      if(!pointer2) return;
-
-      pointer2.disabled = getBoolean(newValue);
-      break;
-    }
-
     case AttributesEnum.Data: {
       slider.setData(newValue);
       break;
@@ -196,33 +156,9 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
       break;
     }
 
-    case AttributesEnum.AriaLabel1: {
-      slider.setAriaLabel(0, newValue);
-      break;
-    }
-
-    case AttributesEnum.AriaLabel2: {
-      slider.setAriaLabel(1, newValue);
-      break;
-    }
-
     case AttributesEnum.Theme: {
       if(slider.styles){
         slider.styles.theme = newValue;
-      }
-      break;
-    }
-
-    case AttributesEnum.PointerShape: {
-      if(slider.styles){
-        slider.styles.setPointerShape(0, newValue);
-      }
-      break;
-    }
-
-    case AttributesEnum.Pointer2Shape: {
-      if(slider.styles){
-        slider.styles.setPointerShape(1, newValue);
       }
       break;
     }
@@ -235,4 +171,61 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
 
   if(!slider || !slider.pluginsManager) return;
   slider.pluginsManager.onAttrChange(attrName, _oldValue, newValue);
+};
+
+export const onDynamicAttributeChange = (slider: ISlider, attrName: string, newValue: string) => {
+
+  let property: string | null = null;
+
+  if(/^value([0-9]*)$/.test(attrName)){
+    property = 'value';
+  }
+
+  if(/^pointer([0-9]*)-disabled$/.test(attrName)){
+    property = 'pointer-disabled';
+  }
+
+  if(/^aria-label([0-9]*)$/.test(attrName)){
+    property = 'aria-label';
+  }
+
+  if(/^pointer([0-9]*)-shape$/.test(attrName)){
+    property = 'pointer-shape';
+  }
+
+  if(!property) return;
+
+  const key = attrName.replace(/\D/g, '').trim();
+  const index = (key === '' || key === '0' || key === '1') ? 0 : (getNumber(key, 0) - 1)
+
+  switch (property) {
+
+    case 'value': {
+      slider.setValue(newValue, index);
+      break;
+    }
+
+    case 'pointer-disabled': {
+      const pointer = slider?.pointers[index];
+      if(!pointer) return;
+
+      pointer.disabled = getBoolean(newValue);
+      break;
+    }
+
+    case 'aria-label': {
+      slider.setAriaLabel(index, newValue);
+      break;
+    }
+
+    case 'pointer-shape': {
+      if(slider.styles){
+        slider.styles.setPointerShape(index, newValue);
+      }
+      break;
+    }
+  }
+
+  if(!slider || !slider.pluginsManager) return;
+  slider.pluginsManager.onAttrChange(attrName, '', newValue);
 };

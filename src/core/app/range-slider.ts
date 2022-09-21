@@ -1,6 +1,6 @@
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
 import styles from './styles.pcss';
-import { observedAttributes, onAttributesChange } from '../domain/attributes-provider';
+import { observedAttributes, onAttributesChange, onDynamicAttributeChange } from '../domain/attributes-provider';
 import { ISlider, ROUND_DEFAULT, Slider } from '../ui/slider';
 import { TData, TStep } from '../types';
 import { getBoolean } from '../domain/math-provider';
@@ -24,6 +24,8 @@ class RangeSlider extends HTMLElement {
   public slider: ISlider | undefined;
 
   private _externalCSSList: string[] | null = [];
+
+  private _observer: MutationObserver | null = null;
 
   // -------------- APIs --------------------
 
@@ -208,6 +210,21 @@ class RangeSlider extends HTMLElement {
 
     initPointerAPIs(this, this.slider);
 
+    this._observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (!this.slider || mutation.type !== 'attributes') return;
+
+        const attrName = mutation.attributeName;
+        if(!attrName) return;
+
+        onDynamicAttributeChange(this.slider, attrName, this.getAttribute(attrName) ?? '');
+      });
+    });
+
+    this._observer.observe(this, {
+      attributes: true, //configure it to listen to attribute changes
+    });
+
     removeFocus();
   }
 
@@ -215,6 +232,10 @@ class RangeSlider extends HTMLElement {
    * when the custom element disconnected from DOM
    */
   disconnectedCallback() {
+    if(this._observer){
+      this._observer.disconnect();
+    }
+
     if(!this.slider) return
 
     this.slider.destroy();

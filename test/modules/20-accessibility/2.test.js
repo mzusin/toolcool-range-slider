@@ -42,15 +42,27 @@ QUnit.module('Area Labels', (hooks) => {
   });
 
   QUnit.test('change ariaLabel1 via attributes to test', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-129');
     $slider.setAttribute('aria-label1', 'test');
-    assert.strictEqual($slider.ariaLabel1, 'test');
+
+    window.setTimeout(() => {
+      assert.strictEqual($slider.ariaLabel1, 'test');
+      done();
+    }, 10);
   });
 
   QUnit.test('change ariaLabel2 via attributes to test', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-130');
     $slider.setAttribute('aria-label2', 'test');
-    assert.strictEqual($slider.ariaLabel2, 'test');
+
+    window.setTimeout(() => {
+      assert.strictEqual($slider.ariaLabel2, 'test');
+      done();
+    }, 10);
   });
 
   QUnit.test('first pointer should have aria-label = lower', (assert) => {

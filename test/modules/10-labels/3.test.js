@@ -168,10 +168,16 @@ QUnit.module('Generated Labels', (hooks) => {
   });
 
   QUnit.test('generate-labels="true", change value to 50 via attribute ----> value label should have 50', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-80');
     $slider.setAttribute('value', '50');
     const $valueLabel = $slider.shadowRoot.querySelector('.value-label');
-    assert.deepEqual($valueLabel.textContent, '50');
+
+    window.setTimeout(() => {
+      assert.deepEqual($valueLabel.textContent, '50');
+      done();
+    }, 10);
   });
 
   QUnit.test('generate-labels="true", arrow right ----> value label should have 78', (assert) => {
