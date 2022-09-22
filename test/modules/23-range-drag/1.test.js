@@ -149,7 +149,7 @@ QUnit.module('Range Dragging', (hooks) => {
   // <toolcool-range-slider id="slider-6" range-dragging="true" value1="30" value2="50"></toolcool-range-slider>
   QUnit.test('give slider with 2 pointers and range slider true; remove the second pointer ---> rangeDragging should become false', (assert) => {
     const $slider = document.querySelector('#slider-6');
-    $slider.value2 = undefined;
+    $slider.removePointer();
     assert.equal($slider.rangeDragging, false);
   });
 

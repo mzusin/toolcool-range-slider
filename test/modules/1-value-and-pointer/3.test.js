@@ -67,21 +67,16 @@ QUnit.module('Value-2', (hooks) => {
   });
 
   // <toolcool-range-slider id="slider-1"></toolcool-range-slider>
-  QUnit.test('change value2 via attribute to 41.5', (assert) => {
-    const done = assert.async();
-
+  QUnit.test('addPointer: 41.5', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    $slider.setAttribute('value2', 41.5);
-
-    window.setTimeout(() => {
-      assert.strictEqual($slider.value2, 41.5);
-      done();
-    }, 10);
+    $slider.addPointer(41.5);
+    assert.strictEqual($slider.value2, 41.5);
   });
 
   // <toolcool-range-slider min="50" max="100" id="slider-12"></toolcool-range-slider>
   QUnit.test('min="50" max="100", value2="0" ---> value2 should be 50', (assert) => {
     const $slider = document.querySelector('#slider-91');
+    $slider.addPointer(50);
     assert.strictEqual($slider.value2, 50);
   });
 
@@ -168,24 +163,18 @@ QUnit.module('Value-2', (hooks) => {
     }, 10);
   });
 
-  QUnit.test('given 1 pointers slider ---> add second pointer via API', (assert) => {
+  QUnit.test('addPointer: given 1 pointers slider ---> add second pointer with value 50', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    $slider.value2 = 50;
+    $slider.addPointer(50);
     const $pointer = $slider.shadowRoot.querySelector('.pointer-1');
     assert.ok($pointer);
   });
 
-  QUnit.test('given 1 pointers slider ---> add second pointer via attribute', (assert) => {
-    const done = assert.async();
-
+  QUnit.test('addPointer: given 1 pointers slider ---> add second pointer', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    $slider.setAttribute('value2', '50');
+    $slider.addPointer(50);
     const $pointer = $slider.shadowRoot.querySelector('.pointer-1');
-
-    window.setTimeout(() => {
-      assert.ok($pointer);
-      done();
-    }, 10);
+    assert.ok($pointer);
   });
 
   QUnit.test('change to the text value via api', (assert) => {
@@ -194,9 +183,9 @@ QUnit.module('Value-2', (hooks) => {
     assert.strictEqual($slider.value1, 0);
   });
 
-  QUnit.test('change to the text value via api', (assert) => {
+  QUnit.test('addPointer: add letter s', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    $slider.value2 = 's';
+    $slider.addPointer('s');
     assert.strictEqual($slider.value2, 0);
   });
 

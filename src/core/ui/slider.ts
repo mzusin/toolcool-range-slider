@@ -1,4 +1,4 @@
-import { IPointer } from './pointer';
+import { IPointer, Pointer } from './pointer';
 import { convertRange, getBoolean, getNumber, isNumber, roundToStep, setDecimalPlaces } from '../domain/math-provider';
 import * as AttributesEnum from '../enums/attributes-enum';
 import { TData, TStep } from '../types';
@@ -45,6 +45,9 @@ export interface ISlider {
   setStep: (value: TStep) => void;
   setData: (value: TData | string | null | number) => void;
   getTextValue: (_percent: number | undefined) => undefined | string | number;
+
+  addPointer: (value: number | string | undefined | null) => number;
+  removePointer: () => number;
 
   destroy: () => void;
 }
@@ -940,6 +943,44 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     }
   };
 
+  // add pointer - always to the end
+  const addPointer = (value: string | number | undefined) => {
+    const len = pointers.length;
+    const $latestPointer = pointers[len - 1].$pointer;
+
+    const $newPointer = $latestPointer.cloneNode(true) as HTMLElement;
+    $latestPointer.after($newPointer);
+    const newPointer = Pointer($component, $newPointer, len);
+
+    newPointer.setCallbacks(arrowLeft, arrowRight, arrowUp, arrowDown);
+    pointers.push(newPointer);
+
+    setValue(value, len);
+    setAllPositions();
+    updatePlugins();
+
+    return len;
+  };
+
+  // always from the end
+  const removePointer = () => {
+    const len = pointers.length;
+    const pointer = pointers[len - 1];
+    if(!pointer) return -1;
+
+    pointer.destroy();
+    pointers.pop();
+
+    if(pointers.length <= 1){
+      setRangeDragging(false);
+    }
+
+    setAllPositions();
+    updatePlugins();
+
+    return len - 1;
+  };
+
   (() => {
 
     // init pointer callbacks for arrow keys
@@ -1175,6 +1216,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     getTextValue,
     setAriaLabel,
     getAriaLabel,
+
+    addPointer,
+    removePointer,
+
     destroy,
   };
 };

@@ -6,7 +6,7 @@ import { TData, TStep } from '../types';
 import { getBoolean } from '../domain/math-provider';
 import * as TypeEnum from '../enums/type-enum';
 import { getExternalCSSList, removeFocus } from '../domain/common-provider';
-import { initPointerAPIs, initPointers } from '../domain/pointers-provider';
+import { initPointerAPI, initPointerAPIs, initPointers } from '../domain/pointers-provider';
 
 /**
  * Usage: <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
@@ -168,6 +168,26 @@ class RangeSlider extends HTMLElement {
 
   public get externalCSSList() {
     return this._externalCSSList;
+  }
+
+  public addPointer(value: number | string | undefined) {
+    if(!this.slider) return;
+
+    const index = this.slider?.addPointer(value);
+
+    initPointerAPI(this,
+      this.slider,
+      index,
+      `value${ index + 1 }`,
+      `ariaLabel${ index + 1 }`,
+      `pointerShape${ index + 1 }`,
+      `pointer${ index + 1 }Disabled`
+    );
+  }
+
+  public removePointer() {
+    if(!this.slider) return;
+    this.slider?.removePointer();
   }
 
   // ----------------------------------------------

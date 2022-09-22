@@ -41,6 +41,83 @@ export const initPointers = ($component: HTMLElement, $pointer: HTMLElement) => 
   return pointers;
 };
 
+export const initPointerAPI = (
+  $component: HTMLElement,
+  slider: ISlider,
+  index: number,
+  valueProp: string,
+  ariaLabelProp: string,
+  pointerShapeProp: string,
+  pointerDisabledProp: string
+) => {
+  try{
+
+    if(!Object.prototype.hasOwnProperty.call($component, valueProp)){
+      Object.defineProperty($component, valueProp, {
+        get () {
+          if(!slider) return undefined;
+
+          const pointer = slider.pointers[index];
+          if(!pointer) return undefined;
+
+          const val = slider.getTextValue(pointer.percent);
+          return isNumber(val) ? getNumber(val, val) : val;
+        },
+
+        set: (val) => {
+          slider?.setValue(val, index);
+        },
+      });
+    }
+
+    if(!Object.prototype.hasOwnProperty.call($component, ariaLabelProp)){
+      Object.defineProperty($component, ariaLabelProp, {
+        get () {
+          return slider?.pointers[index]?.getAttr('aria-label') ?? undefined;
+        },
+
+        set: (val) => {
+          if(!slider) return;
+          slider.setAriaLabel(index, val);
+        },
+      });
+    }
+
+    if(!Object.prototype.hasOwnProperty.call($component, pointerShapeProp)){
+      Object.defineProperty($component, pointerShapeProp, {
+        get () {
+          return slider?.styles?.pointerShapes[index] ?? null;
+        },
+
+        set: (val) => {
+          if(!slider || !slider.styles) return;
+          slider.styles.setPointerShape(index, val);
+        },
+      });
+    }
+
+    if(!Object.prototype.hasOwnProperty.call($component, pointerDisabledProp)){
+      Object.defineProperty($component, pointerDisabledProp, {
+        get () {
+          return slider?.pointers[index].disabled ?? false;
+        },
+
+        set: (val) => {
+          if(!slider) return;
+
+          const pointer = slider?.pointers[index];
+          if(!pointer) return;
+
+          pointer.disabled = val;
+        },
+      });
+    }
+  }
+  catch (ex){
+    console.error(ex);
+  }
+};
+
 export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
 
   const apiProperties: [string, string, string, string, number][] = [
@@ -54,77 +131,14 @@ export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
   }
 
   for(const item of apiProperties){
-    try{
-      const valueProp = item[0];
-      const ariaLabelProp = item[1];
-      const pointerShapeProp = item[2];
-      const pointerDisabledProp = item[3];
-      const index = item[4];
-
-      if(!Object.prototype.hasOwnProperty.call($component, valueProp)){
-        Object.defineProperty($component, valueProp, {
-          get () {
-            if(!slider) return undefined;
-
-            const pointer = slider.pointers[index];
-            if(!pointer) return undefined;
-
-            const val = slider.getTextValue(pointer.percent);
-            return isNumber(val) ? getNumber(val, val) : val;
-          },
-
-          set: (val) => {
-            slider?.setValue(val, index);
-          },
-        });
-      }
-
-      if(!Object.prototype.hasOwnProperty.call($component, ariaLabelProp)){
-        Object.defineProperty($component, ariaLabelProp, {
-          get () {
-            return slider?.pointers[index]?.getAttr('aria-label') ?? undefined;
-          },
-
-          set: (val) => {
-            if(!slider) return;
-            slider.setAriaLabel(index, val);
-          },
-        });
-      }
-
-      if(!Object.prototype.hasOwnProperty.call($component, pointerShapeProp)){
-        Object.defineProperty($component, pointerShapeProp, {
-          get () {
-            return slider?.styles?.pointerShapes[index] ?? null;
-          },
-
-          set: (val) => {
-            if(!slider || !slider.styles) return;
-            slider.styles.setPointerShape(index, val);
-          },
-        });
-      }
-
-      if(!Object.prototype.hasOwnProperty.call($component, pointerDisabledProp)){
-        Object.defineProperty($component, pointerDisabledProp, {
-          get () {
-            return slider?.pointers[index].disabled ?? false;
-          },
-
-          set: (val) => {
-            if(!slider) return;
-
-            const pointer = slider?.pointers[index];
-            if(!pointer) return;
-
-            pointer.disabled = val;
-          },
-        });
-      }
-    }
-    catch (ex){
-      console.error(ex);
-    }
+    initPointerAPI($component,
+      slider,
+      item[4],
+      item[0],
+      item[1],
+      item[2],
+      item[3]
+    );
   }
 };
 
