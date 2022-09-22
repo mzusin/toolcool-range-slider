@@ -33,9 +33,15 @@ QUnit.module('Pointer Overlap', (hooks) => {
   });
 
   QUnit.test('change pointers overlap value via attribute to true', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('pointers-overlap', 'true');
-    assert.equal($slider.pointersOverlap, true);
+
+    window.setTimeout(() => {
+      assert.equal($slider.pointersOverlap, true);
+      done();
+    }, 10);
   });
 
   QUnit.test('change pointers overlap value via API to false', (assert) => {
@@ -45,8 +51,14 @@ QUnit.module('Pointer Overlap', (hooks) => {
   });
 
   QUnit.test('change pointers overlap value via attribute to false', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-110');
     $slider.setAttribute('pointers-overlap', 'false');
-    assert.equal($slider.pointersOverlap, false);
+
+    window.setTimeout(() => {
+      assert.equal($slider.pointersOverlap, false);
+      done();
+    }, 10);
   });
 });

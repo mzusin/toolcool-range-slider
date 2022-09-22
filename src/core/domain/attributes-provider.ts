@@ -3,72 +3,9 @@ import { ISlider, ROUND_DEFAULT } from '../ui/slider';
 import { getBoolean, getNumber } from './math-provider';
 import { stylePropertiesList } from '../ui/styles';
 
-export const observedAttributes = [
-  AttributesEnum.PointersOverlap,
-  AttributesEnum.PointersMinDistance,
-  AttributesEnum.PointersMaxDistance,
+export const onAttributeChange = (slider: ISlider, attrName: string, newValue: string) => {
 
-  AttributesEnum.Data,
-  AttributesEnum.Min,
-  AttributesEnum.Max,
-  AttributesEnum.Step,
-  AttributesEnum.Round,
-  AttributesEnum.Type,
-  AttributesEnum.Theme,
-  AttributesEnum.RightToLeft,
-  AttributesEnum.BottomToTop,
-
-  AttributesEnum.Disabled,
-  AttributesEnum.KeyboardDisabled,
-  AttributesEnum.RangeDragging,
-
-  AttributesEnum.SliderWidth,
-  AttributesEnum.SliderHeight,
-  AttributesEnum.SliderRadius,
-
-  AttributesEnum.SliderBg,
-  AttributesEnum.SliderBgHover,
-  AttributesEnum.SliderBgFill,
-
-  AttributesEnum.PointerWidth,
-  AttributesEnum.PointerHeight,
-  AttributesEnum.PointerRadius,
-  AttributesEnum.PointerShape,
-  AttributesEnum.PointerBg,
-  AttributesEnum.PointerBgHover,
-  AttributesEnum.PointerBgFocus,
-  AttributesEnum.PointerShadow,
-  AttributesEnum.PointerShadowHover,
-  AttributesEnum.PointerShadowFocus,
-  AttributesEnum.PointerBorder,
-  AttributesEnum.PointerBorderHover,
-  AttributesEnum.PointerBorderFocus,
-
-  AttributesEnum.Pointer2Width,
-  AttributesEnum.Pointer2Height,
-  AttributesEnum.Pointer2Radius,
-  AttributesEnum.Pointer2Shape,
-  AttributesEnum.Pointer2Bg,
-  AttributesEnum.Pointer2BgHover,
-  AttributesEnum.Pointer2BgFocus,
-  AttributesEnum.Pointer2Shadow,
-  AttributesEnum.Pointer2ShadowHover,
-  AttributesEnum.Pointer2ShadowFocus,
-  AttributesEnum.Pointer2Border,
-  AttributesEnum.Pointer2BorderHover,
-  AttributesEnum.Pointer2BorderFocus,
-
-  AttributesEnum.AnimateOnClick,
-];
-
-if(window.tcRangeSliderObservedAttr){
-  for(const attr of window.tcRangeSliderObservedAttr){
-    observedAttributes.push(attr);
-  }
-}
-
-export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue: string, newValue: string) => {
-
+  // handle style properties ------------------------------------
   // try to get style property - ['--pointer-width', 'pointer-width', 1, 'pointerWidth']
   const found = stylePropertiesList.find(([_cssVariableName, _attrName, _apiProperty, _regex]) => {
     return _attrName.replace('#', '') === attrName.replace(/\d+/g, '');
@@ -84,6 +21,7 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
     return;
   }
 
+  // handle static properties ----------------------------------
   switch (attrName) {
 
     case AttributesEnum.Min: {
@@ -169,12 +107,7 @@ export const onAttributesChange = (slider: ISlider, attrName: string, _oldValue:
     }
   }
 
-  if(!slider || !slider.pluginsManager) return;
-  slider.pluginsManager.onAttrChange(attrName, _oldValue, newValue);
-};
-
-export const onDynamicAttributeChange = (slider: ISlider, attrName: string, newValue: string) => {
-
+  // handle dynamic properties ------------------------------------
   let property: string | null = null;
 
   if(/^value([0-9]*)$/.test(attrName)){
@@ -227,5 +160,5 @@ export const onDynamicAttributeChange = (slider: ISlider, attrName: string, newV
   }
 
   if(!slider || !slider.pluginsManager) return;
-  slider.pluginsManager.onAttrChange(attrName, '', newValue);
+  slider.pluginsManager.onAttrChange(attrName, newValue);
 };

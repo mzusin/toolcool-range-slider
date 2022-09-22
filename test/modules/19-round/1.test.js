@@ -40,9 +40,15 @@ QUnit.module('Round', (hooks) => {
   });
 
   QUnit.test('change value via attribute to 4', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('round', 4);
-    assert.equal($slider.round, 4);
+
+    window.setTimeout(() => {
+      assert.equal($slider.round, 4);
+      done();
+    }, 10);
   });
 
   QUnit.test('1.55678 when round is 4 ---> should be equal 1.56', (assert) => {

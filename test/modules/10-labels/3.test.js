@@ -60,15 +60,27 @@ QUnit.module('Generated Labels', (hooks) => {
   });
 
   QUnit.test('change generateLabels via attribute to true', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('generate-labels', 'true');
-    assert.equal($slider.generateLabels, true);
+
+    window.setTimeout(() => {
+      assert.equal($slider.generateLabels, true);
+      done();
+    }, 10);
   });
 
   QUnit.test('change generateLabels via attribute to false', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-78');
     $slider.setAttribute('generate-labels', 'false');
-    assert.equal($slider.generateLabels, false);
+
+    window.setTimeout(() => {
+      assert.equal($slider.generateLabels, false);
+      done();
+    }, 10);
   });
 
   QUnit.test('generate-labels="false" ----> min label should not exist', (assert) => {
@@ -140,10 +152,16 @@ QUnit.module('Generated Labels', (hooks) => {
   });
 
   QUnit.test('generate-labels="true", change min to 1 via attribute ----> min label should have 0', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-77');
     $slider.setAttribute('min', '1');
     const $min = $slider.shadowRoot.querySelector('.min-label');
-    assert.deepEqual($min.textContent, '1');
+
+    window.setTimeout(() => {
+      assert.deepEqual($min.textContent, '1');
+      done();
+    }, 10);
   });
 
   QUnit.test('generate-labels="true", change max to 99 via API ----> max label should have 99', (assert) => {
@@ -154,10 +172,16 @@ QUnit.module('Generated Labels', (hooks) => {
   });
 
   QUnit.test('generate-labels="true", change max to 99 via attribute ----> max label should have 99', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-77');
     $slider.setAttribute('max', '99');
     const $max = $slider.shadowRoot.querySelector('.max-label');
-    assert.deepEqual($max.textContent, '99');
+
+    window.setTimeout(() => {
+      assert.deepEqual($max.textContent, '99');
+      done();
+    }, 10);
   });
 
   QUnit.test('generate-labels="true", change value to 50 via API ----> value label should have 50', (assert) => {

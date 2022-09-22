@@ -39,15 +39,27 @@ QUnit.module('Disabled / Enabled - Keyboard', (hooks) => {
   });
 
   QUnit.test('change keyboardDisabled via attribute to true', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('keyboard-disabled', 'true');
-    assert.equal($slider.keyboardDisabled, true);
+
+    window.setTimeout(() => {
+      assert.equal($slider.keyboardDisabled, true);
+      done();
+    }, 10);
   });
 
   QUnit.test('change keyboardDisabled via attribute to false', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-127');
     $slider.setAttribute('keyboard-disabled', 'false');
-    assert.equal($slider.keyboardDisabled, false);
+
+    window.setTimeout(() => {
+      assert.equal($slider.keyboardDisabled, false);
+      done();
+    }, 10);
   });
 
   QUnit.test('if keyboardDisabled === true and send keyboard event ---> the value should not change', (assert) => {

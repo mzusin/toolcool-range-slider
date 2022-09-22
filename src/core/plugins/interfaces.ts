@@ -86,7 +86,7 @@ export interface IPlugin {
 
   update?: (data: IPluginUpdateData) => void;
 
-  onAttrChange?: (attrName: string, _oldValue: string, newValue: string) =>  void;
+  onAttrChange?: (attrName: string, newValue: string) =>  void;
 
   gettersAndSetters?: ({
     name: PropertyKey,

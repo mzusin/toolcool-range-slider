@@ -22,8 +22,14 @@ QUnit.module('Storage Key', (hooks) => {
   });
 
   QUnit.test('add storage key property via attribute', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('storage-key', 'test-2');
-    assert.equal($slider.storageKey, 'test-2');
+
+    window.setTimeout(() => {
+      assert.equal($slider.storageKey, 'test-2');
+      done();
+    }, 10);
   });
 });

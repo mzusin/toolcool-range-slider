@@ -22,8 +22,14 @@ QUnit.module('Themes', (hooks) => {
   });
 
   QUnit.test('change theme via attribute', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('theme', 'fake-2')
-    assert.equal($slider.theme, 'fake-2');
+
+    window.setTimeout(() => {
+      assert.equal($slider.theme, 'fake-2');
+      done();
+    }, 1);
   });
 });

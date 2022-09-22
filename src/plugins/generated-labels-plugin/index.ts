@@ -11,13 +11,6 @@ import { getBoolean } from '../../core/domain/math-provider';
  */
 window.tcRangeSliderPlugins = window.tcRangeSliderPlugins || [];
 
-/**
- * Optional: array of attribute names to monitor for changes
- * Read more: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements
- */
-window.tcRangeSliderObservedAttr = window.tcRangeSliderObservedAttr || [];
-window.tcRangeSliderObservedAttr.push('generate-labels');
-
 const VALUE_LABEL1_CODE_NAME = 'value-label';
 const VALUE_LABEL2_CODE_NAME = 'value2-label';
 const MIN_LABEL_CODE_NAME = 'min-label';
@@ -307,7 +300,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
      * this will be called each time observed HTML attribute changes;
      * observed attributes are defined in window.tcRangeSliderObservedAttr array above.
      */
-    onAttrChange: (_attrName: string, _oldValue: string, _newValue: string) => {
+    onAttrChange: (_attrName: string, _newValue: string) => {
       if(_attrName === 'generate-labels'){
         setGenLabelsEnabled(getBoolean(_newValue));
       }

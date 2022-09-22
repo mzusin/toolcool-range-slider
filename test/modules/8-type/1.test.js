@@ -39,10 +39,16 @@ QUnit.module('Type', (hooks) => {
   });
 
   QUnit.test('add type property via attribute ---> class should be added', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('type', 'vertical');
     const $inner = $slider.shadowRoot.querySelector('.range-slider-box');
-    assert.equal($inner.classList.contains('type-vertical'), true);
+
+    window.setTimeout(() => {
+      assert.equal($inner.classList.contains('type-vertical'), true);
+      done();
+    }, 1);
   });
 
 });

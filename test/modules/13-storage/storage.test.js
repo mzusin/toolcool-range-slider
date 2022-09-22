@@ -33,14 +33,26 @@ QUnit.module('Storage', (hooks) => {
   });
 
   QUnit.test('add session storage property via attribute', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('storage', 'session-storage');
-    assert.equal($slider.storage, 'session-storage');
+
+    window.setTimeout(() => {
+      assert.equal($slider.storage, 'session-storage');
+      done();
+    }, 10);
   });
 
   QUnit.test('add local storage property via attribute', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('storage', 'local-storage');
-    assert.equal($slider.storage, 'local-storage');
+
+    window.setTimeout(() => {
+      assert.equal($slider.storage, 'local-storage');
+      done();
+    }, 10);
   });
 });

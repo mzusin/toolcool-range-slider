@@ -8,7 +8,7 @@ declare global {
 export interface IPluginsManager {
     init: () => void;
     update: (data: IPluginUpdateData) => void;
-    onAttrChange: (attrName: string, oldValue: string, newValue: string) => void;
+    onAttrChange: (attrName: string, newValue: string) => void;
 }
 export declare const PluginsManager: ($component: HTMLElement, requestUpdatePlugins: () => void, setters: IPluginSetters, getters: IPluginGetters) => IPluginsManager;
 //# sourceMappingURL=plugins-manager.d.ts.map

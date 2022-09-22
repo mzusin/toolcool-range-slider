@@ -31,9 +31,15 @@ QUnit.module('Pointers Min Distance', (hooks) => {
   });
 
   QUnit.test('change pointers max distance value via attribute to 10', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('pointers-max-distance', '10');
-    assert.equal($slider.pointersMaxDistance, 10);
+
+    window.setTimeout(() => {
+      assert.equal($slider.pointersMaxDistance, 10);
+      done();
+    }, 1);
   });
 
   QUnit.test('change pointers max distance value via API to -1 ---> it should be Infinity', (assert) => {
@@ -43,9 +49,15 @@ QUnit.module('Pointers Min Distance', (hooks) => {
   });
 
   QUnit.test('change pointers max distance value via attribute to 5', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-118');
     $slider.setAttribute('pointers-max-distance', '5');
-    assert.equal($slider.pointersMaxDistance, 5);
+
+    window.setTimeout(() => {
+      assert.equal($slider.pointersMaxDistance, 5);
+      done();
+    }, 1);
   });
 
   // <toolcool-range-slider id="slider-122" value1="50" value2="60" pointers-max-distance="50"></toolcool-range-slider>

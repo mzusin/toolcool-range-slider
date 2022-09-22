@@ -5,11 +5,6 @@ import { TData, TStep } from '../types';
  * Documentation: https://github.com/toolcool-org/toolcool-range-slider
  */
 declare class RangeSlider extends HTMLElement {
-    /**
-     * the attributes list that are observed by web component;
-     * if attribute changes ---> the web component will update accordingly
-     */
-    static get observedAttributes(): string[];
     slider: ISlider | undefined;
     private _externalCSSList;
     private _observer;
@@ -55,7 +50,6 @@ declare class RangeSlider extends HTMLElement {
      * when the custom element disconnected from DOM
      */
     disconnectedCallback(): void;
-    attributeChangedCallback(attrName: string, oldValue: string, newValue: string): void;
 }
 export default RangeSlider;
 //# sourceMappingURL=range-slider.d.ts.map

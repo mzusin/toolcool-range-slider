@@ -46,12 +46,20 @@ QUnit.module('Step', (hooks) => {
   });
 
   QUnit.test('change value via attribute to 4', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('step', 4);
-    assert.equal($slider.step, 4);
+
+    window.setTimeout(() => {
+      assert.equal($slider.step, 4);
+      done();
+    }, 1);
   });
 
   QUnit.test('change step to 2 and then perform arrow right --> the value should jump 2 places', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('step', 2);
 
@@ -64,7 +72,10 @@ QUnit.module('Step', (hooks) => {
       key: 'ArrowRight',
     }));
 
-    assert.equal($slider.value, 2);
+    window.setTimeout(() => {
+      assert.equal($slider.value, 2);
+      done();
+    }, 10);
   });
 
   QUnit.test('set step to a string value ---> it should be undefined', (assert) => {

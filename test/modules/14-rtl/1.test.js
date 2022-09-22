@@ -44,15 +44,27 @@ QUnit.module('RTL', (hooks) => {
   });
 
   QUnit.test('change rtl via attribute to true', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-45');
     $slider.setAttribute('rtl', 'true');
-    assert.equal($slider.rtl, true);
+
+    window.setTimeout(() => {
+      assert.equal($slider.rtl, true);
+      done();
+    }, 10);
   });
 
   QUnit.test('change rtl via attribute to false', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-43');
     $slider.setAttribute('rtl', 'false');
-    assert.equal($slider.rtl, false);
+
+    window.setTimeout(() => {
+      assert.equal($slider.rtl, false);
+      done();
+    }, 10);
   });
 
   // ------

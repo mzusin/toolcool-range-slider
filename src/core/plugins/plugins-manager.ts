@@ -12,7 +12,7 @@ export interface IPluginsManager {
 
   update: (data: IPluginUpdateData) => void;
 
-  onAttrChange: (attrName: string, oldValue: string, newValue: string) =>  void;
+  onAttrChange: (attrName: string, newValue: string) =>  void;
 }
 
 export const PluginsManager = (
@@ -34,12 +34,11 @@ export const PluginsManager = (
     }
   };
 
-  const onAttrChange = (_attrName: string, _oldValue: string, _newValue: string) => {
+  const onAttrChange = (_attrName: string, _newValue: string) => {
     for(const plugin of plugins){
       if(plugin.onAttrChange && typeof plugin.onAttrChange === 'function'){
         plugin.onAttrChange(
           _attrName,
-          _oldValue,
           _newValue
         );
       }

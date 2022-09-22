@@ -59,27 +59,51 @@ QUnit.module('Min & Max', (hooks) => {
   });
 
   QUnit.test('change value via attribute to 3', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('min', 3);
-    assert.strictEqual($slider.min, 3);
+
+    window.setTimeout(() => {
+      assert.strictEqual($slider.min, 3);
+      done();
+    }, 10);
   });
 
   QUnit.test('change value via attribute to 97', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('max', 97);
-    assert.strictEqual($slider.max, 97);
+
+    window.setTimeout(() => {
+      assert.strictEqual($slider.max, 97);
+      done();
+    }, 1);
   });
 
   QUnit.test('if min defined & max not defined: max will be 100', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-7');
     $slider.setAttribute('max', 100);
-    assert.strictEqual($slider.max, 100);
+
+    window.setTimeout(() => {
+      assert.strictEqual($slider.max, 100);
+      done();
+    }, 1);
   });
 
   QUnit.test('if min defined & max not defined and min > 100: max will be min + 100', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('max', 97);
-    assert.strictEqual($slider.max, 97);
+
+    window.setTimeout(() => {
+      assert.strictEqual($slider.max, 97);
+      done();
+    }, 1);
   });
 
   QUnit.test('if provided value > max ---> value = max', (assert) => {

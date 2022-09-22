@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/plugins/binding-labels-plugin/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAqD,MAAM,+BAA+B,CAAC;AAoB3G,QAAA,MAAM,mBAAmB,QAAQ,OA6HhC,CAAC;AAOF,eAAe,mBAAmB,CAAC"}
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/plugins/binding-labels-plugin/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAqD,MAAM,+BAA+B,CAAC;AAY3G,QAAA,MAAM,mBAAmB,QAAQ,OA6HhC,CAAC;AAOF,eAAe,mBAAmB,CAAC"}

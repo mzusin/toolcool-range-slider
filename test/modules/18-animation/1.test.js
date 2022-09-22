@@ -32,9 +32,15 @@ QUnit.module('Animation', (hooks) => {
   });
 
   QUnit.test('change animateOnClick via attribute to 1s', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('animate-onclick', '1s');
-    assert.equal($slider.animateOnClick, '1s');
+
+    window.setTimeout(() => {
+      assert.equal($slider.animateOnClick, '1s');
+      done();
+    }, 10);
   });
 
 });

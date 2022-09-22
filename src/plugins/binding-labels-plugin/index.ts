@@ -10,14 +10,6 @@ import { IPlugin, IPluginGetters, IPluginSetters, IPluginUpdateData } from '../.
  */
 window.tcRangeSliderPlugins = window.tcRangeSliderPlugins || [];
 
-/**
- * Optional: array of attribute names to monitor for changes
- * Read more: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements
- */
-window.tcRangeSliderObservedAttr = window.tcRangeSliderObservedAttr || [];
-window.tcRangeSliderObservedAttr.push('value-label');
-window.tcRangeSliderObservedAttr.push('value2-label');
-
 const BindingLabelsPlugin = () : IPlugin => {
 
   let requestUpdate: (() => void) | null = null;
@@ -93,7 +85,7 @@ const BindingLabelsPlugin = () : IPlugin => {
      * this will be called each time observed HTML attribute changes;
      * observed attributes are defined in window.tcRangeSliderObservedAttr array above.
      */
-    onAttrChange: (_attrName: string, _oldValue: string, _newValue: string) => {
+    onAttrChange: (_attrName: string, _newValue: string) => {
 
       switch (_attrName){
         case 'value-label': {

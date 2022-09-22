@@ -51,15 +51,27 @@ QUnit.module('Disabled / Enabled', (hooks) => {
   });
 
   QUnit.test('change disabled via attribute to true', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('disabled', 'true');
-    assert.equal($slider.disabled, true);
+
+    window.setTimeout(() => {
+      assert.equal($slider.disabled, true);
+      done();
+    }, 10);
   });
 
   QUnit.test('change disabled via attribute to false', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-36');
     $slider.setAttribute('disabled', 'false');
-    assert.equal($slider.disabled, false);
+
+    window.setTimeout(() => {
+      assert.equal($slider.disabled, false);
+      done();
+    }, 10);
   });
 
   QUnit.test('if disabled === false ---> should not have class "disabled"', (assert) => {

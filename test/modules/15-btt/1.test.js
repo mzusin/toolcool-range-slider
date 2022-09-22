@@ -45,15 +45,27 @@ QUnit.module('Bottom to Top', (hooks) => {
   });
 
   QUnit.test('change btt via attribute to true', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-53');
     $slider.setAttribute('btt', 'true');
-    assert.equal($slider.btt, true);
+
+    window.setTimeout(() => {
+      assert.equal($slider.btt, true);
+      done();
+    }, 10);
   });
 
   QUnit.test('change btt via attribute to false', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-51');
     $slider.setAttribute('btt', 'false');
-    assert.equal($slider.btt, false);
+
+    window.setTimeout(() => {
+      assert.equal($slider.btt, false);
+      done();
+    }, 10);
   });
 
   // ------

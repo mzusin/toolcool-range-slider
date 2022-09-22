@@ -27,9 +27,15 @@ QUnit.module('Value Label', (hooks) => {
   });
 
   QUnit.test('change value via attribute to .value-3', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('value-label', '.value-3');
-    assert.equal($slider.valueLabel, '.value-3');
+
+    window.setTimeout(() => {
+      assert.equal($slider.valueLabel, '.value-3');
+      done();
+    }, 10);
   });
 
   QUnit.test('provided value label is .value-1 ---> the label should contain zero', (assert) => {

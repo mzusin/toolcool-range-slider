@@ -71,15 +71,27 @@ QUnit.module('Data', (hooks) => {
   });
 
   QUnit.test('change data value via attribute to list of numbers', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('data', '10, 20, 30');
-    assert.deepEqual($slider.data, [10, 20, 30]);
+
+    window.setTimeout(() => {
+      assert.deepEqual($slider.data, [10, 20, 30]);
+      done();
+    }, 10);
   });
 
   QUnit.test('change data value via attribute to list of string', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-1');
     $slider.setAttribute('data', 'aaa, bbb');
-    assert.deepEqual($slider.data, ['aaa', 'bbb']);
+
+    window.setTimeout(() => {
+      assert.deepEqual($slider.data, ['aaa', 'bbb']);
+      done();
+    }, 10);
   });
 
   QUnit.test('non-english letters', (assert) => {
@@ -233,15 +245,27 @@ QUnit.module('Data', (hooks) => {
   });
 
   QUnit.test('when data="0, 1, 2, 3, 4, 5" ---> try to change max to 4 (via attribute)', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-69');
     $slider.setAttribute('max', '4');
-    assert.equal($slider.max, 4);
+
+    window.setTimeout(() => {
+      assert.equal($slider.max, 4);
+      done();
+    }, 10);
   });
 
   QUnit.test('when data="0, 1, 2, 3, 4, 5" ---> try to change min to 2 (via attribute)', (assert) => {
+    const done = assert.async();
+
     const $slider = document.querySelector('#slider-69');
     $slider.setAttribute('min', '2');
-    assert.equal($slider.min, 2);
+
+    window.setTimeout(() => {
+      assert.equal($slider.min, 2);
+      done();
+    }, 10);
   });
 
   QUnit.test('when data="0, 1, 2, 3, 4, 5" ---> change value to 3 via API', (assert) => {

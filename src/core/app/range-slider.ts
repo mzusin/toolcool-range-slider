@@ -1,6 +1,6 @@
 import mainTemplate from '../templates/main.html.js'; // esbuild custom loader
 import styles from './styles.pcss';
-import { observedAttributes, onAttributesChange, onDynamicAttributeChange } from '../domain/attributes-provider';
+import { onAttributeChange } from '../domain/attributes-provider';
 import { ISlider, ROUND_DEFAULT, Slider } from '../ui/slider';
 import { TData, TStep } from '../types';
 import { getBoolean } from '../domain/math-provider';
@@ -12,14 +12,6 @@ import { getExternalCSSList, initPointerAPIs, initPointers, removeFocus } from '
  * Documentation: https://github.com/toolcool-org/toolcool-range-slider
  */
 class RangeSlider extends HTMLElement {
-
-  /**
-   * the attributes list that are observed by web component;
-   * if attribute changes ---> the web component will update accordingly
-   */
-  static get observedAttributes() {
-    return observedAttributes;
-  }
 
   public slider: ISlider | undefined;
 
@@ -217,7 +209,7 @@ class RangeSlider extends HTMLElement {
         const attrName = mutation.attributeName;
         if(!attrName) return;
 
-        onDynamicAttributeChange(this.slider, attrName, this.getAttribute(attrName) ?? '');
+        onAttributeChange(this.slider, attrName, this.getAttribute(attrName) ?? '');
       });
     });
 
@@ -239,12 +231,6 @@ class RangeSlider extends HTMLElement {
     if(!this.slider) return
 
     this.slider.destroy();
-  }
-
-  attributeChangedCallback(attrName: string, oldValue: string, newValue: string) {
-    if(!this.slider) return;
-
-    onAttributesChange(this.slider, attrName, oldValue, newValue);
   }
 }
 
