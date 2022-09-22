@@ -9,6 +9,8 @@
     "core:watch": "node run/core.js -- watch",
     "test": "./node_modules/karma/bin/karma start ./karma.conf.cjs",
     "eslint": "eslint ./src/**",
+    "docs:build": "node src/docs/generator/index.js",
+    "docs:watch": "nodemon src/docs/generator/index.js",
     "typescript-declarations": "tsc --emitDeclarationOnly",
     "binding-labels-plugin:build": "node run/plugins/binding-labels-plugin.js",
     "binding-labels-plugin:watch": "node run/plugins/binding-labels-plugin.js -- watch",
@@ -19,9 +21,7 @@
     "themes-css-plugin:build": "node run/plugins/themes-css-plugin.js",
     "themes-css-plugin:watch": "node run/plugins/themes-css-plugin.js -- watch",
     "pointer-shapes-css-plugin:build": "node run/plugins/pointer-shapes-css-plugin.js",
-    "pointer-shapes-css-plugin:watch": "node run/plugins/pointer-shapes-css-plugin.js -- watch",
-    "docs:build": "node src/docs/generator/index.js",
-    "docs:watch": "nodemon src/docs/generator/index.js"
+    "pointer-shapes-css-plugin:watch": "node run/plugins/pointer-shapes-css-plugin.js -- watch"
   },
   "type": "module",
   "keywords": [

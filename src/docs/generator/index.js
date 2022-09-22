@@ -2,78 +2,14 @@ import path from 'path';
 import fs from 'fs';
 import fse from 'fs-extra';
 import MarkdownIt from 'markdown-it'; // https://github.com/markdown-it/markdown-it
-import esbuild from 'esbuild';
-import postcss from 'postcss';
-import cssnano from 'cssnano';
-import tailwindcss from 'tailwindcss';
-import autoprefixer from 'autoprefixer';
+import { compileClientSideCSS } from './css-provider.js';
+import { compileClientSideScripts } from './js-provider.js';
 
 const md = new MarkdownIt();
 
 const changeExtension = (filePath, newExtension) => {
   const basename = path.basename(filePath, path.extname(filePath));
   return path.join(path.dirname(filePath), basename + newExtension);
-};
-
-const compileClientSideScripts = () => {
-  esbuild
-    .build({
-      entryPoints: ['./src/docs/client-side/js/index.tsx'],
-      bundle: true,
-      sourcemap: 'linked', // external
-      minify: true,
-      target: ['es6'],
-      outfile: './docs/js/index.js',
-      loader: {
-        '.png': 'text',
-        '.svg': 'dataurl',
-      },
-      banner: {
-        js: `/* 
-Tool Cool Range Slider Documentation
-Author: Tool Cool, toolcool.org@gmail.com>                          
-*/`,
-      },
-    })
-    .then(result => {
-      console.log('Done.');
-    })
-    .catch(() => process.exit(1));
-};
-
-const compileClientSideCSS = async () => {
-  // defined postcss handler
-  const postcssHandler = postcss([
-    // postcssImport({}),
-    tailwindcss({
-
-      // purge --------
-      content: [
-        './docs/**/*.html',
-      ],
-      theme: {
-
-        // https://tailwindcss.com/docs/font-family
-        fontFamily: {
-          roboto: '"Roboto",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
-        },
-      },
-      variants: {
-        extend: {},
-      },
-    }),
-    cssnano({ preset: 'default' }),
-    autoprefixer,
-  ]);
-
-  const cssSourcePath = path.join(process.cwd(), './src/docs/client-side/css/index.css');
-  const css = fs.readFileSync(cssSourcePath, 'utf-8');
-  const cssRes = await postcssHandler.process(css, {
-    from: cssSourcePath
-  });
-
-  const cssTargetPath = path.join(process.cwd(), './docs/css/styles.css');
-  fs.writeFileSync(cssTargetPath, cssRes.css, 'utf8');
 };
 
 /**
@@ -141,4 +77,4 @@ const init = async () => {
   await compileClientSideCSS();
 };
 
-init();
+await init();
