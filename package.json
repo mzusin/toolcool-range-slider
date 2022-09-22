@@ -19,7 +19,10 @@
     "themes-css-plugin:build": "node run/plugins/themes-css-plugin.js",
     "themes-css-plugin:watch": "node run/plugins/themes-css-plugin.js -- watch",
     "pointer-shapes-css-plugin:build": "node run/plugins/pointer-shapes-css-plugin.js",
-    "pointer-shapes-css-plugin:watch": "node run/plugins/pointer-shapes-css-plugin.js -- watch"
+    "pointer-shapes-css-plugin:watch": "node run/plugins/pointer-shapes-css-plugin.js -- watch",
+    "docs:client-side:build": "node run/docs.js",
+    "docs:client-side:watch": "node run/docs.js  -- watch",
+    "docs:generator:build": "node src/docs/generator/index.js"
   },
   "type": "module",
   "keywords": [
@@ -43,18 +46,24 @@
     "url": "https://github.com/toolcool-org/toolcool-range-slider"
   },
   "devDependencies": {
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "autoprefixer": "^10.4.7",
     "esbuild": "^0.14.49",
     "eslint": "^8.20.0",
+    "fs-extra": "^10.1.0",
     "karma": "^6.4.0",
     "karma-chrome-launcher": "^3.1.1",
     "karma-firefox-launcher": "^2.1.2",
     "karma-mocha": "^2.0.1",
     "karma-qunit": "^4.1.2",
     "karma-spec-reporter": "^0.0.34",
+    "markdown-it": "^13.0.1",
     "postcss": "^8.4.14",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "uglify-js": "^3.16.2",
     "uglifycss": "^0.0.29"
   }
