@@ -402,14 +402,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     setPositions(index, _percent);
   };
 
-  /*const addSecondPointer = () => {
-    // TODO
-  };
-
-  const removeSecondPointer = () => {
-    // TODO
-  };*/
-
   const updatePlugins = () => {
 
     if(!pluginsManager) return;
@@ -925,7 +917,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     setDisabled(getBoolean($component.getAttribute(AttributesEnum.Disabled)));
     keyboardDisabled = getBoolean($component.getAttribute(AttributesEnum.KeyboardDisabled))
 
-    // TODO: remove these properties?
     // handle 'pointer1-disabled, pointer2-disabled, etc.
     const disabledList = getAttributesByRegex($component, /^pointer([0-9]*)-disabled$/, (val: string) => {
       return getBoolean(val);
@@ -939,7 +930,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
   };
 
   const initAriaLabels = () => {
-    // TODO: remove these properties?
     // handle 'aria-label1', 'aria-label2', etc.
     const ariaLabelsList = getAttributesByRegex($component, /^aria-label([0-9]*)$/);
 

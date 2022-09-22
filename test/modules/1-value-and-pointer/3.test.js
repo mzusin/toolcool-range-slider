@@ -66,6 +66,7 @@ QUnit.module('Value-2', (hooks) => {
     assert.strictEqual($slider.value2, 30);
   });
 
+  // <toolcool-range-slider id="slider-1"></toolcool-range-slider>
   QUnit.test('change value2 via attribute to 41.5', (assert) => {
     const done = assert.async();
 

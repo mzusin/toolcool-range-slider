@@ -3,9 +3,3 @@
  */
 export const Vertical = 'vertical';
 export const Horizontal = 'horizontal';
-
-/*
-export const enum TypeEnum {
-  Vertical = 'vertical',
-  Horizontal = 'horizontal',
-}*/
