@@ -1,14 +1,16 @@
 import path from 'path';
 import fs from 'fs';
 import fse from 'fs-extra';
-// import classy from 'markdown-it-classy'; // https://github.com/andrey-p/markdown-it-classy
 import { compileClientSideCSS } from './css-provider.js';
 import { compileClientSideScripts } from './js-provider.js';
-import { configureMarkdown, initMarkDown } from "./markdown-config.js"; // https://highlightjs.org
+import { configureMarkdown, initMarkDown } from './markdown-config.js'; // https://highlightjs.org
+import emoji from 'markdown-it-emoji'; // https://github.com/markdown-it/markdown-it-emoji
+// import classy from 'markdown-it-classy'; // https://github.com/andrey-p/markdown-it-classy
 
 // markdown -------------------
 const md = initMarkDown();
 // md.use(classy);
+md.use(emoji);
 configureMarkdown(md);
 
 const changeExtension = (filePath, newExtension) => {
