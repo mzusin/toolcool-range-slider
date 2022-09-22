@@ -1,7 +1,7 @@
 import esbuild from 'esbuild';
 
 const settings = {
-  entryPoints: ['./src/docs/index.tsx'],
+  entryPoints: ['./src/docs/client-side/js/index.tsx'],
   bundle: true,
   sourcemap: 'linked', // external
   minify: true,

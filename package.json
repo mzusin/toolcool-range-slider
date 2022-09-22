@@ -20,9 +20,12 @@
     "themes-css-plugin:watch": "node run/plugins/themes-css-plugin.js -- watch",
     "pointer-shapes-css-plugin:build": "node run/plugins/pointer-shapes-css-plugin.js",
     "pointer-shapes-css-plugin:watch": "node run/plugins/pointer-shapes-css-plugin.js -- watch",
-    "docs:client-side:build": "node run/docs.js",
-    "docs:client-side:watch": "node run/docs.js  -- watch",
-    "docs:generator:build": "node src/docs/generator/index.js"
+    "docs:generator:build": "node src/docs/generator/index.js",
+    "docs:generator:watch": "nodemon src/docs/generator/index.js",
+    "docs:client-side-js:build": "node run/docs.js",
+    "docs:client-side-js:watch": "node run/docs.js  -- watch",
+    "docs:client-side-css:build": "postcss ./src/docs/client-side/css/index.css -o ./docs/css/styles.css",
+    "docs:client-side-css:watch": "postcss ./src/docs/client-side/css/index.css -o ./docs/css/styles.css -w"
   },
   "type": "module",
   "keywords": [
@@ -50,7 +53,8 @@
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
-    "autoprefixer": "^10.4.7",
+    "autoprefixer": "^10.4.12",
+    "cssnano": "^5.1.13",
     "esbuild": "^0.14.49",
     "eslint": "^8.20.0",
     "fs-extra": "^10.1.0",
@@ -61,10 +65,26 @@
     "karma-qunit": "^4.1.2",
     "karma-spec-reporter": "^0.0.34",
     "markdown-it": "^13.0.1",
-    "postcss": "^8.4.14",
+    "nodemon": "^2.0.20",
+    "postcss": "^8.4.16",
+    "postcss-cli": "^10.0.0",
+    "postcss-import": "^15.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "tailwindcss": "^3.1.8",
     "uglify-js": "^3.16.2",
     "uglifycss": "^0.0.29"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      ".git",
+      "node_modules/**/node_modules"
+    ],
+    "verbose": true,
+    "watch": [
+      "/src/docs/generator/"
+    ],
+    "ext": "js,json,html,css"
   }
 }

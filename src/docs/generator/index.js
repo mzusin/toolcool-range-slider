@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import fse from 'fs-extra';
-import MarkdownIt from 'markdown-it';
+import MarkdownIt from 'markdown-it'; // https://github.com/markdown-it/markdown-it
 
 const md = new MarkdownIt();
 

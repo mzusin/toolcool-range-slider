@@ -1,21 +1,30 @@
-<h2>Basic Usage</h2>
-<p>Download the latest <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/toolcool-range-slider.min.js">toolcool-range-slider.min.js</a> script:</p>
-<p>Add the following html to the page:</p>
-<pre><code class="language-html">&lt;toolcool-range-slider&gt;&lt;/toolcool-range-slider&gt;
+## Basic Usage
 
-&lt;script type=&quot;text/javascript&quot; src=&quot;toolcool-range-slider.min.js&quot;&gt;&lt;/script&gt;
-</code></pre>
-<p>Or alternatively:</p>
-<pre><code class="language-html">&lt;tc-range-slider&gt;&lt;/tc-range-slider&gt;
+Download the latest [toolcool-range-slider.min.js](https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/toolcool-range-slider.min.js) script:
 
-&lt;script type=&quot;text/javascript&quot; src=&quot;toolcool-range-slider.min.js&quot;&gt;&lt;/script&gt;
-</code></pre>
-<p>You can control the range slider by referencing the <code>toolcool-range-slider</code> HTML tag.</p>
-<pre><code class="language-html">&lt;toolcool-range-slider id=&quot;slider-1&quot;&gt;&lt;/toolcool-range-slider&gt;
+Add the following html to the page:
+```html
+<toolcool-range-slider></toolcool-range-slider>
 
-&lt;script type=&quot;text/javascript&quot; src=&quot;toolcool-range-slider.min.js&quot;&gt;&lt;/script&gt;
+<script type="text/javascript" src="toolcool-range-slider.min.js"></script>
+```
 
-&lt;script&gt;
+Or alternatively:
+
+```html
+<tc-range-slider></tc-range-slider>
+
+<script type="text/javascript" src="toolcool-range-slider.min.js"></script>
+```
+
+You can control the range slider by referencing the `toolcool-range-slider` HTML tag.
+
+```html
+<toolcool-range-slider id="slider-1"></toolcool-range-slider>
+
+<script type="text/javascript" src="toolcool-range-slider.min.js"></script>
+
+<script>
     // get the reference
     const $slider = document.getElementById('slider-1');
     
@@ -29,34 +38,45 @@
     console.log($slider.value);
 
     // listen to the change event
-    $slider.addEventListener('change', (evt) =&gt; {
+    $slider.addEventListener('change', (evt) => {
       const value = Math.round(evt.detail.value);
       console.log(value);
     });
-&lt;/script&gt;
-</code></pre>
-<p>The value label can also be automatically bound using the <strong>value-label</strong> attribute:</p>
-<pre><code class="language-html">&lt;toolcool-range-slider value-label=&quot;.value-1&quot;&gt;&lt;/toolcool-range-slider&gt;
+</script>
+```
 
-&lt;div class=&quot;value-1&quot;&gt;&lt;/div&gt;
+The value label can also be automatically bound using the **value-label** attribute:
 
-&lt;script type=&quot;text/javascript&quot; src=&quot;toolcool-range-slider.min.js&quot;&gt;&lt;/script&gt;
-</code></pre>
-<p>Range slider <strong>with two pointers</strong> can be created by adding the <strong>value2</strong> parameter:</p>
-<pre><code class="language-html">&lt;toolcool-range-slider min=&quot;0&quot; max=&quot;100&quot; value=&quot;30&quot; value2=&quot;60&quot;&gt;&lt;/toolcool-range-slider&gt;
-</code></pre>
-<p>It's also possible to use <strong>value1</strong> instead of value:</p>
-<pre><code class="language-html">&lt;toolcool-range-slider min=&quot;0&quot; max=&quot;100&quot; value1=&quot;30&quot; value2=&quot;60&quot;&gt;&lt;/toolcool-range-slider&gt;
-</code></pre>
-<blockquote>
-<p><strong>value1</strong> is just an alias of the <strong>value</strong> property.</p>
-</blockquote>
-<p>Two pointers range slider API example:</p>
-<pre><code class="language-html">&lt;toolcool-range-slider id=&quot;slider-1&quot; value1=&quot;10&quot; value2=&quot;50&quot;&gt;&lt;/toolcool-range-slider&gt;
+```html
+<toolcool-range-slider value-label=".value-1"></toolcool-range-slider>
 
-&lt;script type=&quot;text/javascript&quot; src=&quot;toolcool-range-slider.min.js&quot;&gt;&lt;/script&gt;
+<div class="value-1"></div>
 
-&lt;script&gt;
+<script type="text/javascript" src="toolcool-range-slider.min.js"></script>
+```
+
+Range slider **with two pointers** can be created by adding the **value2** parameter:
+
+```html
+<toolcool-range-slider min="0" max="100" value="30" value2="60"></toolcool-range-slider>
+```
+
+It's also possible to use **value1** instead of value:
+
+```html
+<toolcool-range-slider min="0" max="100" value1="30" value2="60"></toolcool-range-slider>
+```
+
+> **value1** is just an alias of the **value** property.
+
+Two pointers range slider API example:
+
+```html
+<toolcool-range-slider id="slider-1" value1="10" value2="50"></toolcool-range-slider>
+
+<script type="text/javascript" src="toolcool-range-slider.min.js"></script>
+
+<script>
     // get the reference
     const $slider = document.getElementById('slider-1');
     
@@ -73,12 +93,15 @@
     console.log($slider.value2);
 
     // listen to the change event
-    $slider.addEventListener('change', (evt) =&gt; {
+    $slider.addEventListener('change', (evt) => {
       console.log(evt.detail.value);
       console.log(evt.detail.value2);
     });
-&lt;/script&gt;
-</code></pre>
-<p>:star: <strong>It's also possible to generate min, max, and value labels automatically.</strong>  <a href="#automatically-generated-labels">Click here for more details.</a></p>
-<p>:pushpin: More examples with automatic label binding can be found <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/8-automatic-labels-binding.html">here</a>.</p>
-<p>:pushpin: Examples with js binding can be found <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/1-basic.html">here</a>.</p>
+</script>
+```
+
+:star: **It's also possible to generate min, max, and value labels automatically.**  [Click here for more details.](#automatically-generated-labels)
+
+:pushpin: More examples with automatic label binding can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/8-automatic-labels-binding.html).
+
+:pushpin: Examples with js binding can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/1-basic.html).

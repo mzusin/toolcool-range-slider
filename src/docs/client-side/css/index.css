@@ -1,0 +1,8 @@
+@import './1-main.css';
+
+/* ================= THE CSS BELOW IS AUTOMATICALLY ADDED TO THE SAFE LIST =========================
+
+@import './common.css';
+@import './top-menu.css';*/
+
+@tailwind utilities;
