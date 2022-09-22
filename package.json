@@ -20,12 +20,8 @@
     "themes-css-plugin:watch": "node run/plugins/themes-css-plugin.js -- watch",
     "pointer-shapes-css-plugin:build": "node run/plugins/pointer-shapes-css-plugin.js",
     "pointer-shapes-css-plugin:watch": "node run/plugins/pointer-shapes-css-plugin.js -- watch",
-    "docs:generator:build": "node src/docs/generator/index.js",
-    "docs:generator:watch": "nodemon src/docs/generator/index.js",
-    "docs:client-side-js:build": "node run/docs.js",
-    "docs:client-side-js:watch": "node run/docs.js  -- watch",
-    "docs:client-side-css:build": "postcss ./src/docs/client-side/css/index.css -o ./docs/css/styles.css",
-    "docs:client-side-css:watch": "postcss ./src/docs/client-side/css/index.css -o ./docs/css/styles.css -w"
+    "docs:build": "node src/docs/generator/index.js",
+    "docs:watch": "nodemon src/docs/generator/index.js"
   },
   "type": "module",
   "keywords": [
@@ -81,10 +77,10 @@
       ".git",
       "node_modules/**/node_modules"
     ],
-    "verbose": true,
+    "verbose": false,
     "watch": [
-      "/src/docs/generator/"
+      "src/docs/"
     ],
-    "ext": "js,json,html,css"
+    "ext": "js,json,html,css,md"
   }
 }
