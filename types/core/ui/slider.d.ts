@@ -29,6 +29,8 @@ export interface ISlider {
     setStep: (value: TStep) => void;
     setData: (value: TData | string | null | number) => void;
     getTextValue: (_percent: number | undefined) => undefined | string | number;
+    addPointer: (value: number | string | undefined | null) => number;
+    removePointer: () => number;
     destroy: () => void;
 }
 export declare const MIN_DEFAULT = 0;

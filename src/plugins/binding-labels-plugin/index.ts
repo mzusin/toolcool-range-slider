@@ -12,28 +12,79 @@ window.tcRangeSliderPlugins = window.tcRangeSliderPlugins || [];
 
 const BindingLabelsPlugin = () : IPlugin => {
 
+  let getters: IPluginGetters | null = null;
+  let $component: HTMLElement | null = null;
   let requestUpdate: (() => void) | null = null;
 
-  let referenceLabel1: string | null = null;
-  let referenceLabel2: string | null = null;
+  const paths: (string | undefined)[] = [];
+  const $labels: (HTMLElement | undefined)[] = [];
 
-  let $referenceLabel1: HTMLElement | null = null;
-  let $referenceLabel2: HTMLElement | null = null;
+  const updateLabel = (index: number, newPath: string) => {
+    const $newLabel = document.querySelector(newPath) as HTMLElement;
+    $labels[index]?.remove();
+    $labels[index] = $newLabel ?? undefined;
 
-  const setReferenceLabel1 = (_referenceLabel1: string | null) => {
-    referenceLabel1 = _referenceLabel1;
-    $referenceLabel1 = _referenceLabel1 ? document.querySelector(_referenceLabel1) : null;
-
-    if(requestUpdate && typeof requestUpdate === 'function'){
+    if(typeof requestUpdate === 'function'){
       requestUpdate();
     }
   };
 
-  const setReferenceLabel2 = (_referenceLabel2: string | null) => {
-    referenceLabel2 = _referenceLabel2;
-    $referenceLabel2 = _referenceLabel2 ? document.querySelector(_referenceLabel2) : null;
+  const initLabels = () => {
 
-    if(requestUpdate && typeof requestUpdate === 'function'){
+    const values = getters?.getValues() ?? [];
+    for(let i=0; i<values.length; i++){
+
+      // find labels path for the given index -------------------------
+      let labelPath = '';
+
+      if(i === 0){
+        labelPath = $component?.getAttribute(`value-label`) ?? '';
+        if(!labelPath){
+          labelPath = $component?.getAttribute(`value0-label`) ?? '';
+        }
+        if(!labelPath){
+          labelPath = $component?.getAttribute(`value1-label`) ?? '';
+        }
+      }
+      else{
+        labelPath = $component?.getAttribute(`value${ i + 1 }-label`) ?? '';
+      }
+
+      if(!labelPath){
+        $labels[i] = undefined;
+        paths[i] = undefined;
+        continue;
+      }
+
+      // create label
+      const $label = document.querySelector(labelPath) as HTMLElement;
+      if(!$label){
+        $labels[i] = undefined;
+        paths[i] = undefined;
+        continue;
+      }
+
+      $labels[i] = $label;
+      paths[i] = labelPath;
+
+      // set current value
+      $label.textContent = values[i]?.toString() ?? '';
+
+      const apiProp = `value${ i + 1 }Label`;
+      if(!Object.prototype.hasOwnProperty.call($component, apiProp)){
+        Object.defineProperty($component, apiProp, {
+          get () {
+            return paths[i];
+          },
+
+          set: (val) => {
+            updateLabel(i, val);
+          },
+        });
+      }
+    }
+
+    if(typeof requestUpdate === 'function'){
       requestUpdate();
     }
   };
@@ -49,17 +100,17 @@ const BindingLabelsPlugin = () : IPlugin => {
     /**
      * Optional: plugin initialization
      */
-    /* eslint-disable @typescript-eslint/no-unused-vars */
     init: (
       _$component,
       _requestUpdate,
       _setters: IPluginSetters,
       _getters: IPluginGetters
     ) => {
+      $component = _$component;
       requestUpdate = _requestUpdate;
+      getters = _getters;
 
-      setReferenceLabel1(_$component.getAttribute('value-label'));
-      setReferenceLabel2(_$component.getAttribute('value2-label'));
+      initLabels();
     },
 
     /**
@@ -68,15 +119,12 @@ const BindingLabelsPlugin = () : IPlugin => {
      * range slider updates pointer positions
      */
     update: (data: IPluginUpdateData) => {
-      const textValue1 = data.values[0];
-      const textValue2 = data.values[1];
+      for(let i=0; i<data.values.length; i++){
+        const $label = $labels[i];
+        if(!$label) continue;
 
-      if($referenceLabel1 && textValue1 !== undefined){
-        $referenceLabel1.textContent = textValue1.toString();
-      }
-
-      if($referenceLabel2 && textValue2 !== undefined){
-        $referenceLabel2.textContent = textValue2.toString();
+        const value = data.values[i] ?? '';
+        $label.textContent = value.toString();
       }
     },
 
@@ -87,16 +135,8 @@ const BindingLabelsPlugin = () : IPlugin => {
      */
     onAttrChange: (_attrName: string, _newValue: string) => {
 
-      switch (_attrName){
-        case 'value-label': {
-          setReferenceLabel1(_newValue);
-          break;
-        }
-
-        case 'value2-label': {
-          setReferenceLabel2(_newValue);
-          break;
-        }
+      if(/^value([0-9]*)-label$/.test(_attrName) && typeof requestUpdate === 'function'){
+        requestUpdate();
       }
     },
 
@@ -109,7 +149,7 @@ const BindingLabelsPlugin = () : IPlugin => {
      * console.log(slider1.valueLabel);
      */
     gettersAndSetters: [
-      {
+      /*{
         name: 'valueLabel',
         attributes: {
           get () {
@@ -132,7 +172,7 @@ const BindingLabelsPlugin = () : IPlugin => {
             setReferenceLabel2(_referenceLabel2);
           },
         }
-      }
+      }*/
     ],
   };
 };

@@ -41,6 +41,8 @@ declare class RangeSlider extends HTMLElement {
     get rangeDragging(): boolean | string | undefined | null;
     set rangeDragging(_rangeDragging: boolean | string | undefined | null);
     get externalCSSList(): string[] | null;
+    addPointer(value: number | string | undefined): void;
+    removePointer(): void;
     constructor();
     /**
      * when the custom element connected to DOM
