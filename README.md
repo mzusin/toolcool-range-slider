@@ -39,6 +39,8 @@ Responsive range slider library written in typescript and using web component te
 - Any number of sliders on one page.
 - Supports two (and more) pointers **overlap**, pointers **max** and **min** distance.
 - Supports range dragging.
+- The functionality of the library can be extended using plugins. 
+- The library core is 27 KB minified or 9 KB compressed (GZip).
 
 ## Table of contents
 - [Basic usage](#basic-usage)
