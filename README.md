@@ -27,7 +27,7 @@ Responsive range slider library written in typescript and using web component te
 - Simple dynamic rendering after ajax requests or delays.
 - Disabled / enabled range slider (including API).
 - Possibility to disable only one pointer.
-- Local storage and session storage support :floppy_disk:
+- Support for local storage and session storage as a separate plugin :floppy_disk:
 - Supports a list of individual values (discrete values).
 - Right to left (RTL) support :globe_with_meridians:
 - Text data support :writing_hand:
@@ -35,9 +35,9 @@ Responsive range slider library written in typescript and using web component te
 - Optional animation on panel click.
 - Works well with Bootstrap and other CSS frameworks :+1:
 - No CSS conflicts due to web components.
-- Automatically generated labels (optional).
-- Supports multiple sliders on one page.
-- Supports two pointers **overlap**, pointers **max** and **min** distance.
+- Automatically generated labels as a standalone plugin.
+- Any number of sliders on one page.
+- Supports two (and more) pointers **overlap**, pointers **max** and **min** distance.
 - Supports range dragging.
 
 ## Table of contents
