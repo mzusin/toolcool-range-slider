@@ -61,6 +61,7 @@
     "karma-qunit": "^4.1.2",
     "karma-spec-reporter": "^0.0.34",
     "markdown-it": "^13.0.1",
+    "markdown-it-classy": "^0.2.0",
     "nodemon": "^2.0.20",
     "postcss": "^8.4.16",
     "postcss-cli": "^10.0.0",

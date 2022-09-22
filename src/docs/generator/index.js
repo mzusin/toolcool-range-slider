@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import fse from 'fs-extra';
 import MarkdownIt from 'markdown-it'; // https://github.com/markdown-it/markdown-it
+import classy from 'markdown-it-classy'; // https://github.com/andrey-p/markdown-it-classy
 import { compileClientSideCSS } from './css-provider.js';
 import { compileClientSideScripts } from './js-provider.js';
 import hljs from'highlight.js'; // https://highlightjs.org
@@ -32,6 +33,22 @@ const md = new MarkdownIt({
 
     return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
   }
+});
+
+// md.use(classy);
+
+// https://github.com/markdown-it/markdown-it/blob/master/docs/examples/renderer_rules.md
+// https://markdown-it.github.io/
+const proxy = (tokens, idx, options, env, self) => self.renderToken(tokens, idx, options);
+const defaultBulletListOpenRenderer = md.renderer.rules.bullet_list_open || proxy;
+
+md.use((mdInstance) => {
+  md.renderer.rules.heading_open = function(tokens, idx, options, env, self) {
+    // Make your changes here ...
+    tokens[idx].attrJoin('class', 'text-3xl mb-4');
+    // ... then render it using the existing logic
+    return defaultBulletListOpenRenderer(tokens, idx, options, env, self)
+  };
 });
 
 const changeExtension = (filePath, newExtension) => {
