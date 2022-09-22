@@ -21,7 +21,7 @@ Author: Tool Cool, toolcool.org@gmail.com>
       },
     })
     .then(result => {
-      console.log('Done.');
+      // console.log('Done.');
     })
     .catch(() => process.exit(1));
 };

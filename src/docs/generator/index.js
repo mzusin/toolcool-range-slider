@@ -1,67 +1,19 @@
 import path from 'path';
 import fs from 'fs';
 import fse from 'fs-extra';
-import { compileClientSideCSS } from './css-provider.js';
-import { compileClientSideScripts } from './js-provider.js';
+import { compileClientSideCSS } from './client-side/css-provider.js';
+import { compileClientSideScripts } from './client-side/js-provider.js';
 import { configureMarkdown, initMarkDown } from './markdown-config.js'; // https://highlightjs.org
 import emoji from 'markdown-it-emoji'; // https://github.com/markdown-it/markdown-it-emoji
 // import classy from 'markdown-it-classy'; // https://github.com/andrey-p/markdown-it-classy
+import { renderPages } from './render/pages-provider.js';
+import { collectSideMenuData, renderSideMenu } from './render/side-menu-provider.js';
 
 // markdown -------------------
 const md = initMarkDown();
 // md.use(classy);
 md.use(emoji);
 configureMarkdown(md);
-
-const changeExtension = (filePath, newExtension) => {
-  const basename = path.basename(filePath, path.extname(filePath));
-  return path.join(path.dirname(filePath), basename + newExtension);
-};
-
-/**
- * render all pages in the given folder recursively - markdown to html
- * @param {string} sourceRootPath
- * @param {string} targetRootPath
- * @param {object} data
- */
-const render = (sourceRootPath, targetRootPath, data) => {
-
-  const items = fs.readdirSync(sourceRootPath);
-
-  // loop through all the nested files and folders
-  for (const item of items) {
-
-    if(item === '.DS_Store') continue;
-
-    // get the absolute file / folder path
-    const sourceItemPath = path.join(sourceRootPath, item);
-    const targetItemPath = path.join(targetRootPath, item);
-
-    console.log(`Working on ${ sourceItemPath }`);
-
-    const stat = fs.statSync( sourceItemPath );
-
-    // in case it's a file
-    if(stat.isFile()){
-
-      const ext = path.extname(item);
-
-      if(ext === '.md'){
-        const markdown = fs.readFileSync(sourceItemPath, 'utf8');
-        const html = md.render(markdown);
-        const result = data.layout.replace('{% page-content %}', html);
-
-        // write the output HTML to the destination
-        fs.writeFileSync(changeExtension(targetItemPath, '.html'), result, 'utf8');
-      }
-    }
-
-    // in case it's a folder - > render recursively
-    else{
-      render(sourceItemPath, targetItemPath, data);
-    }
-  }
-};
 
 const init = async () => {
   const sourceRootPath = path.join(process.cwd(), './src/docs/data/pages');
@@ -74,10 +26,16 @@ const init = async () => {
   const layoutPath = path.join(process.cwd(), './src/docs/data/layouts/page-layout.html');
   const layout = fs.readFileSync(layoutPath, 'utf8');
 
+  // collect side menu data
+  const sideMenuMap = new Map();
+  collectSideMenuData(sourceRootPath, null, sideMenuMap);
+  const sideMenuHTML = renderSideMenu(sideMenuMap);
+
   // render all pages in the given folder recursively - markdown to html
-  render(sourceRootPath, targetRootPath, {
+  renderPages(sourceRootPath, targetRootPath, {
     layout,
-  });
+    sideMenuHTML,
+  }, md);
 
   compileClientSideScripts();
   await compileClientSideCSS();

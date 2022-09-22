@@ -4,15 +4,25 @@
     <title>Tool Cool Range Slider Documentation</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="../highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
     <div class="container mx-auto">
-      <div class="p-4">
-        {% page-content %}
+      <div class="flex">
+
+        <div style="width: 300px" class="bg-gray-100">
+          <div class="p-4">
+            {% side-menu %}
+          </div>
+        </div>
+
+        <div class="p-4">
+          {% page-content %}
+        </div>
+
       </div>
     </div>
-    <script src="../js/index.js"></script>
+    <script src="/js/index.js"></script>
   </body>
 </html>
