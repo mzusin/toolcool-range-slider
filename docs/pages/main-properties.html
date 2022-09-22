@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Tool Cool Range Slider Documentation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="container mx-auto">
+      <div class="flex">
+
+        <div style="width: 300px" class="bg-gray-100">
+          <div class="p-4 flex flex-col">
+            <div class="text-xl mb-4">Main</div><a href="/pages/basic-usage" title="" class="mb-2 text-blue-500 underline">Basic Usage</a><a href="/pages/cdn" title="" class="mb-2 text-blue-500 underline">Cdn</a><a href="/pages/node-js-usage" title="" class="mb-2 text-blue-500 underline">Node Js-usage</a><a href="/pages/main-properties" title="" class="mb-2 text-blue-500 underline">Main Properties</a><a href="/pages/list-of-individual-values-and-text-data" title="" class="mb-2 text-blue-500 underline">List Of-individual-values-and-text-data</a><a href="/pages/width-height-and-border-radius" title="" class="mb-2 text-blue-500 underline">Width Height-and-border-radius</a><a href="/pages/automatically-generated-labels" title="" class="mb-2 text-blue-500 underline">Automatically Generated-labels</a><a href="/pages/themes" title="" class="mb-2 text-blue-500 underline">Themes</a><a href="/pages/css-links" title="" class="mb-2 text-blue-500 underline">Css Links</a><a href="/pages/images-and-svgs-as-pointers" title="" class="mb-2 text-blue-500 underline">Images And-svgs-as-pointers</a><a href="/pages/colors" title="" class="mb-2 text-blue-500 underline">Colors</a><a href="/pages/vertical-slider" title="" class="mb-2 text-blue-500 underline">Vertical Slider</a><a href="/pages/pointer-shapes" title="" class="mb-2 text-blue-500 underline">Pointer Shapes</a><a href="/pages/touch-and-keyboard-support" title="" class="mb-2 text-blue-500 underline">Touch And-keyboard-support</a><a href="/pages/events" title="" class="mb-2 text-blue-500 underline">Events</a><a href="/pages/disabled" title="" class="mb-2 text-blue-500 underline">Disabled</a><a href="/pages/storage" title="" class="mb-2 text-blue-500 underline">Storage</a><a href="/pages/right-to-left-support" title="" class="mb-2 text-blue-500 underline">Right To-left-support</a><a href="/pages/accessibility" title="" class="mb-2 text-blue-500 underline">Accessibility</a><a href="/pages/non-linear-step" title="" class="mb-2 text-blue-500 underline">Non Linear-step</a><a href="/pages/pointers-overlap" title="" class="mb-2 text-blue-500 underline">Pointers Overlap</a><a href="/pages/pointers-max-and-min-distance" title="" class="mb-2 text-blue-500 underline">Pointers Max-and-min-distance</a><a href="/pages/animation" title="" class="mb-2 text-blue-500 underline">Animation</a><a href="/pages/range-dragging" title="" class="mb-2 text-blue-500 underline">Range Dragging</a><a href="/pages/soft-limits" title="" class="mb-2 text-blue-500 underline">Soft Limits</a><a href="/pages/generating-slider-dynamically" title="" class="mb-2 text-blue-500 underline">Generating Slider-dynamically</a><a href="/pages/typescript" title="" class="mb-2 text-blue-500 underline">Typescript</a>
+          </div>
+        </div>
+
+        <div class="p-4">
+          <h2 class="text-3xl mb-8">Main Properties</h2>
+<p class="mb-4">Range slider has the following main properties: <strong>min</strong>, <strong>max</strong>, <strong>value</strong>, <strong>value1</strong>, <strong>value2</strong>, and <strong>step</strong>. All properties are optional, including <strong>step</strong>. Usage examples:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;50&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;-100&quot;</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;50&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;50&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;200&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;150&quot;</span> <span class="hljs-attr">step</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;20&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;-200&quot;</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;200&quot;</span> <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;-50&quot;</span> <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;100&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span></code></pre>
+<p class="mb-4">The properties have the following default values:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>min</td>
+<td>0</td>
+<td>The minimum value.</td>
+</tr>
+<tr>
+<td>max</td>
+<td>100</td>
+<td>The maximum value.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>0</td>
+<td>Current slider value.</td>
+</tr>
+<tr>
+<td>value1</td>
+<td>0</td>
+<td>Alias for the value property (used in a slider with two pointers).</td>
+</tr>
+<tr>
+<td>value2</td>
+<td>undefined</td>
+<td>Second pointer value.</td>
+</tr>
+<tr>
+<td>step</td>
+<td>undefined</td>
+<td>Slide step.</td>
+</tr>
+<tr>
+<td>round</td>
+<td>2</td>
+<td>The maximum number of decimal places.</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-4">📌 If no value is specified, it will be equal to the minimum value.</p>
+<p class="mb-4">📌 To create a 2 pointer range slider, specify value1 and value2.</p>
+<p class="mb-4">Each property can also be changed programmatically:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slider-1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+    <span class="hljs-comment">// get the reference</span>
+    <span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-1&#x27;</span>);
+    
+    <span class="hljs-comment">// set properties</span>
+    $slider.<span class="hljs-property">min</span> = -<span class="hljs-number">200</span>;
+    $slider.<span class="hljs-property">max</span> = <span class="hljs-number">200</span>;
+    $slider.<span class="hljs-property">value</span> = <span class="hljs-number">50</span>; <span class="hljs-comment">// or $slider.value1 = 50;</span>
+    $slider.<span class="hljs-property">value2</span> = <span class="hljs-number">150</span>;
+    $slider.<span class="hljs-property">step</span> = <span class="hljs-number">10</span>;
+    $slider.<span class="hljs-property">round</span> = <span class="hljs-number">0</span>;
+
+    <span class="hljs-comment">// or </span>
+    <span class="hljs-comment">// $slider.setAttribute(&#x27;min&#x27;, &#x27;-200&#x27;);</span>
+    <span class="hljs-comment">// ...</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+        </div>
+
+      </div>
+    </div>
+    <script src="/js/index.js"></script>
+  </body>
+</html>

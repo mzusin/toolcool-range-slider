@@ -51,8 +51,15 @@ export const renderSideMenu = (sideMenuMap) => {
   for(const section of sections){
     html += `<div class="text-xl mb-4">${ toTitleCase(removeNumberOnStart(section)) }</div>`;
 
-    const linksSet = sideMenuMap.get(section);
-    for(const link of linksSet){
+    const links = Array.from(sideMenuMap.get(section));
+    links.sort((item1, item2) => {
+      return item1.localeCompare(item2, undefined, {
+        numeric: true,
+        sensitivity: 'base'
+      });
+    });
+
+    for(const link of links){
       const codeName = removeNumberOnStart(link);
       html += `<a href="/pages/${ codeName }" title="" class="mb-2 text-blue-500 underline">${ toTitleCase(codeName) }</a>`;
     }

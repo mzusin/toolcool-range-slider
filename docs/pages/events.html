@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Tool Cool Range Slider Documentation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="container mx-auto">
+      <div class="flex">
+
+        <div style="width: 300px" class="bg-gray-100">
+          <div class="p-4 flex flex-col">
+            <div class="text-xl mb-4">Main</div><a href="/pages/basic-usage" title="" class="mb-2 text-blue-500 underline">Basic Usage</a><a href="/pages/cdn" title="" class="mb-2 text-blue-500 underline">Cdn</a><a href="/pages/node-js-usage" title="" class="mb-2 text-blue-500 underline">Node Js-usage</a><a href="/pages/main-properties" title="" class="mb-2 text-blue-500 underline">Main Properties</a><a href="/pages/list-of-individual-values-and-text-data" title="" class="mb-2 text-blue-500 underline">List Of-individual-values-and-text-data</a><a href="/pages/width-height-and-border-radius" title="" class="mb-2 text-blue-500 underline">Width Height-and-border-radius</a><a href="/pages/automatically-generated-labels" title="" class="mb-2 text-blue-500 underline">Automatically Generated-labels</a><a href="/pages/themes" title="" class="mb-2 text-blue-500 underline">Themes</a><a href="/pages/css-links" title="" class="mb-2 text-blue-500 underline">Css Links</a><a href="/pages/images-and-svgs-as-pointers" title="" class="mb-2 text-blue-500 underline">Images And-svgs-as-pointers</a><a href="/pages/colors" title="" class="mb-2 text-blue-500 underline">Colors</a><a href="/pages/vertical-slider" title="" class="mb-2 text-blue-500 underline">Vertical Slider</a><a href="/pages/pointer-shapes" title="" class="mb-2 text-blue-500 underline">Pointer Shapes</a><a href="/pages/touch-and-keyboard-support" title="" class="mb-2 text-blue-500 underline">Touch And-keyboard-support</a><a href="/pages/events" title="" class="mb-2 text-blue-500 underline">Events</a><a href="/pages/disabled" title="" class="mb-2 text-blue-500 underline">Disabled</a><a href="/pages/storage" title="" class="mb-2 text-blue-500 underline">Storage</a><a href="/pages/right-to-left-support" title="" class="mb-2 text-blue-500 underline">Right To-left-support</a><a href="/pages/accessibility" title="" class="mb-2 text-blue-500 underline">Accessibility</a><a href="/pages/non-linear-step" title="" class="mb-2 text-blue-500 underline">Non Linear-step</a><a href="/pages/pointers-overlap" title="" class="mb-2 text-blue-500 underline">Pointers Overlap</a><a href="/pages/pointers-max-and-min-distance" title="" class="mb-2 text-blue-500 underline">Pointers Max-and-min-distance</a><a href="/pages/animation" title="" class="mb-2 text-blue-500 underline">Animation</a><a href="/pages/range-dragging" title="" class="mb-2 text-blue-500 underline">Range Dragging</a><a href="/pages/soft-limits" title="" class="mb-2 text-blue-500 underline">Soft Limits</a><a href="/pages/generating-slider-dynamically" title="" class="mb-2 text-blue-500 underline">Generating Slider-dynamically</a><a href="/pages/typescript" title="" class="mb-2 text-blue-500 underline">Typescript</a>
+          </div>
+        </div>
+
+        <div class="p-4">
+          <h2 class="text-3xl mb-8">Events</h2>
+<p class="mb-4">The range slider has the following events:</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>change</td>
+<td>it is sent every time the value of the range slider changes</td>
+</tr>
+<tr>
+<td>onMouseDown</td>
+<td>the native browser mousedown event</td>
+</tr>
+<tr>
+<td>onMouseUp</td>
+<td>the native browser mouseup event</td>
+</tr>
+<tr>
+<td>onPointerClicked</td>
+<td>it is dispatched when the user clicks the range slide pointer (handler)</td>
+</tr>
+<tr>
+<td>onKeyDown</td>
+<td>the native browser keydown event  <strong>(arrow left, arrow right, arrow up, arrow down)</strong></td>
+</tr>
+</tbody>
+</table>
+<p class="mb-4">Usage examples:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto"><code><span class="hljs-keyword">const</span> $slider1 = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-1&#x27;</span>);
+
+<span class="hljs-comment">// change event ------------</span>
+$slider1.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;change&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">evt</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> value = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(evt.<span class="hljs-property">detail</span>.<span class="hljs-property">value</span>);
+    $value1.<span class="hljs-property">textContent</span> = value.<span class="hljs-title function_">toString</span>();
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Change event: <span class="hljs-subst">${ value }</span>`</span>)
+});
+
+<span class="hljs-comment">// onMouseDown event ------------</span>
+$slider1.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;onMouseDown&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">evt</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> nativeEvent = evt.<span class="hljs-property">detail</span>.<span class="hljs-property">nativeEvent</span>;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Native mousedown event:&#x27;</span>, nativeEvent)
+});
+
+<span class="hljs-comment">// onMouseUp event ------------</span>
+$slider1.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;onMouseUp&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">evt</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> nativeEvent = evt.<span class="hljs-property">detail</span>.<span class="hljs-property">nativeEvent</span>;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Native mouseup event:&#x27;</span>, nativeEvent);
+});
+
+<span class="hljs-comment">// onPointerClicked event ------------</span>
+$slider1.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;onPointerClicked&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">evt</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> $pointer = evt.<span class="hljs-property">detail</span>.<span class="hljs-property">$pointer</span>;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Pointer clicked event:&#x27;</span>, $pointer);
+});
+
+<span class="hljs-comment">// onKeyDownEvent event ------------</span>
+$slider1.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;onKeyDown&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">evt</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> nativeEvent = evt.<span class="hljs-property">detail</span>.<span class="hljs-property">nativeEvent</span>;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Native onKeyDown event:&#x27;</span>, nativeEvent);
+});</code></pre>
+<p class="mb-4">In the case of <strong>2 pointers range slider</strong>, change event has value and value2 properties:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto"><code><span class="hljs-keyword">const</span> $slider1 = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-1&#x27;</span>);
+
+<span class="hljs-comment">// change event ------------</span>
+$slider1.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;change&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">evt</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(evt.<span class="hljs-property">detail</span>.<span class="hljs-property">value</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(evt.<span class="hljs-property">detail</span>.<span class="hljs-property">value2</span>);
+});</code></pre>
+<p class="mb-4">📌 The page with these examples can be found <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/11-events.html" class="text-blue-600 underline">here</a>.</p>
+
+        </div>
+
+      </div>
+    </div>
+    <script src="/js/index.js"></script>
+  </body>
+</html>
