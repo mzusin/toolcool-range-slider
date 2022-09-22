@@ -82,5 +82,8 @@
       "src/docs/"
     ],
     "ext": "js,json,html,css,md"
+  },
+  "dependencies": {
+    "highlight.js": "^11.6.0"
   }
 }
