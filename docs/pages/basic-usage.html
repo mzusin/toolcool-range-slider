@@ -13,17 +13,15 @@
         <h2 class="text-3xl mb-8">Basic Usage</h2>
 <p class="mb-4">Download the latest <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/toolcool-range-slider.min.js" class="text-blue-600 underline">toolcool-range-slider.min.js</a> script:</p>
 <p class="mb-4">Add the following html to the page:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-</code></pre>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <p class="mb-4">Or alternatively:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-</code></pre>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <p class="mb-4">You can control the range slider by referencing the <code>toolcool-range-slider</code> HTML tag.</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slider-1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slider-1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
@@ -45,26 +43,22 @@
       <span class="hljs-keyword">const</span> value = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(evt.<span class="hljs-property">detail</span>.<span class="hljs-property">value</span>);
       <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value);
     });
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-</code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <p class="mb-4">The value label can also be automatically bound using the <strong>value-label</strong> attribute:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">value-label</span>=<span class="hljs-string">&quot;.value-1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">value-label</span>=<span class="hljs-string">&quot;.value-1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;value-1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-</code></pre>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <p class="mb-4">Range slider <strong>with two pointers</strong> can be created by adding the <strong>value2</strong> parameter:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;30&quot;</span> <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
-</code></pre>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;30&quot;</span> <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span></code></pre>
 <p class="mb-4">It’s also possible to use <strong>value1</strong> instead of value:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span> <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
-</code></pre>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span> <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span></code></pre>
 <blockquote>
 <p class="mb-4"><strong>value1</strong> is just an alias of the <strong>value</strong> property.</p>
 </blockquote>
 <p class="mb-4">Two pointers range slider API example:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slider-1&quot;</span> <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;50&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slider-1&quot;</span> <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;50&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
@@ -89,8 +83,7 @@
       <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(evt.<span class="hljs-property">detail</span>.<span class="hljs-property">value</span>);
       <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(evt.<span class="hljs-property">detail</span>.<span class="hljs-property">value2</span>);
     });
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-</code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <p class="mb-4">⭐ <strong>It’s also possible to generate min, max, and value labels automatically.</strong>  <a href="#automatically-generated-labels" class="text-blue-600 underline">Click here for more details.</a></p>
 <p class="mb-4">📌 More examples with automatic label binding can be found <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/8-automatic-labels-binding.html" class="text-blue-600 underline">here</a>.</p>
 <p class="mb-4">📌 Examples with js binding can be found <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/1-basic.html" class="text-blue-600 underline">here</a>.</p>
