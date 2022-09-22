@@ -5,7 +5,8 @@ import { ISlider, ROUND_DEFAULT, Slider } from '../ui/slider';
 import { TData, TStep } from '../types';
 import { getBoolean } from '../domain/math-provider';
 import * as TypeEnum from '../enums/type-enum';
-import { getExternalCSSList, initPointerAPIs, initPointers, removeFocus } from '../domain/common-provider';
+import { getExternalCSSList, removeFocus } from '../domain/common-provider';
+import { initPointerAPIs, initPointers } from '../domain/pointers-provider';
 
 /**
  * Usage: <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>

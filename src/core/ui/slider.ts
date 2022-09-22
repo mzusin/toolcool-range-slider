@@ -9,8 +9,9 @@ import { sendChangeEvent, sendMouseDownEvent, sendMouseUpEvent } from '../domain
 import { IStyles, Styles } from './styles';
 import * as CSSVariables from '../enums/css-vars-enum';
 import * as CssClasses from '../enums/css-classes-enum';
-import { changePointersOrder, getAttributesByRegex, removeFocus } from '../domain/common-provider';
+import { getAttributesByRegex, removeFocus } from '../domain/common-provider';
 import { IPluginsManager, PluginsManager } from '../plugins/plugins-manager';
+import { changePointersOrder } from '../domain/pointers-provider';
 
 export interface ISlider {
   readonly pointers: IPointer[];
