@@ -21,6 +21,10 @@ export const onAttributeChange = (slider: ISlider, attrName: string, newValue: s
     return;
   }
 
+  if(slider && slider.pluginsManager){
+    slider.pluginsManager.onAttrChange(attrName, newValue);
+  }
+
   // handle static properties ----------------------------------
   switch (attrName) {
 
@@ -158,7 +162,4 @@ export const onAttributeChange = (slider: ISlider, attrName: string, newValue: s
       break;
     }
   }
-
-  if(!slider || !slider.pluginsManager) return;
-  slider.pluginsManager.onAttrChange(attrName, newValue);
 };

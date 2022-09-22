@@ -66,8 +66,9 @@
         </div>
 
         <div class="row">
-            <toolcool-range-slider id="slider-3" slider-width="100%" value-label="#value-1"></toolcool-range-slider>
+            <toolcool-range-slider id="slider-3" slider-width="100%"></toolcool-range-slider>
             <div id="value-1"></div>
+            <div id="value-2"></div>
         </div>
     </div>
 
@@ -80,6 +81,10 @@
 
         const $slider2 = document.getElementById('slider-2');
         $slider2.removePointer();
+
+        const $slider3 = document.getElementById('slider-3');
+        $slider3.setAttribute('value-label', '#value-2');
+        console.log($slider3.valueLabel)
 
     </script>
 </body>

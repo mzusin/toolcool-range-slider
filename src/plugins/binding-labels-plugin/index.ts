@@ -1,4 +1,5 @@
 import { IPlugin, IPluginGetters, IPluginSetters, IPluginUpdateData } from '../../core/plugins/interfaces';
+import { getNumber } from '../../core/domain/math-provider';
 
 /**
  * Binding Labels Plugin.
@@ -19,10 +20,40 @@ const BindingLabelsPlugin = () : IPlugin => {
   const paths: (string | undefined)[] = [];
   const $labels: (HTMLElement | undefined)[] = [];
 
+  const initApiProp = (apiProp: string, index: number) => {
+    if(!Object.prototype.hasOwnProperty.call($component, apiProp)){
+      Object.defineProperty($component, apiProp, {
+        get () {
+          return paths[index];
+        },
+
+        set: (val) => {
+          updateLabel(index, val);
+        },
+      });
+    }
+  };
+
   const updateLabel = (index: number, newPath: string) => {
-    const $newLabel = document.querySelector(newPath) as HTMLElement;
+
+    const isDefined = !!$labels[index];
     $labels[index]?.remove();
+
+    const $newLabel = document.querySelector(newPath) as HTMLElement;
     $labels[index] = $newLabel ?? undefined;
+
+    paths[index] = newPath ?? undefined;
+
+    if(!isDefined){
+      if(index === 0){
+        initApiProp(`valueLabel`, index);
+        initApiProp(`value0Label`, index);
+        initApiProp(`value1Label`, index);
+      }
+      else{
+        initApiProp(`value${ index + 1 }Label`, index);
+      }
+    }
 
     if(typeof requestUpdate === 'function'){
       requestUpdate();
@@ -32,6 +63,7 @@ const BindingLabelsPlugin = () : IPlugin => {
   const initLabels = () => {
 
     const values = getters?.getValues() ?? [];
+
     for(let i=0; i<values.length; i++){
 
       // find labels path for the given index -------------------------
@@ -70,17 +102,13 @@ const BindingLabelsPlugin = () : IPlugin => {
       // set current value
       $label.textContent = values[i]?.toString() ?? '';
 
-      const apiProp = `value${ i + 1 }Label`;
-      if(!Object.prototype.hasOwnProperty.call($component, apiProp)){
-        Object.defineProperty($component, apiProp, {
-          get () {
-            return paths[i];
-          },
-
-          set: (val) => {
-            updateLabel(i, val);
-          },
-        });
+      if(i === 0){
+        initApiProp(`valueLabel`, i);
+        initApiProp(`value0Label`, i);
+        initApiProp(`value1Label`, i);
+      }
+      else{
+        initApiProp(`value${ i + 1 }Label`, i);
       }
     }
 
@@ -136,44 +164,11 @@ const BindingLabelsPlugin = () : IPlugin => {
     onAttrChange: (_attrName: string, _newValue: string) => {
 
       if(/^value([0-9]*)-label$/.test(_attrName) && typeof requestUpdate === 'function'){
-        requestUpdate();
+        const key = _attrName.replace(/\D/g, '').trim();
+        const index = (key === '' || key === '0' || key === '1') ? 0 : (getNumber(key, 0) - 1);
+        updateLabel(index, _newValue);
       }
     },
-
-    /**
-     * Optional:
-     * List of getters and setter that can be used to create slider API.
-     * For example, the code below will call the setter function:
-     * slider1.valueLabel = '.value-13';
-     * And this line will call the getter function:
-     * console.log(slider1.valueLabel);
-     */
-    gettersAndSetters: [
-      /*{
-        name: 'valueLabel',
-        attributes: {
-          get () {
-            return referenceLabel1;
-          },
-
-          set: (_referenceLabel1) => {
-            setReferenceLabel1(_referenceLabel1);
-          },
-        }
-      },
-      {
-        name: 'value2Label',
-        attributes: {
-          get () {
-            return referenceLabel2;
-          },
-
-          set: (_referenceLabel2) => {
-            setReferenceLabel2(_referenceLabel2);
-          },
-        }
-      }*/
-    ],
   };
 };
 
