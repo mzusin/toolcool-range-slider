@@ -17,7 +17,7 @@ Responsive range slider library written in typescript and using web component te
 - Accessible via ARIA-attributes :shield:
 - ES6 JavaScript + TypeScript.
 - No dependencies :unlock:
-- Predefined themes (optional) :art:
+- Predefined themes as a standalone plugin :art:
 - Images and SVG can be used as pointers.
 - Customizable with a large set of style attributes :wrench:
 - Horizontal and vertical sliders support.
