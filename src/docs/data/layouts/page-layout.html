@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css?v=1" />
   </head>
   <body class="h-screen flex flex-col">
 
@@ -18,13 +18,13 @@
     <div class="container mx-auto flex-1 overflow-hidden">
       <div class="flex h-full">
 
-        <div style="width: 300px" class="bg-gray-100 overflow-y-auto h-full">
+        <div style="width: 350px" class="bg-gray-50 overflow-y-auto h-full max-w-full">
           <div class="px-6 pb-4 flex flex-col">
             {% side-menu %}
           </div>
         </div>
 
-        <div class="p-4 overflow-y-auto h-full" style="width: calc(100% - 300px)">
+        <div class="p-4 overflow-y-auto h-full" style="width: calc(100% - 350px)">
           {% page-content %}
         </div>
 
@@ -37,6 +37,6 @@
       </div>
     </footer>
 
-    <script src="/js/index.js"></script>
+    <!--<script src="/js/index.js"></script>-->
   </body>
 </html>
