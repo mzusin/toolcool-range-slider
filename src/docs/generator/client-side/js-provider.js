@@ -1,6 +1,10 @@
 import esbuild from "esbuild";
 
-export const compileClientSideScripts = () => {
+/**
+ * compile client side javascript
+ * @param {number} jsTimeStamp
+ */
+export const compileClientSideScripts = (jsTimeStamp) => {
   esbuild
     .build({
       entryPoints: ['./src/docs/client-side/js/index.tsx'],
@@ -8,7 +12,7 @@ export const compileClientSideScripts = () => {
       sourcemap: 'linked', // external
       minify: true,
       target: ['es6'],
-      outfile: './docs/js/index.js',
+      outfile: `./docs/js/index.${ jsTimeStamp }.js`,
       loader: {
         '.png': 'text',
         '.svg': 'dataurl',

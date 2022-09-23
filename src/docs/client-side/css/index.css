@@ -19,6 +19,15 @@
     .w-800{
         width: 800px;
     }
+
+    .side-menu{
+        left: -100%;
+        transition: left 0.5s ease;
+    }
+
+    .mobile-menu-opened .side-menu{
+        left: 0;
+    }
 }
 
 @tailwind utilities;

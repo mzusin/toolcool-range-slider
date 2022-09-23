@@ -21,10 +21,12 @@ const init = async () => {
   const targetRootPath = path.join(process.cwd(), './docs/pages');
 
   const cssTimeStamp = getTimeStamp();
+  const jsTimeStamp = getTimeStamp();
 
   // empty destination folders
   fse.emptyDirSync(targetRootPath);
   fse.emptyDirSync(path.join(process.cwd(), './docs/css'));
+  fse.emptyDirSync(path.join(process.cwd(), './docs/js'));
 
   // load layout
   const layoutPath = path.join(process.cwd(), './src/docs/data/layouts/page-layout.html');
@@ -43,9 +45,10 @@ const init = async () => {
     sideMenuMap,
     pagesConfig,
     cssTimeStamp,
+    jsTimeStamp,
   }, md);
 
-  compileClientSideScripts();
+  compileClientSideScripts(jsTimeStamp);
   await compileClientSideCSS(cssTimeStamp);
 };
 

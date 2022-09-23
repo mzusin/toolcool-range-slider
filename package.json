@@ -85,7 +85,7 @@
     "watch": [
       "src/docs/"
     ],
-    "ext": "js,json,html,css,md"
+    "ext": "js,json,html,css,md,ts,tsx"
   },
   "dependencies": {
     "highlight.js": "^11.6.0"
