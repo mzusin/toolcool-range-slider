@@ -9,6 +9,7 @@ import emoji from 'markdown-it-emoji'; // https://github.com/markdown-it/markdow
 import { loadPagesConfig, renderPages } from './render/pages-provider.js';
 import { collectSideMenuData, renderSideMenu } from './render/side-menu-provider.js';
 import { getTimeStamp } from './common-provider.js';
+import { renderSpecialPages } from './render/special-pages-provider.js';
 
 // markdown -------------------
 const md = initMarkDown();
@@ -47,6 +48,20 @@ const init = async () => {
     cssTimeStamp,
     jsTimeStamp,
   }, md);
+
+  // render all pages like index.html
+  const specialPagesLayoutPath = path.join(process.cwd(), './src/docs/data/layouts/special-page-layout.html');
+  const specialPagesLayout = fs.readFileSync(specialPagesLayoutPath, 'utf8');
+
+  renderSpecialPages(
+    path.join(process.cwd(), './src/docs/data/special-pages'),
+    path.join(path.join(process.cwd(), './docs')),
+    {
+      layout: specialPagesLayout,
+      cssTimeStamp,
+      jsTimeStamp,
+    }
+  );
 
   compileClientSideScripts(jsTimeStamp);
   await compileClientSideCSS(cssTimeStamp);
