@@ -33,14 +33,14 @@
     <div class="container mx-auto flex-1 overflow-hidden">
       <div class="flex h-full">
 
-        <div style="width: 350px" class="bg-gray-50 overflow-y-auto h-full max-w-full">
+        <div class="bg-gray-50 overflow-y-auto h-full max-w-full hidden md:block md:w-350">
           <div class="px-6 pb-4 flex flex-col">
             {% side-menu %}
           </div>
         </div>
 
-        <div class="p-4 overflow-y-auto h-full" style="width: calc(100% - 350px)">
-          <div style="width: 800px" class="max-w-full mx-auto">{% page-content %}</div>
+        <div class="p-4 overflow-y-auto h-full md:w-100-350">
+          <div class="w-800 max-w-full mx-auto">{% page-content %}</div>
         </div>
 
       </div>

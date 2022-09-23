@@ -7,4 +7,18 @@
     }
 }
 
+@layer components {
+    .w-350{
+        width: 350px;
+    }
+
+    .w-100-350{
+        width: calc(100% - 350px);
+    }
+
+    .w-800{
+        width: 800px;
+    }
+}
+
 @tailwind utilities;
