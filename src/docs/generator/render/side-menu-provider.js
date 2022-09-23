@@ -34,9 +34,11 @@ export const collectSideMenuData = (sourceRootPath, parent, sideMenuMap) => {
 /**
  * render side menu html
  * @param {Map<string, Set<string>>} sideMenuMap
+ * @param {string} activeItem
  * @returns {string}
  */
-export const renderSideMenu = (sideMenuMap) => {
+export const renderSideMenu = (sideMenuMap, activeItem) => {
+
   let html = '';
 
   const sections = Array.from(sideMenuMap.keys());
@@ -61,7 +63,8 @@ export const renderSideMenu = (sideMenuMap) => {
 
     for(const link of links){
       const codeName = removeNumberOnStart(link);
-      html += `<a href="/pages/${ codeName }" title="" class="mb-2 text-blue-500 underline">${ toTitleCase(codeName) }</a>`;
+      const isActive = activeItem === codeName;
+      html += `<a href="/pages/${ codeName }" title="" class="mb-2 underline ${ isActive ? 'text-red-500' : 'text-blue-500' }">${ toTitleCase(codeName) }</a>`;
     }
   }
 

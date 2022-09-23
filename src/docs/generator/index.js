@@ -29,12 +29,11 @@ const init = async () => {
   // collect side menu data
   const sideMenuMap = new Map();
   collectSideMenuData(sourceRootPath, null, sideMenuMap);
-  const sideMenuHTML = renderSideMenu(sideMenuMap);
 
   // render all pages in the given folder recursively - markdown to html
   renderPages(sourceRootPath, targetRootPath, {
     layout,
-    sideMenuHTML,
+    sideMenuMap,
   }, md);
 
   compileClientSideScripts();

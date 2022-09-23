@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import fse from 'fs-extra';
 import { changeExtension, removeNumberOnStart } from '../common-provider.js';
+import { renderSideMenu } from './side-menu-provider.js';
 
 /**
  * render all pages in the given folder recursively - markdown to html
@@ -35,7 +36,9 @@ export const renderPages = (sourceRootPath, targetRootPath, data, md) => {
       if(ext === '.md'){
         const markdown = fs.readFileSync(sourceItemPath, 'utf8');
         const html = md.render(markdown);
-        const result = data.layout.replace('{% page-content %}', html).replace('{% side-menu %}', data.sideMenuHTML);
+        const sideMenuHTML = renderSideMenu(data.sideMenuMap, removeNumberOnStart(item).replace('.md', ''));
+
+        const result = data.layout.replace('{% page-content %}', html).replace('{% side-menu %}', sideMenuHTML);
 
         // write the output HTML to the destination
         const targetFilePath = changeExtension(targetItemPath, '.html');
