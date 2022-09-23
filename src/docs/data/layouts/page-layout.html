@@ -7,22 +7,36 @@
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
-  <body>
-    <div class="container mx-auto">
-      <div class="flex">
+  <body class="h-screen flex flex-col">
 
-        <div style="width: 300px" class="bg-gray-100 h-screen overflow-y-auto">
-          <div class="px-4 pb-4 flex flex-col">
+    <header class="py-2 px-4 border-b">
+      <div class="container mx-auto">
+        Tool Cool Range Slider Documentation
+      </div>
+    </header>
+
+    <div class="container mx-auto flex-1 overflow-hidden">
+      <div class="flex h-full">
+
+        <div style="width: 300px" class="bg-gray-100 overflow-y-auto h-full">
+          <div class="px-6 pb-4 flex flex-col">
             {% side-menu %}
           </div>
         </div>
 
-        <div class="p-4 h-screen overflow-y-auto" style="width: calc(100% - 300px)">
+        <div class="p-4 overflow-y-auto h-full" style="width: calc(100% - 300px)">
           {% page-content %}
         </div>
 
       </div>
     </div>
+
+    <footer class="py-2 px-4 border-t">
+      <div class="container mx-auto">
+        Footer
+      </div>
+    </footer>
+
     <script src="/js/index.js"></script>
   </body>
 </html>
