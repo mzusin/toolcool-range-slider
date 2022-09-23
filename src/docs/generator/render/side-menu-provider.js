@@ -83,7 +83,7 @@ export const renderSideMenu = (
       const pagesConfigValue = pagesConfig[`${ link }.md`];
       const title = pagesConfigValue ? pagesConfigValue.title : toTitleCase(codeName);
 
-      html += `<a href="/pages/${ codeName }.html" title="" class="mb-2 underline ${ isActive ? 'text-red-500' : 'text-blue-500' }">${ title }</a>`;
+      html += `<a href="/pages/${ codeName }.html" title="" class="mb-2 ${ isActive ? 'text-blue-500' : 'text-slate-500' }">${ title }</a>`;
     }
   }
 

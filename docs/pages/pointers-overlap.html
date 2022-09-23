@@ -20,41 +20,50 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1663957321803.css" />
+    <link rel="stylesheet" href="/css/styles.1663958274193.css" />
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
-    <header class="py-2 px-4 border-b">
-      <div class="container mx-auto flex items-center">
+    <header class="py-2 px-4 border-b shadow-sm">
+      <div class="container mx-auto flex items-center justify-between">
+        <div>
+          <!-- mobile menu button -->
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            class="mr-4 pointer md:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path stroke="none" d="M0 0h24v24H0z"/>
+              <path d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
 
-        <!-- mobile menu button -->
-        <button
-          id="mobile-menu-btn"
-          type="button"
-          class="mr-4 pointer md:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.5"
-            viewBox="0 0 24 24">
-            <path stroke="none" d="M0 0h24v24H0z"/>
-            <path d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
+          <a href="/" title="" class="flex items-center">
+            <svg class="mr-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.42" stroke="rgba(255, 255, 255, 1)" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><filter id="smoothness-filter1309" x="0" y="0" width="100%" height="100%"><feConvolveMatrix kernelMatrix="-1 -1 -1 -1 -7 -1 -1 -1 -1"/></filter></defs><rect x="0" y="0" width="100%" height="100%" stroke="none" stroke-width="0" fill="rgba(0, 0, 0, 1)" rx="5" ry="5"/><g transform="translate(0.00, 0.00) scale(1)" style="filter: url('#smoothness-filter1309');"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5"/></g>
+            </svg>
+            Tool Cool Range Slider Documentation
+          </a>
+        </div>
 
-        <a href="/" title="">Tool Cool Range Slider Documentation</a>
+        <div>
+          <a href="https://github.com/toolcool-org/toolcool-range-slider" class="mx-2 block text-slate-400 hover:text-slate-500"><span class="sr-only">Tool Cool Range Slider on GitHub</span><svg viewBox="0 0 16 16" class="w-5 h-5" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+        </div>
       </div>
     </header>
 
     <div class="container mx-auto flex-1 overflow-hidden">
       <div class="flex h-full">
 
-        <div class="side-menu bg-gray-50 overflow-y-auto h-full max-w-full md:w-350 absolute md:static md:left-auto" id="side-menu">
+        <div class="side-menu border-r shadow-md overflow-y-auto h-full max-w-full md:w-350 absolute md:static md:left-auto" id="side-menu">
           <div class="px-6 pb-4 flex flex-col relative">
 
             <!-- mobile menu close -->
@@ -74,7 +83,7 @@
               </svg>
             </button>
 
-            <div class="text-xl my-4">Getting Started</div><a href="/pages/basic-usage.html" title="" class="mb-2 underline text-blue-500">Basic Usage</a><a href="/pages/cdn.html" title="" class="mb-2 underline text-blue-500">CDN</a><a href="/pages/node-js-usage.html" title="" class="mb-2 underline text-blue-500">Node.js Usage</a><a href="/pages/main-properties.html" title="" class="mb-2 underline text-blue-500">Main Properties</a><a href="/pages/list-of-individual-values-and-text-data.html" title="" class="mb-2 underline text-blue-500">List of individual values and text data</a><a href="/pages/vertical-slider.html" title="" class="mb-2 underline text-blue-500">Vertical Slider</a><a href="/pages/touch-and-keyboard-support.html" title="" class="mb-2 underline text-blue-500">Touch & Keyboard Support</a><a href="/pages/events.html" title="" class="mb-2 underline text-blue-500">Events</a><a href="/pages/disabled.html" title="" class="mb-2 underline text-blue-500">Disabled</a><a href="/pages/right-to-left-support.html" title="" class="mb-2 underline text-blue-500">Right To Left Support</a><a href="/pages/accessibility.html" title="" class="mb-2 underline text-blue-500">Accessibility</a><div class="text-xl my-4">Styles</div><a href="/pages/width-height-and-border-radius.html" title="" class="mb-2 underline text-blue-500">Width, Height, and Border Radius</a><a href="/pages/themes.html" title="" class="mb-2 underline text-blue-500">Themes</a><a href="/pages/css-links.html" title="" class="mb-2 underline text-blue-500">CSS Links</a><a href="/pages/images-and-svgs-as-pointers.html" title="" class="mb-2 underline text-blue-500">Images and SVGs as pointers</a><a href="/pages/colors.html" title="" class="mb-2 underline text-blue-500">Colors</a><a href="/pages/pointer-shapes.html" title="" class="mb-2 underline text-blue-500">Pointer Shapes</a><a href="/pages/animation.html" title="" class="mb-2 underline text-blue-500">Animation</a><div class="text-xl my-4">Plugins</div><a href="/pages/automatically-generated-labels.html" title="" class="mb-2 underline text-blue-500">Automatically Generated Labels</a><a href="/pages/storage.html" title="" class="mb-2 underline text-blue-500">Storage</a><div class="text-xl my-4">Advanced</div><a href="/pages/non-linear-step.html" title="" class="mb-2 underline text-blue-500">Non Linear Step</a><a href="/pages/pointers-overlap.html" title="" class="mb-2 underline text-red-500">Pointers Overlap</a><a href="/pages/pointers-max-and-min-distance.html" title="" class="mb-2 underline text-blue-500">Pointers max and min distance</a><a href="/pages/range-dragging.html" title="" class="mb-2 underline text-blue-500">Range Dragging</a><a href="/pages/soft-limits.html" title="" class="mb-2 underline text-blue-500">Soft Limits</a><a href="/pages/generating-slider-dynamically.html" title="" class="mb-2 underline text-blue-500">Generating Slider Dynamically</a><a href="/pages/typescript.html" title="" class="mb-2 underline text-blue-500">Typescript</a>
+            <div class="text-xl my-4">Getting Started</div><a href="/pages/basic-usage.html" title="" class="mb-2 text-slate-500">Basic Usage</a><a href="/pages/cdn.html" title="" class="mb-2 text-slate-500">CDN</a><a href="/pages/node-js-usage.html" title="" class="mb-2 text-slate-500">Node.js Usage</a><a href="/pages/main-properties.html" title="" class="mb-2 text-slate-500">Main Properties</a><a href="/pages/list-of-individual-values-and-text-data.html" title="" class="mb-2 text-slate-500">List of individual values and text data</a><a href="/pages/vertical-slider.html" title="" class="mb-2 text-slate-500">Vertical Slider</a><a href="/pages/touch-and-keyboard-support.html" title="" class="mb-2 text-slate-500">Touch & Keyboard Support</a><a href="/pages/events.html" title="" class="mb-2 text-slate-500">Events</a><a href="/pages/disabled.html" title="" class="mb-2 text-slate-500">Disabled</a><a href="/pages/right-to-left-support.html" title="" class="mb-2 text-slate-500">Right To Left Support</a><a href="/pages/accessibility.html" title="" class="mb-2 text-slate-500">Accessibility</a><div class="text-xl my-4">Styles</div><a href="/pages/width-height-and-border-radius.html" title="" class="mb-2 text-slate-500">Width, Height, and Border Radius</a><a href="/pages/themes.html" title="" class="mb-2 text-slate-500">Themes</a><a href="/pages/css-links.html" title="" class="mb-2 text-slate-500">CSS Links</a><a href="/pages/images-and-svgs-as-pointers.html" title="" class="mb-2 text-slate-500">Images and SVGs as pointers</a><a href="/pages/colors.html" title="" class="mb-2 text-slate-500">Colors</a><a href="/pages/pointer-shapes.html" title="" class="mb-2 text-slate-500">Pointer Shapes</a><a href="/pages/animation.html" title="" class="mb-2 text-slate-500">Animation</a><div class="text-xl my-4">Plugins</div><a href="/pages/automatically-generated-labels.html" title="" class="mb-2 text-slate-500">Automatically Generated Labels</a><a href="/pages/storage.html" title="" class="mb-2 text-slate-500">Storage</a><div class="text-xl my-4">Advanced</div><a href="/pages/non-linear-step.html" title="" class="mb-2 text-slate-500">Non Linear Step</a><a href="/pages/pointers-overlap.html" title="" class="mb-2 text-blue-500">Pointers Overlap</a><a href="/pages/pointers-max-and-min-distance.html" title="" class="mb-2 text-slate-500">Pointers max and min distance</a><a href="/pages/range-dragging.html" title="" class="mb-2 text-slate-500">Range Dragging</a><a href="/pages/soft-limits.html" title="" class="mb-2 text-slate-500">Soft Limits</a><a href="/pages/generating-slider-dynamically.html" title="" class="mb-2 text-slate-500">Generating Slider Dynamically</a><a href="/pages/typescript.html" title="" class="mb-2 text-slate-500">Typescript</a>
           </div>
         </div>
 
@@ -97,6 +106,6 @@ $slider.<span class="hljs-property">pointersOverlap</span> = <span class="hljs-l
       </div>
     </footer>-->
 
-    <script src="/js/index.1663957321803.js"></script>
+    <script src="/js/index.1663958274193.js"></script>
   </body>
 </html>
