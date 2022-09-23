@@ -39,6 +39,7 @@ export const configureMarkdown = (md) => {
   const heading_open = md.renderer.rules.heading_open || proxy;
   const paragraph_open = md.renderer.rules.paragraph_open || proxy;
   const link_open = md.renderer.rules.link_open || proxy;
+  const strong_open = md.renderer.rules.strong_open || proxy;
   // const code_block = md.renderer.rules.code_block || proxy;
 
   md.use((mdInstance) => {
@@ -56,8 +57,14 @@ export const configureMarkdown = (md) => {
 
     // <a>
     md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
-      tokens[idx].attrJoin('class', 'text-blue-600 underline');
+      tokens[idx].attrJoin('class', 'text-blue-500');
       return link_open(tokens, idx, options, env, self)
+    };
+
+    // <b>
+    md.renderer.rules.strong_open = function(tokens, idx, options, env, self) {
+      tokens[idx].attrJoin('class', 'font-bold');
+      return strong_open(tokens, idx, options, env, self)
     };
 
     // <code> ??

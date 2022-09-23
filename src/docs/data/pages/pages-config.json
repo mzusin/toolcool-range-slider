@@ -2,8 +2,8 @@
   "1-main": {
     "title": "Getting Started"
   },
-  "2-cdn.md": {
-    "title": "CDN"
+  "2-get-set-values.md": {
+    "title": "Get / Set Values"
   },
   "3-node-js-usage.md": {
     "title": "Node.js Usage"
