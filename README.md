@@ -47,3 +47,5 @@ Responsive range slider library written in typescript and using web component te
 - Supports range dragging.
 - The functionality of the library can be extended using plugins. 
 - The library core is 27 KB minified or 9 KB compressed (GZip).
+
+[Getting Started](https://range-slider.toolcool.org/pages/basic-usage.html)
