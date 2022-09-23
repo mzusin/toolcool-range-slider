@@ -1,3 +1,5 @@
+import '../../../../dist/toolcool-range-slider.min.js';
+
 const initMobileMenu = () => {
   const $btn = document.getElementById('mobile-menu-btn');
   if(!$btn) return;
