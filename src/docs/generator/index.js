@@ -8,6 +8,7 @@ import emoji from 'markdown-it-emoji'; // https://github.com/markdown-it/markdow
 // import classy from 'markdown-it-classy'; // https://github.com/andrey-p/markdown-it-classy
 import { loadPagesConfig, renderPages } from './render/pages-provider.js';
 import { collectSideMenuData, renderSideMenu } from './render/side-menu-provider.js';
+import { getTimeStamp } from './common-provider.js';
 
 // markdown -------------------
 const md = initMarkDown();
@@ -19,8 +20,11 @@ const init = async () => {
   const sourceRootPath = path.join(process.cwd(), './src/docs/data/pages');
   const targetRootPath = path.join(process.cwd(), './docs/pages');
 
-  // empty destination folder
+  const cssTimeStamp = getTimeStamp();
+
+  // empty destination folders
   fse.emptyDirSync(targetRootPath);
+  fse.emptyDirSync(path.join(process.cwd(), './docs/css'));
 
   // load layout
   const layoutPath = path.join(process.cwd(), './src/docs/data/layouts/page-layout.html');
@@ -38,10 +42,11 @@ const init = async () => {
     layout,
     sideMenuMap,
     pagesConfig,
+    cssTimeStamp,
   }, md);
 
   compileClientSideScripts();
-  await compileClientSideCSS();
+  await compileClientSideCSS(cssTimeStamp);
 };
 
 await init();

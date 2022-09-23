@@ -20,12 +20,28 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.css?v=1" />
+    <link rel="stylesheet" href="/css/styles.{% css-hash %}.css" />
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
     <header class="py-2 px-4 border-b">
-      <div class="container mx-auto">
+      <div class="container mx-auto flex items-center">
+        <button type="button" class="mr-4 pointer md:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            viewBox="0 0 24 24">
+            <path stroke="none" d="M0 0h24v24H0z"/>
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+
         Tool Cool Range Slider Documentation
       </div>
     </header>
@@ -33,7 +49,7 @@
     <div class="container mx-auto flex-1 overflow-hidden">
       <div class="flex h-full">
 
-        <div class="bg-gray-50 overflow-y-auto h-full max-w-full hidden md:block md:w-350">
+        <div class="bg-gray-50 overflow-y-auto h-full max-w-full md:w-350 absolute left-0 md:static md:left-auto">
           <div class="px-6 pb-4 flex flex-col">
             {% side-menu %}
           </div>

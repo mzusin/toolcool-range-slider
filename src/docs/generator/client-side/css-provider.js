@@ -5,7 +5,12 @@ import autoprefixer from "autoprefixer";
 import path from "path";
 import fs from "fs";
 
-export const compileClientSideCSS = async () => {
+/**
+ * compile client side CSS
+ * @param {number} cssTimeStamp
+ * @returns {Promise<void>}
+ */
+export const compileClientSideCSS = async (cssTimeStamp) => {
   // defined postcss handler
   const postcssHandler = postcss([
     // postcssImport({}),
@@ -36,6 +41,6 @@ export const compileClientSideCSS = async () => {
     from: cssSourcePath
   });
 
-  const cssTargetPath = path.join(process.cwd(), './docs/css/styles.css');
+  const cssTargetPath = path.join(process.cwd(), `./docs/css/styles.${ cssTimeStamp }.css`);
   fs.writeFileSync(cssTargetPath, cssRes.css, 'utf8');
 };

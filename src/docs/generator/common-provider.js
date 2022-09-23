@@ -26,3 +26,7 @@ export const toTitleCase = (str) => {
     }
   );
 };
+
+export const getTimeStamp = () => {
+  return new Date().getTime();
+};
