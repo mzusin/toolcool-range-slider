@@ -4,6 +4,19 @@ import fse from 'fs-extra';
 import { changeExtension, removeNumberOnStart } from '../common-provider.js';
 import { renderSideMenu } from './side-menu-provider.js';
 
+export const loadPagesConfig = () => {
+  const configPath = path.join(process.cwd(), './src/docs/data/pages/pages-config.json');
+  const content = fs.readFileSync(configPath, 'utf8');
+  let json = null;
+
+  try{
+    json = JSON.parse(content);
+  }
+  catch (ex){}
+
+  return json;
+};
+
 /**
  * render all pages in the given folder recursively - markdown to html
  * @param {string} sourceRootPath
@@ -24,7 +37,7 @@ export const renderPages = (sourceRootPath, targetRootPath, data, md) => {
     const sourceItemPath = path.join(sourceRootPath, item);
     const targetItemPath = path.join(targetRootPath, removeNumberOnStart(item));
 
-    console.log(`Working on ${ sourceItemPath }`);
+    // console.log(`Working on ${ sourceItemPath }`);
 
     const stat = fs.statSync( sourceItemPath );
 
@@ -36,7 +49,13 @@ export const renderPages = (sourceRootPath, targetRootPath, data, md) => {
       if(ext === '.md'){
         const markdown = fs.readFileSync(sourceItemPath, 'utf8');
         const html = md.render(markdown);
-        const sideMenuHTML = renderSideMenu(data.sideMenuMap, removeNumberOnStart(item).replace('.md', ''));
+
+        // render side menu HTML - pass there the current page to mark it as active
+        const sideMenuHTML = renderSideMenu(
+          data.sideMenuMap,
+          removeNumberOnStart(item).replace('.md', ''),
+          data.pagesConfig
+        );
 
         const result = data.layout.replace('{% page-content %}', html).replace('{% side-menu %}', sideMenuHTML);
 

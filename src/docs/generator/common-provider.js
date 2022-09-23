@@ -17,7 +17,7 @@ export const removeNumberOnStart = (fileName) => {
 };
 
 export const toTitleCase = (str) => {
-  str = str.replace('-', ' ');
+  str = str.replaceAll('-', ' ');
 
   return str.replace(
     /\w\S*/g,

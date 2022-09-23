@@ -1,0 +1,26 @@
+{
+  "2-cdn.md": {
+    "title": "CDN"
+  },
+  "3-node-js-usage.md": {
+    "title": "Node.js Usage"
+  },
+  "5-list-of-individual-values-and-text-data.md": {
+    "title": "List of individual values and text data"
+  },
+  "6-width-height-and-border-radius.md": {
+    "title": "Width, Height, and Border Radius"
+  },
+  "9-css-links.md": {
+    "title": "CSS Links"
+  },
+  "10-images-and-svgs-as-pointers.md": {
+    "title": "Images and SVGs as pointers"
+  },
+  "14-touch-and-keyboard-support.md": {
+    "title": "Touch & Keyboard Support"
+  },
+  "22-pointers-max-and-min-distance.md": {
+    "title": "Pointers max and min distance"
+  }
+}

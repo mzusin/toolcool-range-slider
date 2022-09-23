@@ -6,7 +6,7 @@ import { compileClientSideScripts } from './client-side/js-provider.js';
 import { configureMarkdown, initMarkDown } from './markdown-config.js'; // https://highlightjs.org
 import emoji from 'markdown-it-emoji'; // https://github.com/markdown-it/markdown-it-emoji
 // import classy from 'markdown-it-classy'; // https://github.com/andrey-p/markdown-it-classy
-import { renderPages } from './render/pages-provider.js';
+import { loadPagesConfig, renderPages } from './render/pages-provider.js';
 import { collectSideMenuData, renderSideMenu } from './render/side-menu-provider.js';
 
 // markdown -------------------
@@ -26,6 +26,9 @@ const init = async () => {
   const layoutPath = path.join(process.cwd(), './src/docs/data/layouts/page-layout.html');
   const layout = fs.readFileSync(layoutPath, 'utf8');
 
+  // load pages config
+  const pagesConfig = loadPagesConfig();
+
   // collect side menu data
   const sideMenuMap = new Map();
   collectSideMenuData(sourceRootPath, null, sideMenuMap);
@@ -34,6 +37,7 @@ const init = async () => {
   renderPages(sourceRootPath, targetRootPath, {
     layout,
     sideMenuMap,
+    pagesConfig,
   }, md);
 
   compileClientSideScripts();
