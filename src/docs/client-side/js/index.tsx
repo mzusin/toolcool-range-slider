@@ -32,7 +32,9 @@ const init = () => {
   initMobileMenu();
 };
 
-init();
+document.addEventListener('DOMContentLoaded', () => {
+  init();
+});
 
 export {};
 

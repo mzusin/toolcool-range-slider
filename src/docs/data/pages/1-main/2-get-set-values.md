@@ -10,20 +10,20 @@ You can control the range slider by referencing the **tc-range-slider** HTML tag
 <script>
     // get the reference
     const $slider = document.getElementById('slider-1');
-    
-    // change value
-    $slider.value = 50;
-    
-    // or 
-    // $slider.setAttribute('value', '50');
-    
-    // get value
-    console.log($slider.value);
 
     // listen to the change event
     $slider.addEventListener('change', (evt) => {
       console.log(evt.detail.value);
     });
+
+    // change value
+    $slider.value = 50;
+
+    // or 
+    // $slider.setAttribute('value', '50');
+
+    // get value
+    console.log($slider.value);
 </script>
 ```
 
@@ -33,12 +33,12 @@ You can control the range slider by referencing the **tc-range-slider** HTML tag
 </div>
 <script>
     try{
-        const $slider = document.getElementById('slider-1');
+        const $slider1 = document.getElementById('slider-1');
         const $label1 = document.getElementById('label-1');
-        $slider.value = 50;
-        $slider.addEventListener('change', (evt) => {
+        $slider1.addEventListener('change', (evt) => {
             $label1.textContent = evt.detail.value;
         });
+        $slider1.value = 50;
     } catch(ex) { console.error(ex); }
 </script>
 
