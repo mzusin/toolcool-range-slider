@@ -42,6 +42,58 @@ You can control the range slider by referencing the **tc-range-slider** HTML tag
     } catch(ex) { console.error(ex); }
 </script>
 
+Two pointers range slider example: 
+
+```html
+<tc-range-slider id="slider-2" value1="30" value2="70"></tc-range-slider>
+
+<script src="toolcool-range-slider.min.js"></script>
+
+<script>
+    // get the reference
+    const $slider = document.getElementById('slider-2');
+
+    // listen to the change event
+    $slider.addEventListener('change', (evt) => {
+      console.log(evt.detail.value);
+    });
+
+    // change values
+    $slider.value1 = 40;
+    $slider.value2 = 80;
+
+    // or 
+    // $slider.setAttribute('value1', '40');
+    // $slider.setAttribute('value2', '80');
+
+    // get values
+    console.log($slider.value1, $slider.value2);
+</script>
+```
+
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider id="slider-2" value1="30" value2="70"></tc-range-slider>
+    <div class="flex">
+        <div id="label-2" class="mt-6 mr-2 text-xs justify-center leading-5 bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 w-24"></div>
+        <div id="label-3" class="mt-6 ml-2 text-xs justify-center leading-5 bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 w-24"></div>
+    </div>
+</div>
+
+<script>
+    try{
+        const $slider2 = document.getElementById('slider-2');
+        const $label2 = document.getElementById('label-2');
+        const $label3 = document.getElementById('label-3');
+        $slider2.addEventListener('change', (evt) => {
+            $label2.textContent = evt.detail.value;
+            $label3.textContent = evt.detail.value2;
+        });
+        $slider2.value1 = 40;
+        $slider2.value2 = 80;
+    } catch(ex) { console.error(ex); }
+</script>
+
+
 
 
 
