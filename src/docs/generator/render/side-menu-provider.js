@@ -58,7 +58,11 @@ export const renderSideMenu = (
   });
 
   for(const section of sections){
-    html += `<div class="text-xl mb-4">${ toTitleCase(removeNumberOnStart(section)) }</div>`;
+    // check if section title appears in pages-config.json
+    // otherwise remove dashes and apply title case
+    const sectionConfigValue = pagesConfig[`${ section }`];
+    const sectionTitle = sectionConfigValue ? sectionConfigValue.title : toTitleCase(removeNumberOnStart(section));
+    html += `<div class="text-xl my-4">${ sectionTitle }</div>`;
 
     // find all section links and sort them in alphanumeric order
     // before removing the beginning number with dash

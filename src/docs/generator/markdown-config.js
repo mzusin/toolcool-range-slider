@@ -20,7 +20,7 @@ export const initMarkDown = () => {
     highlight: (str, lang) => {
       if (lang && hljs.getLanguage(lang)) {
         try {
-          return `<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto"><code>${ hljs.highlight(str, { language: lang, ignoreIllegals: true }).value.trim() }</code></pre>`;
+          return `<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code>${ hljs.highlight(str, { language: lang, ignoreIllegals: true }).value.trim() }</code></pre>`;
         }
         catch (__) {}
       }

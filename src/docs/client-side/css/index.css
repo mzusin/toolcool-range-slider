@@ -1,32 +1,10 @@
 @tailwind base;
 @tailwind components;
 
-/*
-@layer components {
-    .box-1100{
-        width: 1100px;
-        max-width: 100%;
-    }
-
-    .box-1400{
-        width: 1400px;
-        max-width: 100%;
-    }
-
-    .w-550{
-        width: 550px;
-        max-width: 100%;
-    }
-
-    code{
-        width: 800px;
-        max-width: 98%;
+@media (prefers-reduced-motion: no-preference){
+    :root {
+        scroll-behavior: smooth;
     }
 }
-
-@layer utilities {
-
-
-}*/
 
 @tailwind utilities;

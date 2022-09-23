@@ -11,13 +11,13 @@
     <div class="container mx-auto">
       <div class="flex">
 
-        <div style="width: 300px" class="bg-gray-100">
-          <div class="p-4 flex flex-col">
+        <div style="width: 300px" class="bg-gray-100 h-screen overflow-y-auto">
+          <div class="px-4 pb-4 flex flex-col">
             {% side-menu %}
           </div>
         </div>
 
-        <div class="p-4" style="width: calc(100% - 300px)">
+        <div class="p-4 h-screen overflow-y-auto" style="width: calc(100% - 300px)">
           {% page-content %}
         </div>
 
