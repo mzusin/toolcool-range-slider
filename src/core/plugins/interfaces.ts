@@ -95,4 +95,6 @@ export interface IPlugin {
   })[];
 
   css?: string,
+
+  destroy?: () => void;
 }

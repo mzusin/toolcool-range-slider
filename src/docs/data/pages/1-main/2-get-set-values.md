@@ -75,6 +75,20 @@ Two pointers range slider example:
 </div>
 
 
+TypeScript example:
+
+```typescript
+const $slider1 = document.getElementById('slider-1') as RangeSlider;
+const $label1 = document.getElementById('label-1') as HTMLElement;
+
+$slider1.addEventListener('change', (evt: CustomEvent) => {
+  $label1.textContent = evt.detail.value;
+});
+
+$slider1.value = 50;
+```
+
+
 
 
     

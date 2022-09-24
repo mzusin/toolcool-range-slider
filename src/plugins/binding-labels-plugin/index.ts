@@ -175,6 +175,13 @@ const BindingLabelsPlugin = () : IPlugin => {
         updateLabel(index, _newValue);
       }
     },
+
+    destroy: () => {
+      for(const $label of $labels){
+        if(!$label) continue;
+        $label.remove();
+      }
+    },
   };
 };
 

@@ -13,6 +13,8 @@ export interface IPluginsManager {
   update: (data: IPluginUpdateData) => void;
 
   onAttrChange: (attrName: string, newValue: string) =>  void;
+
+  destroy: () => void;
 }
 
 export const PluginsManager = (
@@ -30,6 +32,14 @@ export const PluginsManager = (
     for(const plugin of plugins){
       if(plugin.update && typeof plugin.update === 'function'){
         plugin.update(data);
+      }
+    }
+  };
+
+  const destroy = () => {
+    for(const plugin of plugins){
+      if(plugin.destroy && typeof plugin.destroy === 'function'){
+        plugin.destroy();
       }
     }
   };
@@ -102,5 +112,6 @@ export const PluginsManager = (
     init,
     update,
     onAttrChange,
+    destroy,
   };
 };

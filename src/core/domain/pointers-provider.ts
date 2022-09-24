@@ -50,72 +50,69 @@ export const initPointerAPI = (
   pointerShapeProp: string,
   pointerDisabledProp: string
 ) => {
+
   try{
 
     // `value${ index + 1 }`: value, value0, value1, value2, etc.
-    if(!Object.prototype.hasOwnProperty.call($component, valueProp)){
-      Object.defineProperty($component, valueProp, {
-        get () {
-          if(!slider) return undefined;
+    Object.defineProperty($component, valueProp, {
+      configurable: true,
+      get () {
+        if(!slider) return undefined;
 
-          const pointer = slider.pointers[index];
-          if(!pointer) return undefined;
+        const pointer = slider.pointers[index];
+        if(!pointer) return undefined;
 
-          const val = slider.getTextValue(pointer.percent);
-          return isNumber(val) ? getNumber(val, val) : val;
-        },
+        const val = slider.getTextValue(pointer.percent);
+        return isNumber(val) ? getNumber(val, val) : val;
+      },
 
-        set: (val) => {
-          slider?.setValue(val, index);
-        },
-      });
-    }
+      set: (val) => {
+        slider?.setValue(val, index);
+      },
+    });
 
     // `ariaLabel${ index + 1 }`
-    if(!Object.prototype.hasOwnProperty.call($component, ariaLabelProp)){
-      Object.defineProperty($component, ariaLabelProp, {
-        get () {
-          return slider?.pointers[index]?.getAttr('aria-label') ?? undefined;
-        },
+    Object.defineProperty($component, ariaLabelProp, {
+      configurable: true,
+      get () {
+        return slider?.pointers[index]?.getAttr('aria-label') ?? undefined;
+      },
 
-        set: (val) => {
-          if(!slider) return;
-          slider.setAriaLabel(index, val);
-        },
-      });
-    }
+      set: (val) => {
+        if(!slider) return;
+        slider.setAriaLabel(index, val);
+      },
+    });
 
     // `pointerShape${ index + 1 }`
-    if(!Object.prototype.hasOwnProperty.call($component, pointerShapeProp)){
-      Object.defineProperty($component, pointerShapeProp, {
-        get () {
-          return slider?.styles?.pointerShapes[index] ?? null;
-        },
+    Object.defineProperty($component, pointerShapeProp, {
+      configurable: true,
+      get () {
+        return slider?.styles?.pointerShapes[index] ?? null;
+      },
 
-        set: (val) => {
-          if(!slider || !slider.styles) return;
-          slider.styles.setPointerShape(index, val);
-        },
-      });
-    }
+      set: (val) => {
+        if(!slider || !slider.styles) return;
+        slider.styles.setPointerShape(index, val);
+      },
+    });
 
     // `pointer${ index + 1 }Disabled`
-    if(!Object.prototype.hasOwnProperty.call($component, pointerDisabledProp)){
-      Object.defineProperty($component, pointerDisabledProp, {
-        get () {
-          return slider?.pointers[index].disabled ?? false;
-        },
+    Object.defineProperty($component, pointerDisabledProp, {
+      configurable: true,
+      get () {
+        return slider?.pointers[index].disabled ?? false;
+      },
 
-        set: (val) => {
-          if(!slider) return;
+      set: (val) => {
+        if(!slider) return;
 
-          const pointer = slider?.pointers[index];
-          if(!pointer) return;
+        const pointer = slider?.pointers[index];
+        if(!pointer) return;
 
-          pointer.disabled = val;
-        },
-      });
-    }
+        pointer.disabled = val;
+      },
+    });
   }
   catch (ex){
     console.error(ex);

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../src/plugins/generated-labels-plugin/index.css"],
-  "sourcesContent": [".labels-row{\n    text-align: center;\n    display: flex;\n    justify-content: center;\n}\n\n.type-vertical .labels-row{\n    flex-direction: column;\n    order: 1;\n}"],
-  "mappings": "AAAA,YACI,kBACA,aACA,uBAGJ,2BACI,sBACA",
-  "names": []
-}

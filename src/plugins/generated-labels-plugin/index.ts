@@ -11,232 +11,152 @@ import { getBoolean } from '../../core/domain/math-provider';
  */
 window.tcRangeSliderPlugins = window.tcRangeSliderPlugins || [];
 
-const VALUE_LABEL1_CODE_NAME = 'value-label';
-const VALUE_LABEL2_CODE_NAME = 'value2-label';
 const MIN_LABEL_CODE_NAME = 'min-label';
 const MAX_LABEL_CODE_NAME = 'max-label';
 
 const GeneratedLabelsPlugin = () : IPlugin => {
 
-  let getters: IPluginGetters | null = null;
   let $component: HTMLElement | null = null;
-  let $slider: HTMLElement | null = null;
+  let $slider :HTMLElement | null = null;
+  let getters: IPluginGetters | null = null;
+
+  let enabled: boolean = false;
+
   let $labelsRow: HTMLElement | null = null;
-  let generatedLabelsEnabled = false;
+  let $min: HTMLElement | null = null;
+  let $max: HTMLElement | null = null;
+  const $labels: HTMLElement[] = [];
 
-  let $genValue1Label: HTMLElement | null = null;
-  let $genValue2Label: HTMLElement | null = null;
-  let $genMinLabel: HTMLElement | null = null;
-  let $genMaxLabel: HTMLElement | null = null;
+  const createLabelsRow = () => {
+    const $box = $component?.shadowRoot?.querySelector('.range-slider-box')  as HTMLElement;
+    $labelsRow = document.createElement('div');
+    $labelsRow.classList.add('labels-row');
+    $box.prepend($labelsRow);
+  };
 
-  // ---------- HELPERS ------------------------------
-
-  const createLabel = (codeName: string) => {
+  const createLabel = (className: string) => {
     const $label = document.createElement('label');
-    $label.classList.add(codeName);
+    $label.className = className;
     $label.setAttribute('for', 'range-slider');
     return $label;
   };
 
-  const getOuterSlot = (codeName: string) => {
-    return $component?.querySelector(`[slot="${ codeName }"]`);
-  };
+  const createLabels = () => {
+    const isReversedOrder = getters?.isRightToLeft() || getters?.isBottomToTop();
 
-  const getInnerSlot = (codeName: string) => {
-    return $component?.shadowRoot?.querySelector(`slot[name="${ codeName }"]`);
-  };
+    $min = createLabel(MIN_LABEL_CODE_NAME);
+    $min.textContent = getters?.getTextMin().toString() ?? '';
 
-  const getLabelFromSlot = (codeName: string) => {
-    const $slot = getOuterSlot(codeName);
+    $max = createLabel(MAX_LABEL_CODE_NAME);
+    $max.textContent = getters?.getTextMax().toString() ?? '';
 
-    if(!$slot) return null;
-    return $slot.querySelector(`.${ codeName }`) as HTMLElement;
-  };
-
-  const setLabelsOrder = (rtlOrBtt: boolean) => {
-
-    const label1hasSlot = getOuterSlot(VALUE_LABEL1_CODE_NAME) !== null;
-    const label2hasSlot = getOuterSlot(VALUE_LABEL2_CODE_NAME) !== null;
-    const minHasSlot = getOuterSlot(MIN_LABEL_CODE_NAME) !== null;
-    const maxHasSlot = getOuterSlot(MAX_LABEL_CODE_NAME) !== null;
-
-    const $label1Slot = getInnerSlot(VALUE_LABEL1_CODE_NAME);
-    const $label2Slot = getInnerSlot(VALUE_LABEL2_CODE_NAME);
-    const $minSlot = getInnerSlot(MIN_LABEL_CODE_NAME);
-    const $maxSlot = getInnerSlot(MAX_LABEL_CODE_NAME);
-
-    if(rtlOrBtt){
-
-      if($genValue1Label && $genValue2Label && !label1hasSlot && !label2hasSlot){
-        $genValue2Label.after($genValue1Label);
-      }
-      else{
-        if($label1Slot && $label2Slot){
-          $label2Slot.after($label1Slot);
-        }
-      }
-
-      if($genMinLabel){
-        if(minHasSlot && $minSlot){
-          $slider?.after($minSlot);
-        }
-        else{
-          $slider?.after($genMinLabel);
-        }
-      }
-
-      if($genMaxLabel){
-        if(maxHasSlot && $maxSlot){
-          $slider?.before($maxSlot);
-        }
-        else{
-          $slider?.before($genMaxLabel);
-        }
-      }
+    if(!isReversedOrder){
+      $slider?.before($min);
+      $slider?.after($max);
     }
     else{
+      $slider?.after($min);
+      $slider?.before($max);
+    }
 
-      if($genMinLabel){
-        if(minHasSlot && $minSlot){
-          $slider?.before($minSlot);
-        }
-        else{
-          $slider?.before($genMinLabel);
-        }
-      }
+    const values = getters?.getValues();
+    if(!values) return;
 
-      if($genMaxLabel){
-        if(maxHasSlot && $maxSlot){
-          $slider?.after($maxSlot);
-        }
-        else{
-          $slider?.after($genMaxLabel);
-        }
-      }
+    for(let i=0; i<values.length; i++){
 
-      if($genValue1Label && $genValue2Label && !label1hasSlot && !label2hasSlot){
-        $genValue1Label.after($genValue2Label);
+      const $label = createLabel(`value${ i + 1 }-label generated-label`);
+      $label.textContent = (values[i] ?? '').toString();
+      $labels.push($label);
+
+      if(!isReversedOrder){
+        $labelsRow?.append($label);
       }
       else{
-        if($label1Slot && $label2Slot){
-          $label1Slot.after($label2Slot);
-        }
+        $labelsRow?.prepend($label);
       }
     }
   };
 
-  const createLabels = (
-    textValue1: string | number | undefined,
-    textValue2: string | number | undefined,
-    rtlOrBtt: boolean,
-    min: number | string | undefined,
-    max: number | string | undefined
-  ) => {
-
-    if(!$genValue1Label){
-      // create first generated label ---------------------
-      $genValue1Label = getLabelFromSlot(VALUE_LABEL1_CODE_NAME);
-      if(!$genValue1Label){
-        $genValue1Label = createLabel(VALUE_LABEL1_CODE_NAME);
-        $labelsRow?.append($genValue1Label);
-      }
+  const destroy = () => {
+    for(const $label of $labels){
+      if(!$label) continue;
+      $label.remove();
     }
 
-    if(!$genValue2Label){
-      // create second generated label --------------------
-      if(textValue2 !== undefined){
-        $genValue2Label = getLabelFromSlot(VALUE_LABEL2_CODE_NAME);
-        if(!$genValue2Label){
-          $genValue2Label = createLabel(VALUE_LABEL2_CODE_NAME);
-          $labelsRow?.append($genValue2Label);
-        }
-      }
-    }
-
-    if(!$genMinLabel){
-      $genMinLabel = getLabelFromSlot(MIN_LABEL_CODE_NAME);
-      if(!$genMinLabel){
-        $genMinLabel = createLabel(MIN_LABEL_CODE_NAME);
-        $slider?.after($genMinLabel);
-      }
-    }
-
-    if(!$genMaxLabel){
-      $genMaxLabel = getLabelFromSlot(MAX_LABEL_CODE_NAME);
-      if(!$genMaxLabel){
-        $genMaxLabel = createLabel(MAX_LABEL_CODE_NAME);
-        $slider?.after($genMaxLabel);
-      }
-    }
-
-    setLabelsOrder(rtlOrBtt);
-    updateValues(textValue1, textValue2, min, max);
+    $min?.remove();
+    $max?.remove();
   };
 
-  const removeGeneratedLabels = () => {
-    if($genValue1Label){
-      $genValue1Label.remove();
-      $genValue1Label = null;
-    }
+  const toggleEnabled = (_enabled: boolean) => {
+    enabled = _enabled;
 
-    if($genValue2Label){
-      $genValue2Label.remove();
-      $genValue2Label = null;
-    }
-
-    if($genMaxLabel){
-      $genMaxLabel.remove();
-      $genMaxLabel = null;
-    }
-
-    if($genMinLabel){
-      $genMinLabel.remove();
-      $genMinLabel = null;
-    }
-  };
-
-  const createOrRemove = () => {
-    if(!getters) return;
-
-    const values = getters.getValues();
-    const textValue1 = values[0];
-    const textValue2 = values[1];
-
-    if(generatedLabelsEnabled){
-      createLabels(textValue1, textValue2, getters.isRightToLeft() || getters.isBottomToTop(), getters.getTextMin(), getters.getTextMax());
+    if(!enabled){
+      destroy();
     }
     else{
-      removeGeneratedLabels();
+      createLabelsRow();
+      createLabels();
     }
   };
 
-  const setGenLabelsEnabled = (enabled: boolean) => {
-    if(enabled === generatedLabelsEnabled) return;
+  const update = (data: IPluginUpdateData) => {
+    if(!enabled || !data.values) return;
 
-    generatedLabelsEnabled = enabled;
-    createOrRemove();
-  };
+    for(let i=0; i<data.values.length; i++){
+      const value = data.values[i];
+      const $label = $labels[i];
 
-  const updateValues = (
-    textValue1: string | number | undefined,
-    textValue2: string | number | undefined,
-    min: number | string | undefined,
-    max: number | string | undefined) => {
+      if(value === undefined && !!$label){
+        // remove the label
+        $label.remove();
+        continue;
+      }
 
-    if($genValue1Label && textValue1 !== undefined){
-      $genValue1Label.textContent = textValue1.toString();
+      if(value !== undefined && !$label){
+        // create the label
+        const $label = createLabel(`value${ i + 1 }-label generated-label`);
+        $label.textContent = (value ?? '').toString();
+        $labels[i] = $label;
+
+        // add the label to the proper place
+        if(data.values.length <= 0){
+          $labelsRow?.append($label);
+        }
+        else{
+          const isReversedOrder = getters?.isRightToLeft() || getters?.isBottomToTop();
+
+          if(i === 0){
+            if(!isReversedOrder){
+              $labelsRow?.prepend($label);
+            }
+            else{
+              $labelsRow?.append($label);
+            }
+          }
+          else{
+            // get the previous label
+            const $prev = $label[i - 1];
+            if(!isReversedOrder){
+              $prev.after($label);
+            }
+            else{
+              $prev.before($label);
+            }
+          }
+        }
+        continue;
+      }
+
+      if(!$label) continue;
+      $label.textContent = (value ?? '').toString();
     }
 
-    if($genValue2Label && textValue2 !== undefined){
-      $genValue2Label.textContent = textValue2.toString();
+    if($min){
+      $min.textContent = (data.textMin ?? '').toString();
     }
 
-    if($genMinLabel){
-      $genMinLabel.textContent = min === undefined ? '' : min.toString();
-    }
-
-    if($genMaxLabel){
-      $genMaxLabel.textContent = max === undefined ? '' : max.toString();
+    if($max){
+      $max.textContent = (data.textMax ?? '').toString();
     }
   };
 
@@ -258,32 +178,11 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       _setters: IPluginSetters,
       _getters: IPluginGetters
     ) => {
-      getters = _getters;
       $component = _$component;
+      getters = _getters;
       $slider = _$component.shadowRoot?.getElementById('range-slider') as HTMLElement;
 
-      // generate labels row with slots
-      const $box = _$component.shadowRoot?.querySelector('.range-slider-box')  as HTMLElement;
-      $labelsRow = document.createElement('div');
-      $labelsRow.classList.add('labels-row');
-      $labelsRow.innerHTML = `
-        <slot name="value-label"></slot>
-        <slot name="value2-label"></slot>
-      `;
-      $box.prepend($labelsRow);
-
-      // generate min / max slots
-      const $min = document.createElement('slot');
-      $min.setAttribute('name', 'min-label');
-      $slider.before($min);
-
-      const $max = document.createElement('slot');
-      $max.setAttribute('name', 'max-label');
-      $slider.after($max);
-
-      setGenLabelsEnabled(getBoolean($component.getAttribute('generate-labels')));
-
-      createOrRemove();
+      toggleEnabled(getBoolean($component.getAttribute('generate-labels')));
     },
 
     /**
@@ -291,9 +190,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
      * this will be called each time
      * range slider updates pointer positions
      */
-    update: (data: IPluginUpdateData) => {
-      updateValues(data.values[0], data.values[1], data.textMin, data.textMax);
-    },
+    update,
 
     /**
      * Optional:
@@ -302,7 +199,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
      */
     onAttrChange: (_attrName: string, _newValue: string) => {
       if(_attrName === 'generate-labels'){
-        setGenLabelsEnabled(getBoolean(_newValue));
+        toggleEnabled(getBoolean(_newValue));
       }
     },
 
@@ -315,11 +212,11 @@ const GeneratedLabelsPlugin = () : IPlugin => {
         name: 'generateLabels',
         attributes: {
           get () {
-            return generatedLabelsEnabled ?? false;
+            return enabled ?? false;
           },
 
           set: (_enabled) => {
-            setGenLabelsEnabled(getBoolean(_enabled));
+            toggleEnabled(getBoolean(_enabled));
           },
         }
       },
@@ -331,44 +228,33 @@ const GeneratedLabelsPlugin = () : IPlugin => {
      * Bigger CSS files should be passed via css-links="file1.css;file2.css;" property.
      */
     css: `
-      .labels-row{
-          text-align: center;
-          display: flex;
-          justify-content: center;
-      }
-      
-      .type-vertical .labels-row{
-          flex-direction: column;
-          order: 1;
-      }
-      
-      .max-label,
-      .min-label,
-      ::slotted([slot="max-label"]),
-      ::slotted([slot="min-label"]){
-          margin: 0 1rem;
-          width: 2rem;
-          text-align: center;
-          white-space: nowrap;
-      }
-      
-      .value-label,
-      .value2-label,
-      ::slotted([slot="value-label"]),
-      ::slotted([slot="value2-label"]){
-          text-align: center;
-          margin: 0 0.5rem;
-          white-space: nowrap;
-      }
-
-      .type-vertical .max-label,
-      .type-vertical .min-label,
-      .type-vertical ::slotted([slot="max-label"]),
-      .type-vertical ::slotted([slot="min-label"]){
-          margin: 1rem 0;
-          width: auto;
-      }
+    .labels-row{
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .type-vertical .labels-row{
+      flex-direction: column;
+      order: 1;
+    }
+    
+    .max-label,
+    .min-label{
+      margin: 0 1rem;
+      width: 2rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+    
+    .generated-label{
+      text-align: center;
+      margin: 0 0.5rem;
+      white-space: nowrap;
+    }
     `,
+
+    destroy,
   };
 };
 

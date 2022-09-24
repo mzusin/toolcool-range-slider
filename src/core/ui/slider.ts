@@ -1089,6 +1089,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     for(const pointer of pointers){
       pointer.destroy();
     }
+
+    pluginsManager?.destroy();
   };
 
   return {

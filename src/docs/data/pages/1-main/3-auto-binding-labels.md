@@ -92,3 +92,11 @@ Label paths can also be defined via the API as follows:
     <div class="value-21 mt-6 text-xs justify-center leading-5 bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 w-24" style="min-height: 1.7rem"></div>
     <div class="value-22 mt-6 text-xs justify-center leading-5 bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 w-24"></div>
 </div> 
+
+TypeScript example:
+
+```typescript
+const $slider2 = document.getElementById('slider-2') as RangeSlider;
+
+($slider2 as IBindingLabelsPlugin).valueLabel = '.value-22';
+```

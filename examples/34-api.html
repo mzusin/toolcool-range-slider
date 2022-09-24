@@ -72,7 +72,7 @@
 
         // slider #1 ------------------
         const $slider1 = document.getElementById('slider-1');
-        //const $value1 = document.getElementById('value-1');
+        const $value1 = document.getElementById('value-1');
         $slider1.addEventListener('change', (evt) => {
             const value = Math.round(evt.detail.value);
             $value1.textContent = value.toString();

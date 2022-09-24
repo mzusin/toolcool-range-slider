@@ -109,13 +109,13 @@ QUnit.module('Generated Labels', (hooks) => {
 
   QUnit.test('generate-labels="false" ----> value label should not exist', (assert) => {
     const $slider = document.querySelector('#slider-71');
-    const $valueLabel = $slider.shadowRoot.querySelector('.value1-label');
+    const $valueLabel = $slider.shadowRoot.querySelector('.value-label');
     assert.deepEqual($valueLabel, null);
   });
 
   QUnit.test('generate-labels="true" ----> max label should exist', (assert) => {
     const $slider = document.querySelector('#slider-77');
-    const $valueLabel = $slider.shadowRoot.querySelector('.value1-label');
+    const $valueLabel = $slider.shadowRoot.querySelector('.value-label');
     assert.ok($valueLabel);
   });
 
@@ -133,7 +133,7 @@ QUnit.module('Generated Labels', (hooks) => {
 
   QUnit.test('generate-labels="true" ----> value label should have 77', (assert) => {
     const $slider = document.querySelector('#slider-80');
-    const $valueLabel = $slider.shadowRoot.querySelector('.value1-label');
+    const $valueLabel = $slider.shadowRoot.querySelector('.value-label');
     assert.deepEqual($valueLabel.textContent, '77');
   });
 
@@ -187,7 +187,7 @@ QUnit.module('Generated Labels', (hooks) => {
   QUnit.test('generate-labels="true", change value to 50 via API ----> value label should have 50', (assert) => {
     const $slider = document.querySelector('#slider-80');
     $slider.value = 50;
-    const $valueLabel = $slider.shadowRoot.querySelector('.value1-label');
+    const $valueLabel = $slider.shadowRoot.querySelector('.value-label');
     assert.deepEqual($valueLabel.textContent, '50');
   });
 
@@ -196,7 +196,7 @@ QUnit.module('Generated Labels', (hooks) => {
 
     const $slider = document.querySelector('#slider-80');
     $slider.setAttribute('value', '50');
-    const $valueLabel = $slider.shadowRoot.querySelector('.value1-label');
+    const $valueLabel = $slider.shadowRoot.querySelector('.value-label');
 
     window.setTimeout(() => {
       assert.deepEqual($valueLabel.textContent, '50');
@@ -215,8 +215,31 @@ QUnit.module('Generated Labels', (hooks) => {
       key: 'ArrowRight',
     }));
 
-    const $valueLabel = $slider.shadowRoot.querySelector('.value1-label');
+    const $valueLabel = $slider.shadowRoot.querySelector('.value-label');
     assert.deepEqual($valueLabel.textContent, '78');
   });
 
+  QUnit.test('when min slot is provided, the slot label should have text 0 px', (assert) => {
+    const $slider = document.querySelector('#slider-81');
+    const $slot = $slider.querySelector('[slot="min-label"]');
+    assert.deepEqual($slot.textContent, '0 px');
+  });
+
+  QUnit.test('when max slot is provided, the slot label should have text 100 px', (assert) => {
+    const $slider = document.querySelector('#slider-81');
+    const $slot = $slider.querySelector('[slot="max-label"]');
+    assert.deepEqual($slot.textContent, '100 px');
+  });
+
+  QUnit.test('when value slot is provided, the slot label should have text 50 px', (assert) => {
+    const $slider = document.querySelector('#slider-81');
+    const $slot = $slider.querySelector('[slot="value-label"]');
+    assert.deepEqual($slot.textContent, '50 px');
+  });
+
+  QUnit.test('2 pointers, when value slot is provided, the slot 2 label should have text 60 px', (assert) => {
+    const $slider = document.querySelector('#slider-106');
+    const $slot = $slider.querySelector('[slot="value2-label"]');
+    assert.deepEqual($slot.textContent, '60 px');
+  });
 });
