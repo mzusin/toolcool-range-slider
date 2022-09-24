@@ -1,5 +1,5 @@
 import TCRangeSlider from './app/range-slider';
-declare type RangeSlider = typeof TCRangeSlider & HTMLElement & {
+declare type RangeSlider = TCRangeSlider & HTMLElement & {
     value: string | number | undefined;
     [name: `value${number}`]: string | number | undefined;
     ariaLabel$: string | number | undefined;
@@ -11,7 +11,7 @@ declare type RangeSlider = typeof TCRangeSlider & HTMLElement & {
 };
 declare global {
     interface Window {
-        tcRangeSlider: TCRangeSlider;
+        tcRangeSlider: typeof TCRangeSlider;
     }
 }
 export default RangeSlider;

@@ -1,6 +1,6 @@
 import TCRangeSlider from './app/range-slider';
 
-type RangeSlider = typeof TCRangeSlider & HTMLElement & {
+type RangeSlider = TCRangeSlider & HTMLElement & {
   // permit any property like `value${ index + 1 }`
   value: string | number | undefined;
   [name: `value${number}`]: string | number | undefined;
@@ -20,11 +20,10 @@ type RangeSlider = typeof TCRangeSlider & HTMLElement & {
 
 declare global {
   interface Window {
-    tcRangeSlider: TCRangeSlider;
+    tcRangeSlider: typeof TCRangeSlider;
   }
 }
 
-// @ts-ignore
 window.tcRangeSlider = TCRangeSlider;
 
 // register web components
