@@ -9,7 +9,7 @@ import { sendChangeEvent, sendMouseDownEvent, sendMouseUpEvent } from '../domain
 import { IStyles, Styles } from './styles';
 import * as CSSVariables from '../enums/css-vars-enum';
 import * as CssClasses from '../enums/css-classes-enum';
-import { getAttributesByRegex, removeFocus } from '../domain/common-provider';
+import { getAttributesByRegex } from '../domain/common-provider';
 import { IPluginsManager, PluginsManager } from '../plugins/plugins-manager';
 import { changePointersOrder } from '../domain/pointers-provider';
 
@@ -234,6 +234,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     const foundIndex = getSelectedPointerIndex();
     if(foundIndex !== -1){
       setPositions(foundIndex, percent);
+      selectedPointer?.$pointer.focus();
     }
   };
 
@@ -741,7 +742,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     const percent = convertRange(min, max, 0, 100, val);
 
     setPositions(index, percent);
-    removeFocus();
   };
 
   const setStep = (_step: TStep) => {

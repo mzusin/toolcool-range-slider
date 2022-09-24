@@ -19,17 +19,6 @@ export const getAttributesByRegex = <T>($component: HTMLElement, regex: RegExp, 
   return map;
 };
 
-export const removeFocus = () => {
-  if(!document.activeElement) return;
-
-  try{
-    (document.activeElement as HTMLElement)?.blur();
-  }
-  catch(ex){
-    // no exception
-  }
-};
-
 export const getExternalCSSList = ($component: HTMLElement) => {
   if(!$component) return null;
 

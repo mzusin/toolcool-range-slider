@@ -5,10 +5,7 @@
   "2-get-set-values.md": {
     "title": "Get / Set Values"
   },
-  "3-auto-binding-labels.md": {
-    "title": "AutoBinding Labels"
-  },
-  "4-min-and-max.md": {
+  "5-min-and-max.md": {
     "title": "Range: min & max"
   },
   "3-node-js-usage.md": {

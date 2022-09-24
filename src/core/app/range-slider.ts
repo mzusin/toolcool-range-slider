@@ -5,7 +5,7 @@ import { ISlider, ROUND_DEFAULT, Slider } from '../ui/slider';
 import { TData, TStep } from '../types';
 import { getBoolean } from '../domain/math-provider';
 import * as TypeEnum from '../enums/type-enum';
-import { getExternalCSSList, removeFocus } from '../domain/common-provider';
+import { getExternalCSSList } from '../domain/common-provider';
 import { initPointerAPI, initPointerAPIs, initPointers } from '../domain/pointers-provider';
 
 /**
@@ -255,8 +255,6 @@ class RangeSlider extends HTMLElement {
     this._observer.observe(this, {
       attributes: true, //configure it to listen to attribute changes
     });
-
-    removeFocus();
   }
 
   /**

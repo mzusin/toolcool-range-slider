@@ -47,7 +47,7 @@ export const Pointer = ($component: HTMLElement, $pointer: HTMLElement, index: n
     }
 
     percent = _percent;
-    $pointer.focus();
+    // $pointer.focus();
 
     // the below code should not change the global pointer percent,
     // only its position on the panel
