@@ -1,0 +1,1 @@
+{"version":3,"file":"panel-fill.d.ts","sourceRoot":"","sources":["../../../../src/core/ui/panel-fill.ts"],"names":[],"mappings":"AAEA,MAAM,WAAW,UAAU;IACzB,cAAc,EAAE,CAAC,IAAI,EAAE,MAAM,EAAE,QAAQ,EAAE,CAAC,MAAM,GAAG,SAAS,CAAC,EAAE,EAAE,WAAW,EAAE,OAAO,EAAE,WAAW,EAAE,OAAO,KAAK,IAAI,CAAC;CACtH;AAED,eAAO,MAAM,SAAS,UAAW,WAAW,KAAI,UAiF/C,CAAC"}

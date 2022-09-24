@@ -68,7 +68,7 @@ You can display labels for multiple points in the same way:
 Label paths can also be defined via the API as follows:
 
 ```html
-<tc-range-slider class="slider-2" value-label=".value-21"></tc-range-slider>
+<tc-range-slider id="slider-2" value-label=".value-21"></tc-range-slider>
 
 <div class="value-21"></div>
 <div class="value-22"></div>

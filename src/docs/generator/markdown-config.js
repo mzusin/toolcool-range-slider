@@ -1,6 +1,24 @@
 import MarkdownIt from 'markdown-it'; // https://github.com/markdown-it/markdown-it
 import hljs from 'highlight.js';
 
+const HTML_REPLACEMENTS = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;"
+};
+
+const replaceUnsafeChar = (ch) => {
+  return HTML_REPLACEMENTS[ch];
+};
+
+const escapeHtml = (str) => {
+  if (/[&<>"]/.test(str)) {
+    return str.replace(/[&<>"]/g, replaceUnsafeChar);
+  }
+  return str;
+};
+
 export const initMarkDown = () => {
   return new MarkdownIt({
     html: true, // Enable HTML tags in source
@@ -22,10 +40,12 @@ export const initMarkDown = () => {
         try {
           return `<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code>${ hljs.highlight(str, { language: lang, ignoreIllegals: true }).value.trim() }</code></pre>`;
         }
-        catch (__) {}
+        catch (__) {
+          // ...
+        }
       }
 
-      return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+      return '<pre class="hljs"><code>' + escapeHtml(str) + '</code></pre>';
     }
   });
 };
@@ -43,7 +63,7 @@ export const configureMarkdown = (md) => {
   const blockquote_open = md.renderer.rules.blockquote_open || proxy;
   // const code_block = md.renderer.rules.code_block || proxy;
 
-  md.use((mdInstance) => {
+  md.use(() => {
     // <h1>
     md.renderer.rules.heading_open = function(tokens, idx, options, env, self) {
       tokens[idx].attrJoin('class', 'text-3xl mb-8');

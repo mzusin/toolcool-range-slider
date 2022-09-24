@@ -1,5 +1,6 @@
 import { getNumber, isNumber } from './math-provider';
 
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 interface IIndexable<T = any> { [key: string]: T }
 
 export const sendPointerClickedEvent = ($component: HTMLElement, $pointer: HTMLElement) => {

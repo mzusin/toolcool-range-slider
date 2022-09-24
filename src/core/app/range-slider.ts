@@ -190,6 +190,24 @@ class RangeSlider extends HTMLElement {
     this.slider?.removePointer();
   }
 
+  // ----------------- Dynamic Properties ----------------------
+
+  // permit any property like `value${ index + 1 }`
+  public value: string | number | undefined;
+  [name: `value${number}`]: string | number | undefined;
+
+  // permit any property like `ariaLabel${ index + 1 }`
+  public ariaLabel$: string | number | undefined;
+  [name: `ariaLabel$${number}`]: string | null | undefined;
+
+  // permit any property like `pointerShape${ index + 1 }`
+  public pointerShape$: string | number | undefined;
+  [name: `pointerShape$${number}`]: string | null;
+
+  // permit any property like `pointer${ index + 1 }Disabled`
+  public pointerDisabled$: string | number | undefined;
+  [name: `pointer$${number}Disabled`]: boolean;
+
   // ----------------------------------------------
 
   constructor() {

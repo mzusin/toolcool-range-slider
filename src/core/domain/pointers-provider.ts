@@ -52,6 +52,7 @@ export const initPointerAPI = (
 ) => {
   try{
 
+    // `value${ index + 1 }`: value, value0, value1, value2, etc.
     if(!Object.prototype.hasOwnProperty.call($component, valueProp)){
       Object.defineProperty($component, valueProp, {
         get () {
@@ -70,6 +71,7 @@ export const initPointerAPI = (
       });
     }
 
+    // `ariaLabel${ index + 1 }`
     if(!Object.prototype.hasOwnProperty.call($component, ariaLabelProp)){
       Object.defineProperty($component, ariaLabelProp, {
         get () {
@@ -83,6 +85,7 @@ export const initPointerAPI = (
       });
     }
 
+    // `pointerShape${ index + 1 }`
     if(!Object.prototype.hasOwnProperty.call($component, pointerShapeProp)){
       Object.defineProperty($component, pointerShapeProp, {
         get () {
@@ -96,6 +99,7 @@ export const initPointerAPI = (
       });
     }
 
+    // `pointer${ index + 1 }Disabled`
     if(!Object.prototype.hasOwnProperty.call($component, pointerDisabledProp)){
       Object.defineProperty($component, pointerDisabledProp, {
         get () {

@@ -12,7 +12,9 @@ export const loadPagesConfig = () => {
   try{
     json = JSON.parse(content);
   }
-  catch (ex){}
+  catch (ex){
+    // ...
+  }
 
   return json;
 };

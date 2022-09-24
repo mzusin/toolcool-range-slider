@@ -7,7 +7,7 @@ import { configureMarkdown, initMarkDown } from './markdown-config.js'; // https
 import emoji from 'markdown-it-emoji'; // https://github.com/markdown-it/markdown-it-emoji
 // import classy from 'markdown-it-classy'; // https://github.com/andrey-p/markdown-it-classy
 import { loadPagesConfig, renderPages } from './render/pages-provider.js';
-import { collectSideMenuData, renderSideMenu } from './render/side-menu-provider.js';
+import { collectSideMenuData } from './render/side-menu-provider.js';
 import { getTimeStamp } from './common-provider.js';
 import { renderSpecialPages } from './render/special-pages-provider.js';
 

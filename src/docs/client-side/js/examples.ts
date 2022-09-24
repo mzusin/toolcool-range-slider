@@ -1,4 +1,4 @@
-import RangeSlider from '../../../../types/app/range-slider';
+import RangeSlider from '../../../core';
 
 export const getSetValuesExamples = () => {
   if(!document.querySelector('[data-examples="get-set-values"]')) return;
@@ -37,7 +37,6 @@ export const autoBindingValuesExamples = () => {
   try{
     const $slider2 = document.getElementById('slider-2') as RangeSlider;
 
-    // @ts-ignore
     $slider2.valueLabel = '.value-22';
     // $slider2.setAttribute('value-label', '.value-22');
   }

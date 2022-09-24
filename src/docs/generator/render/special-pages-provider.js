@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { changeExtension, removeNumberOnStart } from '../common-provider.js';
-import { renderSideMenu } from './side-menu-provider.js';
+import { removeNumberOnStart } from '../common-provider.js';
 import fse from 'fs-extra';
 
 /**

@@ -17,3 +17,5 @@ if (!customElements.get('tc-range-slider')) {
   customElements.define('tc-range-slider', class extends RangeSlider{});
 }
 
+export default RangeSlider;
+
