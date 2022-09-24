@@ -1,5 +1,6 @@
 import { IPlugin, IPluginGetters, IPluginSetters, IPluginUpdateData } from '../../core/plugins/interfaces';
 import { getBoolean } from '../../core/domain/math-provider';
+import RangeSlider from '../../core';
 
 /**
  * Generated Labels Plugin.
@@ -25,7 +26,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
   let $labelsRow: HTMLElement | null = null;
   let $min: HTMLElement | null = null;
   let $max: HTMLElement | null = null;
-  const $labels: HTMLElement[] = [];
+  let $labels: HTMLElement[] = [];
 
   const createLabelsRow = () => {
     const $box = $component?.shadowRoot?.querySelector('.range-slider-box')  as HTMLElement;
@@ -85,6 +86,8 @@ const GeneratedLabelsPlugin = () : IPlugin => {
 
     $min?.remove();
     $max?.remove();
+
+    $labels = [];
   };
 
   const toggleEnabled = (_enabled: boolean) => {
@@ -264,3 +267,10 @@ const GeneratedLabelsPlugin = () : IPlugin => {
 window.tcRangeSliderPlugins.push(GeneratedLabelsPlugin);
 
 export default GeneratedLabelsPlugin;
+
+/**
+ * export dynamic properties
+ */
+export interface IGeneratedLabelsPlugin extends RangeSlider{
+  generateLabels: boolean;
+}
