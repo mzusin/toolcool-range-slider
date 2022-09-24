@@ -66,5 +66,6 @@ export interface IPlugin {
         attributes: PropertyDescriptor & ThisType<any>;
     })[];
     css?: string;
+    destroy?: () => void;
 }
 //# sourceMappingURL=interfaces.d.ts.map

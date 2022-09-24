@@ -1,7 +1,17 @@
-import RangeSlider from './app/range-slider';
+import TCRangeSlider from './app/range-slider';
+declare type RangeSlider = typeof TCRangeSlider & HTMLElement & {
+    value: string | number | undefined;
+    [name: `value${number}`]: string | number | undefined;
+    ariaLabel$: string | number | undefined;
+    [name: `ariaLabel$${number}`]: string | null | undefined;
+    pointerShape$: string | number | undefined;
+    [name: `pointerShape$${number}`]: string | null;
+    pointerDisabled$: string | number | undefined;
+    [name: `pointer$${number}Disabled`]: boolean;
+};
 declare global {
     interface Window {
-        tcRangeSlider: typeof RangeSlider;
+        tcRangeSlider: TCRangeSlider;
     }
 }
 export default RangeSlider;

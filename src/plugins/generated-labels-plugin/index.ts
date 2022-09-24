@@ -20,7 +20,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
   let $slider :HTMLElement | null = null;
   let getters: IPluginGetters | null = null;
 
-  let enabled: boolean = false;
+  let enabled = false;
 
   let $labelsRow: HTMLElement | null = null;
   let $min: HTMLElement | null = null;

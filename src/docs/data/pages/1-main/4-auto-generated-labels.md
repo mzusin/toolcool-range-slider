@@ -1,6 +1,6 @@
 ## Auto Generated Labels
 
-<div data-examples="auto-generated-labels"></div>   
+<div data-examples="auto-generated-labels"></div> 
 
 Range slider values can be automatically printed to HTML using **Binding Labels Plugin**.
 

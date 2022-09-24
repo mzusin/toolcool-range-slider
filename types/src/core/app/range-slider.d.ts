@@ -4,7 +4,7 @@ import { TData, TStep } from '../types';
  * Usage: <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
  * Documentation: https://github.com/toolcool-org/toolcool-range-slider
  */
-declare class RangeSlider extends HTMLElement {
+declare class TCRangeSlider extends HTMLElement {
     slider: ISlider | undefined;
     private _externalCSSList;
     private _observer;
@@ -43,14 +43,6 @@ declare class RangeSlider extends HTMLElement {
     get externalCSSList(): string[] | null;
     addPointer(value: number | string | undefined): void;
     removePointer(): void;
-    value: string | number | undefined;
-    [name: `value${number}`]: string | number | undefined;
-    ariaLabel$: string | number | undefined;
-    [name: `ariaLabel$${number}`]: string | null | undefined;
-    pointerShape$: string | number | undefined;
-    [name: `pointerShape$${number}`]: string | null;
-    pointerDisabled$: string | number | undefined;
-    [name: `pointer$${number}Disabled`]: boolean;
     constructor();
     /**
      * when the custom element connected to DOM
@@ -61,5 +53,5 @@ declare class RangeSlider extends HTMLElement {
      */
     disconnectedCallback(): void;
 }
-export default RangeSlider;
+export default TCRangeSlider;
 //# sourceMappingURL=range-slider.d.ts.map
