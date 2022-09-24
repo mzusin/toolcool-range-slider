@@ -90,6 +90,7 @@ const BindingLabelsPlugin = () : IPlugin => {
 
       // create label
       const $label = document.querySelector(labelPath) as HTMLElement;
+
       if(!$label){
         $labels[i] = undefined;
         paths[i] = undefined;
@@ -147,6 +148,7 @@ const BindingLabelsPlugin = () : IPlugin => {
      * range slider updates pointer positions
      */
     update: (data: IPluginUpdateData) => {
+
       for(let i=0; i<data.values.length; i++){
         const $label = $labels[i];
         if(!$label) continue;
