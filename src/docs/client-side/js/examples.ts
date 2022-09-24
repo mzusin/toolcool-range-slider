@@ -1,4 +1,5 @@
 import RangeSlider from '../../../core';
+import { IBindingLabelsPlugin } from '../../../plugins/binding-labels-plugin';
 
 export const getSetValuesExamples = () => {
   if(!document.querySelector('[data-examples="get-set-values"]')) return;
@@ -37,7 +38,7 @@ export const autoBindingValuesExamples = () => {
   try{
     const $slider2 = document.getElementById('slider-2') as RangeSlider;
 
-    $slider2.valueLabel = '.value-22';
+    ($slider2 as IBindingLabelsPlugin).valueLabel = '.value-22';
     // $slider2.setAttribute('value-label', '.value-22');
   }
   catch(ex) { console.error(ex); }

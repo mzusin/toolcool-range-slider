@@ -1,5 +1,6 @@
 import { IPlugin, IPluginGetters, IPluginSetters, IPluginUpdateData } from '../../core/plugins/interfaces';
 import { getNumber } from '../../core/domain/math-provider';
+import RangeSlider from '../../core';
 
 /**
  * Binding Labels Plugin.
@@ -183,3 +184,11 @@ const BindingLabelsPlugin = () : IPlugin => {
 window.tcRangeSliderPlugins.push(BindingLabelsPlugin);
 
 export default BindingLabelsPlugin;
+
+/**
+ * export dynamic properties
+ */
+export interface IBindingLabelsPlugin extends RangeSlider{
+  valueLabel: string;
+  [name: `value${number}Label`]: string;
+}
