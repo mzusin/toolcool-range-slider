@@ -20,7 +20,7 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1663998098826.css" />
+    <link rel="stylesheet" href="/css/styles.1664000215385.css" />
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
@@ -89,12 +89,14 @@
 
         <div class="p-4 overflow-y-auto h-full md:w-100-350">
           <div class="w-800 max-w-full mx-auto my-10"><h2 class="text-3xl mb-8">AutoBinding Labels</h2>
+<div data-examples="auto-binding-values"></div>
 <p class="mb-4">Range slider values can be automatically printed to HTML using <strong class="font-bold">Binding Labels Plugin</strong>.</p>
 <p class="mb-4">Download the latest <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/plugins/tcrs-binding-labels.min.js" class="text-blue-500">tcrs-binding-labels.min.js</a> script from GitHub and add it to the HTML before the <strong class="font-bold">toolcool-range-slider.min.js</strong> script.</p>
 <p class="mb-4">Use the value-label attribute to specify the path to the label. The path can point to any HTML element.</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span> <span class="hljs-attr">value-label</span>=<span class="hljs-string">&quot;#value-1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;value-1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
+<span class="hljs-comment">&lt;!-- The plugin should be included before the core library. --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;tcrs-binding-labels.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <div class="my-12 flex flex-col items-center">
@@ -140,7 +142,29 @@
 <blockquote class="bg-gray-100 pt-4 px-4 flex my-10 border-l-4 border-blue-300 rounded">
 <p class="mb-4"><strong class="font-bold">value-label</strong>, <strong class="font-bold">value0-label</strong>, and <strong class="font-bold">value1-label</strong> are aliases of each other and refer to the first value.</p>
 </blockquote>
-</div>
+<p class="mb-4">Label paths can also be defined via the API as follows:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;slider-2&quot;</span> <span class="hljs-attr">value-label</span>=<span class="hljs-string">&quot;.value-21&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;value-21&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;value-22&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;tcrs-binding-labels.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-comment">// get the reference</span>
+  <span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-2&#x27;</span>);
+  
+  <span class="hljs-comment">// change label path via API</span>
+  $slider.<span class="hljs-property">valueLabel</span> = <span class="hljs-string">&#x27;.value-22&#x27;</span>;
+  
+  <span class="hljs-comment">// or change it via attribute</span>
+  $slider.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&#x27;value-label&#x27;</span>, <span class="hljs-string">&#x27;.value-22&#x27;</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider value-label=".value-21" id="slider-2"></tc-range-slider>
+    <div class="value-21 mt-6 text-xs justify-center leading-5 bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 w-24" style="min-height: 1.7rem"></div>
+    <div class="value-22 mt-6 text-xs justify-center leading-5 bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 w-24"></div>
+</div> </div>
         </div>
 
       </div>
@@ -152,6 +176,6 @@
       </div>
     </footer>-->
 
-    <script src="/js/index.1663998098826.js"></script>
+    <script src="/js/index.1664000215385.js"></script>
   </body>
 </html>

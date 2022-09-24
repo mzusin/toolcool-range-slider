@@ -1,5 +1,7 @@
 ## Get/set values and change event
 
+<div data-examples="get-set-values"></div>
+
 You can control the range slider by referencing the **tc-range-slider** HTML tag.
 
 ```html
@@ -27,7 +29,7 @@ You can control the range slider by referencing the **tc-range-slider** HTML tag
 </script>
 ```
 
-<div class="my-12 flex flex-col items-center" data-example="get-set-values">
+<div class="my-12 flex flex-col items-center">
     <tc-range-slider id="slider-1"></tc-range-slider>
     <div id="label-1" class="mt-6 text-xs justify-center leading-5 bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 w-24"></div>
 </div>

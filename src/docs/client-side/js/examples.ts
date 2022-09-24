@@ -1,7 +1,7 @@
 import RangeSlider from '../../../../types/app/range-slider';
 
-export const getSetValuesExample = () => {
-  if(!document.querySelector('[data-example="get-set-values"]')) return;
+export const getSetValuesExamples = () => {
+  if(!document.querySelector('[data-examples="get-set-values"]')) return;
 
   try{
     const $slider1 = document.getElementById('slider-1') as RangeSlider;
@@ -27,6 +27,19 @@ export const getSetValuesExample = () => {
 
     $slider2.value1 = 40;
     $slider2.value2 = 80;
+  }
+  catch(ex) { console.error(ex); }
+};
+
+export const autoBindingValuesExamples = () => {
+  if(!document.querySelector('[data-examples="auto-binding-values"]')) return;
+
+  try{
+    const $slider2 = document.getElementById('slider-2') as RangeSlider;
+
+    // @ts-ignore
+    $slider2.valueLabel = '.value-22';
+    // $slider2.setAttribute('value-label', '.value-22');
   }
   catch(ex) { console.error(ex); }
 };

@@ -1,6 +1,6 @@
 import '../../../../dist/plugins/tcrs-binding-labels.min.js';
 import '../../../../dist/toolcool-range-slider.min.js';
-import { getSetValuesExample } from './examples';
+import { getSetValuesExamples, autoBindingValuesExamples } from './examples';
 
 const initMobileMenu = () => {
   const $btn = document.getElementById('mobile-menu-btn');
@@ -32,7 +32,8 @@ const initMobileMenu = () => {
 
 const init = () => {
   initMobileMenu();
-  getSetValuesExample();
+  getSetValuesExamples();
+  autoBindingValuesExamples();
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -40,16 +41,3 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 export {};
-
-/*import * as React from 'react';
-import { createRoot } from 'react-dom/client';
-
-const init = () => {
-  const $root = document.getElementById('root') as HTMLElement;
-  if(!$root) return;
-
-  const root = createRoot($root);
-  root.render(<h1>Hello, world!</h1>);
-}
-
-init();*/

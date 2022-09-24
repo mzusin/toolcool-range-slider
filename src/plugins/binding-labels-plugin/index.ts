@@ -37,7 +37,10 @@ const BindingLabelsPlugin = () : IPlugin => {
   const updateLabel = (index: number, newPath: string) => {
 
     const isDefined = !!$labels[index];
-    $labels[index]?.remove();
+
+    if($labels[index]){
+      ($labels[index] as HTMLElement).textContent = '';
+    }
 
     const $newLabel = document.querySelector(newPath) as HTMLElement;
     $labels[index] = $newLabel ?? undefined;
