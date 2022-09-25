@@ -2,8 +2,8 @@
   "1-main": {
     "title": "Getting Started"
   },
-  "2-get-set-values.md": {
-    "title": "Get / Set Values"
+  "2-get-set-values-and-change-event.md": {
+    "title": "Get/Set Values & Change Event"
   },
   "5-min-and-max.md": {
     "title": "Range: min & max"
@@ -14,8 +14,8 @@
   "3-node-js-usage.md": {
     "title": "Node.js Usage"
   },
-  "5-list-of-individual-values-and-text-data.md": {
-    "title": "List of individual values and text data"
+  "9-list-of-individual-values-and-text-data.md": {
+    "title": "Range: Values List"
   },
   "6-width-height-and-border-radius.md": {
     "title": "Width, Height, and Border Radius"

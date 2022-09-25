@@ -26,7 +26,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
   let $labelsRow: HTMLElement | null = null;
   let $min: HTMLElement | null = null;
   let $max: HTMLElement | null = null;
-  let $labels: HTMLElement[] = [];
+  let $labels: (HTMLElement | undefined)[] = [];
 
   const createLabelsRow = () => {
     const $box = $component?.shadowRoot?.querySelector('.range-slider-box')  as HTMLElement;
@@ -112,6 +112,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       if(value === undefined && !!$label){
         // remove the label
         $label.remove();
+        $labels[i] = undefined;
         continue;
       }
 

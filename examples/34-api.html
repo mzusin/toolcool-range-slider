@@ -61,11 +61,11 @@
         <div class="row">
             <tc-range-slider
               id="slider-1"
-              slider-width="100%"
-              value="9.9"
-              generate-labels="true"></tc-range-slider>
+              generate-labels="true"
+              data="2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192">
+            </tc-range-slider>
         </div>
-        <button type="button" id="btn">Change</button>
+       <!-- <button type="button" id="btn">Change</button>-->
 
     </div>
 
@@ -77,9 +77,9 @@
         // slider #1 ------------------
         const $slider1 = document.getElementById('slider-1');
 
-        document.getElementById('btn').addEventListener('click', () => {
-            $slider1.step = 10;
-        })
+        $slider1.addEventListener('change', (evt) => {
+            console.log(evt.detail.value);
+        });
 
     </script>
 </body>

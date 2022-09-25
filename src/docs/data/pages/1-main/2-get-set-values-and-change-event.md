@@ -1,4 +1,4 @@
-## Get/set values and change event
+## Get/Set Values & Change Event
 
 <div data-examples="get-set-values"></div>
 
