@@ -20,7 +20,7 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664122578985.css" />
+    <link rel="stylesheet" href="/css/styles.1664124833546.css" />
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
@@ -89,6 +89,7 @@
 
         <div class="p-4 overflow-y-auto h-full md:w-100-350">
           <div class="w-800 max-w-full mx-auto my-10"><h2 class="text-3xl mb-8">Range: Values List</h2>
+<div data-examples="data"></div> 
 <p class="mb-4">Instead of specifying a minimum and maximum to define the slider range, it’s possible to provide a list of individual values. The provided elements can be <strong class="font-bold">numbers</strong>, <strong class="font-bold">texts</strong>, or any combination of these.</p>
 <p class="mb-4">ABC example:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
@@ -116,10 +117,10 @@
 <blockquote class="bg-gray-100 pt-4 px-4 flex my-10 border-l-4 border-blue-300 rounded">
 <p class="mb-4">In the case where numeric and textual data is mixed, we assume that all data is textual.</p>
 </blockquote>
-<p class="mb-4">It’s also possible to define / change data via API:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slider-1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
+<p class="mb-4">The data can also be set or changed via the API:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slider-1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
     <span class="hljs-comment">// get the reference</span>
@@ -135,7 +136,25 @@
     <span class="hljs-comment">// or </span>
     <span class="hljs-comment">// $slider.setAttribute(&#x27;data&#x27;, &#x27;10, 20, 30&#x27;);</span>
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-<p class="mb-4">📌 Example page can be found <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/16-data.html" class="text-blue-500">here</a>.</p>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+      id="slider-8"
+      value="50"
+      data="0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100"
+      generate-labels="true"></tc-range-slider>
+    <div class="flex items-center">
+        <button id="data-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8 mx-2">Change</button>
+        <button id="data-reset" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-gray-50 text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:ring-gray-600 mt-8 mx-2">Reset</button>
+    </div>
+</div>
+<p class="mb-4">Typescript Example:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code>&lt;script&gt;
+    <span class="hljs-comment">// get the reference</span>
+    <span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-1&#x27;</span>) <span class="hljs-keyword">as</span> <span class="hljs-title class_">RangeSlider</span>;
+    
+    <span class="hljs-comment">// change data</span>
+    $slider.<span class="hljs-property">data</span> = [<span class="hljs-string">&#x27;red&#x27;</span>, <span class="hljs-string">&#x27;green&#x27;</span>, <span class="hljs-string">&#x27;blue&#x27;</span>, <span class="hljs-string">&#x27;yellow&#x27;</span>, <span class="hljs-string">&#x27;pink&#x27;</span>, <span class="hljs-string">&#x27;brown&#x27;</span>];
+&lt;/script&gt;</code></pre>
 </div>
         </div>
 
@@ -148,6 +167,6 @@
       </div>
     </footer>-->
 
-    <script src="/js/index.1664122578985.js"></script>
+    <script src="/js/index.1664124833546.js"></script>
   </body>
 </html>

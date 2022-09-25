@@ -514,7 +514,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
       */
 
       const diff = max - min;
-      _step = diff === 0 ? undefined :  (_step as number) * 100 / diff;
+      _step = diff === 0 ? 0 :  (_step as number) * 100 / diff;
 
       return _step;
     }
@@ -528,7 +528,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     const val = convertRange(0, 100, min, max, _percent);
 
     if(data !== undefined){
-      return data[val];
+      return data[Math.round(val)];
     }
 
     return setDecimalPlaces(val, round);

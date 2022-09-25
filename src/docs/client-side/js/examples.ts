@@ -139,3 +139,23 @@ export const nonLinearStepExamples = () => {
   }
   catch(ex) { console.error(ex); }
 };
+
+export const dataExamples = () => {
+  if(!document.querySelector('[data-examples="data"]')) return;
+
+  // non linear step example
+  try{
+    const $slider = document.getElementById('slider-8') as RangeSlider;
+    const $changeBtn = document.getElementById('data-btn') as HTMLElement;
+    const $resetBtn = document.getElementById('data-reset') as HTMLElement;
+
+    $changeBtn.addEventListener('click', () => {
+      $slider.data = ['red', 'green', 'blue', 'yellow', 'pink', 'brown', 'silver', 'white', 'black'];
+    });
+
+    $resetBtn.addEventListener('click', () => {
+      $slider.data = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+    });
+  }
+  catch(ex) { console.error(ex); }
+};
