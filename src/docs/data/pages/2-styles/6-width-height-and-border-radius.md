@@ -1,5 +1,7 @@
 ## Width, Height, and Border Radius
 
+<div data-examples="width-height-border-radius"></div>
+
 By default, the slider width is **100%** and the height is **0.25 rem**. These values can be changed using the **slider-width** and **slider-height** properties:
 
 ```html
@@ -98,20 +100,32 @@ Each property can also be changed via the API:
     const $slider = document.getElementById('slider-1');
     
     // change properties
-    $slider.sliderWidth = '300px';
-    $slider.sliderHeight = '1rem';
+    $slider.sliderWidth = '200px';
+    $slider.sliderHeight = '0.7rem';
     $slider.sliderRadius = 0;
     
-    $slider.pointerWidth = '1rem';
-    $slider.pointerHeight = '1rem';
-    $slider.pointerRadius = '100%';
+    $slider.pointerWidth = '1.8rem';
+    $slider.pointerHeight = '1.8rem';
+    $slider.pointerRadius = 0;
 
-    $slider.pointer2Width = '2rem';
-    $slider.pointer2Height = '2rem';
-    $slider.pointer2Radius = '0';
+    $slider.pointer2Width = '1.3rem';
+    $slider.pointer2Height = '1.3rem';
+    $slider.pointer2Radius = '1rem';
 
     // or 
-    // $slider.setAttribute('slider-width', '300px');
+    // $slider.setAttribute('slider-width', '200px');
     // ...
 </script>
 ```
+
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+      id="slider-9"
+      value1="40"
+      value2="60"
+      generate-labels="true"></tc-range-slider>
+    <div class="flex items-center">
+        <button id="styles-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8 mx-2">Change Styles</button>
+        <button id="styles-reset" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-gray-50 text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:ring-gray-600 mt-8 mx-2">Reset</button>
+    </div>
+</div>

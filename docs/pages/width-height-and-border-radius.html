@@ -20,7 +20,7 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664127075924.css" />
+    <link rel="stylesheet" href="/css/styles.1664127691243.css" />
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
@@ -89,6 +89,7 @@
 
         <div class="p-4 overflow-y-auto h-full md:w-100-350">
           <div class="w-800 max-w-full mx-auto my-10"><h2 class="text-3xl mb-8">Width, Height, and Border Radius</h2>
+<div data-examples="width-height-border-radius"></div>
 <p class="mb-4">By default, the slider width is <strong class="font-bold">100%</strong> and the height is <strong class="font-bold">0.25 rem</strong>. These values can be changed using the <strong class="font-bold">slider-width</strong> and <strong class="font-bold">slider-height</strong> properties:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
        <span class="hljs-attr">slider-width</span>=<span class="hljs-string">&quot;290px&quot;</span>
@@ -229,23 +230,33 @@
     <span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-1&#x27;</span>);
     
     <span class="hljs-comment">// change properties</span>
-    $slider.<span class="hljs-property">sliderWidth</span> = <span class="hljs-string">&#x27;300px&#x27;</span>;
-    $slider.<span class="hljs-property">sliderHeight</span> = <span class="hljs-string">&#x27;1rem&#x27;</span>;
+    $slider.<span class="hljs-property">sliderWidth</span> = <span class="hljs-string">&#x27;200px&#x27;</span>;
+    $slider.<span class="hljs-property">sliderHeight</span> = <span class="hljs-string">&#x27;0.7rem&#x27;</span>;
     $slider.<span class="hljs-property">sliderRadius</span> = <span class="hljs-number">0</span>;
     
-    $slider.<span class="hljs-property">pointerWidth</span> = <span class="hljs-string">&#x27;1rem&#x27;</span>;
-    $slider.<span class="hljs-property">pointerHeight</span> = <span class="hljs-string">&#x27;1rem&#x27;</span>;
-    $slider.<span class="hljs-property">pointerRadius</span> = <span class="hljs-string">&#x27;100%&#x27;</span>;
+    $slider.<span class="hljs-property">pointerWidth</span> = <span class="hljs-string">&#x27;1.8rem&#x27;</span>;
+    $slider.<span class="hljs-property">pointerHeight</span> = <span class="hljs-string">&#x27;1.8rem&#x27;</span>;
+    $slider.<span class="hljs-property">pointerRadius</span> = <span class="hljs-number">0</span>;
 
-    $slider.<span class="hljs-property">pointer2Width</span> = <span class="hljs-string">&#x27;2rem&#x27;</span>;
-    $slider.<span class="hljs-property">pointer2Height</span> = <span class="hljs-string">&#x27;2rem&#x27;</span>;
-    $slider.<span class="hljs-property">pointer2Radius</span> = <span class="hljs-string">&#x27;0&#x27;</span>;
+    $slider.<span class="hljs-property">pointer2Width</span> = <span class="hljs-string">&#x27;1.3rem&#x27;</span>;
+    $slider.<span class="hljs-property">pointer2Height</span> = <span class="hljs-string">&#x27;1.3rem&#x27;</span>;
+    $slider.<span class="hljs-property">pointer2Radius</span> = <span class="hljs-string">&#x27;1rem&#x27;</span>;
 
     <span class="hljs-comment">// or </span>
-    <span class="hljs-comment">// $slider.setAttribute(&#x27;slider-width&#x27;, &#x27;300px&#x27;);</span>
+    <span class="hljs-comment">// $slider.setAttribute(&#x27;slider-width&#x27;, &#x27;200px&#x27;);</span>
     <span class="hljs-comment">// ...</span>
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-</div>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+      id="slider-9"
+      value1="40"
+      value2="60"
+      generate-labels="true"></tc-range-slider>
+    <div class="flex items-center">
+        <button id="styles-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8 mx-2">Change Styles</button>
+        <button id="styles-reset" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-gray-50 text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:ring-gray-600 mt-8 mx-2">Reset</button>
+    </div>
+</div></div>
         </div>
 
       </div>
@@ -257,6 +268,6 @@
       </div>
     </footer>-->
 
-    <script src="/js/index.1664127075924.js"></script>
+    <script src="/js/index.1664127691243.js"></script>
   </body>
 </html>

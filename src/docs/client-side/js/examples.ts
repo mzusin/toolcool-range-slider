@@ -159,3 +159,42 @@ export const dataExamples = () => {
   }
   catch(ex) { console.error(ex); }
 };
+
+export const withHeightBorderRadiusExamples = () => {
+  if(!document.querySelector('[data-examples="width-height-border-radius"]')) return;
+
+  try{
+    const $slider = document.getElementById('slider-9') as RangeSlider;
+    const $changeBtn = document.getElementById('styles-btn') as HTMLElement;
+    const $resetBtn = document.getElementById('styles-reset') as HTMLElement;
+
+    $changeBtn.addEventListener('click', () => {
+      $slider.sliderWidth = '200px';
+      $slider.sliderHeight = '0.7rem';
+      $slider.sliderRadius = 0;
+
+      $slider.pointerWidth = '1.8rem';
+      $slider.pointerHeight = '1.8rem';
+      $slider.pointerRadius = 0;
+
+      $slider.pointer2Width = '1.3rem';
+      $slider.pointer2Height = '1.3rem';
+      $slider.pointer2Radius = '1rem';
+    });
+
+    $resetBtn.addEventListener('click', () => {
+      $slider.sliderWidth = '300px';
+      $slider.sliderHeight = '0.25rem';
+      $slider.sliderRadius = '1rem';
+
+      $slider.pointerWidth = '1rem';
+      $slider.pointerHeight = '1rem';
+      $slider.pointerRadius = '100%';
+
+      $slider.pointer2Width = '1rem';
+      $slider.pointer2Height = '1rem';
+      $slider.pointer2Radius = '100%';
+    });
+  }
+  catch(ex) { console.error(ex); }
+};
