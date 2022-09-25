@@ -61,9 +61,51 @@ export const configureMarkdown = (md) => {
   const link_open = md.renderer.rules.link_open || proxy;
   const strong_open = md.renderer.rules.strong_open || proxy;
   const blockquote_open = md.renderer.rules.blockquote_open || proxy;
+  const table_open = md.renderer.rules.table_open || proxy;
+  const thead_open = md.renderer.rules.thead_open || proxy;
+  const tbody_open = md.renderer.rules.tbody_open || proxy;
+  const tr_open = md.renderer.rules.tr_open || proxy;
+  const th_open = md.renderer.rules.th_open || proxy;
+  const td_open = md.renderer.rules.td_open || proxy;
   // const code_block = md.renderer.rules.code_block || proxy;
 
   md.use(() => {
+    // <table>
+    md.renderer.rules.table_open = function(tokens, idx, options, env, self) {
+      tokens[idx].attrJoin('class', 'border-collapse text-sm text-slate-800 table-auto w-full mb-10 mt-4 shadow-sm rounded border border-slate-100');
+      return table_open(tokens, idx, options, env, self)
+    };
+
+    // <thead>
+    md.renderer.rules.thead_open = function(tokens, idx, options, env, self) {
+      tokens[idx].attrJoin('class', 'text-left');
+      return thead_open(tokens, idx, options, env, self)
+    };
+
+    // <tbody>
+    md.renderer.rules.tbody_open = function(tokens, idx, options, env, self) {
+      tokens[idx].attrJoin('class', 'bg-slate-50');
+      return tbody_open(tokens, idx, options, env, self)
+    };
+
+    // <tr>
+    md.renderer.rules.tr_open = function(tokens, idx, options, env, self) {
+      tokens[idx].attrJoin('class', 'border-slate-200 border-b last:border-0');
+      return tr_open(tokens, idx, options, env, self)
+    };
+
+    // <th>
+    md.renderer.rules.th_open = function(tokens, idx, options, env, self) {
+      tokens[idx].attrJoin('class', 'px-6 py-4 border-b font-medium text-slate-400 text-base');
+      return th_open(tokens, idx, options, env, self)
+    };
+
+    // <td>
+    md.renderer.rules.td_open = function(tokens, idx, options, env, self) {
+      tokens[idx].attrJoin('class', 'px-6 py-2');
+      return td_open(tokens, idx, options, env, self)
+    };
+
     // <h1>
     md.renderer.rules.heading_open = function(tokens, idx, options, env, self) {
       tokens[idx].attrJoin('class', 'text-3xl mb-8');
