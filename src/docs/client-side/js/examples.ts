@@ -126,3 +126,16 @@ export const stepExamples = () => {
   }
   catch(ex) { console.error(ex); }
 };
+
+export const nonLinearStepExamples = () => {
+  if(!document.querySelector('[data-examples="non-linear-step"]')) return;
+
+  // non linear step example
+  try{
+    const $slider = document.getElementById('slider-7') as RangeSlider;
+    $slider.step = (_value: string | number, _percent: number) => {
+      return _percent < 50 ? 5 : 10;
+    };
+  }
+  catch(ex) { console.error(ex); }
+};

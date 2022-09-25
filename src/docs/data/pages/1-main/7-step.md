@@ -1,4 +1,4 @@
-## Step & Non-linear Slider
+## Step
 
 <div data-examples="step"></div> 
 
@@ -52,7 +52,7 @@ Or with TypeScript:
     // or 
     // $slider.setAttribute('step', '10');
 </script>
-```
+``` 
 
 <div class="my-12 flex flex-col items-center">
     <tc-range-slider
