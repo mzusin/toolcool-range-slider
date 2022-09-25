@@ -84,3 +84,22 @@ export const minMaxExamples = () => {
   }
   catch(ex) { console.error(ex); }
 };
+
+export const roundExamples = () => {
+  if(!document.querySelector('[data-examples="rounding"]')) return;
+
+  try{
+    const $slider = document.getElementById('slider-5') as RangeSlider;
+    const $changeBtn = document.getElementById('rounding-btn') as HTMLElement;
+    const $resetBtn = document.getElementById('rounding-reset') as HTMLElement;
+
+    $changeBtn.addEventListener('click', () => {
+      $slider.round = 0;
+    });
+
+    $resetBtn.addEventListener('click', () => {
+      $slider.round = 2;
+    });
+  }
+  catch(ex) { console.error(ex); }
+};
