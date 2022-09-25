@@ -20,7 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664134089060.css" />
+    <link rel="stylesheet" href="/css/styles.1664138340627.css" />
+    <!--<link rel="stylesheet" href="/js/index.1664138340627.css" />-->
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
@@ -88,59 +89,106 @@
         </div>
 
         <div class="p-4 overflow-y-auto h-full md:w-100-350">
-          <div class="w-800 max-w-full mx-auto my-10"><h2 class="text-3xl mb-8">Predefined Styles (Themes)</h2>
-<p class="mb-4"><a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/6-gradient.html" class="text-blue-500"><img src="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/gradient-preview.png?raw=true" alt="Range Slider" /></a></p>
-<p class="mb-4">The slider has several optional predefined themes. Each theme defines a unique look-and-feel and can be used “as is” without defining each style parameter separately.</p>
-<p class="mb-4"><strong class="font-bold">All themes are fully optional and can be partially or completely replaced by custom styles, as described later in this documentation.</strong></p>
-<p class="mb-4">The slider has the following themes:</p>
-<table class="border-collapse text-sm text-slate-800 table-auto w-full mb-10 mt-4 shadow-sm rounded border border-slate-100">
-<thead class="text-left">
-<tr class="border-slate-200 border-b last:border-0">
-<th class="px-6 py-4 border-b font-medium text-slate-400 text-base">Theme Code Name</th>
-<th class="px-6 py-4 border-b font-medium text-slate-400 text-base">Example</th>
-</tr>
-</thead>
-<tbody class="bg-slate-50">
-<tr class="border-slate-200 border-b last:border-0">
-<td class="px-6 py-2">target</td>
-<td class="px-6 py-2"><a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html" class="text-blue-500">Example 1</a>, <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html" class="text-blue-500">Example 2</a></td>
-</tr>
-<tr class="border-slate-200 border-b last:border-0">
-<td class="px-6 py-2">glass</td>
-<td class="px-6 py-2"><a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html" class="text-blue-500">Example 1</a>, <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html" class="text-blue-500">Example 2</a></td>
-</tr>
-<tr class="border-slate-200 border-b last:border-0">
-<td class="px-6 py-2">rect</td>
-<td class="px-6 py-2"><a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html" class="text-blue-500">Example 1</a>, <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html" class="text-blue-500">Example 2</a></td>
-</tr>
-<tr class="border-slate-200 border-b last:border-0">
-<td class="px-6 py-2">circle</td>
-<td class="px-6 py-2"><a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html" class="text-blue-500">Example 1</a>, <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-mode.html" class="text-blue-500">Example 2</a></td>
-</tr>
-<tr class="border-slate-200 border-b last:border-0">
-<td class="px-6 py-2">gradient</td>
-<td class="px-6 py-2"><a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/6-gradient.html" class="text-blue-500">Example</a></td>
-</tr>
-<tr class="border-slate-200 border-b last:border-0">
-<td class="px-6 py-2">ruler</td>
-<td class="px-6 py-2"><a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html" class="text-blue-500">Example</a></td>
-</tr>
-</tbody>
-</table>
-<p class="mb-4">Usage examples:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span>
-  <span class="hljs-attr">slider-width</span>=<span class="hljs-string">&quot;400px&quot;</span>
-  <span class="hljs-attr">slider-height</span>=<span class="hljs-string">&quot;0.5rem&quot;</span>
-  <span class="hljs-attr">theme</span>=<span class="hljs-string">&quot;rect&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span></code></pre>
-<p class="mb-4">It’s possible to combine themes together with custom properties like this:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span>
-  <span class="hljs-attr">slider-width</span>=<span class="hljs-string">&quot;400px&quot;</span>
-  <span class="hljs-attr">slider-height</span>=<span class="hljs-string">&quot;0.5rem&quot;</span>
+          <div class="w-800 max-w-full mx-auto my-10"><h2 class="text-3xl mb-8">Themes (Predefined Styles)</h2>
+<div data-examples="themes"></div>
+<p class="mb-4">The slider has several predefined themes that can be loaded using a standalone plugin. Each theme defines a unique look-and-feel and can be used “as is” without defining each style parameter separately. The slider has the following themes: <strong class="font-bold">target, glass, rect, circle, rainbow, ruler</strong>.</p>
+<p class="mb-4">To use themes, download the latest <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/plugins/tcrs-themes.min.css" class="text-blue-500">tcrs-themes.min.css</a> file from GitHub. Then use the <a href="/pages/css-links.html" class="text-blue-500">css-links</a> attribute to pass it to the slider:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">theme</span>=<span class="hljs-string">&quot;target&quot;</span>
+  <span class="hljs-attr">css-links</span>=<span class="hljs-string">&quot;tcrs-themes.min.css&quot;</span>
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        theme="target"
+        css-links="/js/index.1664138340627.css"
+        value1="30"
+        value2="60"></tc-range-slider>
+</div>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">theme</span>=<span class="hljs-string">&quot;glass&quot;</span>
+  <span class="hljs-attr">css-links</span>=<span class="hljs-string">&quot;tcrs-themes.min.css&quot;</span>
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        theme="glass"
+        css-links="/js/index.1664138340627.css"
+        value1="30"
+        value2="60"></tc-range-slider>
+</div>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
   <span class="hljs-attr">theme</span>=<span class="hljs-string">&quot;rect&quot;</span>
-  <span class="hljs-attr">slider-bg</span>=<span class="hljs-string">&quot;red&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span></code></pre>
-<p class="mb-4">API:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slider-1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-attr">css-links</span>=<span class="hljs-string">&quot;tcrs-themes.min.css&quot;</span>
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        theme="rect"
+        css-links="/js/index.1664138340627.css"
+        value1="30"
+        value2="60"></tc-range-slider>
+</div>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">theme</span>=<span class="hljs-string">&quot;circle&quot;</span>
+  <span class="hljs-attr">css-links</span>=<span class="hljs-string">&quot;tcrs-themes.min.css&quot;</span>
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        theme="circle"
+        css-links="/js/index.1664138340627.css"
+        value1="30"
+        value2="60"></tc-range-slider>
+</div>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">theme</span>=<span class="hljs-string">&quot;rainbow&quot;</span>
+  <span class="hljs-attr">css-links</span>=<span class="hljs-string">&quot;tcrs-themes.min.css&quot;</span>
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        theme="rainbow"
+        css-links="/js/index.1664138340627.css"
+        value1="30"
+        value2="60"></tc-range-slider>
+</div>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">theme</span>=<span class="hljs-string">&quot;ruler&quot;</span>
+  <span class="hljs-attr">css-links</span>=<span class="hljs-string">&quot;tcrs-themes.min.css&quot;</span>
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        theme="ruler"
+        css-links="/js/index.1664138340627.css"
+        value1="30"
+        value2="60"></tc-range-slider>
+</div>
+<p class="mb-4">All themes can be combined with standard style attributes such as <strong class="font-bold">slider-bg</strong>, <strong class="font-bold">slider-bg-hover</strong>, etc. For example, we can use the <strong class="font-bold">target</strong> theme and at the same time set other styles for the second pointer:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">theme</span>=<span class="hljs-string">&quot;target&quot;</span>
+  <span class="hljs-attr">css-links</span>=<span class="hljs-string">&quot;tcrs-themes.min.css&quot;</span>
+  
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>
+
+  <span class="hljs-attr">pointer2-bg</span>=<span class="hljs-string">&quot;red&quot;</span>
+  <span class="hljs-attr">pointer2-bg-hover</span>=<span class="hljs-string">&quot;red&quot;</span>
+  <span class="hljs-attr">pointer2-bg-focus</span>=<span class="hljs-string">&quot;red&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+      theme="target"
+      css-links="/js/index.1664138340627.css"
+      value1="30"
+      value2="60"
+      pointer2-bg="red"
+      pointer2-bg-hover="red"
+      pointer2-bg-focus="red"></tc-range-slider>
+</div>
+<p class="mb-4">Theme property can also be changed via the API:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slider-1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
     <span class="hljs-comment">// get the reference</span>
@@ -152,6 +200,31 @@
     <span class="hljs-comment">// or</span>
     <span class="hljs-comment">// $slider.setAttribute(&#x27;theme&#x27;, &#x27;rect&#x27;);</span>
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+      id="slider-11"
+      theme="target"
+      css-links="/js/index.1664138340627.css"
+      value1="30"
+      value2="70"></tc-range-slider>
+    <div class="grid grid-cols-2 gap-4 items-center mt-8">
+        <button id="glass-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">glass</button>
+        <button id="rect-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">rect</button>
+        <button id="circle-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">circle</button>
+        <button id="rainbow-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">rainbow</button>
+    </div>
+</div>
+<p class="mb-4">TypeScript example:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code>&lt;script&gt;
+    <span class="hljs-comment">// get the reference</span>
+    <span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-1&#x27;</span>) <span class="hljs-keyword">as</span> <span class="hljs-title class_">RangeSlider</span>;
+
+    <span class="hljs-comment">// change theme</span>
+    $slider.<span class="hljs-property">theme</span> = <span class="hljs-string">&#x27;glass&#x27;</span>;
+
+    <span class="hljs-comment">// or</span>
+    <span class="hljs-comment">// $slider.setAttribute(&#x27;theme&#x27;, &#x27;glass&#x27;);</span>
+&lt;/script&gt;</code></pre>
 </div>
         </div>
 
@@ -164,6 +237,6 @@
       </div>
     </footer>-->
 
-    <script src="/js/index.1664134089060.js"></script>
+    <script src="/js/index.1664138340627.js"></script>
   </body>
 </html>

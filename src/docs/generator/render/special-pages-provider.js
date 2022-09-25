@@ -34,9 +34,9 @@ export const renderSpecialPages = (sourceRootPath, targetRootPath, data) => {
       if(ext === '.html'){
         const html = fs.readFileSync(sourceItemPath, 'utf8');
 
-        let result = data.layout.replace('{% page-content %}', html);
-        result = result.replace('{% css-hash %}', data.cssTimeStamp);
-        result = result.replace('{% js-hash %}', data.jsTimeStamp);
+        let result = data.layout.replaceAll('{% page-content %}', html);
+        result = result.replaceAll('{% css-hash %}', data.cssTimeStamp);
+        result = result.replaceAll('{% js-hash %}', data.jsTimeStamp);
 
         // write the output HTML to the destination
         const targetFilePath = targetItemPath;

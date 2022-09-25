@@ -60,9 +60,9 @@ export const renderPages = (sourceRootPath, targetRootPath, data, md) => {
         );
 
         let result = data.layout.replace('{% page-content %}', html);
-        result = result.replace('{% side-menu %}', sideMenuHTML);
-        result = result.replace('{% css-hash %}', data.cssTimeStamp);
-        result = result.replace('{% js-hash %}', data.jsTimeStamp);
+        result = result.replaceAll('{% side-menu %}', sideMenuHTML);
+        result = result.replaceAll('{% css-hash %}', data.cssTimeStamp);
+        result = result.replaceAll('{% js-hash %}', data.jsTimeStamp);
 
         // write the output HTML to the destination
         const targetFilePath = changeExtension(targetItemPath, '.html');

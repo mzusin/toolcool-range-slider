@@ -1,6 +1,8 @@
+import '../../../../dist/plugins/tcrs-themes.min.css';
 import '../../../../dist/plugins/tcrs-binding-labels.min.js';
 import '../../../../dist/plugins/tcrs-generated-labels.min.js';
 import '../../../../dist/toolcool-range-slider.min.js';
+
 import {
   getSetValuesExamples,
   autoBindingValuesExamples,
@@ -10,7 +12,7 @@ import {
   stepExamples,
   nonLinearStepExamples,
   dataExamples,
-  withHeightBorderRadiusExamples, colorExamples
+  withHeightBorderRadiusExamples, colorExamples, themesExamples
 } from './examples';
 
 const initMobileMenu = () => {
@@ -53,6 +55,7 @@ const init = () => {
   dataExamples();
   withHeightBorderRadiusExamples();
   colorExamples();
+  themesExamples();
 };
 
 document.addEventListener('DOMContentLoaded', () => {

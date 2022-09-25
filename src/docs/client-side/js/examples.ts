@@ -237,3 +237,32 @@ export const colorExamples = () => {
   }
   catch(ex) { console.error(ex); }
 };
+
+export const themesExamples = () => {
+  if(!document.querySelector('[data-examples="themes"]')) return;
+
+  try{
+    const $slider = document.getElementById('slider-11') as RangeSlider;
+    const $rect = document.getElementById('rect-btn') as HTMLElement;
+    const $glass = document.getElementById('glass-btn') as HTMLElement;
+    const $circle = document.getElementById('circle-btn') as HTMLElement;
+    const $rainbow = document.getElementById('rainbow-btn') as HTMLElement;
+
+    $rect.addEventListener('click', () => {
+      $slider.theme = 'rect';
+    });
+
+    $glass.addEventListener('click', () => {
+      $slider.theme = 'glass';
+    });
+
+    $circle.addEventListener('click', () => {
+      $slider.theme = 'circle';
+    });
+
+    $rainbow.addEventListener('click', () => {
+      $slider.theme = 'rainbow';
+    });
+  }
+  catch(ex) { console.error(ex); }
+};

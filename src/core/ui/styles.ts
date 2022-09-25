@@ -55,11 +55,10 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
 
   const setTheme = (val: string | null) => {
     theme = val;
+    removeClassesStartWith('theme-');
+
     if(typeof val === 'string'){
       $slider.classList.add(`theme-${ val }`);
-    }
-    else{
-      removeClassesStartWith('theme-');
     }
   };
 
