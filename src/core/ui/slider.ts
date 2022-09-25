@@ -66,7 +66,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
   let min = MIN_DEFAULT;
   let max = MAX_DEFAULT;
-  let step: TStep = undefined;
+  let step: TStep = undefined; // step is defined in absolute units (not percent!)
   let data: TData = undefined;
   let type: string = TypeEnum.Horizontal;
   let round: number = ROUND_DEFAULT;
@@ -137,9 +137,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
     if(rangeDragging){
       let _dragPercent = percent;
-      const _step = getRelativeStep(_dragPercent);
-      if(_step !== undefined){
-        _dragPercent = roundToStep(_dragPercent, _step);
+      const stepPercent = geStepPercent(_dragPercent);
+      if(stepPercent !== undefined){
+        _dragPercent = roundToStep(_dragPercent, stepPercent);
       }
 
       if(panelFillClicked){
@@ -376,12 +376,13 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
   const goPrev = (index: number, _percent: number | undefined) => {
     if(_percent === undefined) return;
 
-    let step = getRelativeStep(_percent);
-    if(step == undefined){
-      step = 1;
+    let stepPercent = geStepPercent(_percent);
+
+    if(stepPercent == undefined){
+      stepPercent = 1;
     }
 
-    _percent -= step;
+    _percent -= stepPercent;
 
     if(_percent < 0){
       _percent = 0;
@@ -391,14 +392,16 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
   };
 
   const goNext = (index: number, _percent: number | undefined) => {
+
     if(_percent === undefined) return;
 
-    let step = getRelativeStep(_percent);
-    if(step == undefined){
-      step = 1;
+    let stepPercent = geStepPercent(_percent);
+
+    if(stepPercent == undefined){
+      stepPercent = 1;
     }
 
-    _percent += step;
+    _percent += stepPercent;
 
     if(_percent > 100){
       _percent = 100;
@@ -477,12 +480,42 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     }
   };
 
-  const getRelativeStep = (_percent: number) => {
+  /**
+   * user step is defined in absolute values;
+   * this function return it as %
+   */
+  const geStepPercent = (_percent: number) => {
+
+    let _step: number | undefined | null;
+
+    if(typeof step === 'function'){
+      // convert percent to value: [0, 100] to [min, max]
+      const currentValue = convertRange(0, 100, min, max, _percent);
+
+      // the slider function provided by user should return an absolute value, not %
+      _step = step(currentValue, _percent);
+    }
+    else{
+      // the step value provided by the user should be absolute value (not %), undefined, or null
+      _step = step;
+    }
 
     // round percent to step
-    let _step = typeof step === 'function' ? step(convertRange(0, 100, min, max, _percent), _percent) : step;
-    if(_step !== undefined){
-      _step = convertRange(min, max, 0, 100, _step as number);
+    if(isNumber(_step)){
+
+      /*
+      min ......... max (step = 1)
+      0 ........... 100 (step = ?)
+
+      (max - min) ....... step (=1)
+      100 ............... ?
+
+      ? = 100 * step / (max - min)
+      */
+
+      const diff = max - min;
+      _step = diff === 0 ? undefined :  (_step as number) * 100 / diff;
+
       return _step;
     }
 
@@ -606,9 +639,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     if(_percent === undefined) return;
 
     // round percent to step
-    const _step = getRelativeStep(_percent);
-    if(_step !== undefined){
-      _percent = roundToStep(_percent, _step);
+    const stepPercent = geStepPercent(_percent);
+
+    if(stepPercent !== undefined){
+      _percent = roundToStep(_percent, stepPercent);
     }
 
     const pointer = pointers[index];

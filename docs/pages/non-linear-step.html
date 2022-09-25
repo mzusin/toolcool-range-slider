@@ -20,7 +20,7 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664115374640.css" />
+    <link rel="stylesheet" href="/css/styles.1664122578985.css" />
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
@@ -99,7 +99,7 @@
     <span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-1&#x27;</span>);
     
     $slider.<span class="hljs-property">step</span> = <span class="hljs-function">(<span class="hljs-params">value, percent</span>) =&gt;</span> {
-        <span class="hljs-keyword">return</span> percent &lt; <span class="hljs-number">50</span> ? <span class="hljs-number">5</span> : <span class="hljs-number">10</span>;
+        <span class="hljs-keyword">return</span> value &lt; <span class="hljs-number">50</span> ? <span class="hljs-number">5</span> : <span class="hljs-number">10</span>;
     };
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <div class="my-12 flex flex-col items-center">
@@ -107,7 +107,8 @@
       id="slider-7"
       generate-labels="true"></tc-range-slider>
 </div>
-<p class="mb-4">Or with TypeScript:</p>
+<p class="mb-4">Step function received <strong class="font-bold">current value</strong> and its percentage (relative to the slide min/max). And it should return the result <strong class="font-bold">value</strong>, which should be absolute, not percentage.</p>
+<p class="mb-4">TypeScript example:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slider-1&quot;</span> <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
@@ -115,7 +116,7 @@
     <span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-1&#x27;</span>) <span class="hljs-keyword">as</span> <span class="hljs-title class_">RangeSlider</span>;
     
     $slider.<span class="hljs-property">step</span> = <span class="hljs-function">(<span class="hljs-params">_value: string | number, _percent: number</span>) =&gt;</span> {
-      <span class="hljs-keyword">return</span> _percent &lt; <span class="hljs-number">50</span> ? <span class="hljs-number">5</span> : <span class="hljs-number">10</span>;
+      <span class="hljs-keyword">return</span> _value &lt; <span class="hljs-number">50</span> ? <span class="hljs-number">5</span> : <span class="hljs-number">10</span>;
     };
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 </div>
@@ -130,6 +131,6 @@
       </div>
     </footer>-->
 
-    <script src="/js/index.1664115374640.js"></script>
+    <script src="/js/index.1664122578985.js"></script>
   </body>
 </html>

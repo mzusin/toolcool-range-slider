@@ -134,7 +134,7 @@ export const nonLinearStepExamples = () => {
   try{
     const $slider = document.getElementById('slider-7') as RangeSlider;
     $slider.step = (_value: string | number, _percent: number) => {
-      return _percent < 50 ? 5 : 10;
+      return _value < 50 ? 5 : 10;
     };
   }
   catch(ex) { console.error(ex); }

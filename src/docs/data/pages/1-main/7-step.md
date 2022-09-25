@@ -20,6 +20,64 @@ You can adjust the slide step using the **step** attribute. By default, the step
       round="0"></tc-range-slider>
 </div>
 
+```html
+<tc-range-slider
+  min="10"
+  max="50"
+  step="1"
+  generate-labels="true" 
+  round="0"></tc-range-slider>
+```
+
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+      min="10"
+      max="50"
+      step="1"
+      generate-labels="true" 
+      round="0"></tc-range-slider>
+</div>
+
+```html
+<tc-range-slider
+  min="-100"
+  max="100"
+  step="5"
+  generate-labels="true"
+  round="0"></tc-range-slider>
+```
+
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+      min="-100"
+      max="100"
+      step="5"
+      generate-labels="true" 
+      round="0"></tc-range-slider>
+</div>
+
+```html
+<tc-range-slider
+  min="-100"
+  max="100"
+  step="5"
+  value1="0"
+  value2="50"
+  generate-labels="true"
+  round="0"></tc-range-slider>
+```
+
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+      min="-100"
+      max="100"
+      step="5"
+      value1="0"
+      value2="50"
+      generate-labels="true" 
+      round="0"></tc-range-slider>
+</div>
+
 Step can also be changed programmatically:
 
 ```html

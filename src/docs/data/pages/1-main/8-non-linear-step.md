@@ -14,7 +14,7 @@ For example, the slider below has a step of 5 if the value is less than 50, othe
     const $slider = document.getElementById('slider-1');
     
     $slider.step = (value, percent) => {
-        return percent < 50 ? 5 : 10;
+        return value < 50 ? 5 : 10;
     };
 </script>
 ```
@@ -25,7 +25,9 @@ For example, the slider below has a step of 5 if the value is less than 50, othe
       generate-labels="true"></tc-range-slider>
 </div>
 
-Or with TypeScript:
+Step function received **current value** and its percentage (relative to the slide min/max). And it should return the result **value**, which should be absolute, not percentage.
+
+TypeScript example:
 
 ```html
 <tc-range-slider id="slider-1" generate-labels="true"></tc-range-slider>
@@ -35,7 +37,7 @@ Or with TypeScript:
     const $slider = document.getElementById('slider-1') as RangeSlider;
     
     $slider.step = (_value: string | number, _percent: number) => {
-      return _percent < 50 ? 5 : 10;
+      return _value < 50 ? 5 : 10;
     };
 </script>
 ```
