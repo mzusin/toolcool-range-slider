@@ -59,7 +59,11 @@
     <div class="wrapper">
 
         <div class="row">
-            <tc-range-slider id="slider-1" slider-width="100%" generate-labels="true"></tc-range-slider>
+            <tc-range-slider
+              id="slider-1"
+              slider-width="100%"
+              value="9.9"
+              generate-labels="true"></tc-range-slider>
         </div>
         <button type="button" id="btn">Change</button>
 
@@ -73,9 +77,8 @@
         // slider #1 ------------------
         const $slider1 = document.getElementById('slider-1');
 
-
         document.getElementById('btn').addEventListener('click', () => {
-            $slider1.min = 50;
+            $slider1.step = 10;
         })
 
     </script>

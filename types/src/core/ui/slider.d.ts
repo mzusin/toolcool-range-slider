@@ -26,7 +26,7 @@ export interface ISlider {
     setMin: (value: number | string | undefined | null) => void;
     setMax: (value: number | string | undefined | null) => void;
     setValue: (value: number | string | undefined | null, index: number) => void;
-    setStep: (value: TStep) => void;
+    setStep: (value: TStep | string) => void;
     setData: (value: TData | string | null | number) => void;
     getTextValue: (_percent: number | undefined) => undefined | string | number;
     addPointer: (value: number | string | undefined | null) => number;

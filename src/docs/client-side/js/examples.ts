@@ -103,3 +103,26 @@ export const roundExamples = () => {
   }
   catch(ex) { console.error(ex); }
 };
+
+export const stepExamples = () => {
+  if(!document.querySelector('[data-examples="step"]')) return;
+
+  try{
+    const $slider = document.getElementById('slider-6') as RangeSlider;
+    const $changeBtn = document.getElementById('step-btn') as HTMLElement;
+    const $resetBtn = document.getElementById('step-reset') as HTMLElement;
+
+    /*// get the step value
+    const step: TStep = $slider.step;
+    console.log(step);*/
+
+    $changeBtn.addEventListener('click', () => {
+      $slider.step = 10;
+    });
+
+    $resetBtn.addEventListener('click', () => {
+      $slider.step = undefined;
+    });
+  }
+  catch(ex) { console.error(ex); }
+};

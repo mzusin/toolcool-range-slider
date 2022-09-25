@@ -42,7 +42,7 @@ export interface ISlider {
   setMin: (value: number | string | undefined | null) => void;
   setMax: (value: number | string | undefined | null) => void;
   setValue: (value: number | string | undefined | null, index: number) => void;
-  setStep: (value: TStep) => void;
+  setStep: (value: TStep | string) => void;
   setData: (value: TData | string | null | number) => void;
   getTextValue: (_percent: number | undefined) => undefined | string | number;
 
@@ -705,20 +705,6 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
     let val: number;
 
-    /*// handle the case when we set value2 and pointer2 doesn't exist,
-    TODO:
-    // or the case when we remove the existing second pointer
-    if(index === 1){
-      if(_val !== undefined && _val !== null && !pointer2){
-        addSecondPointer();
-      }
-
-      if((_val === undefined || _val === null) && !!pointer2){
-        removeSecondPointer();
-        setRangeDragging(false);
-      }
-    }*/
-
     if(data !== undefined){
 
       val = (_val === undefined || _val === null) ? 0 : findValueIndexInData(_val, data);
@@ -744,7 +730,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     setPositions(index, percent);
   };
 
-  const setStep = (_step: TStep) => {
+  const setStep = (_step: TStep | string) => {
     if(_step === null || _step === undefined){
       step = undefined;
       return;
@@ -752,6 +738,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
     if (typeof _step === 'function') {
       step = _step;
+      setAllPositions();
       return;
     }
 
@@ -762,6 +749,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
       if (step > diff) {
         step = undefined;
       }
+
+      setAllPositions();
       return;
     }
 
