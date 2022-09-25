@@ -5,4 +5,6 @@ export declare const minMaxExamples: () => void;
 export declare const roundExamples: () => void;
 export declare const stepExamples: () => void;
 export declare const nonLinearStepExamples: () => void;
+export declare const dataExamples: () => void;
+export declare const withHeightBorderRadiusExamples: () => void;
 //# sourceMappingURL=examples.d.ts.map
