@@ -10,7 +10,7 @@ import {
   stepExamples,
   nonLinearStepExamples,
   dataExamples,
-  withHeightBorderRadiusExamples
+  withHeightBorderRadiusExamples, colorExamples
 } from './examples';
 
 const initMobileMenu = () => {
@@ -52,6 +52,7 @@ const init = () => {
   nonLinearStepExamples();
   dataExamples();
   withHeightBorderRadiusExamples();
+  colorExamples();
 };
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -198,3 +198,42 @@ export const withHeightBorderRadiusExamples = () => {
   }
   catch(ex) { console.error(ex); }
 };
+
+export const colorExamples = () => {
+  if(!document.querySelector('[data-examples="colors"]')) return;
+
+  try{
+    const $slider = document.getElementById('slider-10') as RangeSlider;
+    const $changeBtn = document.getElementById('color-btn') as HTMLElement;
+    const $resetBtn = document.getElementById('color-reset') as HTMLElement;
+
+    $changeBtn.addEventListener('click', () => {
+      $slider.sliderBg = '#efefef';
+      $slider.sliderBgHover = '#ddd';
+      $slider.sliderBgFill = '#ccc';
+
+      $slider.pointer1Bg = 'red';
+      $slider.pointer2Bg = 'green';
+      $slider.pointer3Bg = 'blue';
+
+      $slider.pointer1Border = 'none';
+      $slider.pointer2Border = 'none';
+      $slider.pointer3Border = 'none';
+    });
+
+    $resetBtn.addEventListener('click', () => {
+      $slider.sliderBg = undefined;
+      $slider.sliderBgHover = undefined;
+      $slider.sliderBgFill = undefined;
+
+      $slider.pointer1Bg = undefined;
+      $slider.pointer2Bg = undefined;
+      $slider.pointer3Bg = undefined;
+
+      $slider.pointer1Border = undefined;
+      $slider.pointer2Border = undefined;
+      $slider.pointer3Border = undefined;
+    });
+  }
+  catch(ex) { console.error(ex); }
+};

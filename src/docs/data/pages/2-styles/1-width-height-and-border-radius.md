@@ -1,4 +1,4 @@
-## Width, Height, and Border Radius
+## Width, Height, & Border Radius
 
 <div data-examples="width-height-border-radius"></div>
 
