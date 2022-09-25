@@ -1,17 +1,13 @@
 ## CSS Links
 
-It's possible to provide the paths to CSS files using **css-links** attribute as follows:
+To add your custom styles, it's possible to use the **css-links** attribute. It allows to add one more CSS files to the slider:
 
 ```html
-<toolcool-range-slider css-links="test-1.css"></toolcool-range-slider>
+<toolcool-range-slider css-links="/path/file-name-1.css"></toolcool-range-slider>
 ```
 
 You can add more than one path by separating them with **;**
 
 ```html
-<toolcool-range-slider css-links="test-1.css; test-2.css;"></toolcool-range-slider>
+<toolcool-range-slider css-links="/path/file-name-1.css; /path/file-name-2.css;"></toolcool-range-slider>
 ```
-
-The CSS specificity of the loaded CSS rules will be higher than the specificity of the web component attributes.
-
-:pushpin: Example page can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/31-external-css.html).
