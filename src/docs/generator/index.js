@@ -7,7 +7,7 @@ import { configureMarkdown, initMarkDown } from './markdown-config.js'; // https
 import emoji from 'markdown-it-emoji'; // https://github.com/markdown-it/markdown-it-emoji
 // import classy from 'markdown-it-classy'; // https://github.com/andrey-p/markdown-it-classy
 import { loadPagesConfig, renderPages } from './render/pages-provider.js';
-import { collectSideMenuData } from './render/side-menu-provider.js';
+import { collectSideMenuData, getPagesList } from './render/side-menu-provider.js';
 import { getTimeStamp } from './common-provider.js';
 import { renderSpecialPages } from './render/special-pages-provider.js';
 
@@ -40,6 +40,9 @@ const init = async () => {
   const sideMenuMap = new Map();
   collectSideMenuData(sourceRootPath, null, sideMenuMap);
 
+  // pages list is used for prev / next section at the bottom of the pages
+  const pagesList = getPagesList(sideMenuMap);
+
   // render all pages in the given folder recursively - markdown to html
   renderPages(sourceRootPath, targetRootPath, {
     layout,
@@ -47,6 +50,7 @@ const init = async () => {
     pagesConfig,
     cssTimeStamp,
     jsTimeStamp,
+    pagesList,
   }, md);
 
   // render all pages like index.html

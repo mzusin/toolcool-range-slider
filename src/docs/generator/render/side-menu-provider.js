@@ -2,6 +2,35 @@ import fs from 'fs';
 import path from 'path';
 import { removeNumberOnStart, toTitleCase } from '../common-provider.js';
 
+export const getPagesList = (sideMenuMap) => {
+  if(!sideMenuMap) return [];
+
+  const res = [];
+
+  const arr = Array.from(sideMenuMap);
+  arr.sort((item1, item2) => {
+    return item1[0].localeCompare(item2[0], undefined, {
+      numeric: true,
+      sensitivity: 'base'
+    });
+  });
+
+  for(const item of arr){
+    const list = Array.from(item[1]);
+    list.sort((item1, item2) => {
+      return item1.localeCompare(item2, undefined, {
+        numeric: true,
+        sensitivity: 'base'
+      });
+    });
+    for(const link of list){
+      res.push(link);
+    }
+  }
+
+  return res;
+};
+
 export const collectSideMenuData = (sourceRootPath, parent, sideMenuMap) => {
 
   const items = fs.readdirSync(sourceRootPath);
