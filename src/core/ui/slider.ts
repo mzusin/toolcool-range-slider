@@ -137,6 +137,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     const panelFillClicked = isPanelFillClicked($target);
 
     if(rangeDragging){
+
       let _dragPercent = percent;
       const stepPercent = geStepPercent(_dragPercent);
       if(stepPercent !== undefined){
@@ -146,6 +147,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
       if(panelFillClicked){
         rangeDraggingStart = _dragPercent;
         rangeDraggingDiff = 0;
+
+        if(animateOnClick){
+          $slider.classList.remove(CssClasses.AnimateOnClick);
+        }
       }
       else{
         if(rangeDraggingStart !== undefined){
