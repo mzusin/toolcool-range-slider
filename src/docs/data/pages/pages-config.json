@@ -26,10 +26,10 @@
   "6-images-and-svgs-as-pointers.md": {
     "title": "Images & SVGs as pointers"
   },
-  "2-right-to-left-support.md": {
+  "11-right-to-left-support.md": {
     "title": "Right to Left"
   },
-  "4-touch-and-keyboard-support.md": {
+  "1-touch-and-keyboard-support.md": {
     "title": "Touch & Keyboard Support"
   },
   "22-pointers-max-and-min-distance.md": {

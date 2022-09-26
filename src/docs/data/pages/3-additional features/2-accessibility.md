@@ -35,7 +35,7 @@ It's also possible to provide **aria-label** properties using **aria-label1**, *
       aria-label3="upper">
     </tc-range-slider>
 </div>
-
+   
 Or using API:
 
 
