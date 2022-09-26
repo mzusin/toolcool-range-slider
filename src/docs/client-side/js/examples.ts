@@ -266,3 +266,42 @@ export const themesExamples = () => {
   }
   catch(ex) { console.error(ex); }
 };
+
+export const pointerShapesExamples = () => {
+  if(!document.querySelector('[data-examples="pointer-shapes"]')) return;
+
+  try{
+    const $slider = document.getElementById('slider-12') as RangeSlider;
+    const $triangle = document.getElementById('shape-triangle-btn') as HTMLElement;
+    const $star = document.getElementById('shape-star-btn') as HTMLElement;
+    const $rhombus = document.getElementById('shape-rhombus-btn') as HTMLElement;
+    const $trapezoid = document.getElementById('shape-trapezoid-btn') as HTMLElement;
+    const $parallelogram = document.getElementById('shape-parallelogram-btn') as HTMLElement;
+    const $rightArrow = document.getElementById('shape-right-arrow-btn') as HTMLElement;
+
+    $triangle.addEventListener('click', () => {
+      $slider.pointerShape = 'triangle';
+    });
+
+    $star.addEventListener('click', () => {
+      $slider.pointerShape = 'star';
+    });
+
+    $rhombus.addEventListener('click', () => {
+      $slider.pointerShape = 'rhombus';
+    });
+
+    $trapezoid.addEventListener('click', () => {
+      $slider.pointerShape = 'trapezoid';
+    });
+
+    $parallelogram.addEventListener('click', () => {
+      $slider.pointerShape = 'parallelogram';
+    });
+
+    $rightArrow.addEventListener('click', () => {
+      $slider.pointerShape = 'right-arrow';
+    });
+  }
+  catch(ex) { console.error(ex); }
+};

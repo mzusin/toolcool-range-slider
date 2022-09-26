@@ -9,15 +9,15 @@ export type DynamicFields = {
 
   // permit any property like `ariaLabel${ index + 1 }`
   ariaLabel: string | number | undefined;
-  [name: `ariaLabel$${number}`]: string | null | undefined;
+  [name: `ariaLabel${number}`]: string | null | undefined;
 
   // permit any property like `pointerShape${ index + 1 }`
   pointerShape: string | number | undefined;
-  [name: `pointerShape$${number}`]: string | null;
+  [name: `pointerShape${number}`]: string | null;
 
   // permit any property like `pointer${ index + 1 }Disabled`
   pointerDisabled: string | number | undefined;
-  [name: `pointer$${number}Disabled`]: boolean;
+  [name: `pointer${number}Disabled`]: boolean;
 
   // dynamic styles -----------------------------
   sliderWidth: string | number | null | undefined;

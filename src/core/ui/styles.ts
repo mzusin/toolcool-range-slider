@@ -63,7 +63,7 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
   };
 
   const updatePointerShapes = () => {
-    removeClassesStartWith('shape-');
+    removeClassesStartWith('shape');
     for(let i=0; i<pointerShapes.length; i++){
       const item = pointerShapes[i];
       if(!item) continue;
@@ -73,7 +73,6 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
 
   const setPointerShape = (index: number, value: string) => {
     pointerShapes[index] = value;
-    console.log(pointerShapes)
     updatePointerShapes();
   };
 
@@ -82,7 +81,7 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
     // pointer-shape, pointer2-shape, ...
     const list = getAttributesByRegex($component, /^pointer([0-9]*)-shape$/);
 
-    removeClassesStartWith('shape-');
+    removeClassesStartWith('shape');
 
     for(const item of list){
       const index = item[0] as number;

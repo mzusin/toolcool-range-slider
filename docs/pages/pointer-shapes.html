@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664138340627.css" />
-    <!--<link rel="stylesheet" href="/js/index.1664138340627.css" />-->
+    <link rel="stylesheet" href="/css/styles.1664181342459.css" />
+    <!--<link rel="stylesheet" href="/js/index.1664181342459.css" />-->
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
@@ -90,41 +90,81 @@
 
         <div class="p-4 overflow-y-auto h-full md:w-100-350">
           <div class="w-800 max-w-full mx-auto my-10"><h2 class="text-3xl mb-8">Pointer Shapes</h2>
-<p class="mb-4"><a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/7-pointer-shapes.html" class="text-blue-500"><img src="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/pointer-shapes.png?raw=true" alt="Tool Cool Pointer Shapes" /></a></p>
-<p class="mb-4">There are also several predefined pointer shapes that can be defined using the <strong class="font-bold">pointer-shape</strong> attribute. For example, <strong class="font-bold">triangle</strong> pointer shape:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span>
-  <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;0&quot;</span>
-  <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;100&quot;</span>
-  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;10&quot;</span>
+<div data-examples="pointer-shapes"></div>
+<p class="mb-4">Range slider pointers can be shaped differently using the standalone <strong class="font-bold">Pointer Shapes Plugin</strong>.</p>
+<p class="mb-4">To use the plugin, download the latest <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/plugins/tcrs-pointer-shapes.min.css" class="text-blue-500">tcrs-pointer-shapes.min.css</a> file from GitHub and pass it to the slider using the <a href="/pages/css-links.html" class="text-blue-500">css-links</a> attribute. Then add the <strong class="font-bold">pointer-shape</strong> attribute as follows:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span> 
   <span class="hljs-attr">pointer-shape</span>=<span class="hljs-string">&quot;triangle&quot;</span>
-  <span class="hljs-attr">pointer-width</span>=<span class="hljs-string">&quot;2rem&quot;</span>
-  <span class="hljs-attr">pointer-height</span>=<span class="hljs-string">&quot;2rem&quot;</span>
-  <span class="hljs-attr">pointer-bg</span>=<span class="hljs-string">&quot;#d7067d&quot;</span>
-  <span class="hljs-attr">pointer-bg-hover</span>=<span class="hljs-string">&quot;#0b94c7&quot;</span>
-  <span class="hljs-attr">pointer-bg-focus</span>=<span class="hljs-string">&quot;#0b94c7&quot;</span>
-  <span class="hljs-attr">slider-width</span>=<span class="hljs-string">&quot;400px&quot;</span>
-  <span class="hljs-attr">slider-bg</span>=<span class="hljs-string">&quot;#6787cd&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span></code></pre>
-<p class="mb-4">It’s also possible to define a different shape for the second pointer:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span>
-  <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;0&quot;</span>
-  <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;100&quot;</span>
-  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;10&quot;</span>
+  <span class="hljs-attr">css-links</span>=<span class="hljs-string">&quot;tcrs-themes.min.css&quot;</span>
   
-  <span class="hljs-attr">pointer-shape</span>=<span class="hljs-string">&quot;triangle&quot;</span>
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>
+  
+  <span class="hljs-attr">pointer-width</span>=<span class="hljs-string">&quot;35px&quot;</span>
+  <span class="hljs-attr">pointer-height</span>=<span class="hljs-string">&quot;35px&quot;</span>
+  
+  <span class="hljs-attr">pointer-bg</span>=<span class="hljs-string">&quot;#b677d6&quot;</span>
+  <span class="hljs-attr">pointer-bg-hover</span>=<span class="hljs-string">&quot;#763098&quot;</span>
+  <span class="hljs-attr">pointer-bg-focus</span>=<span class="hljs-string">&quot;#763098&quot;</span>
+&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        pointer-shape="triangle"
+        css-links="/js/index.1664181342459.css"
+        value1="30"
+        value2="60"
+        pointer-width="35px"
+        pointer-height="35px"
+        pointer-bg="#b677d6"
+        pointer-bg-hover="#763098"
+        pointer-bg-focus="#763098"></tc-range-slider>
+</div>
+<p class="mb-4">You can also define different shapes for different pointers:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">pointer1-shape</span>=<span class="hljs-string">&quot;triangle&quot;</span>
   <span class="hljs-attr">pointer2-shape</span>=<span class="hljs-string">&quot;star&quot;</span>
+  <span class="hljs-attr">css-links</span>=<span class="hljs-string">&quot;tcrs-themes.min.css&quot;</span>
   
-  <span class="hljs-attr">pointer-width</span>=<span class="hljs-string">&quot;2rem&quot;</span>
-  <span class="hljs-attr">pointer-height</span>=<span class="hljs-string">&quot;2rem&quot;</span>
-  <span class="hljs-attr">pointer-bg</span>=<span class="hljs-string">&quot;#d7067d&quot;</span>
-  <span class="hljs-attr">pointer-bg-hover</span>=<span class="hljs-string">&quot;#0b94c7&quot;</span>
-  <span class="hljs-attr">pointer-bg-focus</span>=<span class="hljs-string">&quot;#0b94c7&quot;</span>
-  <span class="hljs-attr">slider-width</span>=<span class="hljs-string">&quot;400px&quot;</span>
-  <span class="hljs-attr">slider-bg</span>=<span class="hljs-string">&quot;#6787cd&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span></code></pre>
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>
+  
+  <span class="hljs-attr">pointer1-width</span>=<span class="hljs-string">&quot;35px&quot;</span>
+  <span class="hljs-attr">pointer1-height</span>=<span class="hljs-string">&quot;35px&quot;</span>
+  
+  <span class="hljs-attr">pointer2-width</span>=<span class="hljs-string">&quot;45px&quot;</span>
+  <span class="hljs-attr">pointer2-height</span>=<span class="hljs-string">&quot;45px&quot;</span>
+  
+  <span class="hljs-attr">pointer1-bg</span>=<span class="hljs-string">&quot;#b677d6&quot;</span>
+  <span class="hljs-attr">pointer1-bg-hover</span>=<span class="hljs-string">&quot;#763098&quot;</span>
+  <span class="hljs-attr">pointer1-bg-focus</span>=<span class="hljs-string">&quot;#763098&quot;</span>
+  
+  <span class="hljs-attr">pointer2-bg</span>=<span class="hljs-string">&quot;#48b29e&quot;</span>
+  <span class="hljs-attr">pointer2-bg-hover</span>=<span class="hljs-string">&quot;#2b8774&quot;</span>
+  <span class="hljs-attr">pointer2-bg-focus</span>=<span class="hljs-string">&quot;#2b8774&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        pointer1-shape="triangle"
+        pointer2-shape="star"
+        css-links="/js/index.1664181342459.css"
+        value1="30"
+        value2="60"
+        pointer1-width="35px"
+        pointer1-height="35px"
+        pointer2-width="45px"
+        pointer2-height="45px"
+        pointer1-bg="#b677d6"
+        pointer1-bg-hover="#763098"
+        pointer1-bg-focus="#763098"
+        pointer2-bg="#48b29e"
+        pointer2-bg-hover="#2b8774"
+        pointer2-bg-focus="#2b8774"></tc-range-slider>
+</div>
 <p class="mb-4">There are the following pointer shapes:</p>
 <table class="border-collapse text-sm text-slate-800 table-auto w-full mb-10 mt-4 shadow-sm rounded border border-slate-100">
 <thead class="text-left">
 <tr class="border-slate-200 border-b last:border-0">
-<th class="px-6 py-4 border-b font-medium text-slate-400 text-base">Property</th>
+<th class="px-6 py-4 border-b font-medium text-slate-400 text-base">Shapes</th>
 </tr>
 </thead>
 <tbody class="bg-slate-50">
@@ -148,9 +188,110 @@
 </tr>
 </tbody>
 </table>
-<p class="mb-4">Change via API:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">pointer1-shape</span>=<span class="hljs-string">&quot;rhombus&quot;</span>
+  <span class="hljs-attr">pointer2-shape</span>=<span class="hljs-string">&quot;parallelogram&quot;</span>
+  <span class="hljs-attr">css-links</span>=<span class="hljs-string">&quot;tcrs-themes.min.css&quot;</span>
+  
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>
+  
+  <span class="hljs-attr">pointer-width</span>=<span class="hljs-string">&quot;35px&quot;</span>
+  <span class="hljs-attr">pointer-height</span>=<span class="hljs-string">&quot;35px&quot;</span>
+  
+  <span class="hljs-attr">pointer1-bg</span>=<span class="hljs-string">&quot;#b677d6&quot;</span>
+  <span class="hljs-attr">pointer1-bg-hover</span>=<span class="hljs-string">&quot;#763098&quot;</span>
+  <span class="hljs-attr">pointer1-bg-focus</span>=<span class="hljs-string">&quot;#763098&quot;</span>
+  
+  <span class="hljs-attr">pointer2-bg</span>=<span class="hljs-string">&quot;#48b29e&quot;</span>
+  <span class="hljs-attr">pointer2-bg-hover</span>=<span class="hljs-string">&quot;#2b8774&quot;</span>
+  <span class="hljs-attr">pointer2-bg-focus</span>=<span class="hljs-string">&quot;#2b8774&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        pointer1-shape="rhombus"
+        pointer2-shape="parallelogram"
+        css-links="/js/index.1664181342459.css"
+        value1="30"
+        value2="60"
+        pointer-width="35px"
+        pointer-height="35px"
+        pointer1-bg="#b677d6"
+        pointer1-bg-hover="#763098"
+        pointer1-bg-focus="#763098"
+        pointer2-bg="#48b29e"
+        pointer2-bg-hover="#2b8774"
+        pointer2-bg-focus="#2b8774"></tc-range-slider>
+</div>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">pointer1-shape</span>=<span class="hljs-string">&quot;trapezoid&quot;</span>
+  <span class="hljs-attr">pointer2-shape</span>=<span class="hljs-string">&quot;right-arrow&quot;</span>
+  <span class="hljs-attr">css-links</span>=<span class="hljs-string">&quot;tcrs-themes.min.css&quot;</span>
+  
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>
+  
+  <span class="hljs-attr">pointer-width</span>=<span class="hljs-string">&quot;35px&quot;</span>
+  <span class="hljs-attr">pointer-height</span>=<span class="hljs-string">&quot;35px&quot;</span>
+  
+  <span class="hljs-attr">pointer1-bg</span>=<span class="hljs-string">&quot;#b677d6&quot;</span>
+  <span class="hljs-attr">pointer1-bg-hover</span>=<span class="hljs-string">&quot;#763098&quot;</span>
+  <span class="hljs-attr">pointer1-bg-focus</span>=<span class="hljs-string">&quot;#763098&quot;</span>
+  
+  <span class="hljs-attr">pointer2-bg</span>=<span class="hljs-string">&quot;#48b29e&quot;</span>
+  <span class="hljs-attr">pointer2-bg-hover</span>=<span class="hljs-string">&quot;#2b8774&quot;</span>
+  <span class="hljs-attr">pointer2-bg-focus</span>=<span class="hljs-string">&quot;#2b8774&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        pointer1-shape="trapezoid"
+        pointer2-shape="right-arrow"
+        css-links="/js/index.1664181342459.css"
+        value1="30"
+        value2="60"
+        pointer-width="35px"
+        pointer-height="35px"
+        pointer1-bg="#b677d6"
+        pointer1-bg-hover="#763098"
+        pointer1-bg-focus="#763098"
+        pointer2-bg="#48b29e"
+        pointer2-bg-hover="#2b8774"
+        pointer2-bg-focus="#2b8774"></tc-range-slider>
+</div>
+<p class="mb-4">Pointer shapes can also be changed via the API:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#slider&#x27;</span>);
-$slider.<span class="hljs-property">pointerShape</span> = <span class="hljs-string">&#x27;rhombus&#x27;</span>;</code></pre>
+$slider.<span class="hljs-property">pointerShape</span> = <span class="hljs-string">&#x27;rhombus&#x27;</span>;
+
+<span class="hljs-comment">// $slider.pointer2Shape = &#x27;rhombus&#x27;;</span>
+<span class="hljs-comment">// $slider.pointer3Shape = &#x27;rhombus&#x27;;</span>
+<span class="hljs-comment">// ....</span>
+
+<span class="hljs-comment">// or</span>
+<span class="hljs-comment">// $slider.setAttribute(&#x27;pointer1-shape&#x27;, &#x27;rect&#x27;);</span>
+<span class="hljs-comment">// $slider.setAttribute(&#x27;pointer2-shape&#x27;, &#x27;rect&#x27;);</span>
+<span class="hljs-comment">// ...</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        id="slider-12"
+        pointer-shape="trapezoid"
+        css-links="/js/index.1664181342459.css"
+        value1="30"
+        value2="70"
+        pointer-width="35px"
+        pointer-height="35px"
+        pointer1-bg="#b677d6"
+        pointer1-bg-hover="#763098"
+        pointer1-bg-focus="#763098"
+        pointer2-bg="#48b29e"
+        pointer2-bg-hover="#2b8774" 
+        pointer2-bg-focus="#2b8774"></tc-range-slider>
+    <div class="grid grid-cols-2 gap-4 items-center mt-8">
+        <button id="shape-triangle-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">triangle</button>
+        <button id="shape-star-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">star</button>
+        <button id="shape-rhombus-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">rhombus</button>
+        <button id="shape-trapezoid-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">trapezoid</button>
+        <button id="shape-parallelogram-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">parallelogram</button>
+        <button id="shape-right-arrow-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">right arrow</button>
+    </div> 
+</div>
 </div>
         </div>
 
@@ -163,6 +304,6 @@ $slider.<span class="hljs-property">pointerShape</span> = <span class="hljs-stri
       </div>
     </footer>-->
 
-    <script src="/js/index.1664138340627.js"></script>
+    <script src="/js/index.1664181342459.js"></script>
   </body>
 </html>
