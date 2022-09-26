@@ -48,7 +48,7 @@ Or with TypeScript:
     $slider.round = -200;
     
     // or 
-    // $$slider.setAttribute('round', '0');
+    // $slider.setAttribute('round', '0');
 </script>
 ```
 

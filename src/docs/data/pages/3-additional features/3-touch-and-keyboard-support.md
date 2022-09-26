@@ -50,7 +50,7 @@ The library supports touch screens and also handles the following keys:
 It's possible to disable keyboard support with **keyboard-disabled** attribute:
 
 ```html
-<toolcool-range-slider keyboard-disabled="true"></toolcool-range-slider>
+<tc-range-slider keyboard-disabled="true"></tc-range-slider>
 ```
 
 Or via API:

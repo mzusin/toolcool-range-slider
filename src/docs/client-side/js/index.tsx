@@ -18,7 +18,7 @@ import {
   themesExamples,
   pointerShapesExamples,
   animationShapesExamples,
-  verticalExamples
+  verticalExamples, rightToLeftExamples
 } from './examples';
 
 const initMobileMenu = () => {
@@ -65,6 +65,7 @@ const init = () => {
   pointerShapesExamples();
   animationShapesExamples();
   verticalExamples();
+  rightToLeftExamples();
 };
 
 document.addEventListener('DOMContentLoaded', () => {

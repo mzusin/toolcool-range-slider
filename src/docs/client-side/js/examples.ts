@@ -347,4 +347,38 @@ export const verticalExamples = () => {
     });
   }
   catch(ex) { console.error(ex); }
+
+  try{
+    const $slider = document.getElementById('slider-14_2') as RangeSlider;
+    const $btt = document.getElementById('btt-btn') as HTMLElement;
+    const $ttb = document.getElementById('ttb-btn') as HTMLElement;
+
+    $btt.addEventListener('click', () => {
+      $slider.btt = true;
+    });
+
+    $ttb.addEventListener('click', () => {
+      $slider.btt = false;
+    });
+  }
+  catch(ex) { console.error(ex); }
+};
+
+export const rightToLeftExamples = () => {
+  if(!document.querySelector('[data-examples="rtl"]')) return;
+
+  try{
+    const $slider = document.getElementById('slider-15') as RangeSlider;
+    const $rtl = document.getElementById('rtl-btn') as HTMLElement;
+    const $ltr = document.getElementById('ltr-btn') as HTMLElement;
+
+    $rtl.addEventListener('click', () => {
+      $slider.rtl = true;
+    });
+
+    $ltr.addEventListener('click', () => {
+      $slider.rtl = false;
+    });
+  }
+  catch(ex) { console.error(ex); }
 };

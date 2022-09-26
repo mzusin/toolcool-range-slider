@@ -60,21 +60,13 @@
 
         <div class="row">
             <tc-range-slider
+              type="vertical"
               id="slider-1"
-              pointer-shape="trapezoid"
-              css-links="../dist/plugins/tcrs-pointer-shapes.min.css"
-              value1="30"
-              value2="70"
-              pointer-width="35px"
-              pointer-height="35px"
-              pointer1-bg="#b677d6"
-              pointer1-bg-hover="#763098"
-              pointer1-bg-focus="#763098"
-              pointer2-bg="#48b29e"
-              pointer2-bg-hover="#2b8774"
-              pointer2-bg-focus="#2b8774"></tc-range-slider>
+              value1="40"
+              value2="60"
+              generate-labels="true"></tc-range-slider>
         </div>
-       <!-- <button type="button" id="btn">Change</button>-->
+        <button type="button" id="btn">Change</button>
 
     </div>
 
@@ -85,7 +77,10 @@
 
         // slider #1 ------------------
         const $slider1 = document.getElementById('slider-1');
-        $slider1.pointerShape = 'star';
+
+        document.getElementById('btn').addEventListener('click', () => {
+            $slider1.btt = !$slider1.btt;
+        })
 
        /* $slider1.addEventListener('change', (evt) => {
             // console.log(evt.detail.value);

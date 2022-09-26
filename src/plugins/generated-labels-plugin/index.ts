@@ -102,8 +102,16 @@ const GeneratedLabelsPlugin = () : IPlugin => {
     }
   };
 
+  const updateClasses = () => {
+    if(!getters || !$labelsRow) return;
+    $labelsRow.classList.toggle('is-reversed', getters.isRightToLeft() || getters.isBottomToTop());
+  };
+
   const update = (data: IPluginUpdateData) => {
+
     if(!enabled || !data.values) return;
+
+    updateClasses();
 
     for(let i=0; i<data.values.length; i++){
       const value = data.values[i];
@@ -187,6 +195,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       $slider = _$component.shadowRoot?.getElementById('range-slider') as HTMLElement;
 
       toggleEnabled(getBoolean($component.getAttribute('generate-labels')));
+      updateClasses();
     },
 
     /**
@@ -238,6 +247,11 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       justify-content: center;
     }
     
+    .is-reversed,
+    .is-reversed + .row{
+      flex-direction: row-reverse;
+    }
+    
     .type-vertical{
       position: relative;
     }
@@ -248,6 +262,11 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       top: 50%;
       right: -100%;
       transform: translateY(-50%);
+    }
+    
+    .type-vertical .is-reversed,
+    .type-vertical .is-reversed + .row{
+      flex-direction: column-reverse;
     }
     
     .max-label,
