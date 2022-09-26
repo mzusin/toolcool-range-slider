@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664207544597.css" />
-    <!--<link rel="stylesheet" href="/js/index.1664207544597.css" />-->
+    <link rel="stylesheet" href="/css/styles.1664208172589.css" />
+    <!--<link rel="stylesheet" href="/js/index.1664208172589.css" />-->
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
@@ -90,34 +90,58 @@
 
         <div class="p-4 overflow-y-auto h-full md:w-100-350">
           <div class="w-800 max-w-full mx-auto my-10"><h2 class="text-3xl mb-8">Range dragging</h2>
+<div data-examples="range-dragging"></div>
 <p class="mb-4">It’s possible to enable range dragging for a multi-pointer slider using the <strong class="font-bold">range-dragging</strong> property.</p>
 <p class="mb-4">Two-pointer slider example:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">range-dragging</span>=<span class="hljs-string">&quot;true&quot;</span>
+  
   <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
-  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>
-  <span class="hljs-attr">range-dragging</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;70&quot;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
 <div class="my-12 flex flex-col items-center">
     <tc-range-slider
         value1="30"
-        value2="60"
-        range-dragging="true"></tc-range-slider>
+        value2="70"
+        range-dragging="true"
+        generate-labels="true"
+        round="0"></tc-range-slider>
 </div>
 <p class="mb-4">Three-pointer slider example:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">range-dragging</span>=<span class="hljs-string">&quot;true&quot;</span>
+  
   <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
   <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;50&quot;</span>
   <span class="hljs-attr">value3</span>=<span class="hljs-string">&quot;70&quot;</span>
-  <span class="hljs-attr">range-dragging</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+  
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
 <div class="my-12 flex flex-col items-center">
     <tc-range-slider
         value1="30"
         value2="50"
         value3="70"
-        range-dragging="true"></tc-range-slider>
+        range-dragging="true"
+        generate-labels="true"
+        round="0"></tc-range-slider>
 </div>
-<p class="mb-4">There is also a corresponding API:</p>
+<p class="mb-4">It is possible to programmatically toggle range dragging via the API:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#slider&#x27;</span>);
 $slider.<span class="hljs-property">rangeDragging</span> = <span class="hljs-literal">true</span>; <span class="hljs-comment">// or false</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+      id="slider-19"
+      value1="30"
+      value2="50"
+      value3="70"
+      generate-labels="true"
+      round="0"></tc-range-slider>
+    <div class="flex items-center">
+        <button id="range-dragging-toggle-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8 mx-2">Enable Range Dragging</button>
+    </div>
+</div> 
 </div>
         </div>
 
@@ -130,6 +154,6 @@ $slider.<span class="hljs-property">rangeDragging</span> = <span class="hljs-lit
       </div>
     </footer>-->
 
-    <script src="/js/index.1664207544597.js"></script>
+    <script src="/js/index.1664208172589.js"></script>
   </body>
 </html>

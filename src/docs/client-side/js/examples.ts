@@ -407,3 +407,19 @@ export const disabledExamples = () => {
   }
   catch(ex) { console.error(ex); }
 };
+
+export const rangeDraggingExamples = () => {
+  if(!document.querySelector('[data-examples="range-dragging"]')) return;
+
+  try{
+    const $slider = document.getElementById('slider-19') as RangeSlider;
+    const $btn = document.getElementById('range-dragging-toggle-btn') as HTMLElement;
+
+    $btn.addEventListener('click', () => {
+      $slider.rangeDragging = !$slider.rangeDragging;
+      $btn.textContent = $slider.rangeDragging ? 'Disable Range Dragging' : 'Enable Range Dragging';
+    });
+  }
+  catch(ex) { console.error(ex); }
+
+};

@@ -139,7 +139,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     if(rangeDragging){
 
       let _dragPercent = percent;
-      const stepPercent = geStepPercent(_dragPercent);
+      const stepPercent = getStepPercent(_dragPercent);
       if(stepPercent !== undefined){
         _dragPercent = roundToStep(_dragPercent, stepPercent);
       }
@@ -232,8 +232,11 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
       const lastGreaterThanMax = lastPointer.percent + rangeDraggingDiff > 100;
       if(firstSmallerThanMin || lastGreaterThanMax) return;
 
-      setPositions(0, firstPointer.percent + rangeDraggingDiff);
-      setPositions(1, lastPointer.percent + rangeDraggingDiff);
+      for(let i=0; i<pointers.length; i++){
+        setPositions(i, pointers[i].percent + rangeDraggingDiff);
+      }
+      //setPositions(0, firstPointer.percent + rangeDraggingDiff);
+      //setPositions(1, lastPointer.percent + rangeDraggingDiff);
       return;
     }
 
@@ -382,7 +385,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
   const goPrev = (index: number, _percent: number | undefined) => {
     if(_percent === undefined) return;
 
-    let stepPercent = geStepPercent(_percent);
+    let stepPercent = getStepPercent(_percent);
 
     if(stepPercent == undefined){
       stepPercent = 1;
@@ -401,7 +404,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
     if(_percent === undefined) return;
 
-    let stepPercent = geStepPercent(_percent);
+    let stepPercent = getStepPercent(_percent);
 
     if(stepPercent == undefined){
       stepPercent = 1;
@@ -490,7 +493,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
    * user step is defined in absolute values;
    * this function return it as %
    */
-  const geStepPercent = (_percent: number) => {
+  const getStepPercent = (_percent: number) => {
 
     let _step: number | undefined | null;
 
@@ -645,7 +648,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     if(_percent === undefined) return;
 
     // round percent to step
-    const stepPercent = geStepPercent(_percent);
+    const stepPercent = getStepPercent(_percent);
 
     if(stepPercent !== undefined){
       _percent = roundToStep(_percent, stepPercent);
