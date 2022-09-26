@@ -20,11 +20,11 @@
   "1-width-height-and-border-radius.md": {
     "title": "Width, Height, & Border Radius"
   },
-  "9-css-links.md": {
+  "3-css-links.md": {
     "title": "CSS Links"
   },
-  "10-images-and-svgs-as-pointers.md": {
-    "title": "Images and SVGs as pointers"
+  "6-images-and-svgs-as-pointers.md": {
+    "title": "Images & SVGs as pointers"
   },
   "14-touch-and-keyboard-support.md": {
     "title": "Touch & Keyboard Support"
