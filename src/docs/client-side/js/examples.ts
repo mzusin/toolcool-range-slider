@@ -421,5 +421,19 @@ export const rangeDraggingExamples = () => {
     });
   }
   catch(ex) { console.error(ex); }
+};
 
+export const pointersOverlapExamples = () => {
+  if(!document.querySelector('[data-examples="pointers-overlap"]')) return;
+
+  try{
+    const $slider = document.getElementById('slider-20') as RangeSlider;
+    const $btn = document.getElementById('pointers-overlap-toggle-btn') as HTMLElement;
+
+    $btn.addEventListener('click', () => {
+      $slider.pointersOverlap = !$slider.pointersOverlap;
+      $btn.textContent = $slider.pointersOverlap ? 'Disable Pointers Overlap' : 'Enable Pointers Overlap';
+    });
+  }
+  catch(ex) { console.error(ex); }
 };

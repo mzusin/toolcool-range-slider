@@ -19,7 +19,7 @@ import {
   themesExamples,
   pointerShapesExamples,
   animationShapesExamples,
-  verticalExamples, rightToLeftExamples, disabledExamples, rangeDraggingExamples
+  verticalExamples, rightToLeftExamples, disabledExamples, rangeDraggingExamples, pointersOverlapExamples
 } from './examples';
 
 const initMobileMenu = () => {
@@ -69,6 +69,7 @@ const init = () => {
   rightToLeftExamples();
   disabledExamples();
   rangeDraggingExamples();
+  pointersOverlapExamples();
 };
 
 document.addEventListener('DOMContentLoaded', () => {
