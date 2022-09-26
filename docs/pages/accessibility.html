@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664203598430.css" />
-    <!--<link rel="stylesheet" href="/js/index.1664203598430.css" />-->
+    <link rel="stylesheet" href="/css/styles.1664203822635.css" />
+    <!--<link rel="stylesheet" href="/js/index.1664203822635.css" />-->
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
@@ -125,12 +125,37 @@
 </tr>
 </tbody>
 </table>
-<p class="mb-4">It’s also possible to provide <strong class="font-bold">aria-label</strong> properties using <strong class="font-bold">aria-label1</strong> and <strong class="font-bold">aria-label2</strong> attributes:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;30&quot;</span> <span class="hljs-attr">aria-label1</span>=<span class="hljs-string">&quot;lower&quot;</span> <span class="hljs-attr">aria-label2</span>=<span class="hljs-string">&quot;upper&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span></code></pre>
+<p class="mb-4">It’s also possible to provide <strong class="font-bold">aria-label</strong> properties using <strong class="font-bold">aria-label1</strong>, <strong class="font-bold">aria-label2</strong>, … attributes:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span> 
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;10&quot;</span> 
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;50&quot;</span>
+  <span class="hljs-attr">value3</span>=<span class="hljs-string">&quot;90&quot;</span>
+  <span class="hljs-attr">aria-label1</span>=<span class="hljs-string">&quot;lower&quot;</span>
+  <span class="hljs-attr">aria-label2</span>=<span class="hljs-string">&quot;middle&quot;</span>
+  <span class="hljs-attr">aria-label3</span>=<span class="hljs-string">&quot;upper&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider 
+      value1="10" 
+      value2="50"
+      value3="90"
+      aria-label1="lower"
+      aria-label2="middle"
+      aria-label3="upper">
+    </tc-range-slider>
+</div>
 <p class="mb-4">Or using API:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#slider&#x27;</span>);
+
 $slider.<span class="hljs-property">ariaLabel1</span> = <span class="hljs-string">&#x27;lower&#x27;</span>;
-$slider.<span class="hljs-property">ariaLabel2</span> = <span class="hljs-string">&#x27;upper&#x27;</span>;</code></pre>
+$slider.<span class="hljs-property">ariaLabel2</span> = <span class="hljs-string">&#x27;middle&#x27;</span>;
+$slider.<span class="hljs-property">ariaLabel3</span> = <span class="hljs-string">&#x27;upper&#x27;</span>;</code></pre>
+<p class="mb-4">TypeScript example:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#slider&#x27;</span>) <span class="hljs-keyword">as</span> <span class="hljs-title class_">RangeSlider</span>;
+
+$slider.<span class="hljs-property">ariaLabel1</span> = <span class="hljs-string">&#x27;lower&#x27;</span>;
+$slider.<span class="hljs-property">ariaLabel2</span> = <span class="hljs-string">&#x27;middle&#x27;</span>;
+$slider.<span class="hljs-property">ariaLabel3</span> = <span class="hljs-string">&#x27;upper&#x27;</span>;</code></pre>
 </div>
         </div>
 
@@ -143,6 +168,6 @@ $slider.<span class="hljs-property">ariaLabel2</span> = <span class="hljs-string
       </div>
     </footer>-->
 
-    <script src="/js/index.1664203598430.js"></script>
+    <script src="/js/index.1664203822635.js"></script>
   </body>
 </html>
