@@ -7,4 +7,6 @@ export declare const stepExamples: () => void;
 export declare const nonLinearStepExamples: () => void;
 export declare const dataExamples: () => void;
 export declare const withHeightBorderRadiusExamples: () => void;
+export declare const colorExamples: () => void;
+export declare const themesExamples: () => void;
 //# sourceMappingURL=examples.d.ts.map
