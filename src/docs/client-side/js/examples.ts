@@ -456,3 +456,33 @@ export const softLimitsExamples = () => {
   }
   catch(ex) { console.error(ex); }
 };
+
+export const createdSliderDynamicallyExamples = () => {
+  if(!document.querySelector('[data-examples="created-slider-dynamically"]')) return;
+
+  try{
+    const $box1 = document.getElementById('slider-box-1') as HTMLElement;
+    const $btn1 = document.getElementById('create-slider-btn-1') as HTMLElement;
+
+    $btn1.addEventListener('click', () => {
+
+      const $found = $box1.querySelector('tc-range-slider');
+      if($found){
+        $found.remove();
+        $btn1.textContent = 'Create Slider';
+      }
+      else{
+        const $slider = document.createElement('tc-range-slider');
+        $slider.setAttribute('min', '-100');
+        $slider.setAttribute('max', '100');
+        $slider.setAttribute('value1', '10');
+        $slider.setAttribute('value2', '50');
+        $slider.setAttribute('generate-labels', 'true');
+        $box1.prepend($slider);
+        $btn1.textContent = 'Remove Slider';
+      }
+    });
+  }
+  catch(ex) { console.error(ex); }
+
+};

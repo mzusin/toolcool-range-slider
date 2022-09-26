@@ -24,7 +24,7 @@ import {
   disabledExamples,
   rangeDraggingExamples,
   pointersOverlapExamples,
-  softLimitsExamples
+  softLimitsExamples, createdSliderDynamicallyExamples
 } from './examples';
 
 const initMobileMenu = () => {
@@ -76,6 +76,7 @@ const init = () => {
   rangeDraggingExamples();
   pointersOverlapExamples();
   softLimitsExamples();
+  createdSliderDynamicallyExamples();
 };
 
 document.addEventListener('DOMContentLoaded', () => {
