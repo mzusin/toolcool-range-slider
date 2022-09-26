@@ -382,3 +382,28 @@ export const rightToLeftExamples = () => {
   }
   catch(ex) { console.error(ex); }
 };
+
+export const disabledExamples = () => {
+  if(!document.querySelector('[data-examples="disabled"]')) return;
+
+  try{
+    const $slider = document.getElementById('slider-16') as RangeSlider;
+    const $btn = document.getElementById('disabled-toggle-btn') as HTMLElement;
+
+    $btn.addEventListener('click', () => {
+      $slider.disabled = !$slider.disabled;
+    });
+  }
+  catch(ex) { console.error(ex); }
+
+  try{
+    const $slider = document.getElementById('slider-17') as RangeSlider;
+    const $btn = document.getElementById('disabled-pointers-toggle-btn') as HTMLElement;
+
+    $btn.addEventListener('click', () => {
+      $slider.pointer1Disabled = !$slider.pointer1Disabled;
+      $slider.pointer2Disabled = !$slider.pointer2Disabled;
+    });
+  }
+  catch(ex) { console.error(ex); }
+};
