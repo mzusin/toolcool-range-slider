@@ -235,8 +235,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
       for(let i=0; i<pointers.length; i++){
         setPositions(i, pointers[i].percent + rangeDraggingDiff);
       }
-      //setPositions(0, firstPointer.percent + rangeDraggingDiff);
-      //setPositions(1, lastPointer.percent + rangeDraggingDiff);
+
       return;
     }
 
