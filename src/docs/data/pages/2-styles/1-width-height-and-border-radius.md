@@ -117,7 +117,7 @@ Each property can also be changed via the API:
     // ...
 </script>
 ```
-
+   
 <div class="my-12 flex flex-col items-center">
     <tc-range-slider
       id="slider-9"

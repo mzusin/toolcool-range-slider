@@ -4,9 +4,9 @@ QUnit.module('Animation', (hooks) => {
       <toolcool-range-slider id="slider-76" animate-onclick="0.3s"></toolcool-range-slider>
   `);
 
-  QUnit.test('if animate-onclick is not provided ---> animateOnClick should be undefined', (assert) => {
+  QUnit.test('if animate-onclick is not provided ---> animateOnClick should be 0.3s', (assert) => {
     const $slider = document.querySelector('#slider-1');
-    assert.strictEqual($slider.animateOnClick, undefined);
+    assert.strictEqual($slider.animateOnClick, '0.3s');
   });
 
   QUnit.test('if animate-onclick is not provided ---> --animate-onclick should be ""', (assert) => {

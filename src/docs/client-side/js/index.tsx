@@ -13,7 +13,7 @@ import {
   stepExamples,
   nonLinearStepExamples,
   dataExamples,
-  withHeightBorderRadiusExamples, colorExamples, themesExamples, pointerShapesExamples
+  withHeightBorderRadiusExamples, colorExamples, themesExamples, pointerShapesExamples, animationShapesExamples
 } from './examples';
 
 const initMobileMenu = () => {
@@ -58,6 +58,7 @@ const init = () => {
   colorExamples();
   themesExamples();
   pointerShapesExamples();
+  animationShapesExamples();
 };
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -34,7 +34,7 @@ export interface ISlider {
   disabled: boolean;
   keyboardDisabled: boolean;
   round: number;
-  animateOnClick: string | undefined;
+  animateOnClick: string | undefined | boolean;
 
   getAriaLabel: (index: number) => (string | undefined);
   setAriaLabel: (index: number, ariaLabel: string | undefined) => void;
@@ -55,6 +55,7 @@ export interface ISlider {
 export const MIN_DEFAULT = 0;
 export const MAX_DEFAULT = 100;
 export const ROUND_DEFAULT = 2;
+export const ANIMATE_ON_CLICK_DEFAULT = '0.3s';
 
 export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersList: [IPointer, string | number | undefined][]) : ISlider => {
 
@@ -84,7 +85,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
   let disabled = false;
   let keyboardDisabled = false;
-  let animateOnClick: string | undefined = undefined;
+  let animateOnClick: string | undefined = ANIMATE_ON_CLICK_DEFAULT;
 
   const ariaLabels: (string | undefined)[] = [];
 
@@ -903,14 +904,16 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     updatePlugins();
   };
 
-  const setAnimateOnClick = (_animateOnClick: string | null | undefined) => {
-    if(_animateOnClick === null || _animateOnClick === undefined){
+  const setAnimateOnClick = (_animateOnClick: string | boolean | null | undefined) => {
+    if(_animateOnClick === null ||
+      _animateOnClick === undefined ||
+      _animateOnClick.toString().trim().toLowerCase() === 'false'){
       animateOnClick = undefined;
       $slider.style.removeProperty(CSSVariables.AnimateOnClick);
       $slider.classList.remove(CssClasses.AnimateOnClick);
     }
     else{
-      animateOnClick = _animateOnClick;
+      animateOnClick = _animateOnClick.toString();
       $slider.style.setProperty(CSSVariables.AnimateOnClick, animateOnClick);
       $slider.classList.add(CssClasses.AnimateOnClick);
     }
@@ -1042,7 +1045,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
     // init styles ---------
     styles = Styles($component, $slider, pointers);
-    setAnimateOnClick($component.getAttribute(AttributesEnum.AnimateOnClick));
+    setAnimateOnClick($component.getAttribute(AttributesEnum.AnimateOnClick) ?? ANIMATE_ON_CLICK_DEFAULT);
 
     // init slider events -------------------------------------
     $slider.addEventListener('mousedown', onMouseDown);

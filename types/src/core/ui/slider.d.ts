@@ -20,7 +20,7 @@ export interface ISlider {
     disabled: boolean;
     keyboardDisabled: boolean;
     round: number;
-    animateOnClick: string | undefined;
+    animateOnClick: string | undefined | boolean;
     getAriaLabel: (index: number) => (string | undefined);
     setAriaLabel: (index: number, ariaLabel: string | undefined) => void;
     setMin: (value: number | string | undefined | null) => void;
@@ -36,5 +36,6 @@ export interface ISlider {
 export declare const MIN_DEFAULT = 0;
 export declare const MAX_DEFAULT = 100;
 export declare const ROUND_DEFAULT = 2;
+export declare const ANIMATE_ON_CLICK_DEFAULT = "0.3s";
 export declare const Slider: ($component: HTMLElement, $slider: HTMLElement, pointersList: [IPointer, string | number | undefined][]) => ISlider;
 //# sourceMappingURL=slider.d.ts.map

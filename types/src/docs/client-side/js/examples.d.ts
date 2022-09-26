@@ -9,4 +9,6 @@ export declare const dataExamples: () => void;
 export declare const withHeightBorderRadiusExamples: () => void;
 export declare const colorExamples: () => void;
 export declare const themesExamples: () => void;
+export declare const pointerShapesExamples: () => void;
+export declare const animationShapesExamples: () => void;
 //# sourceMappingURL=examples.d.ts.map

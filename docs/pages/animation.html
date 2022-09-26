@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664182450936.css" />
-    <!--<link rel="stylesheet" href="/js/index.1664182450936.css" />-->
+    <link rel="stylesheet" href="/css/styles.1664189098414.css" />
+    <!--<link rel="stylesheet" href="/js/index.1664189098414.css" />-->
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
@@ -89,9 +89,37 @@
         </div>
 
         <div class="p-4 overflow-y-auto h-full md:w-100-350">
-          <div class="w-800 max-w-full mx-auto my-10"><h2 class="text-3xl mb-8">Animation on panel click</h2>
-<p class="mb-4">It’s possible to enable animation on panel click with the <strong class="font-bold">animate-onclick</strong> property:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">animate-onclick</span>=<span class="hljs-string">&quot;0.3s&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span></code></pre>
+          <div class="w-800 max-w-full mx-auto my-10"><h2 class="text-3xl mb-8">Animation on Panel Click</h2>
+<div data-examples="animation"></div>  
+<p class="mb-4">By default, the library has an animation when the slider panel is clicked. This is a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions" class="text-blue-500">CSS transition animation</a> which value is <strong class="font-bold">0.3s</strong>.</p>
+<p class="mb-4">This value can be changed using the <strong class="font-bold">animate-onclick</strong> property:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span> 
+  <span class="hljs-attr">animate-onclick</span>=<span class="hljs-string">&quot;2s&quot;</span>
+  
+  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;50&quot;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider 
+        animate-onclick="2s"
+        value="50"
+        generate-labels="true" 
+        round="0"></tc-range-slider>
+</div>
+<p class="mb-4">It’s possible to disable the animation by passing <strong class="font-bold">false</strong>:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span> 
+  <span class="hljs-attr">animate-onclick</span>=<span class="hljs-string">&quot;false&quot;</span>
+  
+  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;50&quot;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider 
+        animate-onclick="false"
+        value="50"
+        generate-labels="true" 
+        round="0"></tc-range-slider>
+</div>
 <p class="mb-4">The value of the <strong class="font-bold">animate-onclick</strong> property is specified in seconds, ms, etc. and is the same as the css <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration" class="text-blue-500">transition-duration</a> property.</p>
 <p class="mb-4">There is also a corresponding API:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#slider&#x27;</span>);
@@ -99,8 +127,20 @@ $slider.<span class="hljs-property">animateOnClick</span> = <span class="hljs-st
 
 <span class="hljs-comment">// or</span>
 
-$slider.<span class="hljs-property">animateOnClick</span> = <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// disable</span></code></pre>
-<p class="mb-4">📌 The page with example can be found <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/18-animation-on-click.html" class="text-blue-500">here</a>.</p>
+$slider.<span class="hljs-property">animateOnClick</span> = <span class="hljs-literal">false</span>; <span class="hljs-comment">// disable</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        id="slider-13"
+        value1="30"
+        value2="70"
+        generate-labels="true"
+        round="0"></tc-range-slider>
+    <div class="flex flex-col gap-4 items-center mt-8">
+        <button id="animation-2s-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">Animation 2s</button>
+        <button id="animation-disable-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">Disable Animation</button>
+        <button id="animation-reset-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">Reset</button>
+    </div> 
+</div>
 </div>
         </div>
 
@@ -113,6 +153,6 @@ $slider.<span class="hljs-property">animateOnClick</span> = <span class="hljs-li
       </div>
     </footer>-->
 
-    <script src="/js/index.1664182450936.js"></script>
+    <script src="/js/index.1664189098414.js"></script>
   </body>
 </html>

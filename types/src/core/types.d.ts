@@ -4,11 +4,11 @@ export declare type DynamicFields = {
     value: string | number | undefined;
     [name: `value${number}`]: string | number | undefined;
     ariaLabel: string | number | undefined;
-    [name: `ariaLabel$${number}`]: string | null | undefined;
+    [name: `ariaLabel${number}`]: string | null | undefined;
     pointerShape: string | number | undefined;
-    [name: `pointerShape$${number}`]: string | null;
+    [name: `pointerShape${number}`]: string | null;
     pointerDisabled: string | number | undefined;
-    [name: `pointer$${number}Disabled`]: boolean;
+    [name: `pointer${number}Disabled`]: boolean;
     sliderWidth: string | number | null | undefined;
     sliderHeight: string | number | null | undefined;
     sliderRadius: string | number | null | undefined;

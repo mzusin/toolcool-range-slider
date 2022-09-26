@@ -305,3 +305,27 @@ export const pointerShapesExamples = () => {
   }
   catch(ex) { console.error(ex); }
 };
+
+export const animationShapesExamples = () => {
+  if(!document.querySelector('[data-examples="animation"]')) return;
+
+  try{
+    const $slider = document.getElementById('slider-13') as RangeSlider;
+    const $animation2s = document.getElementById('animation-2s-btn') as HTMLElement;
+    const $disable = document.getElementById('animation-disable-btn') as HTMLElement;
+    const $reset = document.getElementById('animation-reset-btn') as HTMLElement;
+
+    $animation2s.addEventListener('click', () => {
+      $slider.animateOnClick = '2s';
+    });
+
+    $disable.addEventListener('click', () => {
+      $slider.animateOnClick = false;
+    });
+
+    $reset.addEventListener('click', () => {
+      $slider.animateOnClick = '0.3s';
+    });
+  }
+  catch(ex) { console.error(ex); }
+};

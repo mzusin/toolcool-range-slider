@@ -147,7 +147,7 @@ class TCRangeSlider extends HTMLElement {
     return this.slider?.keyboardDisabled ?? false;
   }
 
-  public set animateOnClick(_animateOnClick: string | undefined) {
+  public set animateOnClick(_animateOnClick: string | boolean | undefined) {
     if(!this.slider) return;
     this.slider.animateOnClick = _animateOnClick;
   }
