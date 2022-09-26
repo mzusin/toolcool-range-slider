@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664189098414.css" />
-    <!--<link rel="stylesheet" href="/js/index.1664189098414.css" />-->
+    <link rel="stylesheet" href="/css/styles.1664193769787.css" />
+    <!--<link rel="stylesheet" href="/js/index.1664193769787.css" />-->
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
@@ -90,17 +90,56 @@
 
         <div class="p-4 overflow-y-auto h-full md:w-100-350">
           <div class="w-800 max-w-full mx-auto my-10"><h2 class="text-3xl mb-8">Vertical Slider</h2>
-<p class="mb-4"><img src="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/vertical-slider-preview.png?raw=true" alt="Tool Cool Vertical Slider" /></p>
+<div data-examples="vertical"></div>  
 <p class="mb-4">Vertical slider can be achieved using the <strong class="font-bold">type</strong> attribute as following:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;vertical&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span></code></pre>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span> 
+  <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;vertical&quot;</span>
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;70&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        type="vertical"
+        value1="30"
+        value2="70"
+        generate-labels="true"></tc-range-slider>
+</div>
 <p class="mb-4">It accepts all the same attributes as the horizontal slider. The default height of a vertical slider is <strong class="font-bold">300px</strong> unless the height attribute is provided.</p>
-<p class="mb-4">It is also possible to reverse the direction and slide from bottom to top using the <strong class="font-bold">btt</strong> attribute:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;vertical&quot;</span> <span class="hljs-attr">btt</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span></code></pre>
-<p class="mb-4">Enable or disable via API:</p>
+<p class="mb-4">It is also possible to <strong class="font-bold">reverse the direction</strong> and slide from bottom to top using the <strong class="font-bold">btt</strong> attribute:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span> 
+  <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;vertical&quot;</span> 
+  <span class="hljs-attr">btt</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;70&quot;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        type="vertical"
+        value1="30"
+        value2="70"
+        btt="true"
+        generate-labels="true"></tc-range-slider>
+</div>
+<p class="mb-4">Slider type can also be changed via the API:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#slider&#x27;</span>);
 $slider.<span class="hljs-property">type</span> = <span class="hljs-string">&#x27;vertical&#x27;</span>; <span class="hljs-comment">// or horizontal</span>
 $slider.<span class="hljs-property">btt</span> = <span class="hljs-literal">true</span>; <span class="hljs-comment">// or false</span></code></pre>
-</div>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+        id="slider-14"
+        theme="glass"
+        css-links="/js/index.1664193769787.css"
+        value1="30"
+        value2="70"
+        pointer-width="1.5rem"
+        pointer-height="1.5rem"
+        generate-labels="true"
+        round="0"></tc-range-slider>
+    <div class="flex flex-col gap-4 items-center mt-8">
+        <button id="vertical-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">Make Vertical</button>
+        <button id="horizontal-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">Make Horizontal</button>
+    </div> 
+</div>   </div>
         </div>
 
       </div>
@@ -112,6 +151,6 @@ $slider.<span class="hljs-property">btt</span> = <span class="hljs-literal">true
       </div>
     </footer>-->
 
-    <script src="/js/index.1664189098414.js"></script>
+    <script src="/js/index.1664193769787.js"></script>
   </body>
 </html>

@@ -329,3 +329,22 @@ export const animationShapesExamples = () => {
   }
   catch(ex) { console.error(ex); }
 };
+
+export const verticalExamples = () => {
+  if(!document.querySelector('[data-examples="vertical"]')) return;
+
+  try{
+    const $slider = document.getElementById('slider-14') as RangeSlider;
+    const $vertical = document.getElementById('vertical-btn') as HTMLElement;
+    const $horizontal = document.getElementById('horizontal-btn') as HTMLElement;
+
+    $vertical.addEventListener('click', () => {
+      $slider.type = 'vertical';
+    });
+
+    $horizontal.addEventListener('click', () => {
+      $slider.type = 'horizontal';
+    });
+  }
+  catch(ex) { console.error(ex); }
+};

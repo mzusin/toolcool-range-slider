@@ -238,9 +238,16 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       justify-content: center;
     }
     
+    .type-vertical{
+      position: relative;
+    }
+    
     .type-vertical .labels-row{
       flex-direction: column;
-      order: 1;
+      position: absolute;
+      top: 50%;
+      right: -100%;
+      transform: translateY(-50%);
     }
     
     .max-label,
