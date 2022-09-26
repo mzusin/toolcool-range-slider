@@ -3,14 +3,14 @@
 In the multi-pointers range slider, it's possible to define the minimum required distance between the pointers using **pointers-min-distance** attribute:
 
 ```html
-<toolcool-range-slider
+<tc-range-slider
   pointers-min-distance="10"
 
   value1="30"
   value2="60"
   
   generate-labels="true"
-  round="0"></toolcool-range-slider>
+  round="0"></tc-range-slider>
 ```
 
 <div class="my-12 flex flex-col items-center">
@@ -25,14 +25,14 @@ In the multi-pointers range slider, it's possible to define the minimum required
 It is also possible to define the maximum distance between the pointers using the **pointers-max-distance** attribute:
 
 ```html
-<toolcool-range-slider
+<tc-range-slider
   pointers-max-distance="50"
 
   value1="30"
   value2="60"
   
   generate-labels="true"
-  round="0"></toolcool-range-slider>
+  round="0"></tc-range-slider>
 ```
 
 <div class="my-12 flex flex-col items-center">

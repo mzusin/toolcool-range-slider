@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664210742074.css" />
-    <!--<link rel="stylesheet" href="/js/index.1664210742074.css" />-->
+    <link rel="stylesheet" href="/css/styles.1664211283505.css" />
+    <!--<link rel="stylesheet" href="/js/index.1664211283505.css" />-->
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
@@ -89,33 +89,40 @@
         </div>
 
         <div class="p-4 overflow-y-auto h-full md:w-100-350">
-          <div class="w-800 max-w-full mx-auto my-10"><h2 class="text-3xl mb-8">Soft limits</h2>
+          <div class="w-800 max-w-full mx-auto my-10"><h2 class="text-3xl mb-8">Soft Limits</h2>
+<div data-examples="soft-limits"></div>
 <p class="mb-4">It’s possible to enable soft limits to the range slider. This means that the edges of the slider are disabled, for example, if the value of the slider is less than 20 or greater than 80, then the slider value is reset:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">toolcool-range-slider</span>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
   <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slider&quot;</span>
-  <span class="hljs-attr">animate-onclick</span>=<span class="hljs-string">&quot;0.3s&quot;</span>
-  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>
-  <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>
-  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;30&quot;</span>
+   
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
   <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>
-  <span class="hljs-attr">slider-width</span>=<span class="hljs-string">&quot;100%&quot;</span>
-  <span class="hljs-attr">slider-height</span>=<span class="hljs-string">&quot;7px&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">toolcool-range-slider</span>&gt;</span>
+  
+  <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span> 
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
   <span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider&#x27;</span>);
 
-  $slider.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;mouseup&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">evt</span>) =&gt;</span> {
-    <span class="hljs-keyword">if</span>($slider.<span class="hljs-property">value</span> &lt; <span class="hljs-number">20</span>) {
-      $slider.<span class="hljs-property">value</span> = <span class="hljs-number">20</span>;
+  $slider.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;onMouseUp&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+
+    <span class="hljs-keyword">if</span>($slider.<span class="hljs-property">value1</span> !== <span class="hljs-literal">undefined</span> &amp;&amp; $slider.<span class="hljs-property">value1</span> &lt; <span class="hljs-number">20</span>) {
+      $slider.<span class="hljs-property">value1</span> = <span class="hljs-number">20</span>;
     }
 
-    <span class="hljs-keyword">if</span>($slider.<span class="hljs-property">value2</span> &gt; <span class="hljs-number">80</span>) {
+    <span class="hljs-keyword">if</span>($slider.<span class="hljs-property">value2</span> !== <span class="hljs-literal">undefined</span> &amp;&amp; $slider.<span class="hljs-property">value2</span> &gt; <span class="hljs-number">80</span>) {
       $slider.<span class="hljs-property">value2</span> = <span class="hljs-number">80</span>;
     }
   });
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-<p class="mb-4">📌 The page with this example can be found <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/30-soft-limits.html" class="text-blue-500">here</a>.</p>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+      id="slider-21"
+      value1="30"
+      value2="60"
+      round="0"></tc-range-slider>
+</div> 
 </div>
         </div>
 
@@ -128,6 +135,6 @@
       </div>
     </footer>-->
 
-    <script src="/js/index.1664210742074.js"></script>
+    <script src="/js/index.1664211283505.js"></script>
   </body>
 </html>

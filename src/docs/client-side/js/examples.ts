@@ -437,3 +437,22 @@ export const pointersOverlapExamples = () => {
   }
   catch(ex) { console.error(ex); }
 };
+
+export const softLimitsExamples = () => {
+  if(!document.querySelector('[data-examples="soft-limits"]')) return;
+
+  try{
+    const $slider = document.getElementById('slider-21') as RangeSlider;
+    $slider.addEventListener('onMouseUp', () => {
+
+      if($slider.value1 !== undefined && $slider.value1 < 20) {
+        $slider.value1 = 20;
+      }
+
+      if($slider.value2 !== undefined && $slider.value2 > 80) {
+        $slider.value2 = 80;
+      }
+    });
+  }
+  catch(ex) { console.error(ex); }
+};
