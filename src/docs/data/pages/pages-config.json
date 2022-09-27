@@ -2,7 +2,7 @@
   "1-main": {
     "title": "Getting Started"
   },
-  "2-nodejs": {
+  "2-nodejs.md": {
     "title": "Node.js"
   },
   "3-get-set-values-and-change-event.md": {
