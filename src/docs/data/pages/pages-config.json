@@ -37,5 +37,17 @@
   },
   "3-react-typescript.md": {
     "title": "React & TypeScript"
+  },
+  "1-javascript-plugins.md": {
+    "title": "JavaScript Plugins"
+  },
+  "2-javascript-plugin-example.md": {
+    "title": "JS Plugin Example"
+  },
+  "4-plugin-getters-interface.md": {
+    "title": "'Getters' Object Interface"
+  },
+  "5-plugin-setters-interface.md": {
+    "title": "'Setters' Object Interface"
   }
 }

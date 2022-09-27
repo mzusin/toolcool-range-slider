@@ -46,169 +46,75 @@
     <div class="wrapper">
 
         <div class="row">
-            <toolcool-range-slider
-              id="slider-1"
-              slider-width="100%"
-              value1="30"
-              value2="70"
-              value-label=".value-11"
-              value2-label=".value-12"></toolcool-range-slider>
-        </div>
-        <div style="margin: 1rem">
-            <div class="value-11" style="margin-right: 1rem"></div>
-            <div class="value-12" style="margin-right: 1rem"></div>
-            <div class="value-13" style="color: red; margin-right: 1rem"></div>
-            <div class="value-14" style="color: red; margin-right: 1rem"></div>
+            <tc-range-slider value="50" label="#my-label"></tc-range-slider>
         </div>
 
-        <div class="row">
-            <toolcool-range-slider
-              id="slider-2"
-              slider-width="100%"
-              value1="10"
-              value2="90"
-              value-label=".value-21"
-              value2-label=".value-22"></toolcool-range-slider>
-        </div>
-        <div style="margin: 1rem">
-            <div class="value-21" style="margin-right: 1rem"></div>
-            <div class="value-22" style="margin-right: 1rem"></div>
-        </div>
-
-        <div class="row">
-            <toolcool-range-slider
-              id="slider-3"
-              slider-width="100%"
-              value1="10"
-              value2="90"></toolcool-range-slider>
-        </div>
-
+        <div id="my-label"></div>
     </div>
 
     <script>
-        window.tcRangeSliderPlugins = window.tcRangeSliderPlugins = [];
+        /**
+         * Required: init ToolCool Range Slider plugins namespace if not defined yet
+         */
+        window.tcRangeSliderPlugins = window.tcRangeSliderPlugins || [];
 
-        window.tcRangeSliderObservedAttr = window.tcRangeSliderObservedAttr || [];
-        window.tcRangeSliderObservedAttr.push('value-label');
-        window.tcRangeSliderObservedAttr.push('value2-label');
+        const ExamplePlugin = () => {
 
-        window.tcRangeSliderPlugins.push(() => {
-            let requestUpdate = null;
-
-            let referenceLabel1 = null;
-            let referenceLabel2 = null;
-
-            let $referenceLabel1 = null;
-            let $referenceLabel2 = null;
-
-            const setReferenceLabel1 = (_referenceLabel1) => {
-                referenceLabel1 = _referenceLabel1;
-                $referenceLabel1 = _referenceLabel1 ? document.querySelector(_referenceLabel1) : null;
-
-                if(requestUpdate && typeof requestUpdate === 'function'){
-                    requestUpdate();
-                }
-            };
-
-            const setReferenceLabel2 = (_referenceLabel2) => {
-                referenceLabel2 = _referenceLabel2;
-                $referenceLabel2 = _referenceLabel2 ? document.querySelector(_referenceLabel2) : null;
-
-                if(requestUpdate && typeof requestUpdate === 'function'){
-                    requestUpdate();
-                }
-            };
+            let $labelElement;
 
             return {
+
+                /**
+                 * Required: unique plugin name
+                 */
                 get name() {
-                    return 'Binding Labels';
+                    return 'My Plugin';
                 },
 
-                init: (_$component, _requestUpdate) => {
-                    requestUpdate = _requestUpdate;
-
-                    setReferenceLabel1(_$component.getAttribute('value-label'));
-                    setReferenceLabel2(_$component.getAttribute('value2-label'));
-                },
-
-                update: (
-                  percent1,
-                  percent2,
-                  textValue1,
-                  textValue2,
-                  min,
-                  max,
-                  textMin,
-                  textMax
+                /**
+                 * Optional: plugin initialization
+                 */
+                init: (
+                  _$component,
+                  _requestUpdate,
+                  _setters,
+                  _getters
                 ) => {
-                    if($referenceLabel1 && textValue1 !== undefined){
-                        $referenceLabel1.textContent = textValue1.toString();
-                    }
+                    const labelPath = _$component?.getAttribute(`label`) ?? '';
+                    $labelElement = document.querySelector(labelPath);
 
-                    if($referenceLabel2 && textValue2 !== undefined){
-                        $referenceLabel2.textContent = textValue2.toString();
-                    }
-                },
-
-                onAttrChange: (attrName, oldValue, newValue) => {
-
-                    switch (attrName){
-                        case 'value-label': {
-                            setReferenceLabel1(newValue);
-                            break;
-                        }
-
-                        case 'value2-label': {
-                            setReferenceLabel2(newValue);
-                            break;
-                        }
+                    if($labelElement){
+                        $labelElement.textContent = _getters.getValues()[0];
                     }
                 },
 
-                gettersAndSetters: [
-                    {
-                        name: 'valueLabel',
-                        attributes: {
-                            get () {
-                                return referenceLabel1;
-                            },
-
-                            set: (_referenceLabel1) => {
-                                setReferenceLabel1(_referenceLabel1);
-                            },
-                        }
-                    },
-                    {
-                        name: 'value2Label',
-                        attributes: {
-                            get () {
-                                return referenceLabel2;
-                            },
-
-                            set: (_referenceLabel2) => {
-                                setReferenceLabel2(_referenceLabel2);
-                            },
-                        }
+                /**
+                 * Optional:
+                 * this will be called each time
+                 * range slider perform updates
+                 */
+                update: (data) => {
+                    if($labelElement){
+                        $labelElement.textContent = data.values[0];
                     }
-                ],
+                },
+
+                /**
+                 * Optional: release resources
+                 */
+                destroy: () => {
+                    if($labelElement){
+                        $labelElement.textContent = '';
+                    }
+                },
             };
-        });
+        };
+
+        /**
+         * Required: add current plugin to the plugins list.
+         */
+        window.tcRangeSliderPlugins.push(ExamplePlugin);
     </script>
     <script src="../dist/toolcool-range-slider.min.js"></script>
-    <script>
-        const $slider1 = document.getElementById('slider-1');
-        const $slider2 = document.getElementById('slider-2');
-        const $slider3 = document.getElementById('slider-3');
-
-        console.log('$slider1.valueLabel', $slider1.valueLabel)
-
-        //$slider1.setAttribute('value-label', '.value-13');
-        //$slider1.setAttribute('value2-label', '.value-14');
-        $slider1.valueLabel = '.value-13';
-        $slider1.value2Label = '.value-14';
-
-        console.log('$slider3.valueLabel', $slider3.valueLabel)
-
-    </script>
 </body>
 </html>
