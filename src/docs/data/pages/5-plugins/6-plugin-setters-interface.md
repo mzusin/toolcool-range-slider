@@ -1,4 +1,4 @@
-## "Setters" Object Interface
+# "Setters" Object Interface
 
 ```typescript
 export interface IPluginSetters {

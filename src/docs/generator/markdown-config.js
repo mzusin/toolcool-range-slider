@@ -67,9 +67,17 @@ export const configureMarkdown = (md) => {
   const tr_open = md.renderer.rules.tr_open || proxy;
   const th_open = md.renderer.rules.th_open || proxy;
   const td_open = md.renderer.rules.td_open || proxy;
+  const bullet_list_open = md.renderer.rules.bullet_list_open || proxy;
   // const code_block = md.renderer.rules.code_block || proxy;
 
   md.use(() => {
+
+    // <ul>
+    md.renderer.rules.bullet_list_open = function(tokens, idx, options, env, self) {
+      tokens[idx].attrJoin('class', 'list-disc mb-10 ml-2 pl-2 leading-8');
+      return bullet_list_open(tokens, idx, options, env, self)
+    };
+
     // <table>
     md.renderer.rules.table_open = function(tokens, idx, options, env, self) {
       tokens[idx].attrJoin('class', 'border-collapse text-sm text-slate-800 table-auto w-full mb-10 mt-4 shadow-sm rounded border border-slate-100');

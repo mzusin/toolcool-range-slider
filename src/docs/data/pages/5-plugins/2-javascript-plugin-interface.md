@@ -1,4 +1,4 @@
-## JavaScript Plugin Interface
+# JavaScript Plugin Interface
 
 The full interface of the plugin looks like this:
 

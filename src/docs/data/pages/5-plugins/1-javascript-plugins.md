@@ -1,4 +1,4 @@
-## JavaScript Plugins
+# JavaScript Plugins
 
 The library has a plugin API that allow you to inject code into various parts of the system. There are several ready-made plugins such as [Auto Generated Labels plugin](/pages/auto-generated-labels.html), [AutoBinding Labels plugin](/pages/auto-binding-labels.html), and [Storage plugin](/pages/storage.html). 
 

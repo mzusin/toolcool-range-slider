@@ -1,4 +1,4 @@
-## "Getters" Object Interface
+# "Getters" Object Interface
 
 ```typescript
 export interface IPluginGetters {

@@ -1,4 +1,4 @@
-## Plugin Data Interface
+# Plugin Data Interface
 
 The structure of the data object that is passed to the **update** hook:
 

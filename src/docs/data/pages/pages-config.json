@@ -41,13 +41,19 @@
   "1-javascript-plugins.md": {
     "title": "JavaScript Plugins"
   },
-  "2-javascript-plugin-example.md": {
+  "2-javascript-plugin-interface.md": {
+    "title": "Plugin Interface"
+  },
+  "3-javascript-plugin-example.md": {
     "title": "JS Plugin Example"
   },
-  "4-plugin-getters-interface.md": {
+  "5-plugin-getters-interface.md": {
     "title": "'Getters' Object Interface"
   },
-  "5-plugin-setters-interface.md": {
+  "6-plugin-setters-interface.md": {
     "title": "'Setters' Object Interface"
+  },
+  "7-css-themes.md": {
+    "title": "CSS Themes"
   }
 }

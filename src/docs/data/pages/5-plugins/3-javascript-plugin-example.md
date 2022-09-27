@@ -1,4 +1,4 @@
-## JavaScript Plugin Example
+# JavaScript Plugin Example
 
 As an example, let's recreate the [Binding Labels Plugin](/pages/auto-binding-labels.html). It gets the path to some HTML element and prints the value of the slider in it. The content of the element must be constantly updated.
 
