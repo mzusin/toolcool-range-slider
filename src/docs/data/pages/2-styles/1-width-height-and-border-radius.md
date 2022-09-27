@@ -18,6 +18,26 @@ By default, the slider width is **100%** and the height is **0.25 rem**. These v
        generate-labels="true"></tc-range-slider>
 </div>
 
+
+The slider radius can be changed using the **slider-radius** attribute like this:
+
+```html
+<tc-range-slider
+  slider-radius="0"
+
+  value="50"
+  slider-height="0.9rem"
+  generate-labels="true"></tc-range-slider>
+```
+
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+       slider-radius="0"
+       value="50"
+       slider-height="0.9rem"
+       generate-labels="true"></tc-range-slider>
+</div>
+
 Pointer width, height, and border-radius can be change using **pointer-width**, **pointer-height**, and **pointer-radius** properties:
 
 ```html

@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664260475425.css" />
-    <!--<link rel="stylesheet" href="/js/index.1664260475425.css" />-->
+    <link rel="stylesheet" href="/css/styles.1664261886525.css" />
+    <!--<link rel="stylesheet" href="/js/index.1664261886525.css" />-->
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
@@ -106,6 +106,20 @@
 <div class="my-12 flex flex-col items-center">
     <tc-range-slider
        slider-width="290px"
+       slider-height="0.9rem"
+       generate-labels="true"></tc-range-slider>
+</div>
+<p class="mb-4">The slider radius can be changed using the <strong class="font-bold">slider-radius</strong> attribute like this:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">slider-radius</span>=<span class="hljs-string">&quot;0&quot;</span>
+
+  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;50&quot;</span>
+  <span class="hljs-attr">slider-height</span>=<span class="hljs-string">&quot;0.9rem&quot;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-12 flex flex-col items-center">
+    <tc-range-slider
+       slider-radius="0"
+       value="50"
        slider-height="0.9rem"
        generate-labels="true"></tc-range-slider>
 </div>
@@ -306,6 +320,6 @@
       </div>
     </footer>-->
 
-    <script src="/js/index.1664260475425.js"></script>
+    <script src="/js/index.1664261886525.js"></script>
   </body>
 </html>
