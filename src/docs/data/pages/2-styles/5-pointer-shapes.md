@@ -11,9 +11,10 @@ To use the plugin, download the latest [tcrs-pointer-shapes.min.css](https://git
 <tc-range-slider 
   pointer-shape="triangle"
   css-links="tcrs-themes.min.css"
-  
+
   value1="30"
-  value2="60"
+  value2="50"
+  value3="70"
   
   pointer-width="35px"
   pointer-height="35px"
@@ -30,9 +31,10 @@ To use the plugin, download the latest [tcrs-pointer-shapes.min.css](https://git
         pointer-shape="triangle"
         css-links="/js/index.{% js-hash %}.css"
         value1="30"
-        value2="60"
-        pointer-width="35px"
-        pointer-height="35px"
+        value2="50"
+        value3="70"
+        pointer-width="30px"
+        pointer-height="30px"
         pointer-bg="#b677d6"
         pointer-bg-hover="#763098"
         pointer-bg-focus="#763098"></tc-range-slider>
@@ -44,43 +46,45 @@ You can also define different shapes for different pointers:
 <tc-range-slider
   pointer1-shape="triangle"
   pointer2-shape="star"
+  pointer3-shape="trapezoid"
   css-links="tcrs-themes.min.css"
   
-  value1="30"
-  value2="60"
+  value1="10"
+  value2="50"
+  value3="90"
   
-  pointer1-width="35px"
-  pointer1-height="35px"
+  pointer1-width="30px"
+  pointer1-height="30px"
   
   pointer2-width="45px"
   pointer2-height="45px"
+
+  pointer3-width="30px"
+  pointer3-height="30px"
   
-  pointer1-bg="#b677d6"
-  pointer1-bg-hover="#763098"
-  pointer1-bg-focus="#763098"
-  
-  pointer2-bg="#48b29e"
-  pointer2-bg-hover="#2b8774"
-  pointer2-bg-focus="#2b8774"></tc-range-slider>
+  pointer-bg="#b677d6"
+  pointer-bg-hover="#763098"
+  pointer-bg-focus="#763098"></tc-range-slider>
 ```
 
 <div class="my-12 flex flex-col items-center">
     <tc-range-slider
         pointer1-shape="triangle"
         pointer2-shape="star"
+        pointer3-shape="trapezoid"
         css-links="/js/index.{% js-hash %}.css"
-        value1="30"
-        value2="60"
-        pointer1-width="35px"
-        pointer1-height="35px"
+        value1="10"
+        value2="50"
+        value3="90"
+        pointer1-width="30px"
+        pointer1-height="30px"
         pointer2-width="45px"
         pointer2-height="45px"
-        pointer1-bg="#b677d6"
-        pointer1-bg-hover="#763098"
-        pointer1-bg-focus="#763098"
-        pointer2-bg="#48b29e"
-        pointer2-bg-hover="#2b8774"
-        pointer2-bg-focus="#2b8774"></tc-range-slider>
+        pointer3-width="30px"
+        pointer3-height="30px"
+        pointer-bg="#b677d6"
+        pointer-bg-hover="#763098"
+        pointer-bg-focus="#763098"></tc-range-slider>
 </div>
 
 There are the following pointer shapes:

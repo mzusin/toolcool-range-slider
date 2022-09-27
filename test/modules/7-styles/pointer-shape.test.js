@@ -35,14 +35,14 @@ QUnit.module('Pointer Shape', (hooks) => {
   QUnit.test('fake pointerShape ---> class should be added', (assert) => {
     const $slider = document.querySelector('#slider-33');
     const $inner = $slider.shadowRoot.querySelector('.range-slider');
-    assert.equal($inner.classList.contains('shape0-fake'), true);
+    assert.equal($inner.classList.contains('shape-fake'), true);
   });
 
   QUnit.test('add pointer shape via set ---> class should be added', (assert) => {
     const $slider = document.querySelector('#slider-1');
     $slider.pointerShape = 'fake1';
     const $inner = $slider.shadowRoot.querySelector('.range-slider');
-    assert.equal($inner.classList.contains('shape0-fake1'), true);
+    assert.equal($inner.classList.contains('shape-fake1'), true);
   });
 
   QUnit.test('add pointer shape via attribute ---> class should be added', (assert) => {
@@ -53,7 +53,7 @@ QUnit.module('Pointer Shape', (hooks) => {
 
     window.setTimeout(() => {
       const $inner = $slider.shadowRoot.querySelector('.range-slider');
-      assert.equal($inner.classList.contains('shape0-fake-2'), true);
+      assert.equal($inner.classList.contains('shape-fake-2'), true);
       done();
     }, 10);
 

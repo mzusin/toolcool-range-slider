@@ -44,12 +44,23 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
 
   // ----- SETTERS ---------------------------
 
-  const removeClassesStartWith = (prefix: string) => {
-    const classList = [...$slider.classList];
+  const removeClassesStartWith = (prefix: string, $element = $slider) => {
+    const classList = [...$element.classList];
     for(const className of classList){
       if(className.startsWith(prefix)){
         $slider.classList.remove(className);
       }
+    }
+  };
+
+  const removeClasses = () => {
+    // remove shape classes from $slider
+    removeClassesStartWith('shape');
+
+    // remove shape classes from pointers (if there are any)
+    const $pointers = $slider.querySelectorAll('.pointer');
+    for(const $pointer of $pointers){
+      removeClassesStartWith('shape', $pointer as HTMLElement);
     }
   };
 
@@ -63,11 +74,22 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
   };
 
   const updatePointerShapes = () => {
-    removeClassesStartWith('shape');
-    for(let i=0; i<pointerShapes.length; i++){
+    removeClasses();
+
+    if(pointerShapes.length <= 0) return;
+
+    // first shape is added to the slider, as it should be applied on all pointers (potentially)
+    $slider.classList.add('shape', `shape-${ pointerShapes[0] }`);
+
+    // other shapes should be added to the relevant pointers each;
+    for(let i=1; i<pointerShapes.length; i++){
       const item = pointerShapes[i];
       if(!item) continue;
-      $slider.classList.add('shape', `shape${ i }-${ item }`);
+
+      const $pointer = $slider.querySelector(`.pointer-${ i }`);
+      if(!$pointer) continue;
+
+      $pointer.classList.add('shape', `shape-${ item }`);
     }
   };
 
@@ -78,11 +100,13 @@ export const Styles = ($component: HTMLElement, $slider: HTMLElement, pointers: 
 
   const setPointerShapes = () => {
 
+    removeClasses();
+
     // pointer-shape, pointer2-shape, ...
     const list = getAttributesByRegex($component, /^pointer([0-9]*)-shape$/);
+    if(list.size <= 0) return;
 
-    removeClassesStartWith('shape');
-
+    // save shapes to the list that can be used for the getter APIs later
     for(const item of list){
       const index = item[0] as number;
       pointerShapes[index] = item[1] as string;
