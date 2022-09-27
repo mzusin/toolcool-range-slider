@@ -13,17 +13,22 @@
     <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png" />
 
     <style>
-        .wrapper{
-            width: 500px;
-            max-width: 100%;
-            margin: 3rem auto;
-        }
 
         h1{
             text-align: center;
             font-weight: normal;
             margin: 3rem 1rem;
         }
+
+        .wrapper{
+            width: 500px;
+            max-width: 100%;
+            margin: 3rem auto;
+        }
+
+        /*
+
+
 
         .row{
             margin-bottom: 3rem;
@@ -49,7 +54,7 @@
             left: 50%;
             transform: translateX(-50%);
             top: -1.2rem;
-        }
+        }*/
     </style>
 </head>
 <body>
@@ -60,10 +65,10 @@
 
         <div class="row">
             <tc-range-slider
-              type="vertical"
               id="slider-1"
               value1="40"
               value2="60"
+              slider-width="100%"
               generate-labels="true"></tc-range-slider>
         </div>
         <button type="button" id="btn">Change</button>
