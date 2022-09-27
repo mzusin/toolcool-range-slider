@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664309478656.css" />
-    <!--<link rel="stylesheet" href="/js/index.1664309478656.css" />-->
+    <link rel="stylesheet" href="/css/styles.1664310809366.css" />
+    <!--<link rel="stylesheet" href="/js/index.1664310809366.css" />-->
   </head>
   <body class="h-screen flex flex-col font-roboto">
 
@@ -100,34 +100,20 @@
 <p class="mb-4">It’s possible to create your own pointer shape themes for the slider. It can be done as follows:</p>
 <ul class="list-disc mb-10 ml-2 pl-2 leading-8">
 <li>Create a new CSS file <strong class="font-bold">my-pointer-shapes.css</strong>.</li>
-<li>Each CSS rule should start with <strong class="font-bold">.theme-</strong> prefix.</li>
-<li>Use the CSS variables from <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/src/core/app/styles.pcss" class="text-blue-500">here</a> to change the look of the slider.</li>
-<li>Add <strong class="font-bold">theme</strong> attribute to the slider. For example, if your CSS rule is <strong class="font-bold">.theme-example</strong>, then you need to pass <strong class="font-bold">theme=“example”</strong> attribute to the slider.</li>
+<li>Each CSS rule should start with <strong class="font-bold">.shape-</strong> prefix.</li>
+<li>Add <strong class="font-bold">pointer-shape</strong> attribute to the slider. For example, if your CSS rule is <strong class="font-bold">.shape-example</strong>, then you need to pass <strong class="font-bold">pointer-shape=“example”</strong> attribute to the slider.</li>
 <li>Add your CSS file to the slider using <a href="/pages/css-links.html" class="text-blue-500">css links</a>.</li>
 </ul>
 <h2 class="text-3xl mb-8">The complete example</h2>
-<p class="mb-4">example.css</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-selector-class">.theme-example</span>{
-  <span class="hljs-attr">--panel-bg</span>: <span class="hljs-number">#D7DCDF</span>;
-  <span class="hljs-attr">--panel-bg-hover</span>: <span class="hljs-number">#ccd1d3</span>;
-  <span class="hljs-attr">--panel-bg-fill</span>: <span class="hljs-number">#47a4bc</span>;
-
-  <span class="hljs-attr">--pointer-bg</span>: <span class="hljs-number">#1aa4bc</span>;
-  <span class="hljs-attr">--pointer-bg-hover</span>: <span class="hljs-number">#0f7b8c</span>;
-  <span class="hljs-attr">--pointer-bg-focus</span>: <span class="hljs-number">#0f7b8c</span>;
-
-  <span class="hljs-attr">--pointer-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">3px</span> <span class="hljs-number">#fff</span>, <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">6px</span> <span class="hljs-number">#1aa4bc</span>;
-  <span class="hljs-attr">--pointer-shadow-hover</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">3px</span> <span class="hljs-number">#fff</span>, <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">6px</span> <span class="hljs-number">#0f7b8c</span>;
-  <span class="hljs-attr">--pointer-shadow-focus</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">3px</span> <span class="hljs-number">#fff</span>, <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">6px</span> <span class="hljs-number">#0f7b8c</span>;
-
-  <span class="hljs-attr">--pointer-border</span>: <span class="hljs-number">0</span>;
-  <span class="hljs-attr">--pointer-border-hover</span>: <span class="hljs-number">0</span>;
-  <span class="hljs-attr">--pointer-border-focus</span>: <span class="hljs-number">0</span>;
+<p class="mb-4">my-pointer-shapes.css</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-selector-class">.shape-example</span>{
+    -webkit-<span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">polygon</span>(<span class="hljs-number">50%</span> <span class="hljs-number">0%</span>, <span class="hljs-number">0%</span> <span class="hljs-number">100%</span>, <span class="hljs-number">100%</span> <span class="hljs-number">100%</span>);
+    <span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">polygon</span>(<span class="hljs-number">50%</span> <span class="hljs-number">0%</span>, <span class="hljs-number">0%</span> <span class="hljs-number">100%</span>, <span class="hljs-number">100%</span> <span class="hljs-number">100%</span>);
 }</code></pre>
 <p class="mb-4">HTML markup:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
-  <span class="hljs-attr">theme</span>=<span class="hljs-string">&quot;example&quot;</span>
-  <span class="hljs-attr">css-links</span>=<span class="hljs-string">&quot;example.css&quot;</span>
+  <span class="hljs-attr">pointer-shape</span>=<span class="hljs-string">&quot;example&quot;</span>
+  <span class="hljs-attr">css-links</span>=<span class="hljs-string">&quot;my-pointer-shapes.css&quot;</span>
   <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
   <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;60&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
 </div>
@@ -157,6 +143,6 @@
       </div>
     </footer>-->
 
-    <script src="/js/index.1664309478656.js"></script>
+    <script src="/js/index.1664310809366.js"></script>
   </body>
 </html>
