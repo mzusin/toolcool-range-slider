@@ -26,5 +26,14 @@
   <body class="font-roboto">
     {% page-content %}
     <script src="/js/index.{% js-hash %}.js"></script>
+    <script src="/highlight.js/highlight.min.js"></script>
+    <script>
+      try{
+        if(window.hljs){
+          window.hljs.highlightAll();
+        }
+      }
+      catch(ex){}
+    </script>
   </body>
 </html>

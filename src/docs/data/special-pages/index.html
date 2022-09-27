@@ -25,7 +25,7 @@
   </div>
 </header>
 
-<div class="relative max-w-5xl mx-auto pt-20 sm:pt-24 lg:pt-32">
+<div class="relative max-w-5xl mx-auto pt-20 sm:pt-24 lg:pt-32 mb-20">
   <h1 class="text-slate-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center  px-4">Tool Cool Range Slider</h1>
 
   <p class="mt-6 sm:text-2xl lg:text-3x text-slate-600 text-center max-w-3xl mx-auto px-4">Responsive range slider library written in typescript and using web component technologies.</p>
@@ -75,401 +75,550 @@
 </div>
 
 <!-- responsive + accessibility -->
-<section class="bg-gray-50 py-10 md:py-20 my-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+<section class="bg-gray-50 my-20 py-10 lg:py-24 my-14">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-20">
 
-    <!-- thumb -->
-    <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="80%"
-        height="80%"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="1"
-        viewBox="0 0 24 24">
-        <path stroke="none" d="M0 0h24v24H0z" />
-        <path d="M18 8V5a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h9m3-9h2" fill="rgba(255, 255, 255, 0.5)" />
-        <rect width="8" height="12" x="13" y="8" rx="1" fill="rgba(255, 255, 255, 0.3)" />
-      </svg>
+    <div class="order-2 lg:order-1">
+
+      <!-- thumb -->
+      <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="80%"
+          height="80%"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z" />
+          <path d="M18 8V5a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h9m3-9h2" fill="rgba(255, 255, 255, 0.5)" />
+          <rect width="8" height="12" x="13" y="8" rx="1" fill="rgba(255, 255, 255, 0.3)" />
+        </svg>
+      </div>
+
+      <h2 class="mt-8 font-semibold text-sky-500">Responsive</h2>
+
+      <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Mobile Ready &amp; Accessibility</p>
+
+      <p class="mt-4 max-w-3xl space-y-6">Mobile-ready range slider that looks good on any devices. It accessible via ARIA-attributes, and supports touch, mousewheel events, and keyboard.</p>
+
+      <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/accessibility.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
     </div>
 
-    <h2 class="mt-8 font-semibold text-sky-500">Responsive</h2>
+    <img src="/img/homepage/mobile.jpeg" alt="" title="" class="max-w-full rounded-xl shadow-xl border-8 border-white order-1 lg:order-2" />
 
-    <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Mobile Ready &amp; Accessibility</p>
-
-    <p class="mt-4 max-w-3xl space-y-6">Mobile-ready range slider that looks good on any devices. It accessible via ARIA-attributes, and supports touch, mousewheel events, and keyboard.</p>
-
-    <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/accessibility.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
   </div>
 </section>
 
 <!-- any number of pointers -->
 <section>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 my-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 my-24 grid lg:grid-cols-2 gap-20 my-24">
 
-    <!-- thumb -->
-    <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
+    <div class="text-gray-200 text-sm rounded-xl overflow-hidden flex flex-col max-w-full shadow-xl">
 
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="80%"
-        height="80%"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="1"
-        viewBox="0 0 24 24">
-        <path stroke="none" d="M0 0h24v24H0z"/>
-        <circle cx="5" cy="12" r="1"/>
-        <circle cx="12" cy="12" r="1"/>
-        <circle cx="19" cy="12" r="1"/>
-      </svg>
+      <div class="bg-slate-900 px-4 py-2 relative flex items-center">
+        <ul class="flex absolute">
+          <li class="bg-red-500 rounded-full w-2.5 h-2.5 mr-2"></li>
+          <li class="bg-amber-400 rounded-full w-2.5 h-2.5 mr-2"></li>
+          <li class="bg-lime-500 rounded-full w-2.5 h-2.5 mr-2"></li>
+        </ul>
+        <div class="flex-1 text-center">Range Slider</div>
+      </div>
+
+      <div class="bg-slate-800 flex-1 p-4">
+        <pre><code class="break-space" style="background: #1E293B">&lt;tc-range-slider
+  value1="10"
+  value2="50"
+  value3="90">
+&lt;/tc-range-slider></code></pre>
+      </div>
     </div>
 
-    <h2 class="mt-8 font-semibold text-sky-500">Knobs</h2>
+    <div>
+      <!-- thumb -->
+      <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
 
-    <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Any Number of Pointers</p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="80%"
+          height="80%"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <circle cx="5" cy="12" r="1"/>
+          <circle cx="12" cy="12" r="1"/>
+          <circle cx="19" cy="12" r="1"/>
+        </svg>
+      </div>
 
-    <p class="mt-4 max-w-3xl space-y-6">The library supports any number of pointers (knobs / handles): one-pointer range slider, two-pointers range slider, or as many as you need.</p>
+      <h2 class="mt-8 font-semibold text-sky-500">Knobs</h2>
 
-    <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/basic-usage.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
+      <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Any Number of Pointers</p>
+
+      <p class="mt-4 max-w-3xl space-y-6">The library supports any number of pointers (knobs / handles): one-pointer range slider, two-pointers range slider, or as many as you need.</p>
+
+      <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/basic-usage.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
+    </div>
+
   </div>
 </section>
 
 <!-- direction and orientation -->
-<section class="bg-gray-50 py-10 md:py-20 my-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+<section class="bg-gray-50 my-20 py-10 lg:py-24 my-14">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-20">
 
-    <!-- thumb -->
-    <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
+    <div>
 
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="80%"
-        height="80%"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="1"
-        viewBox="0 0 24 24">
-        <path stroke="none" d="M0 0h24v24H0z"/>
-        <path d="M12 21v-4m0-4V9m0-4V3m-2 18h4M8 5v4h11l2-2-2-2zm6 8v4H6l-2-2 2-2z" fill="rgba(255, 255, 255, 0.8)" />
-      </svg>
+      <!-- thumb -->
+      <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="80%"
+          height="80%"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <path d="M12 21v-4m0-4V9m0-4V3m-2 18h4M8 5v4h11l2-2-2-2zm6 8v4H6l-2-2 2-2z" fill="rgba(255, 255, 255, 0.8)" />
+        </svg>
+      </div>
+
+      <h2 class="mt-8 font-semibold text-sky-500">Slider Type</h2>
+
+      <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Direction &amp; Orientation</p>
+
+      <p class="mt-4 max-w-3xl space-y-6">The library supports horizontal and vertical orientation. It also supports <span class="font-medium text-sky-700">left to right</span> and <span class="font-medium text-sky-700">right to left</span> directions for a horizontal slider, and <span class="font-medium text-sky-700">top to bottom</span> and <span class="font-medium text-sky-700">bottom to top</span> for vertical sliders.</p>
+
+      <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/vertical-slider.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
     </div>
 
-    <h2 class="mt-8 font-semibold text-sky-500">Slider Type</h2>
+    <div class="text-gray-200 text-sm rounded-xl overflow-hidden flex flex-col max-w-full shadow-xl">
 
-    <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Direction &amp; Orientation</p>
+      <div class="bg-slate-900 px-4 py-2 relative flex items-center">
+        <ul class="flex absolute">
+          <li class="bg-red-500 rounded-full w-2.5 h-2.5 mr-2"></li>
+          <li class="bg-amber-400 rounded-full w-2.5 h-2.5 mr-2"></li>
+          <li class="bg-lime-500 rounded-full w-2.5 h-2.5 mr-2"></li>
+        </ul>
+        <div class="flex-1 text-center">Range Slider</div>
+      </div>
 
-    <p class="mt-4 max-w-3xl space-y-6">The library supports horizontal and vertical orientation. It also supports <span class="font-medium text-sky-700">left to right</span> and <span class="font-medium text-sky-700">right to left</span> directions for a horizontal slider, and <span class="font-medium text-sky-700">top to bottom</span> and <span class="font-medium text-sky-700">bottom to top</span> for vertical sliders.</p>
+      <div class="bg-slate-800 flex-1 p-4" style="background-color: #4d2852">
+        <pre><code class="break-space" style="background-color: inherit">&lt;tc-range-slider
+  type="vertical"
+  value1="30"
+  value2="70">
+&lt;/tc-range-slider></code></pre>
+      </div>
+    </div>
 
-    <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/right-to-left-support.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
   </div>
 </section>
 
 <!-- data -->
 <section>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 my-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 my-24 grid lg:grid-cols-2 gap-20 my-24">
 
-    <!-- thumb -->
-    <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        width="80%"
-        height="80%"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="1"
-        viewBox="0 0 24 24">
-        <path stroke="none" d="M0 0h24v24H0z"/>
-        <rect width="14" height="14" x="7" y="3" rx="2" fill="rgba(255, 255, 255, 0.5)" />
-        <circle cx="14" cy="8" r="2"/>
-        <path d="M17 17v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"  />
-        <path d="M12 12a2 2 0 1 0 4 0V8" />
-      </svg>
+    <img src="/img/homepage/technology.jpeg" alt="" title="" class="max-w-full rounded-xl shadow-xl border-8 border-sky-100" />
+
+    <div>
+      <!-- thumb -->
+      <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          width="80%"
+          height="80%"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <rect width="14" height="14" x="7" y="3" rx="2" fill="rgba(255, 255, 255, 0.5)" />
+          <circle cx="14" cy="8" r="2"/>
+          <path d="M17 17v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2"  />
+          <path d="M12 12a2 2 0 1 0 4 0V8" />
+        </svg>
+      </div>
+
+      <h2 class="mt-8 font-semibold text-sky-500">Data</h2>
+
+      <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Numbers, Text, or Range</p>
+
+      <p class="mt-4 max-w-3xl space-y-6">The slider range can be defined by a minimum and maximum numbers. Another option is to provide a list of individual (discrete) values. Both text and numeric data are supported.</p>
+
+      <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/list-of-individual-values-and-text-data.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
     </div>
 
-    <h2 class="mt-8 font-semibold text-sky-500">Data</h2>
-
-    <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Numbers, Text, or Range</p>
-
-    <p class="mt-4 max-w-3xl space-y-6">The slider range can be defined by a minimum and maximum numbers. Another option is to provide a list of individual (discrete) values. Both text and numeric data are supported.</p>
-
-    <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/list-of-individual-values-and-text-data.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
   </div>
 </section>
 
 <!-- styles -->
-<section class="bg-gray-50 py-10 md:py-20 my-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+<section class="bg-gray-50 my-20 py-10 lg:py-24 my-14">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-20">
 
-    <!-- thumb -->
-    <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        width="80%"
-        height="80%"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="1"
-        viewBox="0 0 24 24">
-        <path stroke="none" d="M0 0h24v24H0z"/>
-        <path d="M12 21a9 9 0 1 1 0-18 9 8 0 0 1 9 8 4.5 4 0 0 1-4.5 4H14a2 2 0 0 0-1 3.75A1.3 1.3 0 0 1 12 21" fill="rgba(255, 255, 255, 0.3)" />
-        <circle cx="7.5" cy="10.5" r=".5" fill="currentColor"/>
-        <circle cx="12" cy="7.5" r=".5" fill="currentColor"/>
-        <circle cx="16.5" cy="10.5" r=".5" fill="currentColor"/>
-      </svg>
+    <div class="order-2 lg:order-1">
+
+      <!-- thumb -->
+      <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          width="80%"
+          height="80%"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <path d="M12 21a9 9 0 1 1 0-18 9 8 0 0 1 9 8 4.5 4 0 0 1-4.5 4H14a2 2 0 0 0-1 3.75A1.3 1.3 0 0 1 12 21" fill="rgba(255, 255, 255, 0.3)" />
+          <circle cx="7.5" cy="10.5" r=".5" fill="currentColor"/>
+          <circle cx="12" cy="7.5" r=".5" fill="currentColor"/>
+          <circle cx="16.5" cy="10.5" r=".5" fill="currentColor"/>
+        </svg>
+      </div>
+
+      <h2 class="mt-8 font-semibold text-sky-500">Styles</h2>
+
+      <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Styles, Design, Animation</p>
+
+      <p class="mt-4 max-w-3xl space-y-6">The library has multiple options for customizing the appearance of the slider. Width, height, border radius, colors, hover and focus, and other properties can be customized using the slider attributes. Images and SVGs can be used as pointers. Optional panel click animation is supported.</p>
+
+      <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/colors.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
     </div>
 
-    <h2 class="mt-8 font-semibold text-sky-500">Styles</h2>
+    <img src="/img/homepage/styles.jpeg" alt="" title="" class="max-w-full rounded-xl shadow-xl border-8 border-white order-1 lg:order-2" />
 
-    <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Styles, Design, Animation</p>
-
-    <p class="mt-4 max-w-3xl space-y-6">The library has multiple options for customizing the appearance of the slider. Width, height, border radius, colors, hover and focus, and other properties can be customized using the slider attributes. Images and SVGs can be used as pointers. Optional panel click animation is supported.</p>
-
-    <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/colors.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
   </div>
 </section>
 
 <!-- themes -->
 <section>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 my-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 my-24 grid lg:grid-cols-2 gap-20 my-24">
 
-    <!-- thumb -->
-    <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="80%"
-        height="80%"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="1"
-        viewBox="0 0 24 24">
-        <path stroke="none" d="M0 0h24v24H0z"/>
-        <path d="M15 8h.01"/>
-        <rect width="16" height="16" x="4" y="4" rx="3" fill="rgba(255, 255, 255, 0.8)" />
-        <path d="m4 15 4-4a3 5 0 0 1 3 0l5 5" fill="rgba(255, 255, 255, 0.8)"  />
-        <path d="m14 14 1-1a3 5 0 0 1 3 0l2 2" fill="rgba(255, 255, 255, 0.8)" />
-      </svg>
+    <img src="/img/homepage/themes.jpeg" alt="" title="" class="max-w-full rounded-xl shadow-xl" />
 
+    <div>
+      <!-- thumb -->
+      <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="80%"
+          height="80%"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <path d="M15 8h.01"/>
+          <rect width="16" height="16" x="4" y="4" rx="3" fill="rgba(255, 255, 255, 0.8)" />
+          <path d="m4 15 4-4a3 5 0 0 1 3 0l5 5" fill="rgba(255, 255, 255, 0.8)"  />
+          <path d="m14 14 1-1a3 5 0 0 1 3 0l2 2" fill="rgba(255, 255, 255, 0.8)" />
+        </svg>
+
+      </div>
+
+      <h2 class="mt-8 font-semibold text-sky-500">Predefined Styles</h2>
+
+      <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Themes</p>
+
+      <p class="mt-4 max-w-3xl space-y-6">The library has additional theme plugins with a ready-made set of styles such as gradients, glass, pointer shapes and more. It's also possible to develop your own theme as an external plugin.</p>
+
+      <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/themes.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
     </div>
 
-    <h2 class="mt-8 font-semibold text-sky-500">Predefined Styles</h2>
-
-    <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Themes</p>
-
-    <p class="mt-4 max-w-3xl space-y-6">The library has additional theme plugins with a ready-made set of styles such as gradients, glass, pointer shapes and more. It's also possible to develop your own theme as an external plugin.</p>
-
-    <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/themes.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
   </div>
 </section>
 
 <!-- css frameworks -->
-<section class="bg-gray-50 py-10 md:py-20 my-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+<section class="bg-gray-50 my-20 py-10 lg:py-24 my-14">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-20">
 
-    <!-- thumb -->
-    <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="80%"
-        height="80%"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="1"
-        viewBox="0 0 24 24">
-        <path stroke="none" d="M0 0h24v24H0z" />
-        <rect width="4" height="3" x="10" y="19" rx="1" fill="rgba(255, 255, 255, 0.3)" />
-        <path d="M12 16c3.314 0 6-4.686 6-8A6 6 0 1 0 6 8c0 3.314 2.686 8 6 8z" fill="rgba(255, 255, 255, 0.3)" />
-        <ellipse cx="12" cy="9" rx="2" ry="7" fill="rgba(255, 255, 255, 0.5)" />
-      </svg>
+    <div class="order-2 lg:order-1">
 
+      <!-- thumb -->
+      <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="80%"
+          height="80%"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z" />
+          <rect width="4" height="3" x="10" y="19" rx="1" fill="rgba(255, 255, 255, 0.3)" />
+          <path d="M12 16c3.314 0 6-4.686 6-8A6 6 0 1 0 6 8c0 3.314 2.686 8 6 8z" fill="rgba(255, 255, 255, 0.3)" />
+          <ellipse cx="12" cy="9" rx="2" ry="7" fill="rgba(255, 255, 255, 0.5)" />
+        </svg>
+
+      </div>
+
+      <h2 class="mt-8 font-semibold text-sky-500">CSS Frameworks</h2>
+
+      <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">No CSS Conflicts</p>
+
+      <p class="mt-4 max-w-3xl space-y-6">Plays well with CSS frameworks like Bootstrap and others. No CSS conflicts with other styles due to the web components nature of the library.</p>
+
+      <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/basic-usage.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
     </div>
 
-    <h2 class="mt-8 font-semibold text-sky-500">CSS Frameworks</h2>
+    <img src="/img/homepage/no-css-conflicts.png" alt="" title="" class="max-w-full rounded-xl shadow-xl border-8 border-white order-1 lg:order-2" />
 
-    <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">No CSS Conflicts</p>
-
-    <p class="mt-4 max-w-3xl space-y-6">Plays well with CSS frameworks like Bootstrap and others. No CSS conflicts with other styles due to the web components nature of the library.</p>
-
-    <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/basic-usage.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
   </div>
 </section>
 
 <!-- advanced features -->
 <section>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 my-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 my-24 grid lg:grid-cols-2 gap-20 my-24">
 
-    <!-- thumb -->
-    <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="80%"
-        height="80%"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="1"
-        viewBox="0 0 24 24">
-        <path stroke="none" d="M0 0h24v24H0z"/>
-        <circle cx="14" cy="6" r="2" fill="rgba(255, 255, 255, 0.8)" />
-        <path d="M4 6h8m4 0h4"/>
-        <circle cx="8" cy="12" r="2" fill="rgba(255, 255, 255, 0.8)" />
-        <path d="M4 12h2m4 0h10"/>
-        <circle cx="17" cy="18" r="2" fill="rgba(255, 255, 255, 0.8)" />
-        <path d="M4 18h11m4 0h1"/>
-      </svg>
+    <img src="/img/homepage/advanced-features.jpeg" alt="" title="" class="max-w-full rounded-xl shadow-xl border-8 border-sky-100" />
 
+    <div>
+      <!-- thumb -->
+      <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="80%"
+          height="80%"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <circle cx="14" cy="6" r="2" fill="rgba(255, 255, 255, 0.8)" />
+          <path d="M4 6h8m4 0h4"/>
+          <circle cx="8" cy="12" r="2" fill="rgba(255, 255, 255, 0.8)" />
+          <path d="M4 12h2m4 0h10"/>
+          <circle cx="17" cy="18" r="2" fill="rgba(255, 255, 255, 0.8)" />
+          <path d="M4 18h11m4 0h1"/>
+        </svg>
+
+      </div>
+
+      <h2 class="mt-8 font-semibold text-sky-500">Advanced</h2>
+
+      <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Advanced Features</p>
+
+      <p class="mt-4 max-w-3xl space-y-6">The slider has a large set of advanced features such as: the ability to disable the entire slider or individual knobs; range dragging support; non-linear range slider support; pointers overlap; pointers max and min distance, and more. Simple dynamic rendering after ajax requests or delays / timeouts.</p>
+
+      <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/range-dragging.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
     </div>
 
-    <h2 class="mt-8 font-semibold text-sky-500">Advanced</h2>
-
-    <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Advanced Features</p>
-
-    <p class="mt-4 max-w-3xl space-y-6">The slider has a large set of advanced features such as: the ability to disable the entire slider or individual knobs; range dragging support; non-linear range slider support; pointers overlap; pointers max and min distance, and more. Simple dynamic rendering after ajax requests or delays / timeouts.</p>
-
-    <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/range-dragging.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
   </div>
 </section>
 
 <!-- storage -->
-<section class="bg-gray-50 py-10 md:py-20 my-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+<section class="bg-gray-50 my-20 py-10 lg:py-24 my-14">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-20">
 
-    <!-- thumb -->
-    <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="80%"
-        height="80%"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="1"
-        class="icon icon-tabler icon-tabler-devices" viewBox="0 0 24 24">
-        <path stroke="none" d="M0 0h24v24H0z"/>
-        <ellipse cx="12" cy="6" rx="8" ry="3" fill="rgba(255, 255, 255, 0.5)" />
-        <path d="M4 6v6c0 1.657 3.582 3 8 3a19.84 19.84 0 0 0 3.302-.267M20 12V6"/>
-        <path d="M4 12v6c0 1.599 3.335 2.905 7.538 2.995M20 14v-2m-6 7h7m-3-3 3 3-3 3"/>
-      </svg>
+    <div>
 
+      <!-- thumb -->
+      <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="80%"
+          height="80%"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          class="icon icon-tabler icon-tabler-devices" viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <ellipse cx="12" cy="6" rx="8" ry="3" fill="rgba(255, 255, 255, 0.5)" />
+          <path d="M4 6v6c0 1.657 3.582 3 8 3a19.84 19.84 0 0 0 3.302-.267M20 12V6"/>
+          <path d="M4 12v6c0 1.599 3.335 2.905 7.538 2.995M20 14v-2m-6 7h7m-3-3 3 3-3 3"/>
+        </svg>
+
+      </div>
+
+      <h2 class="mt-8 font-semibold text-sky-500">Storage</h2>
+
+      <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Local &amp; Session Storage</p>
+
+      <p class="mt-4 max-w-3xl space-y-6">Local storage and session storage support as a standalone plugin. The user selection will be saved and restored after page refresh or navigation from other pages.</p>
+
+      <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/storage.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
     </div>
 
-    <h2 class="mt-8 font-semibold text-sky-500">Storage</h2>
+    <div class="text-gray-200 text-sm rounded-xl overflow-hidden flex flex-col max-w-full shadow-xl">
 
-    <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Local &amp; Session Storage</p>
+      <div class="bg-slate-900 px-4 py-2 relative flex items-center">
+        <ul class="flex absolute">
+          <li class="bg-red-500 rounded-full w-2.5 h-2.5 mr-2"></li>
+          <li class="bg-amber-400 rounded-full w-2.5 h-2.5 mr-2"></li>
+          <li class="bg-lime-500 rounded-full w-2.5 h-2.5 mr-2"></li>
+        </ul>
+        <div class="flex-1 text-center">Range Slider</div>
+      </div>
 
-    <p class="mt-4 max-w-3xl space-y-6">Local storage and session storage support as a standalone plugin. The user selection will be saved and restored after page refresh or navigation from other pages.</p>
+      <div class="bg-slate-800 flex-1 p-4" style="background-color: #202b5e">
+        <pre><code class="break-space" style="background-color: inherit">&lt;tc-range-slider
+  value1="30"
+  value2="70"
+  storage="local-storage"
+  generate-labels="true">
+&lt;/tc-range-slider></code></pre>
+      </div>
+    </div>
 
-    <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/storage.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
   </div>
 </section>
 
 <!-- no dependencies, ES6, Typescript -->
 <section>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 my-24">
-    <!-- thumb -->
-    <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="80%"
-        height="80%"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="1"
-        viewBox="0 0 24 24">
-        <path stroke="none" d="M0 0h24v24H0z"/>
-        <path d="m7 8-4 4 4 4m10-8 4 4-4 4M14 4l-4 16"/>
-      </svg>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 my-24 grid lg:grid-cols-2 gap-20 my-24">
 
+    <div class="text-gray-200 text-sm rounded-xl overflow-hidden flex flex-col max-w-full shadow-xl">
+
+      <div class="bg-slate-900 px-4 py-2 relative flex items-center">
+        <ul class="flex absolute">
+          <li class="bg-red-500 rounded-full w-2.5 h-2.5 mr-2"></li>
+          <li class="bg-amber-400 rounded-full w-2.5 h-2.5 mr-2"></li>
+          <li class="bg-lime-500 rounded-full w-2.5 h-2.5 mr-2"></li>
+        </ul>
+        <div class="flex-1 text-center">Range Slider</div>
+      </div>
+
+      <div class="bg-slate-800 flex-1 p-4">
+        <pre><code class="break-space" style="background: #1E293B">// get the reference
+const $slider = document.getElementById('slider-1');
+
+// listen to the change event
+$slider.addEventListener('change', (evt) => {
+  console.log(evt.detail.value);
+});
+
+// change value
+$slider.value = 50;
+
+// get value
+console.log($slider.value);</code></pre>
+    </div>
     </div>
 
-    <h2 class="mt-8 font-semibold text-sky-500">No dependencies</h2>
+    <div>
+      <!-- thumb -->
+      <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="80%"
+          height="80%"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <path d="m7 8-4 4 4 4m10-8 4 4-4 4M14 4l-4 16"/>
+        </svg>
 
-    <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">ES6 &amp; Typescript</p>
+      </div>
 
-    <p class="mt-4 max-w-3xl space-y-6">The library is built with Typescript and does not use external dependencies. The core is 27KB minified or 9KB compressed (GZip).</p>
+      <h2 class="mt-8 font-semibold text-sky-500">No dependencies</h2>
 
-    <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/basic-usage.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
+      <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">ES6 &amp; Typescript</p>
+
+      <p class="mt-4 max-w-3xl space-y-6">The library is built with Typescript and does not use external dependencies. The core is 27KB minified or 9KB compressed (GZip).</p>
+
+      <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/basic-usage.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
+    </div>
+
   </div>
 </section>
 
 <!-- api & plugins -->
-<section class="bg-gray-50 py-10 md:py-20 my-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+<section class="bg-gray-50 my-20 py-10 lg:py-24 my-14">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-20">
 
-    <!-- thumb -->
-    <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-xl overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="80%"
-        height="80%"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="1"
-        class="icon icon-tabler icon-tabler-devices" viewBox="0 0 24 24">
-        <path stroke="none" d="M0 0h24v24H0z"/>
-        <path d="M4 7h3a1 1 0 0 0 1-1V5a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-1a2 2 0 0 0-4 0v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a2 2 0 0 0 0-4H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1" fill="rgba(255, 255, 255, 0.5)" />
-      </svg>
+    <div class="order-2 lg:order-1">
 
+      <!-- thumb -->
+      <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-xl overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="80%"
+          height="80%"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          class="icon icon-tabler icon-tabler-devices" viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <path d="M4 7h3a1 1 0 0 0 1-1V5a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-1a2 2 0 0 0-4 0v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a2 2 0 0 0 0-4H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1" fill="rgba(255, 255, 255, 0.5)" />
+        </svg>
+
+      </div>
+
+      <h2 class="mt-8 font-semibold text-sky-500">Development</h2>
+
+      <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">API &amp; Plugins</p>
+
+      <p class="mt-4 max-w-3xl space-y-6">The library has a rich set of different APIs and events. Almost any property can be changed with JavaScript. The functionality of the core library can be extended using plugins. There are also several ready-made plugins, such as the auto-generated labels plugin.</p>
+
+      <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/javascript-plugins.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
     </div>
 
-    <h2 class="mt-8 font-semibold text-sky-500">Development</h2>
+    <img src="/img/homepage/api.jpeg" alt="" title="" class="max-w-full rounded-xl shadow-xl border-8 border-white order-1 lg:order-2" />
 
-    <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">API &amp; Plugins</p>
-
-    <p class="mt-4 max-w-3xl space-y-6">The library has a rich set of different APIs and events. Almost any property can be changed with JavaScript. The functionality of the core library can be extended using plugins. There are also several ready-made plugins, such as the auto-generated labels plugin.</p>
-
-    <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/javascript-plugins.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
   </div>
 </section>
 
 <!-- MIT license -->
 <section>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 my-24">
-    <!-- thumb -->
-    <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="80%"
-        height="80%"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="1"
-        viewBox="0 0 24 24">
-        <path stroke="none" d="M0 0h24v24H0z"/>
-        <rect width="18" height="4" x="3" y="8" rx="1"/>
-        <path d="M12 8v13m7-9v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7m2.5-4a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5" fill="rgba(255, 255, 255, 0.5)" />
-      </svg>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 my-24 grid lg:grid-cols-2 gap-20 my-24">
+
+    <img src="/img/homepage/gift.jpeg" alt="" title="" class="max-w-full rounded-xl shadow-xl border-8 border-lime-100" />
+
+    <div>
+      <!-- thumb -->
+      <div class="w-16 h-16 rounded-full ring-1 ring-slate-900/10 shadow-md overflow-hidden flex items-center justify-center text-slate-400 bg-indigo-50">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="80%"
+          height="80%"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <rect width="18" height="4" x="3" y="8" rx="1"/>
+          <path d="M12 8v13m7-9v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7m2.5-4a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5" fill="rgba(255, 255, 255, 0.5)" />
+        </svg>
+      </div>
+
+      <h2 class="mt-8 font-semibold text-sky-500">Free</h2>
+
+      <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">MIT License</p>
+
+      <p class="mt-4 max-w-3xl space-y-6">The library is free to use in any personal or commercial project.</p>
+
+      <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/LICENSE">Read License<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
     </div>
 
-    <h2 class="mt-8 font-semibold text-sky-500">Free</h2>
-
-    <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">MIT License</p>
-
-    <p class="mt-4 max-w-3xl space-y-6">The library is free to use in any personal or commercial project.</p>
-
-    <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/LICENSE">Read License<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
   </div>
 </section>
