@@ -20,6 +20,14 @@ Use the **generate-labels="true"** attribute to enable the plugin.
     <tc-range-slider generate-labels="true"></tc-range-slider>
 </div>
 
+The plugin is also available on the [jsDelivr CND](https://www.jsdelivr.com/package/npm/toolcool-range-slider):
+
+```html
+<!-- The plugin should be included before the core library. -->
+<script 
+  src="https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/plugins/tcrs-generated-labels.min.js"></script>
+```
+
 You can display labels for multiple points in the same way:
 
 ```html

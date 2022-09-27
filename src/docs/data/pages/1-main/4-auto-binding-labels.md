@@ -22,6 +22,20 @@ Use the **value-label** attribute to specify the path to the label. The path can
     <div id="value-1" class="mt-6 text-xs justify-center leading-5 bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 w-24"></div>
 </div>
 
+The plugin is also available on the [jsDelivr CND](https://www.jsdelivr.com/package/npm/toolcool-range-slider):
+
+```html
+<tc-range-slider value-label="#value-1"></tc-range-slider>
+<div id="value-1"></div>
+
+<!-- The plugin should be included before the core library. -->
+<script 
+  src="https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/plugins/tcrs-binding-labels.min.js"></script>
+
+<script 
+  src="https://www.jsdelivr.com/package/npm/toolcool-range-slider"></script>
+```
+
 You can display labels for multiple points in the same way:
 
 ```html

@@ -22,7 +22,6 @@ To use themes, download the latest [tcrs-themes.min.css](https://github.com/tool
         value2="60"></tc-range-slider>
 </div>
 
-
 ```html
 <tc-range-slider
   theme="glass"
