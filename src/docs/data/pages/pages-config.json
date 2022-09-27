@@ -2,19 +2,19 @@
   "1-main": {
     "title": "Getting Started"
   },
-  "2-get-set-values-and-change-event.md": {
+  "2-nodejs": {
+    "title": "Node.js"
+  },
+  "3-get-set-values-and-change-event.md": {
     "title": "Get/Set Values & Change Event"
   },
-  "5-min-and-max.md": {
+  "6-min-and-max.md": {
     "title": "Range: min & max"
   },
-  "8-non-linear-step.md": {
+  "9-non-linear-step.md": {
     "title": "Non-linear Slider"
   },
-  "3-node-js-usage.md": {
-    "title": "Node.js Usage"
-  },
-  "9-list-of-individual-values-and-text-data.md": {
+  "10-list-of-individual-values-and-text-data.md": {
     "title": "Range: Values List"
   },
   "1-width-height-and-border-radius.md": {
