@@ -1,4 +1,4 @@
-# CSS Themes
+# Custom CSS Theme
 
 It's possible to create your own CSS themes for the slider. It can be done as follows:
 
