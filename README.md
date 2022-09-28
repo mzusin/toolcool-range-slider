@@ -10,22 +10,41 @@
 
 Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including any number of  pointers (knobs), vertical and horizontal slider, touch, mousewheel and keyboard support, local and session storage, range dragging, and RTL support. The functionality of the library can be extended using plugins. The library core is 27 KB minified or 9 KB compressed (GZip).
 
-[![Tool Cool Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/toolcool-range-slider-preview-2.png?raw=true)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html)
-
 
 ## Links
 - [Website](https://range-slider.toolcool.org/)
 - [Documentation](https://range-slider.toolcool.org/pages/basic-usage.html)
 
-## Features
-- Responsive, touch, mousewheel, and keyboard support :iphone:
-- Range slider with **any number** of pointers (knobs).
-- Accessible via ARIA-attributes :shield:
-- ES6 JavaScript + TypeScript.
-- No dependencies :unlock:
-- Predefined themes as a standalone plugin :art:
-- Images and SVG can be used as pointers.
-- Customizable with a large set of style attributes :wrench:
+
+### Any Number of Pointers
+
+The library supports [any number of pointers](https://range-slider.toolcool.org/pages/basic-usage.html) (knobs/handles): one-pointer range slider, two-pointers range slider, or as many as you need.
+
+[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-1.gif?raw=true)](https://range-slider.toolcool.org/pages/basic-usage.html)
+
+
+### Mobile Ready :iphone:
+Responsive and mobile-ready range slider that looks good on any devices. It supports [touch, mousewheel events, and keyboard](https://range-slider.toolcool.org/pages/touch-and-keyboard-support.html).
+
+
+### Accessibility
+It accessible via [ARIA-attributes](https://range-slider.toolcool.org/pages/accessibility.html) :shield:
+
+[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-2.gif?raw=true)](https://range-slider.toolcool.org/pages/accessibility.html)
+
+### ES6 JavaScript & Typescript
+The library is built with Typescript and does not use external dependencies :unlock:. The core is 27KB minified or 9KB compressed (GZip).
+
+### Themes :art:
+
+The library has additional [theme](https://range-slider.toolcool.org/pages/themes.html) plugins with a ready-made set of styles such as gradients, glass, pointer shapes and more. It's also possible to [develop your own theme](https://range-slider.toolcool.org/pages/css-themes.html) as an external plugin.
+
+https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-3.mov
+
+### Styles & Design
+The library has multiple options for customizing :wrench: the appearance of the slider. [Width, height, border radius](https://range-slider.toolcool.org/pages/width-height-and-border-radius.html), [colors](https://range-slider.toolcool.org/pages/colors.html), hover and focus, and other properties can be customized using the slider attributes. [Images and SVGs](https://range-slider.toolcool.org/pages/images-and-svgs-as-pointers.html) can be used as pointers.
+
+### Other Features
 - Horizontal and vertical sliders support.
 - Based on web component technologies.
 - Allows programmatic attribute changes :computer:
@@ -45,14 +64,16 @@ Responsive range slider library written in typescript and using web component te
 - Any number of sliders on one page.
 - Supports two (and more) pointers **overlap**, pointers **max** and **min** distance.
 - Supports range dragging.
-- The functionality of the library can be extended using plugins. 
-- The library core is 27 KB minified or 9 KB compressed (GZip).
+- The functionality of the library can be extended using plugins.
 - The range slide can be used in React and other frameworks.
 
-![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-1.gif?raw=true)
 
 ## License
 
 [MIT license](https://github.com/toolcool-org/toolcool-range-slider/blob/main/LICENSE)
 
 It can be used **for free** in any personal or commercial project :gift: 
+
+
+[![Tool Cool Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/img/preview/toolcool-range-slider-preview-2.png?raw=true)](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-styles.html)
+
