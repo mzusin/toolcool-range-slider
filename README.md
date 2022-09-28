@@ -23,8 +23,8 @@ The library supports [any number of pointers](https://range-slider.toolcool.org/
 [![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-1.gif?raw=true)](https://range-slider.toolcool.org/pages/basic-usage.html)
 
 
-### Mobile Ready :iphone:
-Responsive and mobile-ready range slider that looks good on any devices. It supports [touch, mousewheel events, and keyboard](https://range-slider.toolcool.org/pages/touch-and-keyboard-support.html).
+### Mobile Ready 
+Responsive and mobile-ready range slider that looks good on any devices :iphone:. It supports [touch, mousewheel events, and keyboard](https://range-slider.toolcool.org/pages/touch-and-keyboard-support.html).
 
 
 ### Accessibility
