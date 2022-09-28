@@ -60,6 +60,7 @@ The library supports horizontal and [vertical orientation](https://range-slider.
 
 The slider range can be defined by a minimum and maximum numbers. Another option is to provide a list of individual (discrete) values. Both [text :writing_hand: and numeric data](https://range-slider.toolcool.org/pages/list-of-individual-values-and-text-data.html) are supported.
 
+[![Vertical Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/img/readme/4.png?raw=true)](https://range-slider.toolcool.org/pages/list-of-individual-values-and-text-data.html)
 
 
 ### Other Features
