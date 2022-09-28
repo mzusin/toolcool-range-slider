@@ -18,13 +18,15 @@ Responsive range slider library written in typescript and using web component te
 
 ### Any Number of Pointers
 
-The library supports [any number of pointers](https://range-slider.toolcool.org/pages/basic-usage.html) (knobs/handles): one-pointer range slider, two-pointers range slider, or as many as you need.
+The library supports [any number of pointers](https://range-slider.toolcool.org/pages/basic-usage.html) (knobs/handles): 
+one-pointer range slider, two-pointers range slider, or as many as you need.
 
 [![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-1.gif?raw=true)](https://range-slider.toolcool.org/pages/basic-usage.html)
 
 
 ### Mobile Ready 
-Responsive and mobile-ready range slider that looks good on any devices :iphone:. It supports [touch, mousewheel events, and keyboard](https://range-slider.toolcool.org/pages/touch-and-keyboard-support.html).
+Responsive and mobile-ready range slider that looks good on any devices :iphone:. 
+It supports [touch, mousewheel events, and keyboard](https://range-slider.toolcool.org/pages/touch-and-keyboard-support.html).
 
 
 ### Accessibility
@@ -43,7 +45,9 @@ https://user-images.githubusercontent.com/106236790/192861157-6bc694ee-3970-4264
 
 
 ### Styles & Design
-The library has multiple options for customizing :wrench: the appearance of the slider. [Width, height, border radius](https://range-slider.toolcool.org/pages/width-height-and-border-radius.html), [colors](https://range-slider.toolcool.org/pages/colors.html), hover and focus, and other properties can be customized using the slider attributes. [Images and SVGs](https://range-slider.toolcool.org/pages/images-and-svgs-as-pointers.html) can be used as pointers.
+The library has multiple options for customizing :wrench: the appearance of the slider.
+[Width, height, border radius](https://range-slider.toolcool.org/pages/width-height-and-border-radius.html), [colors](https://range-slider.toolcool.org/pages/colors.html), hover and focus, and other properties can be customized using the slider attributes. 
+[Images and SVGs](https://range-slider.toolcool.org/pages/images-and-svgs-as-pointers.html) can be used as pointers.
 
 ### Other Features
 - Horizontal and vertical sliders support.
