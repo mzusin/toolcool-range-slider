@@ -49,6 +49,8 @@ Responsive range slider library written in typescript and using web component te
 - The library core is 27 KB minified or 9 KB compressed (GZip).
 - The range slide can be used in React and other frameworks.
 
+![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-1.gif?raw=true)
+
 ## License
 
 [MIT license](https://github.com/toolcool-org/toolcool-range-slider/blob/main/LICENSE)
