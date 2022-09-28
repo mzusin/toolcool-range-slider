@@ -52,16 +52,21 @@ The library has multiple options for customizing :wrench: the appearance of the 
 ### Direction & Orientation
 The library supports horizontal and [vertical orientation](https://range-slider.toolcool.org/pages/vertical-slider.html) :globe_with_meridians:. It also supports left to right and [right to left](https://range-slider.toolcool.org/pages/right-to-left-support.html) directions for a horizontal slider, and top to bottom and [bottom to top](https://range-slider.toolcool.org/pages/vertical-slider.html) for vertical sliders.
 
-[![Vertical Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/img/readme/1.png?raw=true)](https://range-slider.toolcool.org/pages/list-of-individual-values-and-text-data.html)
+[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/img/readme/1.png?raw=true)](https://range-slider.toolcool.org/pages/list-of-individual-values-and-text-data.html)
 
-[![Vertical Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-4.gif?raw=true)](https://range-slider.toolcool.org/pages/vertical-slider.html)
+[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-4.gif?raw=true)](https://range-slider.toolcool.org/pages/vertical-slider.html)
 
 ### Numbers, Text, or Range
 
 The slider range can be defined by a minimum and maximum numbers. Another option is to provide a list of individual (discrete) values. Both [text :writing_hand: and numeric data](https://range-slider.toolcool.org/pages/list-of-individual-values-and-text-data.html) are supported.
 
-[![Vertical Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/img/readme/4.png?raw=true)](https://range-slider.toolcool.org/pages/list-of-individual-values-and-text-data.html)
+[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/img/readme/4.png?raw=true)](https://range-slider.toolcool.org/pages/list-of-individual-values-and-text-data.html)
 
+### Local & Session Storage
+
+Local storage and session storage support as a [standalone plugin](https://range-slider.toolcool.org/pages/storage.html). The user selection will be saved and restored after page refresh or navigation from other pages.
+
+[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/img/readme/2.png?raw=true)](https://range-slider.toolcool.org/pages/storage.html)
 
 ### Other Features
 - Based on web component technologies.
