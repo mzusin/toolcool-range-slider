@@ -49,17 +49,20 @@ The library has multiple options for customizing :wrench: the appearance of the 
 [Width, height, border radius](https://range-slider.toolcool.org/pages/width-height-and-border-radius.html), [colors](https://range-slider.toolcool.org/pages/colors.html), hover and focus, and other properties can be customized using the slider attributes. 
 [Images and SVGs](https://range-slider.toolcool.org/pages/images-and-svgs-as-pointers.html) can be used as pointers.
 
+### Direction & Orientation
+The library supports horizontal and [vertical orientation](https://range-slider.toolcool.org/pages/vertical-slider.html) :globe_with_meridians:. It also supports left to right and [right to left](https://range-slider.toolcool.org/pages/right-to-left-support.html) directions for a horizontal slider, and top to bottom and [bottom to top](https://range-slider.toolcool.org/pages/vertical-slider.html) for vertical sliders.
+
+[![Vertical Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-4.gif?raw=true)](https://range-slider.toolcool.org/pages/vertical-slider.html)
+
+
 ### Other Features
-- Horizontal and vertical sliders support.
 - Based on web component technologies.
 - Allows programmatic attribute changes :computer:
-- Bottom to top support.
 - Simple dynamic rendering after ajax requests or delays.
 - Disabled / enabled range slider (including API).
 - Possibility to disable only one pointer.
 - Support for local storage and session storage as a separate plugin :floppy_disk:
 - Supports a list of individual values (discrete values).
-- Right to left (RTL) support :globe_with_meridians:
 - Text data support :writing_hand:
 - Non-linear range slider :chart_with_downwards_trend:
 - Optional animation on panel click.
