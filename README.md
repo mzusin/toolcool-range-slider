@@ -39,7 +39,8 @@ The library is built with Typescript and does not use external dependencies :unl
 
 The library has additional [theme](https://range-slider.toolcool.org/pages/themes.html) plugins with a ready-made set of styles such as gradients, glass, pointer shapes and more. It's also possible to [develop your own theme](https://range-slider.toolcool.org/pages/css-themes.html) as an external plugin.
 
-https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-3.mov
+https://user-images.githubusercontent.com/106236790/192861157-6bc694ee-3970-4264-b44f-5991b1511c4a.mov
+
 
 ### Styles & Design
 The library has multiple options for customizing :wrench: the appearance of the slider. [Width, height, border radius](https://range-slider.toolcool.org/pages/width-height-and-border-radius.html), [colors](https://range-slider.toolcool.org/pages/colors.html), hover and focus, and other properties can be customized using the slider attributes. [Images and SVGs](https://range-slider.toolcool.org/pages/images-and-svgs-as-pointers.html) can be used as pointers.
