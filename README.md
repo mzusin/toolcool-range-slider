@@ -64,7 +64,7 @@ The slider range can be defined by a minimum and maximum numbers. Another option
 
 ### Local & Session Storage
 
-Local storage and session storage support as a [standalone plugin](https://range-slider.toolcool.org/pages/storage.html). The user selection will be saved and restored after page refresh or navigation from other pages.
+Local storage :floppy_disk: and session storage support as a [standalone plugin](https://range-slider.toolcool.org/pages/storage.html). The user selection will be saved and restored after page refresh or navigation from other pages.
 
 [![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/img/readme/2.png?raw=true)](https://range-slider.toolcool.org/pages/storage.html)
 
@@ -72,20 +72,20 @@ Local storage and session storage support as a [standalone plugin](https://range
 - Based on web component technologies.
 - Allows programmatic attribute changes :computer:
 - Simple dynamic rendering after ajax requests or delays.
-- Disabled / enabled range slider (including API).
+- [Disabled/enabled](https://range-slider.toolcool.org/pages/disabled.html) range slider (including API).
 - Possibility to disable only one pointer.
-- Support for local storage and session storage as a separate plugin :floppy_disk:
-- Supports a list of individual values (discrete values).
-- Non-linear range slider :chart_with_downwards_trend:
-- Optional animation on panel click.
+- [Non-linear](https://range-slider.toolcool.org/pages/non-linear-step.html) range slider :chart_with_downwards_trend:
+- Optional [animation](https://range-slider.toolcool.org/pages/animation.html) on panel click.
 - Works well with Bootstrap and other CSS frameworks :+1:
 - No CSS conflicts due to web components.
-- Automatically generated labels as a standalone plugin.
+- Automatically generated labels as a [standalone plugin](https://range-slider.toolcool.org/pages/auto-generated-labels.html).
 - Any number of sliders on one page.
-- Supports two (and more) pointers **overlap**, pointers **max** and **min** distance.
-- Supports range dragging.
-- The functionality of the library can be extended using plugins.
-- The range slide can be used in React and other frameworks.
+- Supports two (and more) [pointers overlap](https://range-slider.toolcool.org/pages/pointers-overlap.html), pointers [max and min distance](https://range-slider.toolcool.org/pages/max-and-min-pointers-distance.html).
+- Supports [range dragging](https://range-slider.toolcool.org/pages/range-dragging.html).
+- The functionality of the library can be extended using [plugins](https://range-slider.toolcool.org/pages/javascript-plugins.html).
+- The range slide can be used in [React](https://range-slider.toolcool.org/pages/react-typescript.html) and other frameworks.
+- Extensive API based on TypeScript.
+[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/img/readme/3.png?raw=true)](https://range-slider.toolcool.org/pages/storage.html)
 
 
 ## License
