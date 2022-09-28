@@ -44,6 +44,7 @@
     touch-action: none;
     max-width: 100%;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .row{
@@ -54,10 +55,12 @@
 
 .range-slider.disabled{
     opacity: var(--opacity, 0.4);
+    cursor: default;
 }
 
 .pointer.disabled{
     filter: brightness(0.8);
+    cursor: default;
 }
 
 .range-slider * {
@@ -110,7 +113,6 @@
     background: var(--pointer-bg, #fff);
     background-size: contain;
     box-shadow: var(--pointer-shadow);
-    cursor: pointer;
     border: var(--pointer-border);
     border-radius: var(--pointer-border-radius, 100%);
     transform: translateX(-50%);
