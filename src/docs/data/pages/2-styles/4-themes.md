@@ -17,7 +17,8 @@ To use themes, download the latest [tcrs-themes.min.css](https://github.com/tool
 <div class="my-12 flex flex-col items-center">
     <tc-range-slider
         theme="target"
-        css-links="/js/index.{% js-hash %}.css"
+        
+
         value1="30"
         value2="60"></tc-range-slider>
 </div>
