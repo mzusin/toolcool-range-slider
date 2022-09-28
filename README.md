@@ -52,7 +52,14 @@ The library has multiple options for customizing :wrench: the appearance of the 
 ### Direction & Orientation
 The library supports horizontal and [vertical orientation](https://range-slider.toolcool.org/pages/vertical-slider.html) :globe_with_meridians:. It also supports left to right and [right to left](https://range-slider.toolcool.org/pages/right-to-left-support.html) directions for a horizontal slider, and top to bottom and [bottom to top](https://range-slider.toolcool.org/pages/vertical-slider.html) for vertical sliders.
 
+[![Vertical Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/img/readme/1.png?raw=true)](https://range-slider.toolcool.org/pages/list-of-individual-values-and-text-data.html)
+
 [![Vertical Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-4.gif?raw=true)](https://range-slider.toolcool.org/pages/vertical-slider.html)
+
+### Numbers, Text, or Range
+
+The slider range can be defined by a minimum and maximum numbers. Another option is to provide a list of individual (discrete) values. Both [text :writing_hand: and numeric data](https://range-slider.toolcool.org/pages/list-of-individual-values-and-text-data.html) are supported.
+
 
 
 ### Other Features
@@ -63,7 +70,6 @@ The library supports horizontal and [vertical orientation](https://range-slider.
 - Possibility to disable only one pointer.
 - Support for local storage and session storage as a separate plugin :floppy_disk:
 - Supports a list of individual values (discrete values).
-- Text data support :writing_hand:
 - Non-linear range slider :chart_with_downwards_trend:
 - Optional animation on panel click.
 - Works well with Bootstrap and other CSS frameworks :+1:
