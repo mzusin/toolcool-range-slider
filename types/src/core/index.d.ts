@@ -7,4 +7,3 @@ declare global {
     }
 }
 export default RangeSlider;
-//# sourceMappingURL=index.d.ts.map

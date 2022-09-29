@@ -38,4 +38,3 @@ export declare const MAX_DEFAULT = 100;
 export declare const ROUND_DEFAULT = 2;
 export declare const ANIMATE_ON_CLICK_DEFAULT = "0.3s";
 export declare const Slider: ($component: HTMLElement, $slider: HTMLElement, pointersList: [IPointer, string | number | undefined][]) => ISlider;
-//# sourceMappingURL=slider.d.ts.map

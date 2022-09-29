@@ -68,4 +68,3 @@ export interface IPlugin {
     css?: string;
     destroy?: () => void;
 }
-//# sourceMappingURL=interfaces.d.ts.map

@@ -10,4 +10,3 @@ export interface IPointer {
     destroy: () => void;
 }
 export declare const Pointer: ($component: HTMLElement, $pointer: HTMLElement, index: number) => IPointer;
-//# sourceMappingURL=pointer.d.ts.map

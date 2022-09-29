@@ -8,4 +8,3 @@ export interface IStyles {
 }
 export declare const stylePropertiesList: [string, string, string, RegExp | null][];
 export declare const Styles: ($component: HTMLElement, $slider: HTMLElement, pointers: IPointer[]) => IStyles;
-//# sourceMappingURL=styles.d.ts.map

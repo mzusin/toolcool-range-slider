@@ -12,4 +12,3 @@ export interface IPluginsManager {
     destroy: () => void;
 }
 export declare const PluginsManager: ($component: HTMLElement, requestUpdatePlugins: () => void, setters: IPluginSetters, getters: IPluginGetters) => IPluginsManager;
-//# sourceMappingURL=plugins-manager.d.ts.map

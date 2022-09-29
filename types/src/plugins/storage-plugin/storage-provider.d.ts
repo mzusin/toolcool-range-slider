@@ -12,4 +12,3 @@ export declare const getFromStorage: (storageType: StorageTypeEnum, storageName:
  * when component is initialized
  */
 export declare const restoreFromStorage: (storage: StorageTypeEnum | undefined, storageKey: string, updatePointers: (values: (string | number | undefined | null)[]) => void) => void;
-//# sourceMappingURL=storage-provider.d.ts.map

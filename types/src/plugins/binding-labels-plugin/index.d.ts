@@ -9,4 +9,3 @@ export interface IBindingLabelsPlugin extends RangeSlider {
     valueLabel: string;
     [name: `value${number}Label`]: string;
 }
-//# sourceMappingURL=index.d.ts.map

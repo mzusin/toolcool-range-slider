@@ -18,4 +18,3 @@ export declare const rangeDraggingExamples: () => void;
 export declare const pointersOverlapExamples: () => void;
 export declare const softLimitsExamples: () => void;
 export declare const createdSliderDynamicallyExamples: () => void;
-//# sourceMappingURL=examples.d.ts.map

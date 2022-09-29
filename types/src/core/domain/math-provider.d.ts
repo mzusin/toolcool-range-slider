@@ -16,4 +16,3 @@ export declare const roundToStep: (num: number, step: number) => number;
  */
 export declare const setDecimalPlaces: (num: number, decimalPlaces?: number) => number;
 export declare const getBoolean: (val: string | null | undefined | boolean) => boolean;
-//# sourceMappingURL=math-provider.d.ts.map

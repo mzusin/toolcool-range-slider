@@ -8,4 +8,3 @@ export default GeneratedLabelsPlugin;
 export interface IGeneratedLabelsPlugin extends RangeSlider {
     generateLabels: boolean;
 }
-//# sourceMappingURL=index.d.ts.map

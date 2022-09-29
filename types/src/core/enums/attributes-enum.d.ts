@@ -36,4 +36,3 @@ export declare const PointerBorderHover = "pointer-border-hover";
 export declare const PointerBorderFocus = "pointer-border-focus";
 export declare const AnimateOnClick = "animate-onclick";
 export declare const CSSLinks = "css-links";
-//# sourceMappingURL=attributes-enum.d.ts.map

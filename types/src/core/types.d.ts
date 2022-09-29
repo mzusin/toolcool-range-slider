@@ -40,4 +40,3 @@ export declare type DynamicFields = {
     pointerBorderFocus: string | number | null | undefined;
     [name: `pointer${number}BorderFocus`]: string | number | undefined | null;
 };
-//# sourceMappingURL=types.d.ts.map

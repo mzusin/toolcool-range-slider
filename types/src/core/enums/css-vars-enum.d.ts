@@ -20,4 +20,3 @@ export declare const PointerShadowFocus = "--pointer-shadow-focus";
 export declare const PointerBorder = "--pointer-border";
 export declare const PointerBorderHover = "--pointer-border-hover";
 export declare const PointerBorderFocus = "--pointer-border-focus";
-//# sourceMappingURL=css-vars-enum.d.ts.map

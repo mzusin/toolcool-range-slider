@@ -1,9 +1,6 @@
 import { ISlider } from '../ui/slider';
 import { TData, TStep } from '../types';
-/**
- * Usage: <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
- * Documentation: https://github.com/toolcool-org/toolcool-range-slider
- */
+
 declare class TCRangeSlider extends HTMLElement {
     slider: ISlider | undefined;
     private _externalCSSList;
@@ -54,4 +51,3 @@ declare class TCRangeSlider extends HTMLElement {
     disconnectedCallback(): void;
 }
 export default TCRangeSlider;
-//# sourceMappingURL=range-slider.d.ts.map

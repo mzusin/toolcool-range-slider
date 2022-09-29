@@ -15,7 +15,7 @@
     "suppressImplicitAnyIndexErrors": true,
 
     "declaration": true,
-    "declarationMap": true,
+    "declarationMap": false,
 
     "noImplicitAny": true,
     "noImplicitReturns": true,
