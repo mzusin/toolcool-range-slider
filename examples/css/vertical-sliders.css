@@ -1,0 +1,35 @@
+.wrapper{
+    margin: 3rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    text-align: center;
+    font-weight: normal;
+    margin: 3rem 1rem;
+}
+
+.row{
+    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+label{
+    margin: 1rem 0;
+    width: 2rem;
+    text-align: center;
+}
+
+.value{
+    position: absolute;
+    transform: translateX(-50%);
+    top: 50%;
+    left: -1rem;
+}

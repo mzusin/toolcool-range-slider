@@ -90,3 +90,5 @@ $slider.btt = true; // or false
         <button id="ttb-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mx-2 justify-center">Make Top to Bottom</button>
     </div> 
 </div>  
+
+> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/4-vertical-sliders.html).
