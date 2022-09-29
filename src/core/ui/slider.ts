@@ -424,6 +424,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     pluginsManager.update({
       percents: getPercents(),
       values: getValues(),
+      $pointers: getPointerElements(),
 
       min: getNumericMin(),
       max: getNumericMax(),
@@ -584,6 +585,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
   const getValues = () => {
     return pointers.map(pointer => getTextValue(pointer.percent));
   }
+
+  const getPointerElements = () => {
+    return pointers.map(pointer => pointer.$pointer);
+  };
 
   const getNumericMin = () => {
     return min;
@@ -1085,6 +1090,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
       {
         getPercents,
         getValues,
+        getPointerElements,
 
         getMin: getNumericMin,
         getMax: getNumericMax,

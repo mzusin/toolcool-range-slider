@@ -3,6 +3,7 @@ import { TData, TStep } from '../types';
 export interface IPluginUpdateData {
   percents: number[],
   values: (string | number | undefined)[],
+  $pointers: HTMLElement[],
 
   min: number;
   max: number;
@@ -51,6 +52,7 @@ export interface IPluginSetters {
 export interface IPluginGetters {
   getPercents: () => number[];
   getValues: () => (string | number | undefined)[];
+  getPointerElements: () => HTMLElement[];
 
   getMin: () => number;
   getMax: () => number;
