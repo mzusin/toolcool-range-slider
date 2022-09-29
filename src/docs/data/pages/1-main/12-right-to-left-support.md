@@ -66,3 +66,5 @@ Or with TypeScript:
     // $slider.setAttribute('rtl', 'true');
 </script>
 ```
+
+> :pushpin: An example page with the change event source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/10-right-to-left.html).

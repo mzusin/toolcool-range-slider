@@ -1,109 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Right to Left Example (RTL Support) | Tool Cool</title>
+    <title>Right to Left Example | Tool Cool Range Slider</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="keywords" content="range slider, web components, typescript, ES6"/>
-
-    <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png" />
-    <link id="favicon-48" rel="icon" type="image/png" sizes="48x48" href="img/favicon/favicon-48.png" />
-    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32.png" />
-    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png" />
-
-    <style>
-        .wrapper{
-            width: 500px;
-            max-width: 100%;
-            margin:3rem auto;
-        }
-
-        h1{
-            text-align: center;
-            font-weight: normal;
-            margin: 3rem 1rem;
-        }
-
-        .row{
-            margin-bottom: 3rem;
-            display: flex;
-            width: 100%;
-            align-items: center;
-            position: relative;
-        }
-
-        toolcool-range-slider{
-            flex: 1;
-        }
-
-        label{
-            margin: 0 1rem;
-            width: 2rem;
-            text-align: center;
-        }
-
-        .value{
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            top: -1.2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-    <h1>Right to Left Example (RTL Support)</h1>
+    <h1>Right to Left Example</h1>
 
     <div class="wrapper">
 
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               slider-width="100%"
-              value-label=".value-1"
               generate-labels="true"
               round="0"
-              rtl="true"></toolcool-range-slider>
+              rtl="true"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               min="0"
               max="100"
               value="50"
               slider-width="100%"
               generate-labels="true"
               round="0"
-              rtl="true"></toolcool-range-slider>
+              rtl="true"></tc-range-slider>
         </div>
 
-        <div class="row" style="direction: rtl">
-            <label style="direction: ltr">-200</label>
-            <toolcool-range-slider
+        <div class="row">
+            <tc-range-slider
               min="-200"
               max="200"
               value="0"
               slider-width="100%"
               value-label=".value-3"
               round="0"
-              rtl="true"></toolcool-range-slider>
-            <label style="direction: ltr">200</label>
-            <div class="value value-3" style="direction: ltr"></div>
+              generate-labels="true"
+              rtl="true"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               slider-width="100%"
               min="0"
               max="1000"
               step="100"
               generate-labels="true"
               round="0"
-              rtl="true"></toolcool-range-slider>
+              rtl="true"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               rtl="true"
               min="0"
               max="100"
@@ -121,11 +72,11 @@
               pointer-border-hover="1px solid #6AD3BA"
               pointer-border-focus="1px solid #6AD3BA"
               generate-labels="true"
-              round="0"></toolcool-range-slider>
+              round="0"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               rtl="true"
               min="0"
               max="100"
@@ -143,11 +94,11 @@
               pointer-border-hover="0"
               pointer-border-focus="1px solid #2d4373"
               generate-labels="true"
-              round="0"></toolcool-range-slider>
+              round="0"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               rtl="true"
               slider-width="400px"
               slider-height="0.5rem"
@@ -157,11 +108,11 @@
               css-links="../dist/plugins/tcrs-themes.min.css"
               theme="target"
               generate-labels="true"
-              round="0"></toolcool-range-slider>
+              round="0"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               rtl="true"
               slider-width="400px"
               slider-height="0.5rem"
@@ -173,11 +124,11 @@
               css-links="../dist/plugins/tcrs-themes.min.css"
               theme="glass"
               generate-labels="true"
-              round="0"></toolcool-range-slider>
+              round="0"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               rtl="true"
               slider-width="400px"
               slider-height="0.5rem"
@@ -187,11 +138,11 @@
               css-links="../dist/plugins/tcrs-themes.min.css"
               theme="rect"
               generate-labels="true"
-              round="0"></toolcool-range-slider>
+              round="0"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               rtl="true"
               slider-width="400px"
               min="0"
@@ -200,13 +151,12 @@
               css-links="../dist/plugins/tcrs-themes.min.css"
               theme="circle"
               generate-labels="true"
-              round="0"></toolcool-range-slider>
+              round="0"></tc-range-slider>
         </div>
 
     </div>
 
     <script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
-    <script src="../dist/plugins/tcrs-binding-labels.min.js"></script>
     <script src="../dist/toolcool-range-slider.min.js"></script>
 </body>
 </html>
