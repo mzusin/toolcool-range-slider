@@ -15,6 +15,7 @@
         <div class="row">
             <tc-range-slider
               id="slider-1"
+              value="10"
               slider-width="100%"
               generate-labels="true"></tc-range-slider>
         </div>
@@ -33,7 +34,9 @@
     <script src="../dist/toolcool-range-slider.min.js"></script>
     <script>
         const $slider1 = document.getElementById('slider-1');
+        $slider1.addPointer(30);
         $slider1.addPointer(50);
+        $slider1.addPointer(70);
 
         const $slider2 = document.getElementById('slider-2');
         $slider2.removePointer();

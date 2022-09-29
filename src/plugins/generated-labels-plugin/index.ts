@@ -125,6 +125,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       }
 
       if(value !== undefined && !$label){
+
         // create the label
         const $label = createLabel(`value${ i + 1 }-label generated-label`);
         $label.textContent = (value ?? '').toString();
@@ -147,12 +148,12 @@ const GeneratedLabelsPlugin = () : IPlugin => {
           }
           else{
             // get the previous label
-            const $prev = $label[i - 1];
+            const $prev = $labels[i - 1];
             if(!isReversedOrder){
-              $prev.after($label);
+              $prev?.after($label);
             }
             else{
-              $prev.before($label);
+              $prev?.before($label);
             }
           }
         }

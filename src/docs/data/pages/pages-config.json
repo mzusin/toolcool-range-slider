@@ -38,6 +38,9 @@
   "3-react-typescript.md": {
     "title": "React & TypeScript"
   },
+  "4-add-remove-pointer.md": {
+    "title": "Add/Remove Pointer API"
+  },
   "1-javascript-plugins.md": {
     "title": "JavaScript Plugins"
   },
