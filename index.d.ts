@@ -59,9 +59,11 @@ declare module 'toolcool-range-slider' {
   export interface IPanelFill {
     updatePosition: (type: string, percents: (number | undefined)[], rightToLeft: boolean, bottomToTop: boolean) => void;
   }
+
   export interface IPluginUpdateData {
     percents: number[];
     values: (string | number | undefined)[];
+    $pointers: HTMLElement[],
     min: number;
     max: number;
     round: number;
@@ -79,6 +81,7 @@ declare module 'toolcool-range-slider' {
     disabled: boolean;
     keyboardDisabled: boolean;
   }
+
   export interface IPluginSetters {
     setValues: (values: (string | number | undefined)[]) => void;
     setMin: (min: number | string | undefined | null) => void;
@@ -96,9 +99,11 @@ declare module 'toolcool-range-slider' {
     setRightToLeft: (val: boolean) => void;
     setBottomToTop: (val: boolean) => void;
   }
+
   export interface IPluginGetters {
     getPercents: () => number[];
     getValues: () => (string | number | undefined)[];
+    getPointerElements: () => HTMLElement[];
     getMin: () => number;
     getMax: () => number;
     getTextMin: () => string | number;
@@ -116,6 +121,7 @@ declare module 'toolcool-range-slider' {
     getPointersMinDistance: () => number;
     getPointersMaxDistance: () => number;
   }
+
   export interface IPlugin {
     readonly name: string;
     init?: ($component: HTMLElement, requestUpdate: () => void, setters: IPluginSetters, getters: IPluginGetters) => void;
