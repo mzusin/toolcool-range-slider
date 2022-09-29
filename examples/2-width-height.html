@@ -1,99 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Range Slider Width and Height Settings | Tool Cool</title>
+    <title>Width, Height, & Border Radius | Tool Cool Range Slider</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-
-    <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png" />
-    <link id="favicon-48" rel="icon" type="image/png" sizes="48x48" href="img/favicon/favicon-48.png" />
-    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32.png" />
-    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png" />
+    <link rel="stylesheet" href="css/styles.css" />
 
     <style>
-        body{
-            width: 100vw;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .wrapper{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 3rem auto;
-            width: 100%;
-            max-width: 90%;
-        }
-
-        h1{
-            text-align: center;
-            margin: 3rem 1rem;
-            font-weight: normal;
+        tc-range-slider{
+            flex: none;
         }
 
         .row{
-            display: flex;
-            align-items: center;
             justify-content: center;
-            position: relative;
-            margin: 0 1rem 3rem 1rem;
-            max-width: 100%;
+        }
+
+        h2{
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>Width and Height Settings</h1>
+    <h1>Width, Height, &amp; Border Radius</h1>
 
     <div class="wrapper">
 
         <div class="row">
-            <toolcool-range-slider slider-width="200px"></toolcool-range-slider>
+            <tc-range-slider
+              slider-width="200px" value="50"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               slider-width="250px"
-              slider-height="10px"
+              slider-height="0.5rem"
+              value1="40"
+              value2="60"
               pointer-width="20px"
-              pointer-height="20px"></toolcool-range-slider>
+              pointer-height="20px"></tc-range-slider>
         </div>
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               slider-width="300px"
-              slider-height="15px"
+              slider-height="0.9rem"
+              slider-radius="0"
+              value1="30"
+              value2="50"
+              value3="70"
               pointer-width="25px"
               pointer-height="25px"
-              pointer-radius="3px"></toolcool-range-slider>
+              pointer-radius="3px"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
+              value1="20"
+              value2="40"
+              value3="60"
+              value4="80"
               slider-width="350px"
               slider-height="20px"
               pointer-width="35px"
-              pointer-height="35px"></toolcool-range-slider>
-        </div>
-
-        <div class="row">
-            <toolcool-range-slider
-              slider-width="400px"
-              slider-height="20px"
-              pointer-width="50px"
-              pointer-height="35px"
-              pointer-radius="5px"></toolcool-range-slider>
-        </div>
-
-        <div class="row">
-            <toolcool-range-slider
-              slider-width="450px"
-              slider-height="10px"
-              slider-radius="0"
-              pointer-width="20px"
-              pointer-height="25px"
-              pointer-radius="0"></toolcool-range-slider>
+              pointer-height="35px"></tc-range-slider>
         </div>
 
     </div>

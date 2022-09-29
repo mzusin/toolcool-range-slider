@@ -95,6 +95,7 @@ You can also specify different styles for different pointers:
         pointer3-radius="100%"></tc-range-slider>
 </div>
 
+> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/2-width-height.html).
 
 | HTML Property   | Default Value           | API Property   |
 |-----------------|-------------------------|----------------|
@@ -149,3 +150,4 @@ Each property can also be changed via the API:
         <button id="styles-reset" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-gray-50 text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:ring-gray-600 mt-8 mx-2">Reset</button>
     </div>
 </div>
+
