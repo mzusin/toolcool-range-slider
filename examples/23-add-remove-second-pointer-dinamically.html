@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add / remove second pointer dynamically | Tool Cool Range Slider</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+    <h1>Add / remove second pointer dynamically</h1>
+
+    <div class="wrapper">
+
+        <div class="row">
+            <tc-range-slider
+              id="slider-1"
+              slider-width="100%"
+              generate-labels="true"></tc-range-slider>
+        </div>
+
+        <div class="row">
+            <tc-range-slider
+              id="slider-2"
+              slider-width="100%"
+              generate-labels="true"
+              value1="10"
+              value2="20"></tc-range-slider>
+        </div>
+    </div>
+
+    <script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
+    <script src="../dist/toolcool-range-slider.min.js"></script>
+    <script>
+        const $slider1 = document.getElementById('slider-1');
+        $slider1.addPointer(50);
+
+        const $slider2 = document.getElementById('slider-2');
+        $slider2.removePointer();
+
+    </script>
+</body>
+</html>

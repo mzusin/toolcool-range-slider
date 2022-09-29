@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create range slider dynamically after delay | Tool Cool</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <h1>Create range slider dynamically after delay</h1>
+
+    <div class="wrapper">
+        <div class="row" id="placeholder"></div>
+    </div>
+
+    <script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
+    <script src="../dist/toolcool-range-slider.min.js"></script>
+    <script>
+        window.setTimeout(() => {
+            const $placeholder = document.querySelector('#placeholder');
+
+            // create the slider
+            const $slider = document.createElement('tc-range-slider');
+            $slider.setAttribute('value', '50');
+            $slider.setAttribute('slider-width', '100%');
+            $slider.setAttribute('generate-labels', 'true');
+            $placeholder.append($slider);
+        }, 2000); // 2 seconds
+    </script>
+</body>
+</html>
