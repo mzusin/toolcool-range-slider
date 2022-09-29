@@ -5,65 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="keywords" content="range slider, web components, typescript, ES6"/>
-
-    <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png" />
-    <link id="favicon-48" rel="icon" type="image/png" sizes="48x48" href="img/favicon/favicon-48.png" />
-    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32.png" />
-    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png" />
-
-    <style>
-        .wrapper{
-            width: 500px;
-            max-width: 100%;
-            margin:3rem auto;
-        }
-
-        h1{
-            text-align: center;
-            font-weight: normal;
-            margin: 3rem 1rem;
-        }
-
-        .row{
-            margin-bottom: 3rem;
-            display: flex;
-            width: 100%;
-            align-items: center;
-            position: relative;
-        }
-
-        toolcool-range-slider{
-            flex: 1;
-        }
-
-        label{
-            margin: 0 1rem;
-            width: 2rem;
-            text-align: center;
-        }
-
-        .value{
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            top: -1.2rem;
-        }
-
-        .toggle-btn{
-            background: #2B81AF;
-            border-radius: 1rem;
-            padding: 1.2rem 2.5rem;
-            border: 0;
-            color: #fff;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .toggle-btn-row{
-            justify-content: center;
-        }
-    </style>
+    <link rel="stylesheet" href="css/disabled.css" />
 </head>
 <body>
 
@@ -71,76 +13,77 @@
 
     <div class="wrapper">
 
+        <h2>Disable / enable the whole slider</h2>
         <div class="row">
-            <label>0</label>
-            <toolcool-range-slider
+            <tc-range-slider
               id="slider-1"
               slider-width="100%"
+              generate-labels="true"
               value="50"
-              value-label=".value-1"></toolcool-range-slider>
-            <label>100</label>
-            <div class="value value-1"></div>
+              value-label=".value-1"></tc-range-slider>
         </div>
 
         <div class="row toggle-btn-row">
             <button id="toggle-btn" class="toggle-btn">Disable</button>
         </div>
 
-
+        <h2>Disabled slider customized opacity</h2>
         <div class="row">
-            <label>0</label>
-            <toolcool-range-slider
+            <tc-range-slider
               id="slider-2"
               slider-width="100%"
               value="50"
               value-label=".value-2"
-              style="--tc-range-slider-opacity: 0.1"></toolcool-range-slider>
-            <label>100</label>
-            <div class="value value-2"></div>
+              generate-labels="true"
+              style="--opacity: 0.1"></tc-range-slider>
         </div>
 
         <div class="row toggle-btn-row">
             <button id="toggle-btn-2" class="toggle-btn">Disable</button>
         </div>
 
+        <h2>Disable / enable the 2-pointers slider</h2>
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               id="slider-3"
               generate-labels="true"
               round="0"
               value="30"
-              value2="60"
-              slider-width="100%"></toolcool-range-slider>
+              value2="70"
+              slider-width="100%"></tc-range-slider>
         </div>
 
         <div class="row toggle-btn-row">
             <button id="toggle-btn-3" class="toggle-btn">Disable</button>
         </div>
 
+        <h2>Disabled pointer</h2>
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               generate-labels="true"
               value="50"
               pointer1-disabled="true"
-              slider-width="100%"></toolcool-range-slider>
+              slider-width="100%"></tc-range-slider>
         </div>
 
+        <h2>Disabled first pointer</h2>
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               generate-labels="true"
               value1="10"
               value2="30"
               pointer1-disabled="true"
-              slider-width="100%"></toolcool-range-slider>
+              slider-width="100%"></tc-range-slider>
         </div>
 
+        <h2>Disabled second pointer</h2>
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               generate-labels="true"
               value1="10"
               value2="30"
               pointer2-disabled="true"
-              slider-width="100%"></toolcool-range-slider>
+              slider-width="100%"></tc-range-slider>
         </div>
     </div>
 
