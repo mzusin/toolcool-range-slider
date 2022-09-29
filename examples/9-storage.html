@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Session Storage Example | Tool Cool Range Slider</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+    <h1>Session Storage Example</h1>
+
+    <div class="wrapper">
+
+        <div class="row">
+            <tc-range-slider
+              slider-width="100%"
+              generate-labels="true"
+              storage="session-storage"
+              storage-key="tc-range-slider-1"></tc-range-slider>
+        </div>
+
+        <div class="row">
+            <tc-range-slider
+              min="50"
+              max="100"
+              value="75"
+              slider-width="100%"
+              generate-labels="true"
+              storage="session-storage"
+              storage-key="tc-range-slider-2"></tc-range-slider>
+        </div>
+
+        <div class="row">
+            <tc-range-slider
+              min="-100"
+              max="-50"
+              value="-75"
+              slider-width="100%"
+              generate-labels="true"
+              storage="session-storage"
+              storage-key="tc-range-slider-3"></tc-range-slider>
+        </div>
+
+        <div class="row">
+            <tc-range-slider
+              min="-50"
+              max="50"
+              value="0"
+              slider-width="100%"
+              generate-labels="true"
+              storage="session-storage"
+              storage-key="tc-range-slider-4"></tc-range-slider>
+        </div>
+
+        <div class="row">
+            <tc-range-slider
+              step="10"
+              slider-width="100%"
+              generate-labels="true"
+              storage="session-storage"
+              storage-key="tc-range-slider-5"></tc-range-slider>
+        </div>
+
+        <div class="row">
+            <tc-range-slider
+              data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"
+              storage="session-storage"
+              slider-width="100%"
+              generate-labels="true"
+              storage-key="tc-range-slider-6"></tc-range-slider>
+        </div>
+
+        <div style="width: 500px; max-width: 100%; margin: auto auto 3rem auto">
+            <tc-range-slider
+              generate-labels="true"
+              storage="session-storage"
+              storage-key="tc-range-slider-7"
+              round="0"
+              value="30"
+              value2="60"
+              slider-width="100%"></tc-range-slider>
+        </div>
+
+        <div class="row">
+            <tc-range-slider
+              data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"
+              storage="session-storage"
+              slider-width="100%"
+              generate-labels="true"
+              value="h"
+              value2="r"
+              storage-key="tc-range-slider-8"></tc-range-slider>
+        </div>
+
+    </div>
+
+    <script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
+    <script src="../dist/plugins/tcrs-storage.min.js"></script>
+    <script src="../dist/toolcool-range-slider.min.js"></script>
+</body>
+</html>

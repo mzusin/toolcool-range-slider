@@ -57,3 +57,5 @@ const $slider = document.querySelector('#slider');
 $slider.storage = 'local-storage'; // 'session-storage'
 $slider.storageKey = 'storage-key';
 ```
+
+> :pushpin: An example page with the change event source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/9-storage.html).
