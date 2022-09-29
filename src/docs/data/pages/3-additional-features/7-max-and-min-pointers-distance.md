@@ -63,3 +63,6 @@ The properties have the following default values:
 | pointers-max-distance | 0             | pointersMinDistance |
 | pointers-max-distance | Infinity      | pointersMaxDistance | 
 
+
+> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/15-two-pointers-overlap.html).
+

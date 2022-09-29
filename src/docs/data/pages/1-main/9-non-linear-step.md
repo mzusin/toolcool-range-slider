@@ -41,3 +41,5 @@ TypeScript example:
     };
 </script>
 ```
+
+> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/13-non-linear-step.html).

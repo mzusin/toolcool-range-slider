@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Non Linear Step | Tool Cool Range Slider</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+    <h1>Non Linear Range Slider</h1>
+
+    <div class="wrapper">
+
+        <div class="row">
+            <tc-range-slider
+              id="slider-1"
+              slider-width="100%"
+              generate-labels="true"></tc-range-slider>
+        </div>
+
+        <div class="row">
+            <tc-range-slider
+              id="slider-2"
+              slider-width="100%"
+              value="10"
+              value2="50"
+              generate-labels="true"></tc-range-slider>
+        </div>
+
+    </div>
+
+    <script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
+    <script src="../dist/toolcool-range-slider.min.js"></script>
+    <script>
+        const $slider = document.getElementById('slider-1');
+        $slider.step = (value) => {
+            return value < 50 ? 5 : 10;
+        };
+
+        const $slider2 = document.getElementById('slider-2');
+        $slider2.step = (value) => {
+            return value < 50 ? 5 : 10;
+        };
+    </script>
+</body>
+</html>

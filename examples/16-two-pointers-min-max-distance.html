@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pointers with min/max distance | Tool Cool Range Slider</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<h1>Pointers with min/max distance</h1>
+
+<div class="wrapper">
+
+    <h2>Min distance at least 10px</h2>
+    <div class="row">
+        <tc-range-slider
+          pointers-min-distance="10"
+          value1="30"
+          value2="60"
+          generate-labels="true"
+          round="0"></tc-range-slider>
+    </div>
+
+    <h2>Max distance 50px</h2>
+    <div class="row">
+        <tc-range-slider
+          pointers-max-distance="50"
+          value1="30"
+          value2="60"
+          generate-labels="true"
+          round="0"></tc-range-slider>
+    </div>
+</div>
+
+<script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
+<script src="../dist/toolcool-range-slider.min.js"></script>
+</body>
+</html>

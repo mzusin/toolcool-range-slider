@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Animation on Panel Click | Tool Cool Range Slider</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+    <h1>Animation on Panel Click</h1>
+
+    <div class="wrapper">
+
+        <h2>Disable Animation</h2>
+        <div class="row">
+            <tc-range-slider
+              value="50"
+              animate-onclick="false"
+              slider-width="100%"
+              slider-height="7px"
+              generate-labels="true"></tc-range-slider>
+        </div>
+
+
+        <h2>Slow Animation</h2>
+        <div class="row">
+            <tc-range-slider
+              animate-onclick="1.5s"
+              generate-labels="true"
+              round="0"
+              value="30"
+              value2="60"
+              slider-width="100%"
+              slider-height="7px"></tc-range-slider>
+        </div>
+
+    </div>
+
+    <script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
+    <script src="../dist/toolcool-range-slider.min.js"></script>
+</body>
+</html>
