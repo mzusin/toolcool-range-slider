@@ -4,6 +4,7 @@
 export interface IPluginGetters {
   getPercents: () => number[];
   getValues: () => (string | number | undefined)[];
+  getPointerElements: () => HTMLElement[];
 
   getMin: () => number;
   getMax: () => number;

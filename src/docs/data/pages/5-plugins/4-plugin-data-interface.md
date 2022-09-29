@@ -6,6 +6,7 @@ The structure of the data object that is passed to the **update** hook:
 export interface IPluginUpdateData {
   percents: number[],
   values: (string | number | undefined)[],
+  $pointers: HTMLElement[],
 
   min: number;
   max: number;
