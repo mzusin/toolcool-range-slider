@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Change Event Example | Tool Cool Range Slider</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <h1>Change Event Example</h1>
+
+    <div class="wrapper">
+
+        <h2>Basic slider</h2>
+        <div class="row">
+            <label>0</label>
+            <tc-range-slider
+              id="slider-1"
+              slider-width="100%"></tc-range-slider>
+            <label>100</label>
+            <div id="value-1" class="value"></div>
+        </div>
+
+        <h2>Basic slider with two pointers</h2>
+        <div class="row">
+            <label>50</label>
+            <tc-range-slider
+              min="50"
+              max="100"
+              value1="65"
+              value2="85"
+              slider-width="100%"
+              id="slider-2"></tc-range-slider>
+            <label>100</label>
+            <div id="value-2" class="value"></div>
+        </div>
+
+        <h2>Negative min and max</h2>
+        <div class="row">
+            <label>-100</label>
+            <tc-range-slider
+              min="-100"
+              max="-50"
+              value="-75"
+              slider-width="100%"
+              id="slider-3"></tc-range-slider>
+            <label>-50</label>
+            <div id="value-3" class="value"></div>
+        </div>
+
+        <h2>Three pointers</h2>
+        <div class="row">
+            <label>-50</label>
+            <tc-range-slider
+              min="-50"
+              max="50"
+              value1="-20"
+              value2="0"
+              value3="20"
+              slider-width="100%"
+              id="slider-4"></tc-range-slider>
+            <label>50</label>
+            <div id="value-4" class="value"></div>
+        </div>
+
+        <h2>Slider with step = 10</h2>
+        <div class="row">
+            <label>0</label>
+            <tc-range-slider
+              step="10"
+              slider-width="100%"
+              id="slider-5"></tc-range-slider>
+            <label>100</label>
+            <div id="value-5" class="value"></div>
+        </div>
+
+    </div>
+
+    <script src="../dist/toolcool-range-slider.min.js"></script>
+    <script>
+
+        // slider #1 ------------------
+        const $slider1 = document.getElementById('slider-1');
+        const $value1 = document.getElementById('value-1');
+        $slider1.addEventListener('change', (evt) => {
+            const value = evt.detail.value;
+            $value1.textContent = value.toString();
+        });
+        $value1.textContent = $slider1.value;
+
+
+        // slider #2 ------------------
+        const $slider2 = document.getElementById('slider-2');
+        const $value2 = document.getElementById('value-2');
+        $slider2.addEventListener('change', (evt) => {
+            const value = evt.detail.value;
+            $value2.textContent = value.toString();
+        });
+        $value2.textContent = $slider2.value;
+
+
+        // slider #3 ------------------
+        const $slider3 = document.getElementById('slider-3');
+        const $value3 = document.getElementById('value-3');
+        $slider3.addEventListener('change', (evt) => {
+            const value = evt.detail.value;
+            $value3.textContent = value.toString();
+        });
+        $value3.textContent = $slider3.value;
+
+        // slider #4 ------------------
+        const $slider4 = document.getElementById('slider-4');
+        const $value4 = document.getElementById('value-4');
+        $slider4.addEventListener('change', (evt) => {
+            const value = evt.detail.value;
+            $value4.textContent = value.toString();
+        });
+        $value4.textContent = $slider4.value;
+
+
+        // slider #5 ------------------
+        const $slider5 = document.getElementById('slider-5');
+        const $value5 = document.getElementById('value-5');
+        $slider5.addEventListener('change', (evt) => {
+            const value = evt.detail.value;
+            $value5.textContent = value.toString();
+        });
+        $value5.textContent = $slider5.value;
+
+    </script>
+</body>
+</html>
