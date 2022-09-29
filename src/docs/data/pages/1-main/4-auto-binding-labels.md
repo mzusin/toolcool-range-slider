@@ -114,3 +114,5 @@ const $slider2 = document.getElementById('slider-2') as RangeSlider;
 
 ($slider2 as IBindingLabelsPlugin).valueLabel = '.value-22';
 ```
+
+> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/7-automatic-labels-binding-plugin.html).

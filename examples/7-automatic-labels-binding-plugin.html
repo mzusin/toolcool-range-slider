@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Automatic Labels Binding Plugin | Tool Cool Range Slider</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="keywords" content="range slider, web components, typescript, ES6"/>
+    <link rel="stylesheet" href="css/auto-binding.css" />
+</head>
+<body>
+
+    <h1>Automatic Labels Binding Plugin</h1>
+
+    <div class="wrapper">
+
+        <div class="row">
+            <label>0</label>
+            <tc-range-slider
+              slider-width="100%"
+              value1="30"
+              value2="70"
+              value1-label=".value-11"
+              value2-label=".value-12"></tc-range-slider>
+            <label>100</label>
+            <div class="values">
+                <div class="value value-11"></div>
+                <div class="value value-12"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <label>50</label>
+            <tc-range-slider
+              min="50"
+              max="100"
+              value="75"
+              slider-width="100%"
+              value-label=".value-2"></tc-range-slider>
+            <label>100</label>
+            <div class="values">
+                <div class="value value-2"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <label>-100</label>
+            <tc-range-slider
+              min="-100"
+              max="-50"
+
+              value1="-95"
+              value2="-75"
+              value3="-55"
+
+              slider-width="100%"
+
+              value1-label=".value-31"
+              value2-label=".value-32"
+              value3-label=".value-33"></tc-range-slider>
+            <label>-50</label>
+            <div class="values">
+                <div class="value value-31"></div>
+                <div class="value value-32"></div>
+                <div class="value value-33"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../dist/plugins/tcrs-binding-labels.min.js"></script>
+    <script src="../dist/toolcool-range-slider.min.js"></script>
+</body>
+</html>
