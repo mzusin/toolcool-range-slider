@@ -46,3 +46,5 @@ $slider1.addEventListener('onKeyDown', (evt) => {
     console.log('Native onKeyDown event:', nativeEvent);
 });
 ```
+
+> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/21-events.html).

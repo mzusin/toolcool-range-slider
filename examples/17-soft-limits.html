@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Soft Limits Example | Tool Cool Range Slider</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+    <h1>Soft Limits Example</h1>
+
+    <div class="wrapper">
+
+        <div class="row">
+            <tc-range-slider
+              id="slider"
+              animate-onclick="0.3s"
+              generate-labels="true"
+              round="0"
+              value="30"
+              value2="60"
+              slider-width="100%"
+              slider-height="7px"></tc-range-slider>
+        </div>
+
+    </div>
+
+    <script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
+    <script src="../dist/toolcool-range-slider.min.js"></script>
+    <script>
+        const $slider = document.getElementById('slider');
+
+        $slider.addEventListener('onMouseUp', () => {
+
+            if($slider.value1 !== undefined && $slider.value1 < 20) {
+                $slider.value1 = 20;
+            }
+
+            if($slider.value2 !== undefined && $slider.value2 > 80) {
+                $slider.value2 = 80;
+            }
+        });
+    </script>
+</body>
+</html>

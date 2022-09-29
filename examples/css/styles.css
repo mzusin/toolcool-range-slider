@@ -42,3 +42,8 @@ label{
     transform: translateX(-50%);
     top: -1.2rem;
 }
+
+.desc{
+    text-align: center;
+    padding: 0 1rem 1rem 1rem;
+}

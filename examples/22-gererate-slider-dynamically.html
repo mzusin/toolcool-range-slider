@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Generating Slider Dynamically | Tool Cool Range Slider</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <h1>Generating Slider Dynamically</h1>
+
+    <div class="wrapper">
+        <div class="row" id="row"></div>
+    </div>
+
+    <script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
+    <script src="../dist/toolcool-range-slider.min.js"></script>
+    <script>
+        const $row = document.getElementById('row');
+
+        const $slider = document.createElement('toolcool-range-slider');
+        $slider.setAttribute('min', '-100');
+        $slider.setAttribute('max', '100');
+        $slider.setAttribute('value1', '-50');
+        $slider.setAttribute('value2', '50');
+        $slider.setAttribute('slider-width', '400px');
+        $slider.setAttribute('generate-labels', 'true');
+
+        $row.append($slider);
+    </script>
+</body>
+</html>

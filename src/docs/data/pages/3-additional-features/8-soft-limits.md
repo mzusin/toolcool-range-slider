@@ -38,3 +38,5 @@ It's possible to enable soft limits to the range slider. This means that the edg
       value2="60"
       round="0"></tc-range-slider>
 </div> 
+
+> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/17-soft-limits.html).

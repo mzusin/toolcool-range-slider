@@ -33,3 +33,5 @@ Images and SVG can be used as pointers using **pointer-bg**, **pointer-bg-hover*
         pointer-bg-hover="#c6f7eb url(/img/icons/paw.png) no-repeat 50% 50%"
         pointer-bg-focus="#c6f7eb url(/img/icons/paw.png) no-repeat 50% 50%">></tc-range-slider>
 </div>
+
+> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/19-pointers-images-and-svg.html).

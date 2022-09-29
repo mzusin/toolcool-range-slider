@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Range Dragging | Tool Cool Range Slider</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+    <h1>Range Dragging</h1>
+
+    <div class="wrapper">
+        <div class="row">
+            <tc-range-slider
+              generate-labels="true"
+              range-dragging="true"
+              round="0"
+              value="30"
+              value2="60"
+              slider-width="100%"
+              slider-height="0.5rem"></tc-range-slider>
+        </div>
+        
+        <div class="row">
+            <tc-range-slider
+              generate-labels="true"
+              range-dragging="true"
+              round="0"
+              value1="30"
+              value2="50"
+              value3="70"
+              slider-width="100%"
+              slider-height="0.5rem"></tc-range-slider>
+        </div>
+
+        <div class="row">
+            <tc-range-slider
+              generate-labels="true"
+              range-dragging="true"
+              min="-300"
+              max="300"
+              value1="100"
+              value2="200"
+              slider-width="100%"
+              slider-height="0.5rem"></tc-range-slider>
+        </div>
+
+        <div class="row">
+            <tc-range-slider
+              generate-labels="true"
+              range-dragging="true"
+              step="10"
+              value1="10"
+              value2="30"
+              slider-width="100%"
+              slider-height="0.5rem"
+            ></tc-range-slider>
+        </div>
+
+        <div class="row">
+            <tc-range-slider
+              generate-labels="true"
+              range-dragging="true"
+              data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"
+              value1="g"
+              value2="p"
+              slider-width="100%"
+              slider-height="0.5rem"></tc-range-slider>
+        </div>
+
+        <div style="width: 100px; max-width: 100%; margin: auto">
+            <tc-range-slider
+              generate-labels="true"
+              range-dragging="true"
+              value1="50"
+              value2="60"
+              round="0"
+              slider-width="0.5rem"
+              slider-height="400px"
+              pointer-width="1.5rem"
+              pointer-height="1.5rem"
+              pointer-bg="#6AD3BA"
+              pointer-bg-hover="#50BDA3"
+              pointer-shadow="none"
+              pointer-shadow-hover="none"
+              pointer-border="0"
+              pointer-border-hover="1px solid #3F8A8A"
+              pointer-border-focus="1px solid #3F8A8A"
+              type="vertical"></tc-range-slider>
+        </div>
+    </div>
+
+    <script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
+    <script src="../dist/toolcool-range-slider.min.js"></script>
+
+</body>
+</html>

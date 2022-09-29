@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Images and SVGs as pointers | Tool Cool Range Slider</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <h1>Images and SVGs as pointers</h1>
+
+    <div class="wrapper">
+
+        <div class="row">
+            <tc-range-slider
+              min="0"
+              max="100"
+              value1="30"
+              value2="50"
+              value3="70"
+
+              slider-width="400px"
+              slider-height="0.3rem"
+
+              pointer-width="2.5rem"
+              pointer-height="2.5rem"
+
+              slider-bg="#6AD3BA"
+              slider-bg-hover="#3F8A8A"
+              slider-bg-fill="#378c8a"
+
+              pointer-bg="#fff url(img/icons/paw.png) no-repeat 50% 50%"
+              pointer-bg-hover="#c6f7eb url(img/icons/paw.png) no-repeat 50% 50%"
+              pointer-bg-focus="#c6f7eb url(img/icons/paw.png) no-repeat 50% 50%"
+
+              pointer-border-hover="1px solid #6AD3BA"
+              pointer-border-focus="1px solid #6AD3BA"></tc-range-slider>
+        </div>
+    </div>
+
+    <script src="../dist/toolcool-range-slider.min.js"></script>
+</body>
+</html>

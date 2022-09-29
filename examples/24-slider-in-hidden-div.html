@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Slider in the hidden div | Tool Cool Range Slider</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+        .hidden{
+            display: none;
+        }
+
+        button{
+            width: 200px;
+            margin: auto;
+            background: #2B81AF;
+            padding: 0.7rem 1.5rem;
+            border: 0;
+            border-radius: 1rem;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Slider in the hidden div</h1>
+
+    <div class="wrapper">
+
+        <div class="row hidden" id="box">
+            <tc-range-slider
+              min="0"
+              max="100"
+              value="50"
+              slider-width="100%"
+              generate-labels="true"></tc-range-slider>
+        </div>
+
+        <div class="row">
+            <button type="button" id="toggle-btn">Show / Hide</button>
+        </div>
+
+    </div>
+
+    <script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
+    <script src="../dist/toolcool-range-slider.min.js"></script>
+    <script>
+        const $box = document.getElementById('box');
+        const $toggleBtn = document.getElementById('toggle-btn');
+        let isHidden = true;
+
+        $toggleBtn.addEventListener('click', () => {
+            isHidden = !isHidden;
+            $box.classList.toggle('hidden', isHidden);
+        });
+    </script>
+</body>
+</html>
