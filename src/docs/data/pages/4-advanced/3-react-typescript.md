@@ -2,6 +2,12 @@
 
 The range slider can also be used in React applications. 
 
+Install the package from npm:
+
+```js
+npm i toolcool-range-slider
+```
+
 First **tc-range-slider** html element should be declared as follows:
 
 ```typescript
@@ -22,7 +28,7 @@ import 'toolcool-range-slider';
 const RangeSliderExample = () => {
 
     return (
-        <tc-range-slider />;
+        <tc-range-slider />
     )
 };
 
