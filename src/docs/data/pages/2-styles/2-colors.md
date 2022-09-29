@@ -12,7 +12,7 @@ To change the slider background colors use the following attributes: **slider-bg
     slider-height="0.9rem"
     
     slider-bg="red"
-    slider-bg-hover="silver"
+    slider-bg-hover="silver" 
     slider-bg-fill="blue"></tc-range-slider>
 ```
 
@@ -25,11 +25,11 @@ To change the slider background colors use the following attributes: **slider-bg
         slider-bg-fill="blue"></tc-range-slider>
 </div>
 
-| HTML Attribute        | Default Value                   | API Property       |
-|-----------------------|---------------------------------|--------------------|
-| slider-bg             | #4d69ad                         | sliderBg           |
-| slider-bg-hover       | #5f79b7                         | sliderBgHover      |
-| slider-bg-fill        | #000                            | sliderBgFill       |
+| HTML Attribute  | Default Value | API Property  |
+|-----------------|---------------|---------------|
+| slider-bg       | #CBD5E1       | sliderBg      |
+| slider-bg-hover | #94A3B8       | sliderBgHover |
+| slider-bg-fill  | #47           | sliderBgFill  |
 
 
 To change the pointer background colors use the following attributes: **pointer-bg**, **pointer-bg-hover**, and **pointer-bg-focus**.
@@ -82,11 +82,11 @@ The pointer border can be customized using the following properties:
 | HTML Attribute        | Default Value                   | API Property        |
 |-----------------------|---------------------------------|---------------------|
 | pointer-border        | 1px solid hsla(0, 0%, 88%, 0.5) | pointerBorder       |
-| pointer-border-hover  | 1px solid hsla(0, 0%, 88%, 0.5) | pointerBorderHover  |
-| pointer-border-focus  | 1px solid hsl(201, 72%, 59%)    | pointerBorderFocus  |
+| pointer-border-hover  | 1px solid #94A3B8               | pointerBorderHover  |
+| pointer-border-focus  | 1px solid #94A3B8               | pointerBorderFocus  |
 | pointer2-border       | 1px solid hsla(0, 0%, 88%, 0.5) | pointer2Border      |
-| pointer2-border-hover | 1px solid hsla(0, 0%, 88%, 0.5) | pointer2BorderHover |
-| pointer2-border-focus | 1px solid hsl(201, 72%, 59%)    | pointer2BorderFocus |
+| pointer2-border-hover | 1px solid #94A3B8               | pointer2BorderHover |
+| pointer2-border-focus | 1px solid #94A3B8               | pointer2BorderFocus |
 | etc...                | ...                             | ...                 |
 
 
@@ -108,15 +108,15 @@ The pointer shadow can be configured using **pointer-shadow**, **pointer-shadow-
         pointer-shadow-focus="0 0 5px black"></tc-range-slider>
 </div>
 
-| HTML Attribute        | Default Value                   | API Property        |
-|-----------------------|---------------------------------|---------------------|
-| pointer-shadow        | 0 0 2px rgba(0, 0, 0, 0.6)      | pointerShadow       |
-| pointer-shadow-hover  | 0 0 2px rgb(0, 0, 0)            | pointerShadowHover  |
-| pointer-shadow-focus  | 0 0 2px rgb(0, 0, 0)            | pointerShadowFocus  |
-| pointer2-shadow       | 0 0 2px rgba(0, 0, 0, 0.6)      | pointer2Shadow      |
-| pointer2-shadow-hover | 0 0 2px rgb(0, 0, 0)            | pointer2ShadowHover |
-| pointer2-shadow-focus | 0 0 2px rgb(0, 0, 0)            | pointer2ShadowFocus |
-| etc...                | ...                             | ...                 |
+| HTML Attribute        | Default Value              | API Property        |
+|-----------------------|----------------------------|---------------------|
+| pointer-shadow        | 0 0 2px rgba(0, 0, 0, 0.8) | pointerShadow       |
+| pointer-shadow-hover  | 0 0 2px rgb(0, 0, 0)       | pointerShadowHover  |
+| pointer-shadow-focus  | 0 0 2px rgb(0, 0, 0)       | pointerShadowFocus  |
+| pointer2-shadow       | 0 0 2px rgba(0, 0, 0, 0.8) | pointer2Shadow      |
+| pointer2-shadow-hover | 0 0 2px rgb(0, 0, 0)       | pointer2ShadowHover |
+| pointer2-shadow-focus | 0 0 2px rgb(0, 0, 0)       | pointer2ShadowFocus |
+| etc...                | ...                        | ...                 |
 
 By default, all pointers inherit the same styles. But it is possible to configure each pointer individually:
 
