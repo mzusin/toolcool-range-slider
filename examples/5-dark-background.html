@@ -1,55 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dark Mode | Tool Cool Range Slider</title>
+    <title>Dark Background | Tool Cool Range Slider</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-
-    <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
-    <link id="favicon-48" rel="icon" type="image/png" sizes="48x48" href="img/favicon/favicon-48.png">
-    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32.png">
-    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16.png">
+    <link rel="stylesheet" href="css/styles.css" />
 
     <style>
         html, body{
             background: #181818;
             color: #efefef;
         }
-
-        .wrapper{
-            width: 500px;
-            max-width: 100%;
-            margin:3rem auto;
-        }
-
-        h1{
-            text-align: center;
-            font-weight: normal;
-            margin: 3rem 1rem;
-        }
-
-        .row{
-            margin-bottom: 3rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            padding: 0 1rem;
-        }
     </style>
 </head>
 <body>
-    <h1>Dark Mode</h1>
+    <h1>Dark Background</h1>
 
     <div class="wrapper">
 
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               min="0"
               max="100"
               value="50"
-              slider-width="400px"
+              slider-width="100%"
               slider-height="0.5rem"
               pointer-width="1.5rem"
               pointer-height="1.5rem"
@@ -60,15 +34,15 @@
               pointer-bg-hover="#c6f7eb"
               pointer-bg-focus="#c6f7eb"
               pointer-border-hover="1px solid #6AD3BA"
-              pointer-border-focus="1px solid #6AD3BA"></toolcool-range-slider>
+              pointer-border-focus="1px solid #6AD3BA"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               min="0"
               max="100"
               value="50"
-              slider-width="400px"
+              slider-width="100%"
               slider-height="0.5rem"
               slider-bg="#3c85ae"
               slider-bg-fill="#a900ff"
@@ -81,23 +55,23 @@
               pointer-shadow-hover="none"
               pointer-border="0"
               pointer-border-hover="0"
-              pointer-border-focus="1px solid #2d4373"></toolcool-range-slider>
+              pointer-border-focus="1px solid #2d4373"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
-              slider-width="400px"
+            <tc-range-slider
+              slider-width="100%"
               slider-height="0.5rem"
               min="0"
               max="100"
               value="50"
               css-links="../dist/plugins/tcrs-themes.min.css"
-              theme="target"></toolcool-range-slider>
+              theme="target"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
-              slider-width="400px"
+            <tc-range-slider
+              slider-width="100%"
               slider-height="0.5rem"
               pointer-width="1.5rem"
               pointer-height="1.5rem"
@@ -106,38 +80,38 @@
               value="50"
               css-links="../dist/plugins/tcrs-themes.min.css"
               theme="glass"
-              slider-bg-fill="#ffd600"></toolcool-range-slider>
+              slider-bg-fill="#ffd600"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
-              slider-width="400px"
+            <tc-range-slider
+              slider-width="100%"
               slider-height="0.5rem"
               min="0"
               max="100"
               value="50"
               css-links="../dist/plugins/tcrs-themes.min.css"
-              theme="rect"></toolcool-range-slider>
+              theme="rect"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
-              slider-width="400px"
+            <tc-range-slider
+              slider-width="100%"
               min="0"
               max="100"
               value="50"
               css-links="../dist/plugins/tcrs-themes.min.css"
-              theme="circle"></toolcool-range-slider>
+              theme="circle"></tc-range-slider>
         </div>
 
         <!-- 2 pointers -->
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               min="0"
               max="100"
-              value="50"
+              value="30"
               value2="70"
-              slider-width="400px"
+              slider-width="100%"
               slider-height="0.5rem"
               pointer-width="1.5rem"
               pointer-height="1.5rem"
@@ -148,16 +122,16 @@
               pointer-bg-hover="#c6f7eb"
               pointer-bg-focus="#c6f7eb"
               pointer-border-hover="1px solid #6AD3BA"
-              pointer-border-focus="1px solid #6AD3BA"></toolcool-range-slider>
+              pointer-border-focus="1px solid #6AD3BA"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
+            <tc-range-slider
               min="0"
               max="100"
-              value="50"
+              value="30"
               value2="70"
-              slider-width="400px"
+              slider-width="100%"
               slider-height="0.5rem"
               slider-bg="#3c85ae"
               slider-bg-fill="#a900ff"
@@ -170,57 +144,57 @@
               pointer-shadow-hover="none"
               pointer-border="0"
               pointer-border-hover="0"
-              pointer-border-focus="1px solid #2d4373"></toolcool-range-slider>
+              pointer-border-focus="1px solid #2d4373"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
-              slider-width="400px"
+            <tc-range-slider
+              slider-width="100%"
               slider-height="0.5rem"
               min="0"
               max="100"
-              value="50"
+              value="30"
               value2="70"
               css-links="../dist/plugins/tcrs-themes.min.css"
-              theme="target"></toolcool-range-slider>
+              theme="target"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
-              slider-width="400px"
+            <tc-range-slider
+              slider-width="100%"
               slider-height="0.5rem"
               pointer-width="1.5rem"
               pointer-height="1.5rem"
               min="0"
               max="100"
-              value="50"
+              value="30"
               value2="70"
               css-links="../dist/plugins/tcrs-themes.min.css"
               theme="glass"
-              slider-bg-fill="#ffd600"></toolcool-range-slider>
+              slider-bg-fill="#ffd600"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
-              slider-width="400px"
+            <tc-range-slider
+              slider-width="100%"
               slider-height="0.5rem"
               min="0"
               max="100"
-              value="50"
+              value="30"
               value2="70"
               css-links="../dist/plugins/tcrs-themes.min.css"
-              theme="rect"></toolcool-range-slider>
+              theme="rect"></tc-range-slider>
         </div>
 
         <div class="row">
-            <toolcool-range-slider
-              slider-width="400px"
+            <tc-range-slider
+              slider-width="100%"
               min="0"
               max="100"
-              value="50"
+              value="30"
               value2="70"
               css-links="../dist/plugins/tcrs-themes.min.css"
-              theme="circle"></toolcool-range-slider>
+              theme="circle"></tc-range-slider>
         </div>
 
 

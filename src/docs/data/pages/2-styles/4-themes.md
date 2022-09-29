@@ -178,3 +178,5 @@ TypeScript example:
 ```
 
 > :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-themes.html).
+
+> :pushpin: An example with a dark background can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-background.html).
