@@ -3,15 +3,15 @@ import esbuild from 'esbuild';
 const VERSION = '1.0.0';
 
 const settings = {
-  entryPoints: ['./src/plugins/binding-labels-plugin/index.ts'],
+  entryPoints: ['./src/plugins/moving-tooltip-plugin/index.ts'],
   bundle: true,
   sourcemap: 'external',
   minify: true,
   target: ['es6'],
-  outfile: './dist/plugins/tcrs-binding-labels.min.js',
+  outfile: './dist/plugins/tcrs-moving-tooltip.min.js',
   banner: {
     js: `/* 
-Tool Cool Range Slider - Binding Labels Plugin
+Tool Cool Range Slider - Moving Tooltip Plugin
 Version: ${ VERSION }
 Documentation: https://github.com/toolcool-org/toolcool-range-slider 
 License: MIT License        

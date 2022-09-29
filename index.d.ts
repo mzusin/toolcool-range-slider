@@ -1,5 +1,6 @@
 declare module 'toolcool-range-slider' {
 
+  // ------- plugins -------------------
   export interface IBindingLabelsPlugin extends RangeSlider {
     valueLabel: string;
     [name: `value${number}Label`]: string;
@@ -7,6 +8,12 @@ declare module 'toolcool-range-slider' {
   export interface IGeneratedLabelsPlugin extends RangeSlider {
     generateLabels: boolean;
   }
+  export interface IMovingTooltipPlugin extends RangeSlider{
+    movingTooltip: boolean;
+    distanceToPointer: number;
+  }
+
+  // ------- range slider UI -----------
   export interface IStyles {
     setStyle: (key: string, value: string | null | undefined, index: number) => void;
     getStyle: (key: string, index: number) => string | undefined;
@@ -60,6 +67,7 @@ declare module 'toolcool-range-slider' {
     updatePosition: (type: string, percents: (number | undefined)[], rightToLeft: boolean, bottomToTop: boolean) => void;
   }
 
+  // -------- plugin system ------------
   export interface IPluginUpdateData {
     percents: number[];
     values: (string | number | undefined)[];
@@ -81,7 +89,6 @@ declare module 'toolcool-range-slider' {
     disabled: boolean;
     keyboardDisabled: boolean;
   }
-
   export interface IPluginSetters {
     setValues: (values: (string | number | undefined)[]) => void;
     setMin: (min: number | string | undefined | null) => void;
@@ -99,7 +106,6 @@ declare module 'toolcool-range-slider' {
     setRightToLeft: (val: boolean) => void;
     setBottomToTop: (val: boolean) => void;
   }
-
   export interface IPluginGetters {
     getPercents: () => number[];
     getValues: () => (string | number | undefined)[];
@@ -121,7 +127,6 @@ declare module 'toolcool-range-slider' {
     getPointersMinDistance: () => number;
     getPointersMaxDistance: () => number;
   }
-
   export interface IPlugin {
     readonly name: string;
     init?: ($component: HTMLElement, requestUpdate: () => void, setters: IPluginSetters, getters: IPluginGetters) => void;
@@ -141,6 +146,7 @@ declare module 'toolcool-range-slider' {
     destroy: () => void;
   }
 
+  // --------- initialization -----------
   export type TStep = ((value: number | string, percent: number) => number) | number | undefined | null;
   export type TData = (string | number)[] | undefined;
   export type DynamicFields = {

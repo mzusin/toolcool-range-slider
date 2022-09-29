@@ -1,44 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Change Event Example | Tool Cool Range Slider</title>
+    <title>Moving Tooltip Plugin | Tool Cool Range Slider</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="../css/styles.css" />
 </head>
 <body>
-    <h1>Change Event Example</h1>
+    <h1>Moving Tooltip Plugin</h1>
 
-    <div class="wrapper">
+    <div class="wrapper" style="margin-top: 5rem">
 
         <div class="row">
-            <label>0</label>
             <tc-range-slider
-              id="slider-1"
-              value="50"
-
+              value1="30"
+              value2="50"
+              value3="70"
+              round="0"
+              moving-tooltip="true"
+              moving-tooltip-distance-to-pointer="40"
               slider-bg="#CBD5E1"
               slider-bg-hover="#94A3B8"
               slider-bg-fill="#475569"
-
               slider-width="100%"></tc-range-slider>
-            <label>100</label>
-            <div id="value-1" class="value"></div>
+        </div>
+
+        <div class="row">
+            <tc-range-slider
+              type="vertical"
+              value1="30"
+              value2="50"
+              value3="70"
+              round="0"
+              moving-tooltip="true"
+              moving-tooltip-distance-to-pointer="50"
+              slider-bg="#CBD5E1"
+              slider-bg-hover="#94A3B8"
+              slider-bg-fill="#475569"></tc-range-slider>
         </div>
 
     </div>
 
+    <script src="../../dist/plugins/tcrs-moving-tooltip.min.js"></script>
     <script src="../../dist/toolcool-range-slider.min.js"></script>
     <script>
 
-        // slider #1 ------------------
+        /*// slider #1 ------------------
         const $slider1 = document.getElementById('slider-1');
         const $value1 = document.getElementById('value-1');
         $slider1.addEventListener('change', (evt) => {
             const value = evt.detail.value;
             $value1.textContent = value.toString();
         });
-        $value1.textContent = $slider1.value;
+        $value1.textContent = $slider1.value;*/
 
     </script>
 </body>

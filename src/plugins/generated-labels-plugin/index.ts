@@ -86,6 +86,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
 
     $min?.remove();
     $max?.remove();
+    $labelsRow?.remove();
 
     $labels = [];
   };
@@ -202,7 +203,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
     /**
      * Optional:
      * this will be called each time
-     * range slider updates pointer positions
+     * range slider updates pointer positions or other properties
      */
     update,
 
