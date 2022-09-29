@@ -8,18 +8,6 @@ Install the package from npm:
 npm i toolcool-range-slider
 ```
 
-First **tc-range-slider** html element should be declared as follows:
-
-```typescript
-declare global {
-    namespace JSX {
-        interface IntrinsicElements {
-            'tc-range-slider': any;
-        }
-    }
-}
-```
-
 Then it can be used like this:
 
 ```typescript
@@ -38,32 +26,37 @@ export default RangeSliderExample;
 Event listener example:
 
 ```typescript
+import { useEffect, useRef } from 'react';
+import { RangeSlider } from 'toolcool-range-slider';
 import 'toolcool-range-slider';
 
 const RangeSliderExample = () => {
 
-    const rangeSliderRef = useRef<HTMLElement>();
+  const sliderRef = useRef<RangeSlider>(null);
 
-    useEffect(() => {
+  useEffect(() => {
 
-        const slider = rangeSliderRef.current;
+      const slider = sliderRef.current;
 
-        const onChange = (evt: Event) => {
-            const customEvent = evt as CustomEvent;
-            console.log(evt.detail.value);
-        };
+      const onChange = (evt: Event) => {
+          const customEvent = evt as CustomEvent;
+          console.log(customEvent.detail.value);
+      };
 
-        slider?.addEventListener('change', onChange);
+      slider?.addEventListener('change', onChange);
 
-        return () => {
-          slider?.removeEventListener('change', onChange);
-        };
-    }, []);
+      return () => {
+        slider?.removeEventListener('change', onChange);
+      };
+  }, []);
 
-    return (
-        <tc-range-slider ref={ rangeSliderRef } />;
-    )
-};
+  return (
+    <div>
+      <tc-range-slider ref={ sliderRef } />
+    </div>
+  );
+}
 
 export default RangeSliderExample;
 ```
+

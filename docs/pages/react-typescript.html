@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664467600183.css" />
-    <!--<link rel="stylesheet" href="/js/index.1664467600183.css" />-->
+    <link rel="stylesheet" href="/css/styles.1664473447944.css" />
+    <!--<link rel="stylesheet" href="/js/index.1664473447944.css" />-->
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3TJWMC6F4"></script>
@@ -111,14 +111,6 @@
 <p class="mb-4">The range slider can also be used in React applications.</p>
 <p class="mb-4">Install the package from npm:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code>npm i toolcool-range-slider</code></pre>
-<p class="mb-4">First <strong class="font-bold">tc-range-slider</strong> html element should be declared as follows:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-keyword">declare</span> <span class="hljs-variable language_">global</span> {
-    <span class="hljs-keyword">namespace</span> JSX {
-        <span class="hljs-keyword">interface</span> <span class="hljs-title class_">IntrinsicElements</span> {
-            <span class="hljs-string">&#x27;tc-range-slider&#x27;</span>: <span class="hljs-built_in">any</span>;
-        }
-    }
-}</code></pre>
 <p class="mb-4">Then it can be used like this:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;toolcool-range-slider&#x27;</span>;
 
@@ -131,32 +123,36 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">RangeSliderExample</span>;</code></pre>
 <p class="mb-4">Event listener example:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;toolcool-range-slider&#x27;</span>;
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap"><code><span class="hljs-keyword">import</span> { useEffect, useRef } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">RangeSlider</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;toolcool-range-slider&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;toolcool-range-slider&#x27;</span>;
 
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">RangeSliderExample</span> = (<span class="hljs-params"></span>) =&gt; {
 
-    <span class="hljs-keyword">const</span> rangeSliderRef = useRef&lt;<span class="hljs-title class_">HTMLElement</span>&gt;();
+  <span class="hljs-keyword">const</span> sliderRef = useRef&lt;<span class="hljs-title class_">RangeSlider</span>&gt;(<span class="hljs-literal">null</span>);
 
-    <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
 
-        <span class="hljs-keyword">const</span> slider = rangeSliderRef.<span class="hljs-property">current</span>;
+      <span class="hljs-keyword">const</span> slider = sliderRef.<span class="hljs-property">current</span>;
 
-        <span class="hljs-keyword">const</span> <span class="hljs-title function_">onChange</span> = (<span class="hljs-params">evt: Event</span>) =&gt; {
-            <span class="hljs-keyword">const</span> customEvent = evt <span class="hljs-keyword">as</span> <span class="hljs-title class_">CustomEvent</span>;
-            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(evt.<span class="hljs-property">detail</span>.<span class="hljs-property">value</span>);
-        };
+      <span class="hljs-keyword">const</span> <span class="hljs-title function_">onChange</span> = (<span class="hljs-params">evt: Event</span>) =&gt; {
+          <span class="hljs-keyword">const</span> customEvent = evt <span class="hljs-keyword">as</span> <span class="hljs-title class_">CustomEvent</span>;
+          <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(customEvent.<span class="hljs-property">detail</span>.<span class="hljs-property">value</span>);
+      };
 
-        slider?.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;change&#x27;</span>, onChange);
+      slider?.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;change&#x27;</span>, onChange);
 
-        <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
-          slider?.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&#x27;change&#x27;</span>, onChange);
-        };
-    }, []);
+      <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
+        slider?.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&#x27;change&#x27;</span>, onChange);
+      };
+  }, []);
 
-    <span class="hljs-keyword">return</span> (
-        <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{</span> <span class="hljs-attr">rangeSliderRef</span> } /&gt;</span></span>;
-    )
-};
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{</span> <span class="hljs-attr">sliderRef</span> } /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">RangeSliderExample</span>;</code></pre>
 </div>
@@ -201,6 +197,6 @@
       </div>
     </footer>-->
 
-    <script src="/js/index.1664467600183.js"></script>
+    <script src="/js/index.1664473447944.js"></script>
   </body>
 </html>
