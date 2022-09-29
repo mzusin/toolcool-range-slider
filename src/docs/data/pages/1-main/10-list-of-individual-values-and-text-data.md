@@ -86,3 +86,5 @@ Typescript Example:
     $slider.data = ['red', 'green', 'blue', 'yellow', 'pink', 'brown'];
 </script>
 ```
+
+> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/12-data.html).

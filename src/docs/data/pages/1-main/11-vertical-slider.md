@@ -92,3 +92,5 @@ $slider.btt = true; // or false
 </div>  
 
 > :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/4-vertical-sliders.html).
+
+> :pushpin: Bottom to top example page can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/11-bottom-to-top.html).
