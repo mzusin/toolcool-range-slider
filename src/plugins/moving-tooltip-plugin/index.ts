@@ -103,6 +103,7 @@ const MovingTooltipPlugin = () : IPlugin => {
   const initResizeObserver = () => {
     if(!$component) return;
     resizeObserver = new ResizeObserver(entries => {
+      // eslint-disable-next-line
       for (const _entry of entries) {
         updateTooltips();
       }

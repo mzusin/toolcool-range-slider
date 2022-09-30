@@ -190,6 +190,14 @@ class TCRangeSlider extends HTMLElement {
     this.slider?.removePointer();
   }
 
+  public addCSS(css: string) {
+    if(!this.shadowRoot) return;
+
+    const sheet = document.createElement('style')
+    sheet.textContent = css;
+    this.shadowRoot.appendChild(sheet);
+  }
+
   // ----------------------------------------------
 
   constructor() {

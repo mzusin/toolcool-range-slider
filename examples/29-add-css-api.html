@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add CSS API | Tool Cool Range Slider</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <h1>Add CSS API</h1>
+
+    <div class="wrapper">
+
+        <div class="row">
+            <tc-range-slider
+              id="slider-1"
+              generate-labels="true"
+              round="0"
+              value1="30"
+              value2="70"
+              slider-width="100%"
+              slider-height="7px"></tc-range-slider>
+        </div>
+
+    </div>
+
+    <script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
+    <script src="../dist/toolcool-range-slider.min.js"></script>
+    <script>
+const $slider1 = document.getElementById('slider-1');
+
+$slider1.addCSS(`
+    .panel-fill{
+        background: green;
+    }
+`);
+    </script>
+</body>
+</html>

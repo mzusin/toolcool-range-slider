@@ -233,6 +233,7 @@ declare module 'toolcool-range-slider' {
     get externalCSSList(): string[] | null;
     addPointer(value: number | string | undefined): void;
     removePointer(): void;
+    addCSS(css: string): void;
     constructor();
     /**
      * when the custom element connected to DOM

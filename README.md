@@ -8,7 +8,7 @@
 [![Featured on Openbase](https://badges.openbase.com/js/featured/toolcool-range-slider.svg?token=sUaswkA1YmMFk8F+JBWQZoWo4wGL7wZwyIaglD6kAlQ=)](https://openbase.com/js/toolcool-range-slider?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)
 
-Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including any number of  pointers (knobs), vertical and horizontal slider, touch, mousewheel and keyboard support, local and session storage, range dragging, and RTL support. The functionality of the library can be extended using plugins. The library core is 27 KB minified or 9 KB compressed (GZip).
+Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including any number of  pointers (knobs), vertical and horizontal slider, touch, mousewheel and keyboard support, local and session storage, range dragging, and RTL support. The functionality of the library can be extended using plugins. The library core is 28 KB minified or 9 KB compressed (GZip).
 
 
 ## Links
@@ -35,7 +35,7 @@ It accessible via [ARIA-attributes](https://range-slider.toolcool.org/pages/acce
 [![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-2.gif?raw=true)](https://range-slider.toolcool.org/pages/accessibility.html)
 
 ### ES6 JavaScript & Typescript
-The library is built with Typescript and does not use external dependencies :unlock:. The core is 27KB minified or 9KB compressed (GZip).
+The library is built with Typescript and does not use external dependencies :unlock:. The core is 28KB minified or 9KB compressed (GZip).
 
 ### Themes :art:
 

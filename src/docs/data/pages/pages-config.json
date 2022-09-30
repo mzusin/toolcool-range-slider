@@ -26,6 +26,9 @@
   "6-images-and-svgs-as-pointers.md": {
     "title": "Images & SVGs as pointers"
   },
+  "8-add-css-api.md": {
+    "title": "Add CSS API"
+  },
   "11-right-to-left-support.md": {
     "title": "Right to Left"
   },
