@@ -48,9 +48,9 @@ https://user-images.githubusercontent.com/106236790/192861157-6bc694ee-3970-4264
 The library has multiple options for customizing :wrench: the appearance of the slider.
 [Width, height, border radius](https://range-slider.toolcool.org/pages/width-height-and-border-radius.html), [colors](https://range-slider.toolcool.org/pages/colors.html), hover and focus, and other properties can be customized using the slider attributes. 
 
-[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/moving-tooltip.gif?raw=true)](https://range-slider.toolcool.org/pages/accessibility.html)
+[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/moving-tooltip.gif?raw=true)](https://range-slider.toolcool.org/pages/moving-tooltip-plugin.html)
 
-[Images and SVGs](https://range-slider.toolcool.org/pages/moving-tooltip-plugin.html) can be used as pointers.
+[Images and SVGs](https://range-slider.toolcool.org/pages/images-and-svgs-as-pointers.html) can be used as pointers.
 
 ### Direction & Orientation
 The library supports horizontal and [vertical orientation](https://range-slider.toolcool.org/pages/vertical-slider.html) :globe_with_meridians:. It also supports left to right and [right to left](https://range-slider.toolcool.org/pages/right-to-left-support.html) directions for a horizontal slider, and top to bottom and [bottom to top](https://range-slider.toolcool.org/pages/vertical-slider.html) for vertical sliders.
