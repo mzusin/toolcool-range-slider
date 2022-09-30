@@ -46,9 +46,7 @@ https://user-images.githubusercontent.com/106236790/192861157-6bc694ee-3970-4264
 
 ### Styles & Design
 The library has multiple options for customizing :wrench: the appearance of the slider.
-[Width, height, border radius](https://range-slider.toolcool.org/pages/width-height-and-border-radius.html), [colors](https://range-slider.toolcool.org/pages/colors.html), hover and focus, and other properties can be customized using the slider attributes. 
-
-[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/moving-tooltip.gif?raw=true)](https://range-slider.toolcool.org/pages/moving-tooltip-plugin.html)
+[Width, height, border radius](https://range-slider.toolcool.org/pages/width-height-and-border-radius.html), [colors](https://range-slider.toolcool.org/pages/colors.html), hover and focus, and other properties can be customized using the slider attributes.
 
 [Images and SVGs](https://range-slider.toolcool.org/pages/images-and-svgs-as-pointers.html) can be used as pointers.
 
@@ -70,6 +68,12 @@ The slider range can be defined by a minimum and maximum numbers. Another option
 Local storage :floppy_disk: and session storage support as a [standalone plugin](https://range-slider.toolcool.org/pages/storage.html). The user selection will be saved and restored after page refresh or navigation from other pages.
 
 [![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/img/readme/2.png?raw=true)](https://range-slider.toolcool.org/pages/storage.html)
+
+### Moving Tooltip Plugin
+
+Range slider library has a standalone **Moving Tooltip Plugin**. The plugin adds a moving tooltip to each pointer. You can change the tooltip color, size, and distance to pointer.
+
+[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/moving-tooltip.gif?raw=true)](https://range-slider.toolcool.org/pages/moving-tooltip-plugin.html)
 
 ### Other Features
 - Based on web component technologies.
