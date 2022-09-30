@@ -15,6 +15,8 @@ window.tcRangeSliderPlugins = window.tcRangeSliderPlugins || [];
 const DISTANCE_TO_POINTER_DEFAULT = 40; // px
 const DEFAULT_TOOLTIP_WIDTH = 35;
 const DEFAULT_TOOLTIP_HEIGHT = 30;
+const DEFAULT_TOOLTIP_BG = '#475569';
+const DEFAULT_TOOLTIP_TEXT_COLOR = '#fff';
 
 const MovingTooltipPlugin = () : IPlugin => {
 
@@ -26,6 +28,8 @@ const MovingTooltipPlugin = () : IPlugin => {
   let distanceToPointer = DISTANCE_TO_POINTER_DEFAULT; // px
   let tooltipWidth = DEFAULT_TOOLTIP_WIDTH;
   let tooltipHeight = DEFAULT_TOOLTIP_HEIGHT;
+  let tooltipBg = DEFAULT_TOOLTIP_BG;
+  let tooltipTextColor = DEFAULT_TOOLTIP_TEXT_COLOR;
 
   let $tooltips: (HTMLElement | undefined)[] = [];
   let $tooltipsRow: HTMLElement | null = null;
@@ -47,6 +51,8 @@ const MovingTooltipPlugin = () : IPlugin => {
     $tooltip.className = className;
     $tooltip.style.width = `${ tooltipWidth }px`;
     $tooltip.style.height = `${ tooltipHeight }px`;
+    $tooltip.style.background = tooltipBg;
+    $tooltip.style.color = tooltipTextColor;
     return $tooltip;
   };
 
@@ -172,6 +178,8 @@ const MovingTooltipPlugin = () : IPlugin => {
       distanceToPointer = getNumber(_$component.getAttribute('moving-tooltip-distance-to-pointer'), DISTANCE_TO_POINTER_DEFAULT);
       tooltipWidth = getNumber(_$component.getAttribute('moving-tooltip-width'), DEFAULT_TOOLTIP_WIDTH);
       tooltipHeight = getNumber(_$component.getAttribute('moving-tooltip-height'), DEFAULT_TOOLTIP_HEIGHT);
+      tooltipBg = _$component.getAttribute('moving-tooltip-bg') || DEFAULT_TOOLTIP_BG;
+      tooltipTextColor = _$component.getAttribute('moving-tooltip-text-color') || DEFAULT_TOOLTIP_TEXT_COLOR;
       toggleEnabled(getBoolean(_$component.getAttribute('moving-tooltip')));
     },
 
