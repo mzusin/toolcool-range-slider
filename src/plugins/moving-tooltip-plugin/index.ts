@@ -56,24 +56,24 @@ const MovingTooltipPlugin = () : IPlugin => {
     return $tooltip;
   };
 
-  const updateTooltip = ($tooltip: HTMLElement, type: string, percent: number) => {
+  const updateTooltip = ($tooltip: HTMLElement, type: string, left: string, top: string) => {
     if(!$tooltip) return;
 
     if(type === 'vertical'){
       const diff = Math.abs($component?.getBoundingClientRect().x - $container.getBoundingClientRect().x);
       $tooltip.style.left = `${ diff - distanceToPointer }px`;
-      $tooltip.style.top = `${ percent ?? 0 }%`;
+      $tooltip.style.top = top ?? '0';
     }
     else{
       const diff = Math.abs($component?.getBoundingClientRect().y - $container.getBoundingClientRect().y);
-      $tooltip.style.left = `${ percent ?? 0 }%`;
+      $tooltip.style.left = left ?? '0';
       $tooltip.style.top = `${ diff - distanceToPointer }px`;
     }
   };
 
   const createTooltips = () => {
     const values = getters?.getValues() ?? [];
-    const percents = getters?.getPercents() ?? [];
+    const $pointers = getters?.getPointerElements() ?? [];
     const type = getters?.getType() ?? 'horizontal';
 
     if(!values) return;
@@ -83,7 +83,7 @@ const MovingTooltipPlugin = () : IPlugin => {
 
       $tooltip.textContent = (values[i] ?? '').toString();
       $tooltip.style.position = 'absolute';
-      updateTooltip($tooltip, type, percents[i]);
+      updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top);
 
       $tooltips.push($tooltip);
       $tooltipsRow?.prepend($tooltip);
@@ -110,7 +110,7 @@ const MovingTooltipPlugin = () : IPlugin => {
 
     if(!enabled || !data.values) return;
 
-    const percents = data.percents ?? [];
+    const $pointers = getters?.getPointerElements() ?? [];
     const type = getters?.getType() ?? 'horizontal';
 
     for(let i=0; i<data.values.length; i++){
@@ -130,7 +130,7 @@ const MovingTooltipPlugin = () : IPlugin => {
         const $tooltip = createTooltip(`tooltip tooltip-${ i + 1 }`);
         $tooltip.textContent = (value ?? '').toString();
         $tooltip.style.position = 'absolute';
-        updateTooltip($tooltip, type, percents[i]);
+        updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top);
 
         $tooltips[i] = $tooltip;
         $tooltipsRow?.append($tooltip);
@@ -138,7 +138,7 @@ const MovingTooltipPlugin = () : IPlugin => {
 
       if(!$tooltip) continue;
       $tooltip.textContent = (value ?? '').toString();
-      updateTooltip($tooltip, type, percents[i]);
+      updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top);
     }
   };
 
