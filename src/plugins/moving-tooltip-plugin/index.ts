@@ -33,6 +33,7 @@ const MovingTooltipPlugin = () : IPlugin => {
 
   let $tooltips: (HTMLElement | undefined)[] = [];
   let $tooltipsRow: HTMLElement | null = null;
+  let resizeObserver: ResizeObserver | null = null;
 
   const updateRowClass = () => {
     $tooltipsRow?.classList.toggle('is-after', distanceToPointer <= 0);
@@ -71,7 +72,7 @@ const MovingTooltipPlugin = () : IPlugin => {
     }
   };
 
-  const createTooltips = () => {
+  const updateTooltips = () => {
     const values = getters?.getValues() ?? [];
     const $pointers = getters?.getPointerElements() ?? [];
     const type = getters?.getType() ?? 'horizontal';
@@ -79,15 +80,34 @@ const MovingTooltipPlugin = () : IPlugin => {
     if(!values) return;
 
     for(let i=0; i<values.length; i++){
-      const $tooltip = createTooltip(`tooltip tooltip-${ i + 1 }`);
-
+      const $tooltip = $tooltips[i];
       $tooltip.textContent = (values[i] ?? '').toString();
-      $tooltip.style.position = 'absolute';
       updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top);
+    }
+  };
 
+  const createTooltips = () => {
+    const values = getters?.getValues() ?? [];
+
+    if(!values) return;
+
+    for(let i=0; i<values.length; i++){
+      const $tooltip = createTooltip(`tooltip tooltip-${ i + 1 }`);
+      $tooltip.style.position = 'absolute';
       $tooltips.push($tooltip);
       $tooltipsRow?.prepend($tooltip);
     }
+
+    updateTooltips();
+  };
+
+  const initResizeObserver = () => {
+    resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        updateTooltips();
+      }
+    });
+    resizeObserver.observe($component);
   };
 
   const toggleEnabled = (_enabled: boolean) => {
@@ -99,6 +119,7 @@ const MovingTooltipPlugin = () : IPlugin => {
     else{
       createTooltipsRow();
       createTooltips();
+      initResizeObserver();
     }
   };
 
@@ -151,6 +172,8 @@ const MovingTooltipPlugin = () : IPlugin => {
     }
 
     $tooltips = [];
+
+    resizeObserver?.disconnect();
   };
 
   return {
