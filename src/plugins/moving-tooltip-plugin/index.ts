@@ -21,7 +21,6 @@ const DEFAULT_TOOLTIP_TEXT_COLOR = '#fff';
 const MovingTooltipPlugin = () : IPlugin => {
 
   let $component: HTMLElement | null = null;
-  let $container: HTMLElement | null = null;
   let getters: IPluginGetters | null = null;
 
   let enabled = false;
@@ -40,10 +39,10 @@ const MovingTooltipPlugin = () : IPlugin => {
   };
 
   const createTooltipsRow = () => {
-    const $box = $component?.shadowRoot?.querySelector('.range-slider-box')  as HTMLElement;
+    const $slider = $component?.shadowRoot?.querySelector('#range-slider')  as HTMLElement;
     $tooltipsRow = document.createElement('div');
     $tooltipsRow.classList.add('tooltips');
-    $box.prepend($tooltipsRow);
+    $slider.prepend($tooltipsRow);
     updateRowClass();
   };
 
@@ -57,14 +56,12 @@ const MovingTooltipPlugin = () : IPlugin => {
     if(!$tooltip) return;
 
     if(type === 'vertical'){
-      const diff = Math.abs($component?.getBoundingClientRect().x - $container.getBoundingClientRect().x);
-      $tooltip.style.left = `${ diff - distanceToPointer }px`;
+      $tooltip.style.left = `${ -distanceToPointer }px`;
       $tooltip.style.top = top ?? '0';
     }
     else{
-      const diff = Math.abs($component?.getBoundingClientRect().y - $container.getBoundingClientRect().y);
       $tooltip.style.left = left ?? '0';
-      $tooltip.style.top = `${ diff - distanceToPointer }px`;
+      $tooltip.style.top = `${ -distanceToPointer }px`;
     }
 
     $tooltip.style.width = `${ tooltipWidth }px`;
@@ -82,6 +79,7 @@ const MovingTooltipPlugin = () : IPlugin => {
 
     for(let i=0; i<values.length; i++){
       const $tooltip = $tooltips[i];
+      if(!$tooltip) continue;
       $tooltip.textContent = (values[i] ?? '').toString();
       updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top);
     }
@@ -103,8 +101,9 @@ const MovingTooltipPlugin = () : IPlugin => {
   };
 
   const initResizeObserver = () => {
+    if(!$component) return;
     resizeObserver = new ResizeObserver(entries => {
-      for (const entry of entries) {
+      for (const _entry of entries) {
         updateTooltips();
       }
     });
@@ -139,12 +138,12 @@ const MovingTooltipPlugin = () : IPlugin => {
     updateTooltips();
   };
 
-  const setTooltipBg = (newValue) => {
+  const setTooltipBg = (newValue: string) => {
     tooltipBg = newValue;
     updateTooltips();
   };
 
-  const setTooltipTextColor = (newValue) => {
+  const setTooltipTextColor = (newValue: string) => {
     tooltipTextColor = newValue;
     updateTooltips();
   };
@@ -217,7 +216,6 @@ const MovingTooltipPlugin = () : IPlugin => {
       _getters: IPluginGetters
     ) => {
       $component = _$component;
-      $container = $component.shadowRoot?.querySelector('.container');
       getters = _getters;
 
       distanceToPointer = getNumber(_$component.getAttribute('moving-tooltip-distance-to-pointer'), DISTANCE_TO_POINTER_DEFAULT);

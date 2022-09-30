@@ -61,7 +61,30 @@
         </div>
         <button type="button" id="distance-btn" style="margin-bottom: 3rem">Change Distance To Pointer</button>
 
-        <h2>Horizontal</h2>
+        <h2>Negative</h2>
+        <div class="row" style="margin-bottom: 10rem;">
+            <tc-range-slider
+              id="slider-1"
+
+              value1="30"
+              value2="50"
+              value3="70"
+              round="0"
+
+              moving-tooltip="true"
+              moving-tooltip-distance-to-pointer="-40"
+              moving-tooltip-width="35"
+              moving-tooltip-height="30"
+              moving-tooltip-bg="#721d82"
+              moving-tooltip-text-color="#efefef"
+
+              slider-bg="#CBD5E1"
+              slider-bg-hover="#94A3B8"
+              slider-bg-fill="#475569"
+              slider-width="100%"></tc-range-slider>
+        </div>
+
+        <h2>Wide</h2>
         <div class="row">
             <tc-range-slider
 
@@ -95,6 +118,25 @@
 
               moving-tooltip="true"
               moving-tooltip-distance-to-pointer="40"
+              moving-tooltip-width="35"
+              moving-tooltip-height="30"
+
+              slider-bg="#CBD5E1"
+              slider-bg-hover="#94A3B8"
+              slider-bg-fill="#475569"></tc-range-slider>
+        </div>
+
+        <h2>Vertical Negative</h2>
+        <div class="row">
+            <tc-range-slider
+              type="vertical"
+              value1="30"
+              value2="50"
+              value3="70"
+              round="0"
+
+              moving-tooltip="true"
+              moving-tooltip-distance-to-pointer="-40"
               moving-tooltip-width="35"
               moving-tooltip-height="30"
 
