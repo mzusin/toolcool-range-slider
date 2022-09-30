@@ -13,6 +13,8 @@ import { getBoolean, getNumber } from '../../core/domain/math-provider';
 window.tcRangeSliderPlugins = window.tcRangeSliderPlugins || [];
 
 const DISTANCE_TO_POINTER_DEFAULT = 40; // px
+const DEFAULT_TOOLTIP_WIDTH = 35;
+const DEFAULT_TOOLTIP_HEIGHT = 30;
 
 const MovingTooltipPlugin = () : IPlugin => {
 
@@ -22,20 +24,29 @@ const MovingTooltipPlugin = () : IPlugin => {
 
   let enabled = false;
   let distanceToPointer = DISTANCE_TO_POINTER_DEFAULT; // px
+  let tooltipWidth = DEFAULT_TOOLTIP_WIDTH;
+  let tooltipHeight = DEFAULT_TOOLTIP_HEIGHT;
 
   let $tooltips: (HTMLElement | undefined)[] = [];
   let $tooltipsRow: HTMLElement | null = null;
+
+  const updateRowClass = () => {
+    $tooltipsRow?.classList.toggle('is-after', distanceToPointer <= 0);
+  };
 
   const createTooltipsRow = () => {
     const $box = $component?.shadowRoot?.querySelector('.range-slider-box')  as HTMLElement;
     $tooltipsRow = document.createElement('div');
     $tooltipsRow.classList.add('tooltips');
     $box.prepend($tooltipsRow);
+    updateRowClass();
   };
 
   const createTooltip = (className: string) => {
     const $tooltip = document.createElement('div');
     $tooltip.className = className;
+    $tooltip.style.width = `${ tooltipWidth }px`;
+    $tooltip.style.height = `${ tooltipHeight }px`;
     return $tooltip;
   };
 
@@ -159,6 +170,8 @@ const MovingTooltipPlugin = () : IPlugin => {
       getters = _getters;
 
       distanceToPointer = getNumber(_$component.getAttribute('moving-tooltip-distance-to-pointer'), DISTANCE_TO_POINTER_DEFAULT);
+      tooltipWidth = getNumber(_$component.getAttribute('moving-tooltip-width'), DEFAULT_TOOLTIP_WIDTH);
+      tooltipHeight = getNumber(_$component.getAttribute('moving-tooltip-height'), DEFAULT_TOOLTIP_HEIGHT);
       toggleEnabled(getBoolean(_$component.getAttribute('moving-tooltip')));
     },
 
@@ -218,32 +231,40 @@ const MovingTooltipPlugin = () : IPlugin => {
 
     css: `
 .tooltip{
-  transform: translateX(-50%);
   background: #475569;
   color: #fff;
   font-size: 0.8rem;
-  padding: 0.3rem 0.5rem;
   border-radius: 3px;
-  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transform: translate(-50%, -50%);
 }  
 
 .tooltip::after {
     content: '';
     position: absolute;
-    width: 15px;
-    height: 15px;
-    left: 50%;
-    transform: translate(-50%,50%) rotate(45deg);
+    width: 20%;
+    height: 20%;
+    transform: translate(0%, -50%) rotate(45deg);
     background-color: inherit;
     z-index: -1;
+    top: 100%;
 }
 
-.type-vertical .tooltip{
-  transform: translateY(-50%);
-} 
+.is-after .tooltip::after {
+  top: 0;
+}
 
 .type-vertical .tooltip::after{
-  transform: translate(-100%,0%) rotate(45deg);
+  transform: translate(-50%, 0%) rotate(45deg);
+  left: 100%;
+  top: auto;
+}
+
+.type-vertical .is-after .tooltip::after{
+  left: 0%;
 }
     `,
 
