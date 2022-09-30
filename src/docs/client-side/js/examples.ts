@@ -1,6 +1,7 @@
 import RangeSlider from '../../../core';
 import { IBindingLabelsPlugin } from '../../../plugins/binding-labels-plugin';
 import { IGeneratedLabelsPlugin } from '../../../plugins/generated-labels-plugin';
+import { IMovingTooltipPlugin } from '../../../plugins/moving-tooltip-plugin';
 
 export const getSetValuesExamples = () => {
   if(!document.querySelector('[data-examples="get-set-values"]')) return;
@@ -485,4 +486,19 @@ export const createdSliderDynamicallyExamples = () => {
   }
   catch(ex) { console.error(ex); }
 
+};
+
+export const movingTooltipExamples = () => {
+  if(!document.querySelector('[data-examples="moving-tooltip"]')) return;
+
+  try{
+    const $slider = document.getElementById('moving-tooltip-slider-1') as RangeSlider;
+    const $toggleBrt = document.getElementById('moving-tooltip-toggle-btn') as HTMLElement;
+
+    $toggleBrt.addEventListener('click', () => {
+      const $plugin = $slider as IMovingTooltipPlugin;
+      $plugin.movingTooltip = !$plugin.movingTooltip;
+    });
+  }
+  catch(ex) { console.error(ex); }
 };

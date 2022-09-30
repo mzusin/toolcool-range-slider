@@ -112,12 +112,15 @@
 
   </div>
 </section>
-<section class="bg-gray-700 px-8 py-12 shadow-md">
+<section class="bg-gray-700 px-8 pb-12 py-20 shadow-md">
   <div class="max-w-7xl mx-auto flex items-center justify-center">
     <div class="mr-6 text-xs justify-center leading-5 bg-slate-100/30 hover:bg-slate-100/20 text-white rounded-full py-1 px-3 hidden md:flex items-center space-x-2 w-20">0</div>
     <tc-range-slider
       value="50"
       theme="target"
+      moving-tooltip="true"
+      moving-tooltip-bg="#1e8696"
+      moving-tooltip-width="45"
       css-links="/js/index.{% js-hash %}.css"
       slider-width="450px"></tc-range-slider>
     <div class="ml-6 text-xs justify-center leading-5 bg-slate-100/30 hover:bg-slate-100/20 text-white rounded-full py-1 px-3 hidden md:flex items-center space-x-2 w-20">100</div>
@@ -312,7 +315,7 @@
 
       <p class="mt-4 text-3xl sm:text-4xl text-slate-900 font-extrabold tracking-tight">Styles, Design, Animation</p>
 
-      <p class="mt-4 max-w-3xl space-y-6">The library has multiple options for customizing the appearance of the slider. <a class="underline" href="/pages/width-height-and-border-radius.html" title="">Width, height, border radius</a>, <a class="underline" href="/pages/colors.html" title="">colors, hover and focus</a>, and other properties can be customized using the slider attributes. <a class="underline" href="/pages/images-and-svgs-as-pointers.html" title="">Images and SVGs</a> can be used as pointers.</p>
+      <p class="mt-4 max-w-3xl space-y-6">The library has multiple options for customizing the appearance of the slider. <a class="underline" href="/pages/width-height-and-border-radius.html" title="">Width, height, border radius</a>, <a class="underline" href="/pages/colors.html" title="">colors, hover and focus</a>, and other properties can be customized using the slider attributes. <a class="underline" href="/pages/images-and-svgs-as-pointers.html" title="">Images and SVGs</a> can be used as pointers. It has a standalone <a class="underline" href="/pages/moving-tooltip-plugin.html" title="">moving tooltip plugin</a>.</p>
 
       <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8" href="/pages/colors.html">Learn more<svg class="overflow-visible ml-3 text-sky-300 group-hover:text-sky-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0L3 3L0 6"></path></svg></a>
     </div>
