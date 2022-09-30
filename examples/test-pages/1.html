@@ -14,6 +14,8 @@
         <h2>Horizontal</h2>
         <div class="row">
             <tc-range-slider
+              id="slider-1"
+
               value1="30"
               value2="50"
               value3="70"
@@ -32,9 +34,13 @@
               slider-width="100%"></tc-range-slider>
         </div>
 
+        <button type="button" id="toggle-enabled" style="margin-bottom: 3rem">Toggle Enabled</button>
+
         <h2>Right to left</h2>
         <div class="row">
             <tc-range-slider
+              id="slider-2"
+
               value1="30"
               value2="50"
               value3="70"
@@ -53,6 +59,7 @@
               slider-bg-fill="#475569"
               slider-width="100%"></tc-range-slider>
         </div>
+        <button type="button" id="distance-btn" style="margin-bottom: 3rem">Change Distance To Pointer</button>
 
         <h2>Vertical slider</h2>
         <div class="row">
@@ -99,14 +106,24 @@
     <script src="../../dist/toolcool-range-slider.min.js"></script>
     <script>
 
-        /*// slider #1 ------------------
         const $slider1 = document.getElementById('slider-1');
-        const $value1 = document.getElementById('value-1');
-        $slider1.addEventListener('change', (evt) => {
-            const value = evt.detail.value;
-            $value1.textContent = value.toString();
+        const $slider2 = document.getElementById('slider-2');
+
+        const $toggleEnabledBtn = document.getElementById('toggle-enabled');
+        $toggleEnabledBtn.addEventListener('click', () => {
+            $slider1.movingTooltip = !$slider1.movingTooltip;
         });
-        $value1.textContent = $slider1.value;*/
+
+        const $distanceBtn = document.getElementById('distance-btn');
+        $distanceBtn.addEventListener('click', () => {
+
+            if($slider2.distanceToPointer < 60){
+                $slider2.distanceToPointer++;
+            }
+
+            $slider2.tooltipBg = 'red';
+            $slider2.tooltipTextColor = '#000';
+        });
 
     </script>
 </body>

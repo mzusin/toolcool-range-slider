@@ -50,10 +50,6 @@ const MovingTooltipPlugin = () : IPlugin => {
   const createTooltip = (className: string) => {
     const $tooltip = document.createElement('div');
     $tooltip.className = className;
-    $tooltip.style.width = `${ tooltipWidth }px`;
-    $tooltip.style.height = `${ tooltipHeight }px`;
-    $tooltip.style.background = tooltipBg;
-    $tooltip.style.color = tooltipTextColor;
     return $tooltip;
   };
 
@@ -70,6 +66,11 @@ const MovingTooltipPlugin = () : IPlugin => {
       $tooltip.style.left = left ?? '0';
       $tooltip.style.top = `${ diff - distanceToPointer }px`;
     }
+
+    $tooltip.style.width = `${ tooltipWidth }px`;
+    $tooltip.style.height = `${ tooltipHeight }px`;
+    $tooltip.style.background = tooltipBg;
+    $tooltip.style.color = tooltipTextColor;
   };
 
   const updateTooltips = () => {
@@ -125,6 +126,27 @@ const MovingTooltipPlugin = () : IPlugin => {
 
   const setDistanceToPointer = (newDistance: number) => {
     distanceToPointer = newDistance;
+    updateTooltips();
+  };
+
+  const setTooltipWidth = (newWidth: number) => {
+    tooltipWidth = newWidth;
+    updateTooltips();
+  };
+
+  const setTooltipHeight = (newHeight: number) => {
+    tooltipHeight = newHeight;
+    updateTooltips();
+  };
+
+  const setTooltipBg = (newValue) => {
+    tooltipBg = newValue;
+    updateTooltips();
+  };
+
+  const setTooltipTextColor = (newValue) => {
+    tooltipTextColor = newValue;
+    updateTooltips();
   };
 
   const update = (data: IPluginUpdateData) => {
@@ -226,6 +248,22 @@ const MovingTooltipPlugin = () : IPlugin => {
       if(_attrName === 'moving-tooltip-distance-to-pointer'){
         setDistanceToPointer(getNumber(_newValue, DISTANCE_TO_POINTER_DEFAULT));
       }
+
+      if(_attrName === 'moving-tooltip-width'){
+        setTooltipWidth(getNumber(_newValue, DEFAULT_TOOLTIP_WIDTH));
+      }
+
+      if(_attrName === 'moving-tooltip-height'){
+        setTooltipHeight(getNumber(_newValue, DEFAULT_TOOLTIP_HEIGHT));
+      }
+
+      if(_attrName === 'moving-tooltip-bg'){
+        setTooltipBg(_newValue);
+      }
+
+      if(_attrName === 'moving-tooltip-text-color'){
+        setTooltipTextColor(_newValue);
+      }
     },
 
     /**
@@ -255,6 +293,58 @@ const MovingTooltipPlugin = () : IPlugin => {
 
           set: (_value) => {
             setDistanceToPointer(getNumber(_value, DISTANCE_TO_POINTER_DEFAULT));
+          },
+        }
+      },
+
+      {
+        name: 'tooltipWidth',
+        attributes: {
+          get () {
+            return tooltipWidth;
+          },
+
+          set: (_value) => {
+            setTooltipWidth(getNumber(_value, DEFAULT_TOOLTIP_WIDTH));
+          },
+        }
+      },
+
+      {
+        name: 'tooltipHeight',
+        attributes: {
+          get () {
+            return tooltipHeight;
+          },
+
+          set: (_value) => {
+            setTooltipHeight(getNumber(_value, DEFAULT_TOOLTIP_HEIGHT));
+          },
+        }
+      },
+
+      {
+        name: 'tooltipBg',
+        attributes: {
+          get () {
+            return tooltipBg;
+          },
+
+          set: (_value) => {
+            setTooltipBg(_value);
+          },
+        }
+      },
+
+      {
+        name: 'tooltipTextColor',
+        attributes: {
+          get () {
+            return tooltipTextColor;
+          },
+
+          set: (_value) => {
+            setTooltipTextColor(_value);
           },
         }
       },
@@ -316,4 +406,8 @@ export default MovingTooltipPlugin;
 export interface IMovingTooltipPlugin extends RangeSlider{
   movingTooltip: boolean;
   distanceToPointer: number;
+  tooltipWidth: number;
+  tooltipHeight: number;
+  tooltipBg: string;
+  tooltipTextColor: string;
 }

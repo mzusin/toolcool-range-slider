@@ -11,6 +11,10 @@ declare module 'toolcool-range-slider' {
   export interface IMovingTooltipPlugin extends RangeSlider{
     movingTooltip: boolean;
     distanceToPointer: number;
+    tooltipWidth: number;
+    tooltipHeight: number;
+    tooltipBg: string;
+    tooltipTextColor: string;
   }
 
   // ------- range slider UI -----------

@@ -26,6 +26,7 @@ module.exports = function(config) {
       path.join(__dirname, './dist/plugins/tcrs-binding-labels.min.js'),
       path.join(__dirname, './dist/plugins/tcrs-generated-labels.min.js'),
       path.join(__dirname, './dist/plugins/tcrs-storage.min.js'),
+      path.join(__dirname, './dist/plugins/tcrs-moving-tooltip.min.js'),
       path.join(__dirname, './dist/toolcool-range-slider.min.js'),
       './test/toolcool-range-slider.min.js',
       './test/helpers/*.js',
