@@ -76,7 +76,7 @@ Range slider library has a standalone **Moving Tooltip Plugin**. The plugin adds
 [![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/moving-tooltip.gif?raw=true)](https://range-slider.toolcool.org/pages/moving-tooltip-plugin.html)
 
 ### Range Dragging
-The library Supports [range dragging](https://range-slider.toolcool.org/pages/range-dragging.html):
+The library also supports [range dragging](https://range-slider.toolcool.org/pages/range-dragging.html):
 
 [![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-dragging.gif?raw=true)](https://range-slider.toolcool.org/pages/moving-tooltip-plugin.html)
 
