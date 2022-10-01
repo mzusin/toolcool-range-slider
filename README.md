@@ -105,6 +105,7 @@ The library also supports [range dragging](https://range-slider.toolcool.org/pag
 - [Storage Plugin](https://range-slider.toolcool.org/pages/storage.html)
 - [Pointer Shapes CSS Plugin](https://range-slider.toolcool.org/pages/pointer-shapes.html)
 - [Themes CSS Plugin](https://range-slider.toolcool.org/pages/themes.html)
+- [Origin at Center Plugin](https://range-slider.toolcool.org/pages/origin-at-center-plugin.html)
 
 ## License
 

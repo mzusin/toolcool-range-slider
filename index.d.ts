@@ -19,6 +19,9 @@ declare module 'toolcool-range-slider' {
     tooltipTextColor: string;
     tooltipUnits: string;
   }
+  export interface IOriginCenterPlugin extends RangeSlider{
+    enabled: boolean;
+  }
 
   // ------- range slider UI -----------
   export interface IStyles {
