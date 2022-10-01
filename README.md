@@ -8,7 +8,7 @@
 [![Featured on Openbase](https://badges.openbase.com/js/featured/toolcool-range-slider.svg?token=sUaswkA1YmMFk8F+JBWQZoWo4wGL7wZwyIaglD6kAlQ=)](https://openbase.com/js/toolcool-range-slider?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge)
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Ftoolcool-org%2Ftoolcool-range-slider)
 
-Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including any number of  pointers (knobs), vertical and horizontal slider, touch, mousewheel and keyboard support, local and session storage, range dragging, and RTL support. The functionality of the library can be extended using plugins. The library core is 28 KB minified or 9 KB compressed (GZip).
+Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including any number of  pointers (knobs), vertical and horizontal slider, touch, mousewheel and keyboard support, local and session storage, range dragging, and RTL support. The functionality of the library can be extended using plugins.
 
 
 ## Links
@@ -75,6 +75,11 @@ Range slider library has a standalone **Moving Tooltip Plugin**. The plugin adds
 
 [![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/moving-tooltip.gif?raw=true)](https://range-slider.toolcool.org/pages/moving-tooltip-plugin.html)
 
+### Range Dragging
+The library Supports [range dragging](https://range-slider.toolcool.org/pages/range-dragging.html):
+
+[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-dragging.gif?raw=true)](https://range-slider.toolcool.org/pages/moving-tooltip-plugin.html)
+
 ### Other Features
 - Based on web component technologies.
 - Allows programmatic attribute changes :computer:
@@ -88,7 +93,6 @@ Range slider library has a standalone **Moving Tooltip Plugin**. The plugin adds
 - Automatically generated labels as a [standalone plugin](https://range-slider.toolcool.org/pages/auto-generated-labels.html).
 - Any number of sliders on one page.
 - Supports two (and more) [pointers overlap](https://range-slider.toolcool.org/pages/pointers-overlap.html), pointers [max and min distance](https://range-slider.toolcool.org/pages/max-and-min-pointers-distance.html).
-- Supports [range dragging](https://range-slider.toolcool.org/pages/range-dragging.html).
 - The functionality of the library can be extended using [plugins](https://range-slider.toolcool.org/pages/javascript-plugins.html).
 - The range slide can be used in [React](https://range-slider.toolcool.org/pages/react-typescript.html) and other frameworks.
 - Extensive API based on TypeScript.
