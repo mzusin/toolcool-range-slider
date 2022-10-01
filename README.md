@@ -80,6 +80,11 @@ The library also supports [range dragging](https://range-slider.toolcool.org/pag
 
 [![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-dragging.gif?raw=true)](https://range-slider.toolcool.org/pages/moving-tooltip-plugin.html)
 
+### Origin at Center
+The library also has an [Origin at Center Plugin](https://range-slider.toolcool.org/pages/origin-at-center-plugin.html). This plugin makes the origin of the pointer always in the center.
+
+[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/origin-at-center.gif?raw=true)](https://range-slider.toolcool.org/pages/origin-at-center-plugin.html)
+
 ### Other Features
 - Based on web component technologies.
 - Allows programmatic attribute changes :computer:
