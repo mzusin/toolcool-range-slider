@@ -98,6 +98,13 @@ The library also supports [range dragging](https://range-slider.toolcool.org/pag
 - Extensive API based on TypeScript.
 [![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/img/readme/3.png?raw=true)](https://range-slider.toolcool.org/pages/storage.html)
 
+### Plugins
+- [Binding Labels Plugin](https://range-slider.toolcool.org/pages/auto-binding-labels.html)
+- [Auto Generated Labels Plugin](https://range-slider.toolcool.org/pages/auto-generated-labels.html)
+- [Moving Tooltip Plugin](https://range-slider.toolcool.org/pages/moving-tooltip-plugin.html)
+- [Storage Plugin](https://range-slider.toolcool.org/pages/storage.html)
+- [Pointer Shapes CSS Plugin](https://range-slider.toolcool.org/pages/pointer-shapes.html)
+- [Themes CSS Plugin](https://range-slider.toolcool.org/pages/themes.html)
 
 ## License
 

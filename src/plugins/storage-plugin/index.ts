@@ -23,7 +23,7 @@ const StoragePlugin = () : IPlugin => {
      * Required: unique plugin name
      */
     get name() {
-      return 'Storage Labels';
+      return 'Storage';
     },
 
     /**
