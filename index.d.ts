@@ -15,6 +15,7 @@ declare module 'toolcool-range-slider' {
     tooltipHeight: number;
     tooltipBg: string;
     tooltipTextColor: string;
+    tooltipUnits: string;
   }
 
   // ------- range slider UI -----------

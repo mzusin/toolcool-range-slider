@@ -21,7 +21,9 @@ Check out the following basic example:
   moving-tooltip-width="35"
   moving-tooltip-height="30"
   moving-tooltip-bg="#721d82"
-  moving-tooltip-text-color="#efefef"></tc-range-slider>
+  moving-tooltip-text-color="#efefef"
+  moving-tooltip-units="%">
+</tc-range-slider>
 
 <!-- The plugin should be included before the core library. -->
 <script src="tcrs-moving-tooltip.min.js"></script>
@@ -39,7 +41,8 @@ Check out the following basic example:
       moving-tooltip-width="35"
       moving-tooltip-height="30"
       moving-tooltip-bg="#721d82"
-      moving-tooltip-text-color="#efefef">
+      moving-tooltip-text-color="#efefef"
+      moving-tooltip-units="%">
     </tc-range-slider>
 </div>
 
@@ -107,9 +110,11 @@ The plugin is also available on the [jsDelivr CND](https://www.jsdelivr.com/pack
 | moving-tooltip-height              | 30            | tooltipHeight     |
 | moving-tooltip-bg                  | #475569       | tooltipBg         |
 | moving-tooltip-text-color          | #fff          | tooltipTextColor  | 
+| moving-tooltip-units               | empty string  | tooltipUnits      |
 
 
-> :pushpin: You can add your own css customizations using [CSS Links](/pages/css-links.html).
+
+> :pushpin: You can add your own css customizations using [CSS Links](/pages/css-links.html) or using [addCSS](/pages/add-css-api.html) API.
 
 The tooltip plugin settings can be changed using the API:
 
@@ -139,6 +144,7 @@ $slider.tooltipWidth = 50; // px
 $slider.tooltipHeight = 50; // px
 $slider.tooltipBg = '#000';
 $slider.tooltipTextColor = '#efefef';
+$slider.tooltipUnits = '%';
 ```
 
 TypeScript example:
@@ -154,6 +160,7 @@ $slider.tooltipWidth = 50; // px
 $slider.tooltipHeight = 50; // px
 $slider.tooltipBg = '#000';
 $slider.tooltipTextColor = '#efefef';
+$slider.tooltipUnits = '%';
 ```
 
 > :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/28-moving-tooltip-plugin.html).

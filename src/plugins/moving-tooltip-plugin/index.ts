@@ -29,6 +29,7 @@ const MovingTooltipPlugin = () : IPlugin => {
   let tooltipHeight = DEFAULT_TOOLTIP_HEIGHT;
   let tooltipBg = DEFAULT_TOOLTIP_BG;
   let tooltipTextColor = DEFAULT_TOOLTIP_TEXT_COLOR;
+  let tooltipUnits = '';
 
   let $tooltips: (HTMLElement | undefined)[] = [];
   let $tooltipsRow: HTMLElement | null = null;
@@ -80,7 +81,9 @@ const MovingTooltipPlugin = () : IPlugin => {
     for(let i=0; i<values.length; i++){
       const $tooltip = $tooltips[i];
       if(!$tooltip) continue;
-      $tooltip.textContent = (values[i] ?? '').toString();
+
+      const text = (values[i] ?? '').toString();
+      $tooltip.textContent = `${ text }${ tooltipUnits }`;
       updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top);
     }
   };
@@ -149,6 +152,11 @@ const MovingTooltipPlugin = () : IPlugin => {
     updateTooltips();
   };
 
+  const setTooltipUnits = (newValue: string) => {
+    tooltipUnits = newValue;
+    updateTooltips();
+  };
+
   const update = (data: IPluginUpdateData) => {
 
     if(!enabled || !data.values) return;
@@ -171,7 +179,8 @@ const MovingTooltipPlugin = () : IPlugin => {
 
         // create the tooltip
         const $tooltip = createTooltip(`tooltip tooltip-${ i + 1 }`);
-        $tooltip.textContent = (value ?? '').toString();
+        const text = (value ?? '').toString();
+        $tooltip.textContent = `${ text }${ tooltipUnits }`;
         $tooltip.style.position = 'absolute';
         updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top);
 
@@ -180,7 +189,9 @@ const MovingTooltipPlugin = () : IPlugin => {
       }
 
       if(!$tooltip) continue;
-      $tooltip.textContent = (value ?? '').toString();
+
+      const text = (value ?? '').toString();
+      $tooltip.textContent = `${ text }${ tooltipUnits }`;
       updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top);
     }
   };
@@ -224,6 +235,7 @@ const MovingTooltipPlugin = () : IPlugin => {
       tooltipHeight = getNumber(_$component.getAttribute('moving-tooltip-height'), DEFAULT_TOOLTIP_HEIGHT);
       tooltipBg = _$component.getAttribute('moving-tooltip-bg') || DEFAULT_TOOLTIP_BG;
       tooltipTextColor = _$component.getAttribute('moving-tooltip-text-color') || DEFAULT_TOOLTIP_TEXT_COLOR;
+      tooltipUnits =  _$component.getAttribute('moving-tooltip-units') || '';
       toggleEnabled(getBoolean(_$component.getAttribute('moving-tooltip')));
     },
 
@@ -262,6 +274,10 @@ const MovingTooltipPlugin = () : IPlugin => {
 
       if(_attrName === 'moving-tooltip-text-color'){
         setTooltipTextColor(_newValue);
+      }
+
+      if(_attrName === 'moving-tooltip-units'){
+        setTooltipUnits(_newValue);
       }
     },
 
@@ -347,6 +363,19 @@ const MovingTooltipPlugin = () : IPlugin => {
           },
         }
       },
+
+      {
+        name: 'tooltipUnits',
+        attributes: {
+          get () {
+            return tooltipUnits;
+          },
+
+          set: (_value) => {
+            setTooltipUnits(_value);
+          },
+        }
+      },
     ],
 
     css: `
@@ -409,4 +438,5 @@ export interface IMovingTooltipPlugin extends RangeSlider{
   tooltipHeight: number;
   tooltipBg: string;
   tooltipTextColor: string;
+  tooltipUnits: string;
 }
