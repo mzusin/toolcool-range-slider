@@ -7,6 +7,8 @@ declare module 'toolcool-range-slider' {
   }
   export interface IGeneratedLabelsPlugin extends RangeSlider {
     generateLabels: boolean;
+    textColor: string;
+    units: string;
   }
   export interface IMovingTooltipPlugin extends RangeSlider{
     movingTooltip: boolean;

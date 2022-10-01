@@ -14,6 +14,7 @@ window.tcRangeSliderPlugins = window.tcRangeSliderPlugins || [];
 
 const MIN_LABEL_CODE_NAME = 'min-label';
 const MAX_LABEL_CODE_NAME = 'max-label';
+const DEFAULT_TEXT_COLOR = '#1E293B';
 
 const GeneratedLabelsPlugin = () : IPlugin => {
 
@@ -22,6 +23,8 @@ const GeneratedLabelsPlugin = () : IPlugin => {
   let getters: IPluginGetters | null = null;
 
   let enabled = false;
+  let textColor = DEFAULT_TEXT_COLOR;
+  let units = '';
 
   let $labelsRow: HTMLElement | null = null;
   let $min: HTMLElement | null = null;
@@ -46,10 +49,10 @@ const GeneratedLabelsPlugin = () : IPlugin => {
     const isReversedOrder = getters?.isRightToLeft() || getters?.isBottomToTop();
 
     $min = createLabel(MIN_LABEL_CODE_NAME);
-    $min.textContent = getters?.getTextMin().toString() ?? '';
+    $min.textContent = getLabelText(getters?.getTextMin(), units);
 
     $max = createLabel(MAX_LABEL_CODE_NAME);
-    $max.textContent = getters?.getTextMax().toString() ?? '';
+    $max.textContent = getLabelText(getters?.getTextMax(), units);
 
     if(!isReversedOrder){
       $slider?.before($min);
@@ -66,7 +69,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
     for(let i=0; i<values.length; i++){
 
       const $label = createLabel(`value${ i + 1 }-label generated-label`);
-      $label.textContent = (values[i] ?? '').toString();
+      $label.textContent = getLabelText(values[i], units);
       $labels.push($label);
 
       if(!isReversedOrder){
@@ -103,9 +106,34 @@ const GeneratedLabelsPlugin = () : IPlugin => {
     }
   };
 
+  const setTextColor = (newValue: string) => {
+
+    textColor = newValue;
+    for(const $label of $labels){
+      if(!$label) continue;
+      $label.style.color = textColor ?? DEFAULT_TEXT_COLOR;
+    }
+
+    if($min){
+      $min.style.color = textColor ?? DEFAULT_TEXT_COLOR;
+    }
+
+    if($max){
+      $max.style.color = textColor ?? DEFAULT_TEXT_COLOR;
+    }
+  };
+
+  const setUnits = (newValue: string) => {
+    units = newValue;
+  };
+
   const updateClasses = () => {
     if(!getters || !$labelsRow) return;
     $labelsRow.classList.toggle('is-reversed', getters.isRightToLeft() || getters.isBottomToTop());
+  };
+
+  const getLabelText = (value: string | number | undefined, units: string) => {
+    return `${ (value ?? '').toString() }${ units }`;
   };
 
   const update = (data: IPluginUpdateData) => {
@@ -129,7 +157,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
 
         // create the label
         const $label = createLabel(`value${ i + 1 }-label generated-label`);
-        $label.textContent = (value ?? '').toString();
+        $label.textContent = getLabelText(value, units);
         $labels[i] = $label;
 
         // add the label to the proper place
@@ -162,16 +190,18 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       }
 
       if(!$label) continue;
-      $label.textContent = (value ?? '').toString();
+      $label.textContent = getLabelText(value, units);
     }
 
     if($min){
-      $min.textContent = (data.textMin ?? '').toString();
+      $min.textContent = getLabelText(data.textMin, units);
     }
 
     if($max){
-      $max.textContent = (data.textMax ?? '').toString();
+      $max.textContent = getLabelText(data.textMax, units);
     }
+
+    setTextColor(textColor);
   };
 
   return {
@@ -196,8 +226,12 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       getters = _getters;
       $slider = _$component.shadowRoot?.getElementById('range-slider') as HTMLElement;
 
+      textColor = $component.getAttribute('generate-labels-text-color') ?? DEFAULT_TEXT_COLOR;
+      units = $component.getAttribute('generate-labels-units') ?? '';
       toggleEnabled(getBoolean($component.getAttribute('generate-labels')));
+
       updateClasses();
+      setTextColor(textColor);
     },
 
     /**
@@ -216,6 +250,14 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       if(_attrName === 'generate-labels'){
         toggleEnabled(getBoolean(_newValue));
       }
+
+      if(_attrName === 'generate-labels-text-color'){
+        setTextColor(_newValue);
+      }
+
+      if(_attrName === 'generate-labels-units'){
+        setUnits(_newValue);
+      }
     },
 
     /**
@@ -232,6 +274,32 @@ const GeneratedLabelsPlugin = () : IPlugin => {
 
           set: (_enabled) => {
             toggleEnabled(getBoolean(_enabled));
+          },
+        }
+      },
+
+      {
+        name: 'textColor',
+        attributes: {
+          get () {
+            return textColor ?? '';
+          },
+
+          set: (newValue) => {
+            setTextColor(newValue);
+          },
+        }
+      },
+
+      {
+        name: 'units',
+        attributes: {
+          get () {
+            return units ?? '';
+          },
+
+          set: (newValue) => {
+            setUnits(newValue);
           },
         }
       },
@@ -302,4 +370,6 @@ export default GeneratedLabelsPlugin;
  */
 export interface IGeneratedLabelsPlugin extends RangeSlider{
   generateLabels: boolean;
+  textColor: string;
+  units: string;
 }

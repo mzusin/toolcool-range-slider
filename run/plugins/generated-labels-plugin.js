@@ -1,6 +1,6 @@
 import esbuild from 'esbuild';
 
-const VERSION = '1.0.3';
+const VERSION = '1.0.4';
 
 const settings = {
   entryPoints: ['./src/plugins/generated-labels-plugin/index.ts'],

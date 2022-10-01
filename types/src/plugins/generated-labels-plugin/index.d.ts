@@ -7,4 +7,6 @@ export default GeneratedLabelsPlugin;
  */
 export interface IGeneratedLabelsPlugin extends RangeSlider {
     generateLabels: boolean;
+    textColor: string;
+    units: string;
 }
