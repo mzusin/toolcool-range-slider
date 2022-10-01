@@ -1,6 +1,6 @@
 {
   "name": "toolcool-range-slider",
-  "version": "4.0.13",
+  "version": "4.0.14",
   "description": "Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including one and two pointers, a vertical slider, touch, mousewheel and keyboard support, local and session storage, and RTL support.",
   "main": "./dist/toolcool-range-slider.min.js",
   "types": "./types/app/range-slider.d.ts",
@@ -23,6 +23,8 @@
     "moving-tooltip-plugin:watch": "node run/plugins/moving-tooltip-plugin.js -- watch",
     "origin-center-plugin:build": "node run/plugins/origin-center-plugin.js",
     "origin-center-plugin:watch": "node run/plugins/origin-center-plugin.js -- watch",
+    "fire-plugin:build": "node run/plugins/fire-plugin.js",
+    "fire-plugin:watch": "node run/plugins/fire-plugin.js -- watch",
     "themes-css-plugin:build": "node run/plugins/themes-css-plugin.js",
     "themes-css-plugin:watch": "node run/plugins/themes-css-plugin.js -- watch",
     "pointer-shapes-css-plugin:build": "node run/plugins/pointer-shapes-css-plugin.js",
@@ -90,6 +92,6 @@
     "watch": [
       "src/docs/"
     ],
-    "ext": "js,json,html,css,md,ts,tsx"
+    "ext": "js,json,html,css,md,ts,tsx,glsl"
   }
 }

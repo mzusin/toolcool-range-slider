@@ -1,7 +1,7 @@
 ## Basic Usage
 
 Download the latest [toolcool-range-slider.min.js](https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/toolcool-range-slider.min.js) script from GitHub and add the following HTML to the page:
-
+  
 ```html
 <tc-range-slider></tc-range-slider>
 

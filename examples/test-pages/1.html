@@ -1,60 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Origin at Center Plugin | Tool Cool Range Slider</title>
+    <title>Fire Plugin | Tool Cool Range Slider</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        body{
+            background: #000;
+            color: #efefef;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrapper{
+            width: calc(100% - 6rem);
+            margin: 3rem;
+            max-width: 500px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Origin at Center Plugin</h1>
 
     <div class="wrapper">
-
-        <h2>Horizontal</h2>
-        <div class="row">
-            <tc-range-slider
-              value="60"
-              origin-at-center="true"
-              generate-labels="true"
-              slider-width="100%"></tc-range-slider>
-        </div>
-
-        <h2>Right to left</h2>
-        <div class="row">
-            <tc-range-slider
-              value="60"
-              rtl="true"
-              origin-at-center="true"
-              generate-labels="true"
-              slider-width="100%"></tc-range-slider>
-        </div>
-
-        <h2>Vertical</h2>
-        <div class="row">
-            <tc-range-slider
-              value1="60"
-              type="vertical"
-              style="flex: none"
-              origin-at-center="true"
-              generate-labels="true"></tc-range-slider>
-        </div>
-
-        <h2>Bottom to Top</h2>
-        <div class="row">
-            <tc-range-slider
-              value1="60"
-              type="vertical"
-              btt="true"
-              style="flex: none"
-              origin-at-center="true"
-              generate-labels="true"></tc-range-slider>
-        </div>
-
+        <tc-range-slider
+          value1="0"
+          value2="50"
+          value3="100"
+          round="0"
+          fire="true"
+          moving-tooltip="true"
+          moving-tooltip-distance-to-pointer="-40"
+          slider-width="100%"
+          slider-bg-fill="#2d7273"></tc-range-slider>
     </div>
 
-    <script src="../../dist/plugins/tcrs-origin-center.min.js"></script>
-    <script src="../../dist/plugins/tcrs-generated-labels.min.js"></script>
+    <script src="../../dist/plugins/tcrs-fire.min.js"></script>
+    <script src="../../dist/plugins/tcrs-moving-tooltip.min.js"></script>
     <script src="../../dist/toolcool-range-slider.min.js"></script>
 </body>
 </html>
