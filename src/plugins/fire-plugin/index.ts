@@ -187,6 +187,10 @@ const FirePlugin = () : IPlugin => {
   clip-path: ellipse(25% 40% at 50% 50%);
   pointer-events: none;
 } 
+
+.animate-on-click .fire-canvas{
+    transition: all var(--animate-onclick);
+}
     `,
   };
 };

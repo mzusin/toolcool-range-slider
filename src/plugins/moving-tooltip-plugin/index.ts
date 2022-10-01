@@ -416,6 +416,10 @@ const MovingTooltipPlugin = () : IPlugin => {
 .type-vertical .is-after .tooltip::after{
   left: 0%;
 }
+
+.animate-on-click .tooltip{
+    transition: all var(--animate-onclick);
+}
     `,
 
     destroy,
