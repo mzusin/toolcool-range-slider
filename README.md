@@ -16,6 +16,8 @@ Responsive range slider library written in typescript and using web component te
 - [Documentation](https://range-slider.toolcool.org/pages/basic-usage.html)
 
 
+[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-marks.gif?raw=true)](https://range-slider.toolcool.org/pages/moving-tooltip-plugin.html)
+
 ### Any Number of Pointers
 
 The library supports [any number of pointers](https://range-slider.toolcool.org/pages/basic-usage.html) (knobs/handles): 
