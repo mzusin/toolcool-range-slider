@@ -22,6 +22,10 @@ declare module 'toolcool-range-slider' {
   export interface IOriginCenterPlugin extends RangeSlider{
     enabled: boolean;
   }
+  export interface IMarksPlugin extends RangeSlider{
+    marksEnabled: boolean;
+    marksStep: number;
+  }
 
   // ------- range slider UI -----------
   export interface IStyles {

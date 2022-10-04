@@ -1,46 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Fire Plugin | Tool Cool Range Slider</title>
+    <title>Marks Plugin | Tool Cool Range Slider</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <style>
-        body{
-            background: #000;
-            color: #efefef;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-            margin: 0;
-        }
-
-        .wrapper{
-            width: calc(100% - 6rem);
-            margin: 3rem;
-            max-width: 500px;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/styles.css" />
 </head>
 <body>
 
     <div class="wrapper">
-        <tc-range-slider
-          value1="0"
-          value2="50"
-          value3="100"
-          round="0"
-          fire="true"
-          moving-tooltip="true"
-          moving-tooltip-distance-to-pointer="-40"
-          slider-width="100%"
-          slider-bg-fill="#2d7273"></tc-range-slider>
+        <div class="row">
+            <tc-range-slider
+              value1="0"
+              value2="50"
+              value3="100"
+              round="0"
+              generate-labels="true"
+              marks="true"
+              marks-step="3"
+              slider-width="100%"></tc-range-slider>
+        </div>
     </div>
 
-    <script src="../../dist/plugins/tcrs-fire.min.js"></script>
-    <script src="../../dist/plugins/tcrs-moving-tooltip.min.js"></script>
+    <script src="../../dist/plugins/tcrs-generated-labels.min.js"></script>
+    <script src="../../dist/plugins/tcrs-marks.min.js"></script>
     <script src="../../dist/toolcool-range-slider.min.js"></script>
 </body>
 </html>

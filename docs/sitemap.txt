@@ -12,6 +12,7 @@ https://range-slider.toolcool.org/pages/list-of-individual-values-and-text-data.
 https://range-slider.toolcool.org/pages/vertical-slider.html
 https://range-slider.toolcool.org/pages/right-to-left-support.html
 https://range-slider.toolcool.org/pages/moving-tooltip-plugin.html
+https://range-slider.toolcool.org/pages/marks-plugin.html
 https://range-slider.toolcool.org/pages/width-height-and-border-radius.html
 https://range-slider.toolcool.org/pages/colors.html
 https://range-slider.toolcool.org/pages/css-links.html
