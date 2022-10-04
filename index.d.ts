@@ -26,6 +26,8 @@ declare module 'toolcool-range-slider' {
     marksEnabled: boolean;
     marksCount: number;
     marksValuesCount: number;
+    marksColor: string;
+    markValuesColor: string;
   }
 
   // ------- range slider UI -----------

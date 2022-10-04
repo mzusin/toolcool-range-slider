@@ -84,14 +84,15 @@ const MarksPlugin = () : IPlugin => {
       $markPoints.append($mark);
     }
 
+    const data = getters.getData();
+
     for(let i=0; i<marksValuesCount; i++){
       const $value = document.createElement('div');
       $value.classList.add('mark-value', `mark-value-${ i }`);
 
       const percent = marksValuesCount === 0 ? 0 : i * 100 / (marksValuesCount - 1);
       const val = convertRange(0, marksValuesCount - 1, min, max, i);
-
-      $value.textContent = val.toString();
+      $value.textContent = (data ? (data[Math.round(val)] ?? '') : val).toString();
 
       if(isVertical){
         if(isReversed){
@@ -146,6 +147,16 @@ const MarksPlugin = () : IPlugin => {
     }
   };
 
+  const setMarksColor = (newColor) => {
+    if(!$marks) return;
+    $marks.style.setProperty('--marks-color', newColor);
+  };
+
+  const setValuesColor = (newColor) => {
+    if(!$marks) return;
+    $marks.style.setProperty('--values-color', newColor);
+  };
+
   const destroy = () => {
     $marks?.remove();
   };
@@ -178,6 +189,9 @@ const MarksPlugin = () : IPlugin => {
         getNumber($component.getAttribute('marks-count'), MARKS_STEP_COUNT_DEFAULT),
         getNumber($component.getAttribute('marks-values-count'), MARKS_VALUES_COUNT_DEFAULT)
       );
+
+      setMarksColor($component.getAttribute('marks-color') ?? '#cbd5e');
+      setValuesColor($component.getAttribute('marks-values-color') ?? '#475569');
     },
 
     /**
@@ -196,6 +210,14 @@ const MarksPlugin = () : IPlugin => {
 
       if(_attrName === 'marks-values-count'){
         updateSteps(marksCount, getNumber(_newValue, MARKS_VALUES_COUNT_DEFAULT));
+      }
+
+      if(_attrName === 'marks-color'){
+        setMarksColor(_newValue);
+      }
+
+      if(_attrName === 'marks-values-color'){
+        setValuesColor(_newValue);
       }
     },
 
@@ -224,8 +246,8 @@ const MarksPlugin = () : IPlugin => {
             return marksCount ?? MARKS_STEP_COUNT_DEFAULT;
           },
 
-          set: (_newStep) => {
-            updateSteps(getNumber(_newStep, MARKS_STEP_COUNT_DEFAULT), marksValuesCount);
+          set: (value) => {
+            updateSteps(getNumber(value, MARKS_STEP_COUNT_DEFAULT), marksValuesCount);
           },
         }
       },
@@ -237,8 +259,34 @@ const MarksPlugin = () : IPlugin => {
             return marksCount ?? MARKS_STEP_COUNT_DEFAULT;
           },
 
-          set: (_newStep) => {
-            updateSteps(marksCount, getNumber(_newStep, MARKS_VALUES_COUNT_DEFAULT));
+          set: (value) => {
+            updateSteps(marksCount, getNumber(value, MARKS_VALUES_COUNT_DEFAULT));
+          },
+        }
+      },
+
+      {
+        name: 'marksColor',
+        attributes: {
+          get () {
+            return  $marks.style.getPropertyValue('--marks-color');
+          },
+
+          set: (newColor) => {
+            setMarksColor(newColor);
+          },
+        }
+      },
+
+      {
+        name: 'markValuesColor',
+        attributes: {
+          get () {
+            return  $marks.style.getPropertyValue('--values-color');
+          },
+
+          set: (newColor) => {
+            setValuesColor(newColor);
           },
         }
       },
@@ -248,6 +296,11 @@ const MarksPlugin = () : IPlugin => {
     destroy,
 
     css: `
+:root{
+  --marks-color: #cbd5e1;
+  --values-color: #475569;
+}
+  
 .marks{
   width: 100%;
   display: flex;
@@ -255,7 +308,7 @@ const MarksPlugin = () : IPlugin => {
   position: relative;
   top: 100%;
   left: 0;
-  color: #475569;
+  color: var(--values-color, #475569);
 }
 
 .type-vertical .marks{
@@ -284,16 +337,16 @@ const MarksPlugin = () : IPlugin => {
   width: 100%;
   height: 1rem;
   position: relative;
-  margin-left: 0.7rem;
 }
 
 .type-vertical .mark-values {
   width: 1rem;
   height: 100%;
+  margin-left: 0.7rem;
 }
 
 .mark{
-  background: #cbd5e1;
+  background: var(--marks-color, #cbd5e1);
   width: 2px;
   height: 5px;
   position: absolute;
@@ -332,4 +385,6 @@ export interface IMarksPlugin extends RangeSlider{
   marksEnabled: boolean;
   marksCount: number;
   marksValuesCount: number;
+  marksColor: string;
+  markValuesColor: string;
 }

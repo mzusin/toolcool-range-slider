@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664906946551.css" />
-    <!--<link rel="stylesheet" href="/js/index.1664906946551.css" />-->
+    <link rel="stylesheet" href="/css/styles.1664914123416.css" />
+    <!--<link rel="stylesheet" href="/js/index.1664914123416.css" />-->
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3TJWMC6F4"></script>
@@ -117,7 +117,8 @@
   <span class="hljs-attr">marks-count</span>=<span class="hljs-string">&quot;11&quot;</span>
   <span class="hljs-attr">marks-values-count</span>=<span class="hljs-string">&quot;31&quot;</span>
 
-  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;50&quot;</span>
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;70&quot;</span>
   <span class="hljs-attr">step</span>=<span class="hljs-string">&quot;3.33&quot;</span>
 
   <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>
@@ -132,7 +133,8 @@
       marks="true"
       marks-count="31"
       marks-values-count="11"
-      value="50"
+      value1="30"
+      value2="70"
       step="3.33"
       round="0"
       generate-labels="true"
@@ -182,6 +184,16 @@
 <td class="px-6 py-2">marks-values-count</td>
 <td class="px-6 py-2">11</td>
 <td class="px-6 py-2">marksValuesCount</td>
+</tr>
+<tr class="border-slate-200 border-b last:border-0">
+<td class="px-6 py-2">marks-color</td>
+<td class="px-6 py-2">#cbd5e1</td>
+<td class="px-6 py-2">marksColor</td>
+</tr>
+<tr class="border-slate-200 border-b last:border-0">
+<td class="px-6 py-2">marks-values-color</td>
+<td class="px-6 py-2">#475569</td>
+<td class="px-6 py-2">markValuesColor</td>
 </tr>
 </tbody>
 </table>
@@ -233,6 +245,193 @@ $slider.<span class="hljs-property">marksValuesCount</span> = <span class="hljs-
 $slider.<span class="hljs-property">movingTooltip</span> = <span class="hljs-literal">true</span>; <span class="hljs-comment">// or false</span>
 $slider.<span class="hljs-property">marksCount</span> = <span class="hljs-number">11</span>;
 $slider.<span class="hljs-property">marksValuesCount</span> = <span class="hljs-number">11</span>;</code></pre>
+<hr class="my-10" />
+<p class="mb-4">More examples:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">marks</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">marks-count</span>=<span class="hljs-string">&quot;9&quot;</span>
+  <span class="hljs-attr">marks-values-count</span>=<span class="hljs-string">&quot;9&quot;</span>
+  <span class="hljs-attr">marks-color</span>=<span class="hljs-string">&quot;#d7c114&quot;</span>
+  <span class="hljs-attr">marks-values-color</span>=<span class="hljs-string">&quot;#8240bb&quot;</span>
+  
+  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;50&quot;</span>
+  <span class="hljs-attr">step</span>=<span class="hljs-string">&quot;12.5&quot;</span>
+  
+  <span class="hljs-attr">slider-width</span>=<span class="hljs-string">&quot;400px&quot;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      marks="true"
+      marks-count="9"
+      marks-values-count="9"
+      marks-color="#d7c114"
+      marks-values-color="#8240bb"
+      value="50"
+      step="12.5"
+      slider-width="400px"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">marks</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">marks-count</span>=<span class="hljs-string">&quot;21&quot;</span>
+  <span class="hljs-attr">marks-values-count</span>=<span class="hljs-string">&quot;11&quot;</span>
+  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;50&quot;</span>
+  <span class="hljs-attr">step</span>=<span class="hljs-string">&quot;5&quot;</span>
+  <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>
+  <span class="hljs-attr">slider-width</span>=<span class="hljs-string">&quot;400px&quot;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      marks="true"
+      marks-count="21"
+      marks-values-count="11"
+      value="50"
+      step="5"
+      round="0"
+      slider-width="400px"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">marks</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">marks-count</span>=<span class="hljs-string">&quot;31&quot;</span>
+  <span class="hljs-attr">marks-values-count</span>=<span class="hljs-string">&quot;11&quot;</span>
+  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;50&quot;</span>
+  <span class="hljs-attr">step</span>=<span class="hljs-string">&quot;3.33&quot;</span>
+  <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>
+  <span class="hljs-attr">slider-width</span>=<span class="hljs-string">&quot;400px&quot;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      marks="true"
+      marks-count="31"
+      marks-values-count="11"
+      value="50"
+      step="3.33"
+      round="0"
+      slider-width="400px"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+<p class="mb-4">Right to left example:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">marks</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">marks-count</span>=<span class="hljs-string">&quot;11&quot;</span>
+  <span class="hljs-attr">marks-values-count</span>=<span class="hljs-string">&quot;11&quot;</span>
+  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;50&quot;</span>
+  <span class="hljs-attr">step</span>=<span class="hljs-string">&quot;10&quot;</span>
+  <span class="hljs-attr">rtl</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>
+  <span class="hljs-attr">slider-width</span>=<span class="hljs-string">&quot;400px&quot;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      marks="true"
+      marks-count="11"
+      marks-values-count="11"
+      value="50"
+      step="10"
+      rtl="true"
+      round="0"
+      slider-width="400px"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+<p class="mb-4">ABC example:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">data</span>=<span class="hljs-string">&quot;a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z&quot;</span>
+  <span class="hljs-attr">marks</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">marks-count</span>=<span class="hljs-string">&quot;26&quot;</span>
+  <span class="hljs-attr">marks-values-count</span>=<span class="hljs-string">&quot;25&quot;</span>
+  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;d&quot;</span>
+  <span class="hljs-attr">slider-width</span>=<span class="hljs-string">&quot;400px&quot;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"
+      marks="true"
+      marks-count="26"
+      marks-values-count="25"
+      value="d"
+      slider-width="400px"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">data</span>=<span class="hljs-string">&quot;a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z&quot;</span>
+  <span class="hljs-attr">marks</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">marks-count</span>=<span class="hljs-string">&quot;26&quot;</span>
+  <span class="hljs-attr">marks-values-count</span>=<span class="hljs-string">&quot;5&quot;</span>
+  <span class="hljs-attr">step</span>=<span class="hljs-string">&quot;1&quot;</span>
+  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;d&quot;</span>
+  <span class="hljs-attr">slider-width</span>=<span class="hljs-string">&quot;400px&quot;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"
+      marks="true"
+      marks-count="26"
+      marks-values-count="5"
+      step="1"
+      value="d"
+      slider-width="400px"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">marks</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">marks-count</span>=<span class="hljs-string">&quot;11&quot;</span>
+  <span class="hljs-attr">marks-values-count</span>=<span class="hljs-string">&quot;11&quot;</span>
+  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;50&quot;</span>
+  <span class="hljs-attr">step</span>=<span class="hljs-string">&quot;10&quot;</span>
+  <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>
+  <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;vertical&quot;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      marks="true"
+      marks-count="11"
+      marks-values-count="11"
+      value="50"
+      step="10"
+      round="0"
+      type="vertical"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+<p class="mb-4">Bottom to top:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">marks</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">marks-count</span>=<span class="hljs-string">&quot;11&quot;</span>
+  <span class="hljs-attr">marks-values-count</span>=<span class="hljs-string">&quot;11&quot;</span>
+  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;50&quot;</span>
+  <span class="hljs-attr">step</span>=<span class="hljs-string">&quot;10&quot;</span>
+  <span class="hljs-attr">btt</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>
+  <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;vertical&quot;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      marks="true"
+      marks-count="11"
+      marks-values-count="11"
+      value="50"
+      step="10"
+      btt="true"
+      round="0"
+      type="vertical"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
 <blockquote class="bg-gray-100 pt-4 px-4 flex my-10 border-l-4 border-blue-300 rounded">
 <p class="mb-4">📌 An example page with the source code can be found <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/33-marks-plugin.html" class="text-blue-500">here</a>.</p>
 </blockquote>
@@ -278,6 +477,6 @@ $slider.<span class="hljs-property">marksValuesCount</span> = <span class="hljs-
       </div>
     </footer>-->
 
-    <script src="/js/index.1664906946551.js"></script>
+    <script src="/js/index.1664914123416.js"></script>
   </body>
 </html>

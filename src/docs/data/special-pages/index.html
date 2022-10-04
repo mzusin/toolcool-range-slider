@@ -118,11 +118,21 @@
     <div class="mr-6 text-xs justify-center leading-5 bg-slate-100/30 hover:bg-slate-100/20 text-white rounded-full py-1 px-3 hidden md:flex items-center space-x-2 w-20">0</div>
     <tc-range-slider
       value="50"
+      step="10"
+
       theme="target"
+      css-links="/js/index.{% js-hash %}.css"
+
       moving-tooltip="true"
       moving-tooltip-bg="#1e8696"
       moving-tooltip-width="45"
-      css-links="/js/index.{% js-hash %}.css"
+
+      marks="true"
+      marks-count="11"
+      marks-values-count="11"
+      marks-color="#d7c114"
+      marks-values-color="#BB9AF7"
+
       slider-width="450px"></tc-range-slider>
     <div class="ml-6 text-xs justify-center leading-5 bg-slate-100/30 hover:bg-slate-100/20 text-white rounded-full py-1 px-3 hidden md:flex items-center space-x-2 w-20">100</div>
   </div>

@@ -14,7 +14,8 @@ And then add the **marks="true"** attribute to see it in action. Check out the f
   marks-count="11"
   marks-values-count="31"
 
-  value="50"
+  value1="30"
+  value2="70"
   step="3.33"
 
   round="0"
@@ -31,7 +32,8 @@ And then add the **marks="true"** attribute to see it in action. Check out the f
       marks="true"
       marks-count="31"
       marks-values-count="11"
-      value="50"
+      value1="30"
+      value2="70"
       step="3.33"
       round="0"
       generate-labels="true"
@@ -67,17 +69,19 @@ import 'toolcool-range-slider';
 // any code here...
 ```
 
-| HTML Property       | Default Value | API Property      |
-|---------------------|---------------|-------------------|
-| marks               | true          | marksEnabled      |
-| marks-count         | 11            | marksCount        | 
-| marks-values-count  | 11            | marksValuesCount  | 
+| HTML Property      | Default Value | API Property     |
+|--------------------|---------------|------------------|
+| marks              | true          | marksEnabled     |
+| marks-count        | 11            | marksCount       | 
+| marks-values-count | 11            | marksValuesCount | 
+| marks-color        | #cbd5e1       | marksColor       | 
+| marks-values-color | #475569       | markValuesColor  | 
 
- 
+  
 > :pushpin: You can add your own css customizations using [CSS Links](/pages/css-links.html) or using [addCSS](/pages/add-css-api.html) API.
 
 Example with different min/max:
-
+  
 ```html
 <tc-range-slider
   marks="true"
@@ -132,6 +136,232 @@ $slider.movingTooltip = true; // or false
 $slider.marksCount = 11;
 $slider.marksValuesCount = 11;
 ```
+
+<hr class="my-10" />
+
+More examples:
+
+```html
+<tc-range-slider
+  marks="true"
+  marks-count="9"
+  marks-values-count="9"
+  marks-color="#d7c114"
+  marks-values-color="#8240bb"
+  
+  value="50"
+  step="12.5"
+  
+  slider-width="400px"
+  generate-labels="true">
+</tc-range-slider>
+```
+
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      marks="true"
+      marks-count="9"
+      marks-values-count="9"
+      marks-color="#d7c114"
+      marks-values-color="#8240bb"
+      value="50"
+      step="12.5"
+      slider-width="400px"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+
+
+```html
+<tc-range-slider
+  marks="true"
+  marks-count="21"
+  marks-values-count="11"
+  value="50"
+  step="5"
+  round="0"
+  slider-width="400px"
+  generate-labels="true">
+</tc-range-slider>
+```
+
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      marks="true"
+      marks-count="21"
+      marks-values-count="11"
+      value="50"
+      step="5"
+      round="0"
+      slider-width="400px"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+
+```html
+<tc-range-slider
+  marks="true"
+  marks-count="31"
+  marks-values-count="11"
+  value="50"
+  step="3.33"
+  round="0"
+  slider-width="400px"
+  generate-labels="true">
+</tc-range-slider>
+```
+
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      marks="true"
+      marks-count="31"
+      marks-values-count="11"
+      value="50"
+      step="3.33"
+      round="0"
+      slider-width="400px"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+
+Right to left example:
+
+```html
+<tc-range-slider
+  marks="true"
+  marks-count="11"
+  marks-values-count="11"
+  value="50"
+  step="10"
+  rtl="true"
+  round="0"
+  slider-width="400px"
+  generate-labels="true">
+</tc-range-slider>
+```
+
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      marks="true"
+      marks-count="11"
+      marks-values-count="11"
+      value="50"
+      step="10"
+      rtl="true"
+      round="0"
+      slider-width="400px"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+
+ABC example:
+
+```html
+<tc-range-slider
+  data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"
+  marks="true"
+  marks-count="26"
+  marks-values-count="25"
+  value="d"
+  slider-width="400px"
+  generate-labels="true">
+</tc-range-slider>
+```
+
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"
+      marks="true"
+      marks-count="26"
+      marks-values-count="25"
+      value="d"
+      slider-width="400px"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+
+```html
+<tc-range-slider
+  data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"
+  marks="true"
+  marks-count="26"
+  marks-values-count="5"
+  step="1"
+  value="d"
+  slider-width="400px"
+  generate-labels="true">
+</tc-range-slider>
+```
+
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      data="a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"
+      marks="true"
+      marks-count="26"
+      marks-values-count="5"
+      step="1"
+      value="d"
+      slider-width="400px"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+
+```html
+<tc-range-slider
+  marks="true"
+  marks-count="11"
+  marks-values-count="11"
+  value="50"
+  step="10"
+  round="0"
+  type="vertical"
+  generate-labels="true">
+</tc-range-slider>
+```
+
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      marks="true"
+      marks-count="11"
+      marks-values-count="11"
+      value="50"
+      step="10"
+      round="0"
+      type="vertical"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+
+Bottom to top:
+
+```html
+<tc-range-slider
+  marks="true"
+  marks-count="11"
+  marks-values-count="11"
+  value="50"
+  step="10"
+  btt="true"
+  round="0"
+  type="vertical"
+  generate-labels="true">
+</tc-range-slider>
+```
+
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      marks="true"
+      marks-count="11"
+      marks-values-count="11"
+      value="50"
+      step="10"
+      btt="true"
+      round="0"
+      type="vertical"
+      generate-labels="true">
+    </tc-range-slider>
+</div>
+
 
 > :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/33-marks-plugin.html).
 
