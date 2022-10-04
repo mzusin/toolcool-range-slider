@@ -23,6 +23,8 @@
     "moving-tooltip-plugin:watch": "node run/plugins/moving-tooltip-plugin.js -- watch",
     "origin-center-plugin:build": "node run/plugins/origin-center-plugin.js",
     "origin-center-plugin:watch": "node run/plugins/origin-center-plugin.js -- watch",
+    "marks-plugin:build": "node run/plugins/marks-plugin.js",
+    "marks-plugin:watch": "node run/plugins/marks-plugin.js -- watch",
     "fire-plugin:build": "node run/plugins/fire-plugin.js",
     "fire-plugin:watch": "node run/plugins/fire-plugin.js -- watch",
     "themes-css-plugin:build": "node run/plugins/themes-css-plugin.js",
