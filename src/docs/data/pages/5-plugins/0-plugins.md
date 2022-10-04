@@ -8,6 +8,7 @@ There is also a list of ready-made plugins:
 - [AutoBinding Labels plugin](/pages/auto-binding-labels.html)
 - [Storage plugin](/pages/storage.html)
 - [Moving Tooltip Plugin](/pages/moving-tooltip-plugin.html)
+- [Origin at Center Plugin](/pages/origin-at-center-plugin.html)
 - [CSS Themes](/pages/themes.html)
 - [Pointer Shapes](/pages/pointer-shapes.html)
 
