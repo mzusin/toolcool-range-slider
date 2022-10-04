@@ -94,6 +94,7 @@ The library also has an [Origin at Center Plugin](https://range-slider.toolcool.
 - [Disabled/enabled](https://range-slider.toolcool.org/pages/disabled.html) range slider (including API).
 - Possibility to disable only one pointer.
 - [Non-linear](https://range-slider.toolcool.org/pages/non-linear-step.html) range slider :chart_with_downwards_trend:
+- [Marks Plugin](https://range-slider.toolcool.org/pages/marks-plugin.html) that allows to generate points along the slider.
 - Optional [animation](https://range-slider.toolcool.org/pages/animation.html) on panel click.
 - Works well with Bootstrap and other CSS frameworks :+1:
 - No CSS conflicts due to web components.
@@ -105,6 +106,7 @@ The library also has an [Origin at Center Plugin](https://range-slider.toolcool.
 - Extensive API based on TypeScript.
 [![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/img/readme/3.png?raw=true)](https://range-slider.toolcool.org/pages/storage.html)
 
+
 ### Plugins
 - [Binding Labels Plugin](https://range-slider.toolcool.org/pages/auto-binding-labels.html)
 - [Auto Generated Labels Plugin](https://range-slider.toolcool.org/pages/auto-generated-labels.html)
@@ -113,6 +115,7 @@ The library also has an [Origin at Center Plugin](https://range-slider.toolcool.
 - [Pointer Shapes CSS Plugin](https://range-slider.toolcool.org/pages/pointer-shapes.html)
 - [Themes CSS Plugin](https://range-slider.toolcool.org/pages/themes.html)
 - [Origin at Center Plugin](https://range-slider.toolcool.org/pages/origin-at-center-plugin.html)
+- [Marks Plugin](https://range-slider.toolcool.org/pages/marks-plugin.html)
 
 ## License
 
