@@ -24,7 +24,8 @@ declare module 'toolcool-range-slider' {
   }
   export interface IMarksPlugin extends RangeSlider{
     marksEnabled: boolean;
-    marksStep: number;
+    marksCount: number;
+    marksValuesCount: number;
   }
 
   // ------- range slider UI -----------

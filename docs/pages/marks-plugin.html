@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664892591677.css" />
-    <!--<link rel="stylesheet" href="/js/index.1664892591677.css" />-->
+    <link rel="stylesheet" href="/css/styles.1664900069186.css" />
+    <!--<link rel="stylesheet" href="/js/index.1664900069186.css" />-->
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3TJWMC6F4"></script>
@@ -114,12 +114,12 @@
 <p class="mb-4">And then add the <strong class="font-bold">marks=“true”</strong> attribute to see it in action. Check out the following basic example:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
   <span class="hljs-attr">marks</span>=<span class="hljs-string">&quot;true&quot;</span>
-  <span class="hljs-attr">marks-step</span>=<span class="hljs-string">&quot;5&quot;</span>
-  
-  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;20&quot;</span>
-  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;50&quot;</span>
-  <span class="hljs-attr">value3</span>=<span class="hljs-string">&quot;80&quot;</span>
-  
+  <span class="hljs-attr">marks-count</span>=<span class="hljs-string">&quot;11&quot;</span>
+  <span class="hljs-attr">marks-values-count</span>=<span class="hljs-string">&quot;31&quot;</span>
+
+  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;50&quot;</span>
+  <span class="hljs-attr">step</span>=<span class="hljs-string">&quot;3.33&quot;</span>
+
   <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>
   <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span>
@@ -129,13 +129,14 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <div class="my-24 flex flex-col items-center">
     <tc-range-slider 
-      value1="20"
-      value2="50"
-      value3="80"
-      round="0"
       marks="true"
-      marks-step="3"
-      generate-labels="true">
+      marks-count="31"
+      marks-values-count="11"
+      value="50"
+      step="3.33"
+      round="0"
+      generate-labels="true"
+      slider-width="400px">
     </tc-range-slider>
 </div>
 <p class="mb-4">The plugin is also available on the <a href="https://www.jsdelivr.com/package/npm/toolcool-range-slider" class="text-blue-500">jsDelivr CND</a>:</p>
@@ -173,25 +174,65 @@
 <td class="px-6 py-2">marksEnabled</td>
 </tr>
 <tr class="border-slate-200 border-b last:border-0">
-<td class="px-6 py-2">marks-step</td>
-<td class="px-6 py-2">5</td>
-<td class="px-6 py-2">marksStep</td>
+<td class="px-6 py-2">marks-count</td>
+<td class="px-6 py-2">11</td>
+<td class="px-6 py-2">marksCount</td>
+</tr>
+<tr class="border-slate-200 border-b last:border-0">
+<td class="px-6 py-2">marks-values-count</td>
+<td class="px-6 py-2">11</td>
+<td class="px-6 py-2">marksValuesCount</td>
 </tr>
 </tbody>
 </table>
 <blockquote class="bg-gray-100 pt-4 px-4 flex my-10 border-l-4 border-blue-300 rounded">
 <p class="mb-4">📌 You can add your own css customizations using <a href="/pages/css-links.html" class="text-blue-500">CSS Links</a> or using <a href="/pages/add-css-api.html" class="text-blue-500">addCSS</a> API.</p>
 </blockquote>
+<p class="mb-4">Example with different min/max:</p>
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">marks</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">marks-count</span>=<span class="hljs-string">&quot;11&quot;</span>
+  <span class="hljs-attr">marks-values-count</span>=<span class="hljs-string">&quot;11&quot;</span>
+
+  <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;-100&quot;</span>
+  <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;100&quot;</span>
+
+  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;0&quot;</span>
+  <span class="hljs-attr">step</span>=<span class="hljs-string">&quot;20&quot;</span>
+
+  <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- The plugin should be included before the core library. --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;tcrs-marks.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      marks="true"
+      marks-count="11"
+      marks-values-count="11"
+      min="-100"
+      max="100"
+      value="0"
+      step="20"
+      round="0"
+      generate-labels="true"
+      slider-width="400px">
+    </tc-range-slider>
+</div>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-1&#x27;</span>);
 $slider.<span class="hljs-property">movingTooltip</span> = <span class="hljs-literal">true</span>; <span class="hljs-comment">// or false</span>
-$slider.<span class="hljs-property">marksStep</span> = <span class="hljs-number">10</span>;</code></pre>
+$slider.<span class="hljs-property">marksCount</span> = <span class="hljs-number">11</span>;
+$slider.<span class="hljs-property">marksValuesCount</span> = <span class="hljs-number">11</span>;</code></pre>
 <p class="mb-4">TypeScript example:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-keyword">import</span> { <span class="hljs-title class_">IMarksPlugin</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;toolcool-range-slider&#x27;</span>;
 
 <span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-1&#x27;</span>) <span class="hljs-keyword">as</span> <span class="hljs-title class_">IMarksPlugin</span>;
 
 $slider.<span class="hljs-property">movingTooltip</span> = <span class="hljs-literal">true</span>; <span class="hljs-comment">// or false</span>
-$slider.<span class="hljs-property">marksStep</span> = <span class="hljs-number">10</span>;</code></pre>
+$slider.<span class="hljs-property">marksCount</span> = <span class="hljs-number">11</span>;
+$slider.<span class="hljs-property">marksValuesCount</span> = <span class="hljs-number">11</span>;</code></pre>
 <blockquote class="bg-gray-100 pt-4 px-4 flex my-10 border-l-4 border-blue-300 rounded">
 <p class="mb-4">📌 An example page with the source code can be found <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/33-marks-plugin.html" class="text-blue-500">here</a>.</p>
 </blockquote>
@@ -237,6 +278,6 @@ $slider.<span class="hljs-property">marksStep</span> = <span class="hljs-number"
       </div>
     </footer>-->
 
-    <script src="/js/index.1664892591677.js"></script>
+    <script src="/js/index.1664900069186.js"></script>
   </body>
 </html>

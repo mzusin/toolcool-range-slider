@@ -1,0 +1,51 @@
+.wrapper{
+    width: 500px;
+    max-width: 100%;
+    margin: 3rem auto;
+}
+
+h1{
+    text-align: center;
+    font-weight: normal;
+    margin: 3rem 1rem;
+}
+
+h2{
+    font-size: 1.1rem;
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+    color: #606060;
+    text-align: center;
+    font-weight: normal;
+}
+
+.row{
+    margin-bottom: 3rem;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    position: relative;
+}
+
+tc-range-slider{
+    flex: 1;
+    margin-bottom: 3rem;
+}
+
+label{
+    margin: 0 1rem;
+    width: 2rem;
+    text-align: center;
+}
+
+.value{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -1.2rem;
+}
+
+.desc{
+    text-align: center;
+    padding: 0 1rem 1rem 1rem;
+}

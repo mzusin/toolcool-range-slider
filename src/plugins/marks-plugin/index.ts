@@ -1,6 +1,6 @@
 import { IPlugin, IPluginGetters, IPluginSetters, IPluginUpdateData } from '../../core/plugins/interfaces';
 import RangeSlider from '../../core';
-import { getBoolean, getNumber } from '../../core/domain/math-provider';
+import { convertRange, getBoolean, getNumber } from '../../core/domain/math-provider';
 
 /**
  * Marks Plugin.
@@ -12,21 +12,35 @@ import { getBoolean, getNumber } from '../../core/domain/math-provider';
  */
 window.tcRangeSliderPlugins = window.tcRangeSliderPlugins || [];
 
-const MARKS_STEP_DEFAULT = 5;
+const MARKS_STEP_COUNT_DEFAULT = 11;
+const MARKS_VALUES_COUNT_DEFAULT = 11;
 
 const MarksPlugin = () : IPlugin => {
 
   let $component: HTMLElement | null = null;
   let getters: IPluginGetters | null = null;
+
   let $marks: HTMLElement | null = null;
+  let $markPoints: HTMLElement | null = null;
+  let $markValues: HTMLElement | null = null;
 
   let enabled = false;
-  let marksStep = MARKS_STEP_DEFAULT;
+  let marksCount = MARKS_STEP_COUNT_DEFAULT;
+  let marksValuesCount = MARKS_VALUES_COUNT_DEFAULT;
 
   const createMarksBox = () => {
     const $slider = $component?.shadowRoot?.querySelector('#range-slider')  as HTMLElement;
     $marks = document.createElement('div');
     $marks.classList.add('marks');
+
+    $markPoints = document.createElement('div');
+    $markPoints.classList.add('mark-points');
+    $marks.append($markPoints);
+
+    $markValues = document.createElement('div');
+    $markValues.classList.add('mark-values');
+    $marks.append($markValues);
+
     $slider.append($marks);
   };
 
@@ -35,23 +49,43 @@ const MarksPlugin = () : IPlugin => {
 
     const min = getters.getMin();
     const max = getters.getMax();
-    const range = Math.abs(max - min);
-    const count = Math.round(range / marksStep);
+    // const range = Math.abs(max - min);
 
-    for(let i=0; i<count; i++){
+    for(let i=0; i<marksCount; i++){
       const $mark = document.createElement('div');
       $mark.classList.add('mark', `mark-${ i }`);
-      $marks.append($mark);
+
+      const percent = marksCount === 0 ? 0 : i * 100 / (marksCount - 1);
+      $mark.style.left = `${ percent }%`;
+
+      $markPoints.append($mark);
+    }
+
+    for(let i=0; i<marksValuesCount; i++){
+      const $value = document.createElement('div');
+      $value.classList.add('mark-value', `mark-value-${ i }`);
+
+      const percent = marksValuesCount === 0 ? 0 : i * 100 / (marksValuesCount - 1);
+      const val = convertRange(0, marksValuesCount - 1, min, max, i);
+
+      $value.textContent = val.toString();
+      $value.style.left = `${ percent }%`;
+      $markValues.append($value);
     }
   };
 
-  const updateStep = (stepValue: number) => {
+  const updateSteps = (_markStep: number, _makeValueStep: number) => {
     destroy();
 
-    marksStep = stepValue;
+    marksCount = _markStep;
+    marksValuesCount = _makeValueStep;
 
-    if(marksStep <= 0){
-      marksStep = MARKS_STEP_DEFAULT;
+    if(marksCount <= 0){
+      marksCount = MARKS_STEP_COUNT_DEFAULT;
+    }
+
+    if(marksValuesCount <= 0){
+      marksValuesCount = MARKS_VALUES_COUNT_DEFAULT;
     }
 
     createMarksBox();
@@ -68,12 +102,6 @@ const MarksPlugin = () : IPlugin => {
       createMarksBox();
       createMarks();
     }
-  };
-
-  const update = (data: IPluginUpdateData) => {
-
-    if(!enabled ) return;
-
   };
 
   const destroy = () => {
@@ -102,15 +130,11 @@ const MarksPlugin = () : IPlugin => {
       $component = _$component;
 
       enabled = getBoolean($component.getAttribute('marks'));
-      updateStep(getNumber($component.getAttribute('marks-step'), MARKS_STEP_DEFAULT));
+      updateSteps(
+        getNumber($component.getAttribute('marks-count'), MARKS_STEP_COUNT_DEFAULT),
+        getNumber($component.getAttribute('marks-values-count'), MARKS_VALUES_COUNT_DEFAULT)
+      );
     },
-
-    /**
-     * Optional:
-     * this will be called each time
-     * range slider updates pointer positions or other properties
-     */
-    update,
 
     /**
      * Optional:
@@ -122,8 +146,12 @@ const MarksPlugin = () : IPlugin => {
         toggleEnabled(getBoolean(_newValue));
       }
 
-      if(_attrName === 'marks-step'){
-        updateStep(getNumber(_newValue, MARKS_STEP_DEFAULT));
+      if(_attrName === 'marks-count'){
+        updateSteps(getNumber(_newValue, MARKS_STEP_COUNT_DEFAULT), marksValuesCount);
+      }
+
+      if(_attrName === 'marks-values-count'){
+        updateSteps(marksCount, getNumber(_newValue, MARKS_VALUES_COUNT_DEFAULT));
       }
     },
 
@@ -146,14 +174,27 @@ const MarksPlugin = () : IPlugin => {
       },
 
       {
-        name: 'marksStep',
+        name: 'marksCount',
         attributes: {
           get () {
-            return marksStep ?? MARKS_STEP_DEFAULT;
+            return marksCount ?? MARKS_STEP_COUNT_DEFAULT;
           },
 
           set: (_newStep) => {
-            updateStep(getNumber(_newStep, MARKS_STEP_DEFAULT));
+            updateSteps(getNumber(_newStep, MARKS_STEP_COUNT_DEFAULT), marksValuesCount);
+          },
+        }
+      },
+
+      {
+        name: 'marksValuesCount',
+        attributes: {
+          get () {
+            return marksCount ?? MARKS_STEP_COUNT_DEFAULT;
+          },
+
+          set: (_newStep) => {
+            updateSteps(marksCount, getNumber(_newStep, MARKS_VALUES_COUNT_DEFAULT));
           },
         }
       },
@@ -165,20 +206,39 @@ const MarksPlugin = () : IPlugin => {
     css: `
 .marks{
   width: 100%;
-  height: 1rem;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   position: relative;
   top: 100%;
   left: 0;
+  color: #475569;
+}
+    
+.mark-points{
+  width: 100%;
+  height: 1rem;
+  position: relative;
   margin-top: 5px;
 }  
+
+.mark-values{
+  width: 100%;
+  height: 1rem;
+  position: relative;
+}
 
 .mark{
   background: #cbd5e1;
   width: 2px;
   height: 5px;
+  position: absolute;
+  transform: translateX(-50%);
 }  
+
+.mark-value{
+  position: absolute;
+  transform: translateX(-50%);
+}
     `,
   };
 };
@@ -195,5 +255,6 @@ export default MarksPlugin;
  */
 export interface IMarksPlugin extends RangeSlider{
   marksEnabled: boolean;
-  marksStep: number;
+  marksCount: number;
+  marksValuesCount: number;
 }

@@ -4,21 +4,88 @@
     <title>Marks Plugin | Tool Cool Range Slider</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/marks.css" />
 </head>
 <body>
 
     <h1>Marks Plugin</h1>
 
     <div class="wrapper">
+
+        <h2>Horizontal slider with the range [0, 100]</h2>
         <div class="row">
             <tc-range-slider
-              value1="30"
-              value2="70"
+              marks="true"
+              marks-count="11"
+              marks-values-count="11"
+
+              value="50"
+              step="10"
+
               round="0"
               generate-labels="true"
+              slider-width="100%"></tc-range-slider>
+        </div>
+
+        <h2>Horizontal slider with the range [-100, 100]</h2>
+        <div class="row">
+            <tc-range-slider
               marks="true"
-              marks-step="5"
+              marks-count="11"
+              marks-values-count="11"
+
+              min="-100"
+              max="100"
+
+              value="0"
+              step="10"
+
+              round="0"
+              generate-labels="true"
+              slider-width="100%"></tc-range-slider>
+        </div>
+
+        <h2>Horizontal slider with count = 9</h2>
+        <div class="row">
+            <tc-range-slider
+              marks="true"
+              marks-count="9"
+              marks-values-count="9"
+
+              value="50"
+              step="12.5"
+
+              generate-labels="true"
+              slider-width="100%"></tc-range-slider>
+        </div>
+
+        <h2>Horizontal slider with the marks count = 21, and values count = 11</h2>
+        <div class="row">
+            <tc-range-slider
+              marks="true"
+              marks-count="21"
+              marks-values-count="11"
+
+              value="50"
+              step="5"
+
+              round="0"
+              generate-labels="true"
+              slider-width="100%"></tc-range-slider>
+        </div>
+
+        <h2>Horizontal slider with the marks count = 31, and values count = 11</h2>
+        <div class="row">
+            <tc-range-slider
+              marks="true"
+              marks-count="31"
+              marks-values-count="11"
+
+              value="50"
+              step="3.33"
+
+              round="0"
+              generate-labels="true"
               slider-width="100%"></tc-range-slider>
         </div>
     </div>
