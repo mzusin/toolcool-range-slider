@@ -44,19 +44,31 @@ const MarksPlugin = () : IPlugin => {
     $slider.append($marks);
   };
 
+  const updateClasses = () => {
+    if(!getters || !$marks) return;
+    $marks.classList.toggle('is-reversed', getters.isRightToLeft() || getters.isBottomToTop());
+  };
+
   const createMarks = () => {
     if(!$marks || !getters) return;
 
     const min = getters.getMin();
     const max = getters.getMax();
-    // const range = Math.abs(max - min);
+
+    const isReversed = getters.isRightToLeft() || getters.isBottomToTop();
 
     for(let i=0; i<marksCount; i++){
       const $mark = document.createElement('div');
       $mark.classList.add('mark', `mark-${ i }`);
 
       const percent = marksCount === 0 ? 0 : i * 100 / (marksCount - 1);
-      $mark.style.left = `${ percent }%`;
+
+      if(isReversed){
+        $mark.style.left = `${ 100 - percent }%`;
+      }
+      else{
+        $mark.style.left = `${ percent }%`;
+      }
 
       $markPoints.append($mark);
     }
@@ -69,7 +81,14 @@ const MarksPlugin = () : IPlugin => {
       const val = convertRange(0, marksValuesCount - 1, min, max, i);
 
       $value.textContent = val.toString();
-      $value.style.left = `${ percent }%`;
+
+      if(isReversed){
+        $value.style.left = `${ 100 - percent }%`;
+      }
+      else{
+        $value.style.left = `${ percent }%`;
+      }
+
       $markValues.append($value);
     }
   };
@@ -90,6 +109,7 @@ const MarksPlugin = () : IPlugin => {
 
     createMarksBox();
     createMarks();
+    updateClasses();
   };
 
   const toggleEnabled = (_enabled: boolean) => {
@@ -101,6 +121,7 @@ const MarksPlugin = () : IPlugin => {
     else{
       createMarksBox();
       createMarks();
+      updateClasses();
     }
   };
 

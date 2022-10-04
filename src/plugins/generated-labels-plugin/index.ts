@@ -46,7 +46,6 @@ const GeneratedLabelsPlugin = () : IPlugin => {
   };
 
   const createLabels = () => {
-    const isReversedOrder = getters?.isRightToLeft() || getters?.isBottomToTop();
 
     $min = createLabel(MIN_LABEL_CODE_NAME);
     $min.textContent = getLabelText(getters?.getTextMin(), units);
@@ -54,14 +53,8 @@ const GeneratedLabelsPlugin = () : IPlugin => {
     $max = createLabel(MAX_LABEL_CODE_NAME);
     $max.textContent = getLabelText(getters?.getTextMax(), units);
 
-    if(!isReversedOrder){
-      $slider?.before($min);
-      $slider?.after($max);
-    }
-    else{
-      $slider?.after($min);
-      $slider?.before($max);
-    }
+    $slider?.before($min);
+    $slider?.after($max);
 
     const values = getters?.getValues();
     if(!values) return;
@@ -72,12 +65,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       $label.textContent = getLabelText(values[i], units);
       $labels.push($label);
 
-      if(!isReversedOrder){
-        $labelsRow?.append($label);
-      }
-      else{
-        $labelsRow?.prepend($label);
-      }
+      $labelsRow?.append($label);
     }
   };
 
@@ -165,25 +153,13 @@ const GeneratedLabelsPlugin = () : IPlugin => {
           $labelsRow?.append($label);
         }
         else{
-          const isReversedOrder = getters?.isRightToLeft() || getters?.isBottomToTop();
-
           if(i === 0){
-            if(!isReversedOrder){
-              $labelsRow?.prepend($label);
-            }
-            else{
-              $labelsRow?.append($label);
-            }
+            $labelsRow?.append($label);
           }
           else{
             // get the previous label
             const $prev = $labels[i - 1];
-            if(!isReversedOrder){
-              $prev?.after($label);
-            }
-            else{
-              $prev?.before($label);
-            }
+            $prev?.after($label);
           }
         }
         continue;

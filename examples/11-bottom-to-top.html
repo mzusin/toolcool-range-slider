@@ -173,8 +173,9 @@
         </div>
 
         <div class="row">
-            <label>100</label>
             <tc-range-slider
+              value1="30"
+              value2="70"
               slider-width="0.5rem"
               slider-height="400px"
               pointer-width="1.5rem"
@@ -188,13 +189,13 @@
               pointer-border-focus="1px solid #3F8A8A"
               type="vertical"
               btt="true"
+              generate-labels="true"
               value-label="#value-13"></tc-range-slider>
-            <label>0</label>
-            <div id="value-13" class="value"></div>
         </div>
     </div>
 
     <script src="../dist/plugins/tcrs-binding-labels.min.js"></script>
+    <script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
     <script src="../dist/toolcool-range-slider.min.js"></script>
 </body>
 </html>
