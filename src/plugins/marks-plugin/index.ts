@@ -12,7 +12,7 @@ import { getBoolean, getNumber } from '../../core/domain/math-provider';
  */
 window.tcRangeSliderPlugins = window.tcRangeSliderPlugins || [];
 
-const MARKS_STEP_DEFAULT = 1;
+const MARKS_STEP_DEFAULT = 5;
 
 const MarksPlugin = () : IPlugin => {
 
@@ -171,7 +171,7 @@ const MarksPlugin = () : IPlugin => {
   position: relative;
   top: 100%;
   left: 0;
-  margin-top: 3px;
+  margin-top: 5px;
 }  
 
 .mark{

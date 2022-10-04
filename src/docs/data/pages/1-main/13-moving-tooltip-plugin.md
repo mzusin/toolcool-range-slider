@@ -145,7 +145,7 @@ The tooltip plugin settings can be changed using the API:
 </div>
 
 ```js
-const $slider = document.getElementById('moving-tooltip-slider-1');
+const $slider = document.getElementById('slider-1');
 $slider.movingTooltip = true; // or false
 $slider.distanceToPointer = 50; // px
 $slider.tooltipWidth = 50; // px
@@ -160,7 +160,7 @@ TypeScript example:
 ```typescript
 import { IMovingTooltipPlugin } from 'toolcool-range-slider';
 
-const $slider = document.getElementById('moving-tooltip-slider-1') as IMovingTooltipPlugin;
+const $slider = document.getElementById('slider-1') as IMovingTooltipPlugin;
 
 $slider.movingTooltip = true; // or false
 $slider.distanceToPointer = 50; // px

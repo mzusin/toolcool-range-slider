@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664888894341.css" />
-    <!--<link rel="stylesheet" href="/js/index.1664888894341.css" />-->
+    <link rel="stylesheet" href="/css/styles.1664892591677.css" />
+    <!--<link rel="stylesheet" href="/js/index.1664892591677.css" />-->
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3TJWMC6F4"></script>
@@ -110,27 +110,22 @@
           <div class="w-800 max-w-full mx-auto my-10 leading-7 text-lg text-slate-800"><h2 class="text-3xl mb-8">Marks Plugin</h2>
 <div data-examples="marks-tooltip"></div>
 <p class="mb-4">Range slider library has a standalone <strong class="font-bold">Marks Plugin</strong>. This allows to generate points along the slider.</p>
-<hr />
-<p class="mb-4">The plugin adds a moving tooltip to each pointer. You can change the tooltip color, size, and distance to pointer.</p>
-<p class="mb-4">Download the latest <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/plugins/tcrs-moving-tooltip.min.js" class="text-blue-500">tcrs-moving-tooltip.min.js</a> script from GitHub and add it to the HTML before the <strong class="font-bold">toolcool-range-slider.min.js</strong> script.</p>
-<p class="mb-4">Check out the following basic example:</p>
+<p class="mb-4">Download the latest <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/plugins/tcrs-marks.min.js" class="text-blue-500">tcrs-marks.min.js</a> script from GitHub and add it to the HTML before the <strong class="font-bold">toolcool-range-slider.min.js</strong> script.</p>
+<p class="mb-4">And then add the <strong class="font-bold">marks=“true”</strong> attribute to see it in action. Check out the following basic example:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
+  <span class="hljs-attr">marks</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">marks-step</span>=<span class="hljs-string">&quot;5&quot;</span>
+  
   <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;20&quot;</span>
   <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;50&quot;</span>
   <span class="hljs-attr">value3</span>=<span class="hljs-string">&quot;80&quot;</span>
+  
   <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>
-
-  <span class="hljs-attr">moving-tooltip</span>=<span class="hljs-string">&quot;true&quot;</span>
-  <span class="hljs-attr">moving-tooltip-distance-to-pointer</span>=<span class="hljs-string">&quot;40&quot;</span>
-  <span class="hljs-attr">moving-tooltip-width</span>=<span class="hljs-string">&quot;35&quot;</span>
-  <span class="hljs-attr">moving-tooltip-height</span>=<span class="hljs-string">&quot;30&quot;</span>
-  <span class="hljs-attr">moving-tooltip-bg</span>=<span class="hljs-string">&quot;#721d82&quot;</span>
-  <span class="hljs-attr">moving-tooltip-text-color</span>=<span class="hljs-string">&quot;#efefef&quot;</span>
-  <span class="hljs-attr">moving-tooltip-units</span>=<span class="hljs-string">&quot;%&quot;</span>&gt;</span>
+  <span class="hljs-attr">generate-labels</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span>
 
 <span class="hljs-comment">&lt;!-- The plugin should be included before the core library. --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;tcrs-moving-tooltip.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;tcrs-marks.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <div class="my-24 flex flex-col items-center">
     <tc-range-slider 
@@ -138,63 +133,28 @@
       value2="50"
       value3="80"
       round="0"
-      moving-tooltip="true"
-      moving-tooltip-distance-to-pointer="40"
-      moving-tooltip-width="35"
-      moving-tooltip-height="30"
-      moving-tooltip-bg="#721d82"
-      moving-tooltip-text-color="#efefef"
-      moving-tooltip-units="%">
-    </tc-range-slider>
-</div>
-<p class="mb-4">The <strong class="font-bold">moving-tooltip-distance-to-pointer</strong> attribute can also be negative:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
-  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;20&quot;</span>
-  <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;50&quot;</span>
-  <span class="hljs-attr">value3</span>=<span class="hljs-string">&quot;80&quot;</span>
-  <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>
-
-  <span class="hljs-attr">moving-tooltip</span>=<span class="hljs-string">&quot;true&quot;</span>
-  <span class="hljs-attr">moving-tooltip-distance-to-pointer</span>=<span class="hljs-string">&quot;-40&quot;</span>
-  <span class="hljs-attr">moving-tooltip-width</span>=<span class="hljs-string">&quot;35&quot;</span>
-  <span class="hljs-attr">moving-tooltip-height</span>=<span class="hljs-string">&quot;30&quot;</span>
-  <span class="hljs-attr">moving-tooltip-bg</span>=<span class="hljs-string">&quot;#387ec7&quot;</span>
-  <span class="hljs-attr">moving-tooltip-text-color</span>=<span class="hljs-string">&quot;#efefef&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span></code></pre>
-<div class="my-24 flex flex-col items-center">
-    <tc-range-slider 
-      value1="20"
-      value2="50"
-      value3="80"
-      round="0"
-      moving-tooltip="true"
-      moving-tooltip-distance-to-pointer="-40"
-      moving-tooltip-width="35"
-      moving-tooltip-height="30"
-      moving-tooltip-bg="#387ec7"
-      moving-tooltip-text-color="#efefef">
+      marks="true"
+      marks-step="3"
+      generate-labels="true">
     </tc-range-slider>
 </div>
 <p class="mb-4">The plugin is also available on the <a href="https://www.jsdelivr.com/package/npm/toolcool-range-slider" class="text-blue-500">jsDelivr CND</a>:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
-  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;30&quot;</span>
+  <span class="hljs-attr">value1</span>=<span class="hljs-string">&quot;20&quot;</span>
   <span class="hljs-attr">value2</span>=<span class="hljs-string">&quot;50&quot;</span>
-  <span class="hljs-attr">value3</span>=<span class="hljs-string">&quot;70&quot;</span>
-  <span class="hljs-attr">round</span>=<span class="hljs-string">&quot;0&quot;</span>
-
-  <span class="hljs-attr">moving-tooltip</span>=<span class="hljs-string">&quot;true&quot;</span>
-  <span class="hljs-attr">moving-tooltip-distance-to-pointer</span>=<span class="hljs-string">&quot;40&quot;</span>
-  <span class="hljs-attr">moving-tooltip-width</span>=<span class="hljs-string">&quot;35&quot;</span>
-  <span class="hljs-attr">moving-tooltip-height</span>=<span class="hljs-string">&quot;30&quot;</span>
-  <span class="hljs-attr">moving-tooltip-bg</span>=<span class="hljs-string">&quot;#721d82&quot;</span>
-  <span class="hljs-attr">moving-tooltip-text-color</span>=<span class="hljs-string">&quot;#efefef&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span>
+  <span class="hljs-attr">value3</span>=<span class="hljs-string">&quot;80&quot;</span>
+  
+  <span class="hljs-attr">marks</span>=<span class="hljs-string">&quot;true&quot;</span>
+  <span class="hljs-attr">marks-step</span>=<span class="hljs-string">&quot;5&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tc-range-slider</span>&gt;</span>
 
 <span class="hljs-comment">&lt;!-- The plugin should be included before the core library. --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> 
-  <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/plugins/tcrs-moving-tooltip.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/plugins/tcrs-marks.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/toolcool-range-slider.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <p class="mb-4">In bundlers like <a href="https://webpack.js.org/" class="text-blue-500">Webpack</a> and <a href="https://esbuild.github.io/" class="text-blue-500">esbuild</a> you can use it like this:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;toolcool-range-slider/dist/plugins/tcrs-moving-tooltip.min.js&#x27;</span>;
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;toolcool-range-slider/dist/plugins/tcrs-marks.min.js&#x27;</span>;
 <span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;toolcool-range-slider&#x27;</span>;
 
 <span class="hljs-comment">// any code here...</span></code></pre>
@@ -208,85 +168,32 @@
 </thead>
 <tbody class="bg-slate-50">
 <tr class="border-slate-200 border-b last:border-0">
-<td class="px-6 py-2">moving-tooltip</td>
+<td class="px-6 py-2">marks</td>
 <td class="px-6 py-2">true</td>
-<td class="px-6 py-2">movingTooltip</td>
+<td class="px-6 py-2">marksEnabled</td>
 </tr>
 <tr class="border-slate-200 border-b last:border-0">
-<td class="px-6 py-2">moving-tooltip-distance-to-pointer</td>
-<td class="px-6 py-2">40</td>
-<td class="px-6 py-2">distanceToPointer</td>
-</tr>
-<tr class="border-slate-200 border-b last:border-0">
-<td class="px-6 py-2">moving-tooltip-width</td>
-<td class="px-6 py-2">35</td>
-<td class="px-6 py-2">tooltipWidth</td>
-</tr>
-<tr class="border-slate-200 border-b last:border-0">
-<td class="px-6 py-2">moving-tooltip-height</td>
-<td class="px-6 py-2">30</td>
-<td class="px-6 py-2">tooltipHeight</td>
-</tr>
-<tr class="border-slate-200 border-b last:border-0">
-<td class="px-6 py-2">moving-tooltip-bg</td>
-<td class="px-6 py-2">#475569</td>
-<td class="px-6 py-2">tooltipBg</td>
-</tr>
-<tr class="border-slate-200 border-b last:border-0">
-<td class="px-6 py-2">moving-tooltip-text-color</td>
-<td class="px-6 py-2">#fff</td>
-<td class="px-6 py-2">tooltipTextColor</td>
-</tr>
-<tr class="border-slate-200 border-b last:border-0">
-<td class="px-6 py-2">moving-tooltip-units</td>
-<td class="px-6 py-2">empty string</td>
-<td class="px-6 py-2">tooltipUnits</td>
+<td class="px-6 py-2">marks-step</td>
+<td class="px-6 py-2">5</td>
+<td class="px-6 py-2">marksStep</td>
 </tr>
 </tbody>
 </table>
 <blockquote class="bg-gray-100 pt-4 px-4 flex my-10 border-l-4 border-blue-300 rounded">
 <p class="mb-4">📌 You can add your own css customizations using <a href="/pages/css-links.html" class="text-blue-500">CSS Links</a> or using <a href="/pages/add-css-api.html" class="text-blue-500">addCSS</a> API.</p>
 </blockquote>
-<p class="mb-4">The tooltip plugin settings can be changed using the API:</p>
-<div class="mt-24 mb-12 flex flex-col items-center">
-    <tc-range-slider
-      id="moving-tooltip-slider-1"
-      value1="20"
-      value2="50"
-      value3="80"
-      round="0"
-      moving-tooltip="true"
-      moving-tooltip-distance-to-pointer="40"
-      moving-tooltip-width="35"
-      moving-tooltip-height="30"
-      moving-tooltip-bg="#227380"
-      moving-tooltip-text-color="#fff"></tc-range-slider>
-    <div class="flex items-center">
-        <button id="moving-tooltip-toggle-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8 mx-2">Enable/Disable</button>
-    </div>
-</div>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;moving-tooltip-slider-1&#x27;</span>);
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-1&#x27;</span>);
 $slider.<span class="hljs-property">movingTooltip</span> = <span class="hljs-literal">true</span>; <span class="hljs-comment">// or false</span>
-$slider.<span class="hljs-property">distanceToPointer</span> = <span class="hljs-number">50</span>; <span class="hljs-comment">// px</span>
-$slider.<span class="hljs-property">tooltipWidth</span> = <span class="hljs-number">50</span>; <span class="hljs-comment">// px</span>
-$slider.<span class="hljs-property">tooltipHeight</span> = <span class="hljs-number">50</span>; <span class="hljs-comment">// px</span>
-$slider.<span class="hljs-property">tooltipBg</span> = <span class="hljs-string">&#x27;#000&#x27;</span>;
-$slider.<span class="hljs-property">tooltipTextColor</span> = <span class="hljs-string">&#x27;#efefef&#x27;</span>;
-$slider.<span class="hljs-property">tooltipUnits</span> = <span class="hljs-string">&#x27;%&#x27;</span>;</code></pre>
+$slider.<span class="hljs-property">marksStep</span> = <span class="hljs-number">10</span>;</code></pre>
 <p class="mb-4">TypeScript example:</p>
-<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-keyword">import</span> { <span class="hljs-title class_">IMovingTooltipPlugin</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;toolcool-range-slider&#x27;</span>;
+<pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-keyword">import</span> { <span class="hljs-title class_">IMarksPlugin</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;toolcool-range-slider&#x27;</span>;
 
-<span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;moving-tooltip-slider-1&#x27;</span>) <span class="hljs-keyword">as</span> <span class="hljs-title class_">IMovingTooltipPlugin</span>;
+<span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-1&#x27;</span>) <span class="hljs-keyword">as</span> <span class="hljs-title class_">IMarksPlugin</span>;
 
 $slider.<span class="hljs-property">movingTooltip</span> = <span class="hljs-literal">true</span>; <span class="hljs-comment">// or false</span>
-$slider.<span class="hljs-property">distanceToPointer</span> = <span class="hljs-number">50</span>; <span class="hljs-comment">// px</span>
-$slider.<span class="hljs-property">tooltipWidth</span> = <span class="hljs-number">50</span>; <span class="hljs-comment">// px</span>
-$slider.<span class="hljs-property">tooltipHeight</span> = <span class="hljs-number">50</span>; <span class="hljs-comment">// px</span>
-$slider.<span class="hljs-property">tooltipBg</span> = <span class="hljs-string">&#x27;#000&#x27;</span>;
-$slider.<span class="hljs-property">tooltipTextColor</span> = <span class="hljs-string">&#x27;#efefef&#x27;</span>;
-$slider.<span class="hljs-property">tooltipUnits</span> = <span class="hljs-string">&#x27;%&#x27;</span>;</code></pre>
+$slider.<span class="hljs-property">marksStep</span> = <span class="hljs-number">10</span>;</code></pre>
 <blockquote class="bg-gray-100 pt-4 px-4 flex my-10 border-l-4 border-blue-300 rounded">
-<p class="mb-4">📌 An example page with the source code can be found <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/28-moving-tooltip-plugin.html" class="text-blue-500">here</a>.</p>
+<p class="mb-4">📌 An example page with the source code can be found <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/33-marks-plugin.html" class="text-blue-500">here</a>.</p>
 </blockquote>
 </div>
 
@@ -330,6 +237,6 @@ $slider.<span class="hljs-property">tooltipUnits</span> = <span class="hljs-stri
       </div>
     </footer>-->
 
-    <script src="/js/index.1664888894341.js"></script>
+    <script src="/js/index.1664892591677.js"></script>
   </body>
 </html>
