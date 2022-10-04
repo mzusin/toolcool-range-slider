@@ -98,8 +98,7 @@ The plugin is also available on the [jsDelivr CND](https://www.jsdelivr.com/pack
 <script 
   src="https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/plugins/tcrs-moving-tooltip.min.js"></script>
 
-<script 
-  src="https://www.jsdelivr.com/package/npm/toolcool-range-slider"></script>
+<script src="https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/toolcool-range-slider.min.js"></script>
 ```
 
 | HTML Property                      | Default Value | API Property      |

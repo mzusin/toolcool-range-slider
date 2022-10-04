@@ -32,9 +32,18 @@ Use the **generate-labels="true"** attribute to enable the plugin.
 The plugin is also available on the [jsDelivr CND](https://www.jsdelivr.com/package/npm/toolcool-range-slider):
 
 ```html
+<tc-range-slider
+  value="50"
+  generate-labels="true"
+  generate-labels-text-color="#5e7593"
+  generate-labels-units="%">
+</tc-range-slider>
+
 <!-- The plugin should be included before the core library. -->
 <script 
   src="https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/plugins/tcrs-generated-labels.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/toolcool-range-slider.min.js"></script>
 ```
 
 You can display labels for multiple points in the same way:
