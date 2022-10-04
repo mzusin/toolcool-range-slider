@@ -15,16 +15,12 @@ Responsive range slider library written in typescript and using web component te
 - [Website](https://range-slider.toolcool.org/)
 - [Documentation](https://range-slider.toolcool.org/pages/basic-usage.html)
 
-
-[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-marks.gif?raw=true)](https://range-slider.toolcool.org/pages/moving-tooltip-plugin.html)
-
 ### Any Number of Pointers
 
 The library supports [any number of pointers](https://range-slider.toolcool.org/pages/basic-usage.html) (knobs/handles): 
 one-pointer range slider, two-pointers range slider, or as many as you need.
 
 [![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-1.gif?raw=true)](https://range-slider.toolcool.org/pages/basic-usage.html)
-
 
 ### Mobile Ready 
 Responsive and mobile-ready range slider that looks good on any devices :iphone:. 
@@ -35,6 +31,12 @@ It supports [touch, mousewheel events, and keyboard](https://range-slider.toolco
 It accessible via [ARIA-attributes](https://range-slider.toolcool.org/pages/accessibility.html) :shield:
 
 [![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-2.gif?raw=true)](https://range-slider.toolcool.org/pages/accessibility.html)
+
+
+### Marks Plugin
+Range slider library has a standalone [Marks Plugin](https://range-slider.toolcool.org/pages/marks-plugin.html). This allows to generate points along the slider:
+
+[![Range Slider](https://github.com/toolcool-org/toolcool-range-slider/blob/main/docs/videos/range-slider-marks.gif?raw=true)](https://range-slider.toolcool.org/pages/marks-plugin.html)
 
 ### ES6 JavaScript & Typescript
 The library is built with Typescript and does not use external dependencies :unlock:. The core is 28KB minified or 9KB compressed (GZip).
@@ -94,7 +96,6 @@ The library also has an [Origin at Center Plugin](https://range-slider.toolcool.
 - [Disabled/enabled](https://range-slider.toolcool.org/pages/disabled.html) range slider (including API).
 - Possibility to disable only one pointer.
 - [Non-linear](https://range-slider.toolcool.org/pages/non-linear-step.html) range slider :chart_with_downwards_trend:
-- [Marks Plugin](https://range-slider.toolcool.org/pages/marks-plugin.html) that allows to generate points along the slider.
 - Optional [animation](https://range-slider.toolcool.org/pages/animation.html) on panel click.
 - Works well with Bootstrap and other CSS frameworks :+1:
 - No CSS conflicts due to web components.
