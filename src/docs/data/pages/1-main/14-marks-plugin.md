@@ -73,7 +73,7 @@ import 'toolcool-range-slider';
 | marks-count         | 11            | marksCount        | 
 | marks-values-count  | 11            | marksValuesCount  | 
 
-
+ 
 > :pushpin: You can add your own css customizations using [CSS Links](/pages/css-links.html) or using [addCSS](/pages/add-css-api.html) API.
 
 Example with different min/max:

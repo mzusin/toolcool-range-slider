@@ -20,7 +20,7 @@ Vertical slider can be achieved using the **type** attribute as following:
 </div>
 
 It accepts all the same attributes as the horizontal slider. The default height of a vertical slider is **300px** unless the height attribute is provided.
- 
+  
 It is also possible to **reverse the direction** and slide from bottom to top using the **btt** attribute:
 
 ```html

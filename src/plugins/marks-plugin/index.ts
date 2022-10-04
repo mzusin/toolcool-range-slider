@@ -55,6 +55,7 @@ const MarksPlugin = () : IPlugin => {
     const min = getters.getMin();
     const max = getters.getMax();
 
+    const isVertical = getters.getType() === 'vertical';
     const isReversed = getters.isRightToLeft() || getters.isBottomToTop();
 
     for(let i=0; i<marksCount; i++){
@@ -63,11 +64,21 @@ const MarksPlugin = () : IPlugin => {
 
       const percent = marksCount === 0 ? 0 : i * 100 / (marksCount - 1);
 
-      if(isReversed){
-        $mark.style.left = `${ 100 - percent }%`;
+      if(isVertical){
+        if(isReversed){
+          $mark.style.top = `${ 100 - percent }%`;
+        }
+        else{
+          $mark.style.top = `${ percent }%`;
+        }
       }
       else{
-        $mark.style.left = `${ percent }%`;
+        if(isReversed){
+          $mark.style.left = `${ 100 - percent }%`;
+        }
+        else{
+          $mark.style.left = `${ percent }%`;
+        }
       }
 
       $markPoints.append($mark);
@@ -82,11 +93,21 @@ const MarksPlugin = () : IPlugin => {
 
       $value.textContent = val.toString();
 
-      if(isReversed){
-        $value.style.left = `${ 100 - percent }%`;
+      if(isVertical){
+        if(isReversed){
+          $value.style.top = `${ 100 - percent }%`;
+        }
+        else{
+          $value.style.top = `${ percent }%`;
+        }
       }
       else{
-        $value.style.left = `${ percent }%`;
+        if(isReversed){
+          $value.style.left = `${ 100 - percent }%`;
+        }
+        else{
+          $value.style.left = `${ percent }%`;
+        }
       }
 
       $markValues.append($value);
@@ -151,6 +172,8 @@ const MarksPlugin = () : IPlugin => {
       $component = _$component;
 
       enabled = getBoolean($component.getAttribute('marks'));
+      if(!enabled) return;
+
       updateSteps(
         getNumber($component.getAttribute('marks-count'), MARKS_STEP_COUNT_DEFAULT),
         getNumber($component.getAttribute('marks-values-count'), MARKS_VALUES_COUNT_DEFAULT)
@@ -234,6 +257,14 @@ const MarksPlugin = () : IPlugin => {
   left: 0;
   color: #475569;
 }
+
+.type-vertical .marks{
+  width: auto;
+  height: 100%;
+  top: 0;
+  left: 100%;
+  flex-direction: row;
+}
     
 .mark-points{
   width: 100%;
@@ -242,10 +273,23 @@ const MarksPlugin = () : IPlugin => {
   margin-top: 5px;
 }  
 
+.type-vertical .mark-points {
+  width: 1rem;
+  height: 100%;
+  margin-top: 0;
+  margin-left: 5px;
+}
+
 .mark-values{
   width: 100%;
   height: 1rem;
   position: relative;
+  margin-left: 0.7rem;
+}
+
+.type-vertical .mark-values {
+  width: 1rem;
+  height: 100%;
 }
 
 .mark{
@@ -256,9 +300,19 @@ const MarksPlugin = () : IPlugin => {
   transform: translateX(-50%);
 }  
 
+.type-vertical .mark {
+    width: 5px;
+    height: 2px;
+    transform: translateY(-50%);
+}
+
 .mark-value{
   position: absolute;
   transform: translateX(-50%);
+}
+
+.type-vertical .mark-value{
+    transform: translateY(-50%);
 }
     `,
   };
