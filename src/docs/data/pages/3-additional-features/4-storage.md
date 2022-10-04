@@ -1,4 +1,4 @@
-## Storage
+## Storage Plugin
 
 The range slider library also supports local and session storage using a standalone **Storage Plugin**. It's used to save the selected slider value between different pages and page reloads.
 
@@ -56,6 +56,30 @@ Storage properties can also be set programmatically:
 const $slider = document.querySelector('#slider');
 $slider.storage = 'local-storage'; // 'session-storage'
 $slider.storageKey = 'storage-key';
+```
+
+The plugin is also available on the [jsDelivr CND](https://www.jsdelivr.com/package/npm/toolcool-range-slider):
+
+```html
+<tc-range-slider
+  storage="local-storage"
+  storage-key="tc-range-slider-2">
+</tc-range-slider>
+
+<!-- The plugin should be included before the core library. -->
+<script 
+  src="https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/plugins/tcrs-storage.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/toolcool-range-slider.min.js"></script>
+```
+
+In bundlers like [Webpack](https://webpack.js.org/) and [esbuild](https://esbuild.github.io/) you can use it like this:
+
+```js
+import 'toolcool-range-slider/dist/plugins/tcrs-storage.min.js';
+import 'toolcool-range-slider';
+
+// any code here...
 ```
 
 > :pushpin: An example page with the change event source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/9-storage.html).

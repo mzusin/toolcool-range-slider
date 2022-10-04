@@ -3,7 +3,7 @@
     "title": "Getting Started"
   },
   "2-nodejs.md": {
-    "title": "Node.js"
+    "title": "Node.js & JS Bundlers"
   },
   "3-get-set-values-and-change-event.md": {
     "title": "Get/Set Values & Change Event"
@@ -34,6 +34,9 @@
   },
   "1-touch-and-keyboard-support.md": {
     "title": "Touch & Keyboard Support"
+  },
+  "4-storage.md": {
+    "title": "Storage Plugin"
   },
   "7-max-and-min-pointers-distance.md": {
     "title": "Max/Min Pointers Distance"

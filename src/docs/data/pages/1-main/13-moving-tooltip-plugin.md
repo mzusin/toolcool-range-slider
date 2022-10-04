@@ -101,6 +101,15 @@ The plugin is also available on the [jsDelivr CND](https://www.jsdelivr.com/pack
 <script src="https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/toolcool-range-slider.min.js"></script>
 ```
 
+In bundlers like [Webpack](https://webpack.js.org/) and [esbuild](https://esbuild.github.io/) you can use it like this:
+
+```js
+import 'toolcool-range-slider/dist/plugins/tcrs-moving-tooltip.min.js';
+import 'toolcool-range-slider';
+
+// any code here...
+```
+
 | HTML Property                      | Default Value | API Property      |
 |------------------------------------|---------------|-------------------|
 | moving-tooltip                     | true          | movingTooltip     |
