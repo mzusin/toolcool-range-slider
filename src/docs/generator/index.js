@@ -10,6 +10,7 @@ import { loadPagesConfig, renderPages } from './render/pages-provider.js';
 import { collectSideMenuData, getPagesList } from './render/side-menu-provider.js';
 import { getTimeStamp } from './common-provider.js';
 import { renderSpecialPages } from './render/special-pages-provider.js';
+import { renderSitemap } from './render/sitemap-provider.js';
 
 // markdown -------------------
 const md = initMarkDown();
@@ -65,6 +66,12 @@ const init = async () => {
       cssTimeStamp,
       jsTimeStamp,
     }
+  );
+
+  // render sitemap
+  renderSitemap(
+    path.join(path.join(process.cwd(), './docs')),
+    pagesList
   );
 
   compileClientSideScripts(jsTimeStamp);
