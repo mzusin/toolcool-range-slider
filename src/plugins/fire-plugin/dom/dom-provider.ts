@@ -4,7 +4,7 @@
 export const createCanvas = ($box: HTMLElement, fireWidth: number, fireHeight: number) => {
 
   // create canvas element
-  let $canvas = document.createElement('canvas') as HTMLCanvasElement;
+  const $canvas = document.createElement('canvas') as HTMLCanvasElement;
   $canvas.classList.add('fire-canvas');
 
   $canvas.width = fireWidth;

@@ -1,4 +1,4 @@
-import { IPlugin, IPluginGetters, IPluginSetters, IPluginUpdateData } from '../../core/plugins/interfaces';
+import { IPlugin, IPluginGetters, IPluginSetters } from '../../core/plugins/interfaces';
 import RangeSlider from '../../core';
 import { convertRange, getBoolean, getNumber } from '../../core/domain/math-provider';
 
@@ -81,7 +81,7 @@ const MarksPlugin = () : IPlugin => {
         }
       }
 
-      $markPoints.append($mark);
+      $markPoints?.append($mark);
     }
 
     const data = getters.getData();
@@ -111,7 +111,7 @@ const MarksPlugin = () : IPlugin => {
         }
       }
 
-      $markValues.append($value);
+      $markValues?.append($value);
     }
   };
 
@@ -147,12 +147,12 @@ const MarksPlugin = () : IPlugin => {
     }
   };
 
-  const setMarksColor = (newColor) => {
+  const setMarksColor = (newColor: string) => {
     if(!$marks) return;
     $marks.style.setProperty('--marks-color', newColor);
   };
 
-  const setValuesColor = (newColor) => {
+  const setValuesColor = (newColor: string) => {
     if(!$marks) return;
     $marks.style.setProperty('--values-color', newColor);
   };
@@ -269,7 +269,7 @@ const MarksPlugin = () : IPlugin => {
         name: 'marksColor',
         attributes: {
           get () {
-            return  $marks.style.getPropertyValue('--marks-color');
+            return  $marks?.style.getPropertyValue('--marks-color');
           },
 
           set: (newColor) => {
@@ -282,7 +282,7 @@ const MarksPlugin = () : IPlugin => {
         name: 'markValuesColor',
         attributes: {
           get () {
-            return  $marks.style.getPropertyValue('--values-color');
+            return  $marks?.style.getPropertyValue('--values-color');
           },
 
           set: (newColor) => {

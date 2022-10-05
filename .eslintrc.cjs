@@ -21,5 +21,6 @@ module.exports = {
     "rules": {
         "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/no-unused-vars": ["error", {argsIgnorePattern: "^_", destructuredArrayIgnorePattern: "^_"}]
-    }
+    },
+    "ignorePatterns": ["src/plugins/fire-plugin/ts-defs"]
 }

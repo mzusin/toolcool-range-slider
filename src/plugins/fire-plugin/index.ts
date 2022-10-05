@@ -79,8 +79,8 @@ const FirePlugin = () : IPlugin => {
 
     const percents = getters.getPercents() || [];
     for(let i=0; i<percents.length; i++){
-      let color1 = hexToNormalized(fireBaseColor1);
-      let color2 = hexToNormalized(fireBaseColor2);
+      const color1 = hexToNormalized(fireBaseColor1);
+      const color2 = hexToNormalized(fireBaseColor2);
       color1[0] = percents[i] / 100;
       color2[0] = percents[i] / 100;
 

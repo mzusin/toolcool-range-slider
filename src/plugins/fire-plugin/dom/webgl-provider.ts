@@ -17,6 +17,7 @@ export const getContext = ($canvas: HTMLCanvasElement) => {
 /**
  * create a shader
  */
+// @ts-ignore
 export const createShader = (gl: WebGLRenderingContextStrict, shaderType: GL.ShaderType, shaderCode: string) => {
 
   const shader = gl.createShader(shaderType);
@@ -73,6 +74,7 @@ export const createShaderAttribute = (
   elementsNum: 1 | 2 | 3 | 4,
   vertexSize: number,
   offset: number,
+  // eslint-disable-next-line
   data: any) => {
 
   const vertexBuffer = gl.createBuffer();

@@ -25,17 +25,18 @@ export const createFire = ($container: HTMLElement, fire: IFireSettings) : (IFir
 
   // used to pause fragment shader;
   // the requestAnimationFrame is still running
-  let isRunning = true;
+  const isRunning = true;
 
   // if true, the whole animation should be stopped;
   // used when the whole program should be replaced with another instance
-  let stop = false;
+  const stop = false;
 
   // generate canvas element (if not generated before)
   const $canvas = createCanvas($container, fire.fireWidth, fire.fireHeight);
   if(!$canvas) return null;
 
   // create webgl context
+  // eslint-disable-next-line
   const gl = getContext($canvas) as any as WebGLRenderingContextStrict;
   if(!gl) return null;
 

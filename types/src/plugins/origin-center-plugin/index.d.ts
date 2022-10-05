@@ -6,5 +6,5 @@ export default OriginCenterPlugin;
  * export dynamic properties
  */
 export interface IOriginCenterPlugin extends RangeSlider {
-    enabled: boolean;
+    originCenterEnabled: boolean;
 }

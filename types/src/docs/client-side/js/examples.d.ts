@@ -19,3 +19,4 @@ export declare const pointersOverlapExamples: () => void;
 export declare const softLimitsExamples: () => void;
 export declare const createdSliderDynamicallyExamples: () => void;
 export declare const movingTooltipExamples: () => void;
+export declare const marksPluginExamples: () => void;
