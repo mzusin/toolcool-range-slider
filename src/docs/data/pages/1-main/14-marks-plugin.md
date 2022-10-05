@@ -1,6 +1,6 @@
 ## Marks Plugin
 
-<div data-examples="marks-tooltip"></div>
+<div data-examples="marks-plugin"></div>
 
 Range slider library has a standalone **Marks Plugin**. This allows to generate points along the slider.
 
@@ -120,9 +120,11 @@ Example with different min/max:
 
 ```js
 const $slider = document.getElementById('slider-1');
-$slider.movingTooltip = true; // or false
+$slider.marksEnabled = true; // or false
 $slider.marksCount = 11;
 $slider.marksValuesCount = 11;
+$slider.marksColor = '#ff0000';
+$slider.markValuesColor = '#111';
 ```
 
 TypeScript example:
@@ -132,10 +134,35 @@ import { IMarksPlugin } from 'toolcool-range-slider';
 
 const $slider = document.getElementById('slider-1') as IMarksPlugin;
 
-$slider.movingTooltip = true; // or false
+$slider.marksEnabled = true; // or false
 $slider.marksCount = 11;
 $slider.marksValuesCount = 11;
+$slider.marksColor = '#ff0000';
+$slider.markValuesColor = '#111';
 ```
+
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      id="marks-plugin-1"
+      class="mb-10"
+      min="-200"
+      max="200"
+      marks="true"
+      marks-count="21"
+      marks-values-count="9"
+      marks-color="#F1768E"
+      marks-values-color="#6C8B50"
+      value1="-100"
+      value2="0"
+      value3="100"
+      step="12.5"
+      slider-width="400px"
+      generate-labels="true">
+    </tc-range-slider>
+    <div class="flex items-center">
+        <button id="marks-plugin-toggle-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8 mx-2">Enable/Disable</button>
+    </div>
+</div>
 
 <hr class="my-10" />
 

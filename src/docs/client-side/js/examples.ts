@@ -2,6 +2,7 @@ import RangeSlider from '../../../core';
 import { IBindingLabelsPlugin } from '../../../plugins/binding-labels-plugin';
 import { IGeneratedLabelsPlugin } from '../../../plugins/generated-labels-plugin';
 import { IMovingTooltipPlugin } from '../../../plugins/moving-tooltip-plugin';
+import { IMarksPlugin } from '../../../plugins/marks-plugin';
 
 export const getSetValuesExamples = () => {
   if(!document.querySelector('[data-examples="get-set-values"]')) return;
@@ -499,6 +500,21 @@ export const movingTooltipExamples = () => {
       const $plugin = $slider as IMovingTooltipPlugin;
       $plugin.movingTooltip = !$plugin.movingTooltip;
     });
+  }
+  catch(ex) { console.error(ex); }
+};
+
+export const marksPluginExamples = () => {
+  if(!document.querySelector('[data-examples="marks-plugin"]')) return;
+
+  try{
+    const $slider = document.getElementById('marks-plugin-1') as IMarksPlugin;
+    const $toggleBtn = document.getElementById('marks-plugin-toggle-btn') as HTMLElement;
+
+    $toggleBtn.addEventListener('click', () => {
+      $slider.marksEnabled = !$slider.marksEnabled;
+    });
+
   }
   catch(ex) { console.error(ex); }
 };

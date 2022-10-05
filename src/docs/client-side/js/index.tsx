@@ -27,7 +27,7 @@ import {
   disabledExamples,
   rangeDraggingExamples,
   pointersOverlapExamples,
-  softLimitsExamples, createdSliderDynamicallyExamples, movingTooltipExamples
+  softLimitsExamples, createdSliderDynamicallyExamples, movingTooltipExamples, marksPluginExamples
 } from './examples';
 
 const initMobileMenu = () => {
@@ -81,6 +81,7 @@ const init = () => {
   softLimitsExamples();
   createdSliderDynamicallyExamples();
   movingTooltipExamples();
+  marksPluginExamples();
 };
 
 document.addEventListener('DOMContentLoaded', () => {

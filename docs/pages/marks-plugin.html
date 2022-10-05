@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1664954919599.css" />
-    <!--<link rel="stylesheet" href="/js/index.1664954919599.css" />-->
+    <link rel="stylesheet" href="/css/styles.1664955764251.css" />
+    <!--<link rel="stylesheet" href="/js/index.1664955764251.css" />-->
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3TJWMC6F4"></script>
@@ -108,7 +108,7 @@
 
         <div class="p-4 overflow-y-auto h-full md:w-100-350">
           <div class="w-800 max-w-full mx-auto my-10 leading-7 text-lg text-slate-800"><h2 class="text-3xl mb-8">Marks Plugin</h2>
-<div data-examples="marks-tooltip"></div>
+<div data-examples="marks-plugin"></div>
 <p class="mb-4">Range slider library has a standalone <strong class="font-bold">Marks Plugin</strong>. This allows to generate points along the slider.</p>
 <p class="mb-4">Download the latest <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/plugins/tcrs-marks.min.js" class="text-blue-500">tcrs-marks.min.js</a> script from GitHub and add it to the HTML before the <strong class="font-bold">toolcool-range-slider.min.js</strong> script.</p>
 <p class="mb-4">And then add the <strong class="font-bold">marks=“true”</strong> attribute to see it in action. Check out the following basic example:</p>
@@ -234,17 +234,43 @@
     </tc-range-slider>
 </div>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-1&#x27;</span>);
-$slider.<span class="hljs-property">movingTooltip</span> = <span class="hljs-literal">true</span>; <span class="hljs-comment">// or false</span>
+$slider.<span class="hljs-property">marksEnabled</span> = <span class="hljs-literal">true</span>; <span class="hljs-comment">// or false</span>
 $slider.<span class="hljs-property">marksCount</span> = <span class="hljs-number">11</span>;
-$slider.<span class="hljs-property">marksValuesCount</span> = <span class="hljs-number">11</span>;</code></pre>
+$slider.<span class="hljs-property">marksValuesCount</span> = <span class="hljs-number">11</span>;
+$slider.<span class="hljs-property">marksColor</span> = <span class="hljs-string">&#x27;#ff0000&#x27;</span>;
+$slider.<span class="hljs-property">markValuesColor</span> = <span class="hljs-string">&#x27;#111&#x27;</span>;</code></pre>
 <p class="mb-4">TypeScript example:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-keyword">import</span> { <span class="hljs-title class_">IMarksPlugin</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;toolcool-range-slider&#x27;</span>;
 
 <span class="hljs-keyword">const</span> $slider = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;slider-1&#x27;</span>) <span class="hljs-keyword">as</span> <span class="hljs-title class_">IMarksPlugin</span>;
 
-$slider.<span class="hljs-property">movingTooltip</span> = <span class="hljs-literal">true</span>; <span class="hljs-comment">// or false</span>
+$slider.<span class="hljs-property">marksEnabled</span> = <span class="hljs-literal">true</span>; <span class="hljs-comment">// or false</span>
 $slider.<span class="hljs-property">marksCount</span> = <span class="hljs-number">11</span>;
-$slider.<span class="hljs-property">marksValuesCount</span> = <span class="hljs-number">11</span>;</code></pre>
+$slider.<span class="hljs-property">marksValuesCount</span> = <span class="hljs-number">11</span>;
+$slider.<span class="hljs-property">marksColor</span> = <span class="hljs-string">&#x27;#ff0000&#x27;</span>;
+$slider.<span class="hljs-property">markValuesColor</span> = <span class="hljs-string">&#x27;#111&#x27;</span>;</code></pre>
+<div class="my-24 flex flex-col items-center">
+    <tc-range-slider 
+      id="marks-plugin-1"
+      class="mb-10"
+      min="-200"
+      max="200"
+      marks="true"
+      marks-count="21"
+      marks-values-count="9"
+      marks-color="#F1768E"
+      marks-values-color="#6C8B50"
+      value1="-100"
+      value2="0"
+      value3="100"
+      step="12.5"
+      slider-width="400px"
+      generate-labels="true">
+    </tc-range-slider>
+    <div class="flex items-center">
+        <button id="marks-plugin-toggle-btn" type="button" class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 focus:ring-sky-600 mt-8 mx-2">Enable/Disable</button>
+    </div>
+</div>
 <hr class="my-10" />
 <p class="mb-4">More examples:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-tag">&lt;<span class="hljs-name">tc-range-slider</span>
@@ -477,6 +503,6 @@ $slider.<span class="hljs-property">marksValuesCount</span> = <span class="hljs-
       </div>
     </footer>-->
 
-    <script src="/js/index.1664954919599.js"></script>
+    <script src="/js/index.1664955764251.js"></script>
   </body>
 </html>
