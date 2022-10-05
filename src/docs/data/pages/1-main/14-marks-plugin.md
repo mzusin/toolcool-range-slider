@@ -156,7 +156,7 @@ More examples:
   generate-labels="true">
 </tc-range-slider>
 ```
-
+  
 <div class="my-24 flex flex-col items-center">
     <tc-range-slider 
       marks="true"

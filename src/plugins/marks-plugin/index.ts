@@ -190,7 +190,7 @@ const MarksPlugin = () : IPlugin => {
         getNumber($component.getAttribute('marks-values-count'), MARKS_VALUES_COUNT_DEFAULT)
       );
 
-      setMarksColor($component.getAttribute('marks-color') ?? '#cbd5e');
+      setMarksColor($component.getAttribute('marks-color') ?? '#cbd5e1');
       setValuesColor($component.getAttribute('marks-values-color') ?? '#475569');
     },
 
