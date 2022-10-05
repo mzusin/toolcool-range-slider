@@ -20,7 +20,7 @@ declare module 'toolcool-range-slider' {
     tooltipUnits: string;
   }
   export interface IOriginCenterPlugin extends RangeSlider{
-    enabled: boolean;
+    originCenterEnabled: boolean;
   }
   export interface IMarksPlugin extends RangeSlider{
     marksEnabled: boolean;

@@ -36,4 +36,20 @@ The plugin is also available on the [jsDelivr CND](https://www.jsdelivr.com/pack
   src="https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/plugins/tcrs-origin-center.min.js"></script>
 ```
 
+The plugin has an API:
+
+```js
+const $slider = document.getElementById('slider-1');
+$slider.originCenterEnabled = true; // or false
+```
+
+TypeScript example:
+
+```typescript
+import { IOriginCenterPlugin } from 'toolcool-range-slider';
+
+const $slider = document.getElementById('slider-1') as IOriginCenterPlugin;
+$slider.originCenterEnabled = true; // or false
+```
+
 > :pushpin: An example page with the change event source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/31-origin-at-center.html).

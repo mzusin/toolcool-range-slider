@@ -123,7 +123,7 @@ const OriginCenterPlugin = () : IPlugin => {
      */
     gettersAndSetters: [
       {
-        name: 'enabled',
+        name: 'originCenterEnabled',
         attributes: {
           get () {
             return enabled ?? false;
@@ -149,5 +149,5 @@ export default OriginCenterPlugin;
  * export dynamic properties
  */
 export interface IOriginCenterPlugin extends RangeSlider{
-  enabled: boolean;
+  originCenterEnabled: boolean;
 }
