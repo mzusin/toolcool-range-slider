@@ -25,6 +25,8 @@
     "origin-center-plugin:watch": "node run/plugins/origin-center-plugin.js -- watch",
     "marks-plugin:build": "node run/plugins/marks-plugin.js",
     "marks-plugin:watch": "node run/plugins/marks-plugin.js -- watch",
+    "svg-path-plugin:build": "node run/plugins/svg-path-plugin.js",
+    "svg-path-plugin:watch": "node run/plugins/svg-path-plugin.js -- watch",
     "fire-plugin:build": "node run/plugins/fire-plugin.js",
     "fire-plugin:watch": "node run/plugins/fire-plugin.js -- watch",
     "themes-css-plugin:build": "node run/plugins/themes-css-plugin.js",
@@ -95,5 +97,10 @@
       "src/docs/"
     ],
     "ext": "js,json,html,css,md,ts,tsx,glsl"
+  },
+  "dependencies": {
+    "install": "^0.13.0",
+    "npm": "^8.19.2",
+    "svg-path-bbox": "^1.2.2"
   }
 }
