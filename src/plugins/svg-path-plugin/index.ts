@@ -106,7 +106,9 @@ const SVGPathPlugin = () : IPlugin => {
       if(!$path) return;
 
       initSVGPanel();
-      initPointerPositions();
+      window.setTimeout(() => {
+        _requestUpdate();
+      });
     },
 
     /**
