@@ -21,6 +21,7 @@ const SVGPathPlugin = () : IPlugin => {
 
   let $component: HTMLElement | null = null;
   let getters: IPluginGetters | null = null;
+  let requestUpdate: () => void;
 
   let $initialFill: HTMLElement | null = null;
   let $svg: SVGSVGElement | null = null;
@@ -28,6 +29,23 @@ const SVGPathPlugin = () : IPlugin => {
   let $fill: HTMLElement | null = null;
   let $path: SVGPathElement | null = null;
   let $svgPanel: HTMLElement | null = null;
+
+  let resizeObserver: ResizeObserver | null = null;
+
+  const initResizeObserver = () => {
+    if(!$component) return;
+    resizeObserver = new ResizeObserver(entries => {
+      // eslint-disable-next-line
+      for (const _entry of entries) {
+        $svgPanel?.remove();
+        initSVGPanel();
+        window.setTimeout(() => {
+          requestUpdate();
+        });
+      }
+    });
+    resizeObserver.observe($component);
+  };
 
   const updateFill = () => {
     if(!$initialFill || !$fill) return;
@@ -105,6 +123,7 @@ const SVGPathPlugin = () : IPlugin => {
 
   const destroy = () => {
     $svgPanel?.remove();
+    resizeObserver?.disconnect();
   };
 
   return {
@@ -126,6 +145,7 @@ const SVGPathPlugin = () : IPlugin => {
     ) => {
       $component = _$component;
       getters = _getters;
+      requestUpdate = _requestUpdate;
 
       $svg = _$component.querySelector('svg');
       if(!$svg) return;
@@ -137,6 +157,7 @@ const SVGPathPlugin = () : IPlugin => {
       if(!$initialFill) return;
 
       initSVGPanel();
+      initResizeObserver();
       window.setTimeout(() => {
         _requestUpdate();
       });
