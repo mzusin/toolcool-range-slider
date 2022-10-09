@@ -102,7 +102,7 @@ const SVGPathPlugin = () : IPlugin => {
     $fill = document.createElement('div');
     $fill.classList.add('svg-fill');
 
-    if(getters?.isBottomToTop() || getters?.isRightToLeft()){
+    if(getters?.isBottomToTop()){
       $component?.shadowRoot?.querySelector('.range-slider-box')?.classList.add('is-reversed');
     }
 
@@ -139,7 +139,7 @@ const SVGPathPlugin = () : IPlugin => {
     for(let i=0; i<percents.length; i++){
       const $pointer = $pointers[i];
       if(!$pointer) continue;
-      
+
       // const pointerRect = $pointer.getBoundingClientRect();
 
       const percent = percents[i];
@@ -169,7 +169,7 @@ const SVGPathPlugin = () : IPlugin => {
         //y -= pointerRect.height;
         if(getters?.isRightToLeft()){
           $pointer.style.right = `${ x * aspectX }px`;
-          $pointer.style.left = `auto`;
+          // $pointer.style.left = `auto`;
         }
         else{
           $pointer.style.left = `${ x * aspectX }px`;
@@ -281,7 +281,7 @@ const SVGPathPlugin = () : IPlugin => {
  transition: none !important;
 }
 
-.type-vertical.is-reversed .pointer{
+.type-vertical.is-btt .pointer{
   transform: translateX(0%) !important;
 }
 
