@@ -24,6 +24,7 @@ const SVGPathPlugin = () : IPlugin => {
 
   let $initialFill: HTMLElement | null = null;
   let $svg: SVGSVGElement | null = null;
+  let $svgCopy: SVGSVGElement | null = null;
   let $fill: HTMLElement | null = null;
   let $path: SVGPathElement | null = null;
   let $svgPanel: HTMLElement | null = null;
@@ -33,6 +34,9 @@ const SVGPathPlugin = () : IPlugin => {
     $fill.style.width = $initialFill.style.width;
     $fill.style.right = $initialFill.style.right;
     $fill.style.left = $initialFill.style.left;
+
+    if(!$svgCopy) return;
+    $svgCopy.style.transform = `translateX(-${ $initialFill.style.left })`;
   };
 
   const initSVGPanel = () => {
@@ -50,8 +54,8 @@ const SVGPathPlugin = () : IPlugin => {
     $fill = document.createElement('div');
     $fill.classList.add('svg-fill');
 
-    const $fillSvg = $svg.cloneNode(true) as SVGSVGElement;
-    $fill.append($fillSvg);
+    $svgCopy = $svg.cloneNode(true) as SVGSVGElement;
+    $fill.append($svgCopy);
 
     updateFill();
 
@@ -59,8 +63,8 @@ const SVGPathPlugin = () : IPlugin => {
     $panel.before($svgPanel);
 
     const rect = $svg.getBoundingClientRect();
-    $fillSvg.style.width = `${ rect.width }px`;
-    $fillSvg.style.height = `${ rect.height }px`;
+    $svgCopy.style.width = `${ rect.width }px`;
+    $svgCopy.style.height = `${ rect.height }px`;
   };
 
   const getSvgAbsoluteDistance = (percent: number, svgLength: number) => {
