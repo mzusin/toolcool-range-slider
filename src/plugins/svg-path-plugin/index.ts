@@ -28,6 +28,13 @@ const SVGPathPlugin = () : IPlugin => {
   let $path: SVGPathElement | null = null;
   let $svgPanel: HTMLElement | null = null;
 
+  const updateFill = () => {
+    if(!$initialFill || !$fill) return;
+    $fill.style.width = $initialFill.style.width;
+    $fill.style.right = $initialFill.style.right;
+    $fill.style.left = $initialFill.style.left;
+  };
+
   const initSVGPanel = () => {
     if(!$svg) return;
 
@@ -45,6 +52,8 @@ const SVGPathPlugin = () : IPlugin => {
 
     const $fillSvg = $svg.cloneNode(true) as SVGSVGElement;
     $fill.append($fillSvg);
+
+    updateFill();
 
     $svgPanel.append($fill);
     $panel.before($svgPanel);
@@ -83,13 +92,6 @@ const SVGPathPlugin = () : IPlugin => {
       $pointer.style.left = `${ svgPoint.x * aspectX }px`;
       $pointer.style.top = `${ svgPoint.y * aspectY }px`;
     }
-  };
-
-  const updateFill = () => {
-    if(!$initialFill || !$fill) return;
-    $fill.style.width = $initialFill.style.width;
-    $fill.style.right = $initialFill.style.right;
-    $fill.style.left = $initialFill.style.left;
   };
 
   const update = (_data: IPluginUpdateData) => {
@@ -157,7 +159,7 @@ const SVGPathPlugin = () : IPlugin => {
   width: 100%;
   color: var(--panel-bg, #2d4373);
   overflow: hidden;
-  transition: .3s all ease;
+  transition: none !important;
 } 
 
 .svg-panel svg{
