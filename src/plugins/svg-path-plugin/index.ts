@@ -15,13 +15,16 @@ window.tcRangeSliderPlugins = window.tcRangeSliderPlugins || [];
 /*
 TODO:
 resize observer
+docs - current color for fill and not only!
  */
 const SVGPathPlugin = () : IPlugin => {
 
   let $component: HTMLElement | null = null;
   let getters: IPluginGetters | null = null;
 
+  let $initialFill: HTMLElement | null = null;
   let $svg: SVGSVGElement | null = null;
+  let $fill: HTMLElement | null = null;
   let $path: SVGPathElement | null = null;
   let $svgPanel: HTMLElement | null = null;
 
@@ -37,7 +40,18 @@ const SVGPathPlugin = () : IPlugin => {
     $svgPanel.classList.add('svg-panel');
     $svgPanel.append($svg);
 
+    $fill = document.createElement('div');
+    $fill.classList.add('svg-fill');
+
+    const $fillSvg = $svg.cloneNode(true) as SVGSVGElement;
+    $fill.append($fillSvg);
+
+    $svgPanel.append($fill);
     $panel.before($svgPanel);
+
+    const rect = $svg.getBoundingClientRect();
+    $fillSvg.style.width = `${ rect.width }px`;
+    $fillSvg.style.height = `${ rect.height }px`;
   };
 
   const getSvgAbsoluteDistance = (percent: number, svgLength: number) => {
@@ -71,8 +85,16 @@ const SVGPathPlugin = () : IPlugin => {
     }
   };
 
+  const updateFill = () => {
+    if(!$initialFill || !$fill) return;
+    $fill.style.width = $initialFill.style.width;
+    $fill.style.right = $initialFill.style.right;
+    $fill.style.left = $initialFill.style.left;
+  };
+
   const update = (_data: IPluginUpdateData) => {
     initPointerPositions();
+    updateFill();
   };
 
   const destroy = () => {
@@ -104,6 +126,9 @@ const SVGPathPlugin = () : IPlugin => {
 
       $path = $svg.querySelector('path');
       if(!$path) return;
+
+      $initialFill = $component?.shadowRoot?.querySelector('.panel-fill') as HTMLElement;
+      if(!$initialFill) return;
 
       initSVGPanel();
       window.setTimeout(() => {
@@ -143,6 +168,24 @@ const SVGPathPlugin = () : IPlugin => {
 
 .panel-fill{
   display: none;
+}
+
+.svg-fill{
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+}
+
+.svg-fill svg{
+  color: var(--panel-bg-fill,#000);
+}
+
+.pointer{
+ /*transform: none !important;*/
+ transition: none !important;
 }
 
     `,
