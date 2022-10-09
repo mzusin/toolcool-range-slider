@@ -14,7 +14,6 @@ window.tcRangeSliderPlugins = window.tcRangeSliderPlugins || [];
 
 /*
 TODO:
-resize observer
 docs - current color for fill and not only!
  */
 const SVGPathPlugin = () : IPlugin => {
@@ -54,7 +53,18 @@ const SVGPathPlugin = () : IPlugin => {
     $fill.style.left = $initialFill.style.left;
 
     if(!$svgCopy) return;
-    $svgCopy.style.transform = `translateX(-${ $initialFill.style.left })`;
+    if(getters?.isRightToLeft()){
+      if(getters?.getPercents().length > 1){
+        $svgCopy.style.transform = `translateX(-${ $initialFill.style.left })`;
+      }
+      else{
+        const width = Number($initialFill.style.width.replace('%', ''));
+        $svgCopy.style.transform = `translateX(-${ 100 - width }%)`;
+      }
+    }
+    else{
+      $svgCopy.style.transform = `translateX(-${ $initialFill.style.left })`;
+    }
   };
 
   const initSVGPanel = () => {
@@ -111,7 +121,13 @@ const SVGPathPlugin = () : IPlugin => {
       const distance = getSvgAbsoluteDistance(percent, svgLength);
       const svgPoint = $path.getPointAtLength(distance);
 
-      $pointer.style.left = `${ svgPoint.x * aspectX }px`;
+      if(getters?.isRightToLeft()){
+        $pointer.style.right = `${ svgPoint.x * aspectX }px`;
+      }
+      else{
+        $pointer.style.left = `${ svgPoint.x * aspectX }px`;
+      }
+
       $pointer.style.top = `${ svgPoint.y * aspectY }px`;
     }
   };
