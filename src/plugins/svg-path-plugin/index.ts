@@ -47,23 +47,43 @@ const SVGPathPlugin = () : IPlugin => {
   };
 
   const updateFill = () => {
-    if(!$initialFill || !$fill) return;
-    $fill.style.width = $initialFill.style.width;
-    $fill.style.right = $initialFill.style.right;
-    $fill.style.left = $initialFill.style.left;
+    if(!$initialFill || !$fill || !$svgCopy) return;
 
-    if(!$svgCopy) return;
-    if(getters?.isRightToLeft()){
-      if(getters?.getPercents().length > 1){
-        $svgCopy.style.transform = `translateX(-${ $initialFill.style.left })`;
+    if(getters?.getType() === 'vertical'){
+      $fill.style.height = $initialFill.style.height;
+      $fill.style.top = $initialFill.style.top;
+      $fill.style.bottom = $initialFill.style.bottom;
+
+      if(getters?.isBottomToTop()){
+        if(getters?.getPercents().length > 1){
+          $svgCopy.style.transform = `translateY(-${ $initialFill.style.top })`;
+        }
+        else{
+          const height = Number($initialFill.style.height.replace('%', ''));
+          $svgCopy.style.transform = `translateY(-${ 100 - height }%)`;
+        }
       }
       else{
-        const width = Number($initialFill.style.width.replace('%', ''));
-        $svgCopy.style.transform = `translateX(-${ 100 - width }%)`;
+        $svgCopy.style.transform = `translateY(-${ $initialFill.style.top })`;
       }
     }
     else{
-      $svgCopy.style.transform = `translateX(-${ $initialFill.style.left })`;
+      $fill.style.width = $initialFill.style.width;
+      $fill.style.right = $initialFill.style.right;
+      $fill.style.left = $initialFill.style.left;
+
+      if(getters?.isRightToLeft()){
+        if(getters?.getPercents().length > 1){
+          $svgCopy.style.transform = `translateX(-${ $initialFill.style.left })`;
+        }
+        else{
+          const width = Number($initialFill.style.width.replace('%', ''));
+          $svgCopy.style.transform = `translateX(-${ 100 - width }%)`;
+        }
+      }
+      else{
+        $svgCopy.style.transform = `translateX(-${ $initialFill.style.left })`;
+      }
     }
   };
 
@@ -121,14 +141,24 @@ const SVGPathPlugin = () : IPlugin => {
       const distance = getSvgAbsoluteDistance(percent, svgLength);
       const svgPoint = $path.getPointAtLength(distance);
 
-      if(getters?.isRightToLeft()){
-        $pointer.style.right = `${ svgPoint.x * aspectX }px`;
-      }
-      else{
+      if(getters?.getType() === 'vertical'){
+        if(getters?.isBottomToTop()){
+          $pointer.style.bottom = `${ svgPoint.y * aspectY }px`;
+        }
+        else{
+          $pointer.style.top = `${ svgPoint.y * aspectY }px`;
+        }
         $pointer.style.left = `${ svgPoint.x * aspectX }px`;
       }
-
-      $pointer.style.top = `${ svgPoint.y * aspectY }px`;
+      else{
+        if(getters?.isRightToLeft()){
+          $pointer.style.right = `${ svgPoint.x * aspectX }px`;
+        }
+        else{
+          $pointer.style.left = `${ svgPoint.x * aspectX }px`;
+        }
+        $pointer.style.top = `${ svgPoint.y * aspectY }px`;
+      }
     }
   };
 
