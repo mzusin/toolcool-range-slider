@@ -135,29 +135,44 @@ const SVGPathPlugin = () : IPlugin => {
     for(let i=0; i<percents.length; i++){
       const $pointer = $pointers[i];
       if(!$pointer) continue;
+      
+      // const pointerRect = $pointer.getBoundingClientRect();
 
       const percent = percents[i];
 
       const distance = getSvgAbsoluteDistance(percent, svgLength);
       const svgPoint = $path.getPointAtLength(distance);
+      let x = svgPoint.x;
+      let y = svgPoint.y;
 
       if(getters?.getType() === 'vertical'){
+        //
+        //y -= pointerRect.height / 2;
         if(getters?.isBottomToTop()){
-          $pointer.style.bottom = `${ svgPoint.y * aspectY }px`;
+          $pointer.style.bottom = `${ y * aspectY }px`;
+          $pointer.style.top = `auto`;
         }
         else{
-          $pointer.style.top = `${ svgPoint.y * aspectY }px`;
+          $pointer.style.top = `${ y * aspectY }px`;
+          $pointer.style.bottom = `auto`;
         }
-        $pointer.style.left = `${ svgPoint.x * aspectX }px`;
+
+        $pointer.style.left = `${ x * aspectX }px`;
+        $pointer.style.right = `auto`;
       }
       else{
+        //x -= pointerRect.width / 2;
+        //y -= pointerRect.height;
         if(getters?.isRightToLeft()){
-          $pointer.style.right = `${ svgPoint.x * aspectX }px`;
+          $pointer.style.right = `${ x * aspectX }px`;
+          $pointer.style.left = `auto`;
         }
         else{
-          $pointer.style.left = `${ svgPoint.x * aspectX }px`;
+          $pointer.style.left = `${ x * aspectX }px`;
+          $pointer.style.right = `auto`;
         }
-        $pointer.style.top = `${ svgPoint.y * aspectY }px`;
+        $pointer.style.top = `${ y * aspectY }px`;
+        $pointer.style.bottom = `auto`;
       }
     }
   };
