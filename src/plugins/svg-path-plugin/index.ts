@@ -102,6 +102,10 @@ const SVGPathPlugin = () : IPlugin => {
     $fill = document.createElement('div');
     $fill.classList.add('svg-fill');
 
+    if(getters?.isBottomToTop() || getters?.isRightToLeft()){
+      $component?.shadowRoot?.querySelector('.range-slider-box')?.classList.add('is-reversed');
+    }
+
     $svgCopy = $svg.cloneNode(true) as SVGSVGElement;
     $fill.append($svgCopy);
 
@@ -246,6 +250,7 @@ const SVGPathPlugin = () : IPlugin => {
   color: var(--panel-bg, #2d4373);
   overflow: hidden;
   transition: none !important;
+  display: flex;
 } 
 
 .svg-panel svg{
@@ -274,6 +279,10 @@ const SVGPathPlugin = () : IPlugin => {
 .pointer{
  /*transform: none !important;*/
  transition: none !important;
+}
+
+.type-vertical.is-reversed .pointer{
+  transform: translateX(0%) !important;
 }
 
     `,
