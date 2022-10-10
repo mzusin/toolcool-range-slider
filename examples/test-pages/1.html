@@ -8,8 +8,34 @@
 </head>
 <body>
 
+<!--
+docs:
+- first svg or svg with data attribute data-main
+-->
+
     <div class="wrapper">
         <h2>Horizontal Slider - 1 pointer</h2>
+        <div class="row">
+            <tc-range-slider
+              value="30"
+              round="0"
+              pointer-radius="0"
+              pointer-width="3px"
+              pointer-height="3px"
+              pointer-bg="red"
+              pointer-bg-hover="red"
+              pointer-bg-focus="red"
+
+              generate-labels="true"
+              slider-width="610px"
+              slider-height="85px">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 85" width="100%" height="100%">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 5c25 49.875 50 74.8125 75 74.8125C117.5 79.8125 117.5 5 155 5s37.5 74.8125 75 74.8125S267.5 5 305 5s37.5 74.8125 75 74.8125S417.5 5 455 5s37.5 74.8125 75 74.8125c25 0 50-24.9375 75-74.8125"/>
+                </svg>
+            </tc-range-slider>
+        </div>
+
+        <h2>Horizontal Slider - car</h2>
         <div class="row">
             <tc-range-slider
               value="30"
@@ -43,6 +69,7 @@
               max="100"
               value1="30"
               round="0"
+              pointer-radius="0"
               generate-labels="true"
               slider-width="610px"
               slider-height="85px">
@@ -58,6 +85,7 @@
               value1="30"
               value2="70"
               round="0"
+              pointer-radius="0"
               generate-labels="true"
               slider-width="610px"
               slider-height="85px">
@@ -74,6 +102,7 @@
               value2="50"
               value3="70"
               round="0"
+              pointer-radius="0"
               generate-labels="true"
               slider-width="610px"
               slider-height="85px">
@@ -89,6 +118,7 @@
               value1="30"
               rtl="true"
               round="0"
+              pointer-radius="0"
               generate-labels="true"
               slider-width="610px"
               slider-height="85px">
@@ -105,6 +135,7 @@
               value2="70"
               rtl="true"
               round="0"
+              pointer-radius="0"
               generate-labels="true"
               slider-width="610px"
               slider-height="85px">
@@ -120,6 +151,7 @@
               value1="30"
               type="vertical"
               round="0"
+              pointer-radius="0"
               generate-labels="true"
               slider-width="85px"
               slider-height="610px">
@@ -136,6 +168,7 @@
               value2="70"
               type="vertical"
               round="0"
+              pointer-radius="0"
               generate-labels="true"
               slider-width="85px"
               slider-height="610px">
@@ -152,6 +185,7 @@
               btt="true"
               type="vertical"
               round="0"
+              pointer-radius="0"
               generate-labels="true"
               slider-width="85px"
               slider-height="610px">
@@ -165,10 +199,14 @@
         <div class="row" style="width: 100px">
             <tc-range-slider
               value1="30"
-              value2="70"
+              value2="100"
               btt="true"
               type="vertical"
               round="0"
+              pointer-radius="0"
+              pointer-width="3px"
+              pointer-height="3px"
+              pointer-bg="red"
               generate-labels="true"
               slider-width="85px"
               slider-height="610px">

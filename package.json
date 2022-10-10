@@ -97,10 +97,5 @@
       "src/docs/"
     ],
     "ext": "js,json,html,css,md,ts,tsx,glsl"
-  },
-  "dependencies": {
-    "install": "^0.13.0",
-    "npm": "^8.19.2",
-    "svg-path-bbox": "^1.2.2"
   }
 }
