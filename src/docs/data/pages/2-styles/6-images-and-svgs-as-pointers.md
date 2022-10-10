@@ -51,9 +51,9 @@ If you need to disable all default styles, you can do it like this:
   slider-bg-hover="#3F8A8A"
   slider-bg-fill="#378c8a"
   
-  pointer-bg="#fff url(/path/image.png) no-repeat 50% 50%"
-  pointer-bg-hover="#c6f7eb url(/path/image.png) no-repeat 50% 50%"
-  pointer-bg-focus="#c6f7eb url(/path/image.png) no-repeat 50% 50%"
+  pointer-bg="transparent url(/path/image.png) no-repeat 50% 50%"
+  pointer-bg-hover="transparent url(/path/image.png) no-repeat 50% 50%"
+  pointer-bg-focus="transparent url(/path/image.png) no-repeat 50% 50%"
 
   pointer-radius="0"
   pointer-border="none"
