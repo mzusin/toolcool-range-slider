@@ -110,15 +110,16 @@ import 'toolcool-range-slider';
 // any code here...
 ```
 
-| HTML Property                      | Default Value | API Property      |
-|------------------------------------|---------------|-------------------|
-| moving-tooltip                     | true          | movingTooltip     |
-| moving-tooltip-distance-to-pointer | 40            | distanceToPointer | 
-| moving-tooltip-width               | 35            | tooltipWidth      |
-| moving-tooltip-height              | 30            | tooltipHeight     |
-| moving-tooltip-bg                  | #475569       | tooltipBg         |
-| moving-tooltip-text-color          | #fff          | tooltipTextColor  | 
-| moving-tooltip-units               | empty string  | tooltipUnits      |
+| HTML Property                      | Default Value | Possible Values | API Property      |
+|------------------------------------|---------------|-----------------|-------------------|
+| moving-tooltip                     | true          | true or false   | movingTooltip     |
+| moving-tooltip-distance-to-pointer | 40            | number          | distanceToPointer | 
+| moving-tooltip-width               | 35            | number          | tooltipWidth      |
+| moving-tooltip-height              | 30            | number          | tooltipHeight     |
+| moving-tooltip-bg                  | #475569       | color           | tooltipBg         |
+| moving-tooltip-text-color          | #fff          | color           | tooltipTextColor  | 
+| moving-tooltip-units               | empty string  | text            | tooltipUnits      |
+| moving-tooltip-units-type          | empty string  | "" or "prefix"  | tooltipUnitType   |
 
 
 
@@ -152,7 +153,8 @@ $slider.tooltipWidth = 50; // px
 $slider.tooltipHeight = 50; // px
 $slider.tooltipBg = '#000';
 $slider.tooltipTextColor = '#efefef';
-$slider.tooltipUnits = '%';
+$slider.tooltipUnits = '$';
+$slider.tooltipUnitType = 'prefix';
 ```
 
 TypeScript example:
@@ -168,7 +170,8 @@ $slider.tooltipWidth = 50; // px
 $slider.tooltipHeight = 50; // px
 $slider.tooltipBg = '#000';
 $slider.tooltipTextColor = '#efefef';
-$slider.tooltipUnits = '%';
+$slider.tooltipUnits = '$';
+$slider.tooltipUnitType = 'prefix';
 ```
 
 > :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/28-moving-tooltip-plugin.html).

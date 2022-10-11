@@ -30,6 +30,7 @@ const MovingTooltipPlugin = () : IPlugin => {
   let tooltipBg = DEFAULT_TOOLTIP_BG;
   let tooltipTextColor = DEFAULT_TOOLTIP_TEXT_COLOR;
   let tooltipUnits = '';
+  let unitType = '';
 
   let $tooltips: (HTMLElement | undefined)[] = [];
   let $tooltipsRow: HTMLElement | null = null;
@@ -71,6 +72,10 @@ const MovingTooltipPlugin = () : IPlugin => {
     $tooltip.style.color = tooltipTextColor;
   };
 
+  const getTooltipText = (text: string) => {
+    return unitType === 'prefix' ? `${ tooltipUnits }${ text }` : `${ text }${ tooltipUnits }`;
+  };
+
   const updateTooltips = () => {
     const values = getters?.getValues() ?? [];
     const $pointers = getters?.getPointerElements() ?? [];
@@ -83,7 +88,7 @@ const MovingTooltipPlugin = () : IPlugin => {
       if(!$tooltip) continue;
 
       const text = (values[i] ?? '').toString();
-      $tooltip.textContent = `${ text }${ tooltipUnits }`;
+      $tooltip.textContent = getTooltipText(text);
       updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top);
     }
   };
@@ -157,6 +162,11 @@ const MovingTooltipPlugin = () : IPlugin => {
     updateTooltips();
   };
 
+  const setUnitType = (newValue: string) => {
+    unitType = newValue;
+    updateTooltips();
+  };
+
   const update = (data: IPluginUpdateData) => {
 
     if(!enabled || !data.values) return;
@@ -180,7 +190,7 @@ const MovingTooltipPlugin = () : IPlugin => {
         // create the tooltip
         const $tooltip = createTooltip(`tooltip tooltip-${ i + 1 }`);
         const text = (value ?? '').toString();
-        $tooltip.textContent = `${ text }${ tooltipUnits }`;
+        $tooltip.textContent = getTooltipText(text);
         $tooltip.style.position = 'absolute';
         updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top);
 
@@ -191,7 +201,7 @@ const MovingTooltipPlugin = () : IPlugin => {
       if(!$tooltip) continue;
 
       const text = (value ?? '').toString();
-      $tooltip.textContent = `${ text }${ tooltipUnits }`;
+      $tooltip.textContent = getTooltipText(text);
       updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top);
     }
   };
@@ -235,7 +245,8 @@ const MovingTooltipPlugin = () : IPlugin => {
       tooltipHeight = getNumber(_$component.getAttribute('moving-tooltip-height'), DEFAULT_TOOLTIP_HEIGHT);
       tooltipBg = _$component.getAttribute('moving-tooltip-bg') || DEFAULT_TOOLTIP_BG;
       tooltipTextColor = _$component.getAttribute('moving-tooltip-text-color') || DEFAULT_TOOLTIP_TEXT_COLOR;
-      tooltipUnits =  _$component.getAttribute('moving-tooltip-units') || '';
+      tooltipUnits = _$component.getAttribute('moving-tooltip-units') || '';
+      unitType = _$component.getAttribute('moving-tooltip-units-type') || '';
       toggleEnabled(getBoolean(_$component.getAttribute('moving-tooltip')));
     },
 
@@ -278,6 +289,10 @@ const MovingTooltipPlugin = () : IPlugin => {
 
       if(_attrName === 'moving-tooltip-units'){
         setTooltipUnits(_newValue);
+      }
+
+      if(_attrName === 'moving-tooltip-units-type'){
+        setUnitType(_newValue);
       }
     },
 
@@ -376,6 +391,19 @@ const MovingTooltipPlugin = () : IPlugin => {
           },
         }
       },
+
+      {
+        name: 'tooltipUnitType',
+        attributes: {
+          get () {
+            return unitType;
+          },
+
+          set: (_value) => {
+            setUnitType(_value);
+          },
+        }
+      },
     ],
 
     css: `
@@ -444,4 +472,5 @@ export interface IMovingTooltipPlugin extends RangeSlider{
   tooltipBg: string;
   tooltipTextColor: string;
   tooltipUnits: string;
+  tooltipUnitType: string;
 }

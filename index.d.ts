@@ -18,6 +18,7 @@ declare module 'toolcool-range-slider' {
     tooltipBg: string;
     tooltipTextColor: string;
     tooltipUnits: string;
+    tooltipUnitType: string;
   }
   export interface IOriginCenterPlugin extends RangeSlider{
     originCenterEnabled: boolean;

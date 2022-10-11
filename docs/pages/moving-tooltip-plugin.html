@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1665419752600.css" />
-    <!--<link rel="stylesheet" href="/js/index.1665419752600.css" />-->
+    <link rel="stylesheet" href="/css/styles.1665483706317.css" />
+    <!--<link rel="stylesheet" href="/js/index.1665483706317.css" />-->
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3TJWMC6F4"></script>
@@ -201,6 +201,7 @@
 <tr class="border-slate-200 border-b last:border-0">
 <th class="px-6 py-4 border-b font-medium text-slate-400 text-base">HTML Property</th>
 <th class="px-6 py-4 border-b font-medium text-slate-400 text-base">Default Value</th>
+<th class="px-6 py-4 border-b font-medium text-slate-400 text-base">Possible Values</th>
 <th class="px-6 py-4 border-b font-medium text-slate-400 text-base">API Property</th>
 </tr>
 </thead>
@@ -208,37 +209,50 @@
 <tr class="border-slate-200 border-b last:border-0">
 <td class="px-6 py-2">moving-tooltip</td>
 <td class="px-6 py-2">true</td>
+<td class="px-6 py-2">true or false</td>
 <td class="px-6 py-2">movingTooltip</td>
 </tr>
 <tr class="border-slate-200 border-b last:border-0">
 <td class="px-6 py-2">moving-tooltip-distance-to-pointer</td>
 <td class="px-6 py-2">40</td>
+<td class="px-6 py-2">number</td>
 <td class="px-6 py-2">distanceToPointer</td>
 </tr>
 <tr class="border-slate-200 border-b last:border-0">
 <td class="px-6 py-2">moving-tooltip-width</td>
 <td class="px-6 py-2">35</td>
+<td class="px-6 py-2">number</td>
 <td class="px-6 py-2">tooltipWidth</td>
 </tr>
 <tr class="border-slate-200 border-b last:border-0">
 <td class="px-6 py-2">moving-tooltip-height</td>
 <td class="px-6 py-2">30</td>
+<td class="px-6 py-2">number</td>
 <td class="px-6 py-2">tooltipHeight</td>
 </tr>
 <tr class="border-slate-200 border-b last:border-0">
 <td class="px-6 py-2">moving-tooltip-bg</td>
 <td class="px-6 py-2">#475569</td>
+<td class="px-6 py-2">color</td>
 <td class="px-6 py-2">tooltipBg</td>
 </tr>
 <tr class="border-slate-200 border-b last:border-0">
 <td class="px-6 py-2">moving-tooltip-text-color</td>
 <td class="px-6 py-2">#fff</td>
+<td class="px-6 py-2">color</td>
 <td class="px-6 py-2">tooltipTextColor</td>
 </tr>
 <tr class="border-slate-200 border-b last:border-0">
 <td class="px-6 py-2">moving-tooltip-units</td>
 <td class="px-6 py-2">empty string</td>
+<td class="px-6 py-2">text</td>
 <td class="px-6 py-2">tooltipUnits</td>
+</tr>
+<tr class="border-slate-200 border-b last:border-0">
+<td class="px-6 py-2">moving-tooltip-units-type</td>
+<td class="px-6 py-2">empty string</td>
+<td class="px-6 py-2">“” or “prefix”</td>
+<td class="px-6 py-2">tooltipUnitType</td>
 </tr>
 </tbody>
 </table>
@@ -270,7 +284,8 @@ $slider.<span class="hljs-property">tooltipWidth</span> = <span class="hljs-numb
 $slider.<span class="hljs-property">tooltipHeight</span> = <span class="hljs-number">50</span>; <span class="hljs-comment">// px</span>
 $slider.<span class="hljs-property">tooltipBg</span> = <span class="hljs-string">&#x27;#000&#x27;</span>;
 $slider.<span class="hljs-property">tooltipTextColor</span> = <span class="hljs-string">&#x27;#efefef&#x27;</span>;
-$slider.<span class="hljs-property">tooltipUnits</span> = <span class="hljs-string">&#x27;%&#x27;</span>;</code></pre>
+$slider.<span class="hljs-property">tooltipUnits</span> = <span class="hljs-string">&#x27;{% page-content %}#x27;</span>;
+$slider.<span class="hljs-property">tooltipUnitType</span> = <span class="hljs-string">&#x27;prefix&#x27;</span>;</code></pre>
 <p class="mb-4">TypeScript example:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-keyword">import</span> { <span class="hljs-title class_">IMovingTooltipPlugin</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;toolcool-range-slider&#x27;</span>;
 
@@ -282,7 +297,8 @@ $slider.<span class="hljs-property">tooltipWidth</span> = <span class="hljs-numb
 $slider.<span class="hljs-property">tooltipHeight</span> = <span class="hljs-number">50</span>; <span class="hljs-comment">// px</span>
 $slider.<span class="hljs-property">tooltipBg</span> = <span class="hljs-string">&#x27;#000&#x27;</span>;
 $slider.<span class="hljs-property">tooltipTextColor</span> = <span class="hljs-string">&#x27;#efefef&#x27;</span>;
-$slider.<span class="hljs-property">tooltipUnits</span> = <span class="hljs-string">&#x27;%&#x27;</span>;</code></pre>
+$slider.<span class="hljs-property">tooltipUnits</span> = <span class="hljs-string">&#x27;{% page-content %}#x27;</span>;
+$slider.<span class="hljs-property">tooltipUnitType</span> = <span class="hljs-string">&#x27;prefix&#x27;</span>;</code></pre>
 <blockquote class="bg-gray-100 pt-4 px-4 flex my-10 border-l-4 border-blue-300 rounded">
 <p class="mb-4">📌 An example page with the source code can be found <a href="https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/28-moving-tooltip-plugin.html" class="text-blue-500">here</a>.</p>
 </blockquote>
@@ -328,6 +344,6 @@ $slider.<span class="hljs-property">tooltipUnits</span> = <span class="hljs-stri
       </div>
     </footer>-->
 
-    <script src="/js/index.1665419752600.js"></script>
+    <script src="/js/index.1665483706317.js"></script>
   </body>
 </html>
