@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { removeNumberOnStart } from '../common-provider.js';
 import fse from 'fs-extra';
+import { setMacros } from './macros-provider.js';
 
 /**
  * render all pages special pages like index.html
@@ -35,8 +36,7 @@ export const renderSpecialPages = (sourceRootPath, targetRootPath, data) => {
         const html = fs.readFileSync(sourceItemPath, 'utf8');
 
         let result = data.layout.replaceAll('{% page-content %}', html);
-        result = result.replaceAll('{% css-hash %}', data.cssTimeStamp);
-        result = result.replaceAll('{% js-hash %}', data.jsTimeStamp);
+        result = setMacros(result, data);
 
         // write the output HTML to the destination
         const targetFilePath = targetItemPath;

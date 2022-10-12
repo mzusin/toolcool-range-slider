@@ -5,37 +5,39 @@ import { compileClientSideCSS } from './client-side/css-provider.js';
 import { compileClientSideScripts } from './client-side/js-provider.js';
 import { configureMarkdown, initMarkDown } from './markdown-config.js'; // https://highlightjs.org
 import emoji from 'markdown-it-emoji'; // https://github.com/markdown-it/markdown-it-emoji
-// import classy from 'markdown-it-classy'; // https://github.com/andrey-p/markdown-it-classy
-import { loadPagesConfig, renderPages } from './render/pages-provider.js';
+import { loadConfig, renderPages } from './render/pages-provider.js';
 import { collectSideMenuData, getPagesList } from './render/side-menu-provider.js';
-import { getTimeStamp } from './common-provider.js';
+import { getRoot, getTimeStamp } from './common-provider.js';
 import { renderSpecialPages } from './render/special-pages-provider.js';
 import { renderSitemap } from './render/sitemap-provider.js';
 
+export const DATA_FOLDER = path.join(process.cwd(), './src/docs/data');
+export const OUTPUT_FOLDER = path.join(process.cwd(), './docs');
+
 // markdown -------------------
 const md = initMarkDown();
-// md.use(classy);
 md.use(emoji);
 configureMarkdown(md);
 
 const init = async () => {
-  const sourceRootPath = path.join(process.cwd(), './src/docs/data/pages');
-  const targetRootPath = path.join(process.cwd(), './docs/pages');
+  const sourceRootPath = path.join(DATA_FOLDER, './pages');
+  const targetRootPath = path.join(OUTPUT_FOLDER, './pages');
 
   const cssTimeStamp = getTimeStamp();
   const jsTimeStamp = getTimeStamp();
 
   // empty destination folders
   fse.emptyDirSync(targetRootPath);
-  fse.emptyDirSync(path.join(process.cwd(), './docs/css'));
-  fse.emptyDirSync(path.join(process.cwd(), './docs/js'));
+  fse.emptyDirSync(path.join(OUTPUT_FOLDER, './css'));
+  fse.emptyDirSync(path.join(OUTPUT_FOLDER, './js'));
 
   // load layout
-  const layoutPath = path.join(process.cwd(), './src/docs/data/layouts/page-layout.html');
+  const layoutPath = path.join(DATA_FOLDER, './layouts/page-layout.html');
   const layout = fs.readFileSync(layoutPath, 'utf8');
 
-  // load pages config
-  const pagesConfig = loadPagesConfig();
+  // load config files
+  const mainConfig = loadConfig(path.join(DATA_FOLDER, './config.json'));
+  const pagesConfig = loadConfig(path.join(DATA_FOLDER, './pages/pages-config.json'));
 
   // collect side menu data
   const sideMenuMap = new Map();
@@ -52,25 +54,27 @@ const init = async () => {
     cssTimeStamp,
     jsTimeStamp,
     pagesList,
+    mainConfig,
   }, md);
 
   // render all pages like index.html
-  const specialPagesLayoutPath = path.join(process.cwd(), './src/docs/data/layouts/special-page-layout.html');
+  const specialPagesLayoutPath = path.join(DATA_FOLDER, './layouts/special-page-layout.html');
   const specialPagesLayout = fs.readFileSync(specialPagesLayoutPath, 'utf8');
 
   renderSpecialPages(
-    path.join(process.cwd(), './src/docs/data/special-pages'),
-    path.join(path.join(process.cwd(), './docs')),
+    path.join(DATA_FOLDER, './special-pages'),
+    path.join(OUTPUT_FOLDER),
     {
       layout: specialPagesLayout,
       cssTimeStamp,
       jsTimeStamp,
+      mainConfig,
     }
   );
 
   // render sitemap
   renderSitemap(
-    path.join(path.join(process.cwd(), './docs')),
+    path.join(OUTPUT_FOLDER),
     pagesList
   );
 

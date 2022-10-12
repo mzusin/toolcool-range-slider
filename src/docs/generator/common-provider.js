@@ -1,4 +1,6 @@
 import path from 'path';
+import appRoot from 'app-root-path';
+import fs from 'fs';
 
 export const changeExtension = (filePath, newExtension) => {
   const basename = path.basename(filePath, path.extname(filePath));
@@ -29,4 +31,10 @@ export const toTitleCase = (str) => {
 
 export const getTimeStamp = () => {
   return new Date().getTime();
+};
+
+export const getRoot = () => {
+  const userRoot = appRoot.path;
+  const docsModuleRoot = path.join(userRoot, 'node_modules/markdown-documentation-maker');
+  return fs.existsSync(docsModuleRoot) ? docsModuleRoot : userRoot;
 };

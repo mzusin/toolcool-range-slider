@@ -1,4 +1,6 @@
-import esbuild from "esbuild";
+import esbuild from 'esbuild';
+import path from 'path';
+import { getRoot } from '../common-provider.js';
 
 /**
  * compile client side javascript
@@ -7,7 +9,7 @@ import esbuild from "esbuild";
 export const compileClientSideScripts = (jsTimeStamp) => {
   esbuild
     .build({
-      entryPoints: ['./src/docs/client-side/js/index.tsx'],
+      entryPoints: [path.join(process.cwd(), './src/docs/client-side/js/index.tsx')],
       bundle: true,
       sourcemap: 'linked', // external
       minify: true,
@@ -16,12 +18,6 @@ export const compileClientSideScripts = (jsTimeStamp) => {
       loader: {
         '.png': 'text',
         '.svg': 'dataurl',
-      },
-      banner: {
-        js: `/* 
-Tool Cool Range Slider Documentation
-Author: Tool Cool, toolcool.org@gmail.com>                          
-*/`,
       },
     })
     .then(() => {

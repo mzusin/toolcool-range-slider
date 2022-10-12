@@ -4,6 +4,7 @@ import cssnano from "cssnano";
 import autoprefixer from "autoprefixer";
 import path from "path";
 import fs from "fs";
+import { getRoot } from '../common-provider.js';
 
 /**
  * compile client side CSS
