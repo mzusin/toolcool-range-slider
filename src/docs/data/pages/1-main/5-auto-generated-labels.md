@@ -99,9 +99,11 @@ It is also possible to enable or disable generated labels programmatically:
     
     // change the setting
     $slider.generateLabels = true; // or false
+    $slider.units = '%';
 
     // or 
     // $slider.setAttribute('generate-labels', 'true');
+    // $slider.setAttribute('units', '%');
 </script>
 ```
 
