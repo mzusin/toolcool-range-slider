@@ -21,6 +21,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
   let $component: HTMLElement | null = null;
   let $slider :HTMLElement | null = null;
   let getters: IPluginGetters | null = null;
+  let requestUpdate: () => void | null;
 
   let enabled = false;
   let textColor = DEFAULT_TEXT_COLOR;
@@ -113,6 +114,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
 
   const setUnits = (newValue: string) => {
     units = newValue;
+    if(requestUpdate) requestUpdate();
   };
 
   const updateClasses = () => {
@@ -201,6 +203,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
       $component = _$component;
       getters = _getters;
       $slider = _$component.shadowRoot?.getElementById('range-slider') as HTMLElement;
+      requestUpdate = _requestUpdate;
 
       textColor = $component.getAttribute('generate-labels-text-color') ?? DEFAULT_TEXT_COLOR;
       units = $component.getAttribute('generate-labels-units') ?? '';

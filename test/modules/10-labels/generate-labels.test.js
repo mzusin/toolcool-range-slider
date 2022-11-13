@@ -27,6 +27,13 @@ QUnit.module('Generated Labels', (hooks) => {
      <toolcool-range-slider id="slider-107" generate-labels="true" value1="50" value2="60"></toolcool-range-slider>
   `);
 
+  QUnit.test('add labels unit dynamically', (assert) => {
+    const $slider = document.querySelector('#slider-80');
+    $slider.units = '%';
+    const $value1Label = $slider.shadowRoot.querySelector('.value1-label.generated-label');
+    assert.equal($value1Label.textContent, '77%');
+  });
+
   QUnit.test('by default generateLabels should be false', (assert) => {
     const $slider = document.querySelector('#slider-1');
     assert.equal($slider.generateLabels, false);
