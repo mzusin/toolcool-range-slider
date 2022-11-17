@@ -269,6 +269,18 @@ const GeneratedLabelsPlugin = () : IPlugin => {
           },
         }
       },
+      {
+        name: 'generateLabelsTextColor',
+        attributes: {
+          get () {
+            return textColor ?? '';
+          },
+
+          set: (newValue) => {
+            setTextColor(newValue);
+          },
+        }
+      },
 
       {
         name: 'units',
@@ -282,6 +294,19 @@ const GeneratedLabelsPlugin = () : IPlugin => {
           },
         }
       },
+      {
+        name: 'generateLabelsUnits',
+        attributes: {
+          get () {
+            return units ?? '';
+          },
+
+          set: (newValue) => {
+            setUnits(newValue);
+          },
+        }
+      },
+
     ],
 
     /**
@@ -349,6 +374,12 @@ export default GeneratedLabelsPlugin;
  */
 export interface IGeneratedLabelsPlugin extends RangeSlider{
   generateLabels: boolean;
+
+  /** @deprecated */
   textColor: string;
+  generateLabelsTextColor: string;
+
+  /** @deprecated */
   units: string;
+  generateLabelsUnits: string;
 }

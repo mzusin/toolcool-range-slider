@@ -34,6 +34,27 @@ QUnit.module('Generated Labels', (hooks) => {
     assert.equal($value1Label.textContent, '77%');
   });
 
+  QUnit.test('add labels unit dynamically using "generateLabelsUnits" property', (assert) => {
+    const $slider = document.querySelector('#slider-80');
+    $slider.generateLabelsUnits = '%';
+    const $value1Label = $slider.shadowRoot.querySelector('.value1-label.generated-label');
+    assert.equal($value1Label.textContent, '77%');
+  });
+
+  QUnit.test('set labels text color dynamically', (assert) => {
+    const $slider = document.querySelector('#slider-80');
+    $slider.textColor = 'rgb(68, 85, 68)';
+    const $value1Label = $slider.shadowRoot.querySelector('.value1-label.generated-label');
+    assert.equal($value1Label.style.color, 'rgb(68, 85, 68)');
+  });
+
+  QUnit.test('set labels text color dynamically uisng "generateLabelsTextColor" property', (assert) => {
+    const $slider = document.querySelector('#slider-80');
+    $slider.generateLabelsTextColor = 'rgb(68, 85, 68)';
+    const $value1Label = $slider.shadowRoot.querySelector('.value1-label.generated-label');
+    assert.equal($value1Label.style.color, 'rgb(68, 85, 68)');
+  });
+
   QUnit.test('by default generateLabels should be false', (assert) => {
     const $slider = document.querySelector('#slider-1');
     assert.equal($slider.generateLabels, false);
