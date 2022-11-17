@@ -189,4 +189,19 @@ QUnit.module('Value-2', (hooks) => {
     assert.strictEqual($slider.value2, 0);
   });
 
+  // <toolcool-range-slider id="slider-1"></toolcool-range-slider>
+  QUnit.test('set value2 on a one-value slider ---> the second pointer should be added dynamically.', (assert) => {
+    const $slider = document.querySelector('#slider-1');
+    $slider.value2 = 50;
+    const $pointer = $slider.shadowRoot.querySelector('.pointer-1');
+    assert.ok($pointer);
+  });
+
+  QUnit.test('set value3 on a 2-values slider ---> the third pointer should be added dynamically.', (assert) => {
+    const $slider = document.querySelector('#slider-86');
+    $slider.value3 = 50;
+    const $pointer = $slider.shadowRoot.querySelector('.pointer-2');
+    assert.ok($pointer);
+  });
+
 });

@@ -2,6 +2,8 @@ import { getNumber, isNumber } from './math-provider';
 import { IPointer, Pointer } from '../ui/pointer';
 import { ISlider } from '../ui/slider';
 
+export const MAX_VALUES_API = 10;
+
 export const initPointers = ($component: HTMLElement, $pointer: HTMLElement) => {
   const map = new Map<number, number | string>();
   const regex = /^value([0-9]*)$/;
@@ -67,7 +69,13 @@ export const initPointerAPI = (
       },
 
       set: (val) => {
-        slider?.setValue(val, index);
+        const pointer = slider.pointers[index];
+        if(!pointer){
+          slider?.addPointer(val);
+        }
+        else{
+          slider?.setValue(val, index);
+        }
       },
     });
 
@@ -127,8 +135,10 @@ export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
     ['value1', 'ariaLabel1', 'pointerShape1', 'pointer1Disabled', 0],
   ];
 
-  for(let i=1; i<slider.pointers.length; i++){
-    apiProperties.push([`value${ i + 1 }`, `ariaLabel${ i + 1 }`, `pointer${ i + 1 }Shape`, `pointer${ i + 1 }Disabled`, i]);
+  // The maximum number of such pointers is determined by the MAX_VALUES_API API constant (for performance reasons).
+  // https://github.com/toolcool-org/toolcool-range-slider/issues/2
+  for(let i=2; i<MAX_VALUES_API; i++){
+    apiProperties.push([`value${ i }`, `ariaLabel${ i }`, `pointer${ i }Shape`, `pointer${ i }Disabled`, i - 1]);
   }
 
   for(const item of apiProperties){
@@ -141,7 +151,9 @@ export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
       item[3]
     );
   }
+
 };
+
 
 export const changePointersOrder = (pointers: IPointer[], isDesc: boolean, $component: HTMLElement) => {
 

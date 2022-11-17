@@ -13,4 +13,5 @@ export interface IMovingTooltipPlugin extends RangeSlider {
     tooltipBg: string;
     tooltipTextColor: string;
     tooltipUnits: string;
+    tooltipUnitType: string;
 }

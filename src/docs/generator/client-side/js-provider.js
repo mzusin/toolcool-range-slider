@@ -1,6 +1,5 @@
 import esbuild from 'esbuild';
 import path from 'path';
-import { getRoot } from '../common-provider.js';
 
 /**
  * compile client side javascript

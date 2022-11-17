@@ -1,225 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Test Page | Tool Cool Range Slider</title>
+    <title>Change Event Example | Tool Cool Range Slider</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="../css/styles.css" />
 </head>
 <body>
+<h1>Change Event Example</h1>
 
-<!--
-docs:
-- first svg or svg with data attribute data-main
--->
+<div class="wrapper">
 
-    <div class="wrapper">
-        <h2>Horizontal Slider - 1 pointer</h2>
-        <div class="row">
-            <tc-range-slider
-              value="30"
-              round="0"
-              pointer-radius="0"
-              pointer-width="3px"
-              pointer-height="3px"
-              pointer-bg="red"
-              pointer-bg-hover="red"
-              pointer-bg-focus="red"
-
-              generate-labels="true"
-              slider-width="610px"
-              slider-height="85px">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 85" width="100%" height="100%">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 5c25 49.875 50 74.8125 75 74.8125C117.5 79.8125 117.5 5 155 5s37.5 74.8125 75 74.8125S267.5 5 305 5s37.5 74.8125 75 74.8125S417.5 5 455 5s37.5 74.8125 75 74.8125c25 0 50-24.9375 75-74.8125"/>
-                </svg>
-            </tc-range-slider>
-        </div>
-
-        <h2>Horizontal Slider - car</h2>
-        <div class="row">
-            <tc-range-slider
-              value="30"
-              pointer-bg="transparent url(../img/icons/car-crane.svg) no-repeat 50% 50%"
-              pointer-bg-hover="transparent url(../img/icons/car-crane.svg) no-repeat 50% 50%"
-              pointer-bg-focus="transparent url(../img/icons/car-crane.svg) no-repeat 50% 50%"
-              pointer-radius="0"
-              pointer-border="none"
-              pointer-border-hover="none"
-              pointer-border-focus="none"
-              pointer-shadow="none"
-              pointer-shadow-hover="none"
-              pointer-shadow-focus="none"
-
-              pointer-width="30px"
-              pointer-height="30px"
-              round="0"
-              generate-labels="true"
-              slider-width="610px"
-              slider-height="85px">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 85" width="100%" height="100%">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M5 5c25 49.875 50 74.8125 75 74.8125C117.5 79.8125 117.5 5 155 5s37.5 74.8125 75 74.8125S267.5 5 305 5s37.5 74.8125 75 74.8125S417.5 5 455 5s37.5 74.8125 75 74.8125c25 0 50-24.9375 75-74.8125"/>
-                </svg>
-            </tc-range-slider>
-        </div>
-
-        <h2>Horizontal Slider - min/max</h2>
-        <div class="row">
-            <tc-range-slider
-              min="-100"
-              max="100"
-              value1="30"
-              round="0"
-              pointer-radius="0"
-              generate-labels="true"
-              slider-width="610px"
-              slider-height="85px">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 85" width="100%" height="100%">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 5c25 49.875 50 74.8125 75 74.8125C117.5 79.8125 117.5 5 155 5s37.5 74.8125 75 74.8125S267.5 5 305 5s37.5 74.8125 75 74.8125S417.5 5 455 5s37.5 74.8125 75 74.8125c25 0 50-24.9375 75-74.8125"/>
-                </svg>
-            </tc-range-slider>
-        </div>
-
-        <h2>Horizontal Slider - 2 pointers</h2>
-        <div class="row">
-            <tc-range-slider
-              value1="30"
-              value2="70"
-              round="0"
-              pointer-radius="0"
-              generate-labels="true"
-              slider-width="610px"
-              slider-height="85px">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 85" width="100%" height="100%">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 5c25 49.875 50 74.8125 75 74.8125C117.5 79.8125 117.5 5 155 5s37.5 74.8125 75 74.8125S267.5 5 305 5s37.5 74.8125 75 74.8125S417.5 5 455 5s37.5 74.8125 75 74.8125c25 0 50-24.9375 75-74.8125"/>
-                </svg>
-            </tc-range-slider>
-        </div>
-
-        <h2>Horizontal Slider - 3 pointers</h2>
-        <div class="row">
-            <tc-range-slider
-              value1="30"
-              value2="50"
-              value3="70"
-              round="0"
-              pointer-radius="0"
-              generate-labels="true"
-              slider-width="610px"
-              slider-height="85px">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 85" width="100%" height="100%">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 5c25 49.875 50 74.8125 75 74.8125C117.5 79.8125 117.5 5 155 5s37.5 74.8125 75 74.8125S267.5 5 305 5s37.5 74.8125 75 74.8125S417.5 5 455 5s37.5 74.8125 75 74.8125c25 0 50-24.9375 75-74.8125"/>
-                </svg>
-            </tc-range-slider>
-        </div>
-
-        <h2>Right to Left Slider - 1 pointer</h2>
-        <div class="row">
-            <tc-range-slider
-              value1="30"
-              rtl="true"
-              round="0"
-              pointer-radius="0"
-              generate-labels="true"
-              slider-width="610px"
-              slider-height="85px">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 85" width="100%" height="100%">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 5c25 49.875 50 74.8125 75 74.8125C117.5 79.8125 117.5 5 155 5s37.5 74.8125 75 74.8125S267.5 5 305 5s37.5 74.8125 75 74.8125S417.5 5 455 5s37.5 74.8125 75 74.8125c25 0 50-24.9375 75-74.8125"/>
-                </svg>
-            </tc-range-slider>
-        </div>
-
-        <h2>Right to Left Slider - 2 pointers</h2>
-        <div class="row">
-            <tc-range-slider
-              value1="30"
-              value2="70"
-              rtl="true"
-              round="0"
-              pointer-radius="0"
-              generate-labels="true"
-              slider-width="610px"
-              slider-height="85px">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 85" width="100%" height="100%">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 5c25 49.875 50 74.8125 75 74.8125C117.5 79.8125 117.5 5 155 5s37.5 74.8125 75 74.8125S267.5 5 305 5s37.5 74.8125 75 74.8125S417.5 5 455 5s37.5 74.8125 75 74.8125c25 0 50-24.9375 75-74.8125"/>
-                </svg>
-            </tc-range-slider>
-        </div>
-
-        <h2>Vertical Slider - 1 pointer</h2>
-        <div class="row" style="width: 100px">
-            <tc-range-slider
-              value1="30"
-              type="vertical"
-              round="0"
-              pointer-radius="0"
-              generate-labels="true"
-              slider-width="85px"
-              slider-height="610px">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86 611">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5.59375 5.40625c49.875 25 74.8125 50 74.8125 75 0 37.5-74.8125 37.5-74.8125 75s74.8125 37.5 74.8125 75-74.8125 37.5-74.8125 75 74.8125 37.5 74.8125 75-74.8125 37.5-74.8125 75 74.8125 37.5 74.8125 75c0 25-24.9375 50-74.8125 75"/>
-                </svg>
-            </tc-range-slider>
-        </div>
-
-        <h2>Vertical Slider - 2 pointers</h2>
-        <div class="row" style="width: 100px">
-            <tc-range-slider
-              value1="30"
-              value2="70"
-              type="vertical"
-              round="0"
-              pointer-radius="0"
-              generate-labels="true"
-              slider-width="85px"
-              slider-height="610px">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86 611">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5.59375 5.40625c49.875 25 74.8125 50 74.8125 75 0 37.5-74.8125 37.5-74.8125 75s74.8125 37.5 74.8125 75-74.8125 37.5-74.8125 75 74.8125 37.5 74.8125 75-74.8125 37.5-74.8125 75 74.8125 37.5 74.8125 75c0 25-24.9375 50-74.8125 75"/>
-                </svg>
-            </tc-range-slider>
-        </div>
-
-        <h2>Bottom to Top - 1 pointer</h2>
-        <div class="row" style="width: 100px">
-            <tc-range-slider
-              value1="30"
-              btt="true"
-              type="vertical"
-              round="0"
-              pointer-radius="0"
-              generate-labels="true"
-              slider-width="85px"
-              slider-height="610px">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86 611">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5.59375 5.40625c49.875 25 74.8125 50 74.8125 75 0 37.5-74.8125 37.5-74.8125 75s74.8125 37.5 74.8125 75-74.8125 37.5-74.8125 75 74.8125 37.5 74.8125 75-74.8125 37.5-74.8125 75 74.8125 37.5 74.8125 75c0 25-24.9375 50-74.8125 75"/>
-                </svg>
-            </tc-range-slider>
-        </div>
-
-        <h2>Bottom to Top - 2 pointers</h2>
-        <div class="row" style="width: 100px">
-            <tc-range-slider
-              value1="30"
-              value2="100"
-              btt="true"
-              type="vertical"
-              round="0"
-              pointer-radius="0"
-              pointer-width="3px"
-              pointer-height="3px"
-              pointer-bg="red"
-              generate-labels="true"
-              slider-width="85px"
-              slider-height="610px">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86 611">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5.59375 5.40625c49.875 25 74.8125 50 74.8125 75 0 37.5-74.8125 37.5-74.8125 75s74.8125 37.5 74.8125 75-74.8125 37.5-74.8125 75 74.8125 37.5 74.8125 75-74.8125 37.5-74.8125 75 74.8125 37.5 74.8125 75c0 25-24.9375 50-74.8125 75"/>
-                </svg>
-            </tc-range-slider>
-        </div>
-
+    <h2>Basic slider</h2>
+    <div class="row">
+        <label>0</label>
+        <tc-range-slider
+                id="slider-1"
+                slider-width="100%"></tc-range-slider>
+        <label>100</label>
+        <div id="value-1" class="value"></div>
     </div>
 
-    <script src="../../dist/plugins/tcrs-generated-labels.min.js"></script>
-    <script src="../../dist/plugins/tcrs-svg-path.min.js"></script>
-    <script src="../../dist/toolcool-range-slider.min.js"></script>
+</div>
+
+<script src="../../dist/toolcool-range-slider.min.js"></script>
+<script>
+
+    // slider #1 ------------------
+    const $slider1 = document.getElementById('slider-1');
+    $slider1.value2 = 10;
+    $slider1.value3 = 30;
+
+</script>
 </body>
 </html>
