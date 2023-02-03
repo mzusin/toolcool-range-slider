@@ -33,6 +33,7 @@ export interface ISlider {
   bottomToTop: boolean;
   disabled: boolean;
   keyboardDisabled: boolean;
+  mousewheelDisabled: boolean;
   round: number;
   animateOnClick: string | undefined | boolean;
 
@@ -85,6 +86,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
   let disabled = false;
   let keyboardDisabled = false;
+  let mousewheelDisabled = false;
   let animateOnClick: string | undefined = ANIMATE_ON_CLICK_DEFAULT;
 
   const ariaLabels: (string | undefined)[] = [];
@@ -447,6 +449,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
       disabled: isDisabled(),
       keyboardDisabled: isKeyboardDisabled(),
+      mousewheelDisabled: isMousewheelDisabled(),
     });
   };
 
@@ -636,6 +639,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
   const isKeyboardDisabled = () => {
     return keyboardDisabled;
+  };
+
+  const isMousewheelDisabled = () => {
+    return mousewheelDisabled;
   };
 
   const isPointersOverlap = () => {
@@ -841,6 +848,17 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     keyboardDisabled = _disabled;
   };
 
+  const setMousewheelDisabled = (_disabled: boolean) => {
+    mousewheelDisabled = _disabled;
+
+    if(mousewheelDisabled){
+      document.removeEventListener('wheel', pointerMouseWheel);
+    }
+    else{
+      document.addEventListener('wheel', pointerMouseWheel, { passive: false });
+    }
+  };
+
   const setData = (_data: TData | string | number | null) => {
 
     if(_data === null || _data === undefined){
@@ -957,7 +975,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
   const initDisabled = () => {
     setDisabled(getBoolean($component.getAttribute(AttributesEnum.Disabled)));
-    keyboardDisabled = getBoolean($component.getAttribute(AttributesEnum.KeyboardDisabled))
+    keyboardDisabled = getBoolean($component.getAttribute(AttributesEnum.KeyboardDisabled));
+    mousewheelDisabled = getBoolean($component.getAttribute(AttributesEnum.MousewheelDisabled));
 
     // handle 'pointer1-disabled, pointer2-disabled, etc.
     const disabledList = getAttributesByRegex($component, /^pointer([0-9]*)-disabled$/, (val: string) => {
@@ -1064,7 +1083,10 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     $slider.addEventListener('mouseup', onMouseUp);
     $slider.addEventListener('touchmove', onValueChange);
     $slider.addEventListener('touchstart', onValueChange);
-    document.addEventListener('wheel', pointerMouseWheel, { passive: false });
+
+    if(!mousewheelDisabled){
+      document.addEventListener('wheel', pointerMouseWheel, { passive: false });
+    }
 
     // init plugins ---------------
     pluginsManager = PluginsManager(
@@ -1084,6 +1106,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
         setBottomToTop,
         setRound,
         setKeyboardDisabled,
+        setMousewheelDisabled,
         setRangeDragging,
         setData,
       },
@@ -1108,6 +1131,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
         isDisabled,
         isKeyboardDisabled,
+        isMousewheelDisabled,
 
         isPointersOverlap,
         isRangeDraggingEnabled,
@@ -1239,6 +1263,14 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
     set keyboardDisabled(_keyboardDisabled){
       setKeyboardDisabled(_keyboardDisabled);
+    },
+
+    get mousewheelDisabled() {
+      return isMousewheelDisabled();
+    },
+
+    set mousewheelDisabled(_mousewheelDisabled){
+      setMousewheelDisabled(_mousewheelDisabled);
     },
 
     get rangeDragging() {

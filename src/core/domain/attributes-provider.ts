@@ -73,6 +73,11 @@ export const onAttributeChange = (slider: ISlider, attrName: string, newValue: s
       break;
     }
 
+    case AttributesEnum.MousewheelDisabled: {
+      slider.mousewheelDisabled = getBoolean(newValue);
+      break;
+    }
+
     case AttributesEnum.Data: {
       slider.setData(newValue);
       break;

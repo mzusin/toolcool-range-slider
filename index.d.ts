@@ -62,6 +62,7 @@ declare module 'toolcool-range-slider' {
     bottomToTop: boolean;
     disabled: boolean;
     keyboardDisabled: boolean;
+    mousewheelDisabled: boolean;
     round: number;
     animateOnClick: string | undefined | boolean;
     getAriaLabel: (index: number) => (string | undefined);

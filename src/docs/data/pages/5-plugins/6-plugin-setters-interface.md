@@ -17,6 +17,7 @@ export interface IPluginSetters {
 
   setDisabled: (val: boolean) => void;
   setKeyboardDisabled: (val: boolean) => void;
+  setMousewheelDisabled: (val: boolean) => void;
 
   setRightToLeft: (val: boolean) => void;
   setBottomToTop: (val: boolean) => void;

@@ -26,6 +26,7 @@ export interface IPluginUpdateData {
 
   disabled: boolean;
   keyboardDisabled: boolean;
+  mousewheelDisabled: boolean;
 }
 
 export interface IPluginSetters {
@@ -44,6 +45,7 @@ export interface IPluginSetters {
 
   setDisabled: (val: boolean) => void;
   setKeyboardDisabled: (val: boolean) => void;
+  setMousewheelDisabled: (val: boolean) => void;
 
   setRightToLeft: (val: boolean) => void;
   setBottomToTop: (val: boolean) => void;
@@ -69,6 +71,7 @@ export interface IPluginGetters {
   isBottomToTop: () => boolean;
   isDisabled: () => boolean;
   isKeyboardDisabled: () => boolean;
+  isMousewheelDisabled: () => boolean;
 
   isPointersOverlap: () => boolean;
   isRangeDraggingEnabled: () => boolean;

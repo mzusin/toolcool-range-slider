@@ -18,6 +18,7 @@ export const BottomToTop = 'btt';
 
 export const Disabled = 'disabled';
 export const KeyboardDisabled = 'keyboard-disabled';
+export const MousewheelDisabled = 'mousewheel-disabled';
 
 export const SliderWidth = 'slider-width';
 export const SliderHeight = 'slider-height';

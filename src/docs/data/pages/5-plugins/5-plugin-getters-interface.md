@@ -21,6 +21,7 @@ export interface IPluginGetters {
   isBottomToTop: () => boolean;
   isDisabled: () => boolean;
   isKeyboardDisabled: () => boolean;
+  isMousewheelDisabled: () => boolean;
 
   isPointersOverlap: () => boolean;
   isRangeDraggingEnabled: () => boolean;

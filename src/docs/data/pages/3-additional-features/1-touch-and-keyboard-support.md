@@ -47,6 +47,8 @@ The library supports touch screens and also handles the following keys:
 | mousewheel up   | goes one step up       |
 | mousewheel down | goes one step down     |
 
+### **keyboard-disabled** attribute
+
 It's possible to disable keyboard support with **keyboard-disabled** attribute:
 
 ```html
@@ -61,3 +63,21 @@ $slider1.keyboardDisabled = true;
 ```
 
 > :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/20-keyboard-disabled.html).
+
+
+### **mousewheel-disabled** attribute
+
+It's possible to disable mousewheel events with **mousewheel-disabled** attribute:
+
+```html
+<tc-range-slider mousewheel-disabled="true"></tc-range-slider>
+```
+
+Or via API:
+
+```js
+const $slider1 = document.getElementById('slider-1');
+$slider1.mousewheelDisabled = true;
+```
+
+> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/34-mousewheel-disabled.html).
