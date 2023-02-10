@@ -114,7 +114,7 @@ export const configureMarkdown = (md) => {
       return td_open(tokens, idx, options, env, self)
     };
 
-    // <h1>
+    // <h1>, <h2>, <h3>, ...
     md.renderer.rules.heading_open = function(tokens, idx, options, env, self) {
       tokens[idx].attrJoin('class', 'text-3xl mb-8');
       return heading_open(tokens, idx, options, env, self)

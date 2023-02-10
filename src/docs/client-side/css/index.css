@@ -30,4 +30,8 @@
     }
 }
 
+.header-anchor{
+    display: inline-flex;
+}
+
 @tailwind utilities;

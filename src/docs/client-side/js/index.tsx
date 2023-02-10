@@ -63,11 +63,23 @@ const initMenuScroll = () => {
   if(!$menu) return;
 
   const path = window.location.pathname;
+  console.log('path', path)
   const $link = $menu.querySelector(`a[href='${ path }']`);
+  console.log($link)
   if(!$link) return;
 
   $link.scrollIntoView({
     block: 'center',
+  });
+
+  const hash = window.location.hash;
+  if(!hash) return;
+
+  const $header = document.getElementById(hash.replace('#', ''));
+  if(!$header) return;
+
+  $header.scrollIntoView({
+    block: 'start',
   });
 };
 
