@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Auto Generated Labels Plugin with formatting | Tool Cool Range Slider</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <h1>Auto Generated Labels Plugin with formatting</h1>
+
+    <div class="wrapper">
+
+        <div class="row">
+            <tc-range-slider
+              id="slider"
+              value="50"
+              generate-labels="true"
+              generate-labels-text-color="#5e7593"
+              generate-labels-units="%"
+              slider-width="100%"></tc-range-slider>
+        </div>
+
+    </div>
+
+    <script src="../dist/plugins/tcrs-generated-labels.min.js"></script>
+    <script src="../dist/toolcool-range-slider.min.js"></script>
+    <script>
+        const $slider = document.getElementById('slider');
+        $slider.generateLabelsFormat = (value) => {
+            if(value === undefined) return '';
+            return `$${ Number(value).toFixed(2) }`;
+        };
+    </script>
+</body>
+</html>

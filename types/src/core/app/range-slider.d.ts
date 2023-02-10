@@ -36,6 +36,8 @@ declare class TCRangeSlider extends HTMLElement {
     get btt(): boolean;
     set keyboardDisabled(_keyboardDisabled: boolean);
     get keyboardDisabled(): boolean;
+    set mousewheelDisabled(_mousewheelDisabled: boolean);
+    get mousewheelDisabled(): boolean;
     set animateOnClick(_animateOnClick: string | boolean | undefined);
     get animateOnClick(): string | boolean | undefined;
     get rangeDragging(): boolean | string | undefined | null;

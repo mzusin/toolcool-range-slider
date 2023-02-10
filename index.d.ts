@@ -10,11 +10,15 @@ declare module 'toolcool-range-slider' {
 
     /** @deprecated */
     textColor: string;
+
     generateLabelsTextColor: string;
 
     /** @deprecated */
     units: string;
+
     generateLabelsUnits: string;
+
+    generateLabelsFormat: (value: string | number | undefined) => string;
   }
   export interface IMovingTooltipPlugin extends RangeSlider{
     movingTooltip: boolean;

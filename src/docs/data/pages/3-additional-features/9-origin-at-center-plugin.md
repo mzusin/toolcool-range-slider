@@ -52,4 +52,4 @@ const $slider = document.getElementById('slider-1') as IOriginCenterPlugin;
 $slider.originCenterEnabled = true; // or false
 ```
 
-> :pushpin: An example page with the change event source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/31-origin-at-center.html).
+> :pushpin: An example page can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/31-origin-at-center.html).

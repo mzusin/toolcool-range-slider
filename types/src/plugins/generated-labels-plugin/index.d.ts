@@ -13,4 +13,5 @@ export interface IGeneratedLabelsPlugin extends RangeSlider {
     /** @deprecated */
     units: string;
     generateLabelsUnits: string;
+    generateLabelsFormat: (value: string | number | undefined) => string;
 }

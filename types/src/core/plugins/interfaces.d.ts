@@ -19,6 +19,7 @@ export interface IPluginUpdateData {
     rangeDragging: boolean;
     disabled: boolean;
     keyboardDisabled: boolean;
+    mousewheelDisabled: boolean;
 }
 export interface IPluginSetters {
     setValues: (values: (string | number | undefined)[]) => void;
@@ -34,6 +35,7 @@ export interface IPluginSetters {
     setRangeDragging: (val: boolean) => void;
     setDisabled: (val: boolean) => void;
     setKeyboardDisabled: (val: boolean) => void;
+    setMousewheelDisabled: (val: boolean) => void;
     setRightToLeft: (val: boolean) => void;
     setBottomToTop: (val: boolean) => void;
 }
@@ -53,6 +55,7 @@ export interface IPluginGetters {
     isBottomToTop: () => boolean;
     isDisabled: () => boolean;
     isKeyboardDisabled: () => boolean;
+    isMousewheelDisabled: () => boolean;
     isPointersOverlap: () => boolean;
     isRangeDraggingEnabled: () => boolean;
     getPointersMinDistance: () => number;

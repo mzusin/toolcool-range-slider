@@ -16,6 +16,8 @@ const MIN_LABEL_CODE_NAME = 'min-label';
 const MAX_LABEL_CODE_NAME = 'max-label';
 const DEFAULT_TEXT_COLOR = '#1E293B';
 
+type generateLabelsFormatType = ((value: string | number | undefined) => string) | undefined;
+
 const GeneratedLabelsPlugin = () : IPlugin => {
 
   let $component: HTMLElement | null = null;
@@ -26,6 +28,7 @@ const GeneratedLabelsPlugin = () : IPlugin => {
   let enabled = false;
   let textColor = DEFAULT_TEXT_COLOR;
   let units = '';
+  let generateLabelsFormat : generateLabelsFormatType = undefined;
 
   let $labelsRow: HTMLElement | null = null;
   let $min: HTMLElement | null = null;
@@ -123,7 +126,8 @@ const GeneratedLabelsPlugin = () : IPlugin => {
   };
 
   const getLabelText = (value: string | number | undefined, units: string) => {
-    return `${ (value ?? '').toString() }${ units }`;
+    const val = `${ (value ?? '').toString() }${ units }`;
+    return (!!generateLabelsFormat && (typeof generateLabelsFormat === 'function')) ? generateLabelsFormat(value) : val;
   };
 
   const update = (data: IPluginUpdateData) => {
@@ -211,6 +215,8 @@ const GeneratedLabelsPlugin = () : IPlugin => {
 
       updateClasses();
       setTextColor(textColor);
+
+      //console.log($slider.generateLabelsFormat)
     },
 
     /**
@@ -256,7 +262,6 @@ const GeneratedLabelsPlugin = () : IPlugin => {
           },
         }
       },
-
       {
         name: 'textColor',
         attributes: {
@@ -281,7 +286,6 @@ const GeneratedLabelsPlugin = () : IPlugin => {
           },
         }
       },
-
       {
         name: 'units',
         attributes: {
@@ -306,7 +310,19 @@ const GeneratedLabelsPlugin = () : IPlugin => {
           },
         }
       },
+      {
+        name: 'generateLabelsFormat',
+        attributes: {
+          get () {
+            return generateLabelsFormat;
+          },
 
+          set: (newFunc) => {
+            generateLabelsFormat = newFunc;
+            if(requestUpdate) requestUpdate();
+          },
+        }
+      },
     ],
 
     /**
@@ -377,9 +393,13 @@ export interface IGeneratedLabelsPlugin extends RangeSlider{
 
   /** @deprecated */
   textColor: string;
+
   generateLabelsTextColor: string;
 
   /** @deprecated */
   units: string;
+
   generateLabelsUnits: string;
+
+  generateLabelsFormat: (value: string | number | undefined) => string;
 }

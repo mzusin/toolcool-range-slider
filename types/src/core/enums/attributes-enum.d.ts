@@ -16,6 +16,7 @@ export declare const RightToLeft = "rtl";
 export declare const BottomToTop = "btt";
 export declare const Disabled = "disabled";
 export declare const KeyboardDisabled = "keyboard-disabled";
+export declare const MousewheelDisabled = "mousewheel-disabled";
 export declare const SliderWidth = "slider-width";
 export declare const SliderHeight = "slider-height";
 export declare const SliderRadius = "slider-radius";

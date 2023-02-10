@@ -247,4 +247,61 @@ QUnit.module('Generated Labels', (hooks) => {
     assert.deepEqual($valueLabel.textContent, '78');
   });
 
+  QUnit.test('generateLabelsFormat, arrow right ----> value label should have $78.00', (assert) => {
+    const $slider = document.querySelector('#slider-80');
+    $slider.generateLabelsFormat = (value) => {
+      if(value === undefined) return '';
+      return '$' + Number(value).toFixed(2);
+    };
+
+    const $pointer = $slider.shadowRoot.querySelector('.pointer');
+    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      key: 'ArrowRight',
+    }));
+
+    const $valueLabel = $slider.shadowRoot.querySelector('.value1-label');
+    assert.deepEqual($valueLabel.textContent, '$78.00');
+  });
+
+  QUnit.test('generateLabelsFormat, arrow right ----> min should be $0.00', (assert) => {
+    const $slider = document.querySelector('#slider-80');
+    $slider.generateLabelsFormat = (value) => {
+      if(value === undefined) return '';
+      return '$' + Number(value).toFixed(2);
+    };
+
+    const $pointer = $slider.shadowRoot.querySelector('.pointer');
+    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      key: 'ArrowRight',
+    }));
+
+    const $minLabel = $slider.shadowRoot.querySelector('.min-label');
+    assert.deepEqual($minLabel.textContent, '$0.00');
+  });
+
+  QUnit.test('generateLabelsFormat, arrow right ----> max should be $100.00', (assert) => {
+    const $slider = document.querySelector('#slider-80');
+    $slider.generateLabelsFormat = (value) => {
+      if(value === undefined) return '';
+      return '$' + Number(value).toFixed(2);
+    };
+
+    const $pointer = $slider.shadowRoot.querySelector('.pointer');
+    $pointer.dispatchEvent(new KeyboardEvent('keydown', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      key: 'ArrowRight',
+    }));
+
+    const $maxLabel = $slider.shadowRoot.querySelector('.max-label');
+    assert.deepEqual($maxLabel.textContent, '$100.00');
+  });
+
 });
