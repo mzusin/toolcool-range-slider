@@ -10,7 +10,9 @@ let version = '1.0.1';
 try {
   const parsed = JSON.parse(packageJson);
   version = parsed.version;
-} catch (ex) {}
+} catch (ex) {
+  // ....
+}
 
 const settings = {
   entryPoints: ['./src/core/index.ts'],
