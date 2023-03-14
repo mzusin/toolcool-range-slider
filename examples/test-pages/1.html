@@ -1,41 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Change Event Example | Tool Cool Range Slider</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<h1>Change Event Example</h1>
+<div class="field-checkbox">
+    <div class="input-wrapper range-slider">
+        <div class="filter-title">
+            <h4>Slider Test</h4>
+        </div>
 
-<div class="wrapper">
-
-    <h2>Basic slider</h2>
-    <div class="row">
+        <input type="hidden" name="min_val" class="form-control filter" id="min_val" value="1"
+               data-min-val="1"/>
+        <input type="hidden" name="max_val" class="form-control filter" id="max_val" value="100"
+               data-max-val="100"/>
         <tc-range-slider
-                id="slider-1"
-                value="50"
-                generate-labels="true"
-                round="2"
-                slider-width="100%"></tc-range-slider>
+                id="slider"
+                class="range-slider-widget"
+                min="1"
+                max="100"
+                value1="1"
+                value2="100"
+                generate-labels="false"
+                round="0"
+                value1-label="#value-ca-1"
+                value2-label="#value-ca-2"
+                slider-height="0.9rem"
+                slider-bg-fill="#f74331"
+                slider-bg="#888888"
+                pointer1-shadow="none"
+                pointer1-width="20px"
+                pointer1-height="20px"
+                pointer1-bg="#1568b9"
+                pointer1-bg-hover="#1568b9"
+                pointer1-bg-focus="#1568b9"
+                pointer1-border="1px solid #1568b9"
+                pointer1-border-hover="1px solid #1568b9"
+                pointer1-border-focus="1px solid #1568b9"
+                pointer2-shadow="none"
+                pointer2-width="20px"
+                pointer2-height="20px"
+                pointer2-bg="#1568b9"
+                pointer2-bg-hover="#1568b9"
+                pointer2-bg-focus="#1568b9"
+                pointer2-border="1px solid #1568b9"
+                pointer2-border-hover="1px solid #1568b9"
+                pointer2-border-focus="1px solid #1568b9"
+                keyboard-disabled="true"
+                mousewheel-disabled="true"
+        ></tc-range-slider>
+        <div class="row">
+            <div class="col">
+                <div id="value-ca-1"></div>
+            </div>
+            <div class="col text-end">
+                <div id="value-ca-2"></div>
+            </div>
+        </div>
     </div>
-
 </div>
-
-<script src="../../dist/plugins/tcrs-generated-labels.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.slim.js" integrity="sha256-dWvV84T6BhzO4vG6gWhsWVKVoa4lVmLnpBOZh/CAHU4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/toolcool-range-slider/dist/plugins/tcrs-binding-labels.min.js"></script>
 <script src="../../dist/toolcool-range-slider.min.js"></script>
-
 <script>
+    jQuery.noConflict();
 
-    /*// slider #1 ------------------
-    const $slider1 = document.getElementById('slider-1');
-    $slider1.generateLabelsFormat = (value) => {
-        if(value === undefined) return '';
-        return '$' + Number(value).toFixed(2);
-    };*/
+    window.addEventListener('load', function () {
+        console.log('filters loaded');
+        const filters = new Filters();
+        filters.loadComponents();
+    }, false);
 
+    class Filters {
 
+        loadComponents() {
+            this.loadMySlider();
+        }
+
+        loadMySlider() {
+            const $mySlider = document.getElementById('slider');
+            if($mySlider != null) {
+                if($mySlider.classList.contains('range-slider-widget')) {
+                    // listen to the change event
+
+                    var sliderVal1 = 0;
+                    var sliderVal2 = 0;
+
+                    $mySlider.addEventListener('onMouseUp', (evt) => {
+                        evt.preventDefault();
+                        evt.stopPropagation();
+                        console.log($mySlider.id);
+                        jQuery('#min_val').val(Number(sliderVal1));
+                        jQuery('#max_val').val(Number(sliderVal2));
+
+                        this.submitFilters(1, true);
+
+                        $mySlider.blur();
+                    });
+
+                    $mySlider.addEventListener('touchend', (evt) => {
+                        evt.preventDefault();
+
+                        jQuery('#min_val').val(Number(sliderVal1));
+                        jQuery('#max_val').val(Number(sliderVal2));
+
+                        this.submitFilters(1, true);
+                    });
+
+                    $mySlider.addEventListener('change', (evt) => {
+                        evt.preventDefault();
+                        sliderVal1 = evt.detail.value1;
+                        sliderVal2 = evt.detail.value2;
+                    });
+                }
+            } else {
+                console.log('is null');
+            }
+        }
+
+        submitFilters($id, $reload) {
+            console.log('submit filter');
+        }
+    }
 </script>
 </body>
 </html>

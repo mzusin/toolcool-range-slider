@@ -121,7 +121,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
       $slider.classList.add(CssClasses.AnimateOnClick);
     }
 
-    sendMouseUpEvent($component, evt);
+    if(evt.currentTarget === $slider){
+      sendMouseUpEvent($component, evt);
+    }
   };
 
   const getActivePointer = ($target: HTMLElement, percent: number) => {
