@@ -4,7 +4,7 @@
 
 Range slider pointers can be shaped differently using the standalone **Pointer Shapes Plugin**.
 
-To use the plugin, download the latest [tcrs-pointer-shapes.min.css](https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/plugins/tcrs-pointer-shapes.min.css) file from GitHub and pass it to the slider using the [css-links](/pages/css-links.html) attribute. Then add the **pointer-shape** attribute as follows:
+To use the plugin, download the latest [tcrs-pointer-shapes.min.css](https://github.com/mzusin/toolcool-range-slider/blob/main/dist/plugins/tcrs-pointer-shapes.min.css) file from GitHub and pass it to the slider using the [css-links](/pages/css-links.html) attribute. Then add the **pointer-shape** attribute as follows:
 
 
 ```html
@@ -215,4 +215,4 @@ $slider.pointerShape = 'rhombus';
     </div> 
 </div>
 
-> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/6-pointer-shapes.html).
+> :pushpin: An example page with the source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/6-pointer-shapes.html).

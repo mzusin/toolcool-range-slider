@@ -95,7 +95,7 @@ You can also specify different styles for different pointers:
         pointer3-radius="100%"></tc-range-slider>
 </div>
 
-> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/2-width-height.html).
+> :pushpin: An example page with the source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/2-width-height.html).
 
 | HTML Property   | Default Value           | API Property   |
 |-----------------|-------------------------|----------------|

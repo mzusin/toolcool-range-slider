@@ -67,4 +67,4 @@ Or with TypeScript:
 </script>
 ```
 
-> :pushpin: An example page can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/10-right-to-left.html).
+> :pushpin: An example page can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/10-right-to-left.html).

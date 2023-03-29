@@ -4,7 +4,7 @@
 
 Range slider library has a standalone **Marks Plugin**. This allows to generate points along the slider.
 
-Download the latest [tcrs-marks.min.js](https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/plugins/tcrs-marks.min.js) script from GitHub and add it to the HTML before the **toolcool-range-slider.min.js** script.
+Download the latest [tcrs-marks.min.js](https://github.com/mzusin/toolcool-range-slider/blob/main/dist/plugins/tcrs-marks.min.js) script from GitHub and add it to the HTML before the **toolcool-range-slider.min.js** script.
 
 And then add the **marks="true"** attribute to see it in action. Check out the following basic example:
 
@@ -390,5 +390,5 @@ Bottom to top:
 </div>
 
 
-> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/33-marks-plugin.html).
+> :pushpin: An example page with the source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/33-marks-plugin.html).
 

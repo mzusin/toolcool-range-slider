@@ -12,4 +12,4 @@ You can add more than one path by separating them with **;**
 <toolcool-range-slider css-links="/path/file-name-1.css; /path/file-name-2.css;"></toolcool-range-slider>
 ```
 
-> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/27-external-css.html).
+> :pushpin: An example page with the source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/27-external-css.html).

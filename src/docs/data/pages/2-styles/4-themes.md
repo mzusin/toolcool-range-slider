@@ -4,7 +4,7 @@
 
 The slider has several predefined themes that can be loaded using a standalone plugin. Each theme defines a unique look-and-feel and can be used "as is" without defining each style parameter separately. The slider has the following themes: **target, glass, rect, circle, rainbow, ruler**.
 
-To use themes, download the latest [tcrs-themes.min.css](https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/plugins/tcrs-themes.min.css) file from GitHub. Then use the [css-links](/pages/css-links.html) attribute to pass it to the slider:
+To use themes, download the latest [tcrs-themes.min.css](https://github.com/mzusin/toolcool-range-slider/blob/main/dist/plugins/tcrs-themes.min.css) file from GitHub. Then use the [css-links](/pages/css-links.html) attribute to pass it to the slider:
 
 ```html
 <tc-range-slider
@@ -177,6 +177,6 @@ TypeScript example:
 </script>
 ```
 
-> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/3-themes.html).
+> :pushpin: An example page with the source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/3-themes.html).
 
-> :pushpin: An example with a dark background can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/5-dark-background.html).
+> :pushpin: An example with a dark background can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/5-dark-background.html).

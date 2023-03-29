@@ -65,4 +65,4 @@ If you need to disable all default styles, you can do it like this:
 </tc-range-slider>
 ```
 
-> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/19-pointers-images-and-svg.html).
+> :pushpin: An example page with the source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/19-pointers-images-and-svg.html).

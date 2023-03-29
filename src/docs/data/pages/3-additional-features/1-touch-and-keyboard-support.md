@@ -62,7 +62,7 @@ const $slider1 = document.getElementById('slider-1');
 $slider1.keyboardDisabled = true;
 ```
 
-> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/20-keyboard-disabled.html).
+> :pushpin: An example page with the source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/20-keyboard-disabled.html).
 
 
 ### **mousewheel-disabled** attribute
@@ -80,4 +80,4 @@ const $slider1 = document.getElementById('slider-1');
 $slider1.mousewheelDisabled = true;
 ```
 
-> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/34-mousewheel-disabled.html).
+> :pushpin: An example page with the source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/34-mousewheel-disabled.html).

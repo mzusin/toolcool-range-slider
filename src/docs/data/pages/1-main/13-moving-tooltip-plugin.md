@@ -5,7 +5,7 @@
 Range slider library has a standalone **Moving Tooltip Plugin**. The plugin adds a moving tooltip to each pointer. You can change the tooltip color, size, and distance to pointer.
 
 
-Download the latest [tcrs-moving-tooltip.min.js](https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/plugins/tcrs-moving-tooltip.min.js) script from GitHub and add it to the HTML before the **toolcool-range-slider.min.js** script.
+Download the latest [tcrs-moving-tooltip.min.js](https://github.com/mzusin/toolcool-range-slider/blob/main/dist/plugins/tcrs-moving-tooltip.min.js) script from GitHub and add it to the HTML before the **toolcool-range-slider.min.js** script.
 
 Check out the following basic example:
 
@@ -174,5 +174,5 @@ $slider.tooltipUnits = '$';
 $slider.tooltipUnitType = 'prefix';
 ```
 
-> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/28-moving-tooltip-plugin.html).
+> :pushpin: An example page with the source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/28-moving-tooltip-plugin.html).
 

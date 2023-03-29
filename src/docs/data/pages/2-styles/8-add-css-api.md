@@ -17,4 +17,4 @@ It is possible to dynamically add CSS as a plain string using the **addCSS** API
 </script>
 ```
 
-> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/29-add-css-api.html).
+> :pushpin: An example page with the source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/29-add-css-api.html).

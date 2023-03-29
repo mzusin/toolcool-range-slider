@@ -44,4 +44,4 @@ $slider.pointersOverlap = true;
     </div>
 </div> 
 
-> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/16-two-pointers-min-max-distance.html).
+> :pushpin: An example page with the source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/16-two-pointers-min-max-distance.html).

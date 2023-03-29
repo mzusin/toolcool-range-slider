@@ -4,7 +4,7 @@
 
 Range slider values can be automatically printed to HTML using **Binding Labels Plugin**.
 
-Download the latest [tcrs-binding-labels.min.js](https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/plugins/tcrs-binding-labels.min.js) script from GitHub and add it to the HTML before the **toolcool-range-slider.min.js** script.
+Download the latest [tcrs-binding-labels.min.js](https://github.com/mzusin/toolcool-range-slider/blob/main/dist/plugins/tcrs-binding-labels.min.js) script from GitHub and add it to the HTML before the **toolcool-range-slider.min.js** script.
 
 Use the **value-label** attribute to specify the path to the label. The path can point to any HTML element.
 
@@ -123,4 +123,4 @@ const $slider2 = document.getElementById('slider-2') as RangeSlider;
 ($slider2 as IBindingLabelsPlugin).valueLabel = '.value-22';
 ```
 
-> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/7-automatic-labels-binding-plugin.html).
+> :pushpin: An example page with the source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/7-automatic-labels-binding-plugin.html).

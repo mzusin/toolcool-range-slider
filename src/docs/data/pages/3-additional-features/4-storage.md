@@ -2,7 +2,7 @@
 
 The range slider library also supports local and session storage using a standalone **Storage Plugin**. It's used to save the selected slider value between different pages and page reloads.
 
-Download the latest [tcrs-storage.min.js](https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/plugins/tcrs-storage.min.js) script from GitHub and add it to the HTML before the **toolcool-range-slider.min.js** script. Then use the **storage** and **storage-key** attributes to enable the plugin.
+Download the latest [tcrs-storage.min.js](https://github.com/mzusin/toolcool-range-slider/blob/main/dist/plugins/tcrs-storage.min.js) script from GitHub and add it to the HTML before the **toolcool-range-slider.min.js** script. Then use the **storage** and **storage-key** attributes to enable the plugin.
 
 Session storage example:
 
@@ -82,4 +82,4 @@ import 'toolcool-range-slider';
 // any code here...
 ```
 
-> :pushpin: An example page can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/9-storage.html).
+> :pushpin: An example page can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/9-storage.html).

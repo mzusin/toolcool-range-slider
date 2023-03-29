@@ -136,7 +136,7 @@ export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
   ];
 
   // The maximum number of such pointers is determined by the MAX_VALUES_API API constant (for performance reasons).
-  // https://github.com/toolcool-org/toolcool-range-slider/issues/2
+  // https://github.com/mzusin/toolcool-range-slider/issues/2
   for(let i=2; i<MAX_VALUES_API; i++){
     apiProperties.push([`value${ i }`, `ariaLabel${ i }`, `pointer${ i }Shape`, `pointer${ i }Disabled`, i - 1]);
   }

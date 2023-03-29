@@ -89,7 +89,7 @@ $slider1.value = 50;
 ```
 
 
-> :pushpin: An example page with the change event source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/1-change-event.html).
+> :pushpin: An example page with the change event source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/1-change-event.html).
 
 
 

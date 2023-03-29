@@ -31,4 +31,4 @@ import 'toolcool-range-slider';
 
 > **Important**: the plugin script should be included BEFORE the core script.
 
-> You can find an example project of slider with Webpack 5 [here](https://github.com/toolcool-org/toolcool-range-slider-webpack-5).
+> You can find an example project of slider with Webpack 5 [here](https://github.com/mzusin/toolcool-range-slider-webpack-5).

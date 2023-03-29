@@ -4,7 +4,7 @@ It's possible to create your own CSS themes for the slider. It can be done as fo
 
 - Create a new CSS file **my-theme.css**.
 - Each CSS rule should start with **.theme-** prefix. 
-- Use the CSS variables from [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/src/core/app/styles.pcss) to change the look of the slider.
+- Use the CSS variables from [here](https://github.com/mzusin/toolcool-range-slider/blob/main/src/core/app/styles.pcss) to change the look of the slider.
 - Add **theme** attribute to the slider. For example, if your CSS rule is **.theme-example**, then you need to pass **theme="example"** attribute to the slider.
 - Add your CSS file to the slider using [css links](/pages/css-links.html).
 

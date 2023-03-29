@@ -47,4 +47,4 @@ $slider1.addEventListener('onKeyDown', (evt) => {
 });
 ```
 
-> :pushpin: An example page with the source code can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/21-events.html).
+> :pushpin: An example page with the source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/21-events.html).

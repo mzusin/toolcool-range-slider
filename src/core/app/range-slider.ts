@@ -10,7 +10,7 @@ import { initPointerAPI, initPointerAPIs, initPointers } from '../domain/pointer
 
 /**
  * Usage: <toolcool-range-slider value="0" min="0" max="100"></toolcool-range-slider>
- * Documentation: https://github.com/toolcool-org/toolcool-range-slider
+ * Documentation: https://github.com/mzusin/toolcool-range-slider
  */
 class TCRangeSlider extends HTMLElement {
 

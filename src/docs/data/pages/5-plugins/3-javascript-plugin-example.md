@@ -241,5 +241,5 @@ const ExamplePlugin = () => {
 };
 ```
 
-You can find the source code for several plugins [here](https://github.com/toolcool-org/toolcool-range-slider/tree/main/src/plugins).
+You can find the source code for several plugins [here](https://github.com/mzusin/toolcool-range-slider/tree/main/src/plugins).
 

@@ -4,7 +4,7 @@
 
 The library also has an **Origin at Center Plugin**. This plugin makes the origin of the pointer always in the center.
 
-Download the latest [tcrs-origin-center.min.js](https://github.com/toolcool-org/toolcool-range-slider/blob/main/dist/plugins/tcrs-origin-center.min.js) script from GitHub and add it to the HTML before the **toolcool-range-slider.min.js** script.
+Download the latest [tcrs-origin-center.min.js](https://github.com/mzusin/toolcool-range-slider/blob/main/dist/plugins/tcrs-origin-center.min.js) script from GitHub and add it to the HTML before the **toolcool-range-slider.min.js** script.
 
 Use the **origin-at-center="true"** attribute to enable the plugin.
 
@@ -52,4 +52,4 @@ const $slider = document.getElementById('slider-1') as IOriginCenterPlugin;
 $slider.originCenterEnabled = true; // or false
 ```
 
-> :pushpin: An example page can be found [here](https://github.com/toolcool-org/toolcool-range-slider/blob/main/examples/31-origin-at-center.html).
+> :pushpin: An example page can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/31-origin-at-center.html).
