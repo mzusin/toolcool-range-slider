@@ -1,6 +1,6 @@
 {
   "name": "toolcool-range-slider",
-  "version": "4.0.22",
+  "version": "4.0.23",
   "description": "Responsive range slider library written in typescript and using web component technologies. Pure JavaScript without additional dependencies. It has a rich set of settings, including one and two pointers, a vertical slider, touch, mousewheel and keyboard support, local and session storage, and RTL support.",
   "main": "./dist/toolcool-range-slider.min.js",
   "types": "./index.d.ts",
@@ -26,8 +26,6 @@
     "origin-center-plugin:watch": "node run/plugins/origin-center-plugin.js -- watch",
     "marks-plugin:build": "node run/plugins/marks-plugin.js",
     "marks-plugin:watch": "node run/plugins/marks-plugin.js -- watch",
-    "svg-path-plugin:build": "node run/plugins/svg-path-plugin.js",
-    "svg-path-plugin:watch": "node run/plugins/svg-path-plugin.js -- watch",
     "fire-plugin:build": "node run/plugins/fire-plugin.js",
     "fire-plugin:watch": "node run/plugins/fire-plugin.js -- watch",
     "themes-css-plugin:build": "node run/plugins/themes-css-plugin.js",
@@ -45,7 +43,7 @@
     "range-picker",
     "rangeslider"
   ],
-  "author": "Tool Cool <toolcool.org@gmail.com>",
+  "author": "Miriam Zusin <miriam.zusin@gmail.com>",
   "license": "MIT",
   "browserslist": [
     ">0.2%",
@@ -54,7 +52,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/toolcool-org/toolcool-range-slider"
+    "url": "https://github.com/mzusin/toolcool-range-slider"
   },
   "devDependencies": {
     "@sindresorhus/slugify": "^2.2.0",

@@ -13,9 +13,9 @@ const settings = {
     js: `/* 
 Tool Cool Range Slider - Binding Labels Plugin
 Version: ${ VERSION }
-Documentation: https://github.com/toolcool-org/toolcool-range-slider 
+Documentation: https://github.com/mzusin/toolcool-range-slider 
 License: MIT License        
-Author: Tool Cool, toolcool.org@gmail.com>                          
+Author: Miriam Zusin                         
 */`,
   },
 };
