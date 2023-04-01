@@ -165,10 +165,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     }
 
     if(!isPanelClicked($target) && !panelFillClicked){
-
       // if clicked directly on 1 of the pointers ---> return it
       for(const pointer of pointers){
-        if(!pointer.isClicked($target)) continue;
+        if(!pointer.isClicked($target) || pointer.disabled) continue;
 
         if(animateOnClick){
           $slider.classList.remove(CssClasses.AnimateOnClick);
@@ -188,6 +187,8 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     let minDistancePointer = null;
 
     for(const pointer of pointers){
+      if(pointer.disabled) continue;
+
       const distance = Math.abs(percent - pointer.percent);
       if(distance < minDistance){
         minDistance = distance;
@@ -244,6 +245,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     }
 
     const foundIndex = getSelectedPointerIndex();
+
     if(foundIndex !== -1){
       setPositions(foundIndex, percent);
       selectedPointer?.$pointer.focus();
