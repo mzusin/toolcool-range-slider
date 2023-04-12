@@ -30,6 +30,8 @@ export const compileClientSideCSS = async (cssTimeStamp) => {
       variants: {
         extend: {},
       },
+
+      darkMode: 'class',
     }),
     cssnano({ preset: 'default' }),
     autoprefixer,

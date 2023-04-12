@@ -68,9 +68,9 @@ export const collectSideMenuData = (sourceRootPath, parent, sideMenuMap) => {
  * @returns {string}
  */
 export const renderSideMenu = (
-  sideMenuMap,
-  activeItem,
-  pagesConfig
+    sideMenuMap,
+    activeItem,
+    pagesConfig
 ) => {
 
   let html = '';
@@ -91,7 +91,6 @@ export const renderSideMenu = (
     // otherwise remove dashes and apply title case
     const sectionConfigValue = pagesConfig[`${ section }`];
     const sectionTitle = sectionConfigValue ? sectionConfigValue.title : toTitleCase(removeNumberOnStart(section));
-    html += `<div class="text-xl my-4">${ sectionTitle }</div>`;
 
     // find all section links and sort them in alphanumeric order
     // before removing the beginning number with dash
@@ -102,17 +101,38 @@ export const renderSideMenu = (
         sensitivity: 'base'
       });
     });
+    const hasLinks = links.length > 0;
 
-    for(const link of links){
-      const codeName = removeNumberOnStart(link);
-      const isActive = activeItem === codeName;
+    const arrow = hasLinks ? `
+        <svg data-arrow xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#626e7f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="ml-2 rotate-90" viewBox="0 0 24 24">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <path d="m7 7 5 5-5 5m6-10 5 5-5 5"/>
+        </svg>
+` : '';
 
-      // check if page titles appears in pages-config.json
-      // otherwise remove dashes and apply title case
-      const pagesConfigValue = pagesConfig[`${ link }.md`];
-      const title = pagesConfigValue ? pagesConfigValue.title : toTitleCase(codeName);
+    // add title html --------
+    html += `<div class="text-xl my-4 flex items-center ${ hasLinks ? 'cursor-pointer' : '' }" ${ hasLinks ? 'data-collapsible-title data-opened="true"' : ''}>
+        ${ sectionTitle } ${ arrow }
+    </div>`;
 
-      html += `<a href="/pages/${ codeName }.html" title="" class="mb-2 ${ isActive ? 'text-blue-500 bg-slate-100 px-4 py-2 rounded-md' : 'text-slate-500' }">${ title }</a>`;
+    if(hasLinks){
+      html += '<div class="flex flex-col" data-links>';
+
+      for(let i= 0; i<links.length; i++){
+        const link = links[i];
+        const codeName = removeNumberOnStart(link);
+        const isActive = activeItem === codeName;
+        const isLastLink = i === links.length - 1;
+
+        // check if page titles appears in pages-config.json
+        // otherwise remove dashes and apply title case
+        const pagesConfigValue = pagesConfig[`${ link }.md`];
+        const title = pagesConfigValue ? pagesConfigValue.title : toTitleCase(codeName);
+
+        html += `<a href="/pages/${ codeName }.html" title="" class="pl-3 border-l border-slate-150 ${ isLastLink ? '' : 'pb-2' } ${ isActive ? 'text-sky-500' : 'text-slate-500' }">${ title }</a>`;
+      }
+
+      html += '</div>';
     }
   }
 

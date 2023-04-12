@@ -7,6 +7,10 @@
     }
 }
 
+.dark {
+    color-scheme: dark;
+}
+
 @layer components {
     .w-350{
         width: 350px;
@@ -27,6 +31,10 @@
 
     .mobile-menu-opened .side-menu{
         left: 0;
+    }
+
+    .min-w-270{
+        min-width: 270px;
     }
 }
 
