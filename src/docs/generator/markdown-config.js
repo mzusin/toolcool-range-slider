@@ -140,7 +140,7 @@ export const configureMarkdown = (md) => {
 
     // <blockquote>
     md.renderer.rules.blockquote_open = function(tokens, idx, options, env, self) {
-      tokens[idx].attrJoin('class', 'bg-gray-100 pt-4 px-4 flex my-10 border-l-4 border-blue-300 rounded');
+      tokens[idx].attrJoin('class', 'bg-gray-100 pt-4 px-4 flex my-10 border-l-4 border-blue-300 rounded dark:bg-purple-900');
       return blockquote_open(tokens, idx, options, env, self)
     };
 
