@@ -672,7 +672,7 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     const pointer = pointers[index];
     if(!pointer) return;
 
-    pointer.updatePosition(_percent, getPointerLeftWall(index), getPointerRightWall(index), type, rightToLeft, bottomToTop);
+    const percentChanged = pointer.updatePosition(_percent, getPointerLeftWall(index), getPointerRightWall(index), type, rightToLeft, bottomToTop);
     panelFill?.updatePosition(type, pointers.map(pointer => pointer.percent), rightToLeft, bottomToTop);
 
     updatePlugins();
@@ -687,7 +687,9 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
 
     setAriaMinMax();
 
-    sendChangeEvent($component, pointers.map(pointer => getTextValue(pointer.percent)));
+    if(percentChanged){
+      sendChangeEvent($component, pointers.map(pointer => getTextValue(pointer.percent)));
+    }
   };
 
   const setAllPositions = () => {

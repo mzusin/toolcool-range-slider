@@ -5,7 +5,7 @@ export interface IPointer {
   readonly percent: number;
   readonly $pointer: HTMLElement;
 
-  updatePosition: (percent: number, leftWall: number | undefined, rightWall: number | undefined, type: string, rightToLeft: boolean, bottomToTop: boolean) => void;
+  updatePosition: (percent: number, leftWall: number | undefined, rightWall: number | undefined, type: string, rightToLeft: boolean, bottomToTop: boolean) => boolean;
 
   disabled: boolean;
 
@@ -37,7 +37,21 @@ export const Pointer = ($component: HTMLElement, $pointer: HTMLElement, index: n
   let disabled = false;
 
   // -------------- APIs -------------------------
-  const updatePosition = (_percent: number, _leftWall: number | undefined, _rightWall: number | undefined, _type: string, _rightToLeft: boolean, _bottomToTop: boolean) => {
+
+  /**
+   * Update pointer position according to its percent (value).
+   * Returns true if change position has changed.
+   */
+  const updatePosition = (
+      _percent: number,
+      _leftWall: number | undefined,
+      _rightWall: number | undefined,
+      _type: string,
+      _rightToLeft: boolean,
+      _bottomToTop: boolean): boolean => {
+
+    const oldValue = percent;
+
     if(_rightWall !== undefined && _percent > _rightWall){
       _percent = _rightWall;
     }
@@ -63,6 +77,8 @@ export const Pointer = ($component: HTMLElement, $pointer: HTMLElement, index: n
     else {
       $pointer.style.left = `${ percentPos }%`;
     }
+
+    return oldValue !== percent;
   };
 
   const isClicked = ($target: HTMLElement) => {
