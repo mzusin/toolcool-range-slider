@@ -80,7 +80,7 @@ export const configureMarkdown = (md) => {
 
     // <table>
     md.renderer.rules.table_open = function(tokens, idx, options, env, self) {
-      tokens[idx].attrJoin('class', 'border-collapse text-sm text-slate-800 table-auto w-full mb-10 mt-4 shadow-sm rounded border border-slate-100');
+      tokens[idx].attrJoin('class', 'border-collapse text-sm text-slate-800 table-auto w-full mb-10 mt-4 shadow-sm rounded border border-slate-100  dark:border-slate-600 dark:text-slate-100');
       return table_open(tokens, idx, options, env, self)
     };
 
@@ -92,19 +92,19 @@ export const configureMarkdown = (md) => {
 
     // <tbody>
     md.renderer.rules.tbody_open = function(tokens, idx, options, env, self) {
-      tokens[idx].attrJoin('class', 'bg-slate-50');
+      tokens[idx].attrJoin('class', 'bg-slate-50 dark:bg-slate-900');
       return tbody_open(tokens, idx, options, env, self)
     };
 
     // <tr>
     md.renderer.rules.tr_open = function(tokens, idx, options, env, self) {
-      tokens[idx].attrJoin('class', 'border-slate-200 border-b last:border-0');
+      tokens[idx].attrJoin('class', 'border-slate-200 border-b last:border-0 dark:border-slate-600');
       return tr_open(tokens, idx, options, env, self)
     };
 
     // <th>
     md.renderer.rules.th_open = function(tokens, idx, options, env, self) {
-      tokens[idx].attrJoin('class', 'px-6 py-4 border-b font-medium text-slate-400 text-base');
+      tokens[idx].attrJoin('class', 'px-6 py-4 border-b font-medium text-slate-400 text-base dark:border-slate-600');
       return th_open(tokens, idx, options, env, self)
     };
 
@@ -140,7 +140,7 @@ export const configureMarkdown = (md) => {
 
     // <blockquote>
     md.renderer.rules.blockquote_open = function(tokens, idx, options, env, self) {
-      tokens[idx].attrJoin('class', 'bg-gray-100 pt-4 px-4 flex my-10 border-l-4 border-blue-300 rounded dark:bg-purple-900');
+      tokens[idx].attrJoin('class', 'bg-gray-100 pt-4 px-4 flex my-10 border-l-4 border-blue-300 rounded dark:bg-sky-900');
       return blockquote_open(tokens, idx, options, env, self)
     };
 
