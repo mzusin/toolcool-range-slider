@@ -32,7 +32,10 @@
               slider-width="100%"
               id="slider-2"></tc-range-slider>
             <label>100</label>
-            <div id="value-2" class="value"></div>
+            <div class="value">
+                <span id="value-2-1" class="next-value"></span>
+                <span id="value-2-2"></span>
+            </div>
         </div>
 
         <h2>Negative min and max</h2>
@@ -60,7 +63,11 @@
               slider-width="100%"
               id="slider-4"></tc-range-slider>
             <label>50</label>
-            <div id="value-4" class="value"></div>
+            <div class="value">
+                <span id="value-4-1" class="next-value"></span>
+                <span id="value-4-2" class="next-value"></span>
+                <span id="value-4-3"></span>
+            </div>
         </div>
 
         <h2>Slider with step = 10</h2>
@@ -91,13 +98,16 @@
 
         // slider #2 ------------------
         const $slider2 = document.getElementById('slider-2');
-        const $value2 = document.getElementById('value-2');
-        $slider2.addEventListener('change', (evt) => {
-            const value = evt.detail.value;
-            $value2.textContent = value.toString();
-        });
-        $value2.textContent = $slider2.value;
+        const $value2_1 = document.getElementById('value-2-1');
+        const $value2_2 = document.getElementById('value-2-2');
 
+        $slider2.addEventListener('change', (evt) => {
+            $value2_1.textContent = evt.detail.value1.toString();
+            $value2_2.textContent = evt.detail.value2.toString();
+        });
+
+        $value2_1.textContent = $slider2.value1;
+        $value2_2.textContent = $slider2.value2;
 
         // slider #3 ------------------
         const $slider3 = document.getElementById('slider-3');
@@ -110,13 +120,19 @@
 
         // slider #4 ------------------
         const $slider4 = document.getElementById('slider-4');
-        const $value4 = document.getElementById('value-4');
-        $slider4.addEventListener('change', (evt) => {
-            const value = evt.detail.value;
-            $value4.textContent = value.toString();
-        });
-        $value4.textContent = $slider4.value;
+        const $value4_1 = document.getElementById('value-4-1');
+        const $value4_2 = document.getElementById('value-4-2');
+        const $value4_3 = document.getElementById('value-4-3');
 
+        $slider4.addEventListener('change', (evt) => {
+            $value4_1.textContent = evt.detail.value1.toString();
+            $value4_2.textContent = evt.detail.value2.toString();
+            $value4_3.textContent = evt.detail.value3.toString();
+        });
+
+        $value4_1.textContent = $slider4.value1;
+        $value4_2.textContent = $slider4.value2;
+        $value4_3.textContent = $slider4.value3;
 
         // slider #5 ------------------
         const $slider5 = document.getElementById('slider-5');

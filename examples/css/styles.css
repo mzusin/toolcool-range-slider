@@ -12,7 +12,7 @@ h1{
 
 h2{
     font-size: 1.1rem;
-    margin: 0 0 1rem 0;
+    margin: 0 0 1.5rem 0;
     padding-left: 1.5rem;
     color: #606060;
     font-weight: normal;
@@ -46,4 +46,8 @@ label{
 .desc{
     text-align: center;
     padding: 0 1rem 1rem 1rem;
+}
+
+.next-value{
+    margin-right: 0.5rem;
 }
