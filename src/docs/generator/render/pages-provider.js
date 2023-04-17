@@ -36,7 +36,7 @@ const renderPrevNext = (pagesList, currentPage, pagesConfig) => {
     let title = pagesConfig[`${ link }.md`] ? pagesConfig[`${ link }.md`].title : toTitleCase(prev);
 
     html += `
-<div class="flex justify-between items-start border border-slate-200 rounded p-4">
+<div class="flex justify-between items-start border border-slate-200 dark:border-slate-600 rounded p-4">
   <a href="/pages/${ prev }.html" title="" class="mr-4 hover:text-blue-500">
     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24">
     <path stroke="none" d="M0 0h24v24H0z"/>
@@ -57,7 +57,7 @@ const renderPrevNext = (pagesList, currentPage, pagesConfig) => {
     let title = pagesConfig[`${ link }.md`] ? pagesConfig[`${ link }.md`].title : toTitleCase(next);
 
     html += `
-<div class="flex justify-between items-start border border-slate-200 rounded p-4">
+<div class="flex justify-between items-start border border-slate-200 dark:border-slate-600 rounded p-4">
   
   <div class="flex flex-col justify-center">
     <div class="mb-2 text-sm text-slate-300">Next</div>
