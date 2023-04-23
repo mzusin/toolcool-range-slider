@@ -7,7 +7,8 @@
   "scripts": {
     "core:build": "node run/core.js",
     "core:watch": "node run/core.js -- watch",
-    "test": "./node_modules/karma/bin/karma start ./karma.conf.cjs",
+    "test": "./node_modules/karma/bin/karma start ./karma.conf.cjs --single-run true",
+    "test:watch": "./node_modules/karma/bin/karma start ./karma.conf.cjs --auto-watch true",
     "eslint": "eslint ./src/**",
     "docs:website": "http-server ./docs",
     "docs:build": "node ./src/docs/generator/index.js",
