@@ -124,3 +124,13 @@ It can be used **for free** in any personal or commercial project :gift:
 
 [![Tool Cool Range Slider](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/img/preview/toolcool-range-slider-preview-2.png?raw=true)](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/3-styles.html)
 
+
+## Other Projects
+- [ミ☆ mzParticles ☆彡](https://github.com/mzusin/mz-particles) - TypeScript library for creating particle effects.
+- [mzMath](https://github.com/mzusin/mz-math) - a collection of typescript-based math helpers. 
+- [mzSVG](https://github.com/mzusin/mz-svg) - TypeScript-based library for managing SVG in the browser and Node.js.
+- [React Input Number](https://github.com/mzusin/mz-react-input-number) - React component that provides a user-friendly interface for entering numerical values. 
+- [Stripes Maker](https://github.com/mzusin/stripes-maker) - Node.js stripe pattern generator and maker. 
+- [mzCanvas](https://github.com/mzusin/mz-canvas) - The TypeScript-based library for manipulating &lt;canvas> element and 2D graphics in the browser. 
+- [Tool Cool Color Picker](https://github.com/mzusin/toolcool-color-picker) - color picker library written in typescript and using web component technologies.
+
