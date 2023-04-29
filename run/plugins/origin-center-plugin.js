@@ -11,11 +11,10 @@ const settings = {
   outfile: './dist/plugins/tcrs-origin-center.min.js',
   banner: {
     js: `/* 
-Tool Cool Range Slider - Origin Center Plugin
-Version: ${ VERSION }
-Documentation: https://github.com/mzusin/toolcool-range-slider 
-License: MIT License        
-Author: Miriam Zusin                          
+Tool Cool Range Slider - Origin Center Plugin v${ VERSION }
+https://github.com/mzusin/toolcool-range-slider 
+MIT License        
+Copyright (c) 2022-present, Miriam Zusin                          
 */`,
   },
 };

@@ -11,11 +11,10 @@ const settings = {
   outfile: './dist/plugins/tcrs-themes.min.css',
   banner: {
     css: `/* 
-Tool Cool Range Slider - Themes CSS Plugin
-Version: ${ VERSION }
-Documentation: https://github.com/mzusin/toolcool-range-slider 
-License: MIT License        
-Author: Miriam Zusin                      
+Tool Cool Range Slider - Themes CSS Plugin v${ VERSION }
+https://github.com/mzusin/toolcool-range-slider 
+MIT License        
+Copyright (c) 2022-present, Miriam Zusin                        
 */`,
   },
 };

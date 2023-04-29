@@ -28,11 +28,10 @@ const settings = {
   plugins: [pcssPlugin, esbuildTemplateLiteralsPlugin],
   banner: {
     js: `/* 
-Tool Cool Range Slider 
-Version: ${version}
-Documentation: https://github.com/mzusin/toolcool-range-slider
-License: MIT License        
-Author: Miriam Zusin            
+Tool Cool Range Slider v${ version }
+https://github.com/mzusin/toolcool-range-slider
+MIT License        
+Copyright (c) 2022-present, Miriam Zusin          
 */`,
   },
 };
