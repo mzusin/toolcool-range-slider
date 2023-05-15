@@ -12,7 +12,7 @@
     "useDefineForClassFields": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
-    "suppressImplicitAnyIndexErrors": true,
+    "ignoreDeprecations": "5.0",
 
     "declaration": true,
     "declarationMap": false,
@@ -28,7 +28,7 @@
     "jsx": "react"
   },
   "include": [
-    "src",
+    "src"
   ],
   "exclude": [
     "types"

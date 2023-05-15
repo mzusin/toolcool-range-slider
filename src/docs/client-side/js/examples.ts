@@ -165,7 +165,7 @@ export const nonLinearStepExamples = () => {
   // non linear step example
   try{
     const $slider = document.getElementById('slider-7') as RangeSlider;
-    $slider.step = (_value: string | number, _percent: number) => {
+    $slider.step = (_value: number, _percent: number) => {
       return _value < 50 ? 5 : 10;
     };
   }
@@ -477,11 +477,11 @@ export const softLimitsExamples = () => {
     const $slider = document.getElementById('slider-21') as RangeSlider;
     $slider.addEventListener('onMouseUp', () => {
 
-      if($slider.value1 !== undefined && $slider.value1 < 20) {
+      if($slider.value1 !== undefined && ($slider.value1 as number) < 20) {
         $slider.value1 = 20;
       }
 
-      if($slider.value2 !== undefined && $slider.value2 > 80) {
+      if($slider.value2 !== undefined && ($slider.value2 as number) > 80) {
         $slider.value2 = 80;
       }
     });

@@ -181,7 +181,7 @@ const MovingTooltipPlugin = () : IPlugin => {
       if(value === undefined && !!$tooltip){
         // remove the tooltip
         $tooltip.remove();
-        $tooltip[i] = undefined;
+        $tooltips[i] = undefined;
         continue;
       }
 
