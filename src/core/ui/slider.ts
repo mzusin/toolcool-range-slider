@@ -115,15 +115,13 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     rangeDraggingDiff = undefined;
 
     window.removeEventListener('mousemove', onValueChange);
-    window.removeEventListener('mouseup', onValueChange);
+    window.removeEventListener('mouseup', onMouseUp);
 
     if(animateOnClick){
       $slider.classList.add(CssClasses.AnimateOnClick);
     }
 
-    if(evt.currentTarget === $slider){
-      sendMouseUpEvent($component, evt);
-    }
+    sendMouseUpEvent($component, evt);
   };
 
   const getActivePointer = ($target: HTMLElement, percent: number) => {

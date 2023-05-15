@@ -12,17 +12,15 @@
 <div class="wrapper">
 
     <div class="row" style="padding: 4rem;">
-        <toolcool-range-slider
-                id='slider'
-                data="Two Times A Week, Once A Week, Bi Weekly, One Time"
-                step="1"
-                min="1"
-                max=4
-                value1=1
-                marks="true" marks-count="4" marks-values-count="4"
-                slider-width="600px">
-
-            ></toolcool-range-slider>
+        <div class="row">
+            <tc-range-slider
+                    id="slider-1"
+                    slider-width="100%"
+                    generate-labels="true"
+                    min="0"
+                    max="100"
+                    value="50"></tc-range-slider>
+        </div>
     </div>
 
 </div>
@@ -31,14 +29,13 @@
 <script src="../../dist/plugins/tcrs-marks.min.js"></script>
 <script src="../../dist/toolcool-range-slider.min.js"></script>
 <script>
-    const $slider1 = document.getElementById('slider');
+    const $slider1 = document.getElementById('slider-1');
 
-    $slider1.addCSS(`
-    .mark-value{
-        max-width: 70px;
-        text-align: center;
-    }
-  `);
+    // onMouseUp event ------------
+    $slider1.addEventListener('onMouseUp', (evt) => {
+        const nativeEvent = evt.detail.nativeEvent;
+        console.log('Native mouseup event:', nativeEvent);
+    });
 </script>
 </body>
 </html>
