@@ -6,6 +6,7 @@
 name: Mark stale issues and pull requests
 
 on:
+  workflow_dispatch: # Putting here is also fine!!
   schedule:
   - cron: '32 2 * * *'
 
