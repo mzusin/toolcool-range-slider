@@ -17,6 +17,7 @@ const DEFAULT_TOOLTIP_WIDTH = 35;
 const DEFAULT_TOOLTIP_HEIGHT = 30;
 const DEFAULT_TOOLTIP_BG = '#475569';
 const DEFAULT_TOOLTIP_TEXT_COLOR = '#fff';
+const DEFAULT_Z_INDEX = 20;
 
 const MovingTooltipPlugin = () : IPlugin => {
 
@@ -41,7 +42,7 @@ const MovingTooltipPlugin = () : IPlugin => {
   };
 
   const createTooltipsRow = () => {
-    const $slider = $component?.shadowRoot?.querySelector('#range-slider')  as HTMLElement;
+    const $slider = $component?.shadowRoot?.querySelector('#range-slider') as HTMLElement;
     $tooltipsRow = document.createElement('div');
     $tooltipsRow.classList.add('tooltips');
     $slider.prepend($tooltipsRow);
@@ -50,11 +51,12 @@ const MovingTooltipPlugin = () : IPlugin => {
 
   const createTooltip = (className: string) => {
     const $tooltip = document.createElement('div');
+    $tooltip.style.zIndex = DEFAULT_Z_INDEX.toString();
     $tooltip.className = className;
     return $tooltip;
   };
 
-  const updateTooltip = ($tooltip: HTMLElement, type: string, left: string, top: string) => {
+  const updateTooltip = ($tooltip: HTMLElement, type: string, left: string, top: string, zIndex: string|number) => {
     if(!$tooltip) return;
 
     if(type === 'vertical'){
@@ -70,6 +72,7 @@ const MovingTooltipPlugin = () : IPlugin => {
     $tooltip.style.height = `${ tooltipHeight }px`;
     $tooltip.style.background = tooltipBg;
     $tooltip.style.color = tooltipTextColor;
+    $tooltip.style.zIndex = zIndex.toString();
   };
 
   const getTooltipText = (text: string) => {
@@ -89,7 +92,7 @@ const MovingTooltipPlugin = () : IPlugin => {
 
       const text = (values[i] ?? '').toString();
       $tooltip.textContent = getTooltipText(text);
-      updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top);
+      updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top, $pointers[i].style.zIndex);
     }
   };
 
@@ -174,7 +177,7 @@ const MovingTooltipPlugin = () : IPlugin => {
     const $pointers = getters?.getPointerElements() ?? [];
     const type = getters?.getType() ?? 'horizontal';
 
-    for(let i=0; i<data.values.length; i++){
+    for(let i=0; i<data.values.length; i++) {
       const value = data.values[i];
       const $tooltip = $tooltips[i];
 
@@ -192,7 +195,7 @@ const MovingTooltipPlugin = () : IPlugin => {
         const text = (value ?? '').toString();
         $tooltip.textContent = getTooltipText(text);
         $tooltip.style.position = 'absolute';
-        updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top);
+        updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top, $pointers[i].style.zIndex);
 
         $tooltips[i] = $tooltip;
         $tooltipsRow?.append($tooltip);
@@ -202,7 +205,7 @@ const MovingTooltipPlugin = () : IPlugin => {
 
       const text = (value ?? '').toString();
       $tooltip.textContent = getTooltipText(text);
-      updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top);
+      updateTooltip($tooltip, type, $pointers[i].style.left, $pointers[i].style.top, $pointers[i].style.zIndex);
     }
   };
 
@@ -418,6 +421,7 @@ const MovingTooltipPlugin = () : IPlugin => {
   text-align: center;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  z-index: ${ DEFAULT_Z_INDEX };
 }  
 
 .tooltip::after {
