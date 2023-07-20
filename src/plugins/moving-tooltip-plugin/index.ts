@@ -33,6 +33,9 @@ const MovingTooltipPlugin = () : IPlugin => {
   let tooltipUnits = '';
   let unitType = '';
 
+  // https://github.com/mzusin/toolcool-range-slider/issues/16
+  let formatTooltipValue: ((value: string | number | undefined) => string) | undefined = undefined;
+
   let $tooltips: (HTMLElement | undefined)[] = [];
   let $tooltipsRow: HTMLElement | null = null;
   let resizeObserver: ResizeObserver | null = null;
@@ -76,7 +79,11 @@ const MovingTooltipPlugin = () : IPlugin => {
   };
 
   const getTooltipText = (text: string) => {
-    return unitType === 'prefix' ? `${ tooltipUnits }${ text }` : `${ text }${ tooltipUnits }`;
+    let tooltipText = text;
+    if(typeof formatTooltipValue === 'function') {
+      tooltipText = formatTooltipValue(text);
+    }
+    return unitType === 'prefix' ? `${ tooltipUnits }${ tooltipText }` : `${ tooltipText }${ tooltipUnits }`;
   };
 
   const updateTooltips = () => {
@@ -167,6 +174,11 @@ const MovingTooltipPlugin = () : IPlugin => {
 
   const setUnitType = (newValue: string) => {
     unitType = newValue;
+    updateTooltips();
+  };
+
+  const setFormatTooltipValue = (newFunc: ((value: string | number | undefined) => string) | undefined) => {
+    formatTooltipValue = newFunc;
     updateTooltips();
   };
 
@@ -407,6 +419,20 @@ const MovingTooltipPlugin = () : IPlugin => {
           },
         }
       },
+
+      // https://github.com/mzusin/toolcool-range-slider/issues/16
+      {
+        name: 'formatTooltipValue',
+        attributes: {
+          get () {
+            return formatTooltipValue;
+          },
+
+          set: (_func) => {
+            setFormatTooltipValue(_func);
+          },
+        }
+      },
     ],
 
     css: `
@@ -427,8 +453,8 @@ const MovingTooltipPlugin = () : IPlugin => {
 .tooltip::after {
     content: '';
     position: absolute;
-    width: 20%;
-    height: 20%;
+    width: 7px;
+    height: 6px;
     transform: translate(0%, -50%) rotate(45deg);
     background-color: inherit;
     z-index: -1;
@@ -477,4 +503,7 @@ export interface IMovingTooltipPlugin extends RangeSlider{
   tooltipTextColor: string;
   tooltipUnits: string;
   tooltipUnitType: string;
+
+  // https://github.com/mzusin/toolcool-range-slider/issues/16
+  formatTooltipValue?: (value: string | number | undefined) => string;
 }

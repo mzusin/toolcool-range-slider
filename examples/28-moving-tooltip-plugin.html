@@ -56,6 +56,35 @@
               slider-width="100%"></tc-range-slider>
         </div>
 
+        <h2>Custom format function</h2>
+        <div class="row" style="margin-top: 5rem">
+            <tc-range-slider
+                id="custom-format-func-slider"
+
+                min="10000"
+                max="20000"
+                step="0.01"
+                round="1"
+
+                value1="13000"
+                value2="15000"
+                value3="17000"
+
+                moving-tooltip="true"
+                moving-tooltip-distance-to-pointer="40"
+                moving-tooltip-width="70"
+                moving-tooltip-height="30"
+                moving-tooltip-bg="#721d82"
+                moving-tooltip-text-color="#efefef"
+                moving-tooltip-units="$"
+                moving-tooltip-units-type="prefix"
+
+                slider-bg="#CBD5E1"
+                slider-bg-hover="#94A3B8"
+                slider-bg-fill="#475569"
+                slider-width="100%"></tc-range-slider>
+        </div>
+
         <h2>Right to left</h2>
         <div class="row">
             <tc-range-slider
@@ -161,5 +190,11 @@
 
     <script src="../dist/plugins/tcrs-moving-tooltip.min.js"></script>
     <script src="../dist/toolcool-range-slider.min.js"></script>
+    <script>
+        const $customFormatSlider = document.getElementById('custom-format-func-slider');
+        $customFormatSlider.formatTooltipValue = (value) => {
+            return Number(value).toLocaleString('en-US', { minimumFractionDigits: 2 });
+        };
+    </script>
 </body>
 </html>
