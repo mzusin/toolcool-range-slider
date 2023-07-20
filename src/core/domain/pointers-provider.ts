@@ -3,6 +3,7 @@ import { IPointer, Pointer } from '../ui/pointer';
 import { ISlider } from '../ui/slider';
 
 export const MAX_VALUES_API = 10;
+export const POINTER_Z_INDEX_DEFAULT = 20;
 
 export const initPointers = ($component: HTMLElement, $pointer: HTMLElement) => {
   const map = new Map<number, number | string>();
@@ -154,7 +155,6 @@ export const initPointerAPIs = ($component: HTMLElement, slider: ISlider) => {
 
 };
 
-
 export const changePointersOrder = (pointers: IPointer[], isDesc: boolean, $component: HTMLElement) => {
 
   const $container = $component.shadowRoot?.querySelector('.container') as HTMLElement
@@ -168,4 +168,18 @@ export const changePointersOrder = (pointers: IPointer[], isDesc: boolean, $comp
       $container.append(pointer.$pointer);
     }
   }
+};
+
+/**
+ * Set greater z-index only to the active pointer.
+ * https://github.com/mzusin/toolcool-range-slider/issues/15
+ */
+export const setZIndex = (pointers: IPointer[], selectedPointer: IPointer | null | undefined) => {
+  if(!selectedPointer) return;
+
+  for(const pointer of pointers) {
+    pointer.$pointer.style.zIndex = POINTER_Z_INDEX_DEFAULT.toString();
+  }
+
+  selectedPointer.$pointer.style.zIndex = (POINTER_Z_INDEX_DEFAULT * 2).toString();
 };

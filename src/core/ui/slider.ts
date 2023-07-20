@@ -11,7 +11,7 @@ import * as CSSVariables from '../enums/css-vars-enum';
 import * as CssClasses from '../enums/css-classes-enum';
 import { getAttributesByRegex } from '../domain/common-provider';
 import { IPluginsManager, PluginsManager } from '../plugins/plugins-manager';
-import { changePointersOrder } from '../domain/pointers-provider';
+import { changePointersOrder, setZIndex } from '../domain/pointers-provider';
 
 export interface ISlider {
   readonly pointers: IPointer[];
@@ -224,6 +224,11 @@ export const Slider = ($component: HTMLElement, $slider: HTMLElement, pointersLi
     }
 
     selectedPointer = getActivePointer(evt.target as HTMLElement, percent);
+
+    if(selectedPointer) {
+      // https://github.com/mzusin/toolcool-range-slider/issues/15
+      setZIndex(pointers, selectedPointer);
+    }
 
     // handle range dragging
     if(rangeDragging && pointers.length > 1 && rangeDraggingDiff !== undefined){

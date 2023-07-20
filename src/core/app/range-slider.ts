@@ -182,7 +182,7 @@ class TCRangeSlider extends HTMLElement {
   public addPointer(value: number | string | undefined) {
     if(!this.slider) return;
 
-    const index = this.slider?.addPointer(value);
+    const index = this.slider?.addPointer(value) ?? 0;
 
     initPointerAPI(this,
       this.slider,

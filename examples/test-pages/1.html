@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Marks Plugin | Tool Cool Range Slider</title>
+    <title>Test Page | Tool Cool Range Slider</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 <body>
 
-<h1>Marks Plugin</h1>
+<h1>Test Page</h1>
 
 <div class="wrapper">
 
     <div class="row" style="padding: 4rem;">
         <div class="row">
-            <tc-range-slider
-                    id="slider-1"
-                    slider-width="100%"
-                    generate-labels="true"
-                    min="0"
-                    max="100"
-                    value="50"></tc-range-slider>
+            <tc-range-slider value1="0" value2="100"></tc-range-slider>
         </div>
     </div>
 
@@ -28,14 +22,14 @@
 <script src="../../dist/plugins/tcrs-generated-labels.min.js"></script>-->
 <script src="../../dist/plugins/tcrs-marks.min.js"></script>
 <script src="../../dist/toolcool-range-slider.min.js"></script>
-<script>
+<!--<script>
     const $slider1 = document.getElementById('slider-1');
 
-    // onMouseUp event ------------
+    // onMouseUp event &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;
     $slider1.addEventListener('onMouseUp', (evt) => {
         const nativeEvent = evt.detail.nativeEvent;
         console.log('Native mouseup event:', nativeEvent);
     });
-</script>
+</script>-->
 </body>
 </html>
