@@ -33,6 +33,7 @@ https://range-slider.toolcool.org/pages/origin-at-center-plugin.html
 https://range-slider.toolcool.org/pages/events.html
 https://range-slider.toolcool.org/pages/generating-slider-dynamically.html
 https://range-slider.toolcool.org/pages/react-typescript.html
+https://range-slider.toolcool.org/pages/next-js.html
 https://range-slider.toolcool.org/pages/add-remove-pointer.html
 https://range-slider.toolcool.org/pages/plugins.html
 https://range-slider.toolcool.org/pages/javascript-plugins.html

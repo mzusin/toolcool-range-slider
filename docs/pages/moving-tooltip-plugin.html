@@ -17,8 +17,8 @@
     <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16.png" />
 
     <link rel="stylesheet" href="/highlight.js/styles/tokyo-night-dark.css" />
-    <link rel="stylesheet" href="/css/styles.1689846578113.css" />
-    <!--<link rel="stylesheet" href="/js/index.1689846578113.css" />-->
+    <link rel="stylesheet" href="/css/styles.1689852038054.css" />
+    <!--<link rel="stylesheet" href="/js/index.1689852038054.css" />-->
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3TJWMC6F4"></script>
@@ -139,7 +139,7 @@
           <path d="m7 7 5 5-5 5m6-10 5 5-5 5"/>
         </svg>
 
-    </div><div class="flex flex-col" data-links><a href="/pages/events.html" title="" class="pl-3 border-l border-slate-150 dark:border-slate-600 pb-2 text-slate-500">Events</a><a href="/pages/generating-slider-dynamically.html" title="" class="pl-3 border-l border-slate-150 dark:border-slate-600 pb-2 text-slate-500">Generating Slider Dynamically</a><a href="/pages/react-typescript.html" title="" class="pl-3 border-l border-slate-150 dark:border-slate-600 pb-2 text-slate-500">React & TypeScript</a><a href="/pages/add-remove-pointer.html" title="" class="pl-3 border-l border-slate-150 dark:border-slate-600  text-slate-500">Add/Remove Pointer API</a></div><div class="text-xl my-4 flex items-center cursor-pointer" data-collapsible-title data-opened="true">
+    </div><div class="flex flex-col" data-links><a href="/pages/events.html" title="" class="pl-3 border-l border-slate-150 dark:border-slate-600 pb-2 text-slate-500">Events</a><a href="/pages/generating-slider-dynamically.html" title="" class="pl-3 border-l border-slate-150 dark:border-slate-600 pb-2 text-slate-500">Generating Slider Dynamically</a><a href="/pages/react-typescript.html" title="" class="pl-3 border-l border-slate-150 dark:border-slate-600 pb-2 text-slate-500">React & TypeScript</a><a href="/pages/next-js.html" title="" class="pl-3 border-l border-slate-150 dark:border-slate-600 pb-2 text-slate-500">Next.js</a><a href="/pages/add-remove-pointer.html" title="" class="pl-3 border-l border-slate-150 dark:border-slate-600  text-slate-500">Add Remove Pointer</a></div><div class="text-xl my-4 flex items-center cursor-pointer" data-collapsible-title data-opened="true">
         Plugins 
         <svg data-arrow xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#626e7f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="ml-2 rotate-90" viewBox="0 0 24 24">
           <path stroke="none" d="M0 0h24v24H0z"/>
@@ -304,6 +304,12 @@
 <td class="px-6 py-2">“” or “prefix”</td>
 <td class="px-6 py-2">tooltipUnitType</td>
 </tr>
+<tr class="border-slate-200 border-b last:border-0 dark:border-slate-600">
+<td class="px-6 py-2">-</td>
+<td class="px-6 py-2">undefined</td>
+<td class="px-6 py-2">function</td>
+<td class="px-6 py-2">formatTooltipValue</td>
+</tr>
 </tbody>
 </table>
 <blockquote class="bg-gray-100 pt-4 px-4 flex my-10 border-l-4 border-blue-300 rounded dark:bg-sky-900">
@@ -335,7 +341,10 @@ $slider.<span class="hljs-property">tooltipHeight</span> = <span class="hljs-num
 $slider.<span class="hljs-property">tooltipBg</span> = <span class="hljs-string">&#x27;#000&#x27;</span>;
 $slider.<span class="hljs-property">tooltipTextColor</span> = <span class="hljs-string">&#x27;#efefef&#x27;</span>;
 $slider.<span class="hljs-property">tooltipUnits</span> = <span class="hljs-string">&#x27;{% page-content %}#x27;</span>;
-$slider.<span class="hljs-property">tooltipUnitType</span> = <span class="hljs-string">&#x27;prefix&#x27;</span>;</code></pre>
+$slider.<span class="hljs-property">tooltipUnitType</span> = <span class="hljs-string">&#x27;prefix&#x27;</span>;
+$slider.<span class="hljs-property">formatTooltipValue</span> = <span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Number</span>(value).<span class="hljs-title function_">toLocaleString</span>(<span class="hljs-string">&#x27;en-US&#x27;</span>, { <span class="hljs-attr">minimumFractionDigits</span>: <span class="hljs-number">2</span> });
+};</code></pre>
 <p class="mb-4">TypeScript example:</p>
 <pre class="hljs p-4 mb-4 rounded-md shadow-xl overflow-auto whitespace-pre-wrap text-base"><code><span class="hljs-keyword">import</span> { <span class="hljs-title class_">IMovingTooltipPlugin</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;toolcool-range-slider&#x27;</span>;
 
@@ -348,7 +357,10 @@ $slider.<span class="hljs-property">tooltipHeight</span> = <span class="hljs-num
 $slider.<span class="hljs-property">tooltipBg</span> = <span class="hljs-string">&#x27;#000&#x27;</span>;
 $slider.<span class="hljs-property">tooltipTextColor</span> = <span class="hljs-string">&#x27;#efefef&#x27;</span>;
 $slider.<span class="hljs-property">tooltipUnits</span> = <span class="hljs-string">&#x27;{% page-content %}#x27;</span>;
-$slider.<span class="hljs-property">tooltipUnitType</span> = <span class="hljs-string">&#x27;prefix&#x27;</span>;</code></pre>
+$slider.<span class="hljs-property">tooltipUnitType</span> = <span class="hljs-string">&#x27;prefix&#x27;</span>;
+$slider.<span class="hljs-property">formatTooltipValue</span> = <span class="hljs-function">(<span class="hljs-params">value?: (value: <span class="hljs-built_in">string</span>|<span class="hljs-built_in">number</span>|<span class="hljs-literal">undefined</span>) =&gt; <span class="hljs-built_in">string</span></span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Number</span>(value).<span class="hljs-title function_">toLocaleString</span>(<span class="hljs-string">&#x27;en-US&#x27;</span>, { <span class="hljs-attr">minimumFractionDigits</span>: <span class="hljs-number">2</span> });
+};</code></pre>
 <blockquote class="bg-gray-100 pt-4 px-4 flex my-10 border-l-4 border-blue-300 rounded dark:bg-sky-900">
 <p class="mb-4">📌 An example page with the source code can be found <a href="https://github.com/mzusin/toolcool-range-slider/blob/main/examples/28-moving-tooltip-plugin.html" class="text-sky-500">here</a>.</p>
 </blockquote>
@@ -394,6 +406,6 @@ $slider.<span class="hljs-property">tooltipUnitType</span> = <span class="hljs-s
       </div>
     </footer>-->
 
-    <script src="/js/index.1689846578113.js"></script>
+    <script src="/js/index.1689852038054.js"></script>
   </body>
 </html>

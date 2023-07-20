@@ -110,16 +110,17 @@ import 'toolcool-range-slider';
 // any code here...
 ```
 
-| HTML Property                      | Default Value | Possible Values | API Property      |
-|------------------------------------|---------------|-----------------|-------------------|
-| moving-tooltip                     | true          | true or false   | movingTooltip     |
-| moving-tooltip-distance-to-pointer | 40            | number          | distanceToPointer | 
-| moving-tooltip-width               | 35            | number          | tooltipWidth      |
-| moving-tooltip-height              | 30            | number          | tooltipHeight     |
-| moving-tooltip-bg                  | #475569       | color           | tooltipBg         |
-| moving-tooltip-text-color          | #fff          | color           | tooltipTextColor  | 
-| moving-tooltip-units               | empty string  | text            | tooltipUnits      |
-| moving-tooltip-units-type          | empty string  | "" or "prefix"  | tooltipUnitType   |
+| HTML Property                      | Default Value | Possible Values | API Property       |
+|------------------------------------|---------------|-----------------|--------------------|
+| moving-tooltip                     | true          | true or false   | movingTooltip      |
+| moving-tooltip-distance-to-pointer | 40            | number          | distanceToPointer  | 
+| moving-tooltip-width               | 35            | number          | tooltipWidth       |
+| moving-tooltip-height              | 30            | number          | tooltipHeight      |
+| moving-tooltip-bg                  | #475569       | color           | tooltipBg          |
+| moving-tooltip-text-color          | #fff          | color           | tooltipTextColor   | 
+| moving-tooltip-units               | empty string  | text            | tooltipUnits       |
+| moving-tooltip-units-type          | empty string  | "" or "prefix"  | tooltipUnitType    |
+| -                                  | undefined     | function        | formatTooltipValue |
 
 
 
@@ -155,6 +156,9 @@ $slider.tooltipBg = '#000';
 $slider.tooltipTextColor = '#efefef';
 $slider.tooltipUnits = '$';
 $slider.tooltipUnitType = 'prefix';
+$slider.formatTooltipValue = (value) => {
+    return Number(value).toLocaleString('en-US', { minimumFractionDigits: 2 });
+};
 ```
 
 TypeScript example:
@@ -172,6 +176,9 @@ $slider.tooltipBg = '#000';
 $slider.tooltipTextColor = '#efefef';
 $slider.tooltipUnits = '$';
 $slider.tooltipUnitType = 'prefix';
+$slider.formatTooltipValue = (value?: (value: string|number|undefined) => string) => {
+    return Number(value).toLocaleString('en-US', { minimumFractionDigits: 2 });
+};
 ```
 
 > :pushpin: An example page with the source code can be found [here](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/28-moving-tooltip-plugin.html).
