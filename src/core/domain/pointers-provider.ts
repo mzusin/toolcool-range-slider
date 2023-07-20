@@ -175,7 +175,7 @@ export const changePointersOrder = (pointers: IPointer[], isDesc: boolean, $comp
  * https://github.com/mzusin/toolcool-range-slider/issues/15
  */
 export const setZIndex = (pointers: IPointer[], selectedPointer: IPointer | null | undefined) => {
-  if(!selectedPointer) return;
+  if(!selectedPointer || pointers.length <= 1) return;
 
   for(const pointer of pointers) {
     pointer.$pointer.style.zIndex = POINTER_Z_INDEX_DEFAULT.toString();
