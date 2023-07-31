@@ -129,6 +129,10 @@ Try my other project [React Round Slider](https://github.com/mzusin/react-round-
 
 <img height="150" src="https://github.com/mzusin/react-round-slider/blob/main/docs/img/preview/1-1.gif?raw=true" />
 
+## Tool Cool Color Picker
+[Tool Cool Color Picker](https://github.com/mzusin/toolcool-color-picker) is a color picker library written in typescript and using web component technologies.
+![Tool Cool Color Picker](https://github.com/mzusin/toolcool-color-picker/blob/main/examples/img/preview/preview-1.png?raw=true)
+
 ## Other Projects
 - [ミ☆ mzParticles ☆彡](https://github.com/mzusin/mz-particles) - TypeScript library for creating particle effects.
 - [mzMath](https://github.com/mzusin/mz-math) - a collection of typescript-based math helpers. 
@@ -136,5 +140,4 @@ Try my other project [React Round Slider](https://github.com/mzusin/react-round-
 - [React Input Number](https://github.com/mzusin/mz-react-input-number) - React component that provides a user-friendly interface for entering numerical values. 
 - [Stripes Maker](https://github.com/mzusin/stripes-maker) - Node.js stripe pattern generator and maker. 
 - [mzCanvas](https://github.com/mzusin/mz-canvas) - The TypeScript-based library for manipulating &lt;canvas> element and 2D graphics in the browser. 
-- [Tool Cool Color Picker](https://github.com/mzusin/toolcool-color-picker) - color picker library written in typescript and using web component technologies.
 
