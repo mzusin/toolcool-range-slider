@@ -124,6 +124,10 @@ It can be used **for free** in any personal or commercial project :gift:
 
 [![Tool Cool Range Slider](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/img/preview/toolcool-range-slider-preview-2.png?raw=true)](https://github.com/mzusin/toolcool-range-slider/blob/main/examples/3-styles.html)
 
+## React Round Slider
+Try my other project [React Round Slider](https://github.com/mzusin/react-round-slider) - an accessible and mobile-friendly React round slider library, powered by TypeScript and SVG.
+
+<img height="150" src="https://github.com/mzusin/react-round-slider/blob/main/docs/img/preview/1-1.gif?raw=true" /><br> React Round Slider
 
 ## Other Projects
 - [ミ☆ mzParticles ☆彡](https://github.com/mzusin/mz-particles) - TypeScript library for creating particle effects.
